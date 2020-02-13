@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsReleased__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Vyvazován - indikace, zda je role osoby odebírána v rámci změnového návrhu k úvěrovému případu. 
+Pokud ano, hodnota ve sloupci je 1, jinak je ve sloupci hodnota 0.</description>
+    <externalId>false</externalId>
+    <label>Is Released</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>
