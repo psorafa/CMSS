@@ -35,6 +35,10 @@
                 <behavior>Edit</behavior>
                 <field>ExternalId__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ProductType__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -158,6 +162,10 @@
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.LAST_UPDATE</fields>
         <relatedList>Activity.Asset__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>AssetAccountRelation__c.Asset__c</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
     <relatedObjects>ContactId</relatedObjects>

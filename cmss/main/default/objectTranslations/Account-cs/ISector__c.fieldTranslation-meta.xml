@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>iSektor</label>
+    <name>ISector__c</name>
+    <picklistValues>
+        <masterLabel>10000</masterLabel>
+        <translation>Celkové hospodářství</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11000</masterLabel>
+        <translation>Nefinanční podniky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11001</masterLabel>
+        <translation>Nefinanční podniky veřejné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11002</masterLabel>
+        <translation>Nefinanční podniky soukromé národní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11003</masterLabel>
+        <translation>Nefinanční podniky soukromé pod zahraniční kontrolou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12000</masterLabel>
+        <translation>Finanční instituce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12100</masterLabel>
+        <translation>Centrální banka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12200</masterLabel>
+        <translation>Instituce přijímající vklady kromě centrální banky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12201</masterLabel>
+        <translation>Instituce přijímající vklady kromě centrální banky veřejné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12202</masterLabel>
+        <translation>Instituce přijímající vklady kromě centrální banky soukromé národní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12203</masterLabel>
+        <translation>Instituce přijímající vklady kromě centrální banky pod zahraniční kontrolou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12300</masterLabel>
+        <translation>Fondy peněžního trhu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12301</masterLabel>
+        <translation>Fondy peněžního trhu veřejné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12302</masterLabel>
+        <translation>Fondy peněžního trhu soukromé národní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12303</masterLabel>
+        <translation>Fondy peněžního trhu pod zahraniční kontrolou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12400</masterLabel>
+        <translation>Fondy kolektivního investování jiné než fondy peněžního trhu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12401</masterLabel>
+        <translation>Fondy kolektivního investování (kromě FPT) veřejné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12402</masterLabel>
+        <translation>Fondy kolektivního investování (kromě FPT) soukromé národní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12403</masterLabel>
+        <translation>Fondy kolektivního investování (kromě FPT) pod zahraniční kontrolou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12500</masterLabel>
+        <translation>Ostatní finanční zprostředkovatelé kromě pojišťovacích společností a penzijních fondů</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12501</masterLabel>
+        <translation>Ostatní finanční zprostředkovatelé (kromě IC a PF) veřejní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12502</masterLabel>
+        <translation>Ostatní finanční zprostředkovatelé (kromě IC a PF) soukromí národní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12503</masterLabel>
+        <translation>Ostatní finanční zprostředkovatelé (kromě IC a PF) pod zahraniční kontrolou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12600</masterLabel>
+        <translation>Pomocné finanční instituce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12601</masterLabel>
+        <translation>Pomocné finanční instituce veřejné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12602</masterLabel>
+        <translation>Pomocné finanční instituce soukromé národní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12603</masterLabel>
+        <translation>Pomocné finanční instituce pod zahraniční kontrolou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12700</masterLabel>
+        <translation>Kaptivní finanční instituce a půjčovatelé peněz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12701</masterLabel>
+        <translation>Kaptivní finanční instituce a půjčovatelé peněz veřejné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12702</masterLabel>
+        <translation>Kaptivní finanční instituce a půjčovatelé peněz soukromé národní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12703</masterLabel>
+        <translation>Kaptivní finanční instituce a půjčovatelé peněz pod zahraniční kontrolou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12800</masterLabel>
+        <translation>Pojišťovací společnosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12801</masterLabel>
+        <translation>Pojišťovací společnosti (IC) veřejné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12802</masterLabel>
+        <translation>Pojišťovací společnosti (IC) soukromé národní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12803</masterLabel>
+        <translation>Pojišťovací společnosti (IC) pod zahraniční kontrolou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12900</masterLabel>
+        <translation>Penzijní fondy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12901</masterLabel>
+        <translation>Penzijní fondy (PF) veřejné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12902</masterLabel>
+        <translation>Penzijní fondy (PF) soukromé národní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12903</masterLabel>
+        <translation>Penzijní fondy (PF) pod zahraniční kontrolou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13000</masterLabel>
+        <translation>Vládní instituce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13110</masterLabel>
+        <translation>Ústřední vládní instituce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13120</masterLabel>
+        <translation>Národní vládní instituce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13130</masterLabel>
+        <translation>Místní vládní instituce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13140</masterLabel>
+        <translation>Fondy sociálního zabezpečení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14000</masterLabel>
+        <translation>Domácnosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14100</masterLabel>
+        <translation>Zaměstnavatelé</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14200</masterLabel>
+        <translation>Osoby samostatně výdělečně činné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14300</masterLabel>
+        <translation>Zaměstnanci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14400</masterLabel>
+        <translation>Příjemci důchodů z vlastnictví a transferových důchodů</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14410</masterLabel>
+        <translation>Příjemci důchodů z vlastnictví</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14420</masterLabel>
+        <translation>Příjemci penzí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14430</masterLabel>
+        <translation>Příjemci ostatních transferů</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15000</masterLabel>
+        <translation>Neziskové instituce sloužící domácnostem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15002</masterLabel>
+        <translation>Neziskové instituce sloužící domácnostem soukromé národní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15003</masterLabel>
+        <translation>Neziskové instituce sloužící domácnostem pod zahraniční kontrolou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20000</masterLabel>
+        <translation>Nerezidenti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21000</masterLabel>
+        <translation>Členské státy, orgány a instituce Evropské unie</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21100</masterLabel>
+        <translation>Členské státy Evropské unie</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21110</masterLabel>
+        <translation>Členské státy eurozóny</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21120</masterLabel>
+        <translation>Členské státy mimo eurozónu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21200</masterLabel>
+        <translation>Orgány a instituce Evropské unie</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21210</masterLabel>
+        <translation>Evropská centrální banka (ECB)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21220</masterLabel>
+        <translation>Evropské orgány a instituce, kromě ECB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22000</masterLabel>
+        <translation>Ostatní země a mezinárodní organizace - nerezidenti EU</translation>
+    </picklistValues>
+</CustomFieldTranslation>

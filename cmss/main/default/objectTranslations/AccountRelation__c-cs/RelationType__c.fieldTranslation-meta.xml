@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Relation Type --></label>
+    <name>RelationType__c</name>
+    <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>Neurčeno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Zastupování nezletilého</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Zastupování nesvéprávného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Plná moc</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Relation Type --></label>
+    <name>RelationType__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Vlastník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Pěstoun</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>101</masterLabel>
+        <translation>Adresát</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>102</masterLabel>
+        <translation>Dlužník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>103</masterLabel>
+        <translation>Spoludlužník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>104</masterLabel>
+        <translation>Přistupitel k dluhu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>105</masterLabel>
+        <translation>Přejímatel dluhu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>106</masterLabel>
+        <translation>Zákonný zástupce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>107</masterLabel>
+        <translation>Opatrovník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>108</masterLabel>
+        <translation>Právo podpisu za PO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>109</masterLabel>
+        <translation>Zmocněnec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>110</masterLabel>
+        <translation>Poručník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Spoluvlastník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>201</masterLabel>
+        <translation>Zástavce pohledávky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>202</masterLabel>
+        <translation>Zástavce – plná moc</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>203</masterLabel>
+        <translation>Držitel zástavy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>204</masterLabel>
+        <translation>Ručitel</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>205</masterLabel>
+        <translation>Ručitel - manžel/ka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>206</masterLabel>
+        <translation>Směnečník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>207</masterLabel>
+        <translation>Avalista</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>208</masterLabel>
+        <translation>Výstavce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>209</masterLabel>
+        <translation>Pojistník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>210</masterLabel>
+        <translation>Pojišťovna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>211</masterLabel>
+        <translation>Pojištěnec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Zákonný zástupce-hlavní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>301</masterLabel>
+        <translation>Zástavce nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>303</masterLabel>
+        <translation>Budoucí vlastník nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>304</masterLabel>
+        <translation>Vedlejší účastník nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>Zákonný zástupce-vedlejší</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>401</masterLabel>
+        <translation>Účastník st.spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>402</masterLabel>
+        <translation>Ručitel - Migrace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>403</masterLabel>
+        <translation>Zmocněnec pro čerpání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>404</masterLabel>
+        <translation>Zástupce-plná moc</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>405</masterLabel>
+        <translation>Zástavní dlužník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>406</masterLabel>
+        <translation>Zástavce nemov. - Migrace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>407</masterLabel>
+        <translation>Zástavce pohled.- Migrace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>408</masterLabel>
+        <translation>Avalista - Migrace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>409</masterLabel>
+        <translation>Přistupitel-zástavce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>410</masterLabel>
+        <translation>Budoucí ručitel</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>411</masterLabel>
+        <translation>Budoucí spoludlužník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>412</masterLabel>
+        <translation>Budoucí dlužník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>413</masterLabel>
+        <translation>Budoucí přistupitel</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Opatrovník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>Osoba oprávněná jednat za PO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>Zmocněnec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>Poručník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>Pečující osoba</translation>
+    </picklistValues>
+</CustomFieldTranslation>
