@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AgentActivityStartDate__c</fullName>
+    <description>Datum zahájení činnosti OO v daném typu činnosti - zařazení ve struktuře</description>
+    <externalId>false</externalId>
+    <label>Agent Activity Start Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Date</type>
+</CustomField>

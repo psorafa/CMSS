@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MaritalStatusChanged__c</fullName>
+    <description>Datum změny rodinného stavu</description>
+    <externalId>false</externalId>
+    <label>Marital Status Changed</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Date</type>
+</CustomField>

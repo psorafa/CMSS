@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RelationshipType</fullName>
+    <description>0 = úverový případ
+1 = Úvěr ze Stavebního Spoření (USS)
+2 = Meziúvěr (MU)
+7 = Účet Rizikového Životního Pojištění (RZP)
+9 = účet Stavebního Spoření (SS)</description>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+</CustomField>
