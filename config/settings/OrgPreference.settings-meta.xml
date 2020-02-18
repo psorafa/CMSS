@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OrgPreferenceSettings xmlns="http://soap.sforce.com/2006/04/metadata">
+    <preferences>
+        <settingName>ChatterEnabled</settingName>
+        <settingValue>true</settingValue>
+    </preferences>
+    <preferences>
+        <settingName>ConsentManagementEnabled</settingName>
+        <settingValue>true</settingValue>
+    </preferences>
+    <preferences>
+        <settingName>DisableParallelApexTesting</settingName>
+        <settingValue>false</settingValue>
+    </preferences>
+    <preferences>
+        <settingName>EnhancedEmailEnabled</settingName>
+        <settingValue>true</settingValue>
+    </preferences>
+    <preferences>
+        <settingName>Translation</settingName>
+        <settingValue>true</settingValue>
+    </preferences>
+</OrgPreferenceSettings>

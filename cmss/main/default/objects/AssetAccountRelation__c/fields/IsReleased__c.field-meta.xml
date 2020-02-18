@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsReleased__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indikace, zda je role osoby odebírána v rámci změnového návrhu k úvěrovému případu. 
+Pokud ano, hodnota ve sloupci je 1, jinak je ve sloupci hodnota 0.
+EDM_UV_PRIPAD_UCTY.VYVAZOVAN</description>
+    <externalId>false</externalId>
+    <label>Is Released</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
