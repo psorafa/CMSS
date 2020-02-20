@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsAgentActive__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Určuje jestli je uživatel opravdu neaktivní, nebo jestli jde jen o aktivního agenta, který nemá přístup do CRM = může být správce stavu</description>
+    <externalId>false</externalId>
+    <label>Active Agent</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>
