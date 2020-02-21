@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label>ČSOB klient status</label>
-    <name>CsobStatus__c</name>
+    <label><!-- Relation Type --></label>
+    <name>RelationType__c</name>
+    <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation><!-- 0 --></translation>
+    </picklistValues>
     <picklistValues>
         <masterLabel>1</masterLabel>
         <translation><!-- 1 --></translation>
@@ -13,9 +17,5 @@
     <picklistValues>
         <masterLabel>3</masterLabel>
         <translation><!-- 3 --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>4</masterLabel>
-        <translation><!-- 4 --></translation>
     </picklistValues>
 </CustomFieldTranslation>
