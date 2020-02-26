@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MonthlyDeposit__c</fullName>
+    <description>&quot;Pro aktuální měsíc platný měsíční vklad, tj. částka, kterou se klient zavázal naspořit.
+Pro tzv. čisté SS se jedná o částku měsíčního spoření (neplnění ČMSS toleruje, jakkoli lze příležitostně upomínat).
+Pro SS se souvisejícím MÚ se jedná o tzv. dospořování, tj. výrazně silnější závazek (klient se k němu zavazuje v úvěrové smlouvě).&quot;</description>
+    <externalId>false</externalId>
+    <label>Monthly Deposit</label>
+    <precision>14</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

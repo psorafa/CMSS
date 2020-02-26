@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsInherited__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Příznak, zda byla smlouva zděděna</description>
+    <externalId>false</externalId>
+    <label>Is Inherited</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>
