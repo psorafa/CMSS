@@ -18,17 +18,13 @@ set -o xtrace
 #create scratch org
 if [ -n  "$DEVHUB"];
 then
-    sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF --setdefaultusername
+    sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF
 else
-    sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF --targetdevhubusername  $DEVHUB --setdefaultusername
+    sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF --targetdevhubusername  $DEVHUB
 fi
 
-#deploy required settings
-sfdx force:source:deploy -p "config/settings"
-sfdx force:source:deploy -p "config/languages"
-
 #push source
-sfdx force:source:push
+sfdx force:source:push --targetusername $ALIAS
 
 #run tests
 sfdx force:apex:test:run --targetusername $ALIAS --testlevel $TEST --codecoverage --resultformat human

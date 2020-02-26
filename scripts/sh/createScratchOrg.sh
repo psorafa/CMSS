@@ -16,12 +16,8 @@ else
     sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF --targetdevhubusername  $DEVHUB --setdefaultusername
 fi
 
-#deploy required settings
-sfdx force:source:deploy -p "config/settings"
-sfdx force:source:deploy -p "config/languages"
-
 #push source
-sfdx force:source:push
+sfdx force:source:push --targgetusername $ALIAS
 
 #setup data
 #tbc
