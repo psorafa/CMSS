@@ -1,0 +1,43 @@
+[
+	{
+		"attributes": {
+			"type": "Account",
+			"referenceId": "AccountRef1"
+		},
+		"LastName": "Malý",
+		"FirstName": "Martin",
+		"Salutation": "Mr.",
+		"BillingStreet": "Osvobození 16",
+		"BillingCity": "Želechovice nad Dřevnicí",
+		"BillingPostalCode": "195901",
+		"BillingCountry": "Česká republika",
+		"Phone": "+420 606 106 399",
+		"PersonEmail": "m.maly@test.email",
+		"PersonTitle": "Ing.",
+		"AmountOffer__c": 800000,
+		"Birthdate__c": "1980-01-15",
+		"DataSource__c": "3",
+		"Education__c": "6",
+		"ExternalId__c": "ext333",
+		"FirstProductStartDate__c": "2019-05-31",
+		"FirstSbProductDate__c": "2019-05-31",
+		"Gender__c": "1",
+		"GlobalId__c": "global333",
+		"HasCsProduct__c": false,
+		"HasSbProduct__c": true,
+		"ISector__c": "14000",
+		"IdCardNumber__c": "G201474855",
+		"IdCardType__c": "0",
+		"IdCardValidTo__c": "2023-04-29",
+		"IsForeigner__c": true,
+		"IsIdCardInvalid__c": false,
+		"IsLegallyIncompetent__c": false,
+		"IsResident__c": true,
+		"MaritalStatusChanged__c": "2019-06-30",
+		"MaritalStatus__c": "2",
+		"Nationality__c": "1",
+		"PersonalIdentificationNr__c": "8001165282",
+		"PlaceOfBirth__c": "Ostrava",
+		"SbId__c": "sb333"
+	}
+]
