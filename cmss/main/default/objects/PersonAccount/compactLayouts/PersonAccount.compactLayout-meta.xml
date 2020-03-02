@@ -3,10 +3,12 @@
     <fullName>PersonAccount</fullName>
     <fields>Name</fields>
     <fields>PersonTitle</fields>
+    <fields>PersonalIdentificationNr__c</fields>
     <fields>GlobalId__c</fields>
     <fields>Phone</fields>
     <fields>PersonEmail</fields>
-    <fields>OwnerId</fields>
     <fields>AccountStatus__c</fields>
+    <fields>PortfolioMngmtA__c</fields>
+    <fields>PortfolioMngmtC__c</fields>
     <label>Person Account</label>
 </CompactLayout>
