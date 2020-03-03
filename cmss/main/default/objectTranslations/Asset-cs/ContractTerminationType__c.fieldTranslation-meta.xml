@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Contract Termination Type --></label>
+    <name>ContractTerminationType__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Odstoupení ze strany klienta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Výpověď ze strany ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>101</masterLabel>
+        <translation>Výplata v den přidělení (P)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>102</masterLabel>
+        <translation>V určitý den po přidělení (P)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>103</masterLabel>
+        <translation>Po podpisu úvěrové smlouvy (P)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>Výpověď ze strany klienta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>111</masterLabel>
+        <translation>Odstoupení SS vůči MÚ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12</masterLabel>
+        <translation>Výpověď ze strany klienta - rychlovka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>121</masterLabel>
+        <translation>Zánik smlouvy z důvodu dědění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13</masterLabel>
+        <translation>Odstoupení od smlouvy s došlými prostředky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>131</masterLabel>
+        <translation>Storno rozdělení CČ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>132</masterLabel>
+        <translation>Odmítnutí rozdělení smlouvy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14</masterLabel>
+        <translation>Odstoupení od smlouvy bez došlých prostředků</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Odstoupení ze strany klienta - nefinancování</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Odstoupení ze strany ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>Ukončení smlouvy s došlými prostředky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Storno smlouvy bez došlých prostředků</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>Mínusový zůstatek</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>Mínusový zůstatek - upomínky A, B</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>Zánik smlouvy z důvodu přespoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>Zánik smlouvy se souvisejícím MÚ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>901</masterLabel>
+        <translation>Zrušení smlouvy podle čl.IV,odst.2 VOP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>902</masterLabel>
+        <translation>Zrušení smlouvy převodem bez vr.podpory</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>903</masterLabel>
+        <translation>Zrušení smlouvy změnou kmenového čísla</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>904</masterLabel>
+        <translation>Zrušení smlouvy sloučením</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>905</masterLabel>
+        <translation>Zrušení smlouvy odpisem pohledávky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>906</masterLabel>
+        <translation>Zrušení smlouvy převodem s vrác.podpory</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>907</masterLabel>
+        <translation>Odpis mimo podrozvahu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>908</masterLabel>
+        <translation>Zrušení smlouvy podle čl.V,odst.4 VOP</translation>
+    </picklistValues>
+</CustomFieldTranslation>
