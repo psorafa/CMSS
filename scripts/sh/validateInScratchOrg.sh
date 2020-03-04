@@ -10,15 +10,15 @@ DAYS=${5-1}
 #cleanup when done
 function finish {
     # remove scratch org
-    echo -e "\e[33mDeleting scratch org..."
+    echo "Deleting scratch org..."
     sfdx force:org:delete --targetusername $ALIAS --noprompt
-    echo -e "\e[33mDone."
+    echo "Done."
 }
 trap finish EXIT
 set -o xtrace
 
 #create scratch org
-echo -e "\e[33mCreating scratch org..."
+echo "Creating scratch org..."
 if [ -n  "$DEVHUB"];
 then
     sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF
@@ -27,12 +27,13 @@ else
 fi
 
 #push source
-echo -e "\e[33mPushing source..."
+echo "Pushing source..."
 sfdx force:source:push --targetusername $ALIAS
 
 #run tests
-echo -e "\e[33mRunning tests..."
-sfdx force:apex:test:run --targetusername $ALIAS --testlevel $TEST --codecoverage --resultformat human
+echo "Running tests..."
+# disabled for now as there are no tests yet
+# sfdx force:apex:test:run --targetusername $ALIAS --testlevel $TEST --codecoverage --resultformat human
 
 set +o
-echo -e "\e[32mValidation Successfull!"
+echo "Validation Successfull!"
