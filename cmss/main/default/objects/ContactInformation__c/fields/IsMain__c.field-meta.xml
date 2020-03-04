@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsMain__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Hlavní kontakt daného typu (telefon, email, adresa)</description>
+    <externalId>false</externalId>
+    <label>Main</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

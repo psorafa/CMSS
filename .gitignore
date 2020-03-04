@@ -37,3 +37,6 @@ sf_crm.iml
 
 #tmp folders for data import
 scripts/apex/tmp/
+# woarkarounds:
+./cmss/main/default/objects/Task/fields/IsVisibleInSelfService.field-meta.xml
+./cmss/main/default/objects/Account/fields/IsCustomerPortal.field-meta.xml
