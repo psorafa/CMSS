@@ -1,4 +1,4 @@
-#!/bin/bash
+#!C:\progra~1\Git\bin\sh.exe
 set -e
 
 ALIAS=${1-"cmss_validate"}
