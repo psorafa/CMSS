@@ -1,5 +1,4 @@
 Id personAccountRtId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('PersonAccount').getRecordTypeId();
-System.debug(personAccountRtId);
 
 String accountJson = '{0}';
 

@@ -17,10 +17,10 @@ else
 fi
 
 #push source
-sfdx force:source:push --targgetusername $ALIAS
+sfdx force:source:push --targetusername $ALIAS
 
 #setup data
-#tbc
+scripts/sh/data.sh $ALIAS
 
 set +o
 echo "Org $ALIAS created!"

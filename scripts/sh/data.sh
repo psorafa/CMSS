@@ -1,7 +1,13 @@
 #!/bin/bash
-scriptString=$(<scripts/apex/importAccount.apex)
-jsonData=$(<data/tree/Account.json)
+ALIAS="${1}"
 
-echo ${scriptString/"{0}"/$jsonData} > scripts/apex/tmp/importAccount.apex
+mkdir scripts/apex/tmp
 
-sfdx force:apex:execute --apexcodefile scripts/apex/tmp/importAccount.apex --targetusername cmss
+accountsScript="scripts/apex/tmp/importAccount.apex"
+scripts/sh/data/Accounts.sh "$accountsScript"
+
+set -o xtrace
+sfdx force:apex:execute --apexcodefile $accountsScript --targetusername $ALIAS
+
+rm -r scripts/apex/tmp
+
