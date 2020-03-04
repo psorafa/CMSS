@@ -3,9 +3,8 @@ set -e
 
 TARGETPATH=${1}
 
-echo $TARGETPATH
-
-scripts/sh/util/mergeJson.sh "scripts/apex/importPersonAccounts.apex" "data/tree/Account.json" "{0}" "$TARGETPATH"
+scripts/sh/util/mergeJson.sh "scripts/apex/importAccounts.apex" "data/tree/businessAccounts.json" "{1}" "$TARGETPATH"
+scripts/sh/util/mergeJson.sh "$TARGETPATH" "data/tree/personAccounts.json" "{0}" "$TARGETPATH"
 
 
 

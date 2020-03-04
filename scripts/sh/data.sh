@@ -1,9 +1,11 @@
 #!/bin/bash
+set -e
+
 ALIAS="${1}"
 
-mkdir scripts/apex/tmp
+mkdir scripts/apex/tmp -p
 
-accountsScript="scripts/apex/tmp/importAccount.apex"
+accountsScript="scripts/apex/tmp/importAccounts.apex"
 scripts/sh/data/Accounts.sh "$accountsScript"
 
 set -o xtrace
