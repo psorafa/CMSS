@@ -34,3 +34,7 @@ $RECYCLE.BIN/
 #idea files
 /.idea/
 sf_crm.iml
+
+# woarkarounds:
+./cmss/main/default/objects/Task/fields/IsVisibleInSelfService.field-meta.xml
+./cmss/main/default/objects/Account/fields/IsCustomerPortal.field-meta.xml
