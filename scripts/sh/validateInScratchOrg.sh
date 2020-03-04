@@ -1,5 +1,4 @@
 #!/bin/bash
-#co takhle?
 set -e
 
 ALIAS=${1-"cmss_validate"}
