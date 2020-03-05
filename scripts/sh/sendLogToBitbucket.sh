@@ -32,5 +32,5 @@ then
   curl -k -u ${3}:${4} \
        -H 'Content-type: application/json' \
        -X POST "https://gitvyvoj.cmss.local:8443/rest/api/latest/projects/${7}/repos/${8}/pull-requests/${9}/comments" \
-       -d "{\"text\": \"Last build failed. See log file for more details: [${6}.log](${attachmentUrl})\"}"
+       -d "{\"text\": \"Last build failed. See log file for more details: [${6}.log]($attachmentUrl)\"}"
 fi
