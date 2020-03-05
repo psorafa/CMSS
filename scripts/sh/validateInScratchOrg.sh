@@ -1,6 +1,7 @@
 #!C:\progra~1\Git\bin\sh.exe
 set -e
 
+
 ALIAS=${1-"cmss_validate"}
 TEST=${2-"RunLocalTests"}
 CONF=${3-"config/project-scratch-def.json"}
