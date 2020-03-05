@@ -2,30 +2,21 @@
 <StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <sorted>false</sorted>
     <standardValue>
-        <fullName>Prospecting</fullName>
+        <fullName>New</fullName>
         <default>false</default>
-        <label>Prospecting</label>
+        <label>New</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>10</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Proposal/Price Quote</fullName>
+        <fullName>Prospecting</fullName>
         <default>false</default>
-        <label>Proposal/Price Quote</label>
+        <label>Prospecting</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
-        <probability>75</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Negotiation/Review</fullName>
-        <default>false</default>
-        <label>Negotiation/Review</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>90</probability>
+        <probability>50</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
@@ -34,7 +25,7 @@
         <label>Closed Won</label>
         <closed>true</closed>
         <forecastCategory>Closed</forecastCategory>
-        <probability>100</probability>
+        <probability>99</probability>
         <won>true</won>
     </standardValue>
     <standardValue>
@@ -45,5 +36,14 @@
         <forecastCategory>Omitted</forecastCategory>
         <probability>0</probability>
         <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Matched</fullName>
+        <default>false</default>
+        <label>Matched</label>
+        <closed>true</closed>
+        <forecastCategory>Closed</forecastCategory>
+        <probability>100</probability>
+        <won>true</won>
     </standardValue>
 </StandardValueSet>
