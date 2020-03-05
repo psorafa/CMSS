@@ -28,7 +28,7 @@ then
     sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF
 else
     sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF --targetdevhubusername  $DEVHUB
-
+fi
 
 #push source
 echo "Pushing source..."
