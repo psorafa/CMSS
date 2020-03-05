@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AssignmentConditionsDate__c</fullName>
+    <description>&quot;Datum, kdy byly splněny podmínky přidělení. 
+Pokud dojde ke zpětným operacím, které mají vliv na splnění podmínek, pak dochází k přepočtu a změně tohoto datumu (měsíčně).&quot;</description>
+    <externalId>false</externalId>
+    <label>Assignment Conditions Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

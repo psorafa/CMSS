@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SavedAmount__c</fullName>
+    <description>Aktuálně naspořená částka nahoru ( k % naspoření)</description>
+    <externalId>false</externalId>
+    <label>Saved Amount</label>
+    <precision>14</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>
