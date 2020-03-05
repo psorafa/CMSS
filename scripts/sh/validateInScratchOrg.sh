@@ -1,7 +1,9 @@
 #!C:\progra~1\Git\bin\sh.exe
-set -e
+LOG_FILE=log.txt
+exec > >(tee -a ${LOG_FILE} )
+exec 2> >(tee -a ${LOG_FILE} >&2)
 
-script log.txt
+set -e
 
 ALIAS=${1-"cmss_validate"}
 TEST=${2-"RunLocalTests"}
@@ -42,5 +44,3 @@ echo "Validation Successfull!"
 
 # this is to let other scripts know that the build was successful
 touch success.temp
-
-exit
