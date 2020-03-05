@@ -21,7 +21,7 @@ then
   alias jq=C:/Users/virt7173/bamboo-home/tools/jq-win64.exe
 
   # download log:
-  logUrl="http://gitvyvoj.cmss.local:8086/download/${5}/build_logs/${6}.log"
+  logUrl="http://gitvyvoj.cmss.local:8086/download/${5}/build_logs/${6}.log?disposition=attachment"
   echo "Log URL: ${logUrl}"
 
   curl -X GET --user ${1}:${2} ${logUrl} -o ${6}.log
