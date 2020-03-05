@@ -1,5 +1,6 @@
 #!C:\progra~1\Git\bin\sh.exe
 LOG_FILE=log.txt
+rm ${LOG_FILE}
 exec > >(tee -a ${LOG_FILE} )
 exec 2> >(tee -a ${LOG_FILE} >&2)
 

@@ -14,8 +14,7 @@
 #   7: git repo key
 #   8: git pull request key: ${bamboo.repository.pr.key}
 
-if [ ! -f succcess.temp ];
-then
+if [ ! -f success.temp ]; then
   shopt -s expand_aliases
   alias jq=C:/Users/virt7173/bamboo-home/tools/jq-win64.exe
 
