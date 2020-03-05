@@ -35,5 +35,8 @@ echo "Running tests..."
 # disabled for now as there are no tests yet
 # sfdx force:apex:test:run --targetusername $ALIAS --testlevel $TEST --codecoverage --resultformat human
 
+#validate data import
+scripts/sh/data.sh $ALIAS
+
 set +o
 echo "Validation Successfull!"
