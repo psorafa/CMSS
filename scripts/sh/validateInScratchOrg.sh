@@ -1,7 +1,6 @@
 #!C:\progra~1\Git\bin\sh.exe
 set -e
 
-
 ALIAS=${1-"cmss_validate"}
 TEST=${2-"RunLocalTests"}
 CONF=${3-"config/project-scratch-def.json"}
@@ -38,3 +37,6 @@ echo "Running tests..."
 
 set +o
 echo "Validation Successfull!"
+
+# this is to let other scripts know that the build was successful
+touch success.temp
