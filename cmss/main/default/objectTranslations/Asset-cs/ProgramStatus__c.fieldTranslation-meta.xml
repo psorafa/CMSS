@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Program Status --></label>
+    <name>ProgramStatus__c</name>
+    <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>neuveden</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Pravidelné spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Flexibilní spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>Bez programu</translation>
+    </picklistValues>
+</CustomFieldTranslation>
