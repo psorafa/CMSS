@@ -5,9 +5,6 @@
     <compactLayoutAssignment>BusinessAccount</compactLayoutAssignment>
     <label>Business Account</label>
     <picklistValues>
-        <picklist>AccountSource</picklist>
-    </picklistValues>
-    <picklistValues>
         <picklist>AccountStatus__c</picklist>
         <values>
             <fullName>1</fullName>
