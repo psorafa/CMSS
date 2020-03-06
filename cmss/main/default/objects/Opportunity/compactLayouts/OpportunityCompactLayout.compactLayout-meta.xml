@@ -3,9 +3,9 @@
     <fullName>OpportunityCompactLayout</fullName>
     <fields>Name</fields>
     <fields>AccountId</fields>
+    <fields>CampaignMember__c</fields>
     <fields>Product__c</fields>
     <fields>CloseDate</fields>
-    <fields>Reason__c</fields>
     <fields>OwnerId</fields>
     <label>Opportunity Compact Layout</label>
 </CompactLayout>
