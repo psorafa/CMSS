@@ -41,3 +41,7 @@ echo "checkout current version.."
 git checkout $CURRENT_COMMIT
 sfdx force:source:convert -p "$TARGET/destroy" -d "$TARGET/packageDestroy"
 cp "$TARGET/packageDestroy/package.xml" "$TARGET/packageDeploy/destructiveChanges.xml"
+
+#deploy with destructive changes as well
+set -o xtrack
+sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --checkonly --targetusername cmss_dev
