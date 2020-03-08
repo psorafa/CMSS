@@ -36,7 +36,7 @@ git checkout $SOURCE_BRANCH
 find "$TARGET/destroy" -type f 
 while read -d $'\0' FILE
 do 
-  echo $FILE
+  echo "original: $FILE"
   echo "${FILE##*"deploy/destroy"}"
 done
 
