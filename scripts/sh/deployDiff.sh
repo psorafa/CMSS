@@ -13,7 +13,7 @@ mkdir -p "$TARGET/packageDeploy"
 mkdir -p "$TARGET/packageDestroy"
 
 echo "Changes to Deploy.."
-git diff -z --ignore-blank-lines --name-only --diff-filter="ACMRT" "${CURRENT_COMMIT}" "${SOURCE_COMMIT}" ${FOLDER} |
+git diff -z --ignore-blank-lines --name-only --diff-filter="ACMRT" "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" ${FOLDER} |
 while read -d $'\0' FILE
 do
     FOLDER=$(echo $FILE | sed 's|\(.*\)/.*|\1|')
