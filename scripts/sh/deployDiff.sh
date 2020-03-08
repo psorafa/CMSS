@@ -22,7 +22,7 @@ do
     cp "$FILE" "$TARGET/deploy/$FILE"
 done
 
-echo "Checking Changes to Deploy.."
+echo "Checking Changes to Delete.."
 git diff -z --ignore-blank-lines --name-only --diff-filter="D" "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" ${FOLDER} |
 while read -d $'\0' FILE
 do
