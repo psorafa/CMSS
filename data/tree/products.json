@@ -1,0 +1,75 @@
+[
+	{
+		"attributes": {
+			"type": "Product2",
+			"referenceId": "Product2Ref1"
+		},
+		"Name": "Stavební spoření",
+		"ProductCode": "11",
+		"IsActive": true,
+		"ProductType__c": "9"
+	},
+	{
+		"attributes": {
+			"type": "Product2",
+			"referenceId": "Product2Ref2"
+		},
+		"Name": "Úvěry",
+		"ProductCode": "12",
+		"IsActive": true,
+		"ProductType__c": "8"
+	},
+	{
+		"attributes": {
+			"type": "Product2",
+			"referenceId": "Product2Ref3"
+		},
+		"Name": "Meziúvěry",
+		"ProductCode": "13",
+		"IsActive": true,
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Product2",
+			"referenceId": "Product2Ref4"
+		},
+		"Name": "RŽP",
+		"ProductCode": "41",
+		"Description": "Rizikové životní pojištění",
+		"IsActive": false,
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Product2",
+			"referenceId": "Product2Ref5"
+		},
+		"Name": "SB_44444",
+		"ProductCode": "SB_44444",
+		"Description": "SB_44444",
+		"IsActive": false,
+		"ProductType__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Product2",
+			"referenceId": "Product2Ref6"
+		},
+		"Name": "Autopojištění",
+		"ProductCode": "Zeus_33",
+		"Description": "Zeus_33 autopojištění do 400 000",
+		"IsActive": true,
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Product2",
+			"referenceId": "Product2Ref7"
+		},
+		"Name": "Běžný účet CZK",
+		"ProductCode": "BU_CZK",
+		"IsActive": true,
+		"ProductType__c": "8"
+	}
+]

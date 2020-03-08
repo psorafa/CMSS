@@ -1,0 +1,2 @@
+SELECT Id, Name, ProductCode, Description, IsActive, Family, ExternalId, QuantityUnitOfMeasure, ProductType__c 
+FROM Product2
