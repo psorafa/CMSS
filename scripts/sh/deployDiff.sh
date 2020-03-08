@@ -12,15 +12,15 @@ mkdir -p "$TARGET/destroy"
 mkdir -p "$TARGET/packageDeploy"
 mkdir -p "$TARGET/packageDestroy"
 
-#echo "Changes to Deploy.."
-#git diff -z --ignore-blank-lines --name-only --diff-filter="ACMRT" "${CURRENT_COMMIT}" "${SOURCE_COMMIT}" ${FOLDER} |
-#while read -d $'\0' FILE
-#do
-#    FOLDER=$(echo $FILE | sed 's|\(.*\)/.*|\1|')
-#    mkdir "$TARGET/deploy/$FOLDER" -p
-#    cp "$FILE" "$TARGET/deploy/$FILE"
-#done
-#sfdx force:source:convert -p "$TARGET/deploy" -d "$TARGET/packageDeploy"
+echo "Changes to Deploy.."
+git diff -z --ignore-blank-lines --name-only --diff-filter="ACMRT" "${CURRENT_COMMIT}" "${SOURCE_COMMIT}" ${FOLDER} |
+while read -d $'\0' FILE
+do
+    FOLDER=$(echo $FILE | sed 's|\(.*\)/.*|\1|')
+    mkdir "$TARGET/deploy/$FOLDER" -p
+    cp "$FILE" "$TARGET/deploy/$FILE"
+done
+sfdx force:source:convert -p "$TARGET/deploy" -d "$TARGET/packageDeploy"
 
 git diff -z --ignore-blank-lines --name-only --diff-filter="D" "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" ${FOLDER} |
 while read -d $'\0' FILE
