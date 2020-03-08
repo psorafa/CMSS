@@ -35,10 +35,11 @@ $RECYCLE.BIN/
 /.idea/
 sf_crm.iml
 
-#tmp folders for data import
+#tmp folders for data import and deployments
 scripts/apex/tmp/
 log.txt
 success.tmp
+deploy/
 
 # woarkarounds:
 ./cmss/main/default/objects/Task/fields/IsVisibleInSelfService.field-meta.xml
