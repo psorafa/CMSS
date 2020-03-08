@@ -37,7 +37,7 @@ find "$TARGET/destroy" -type f
 while read -d $'\0' FILE
 do 
   echo $FILE
-  echo "${FILE##*deploy/destroy}"
+  echo "${FILE##*"deploy/destroy"}"
 done
 
 #sfdx force:source:convert -p "$TARGET/destroy" -d "$TARGET/packageDestroy"
