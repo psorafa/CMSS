@@ -33,11 +33,10 @@ done
 #go back to original commit and copy deleted files
 echo "checkout previous version.."
 git checkout $SOURCE_BRANCH
-find "$TARGET/destroy" -type f 
-while read FILE
+find "$TARGET/destroy" -type f | while read FILENAME
 do 
-  echo "original: $FILE"
-  echo "${FILE##*"deploy/destroy"}"
+  echo "original: $FILENAME"
+  echo "${FILENAME##*"deploy/destroy"}"
 done
 
 #sfdx force:source:convert -p "$TARGET/destroy" -d "$TARGET/packageDestroy"
