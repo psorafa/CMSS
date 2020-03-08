@@ -35,9 +35,9 @@ echo "checkout previous version.."
 git checkout $SOURCE_BRANCH
 find "$TARGET/destroy" -type f | while read FILENAME
 do 
-  echo "original: $FILENAME"
-  echo "${FILENAME##*"deploy/destroy"}"
+  cp "${FILENAME##*"deploy/destroy/"}" "$FILENAME"
 done
-
+echo "checkout current version.."
+git checkout $CURRENT_BRANCH
 #sfdx force:source:convert -p "$TARGET/destroy" -d "$TARGET/packageDestroy"
 #cp "$TARGET/packageDestroy/package.xml" "$TARGET/packageDeploy/destructiveChanges.xml"
