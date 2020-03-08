@@ -43,5 +43,5 @@ sfdx force:source:convert -p "$TARGET/destroy" -d "$TARGET/packageDestroy"
 cp "$TARGET/packageDestroy/package.xml" "$TARGET/packageDeploy/destructiveChanges.xml"
 
 #deploy with destructive changes as well
-set -o xtrack
+set -o xtrace
 sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --checkonly --targetusername cmss_dev
