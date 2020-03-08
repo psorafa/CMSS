@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NettoDeposit__c</fullName>
+    <description>Suma veškerých došlých vkladů klienta</description>
+    <externalId>false</externalId>
+    <label>Netto Deposit</label>
+    <precision>14</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

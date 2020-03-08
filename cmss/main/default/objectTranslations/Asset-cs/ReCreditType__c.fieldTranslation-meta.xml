@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Re Credit Type --></label>
+    <name>ReCreditType__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>914: Přeúvěrování Ú &gt; MÚ, angažovanost zvýšena</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>915: Přeúvěrování Ú &gt; MÚ, angažovanost nezvýšena</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>916: Přeúvěrování , angažovanost zvýšena min. o 200 000 Kč</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>917: Přeúvěrování , aktuální angažovanost &gt;= 300 000 Kč</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>918: Přeúvěrování rozvod/rozchod</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>919: Přeúvěrování angažovanost zvýšena min. o 500 000 Kč</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>934: Přeúvěrování, angažovanost zvýšena min. o 100 000 Kč</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>932: Splacení MÚ/Ú - dědění při úmrtí</translation>
+    </picklistValues>
+</CustomFieldTranslation>

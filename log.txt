@@ -1,0 +1,22 @@
+Creating scratch org...
++ echo 'Creating scratch org...'
++ '[' -n 'enehanoDevHub]'
+./scripts/sh/validateInScratchOrg.sh: line 27: [: missing `]'
++ sfdx force:org:create --setalias cmssVAL --durationdays 1 --definitionfile config/project-scratch-def.json --targetdevhubusername enehanoDevHub
+Successfully created scratch org: 00D3F0000003Rn2UAE, username: test-0d5sibfhsywv@example.com
++ echo 'Pushing source...'
++ sfdx force:source:push --targetusername cmssVAL
+Pushing source...
+Job ID | 0Af3F00000x2BrNSAU
+TYPE     PROJECT PATH                                                                                                         PROBLEM
+───────  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────  ──────────────────────────────────────────────────────────────────────────────────────────
+Warning  cmss/main/default/objectTranslations/CampaignMember__c-cs/CampaignMember__c-cs.objectTranslation-meta.xml            Couldn't locate layout section:Custom Links in layout:Campaign Member Layout (66:19)
+Warning  cmss/main/default/objectTranslations/OpportunityLineItem__c-cs/OpportunityLineItem__c-cs.objectTranslation-meta.xml  Couldn't locate layout section:Custom Links in layout:Opportunity Line Item Layout (66:19)
+ERROR running force:source:push:  Push failed.
++ finish
+Deleting scratch org...
++ echo 'Deleting scratch org...'
++ sfdx force:org:delete --targetusername cmssVAL --noprompt
+Successfully marked scratch org cmssVAL for deletion
++ echo Done.
+Done.

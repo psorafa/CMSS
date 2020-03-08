@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RemainingDraw__c</fullName>
+    <description>Výše úvěrového příslibu na účtu ÚSS (=  Pole Celkem k čerpání  - pole Čerpáno)</description>
+    <externalId>false</externalId>
+    <label>Remaining Draw</label>
+    <precision>14</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>
