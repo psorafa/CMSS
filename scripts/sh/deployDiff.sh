@@ -22,7 +22,7 @@ mkdir -p "$TARGET/packageDestroy"
 #done
 #sfdx force:source:convert -p "$TARGET/deploy" -d "$TARGET/packageDeploy"
 
-git diff -z --ignore-blank-lines --name-only --diff-filter="D" "${CURRENT_COMMIT}" "${SOURCE_COMMIT}" ${FOLDER} |
+git diff -z --ignore-blank-lines --name-only --diff-filter="D" "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" ${FOLDER} |
 while read -d $'\0' FILE
 do
     FOLDER=$(echo $FILE | sed 's|\(.*\)/.*|\1|')
