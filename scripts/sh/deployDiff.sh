@@ -1,9 +1,9 @@
-
-#!/bin/bash
-CURRENT_COMMIT=$1
-SOURCE_COMMIT=$2
-FOLDER=${3-"cmss"}
-TARGET=${4-"deploy"}
+#!C:\progra~1\Git\bin\sh.exe
+ALIAS=$1
+CURRENT_COMMIT=$2
+SOURCE_COMMIT=$3
+FOLDER=${4-"cmss"}
+TARGET=${5-"deploy"}
 
 set -e
 
@@ -44,4 +44,4 @@ cp "$TARGET/packageDestroy/package.xml" "$TARGET/packageDeploy/destructiveChange
 
 #deploy with destructive changes as well
 set -o xtrace
-sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --checkonly --targetusername cmss_dev
+sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --checkonly --targetusername $ALIAS --wait 59
