@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CampaignMemberCompactLayout</fullName>
+    <fields>Name</fields>
+    <fields>Account__c</fields>
+    <fields>Asset__c</fields>
+    <fields>Product__c</fields>
+    <fields>AccountPhone__c</fields>
+    <fields>AcountEmail__c</fields>
+    <fields>CampaignEndDate__c</fields>
+    <label>Campaign Member Compact Layout</label>
+</CompactLayout>
