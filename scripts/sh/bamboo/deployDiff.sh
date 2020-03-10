@@ -72,3 +72,5 @@ then
 else
 	sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --checkonly --targetusername $ALIAS --wait 59 --testlevel $TEST
 fi
+# this is to let other scripts know that the deployment was successful
+touch successDeploy.tmp

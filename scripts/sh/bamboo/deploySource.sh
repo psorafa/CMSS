@@ -32,5 +32,6 @@ else
     sfdx force:source:deploy --sourcepath $PACKAGE --targetusername $ALIAS --testlevel $TEST --checkonly
 fi
 
-set +o
 echo "Deploy Successfull!"
+# this is to let other scripts know that the deployment was successful
+touch successDeploy.tmp
