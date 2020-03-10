@@ -39,7 +39,10 @@ sf_crm.iml
 scripts/apex/tmp/
 log.txt
 success.tmp
+successSandbox.tmp
+successScratchOrg.tmp
 deploy/
+log/
 
 # woarkarounds:
 ./cmss/main/default/objects/Task/fields/IsVisibleInSelfService.field-meta.xml

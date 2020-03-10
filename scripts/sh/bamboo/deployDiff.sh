@@ -1,9 +1,26 @@
 #!C:\progra~1\Git\bin\sh.exe
+
+# arguments:
+
+#   1: Org Alias to Deploy - required
+#   2: Current Commit to deploy - required
+#   3: Previously deployed Commit - required
+#   4: The Soure Path to Deploy - default "cmss"
+#   5: What tests should be exeuted - default is empty, i.e. default for given Org
+#   6: Package Folder o use as temporary storage for deployment package
+
+mkdir -p log
+LOG_FILE=log/deployDiff.txt
+rm ${LOG_FILE}
+exec > >(tee -a ${LOG_FILE} )
+exec 2> >(tee -a ${LOG_FILE} >&2)
+
 ALIAS=$1
 CURRENT_COMMIT=$2
 SOURCE_COMMIT=$3
 FOLDER=${4-"cmss"}
-TARGET=${5-"deploy"}
+TEST=${5}
+TARGET=${6-"deploy"}
 
 set -e
 
@@ -49,4 +66,9 @@ echo "prepare destructiveChanges.xml"
 cp "$TARGET/packageDestroy/package.xml" "$TARGET/packageDeploy/destructiveChanges.xml"
 
 #deploy with destructive changes as well
-sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --checkonly --targetusername $ALIAS --wait 59
+if [ -z  "$TEST" ];
+then
+  	sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --checkonly --targetusername $ALIAS --wait 59
+else
+	sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --checkonly --targetusername $ALIAS --wait 59 --testlevel $TEST
+fi
