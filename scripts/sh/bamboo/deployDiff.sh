@@ -68,9 +68,9 @@ cp "$TARGET/packageDestroy/package.xml" "$TARGET/packageDeploy/destructiveChange
 #deploy with destructive changes as well
 if [ -z  "$TEST" ];
 then
-  	sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --checkonly --targetusername $ALIAS --wait 59
+  	sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59
 else
-	sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --checkonly --targetusername $ALIAS --wait 59 --testlevel $TEST
+	sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST
 fi
 # this is to let other scripts know that the deployment was successful
 touch successDeploy.tmp

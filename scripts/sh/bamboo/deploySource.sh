@@ -27,9 +27,9 @@ set -o xtrace
 #deploy to org (CHECK ONLY SO FAR FOR TESTING)
 if [ -z  "$TEST" ];
 then
-    sfdx force:source:deploy --sourcepath $PACKAGE --targetusername $ALIAS --checkonly
+    sfdx force:source:deploy --sourcepath $PACKAGE --targetusername $ALIAS
 else
-    sfdx force:source:deploy --sourcepath $PACKAGE --targetusername $ALIAS --testlevel $TEST --checkonly
+    sfdx force:source:deploy --sourcepath $PACKAGE --targetusername $ALIAS --testlevel $TEST
 fi
 
 echo "Deploy Successfull!"
