@@ -1,0 +1,4 @@
+SELECT Id, Product__r.ProductCode, CampaignId, Type, CloseDate, Amount, StageName, Description, 
+    Name, AccountId, Account.ExternalId__c 
+FROM Opportunity 
+WHERE Account.ExternalId__c != NULL
