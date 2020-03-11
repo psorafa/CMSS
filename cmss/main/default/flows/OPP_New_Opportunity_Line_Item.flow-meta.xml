@@ -26,6 +26,12 @@
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
+                    <name>leftHandSideReferenceTo</name>
+                    <value>
+                        <stringValue>CampaignMember__c</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -43,7 +49,44 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.CampaignMember__r.Campaign__r.Id</leftValueReference>
+                <leftValueReference>myVariable_current.CampaignMember__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideReferenceTo</name>
+                    <value>
+                        <stringValue>Product2</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.CampaignMember__r.Campaign__r.Product__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -70,6 +113,43 @@
         <rules>
             <name>myRule_3</name>
             <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideReferenceTo</name>
+                    <value>
+                        <stringValue>Campaign</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.CampaignId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -114,7 +194,7 @@
         </rules>
     </decisions>
     <description>při vytváření opportunity z campaign member  - vyplní se opportunity + opportunity line item s produktem z kampaně</description>
-    <interviewLabel>OPP_New_Opportunity_Line_Item-7_InterviewLabel</interviewLabel>
+    <interviewLabel>OPP_New_Opportunity_Line_Item-2_InterviewLabel</interviewLabel>
     <label>OPP - New Opportunity Line Item</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -245,7 +325,7 @@
             </processMetadataValues>
             <field>Product__c</field>
             <value>
-                <elementReference>myVariable_current.Product__r.Id</elementReference>
+                <elementReference>myVariable_current.Product__c</elementReference>
             </value>
         </inputAssignments>
         <object>OpportunityLineItem__c</object>
@@ -348,7 +428,7 @@
             </processMetadataValues>
             <field>Product__c</field>
             <value>
-                <elementReference>myVariable_current.Campaign.Product__r.Id</elementReference>
+                <elementReference>myVariable_current.Product__c</elementReference>
             </value>
         </inputAssignments>
         <object>OpportunityLineItem__c</object>
