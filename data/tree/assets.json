@@ -1,0 +1,276 @@
+[
+    {
+        "attributes": {
+            "type": "Asset",
+            "referenceId": "AssetRef1"
+        },
+        "Account": {
+            "attributes": {
+                "type": "Account",
+                "url": "/services/data/v48.0/sobjects/Account/0011X00000TaZEUQA3"
+            },
+            "ExternalId__c": "ext333"
+        },
+        "RootAsset": {
+            "attributes": {
+                "type": "Asset",
+                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002kWG1QAM"
+            },
+            "ExternalId__c": "ext123122"
+        },
+        "Product2": {
+            "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oxnlQAA"
+            },
+            "ProductCode": "11"
+        },
+        "Name": "MMalý SP",
+        "InstallDate": "2019-12-01",
+        "PurchaseDate": "2019-12-01",
+        "UsageEndDate": "2025-11-30",
+        "Status": "Installed",
+        "Price": 300000,
+        "Quantity": 1,
+        "ExternalId__c": "ext123122"
+    },
+    {
+        "attributes": {
+            "type": "Asset",
+            "referenceId": "AssetRef2"
+        },
+        "Account": {
+            "attributes": {
+                "type": "Account",
+                "url": "/services/data/v48.0/sobjects/Account/0011X00000TbHkoQAF"
+            },
+            "ExternalId__c": "ext888"
+        },
+        "RootAsset": {
+            "attributes": {
+                "type": "Asset",
+                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002kWVbQAM"
+            },
+            "ExternalId__c": "externa1111"
+        },
+        "Product2": {
+            "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oxnlQAA"
+            },
+            "ProductCode": "11"
+        },
+        "Name": "Slivka - SP",
+        "InstallDate": "2018-03-01",
+        "PurchaseDate": "2018-03-01",
+        "UsageEndDate": "2024-02-29",
+        "Status": "Installed",
+        "Price": 400000,
+        "Quantity": 1,
+        "ExternalId__c": "externa1111",
+        "ProductType__c": "2"
+    },
+    {
+        "attributes": {
+            "type": "Asset",
+            "referenceId": "AssetRef3"
+        },
+        "Account": {
+            "attributes": {
+                "type": "Account",
+                "url": "/services/data/v48.0/sobjects/Account/0011X00000TbHkoQAF"
+            },
+            "ExternalId__c": "ext888"
+        },
+        "RootAsset": {
+            "attributes": {
+                "type": "Asset",
+                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002kWVgQAM"
+            },
+            "ExternalId__c": "external123411"
+        },
+        "Product2": {
+            "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oy57QAA"
+            },
+            "ProductCode": "12"
+        },
+        "Name": "Slivka J. - úvěr",
+        "InstallDate": "2018-02-03",
+        "PurchaseDate": "2018-02-03",
+        "Status": "Installed",
+        "Price": 300000,
+        "Quantity": 1,
+        "ExternalId__c": "external123411",
+        "ProductType__c": "0"
+    },
+    {
+        "attributes": {
+            "type": "Asset",
+            "referenceId": "AssetRef4"
+        },
+        "Account": {
+            "attributes": {
+                "type": "Account",
+                "url": "/services/data/v48.0/sobjects/Account/0011X00000TbHkqQAF"
+            },
+            "ExternalId__c": "ext1110"
+        },
+        "RootAsset": {
+            "attributes": {
+                "type": "Asset",
+                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002kWVWQA2"
+            },
+            "ExternalId__c": "ext444"
+        },
+        "Product2": {
+            "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oxnlQAA"
+            },
+            "ProductCode": "11"
+        },
+        "Name": "V.Slivková - SP",
+        "InstallDate": "2017-03-01",
+        "PurchaseDate": "2017-03-01",
+        "Status": "Installed",
+        "Price": 300000,
+        "Quantity": 1,
+        "ExternalId__c": "ext444",
+        "ProductType__c": "1"
+    },
+    {
+        "attributes": {
+            "type": "Asset",
+            "referenceId": "AssetRef5"
+        },
+        "Account": {
+            "attributes": {
+                "type": "Account",
+                "url": "/services/data/v48.0/sobjects/Account/0011X00000TaShfQAF"
+            },
+            "ExternalId__c": "ext111"
+        },
+        "RootAsset": {
+            "attributes": {
+                "type": "Asset",
+                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002kZOxQAM"
+            },
+            "ExternalId__c": "ext888"
+        },
+        "Product2": {
+            "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oy57QAA"
+            },
+            "ProductCode": "12"
+        },
+        "Name": "Úvěr",
+        "PurchaseDate": "2019-12-04",
+        "Price": 800000,
+        "ExternalId__c": "ext888"
+    },
+    {
+        "attributes": {
+            "type": "Asset",
+            "referenceId": "AssetRef6"
+        },
+        "Account": {
+            "attributes": {
+                "type": "Account",
+                "url": "/services/data/v48.0/sobjects/Account/0011X00000TaShfQAF"
+            },
+            "ExternalId__c": "ext111"
+        },
+        "RootAsset": {
+            "attributes": {
+                "type": "Asset",
+                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002k0YIQAY"
+            },
+            "ExternalId__c": "ext333"
+        },
+        "Product2": {
+            "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oxnlQAA"
+            },
+            "ProductCode": "11"
+        },
+        "Name": "Stavební spoření",
+        "InstallDate": "2018-02-01",
+        "PurchaseDate": "2018-02-01",
+        "Status": "Installed",
+        "Price": 400000,
+        "Quantity": 1,
+        "ExternalId__c": "ext333"
+    },
+    {
+        "attributes": {
+            "type": "Asset",
+            "referenceId": "AssetRef7"
+        },
+        "Account": {
+            "attributes": {
+                "type": "Account",
+                "url": "/services/data/v48.0/sobjects/Account/0011X00000TaTU9QAN"
+            },
+            "ExternalId__c": "ext222"
+        },
+        "RootAsset": {
+            "attributes": {
+                "type": "Asset",
+                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002k0Y3QAI"
+            },
+            "ExternalId__c": "ext1111"
+        },
+        "Product2": {
+            "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oxnlQAA"
+            },
+            "ProductCode": "11"
+        },
+        "Name": "Stavební spoření",
+        "InstallDate": "2016-02-01",
+        "PurchaseDate": "2016-02-01",
+        "UsageEndDate": "2022-02-01",
+        "Price": 25000,
+        "Quantity": 1,
+        "ExternalId__c": "ext1111"
+    },
+    {
+        "attributes": {
+            "type": "Asset",
+            "referenceId": "AssetRef8"
+        },
+        "Account": {
+            "attributes": {
+                "type": "Account",
+                "url": "/services/data/v48.0/sobjects/Account/0011X00000TaTU9QAN"
+            },
+            "ExternalId__c": "ext222"
+        },
+        "RootAsset": {
+            "attributes": {
+                "type": "Asset",
+                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002k0Y8QAI"
+            },
+            "ExternalId__c": "ext222"
+        },
+        "Product2": {
+            "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oy5HQAQ"
+            },
+            "ProductCode": "13"
+        },
+        "Name": "Meziúvěr",
+        "InstallDate": "2019-09-01",
+        "PurchaseDate": "2019-09-01",
+        "Status": "Installed",
+        "Price": 250000,
+        "Quantity": 1,
+        "ExternalId__c": "ext222"
+    }
+]

@@ -1,4 +1,12 @@
 #!/bin/bash
+
+# arguments:
+
+#   1: Org Alias to setup - default "cmss"
+#   2: Expiry days for the Scratch Org - default 10
+#   3: Scratch Org Defnition File path - defualt "conf/project-scratch-def.json"
+#   4: Dev Hub Alias - optional, uses local default if blank
+
 set -e
 
 ALIAS=${1-"cmss"}
@@ -9,7 +17,7 @@ DEVHUB=${4}
 set -o xtrace
 
 #create scratch org
-if [ -n  "$DEVHUB"];
+if [ -z  "$DEVHUB" ];
 then
     sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF --setdefaultusername
 else
@@ -17,10 +25,10 @@ else
 fi
 
 #push source
-sfdx force:source:push --targgetusername $ALIAS
+sfdx force:source:push --targetusername $ALIAS
 
 #setup data
-#tbc
+scripts/sh/data.sh $ALIAS
 
 set +o
 echo "Org $ALIAS created!"

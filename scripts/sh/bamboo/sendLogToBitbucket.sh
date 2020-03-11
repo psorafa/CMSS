@@ -2,9 +2,9 @@
 
 # arguments:
 
-# Bamboo user:
-#   1: name
-#   2: password
+# Files:
+#   1: log file
+#   2: sucess file
 # Bitbucket user:
 #   3: name
 #   4: password
@@ -14,15 +14,14 @@
 #   7: git repo key
 #   8: git pull request key: ${bamboo.repository.pr.key}
 
-if [ ! -f somefile.temp ];
-then
+if [ ! -f "$2" ]; then
   shopt -s expand_aliases
   alias jq=C:/Users/virt7173/bamboo-home/tools/jq-win64.exe
 
   attachmentUrl=$(curl -k -u ${3}:${4} --insecure \
        -X POST "https://gitvyvoj.cmss.local:8443/projects/${6}/repos/${7}/attachments" \
        -H 'Content-Type: multipart/form-data;' \
-       -F "files=@log.txt" \
+       -F "files=@${1}" \
        | jq -j '.attachments[0].url')
 
   echo "Attachment URL: ${attachmentUrl}"

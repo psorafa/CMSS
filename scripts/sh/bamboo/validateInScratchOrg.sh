@@ -1,5 +1,4 @@
-#!/bin/bash
-set -e
+#!C:\progra~1\Git\bin\sh.exe
 
 # arguments:
 
@@ -8,6 +7,12 @@ set -e
 #   3: What tests should be exeuted - default is empty, i.e. none
 #   4: Scratch Org Defnition File path - defualt "conf/project-scratch-def.json"
 #   5: Expiry days for the Scratch Org (in case script fails to delete it) - default 1
+
+mkdir -p log
+LOG_FILE=log/validateInScratchOrg.txt
+rm ${LOG_FILE}
+exec > >(tee -a ${LOG_FILE} )
+exec 2> >(tee -a ${LOG_FILE} >&2)
 
 set -e
 
@@ -52,3 +57,6 @@ scripts/sh/data.sh $ALIAS
 
 set +o
 echo "Validation Successfull!"
+
+# this is to let other scripts know that the build was successful
+touch successScratchOrg.tmp
