@@ -397,9 +397,6 @@
             <quickActionName>FeedItem.MobileSmartActions</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>FeedItem.RypplePost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
             <quickActionName>FeedItem.LinkPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
@@ -435,7 +432,6 @@
         <fields>NAME</fields>
         <fields>Campaign.NAME</fields>
         <fields>CampaignEndDate__c</fields>
-        <fields>AccountPhone__c</fields>
         <fields>Product__c</fields>
         <relatedList>CampaignMember__c.Account__c</relatedList>
         <sortField>CampaignEndDate__c</sortField>
