@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Stav smlouvy</label>
+    <name>SspStateCode__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Uzavřená smlouva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Zaplacená smlouva - stornována</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>Zaplacená smlouva - zadaná výpověď</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12</masterLabel>
+        <translation>Zaplacená smlouva - odstoupená</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13</masterLabel>
+        <translation>Zaplacená smlouva - odstoupená</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14</masterLabel>
+        <translation>Zaplacená smlouva - vypořádaná</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15</masterLabel>
+        <translation>Zaplacená smlouva - vypořádaná z důvou přespoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16</masterLabel>
+        <translation>Zaplacená smlouva - zaslána nabídka přidělení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17</masterLabel>
+        <translation>Přijetí přidělení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>18</masterLabel>
+        <translation>Přidělená smlouva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>19</masterLabel>
+        <translation>Vypořádaní po přidělení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Uzavřená smlouva - stornováno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20</masterLabel>
+        <translation>Vyplacení vkladu po přidělení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21</masterLabel>
+        <translation>Zaplacená smlouva - upomínáno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Uzavřená smlouva - vypořadaná</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>Uzavřená smlouva - upomínáno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Uzavřená smlouva - zadaná výpověď</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>Uzavřená smlouva - odstoupená</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>Uzavřená smlouva - odstoupená</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>Zaplacená smlouva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>Zaplacená smlouva - přespořená</translation>
+    </picklistValues>
+</CustomFieldTranslation>

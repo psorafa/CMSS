@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ActualInsuranceAmount__c</fullName>
+    <description>Skutečná sjednaná pojistná částka</description>
+    <externalId>false</externalId>
+    <label>Actual Insurance Amount</label>
+    <precision>14</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

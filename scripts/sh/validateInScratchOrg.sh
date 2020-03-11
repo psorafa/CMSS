@@ -1,14 +1,20 @@
-#!C:\progra~1\Git\bin\sh.exe
-LOG_FILE=log.txt
-exec > >(tee -a ${LOG_FILE} )
-exec 2> >(tee -a ${LOG_FILE} >&2)
+#!/bin/bash
+set -e
+
+# arguments:
+
+#   1: Org Alias to use for the Validation Scratch Org - default "cmss_validate"
+#   2: Dev Hub Alias - optional, uses local default if blank
+#   3: What tests should be exeuted - default is empty, i.e. none
+#   4: Scratch Org Defnition File path - defualt "conf/project-scratch-def.json"
+#   5: Expiry days for the Scratch Org (in case script fails to delete it) - default 1
 
 set -e
 
 ALIAS=${1-"cmss_validate"}
-TEST=${2-"RunLocalTests"}
-CONF=${3-"config/project-scratch-def.json"}
-DEVHUB=${4}
+DEVHUB=${2}
+TEST=${3}
+CONF=${4-"config/project-scratch-def.json"}
 DAYS=${5-1}
 
 #cleanup when done
@@ -23,11 +29,11 @@ set -o xtrace
 
 #create scratch org
 echo "Creating scratch org..."
-if [ -n  "$DEVHUB"];
+if [ -z "$DEVHUB" ];
 then
-    sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF
+    sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile $CONF
 else
-    sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF --targetdevhubusername  $DEVHUB
+    sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile $CONF --targetdevhubusername $DEVHUB
 fi
 
 #push source
@@ -35,12 +41,14 @@ echo "Pushing source..."
 sfdx force:source:push --targetusername $ALIAS
 
 #run tests
-echo "Running tests..."
-# disabled for now as there are no tests yet
-# sfdx force:apex:test:run --targetusername $ALIAS --testlevel $TEST --codecoverage --resultformat human
+if [ -n "$TEST" ];
+then
+    echo "Running tests..."
+    sfdx force:apex:test:run --targetusername $ALIAS --testlevel $TEST --codecoverage --resultformat human
+fi
+
+#validate data import
+scripts/sh/data.sh $ALIAS
 
 set +o
 echo "Validation Successfull!"
-
-# this is to let other scripts know that the build was successful
-touch success.temp

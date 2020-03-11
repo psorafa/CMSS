@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SubveneTotalSum__c</fullName>
+    <description>&quot;Suma státní podpory - Objem všech připsaných záloh státní podpory (snížené o případné vratky SP provedené z účtu SS).
+Hodnota by vždy měla být &gt;=0&quot;</description>
+    <externalId>false</externalId>
+    <label>Subvene Total Sum</label>
+    <precision>14</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Closure Type --></label>
+    <name>ClosureType__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Prvotní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Následná</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Zvýšení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>Obnovená, bývalý klient</translation>
+    </picklistValues>
+</CustomFieldTranslation>

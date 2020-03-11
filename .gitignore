@@ -35,6 +35,14 @@ $RECYCLE.BIN/
 /.idea/
 sf_crm.iml
 
+#tmp folders for data import and deployments
+scripts/apex/tmp/
+log.txt
+success.tmp
+successSandbox.tmp
+successScratchOrg.tmp
+log/
+
 # woarkarounds:
 ./cmss/main/default/objects/Task/fields/IsVisibleInSelfService.field-meta.xml
 ./cmss/main/default/objects/Account/fields/IsCustomerPortal.field-meta.xml

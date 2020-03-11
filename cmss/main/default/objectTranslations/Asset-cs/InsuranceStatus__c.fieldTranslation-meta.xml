@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Insurance Status --></label>
+    <name>InsuranceStatus__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Podklady na pojišťovnu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Potvrzení žádosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>Zamítnutí ze strany pojišťovny</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12</masterLabel>
+        <translation>Úmrtí v době zpracování žádosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Neúplné podklady - OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20</masterLabel>
+        <translation>Počátek RLV následující měsíc (aktivace bez účtování)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21</masterLabel>
+        <translation>Kompletní aktivace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Podklady o zdrav. stavu - DP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>Potvrzení zablokováno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Posuzuje ČSOBP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>Čeká na schvál. MÚ/Ú, klad. saldo</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>Záporné saldo na ved. účtu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>Zamítnutí ze strany ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>80</masterLabel>
+        <translation>Zrušení RLV k posl. zapl. měs.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>81</masterLabel>
+        <translation>Zrušení RLV ke konci roku</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>82</masterLabel>
+        <translation>Zrušení RLV -konec minul. roku</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>83</masterLabel>
+        <translation>Zrušení RLV od počátku</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>84</masterLabel>
+        <translation>Zrušení RLV ne-aktivací</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>Odmítnutí ze strany klienta</translation>
+    </picklistValues>
+</CustomFieldTranslation>
