@@ -20,6 +20,7 @@ ALIAS=${1-"cmss_dev"}
 TEST=${2}
 PACKAGE=${3-"cmss"}
 
+set -e
 set -o xtrace
 
 #validate deployment
