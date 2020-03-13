@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SuperiorLevel1__c</fullName>
+    <description>Nadřízený nejvyšší úrovně, pro OZ</description>
+    <externalId>false</externalId>
+    <label>Superior Level 1</label>
+    <relationshipName>SuperiorLevel1</relationshipName>
+    <restrictedAdminField>false</restrictedAdminField>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Hierarchy</type>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SuperiorLevel2__c</fullName>
+    <description>Nadřízený úrovně 2 (je níže než úroveň 1)</description>
+    <externalId>false</externalId>
+    <label>Superior Level 2</label>
+    <relationshipName>SuperiorLevel2</relationshipName>
+    <restrictedAdminField>false</restrictedAdminField>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Hierarchy</type>
+</CustomField>
