@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates new event with start = now - 15 min</description>
+    <fieldOverrides>
+        <field>EndDateTime</field>
+        <formula>NOW()</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Result__c</field>
+        <literalValue>11</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>StartDateTime</field>
+        <formula>NOW() - (15/1440)</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Subject</field>
+        <formula>&quot;Schůzka&quot;</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>WhatId</field>
+        <formula>Opportunity.Id</formula>
+    </fieldOverrides>
+    <label>Register Event</label>
+    <optionsCreateFeedItem>true</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>StartDateTime</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Description</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>EndDateTime</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+    </quickActionLayout>
+    <successMessage>Event registered successfully</successMessage>
+    <targetObject>Event</targetObject>
+    <targetParentField>Opportunity__c</targetParentField>
+    <type>Create</type>
+</QuickAction>
