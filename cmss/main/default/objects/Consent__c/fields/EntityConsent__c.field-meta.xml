@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EntityConsent__c</fullName>
+    <description>Entita souhlasu</description>
+    <externalId>false</externalId>
+    <label>EntityConsent</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>ČMSS</fullName>
+                <default>false</default>
+                <label>ČMSS</label>
+            </value>
+            <value>
+                <fullName>ČSOB</fullName>
+                <default>false</default>
+                <label>ČSOB</label>
+            </value>
+            <value>
+                <fullName>ČSOB Asset</fullName>
+                <default>false</default>
+                <label>ČSOB Asset</label>
+            </value>
+            <value>
+                <fullName>ČSOB Group (ALL)</fullName>
+                <default>false</default>
+                <label>ČSOB Group (ALL)</label>
+            </value>
+            <value>
+                <fullName>ČSOB leasing</fullName>
+                <default>false</default>
+                <label>ČSOB leasing</label>
+            </value>
+            <value>
+                <fullName>ČSOB penzijní společnost</fullName>
+                <default>false</default>
+                <label>ČSOB penzijní společnost</label>
+            </value>
+            <value>
+                <fullName>ČSOB pojišťovna</fullName>
+                <default>false</default>
+                <label>ČSOB pojišťovna</label>
+            </value>
+            <value>
+                <fullName>Hypoteční banka</fullName>
+                <default>false</default>
+                <label>Hypoteční banka</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Patria Finance</fullName>
+                <default>false</default>
+                <label>Patria Finance</label>
+            </value>
+            <value>
+                <fullName>Síť</fullName>
+                <default>false</default>
+                <label>Síť</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
