@@ -3,56 +3,78 @@
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>Clone</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
-    <excludeButtons>Edit</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
+    <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
-        <label>Information</label>
+        <label>Asset Information</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Campaign__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>CampaignEndDate__c</field>
+                <behavior>Edit</behavior>
+                <field>Product2Id</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ExternalId__c</field>
+                <field>AccountId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PurchaseDate</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Asset__c</field>
+                <field>Status</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Account__c</field>
+                <behavior>Edit</behavior>
+                <field>Price</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>CombinedAccountName__c</field>
+                <behavior>Edit</behavior>
+                <field>Quantity</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>AccountEmail__c</field>
+                <behavior>Edit</behavior>
+                <field>InstallDate</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
+        <detailHeading>false</detailHeading>
+        <editHeading>false</editHeading>
+        <label>Description Information</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Description</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>false</customLabel>
+        <detailHeading>false</detailHeading>
+        <editHeading>false</editHeading>
+        <label>Additional Information</label>
+        <layoutColumns/>
+        <layoutColumns/>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>false</customLabel>
         <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
+        <editHeading>false</editHeading>
         <label>System Information</label>
         <layoutColumns>
             <layoutItems>
@@ -71,7 +93,7 @@
     <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>false</detailHeading>
-        <editHeading>true</editHeading>
+        <editHeading>false</editHeading>
         <label>Custom Links</label>
         <layoutColumns/>
         <layoutColumns/>
@@ -81,36 +103,27 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>CampaignMember__c.NewOpenOpportunity</actionName>
+            <actionName>FeedItem.TextPost</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>CampaignMember__c.NewWonOpportunity</actionName>
+            <actionName>FeedItem.ContentPost</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>1</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>CampaignMember__c.NewLostOpportunity</actionName>
-            <actionType>QuickAction</actionType>
+            <actionName>Edit</actionName>
+            <actionType>StandardButton</actionType>
             <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>ChangeOwnerOne</actionName>
+            <actionName>ViewAssetHierarchy</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>3</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
-        <quickActionListItems>
-            <quickActionName>CampaignMember__c.NewOpenOpportunity</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>CampaignMember__c.NewWonOpportunity</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>CampaignMember__c.NewLostOpportunity</quickActionName>
-        </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
@@ -131,48 +144,74 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>OPPORTUNITY.NAME</fields>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>OPPORTUNITY.CLOSE_DATE</fields>
-        <relatedList>Opportunity.CampaignMember__c</relatedList>
+        <fields>CASES.CASE_NUMBER</fields>
+        <fields>NAME</fields>
+        <fields>CASES.SUBJECT</fields>
+        <fields>CASES.PRIORITY</fields>
+        <fields>CASES.CREATED_DATE</fields>
+        <fields>CASES.STATUS</fields>
+        <fields>OWNER_NAME</fields>
+        <relatedList>RelatedCaseList</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>TASK.SUBJECT</fields>
+        <fields>TASK.WHO_NAME</fields>
+        <fields>ACTIVITY.TASK</fields>
+        <fields>TASK.DUE_DATE</fields>
+        <fields>TASK.STATUS</fields>
+        <fields>TASK.PRIORITY</fields>
+        <fields>CORE.USERS.FULL_NAME</fields>
+        <relatedList>RelatedActivityList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>TASK.SUBJECT</fields>
+        <fields>TASK.WHO_NAME</fields>
+        <fields>ACTIVITY.TASK</fields>
+        <fields>TASK.DUE_DATE</fields>
+        <fields>CORE.USERS.FULL_NAME</fields>
+        <fields>TASK.LAST_UPDATE</fields>
+        <relatedList>RelatedHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedObjects>AccountId</relatedObjects>
+    <relatedObjects>ContactId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
-    <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1X00000159t0</masterLabel>
-        <sizeX>3</sizeX>
+        <masterLabel>00h1X0000014SY2</masterLabel>
+        <sizeX>4</sizeX>
         <sizeY>2</sizeY>
         <summaryLayoutItems>
-            <field>Account__c</field>
+            <field>AccountId</field>
             <posX>0</posX>
             <posY>0</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
-            <field>Campaign__c</field>
+            <field>Product2Id</field>
             <posX>0</posX>
             <posY>1</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
-            <field>CombinedAccountName__c</field>
+            <field>Status</field>
             <posX>1</posX>
             <posY>0</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
-            <field>AccountEmail__c</field>
+            <field>InstallDate</field>
             <posX>1</posX>
             <posY>1</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
-            <field>Asset__c</field>
+            <field>Price</field>
             <posX>2</posX>
             <posY>0</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
-            <field>CampaignEndDate__c</field>
+            <field>Description</field>
             <posX>2</posX>
             <posY>1</posY>
         </summaryLayoutItems>

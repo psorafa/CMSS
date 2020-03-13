@@ -186,12 +186,6 @@
         <relatedList>RelatedGroupList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>ProfileSkill</fields>
-        <fields>EndorsementCount</fields>
-        <fields>CreatedDate</fields>
-        <relatedList>ProfileSkillUserByUserRelatedList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>ACCOUNT.NAME</fields>
         <fields>ACCOUNT.ADDRESS1_CITY</fields>
         <fields>ACCOUNT.PHONE1</fields>
