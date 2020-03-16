@@ -210,23 +210,11 @@
                 <behavior>Edit</behavior>
                 <field>BillingAddress</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>BillingStreet__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>BillingHouseNumber__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ShippingAddress</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>DataBoxNumber__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
