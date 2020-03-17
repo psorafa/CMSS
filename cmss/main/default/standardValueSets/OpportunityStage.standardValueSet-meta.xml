@@ -36,7 +36,7 @@
         <default>false</default>
         <description>Uzavřený negativně</description>
         <label>5</label>
-        <closed>false</closed>
+        <closed>true</closed>
         <forecastCategory>Omitted</forecastCategory>
         <probability>0</probability>
         <won>false</won>
@@ -46,9 +46,9 @@
         <default>false</default>
         <description>Spárovaná</description>
         <label>7</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
+        <closed>true</closed>
+        <forecastCategory>Closed</forecastCategory>
         <probability>100</probability>
-        <won>false</won>
+        <won>true</won>
     </standardValue>
 </StandardValueSet>
