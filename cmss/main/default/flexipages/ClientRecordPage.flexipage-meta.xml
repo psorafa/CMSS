@@ -177,6 +177,33 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>parentFieldApiName</name>
+                <value>Account.Id</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListApiName</name>
+                <value>AccountBrands</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>NONE</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>rowsToDisplay</name>
+                <value>10</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showActionBar</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListSingleContainer</componentName>
+        </componentInstances>
+        <name>Facet-81d2d95a-755a-46a1-9714-744893598636</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
                 <name>body</name>
                 <value>Facet-7f324823-1a51-4ac5-970e-3752fa6382e3</value>
             </componentInstanceProperties>
@@ -227,6 +254,17 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Kontaktní informace</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-81d2d95a-755a-46a1-9714-744893598636</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Souhlasy</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
@@ -349,17 +387,6 @@
                 <value>CARD</value>
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>decorate</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>richTextValue</name>
-                <value>&lt;p&gt;&lt;img src=&quot;https://nosoftware-ability-9217--c.documentforce.com/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Png&amp;amp;versionId=0681X000000tfeA&amp;amp;operationContext=CHATTER&amp;amp;contentId=05T1X000002A8eL&quot; alt=&quot;marketingove_vybery_banka&quot;&gt;&lt;/p&gt;</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:richText</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
