@@ -24,25 +24,16 @@ TARGET=${6-"deploy"}
 
 set -e
 
-mkdir -p "$TARGET/deploy"
-mkdir -p "$TARGET/destroy"
 mkdir -p "$TARGET/packageDeploy"
+find "$TARGET/packageDeploy" -delete
 mkdir -p "$TARGET/packageDestroy"
+find "$TARGET/packageDestroy" -delete
 
 set -o xtrace
 
 echo "Checking Changes to Deploy.."
-DEPLOY_ARTIFACTS=""
-git diff -z --ignore-blank-lines --name-only --diff-filter="ACMRT" "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" ${FOLDER} |
-while read -d $'\0' FILE
-do
-	#copy changed files to temp variable
-	echo $FILE
-	DEPLOY_ARTIFACTS="$FILE,$DEPLOY_ARTIFACTS"
-	echo $DEPLOY_ARTIFACTS
-done
+DEPLOY_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" "${FOLDER}" "ACMRT")
 echo $DEPLOY_ARTIFACTS
-
 # convert temp source to Metadata package format
 if [ -z "$DEPLOY_ARTIFACTS" ]; then
   	echo "Nothing Changed to Deploy"
@@ -51,14 +42,7 @@ else
 fi
 
 echo "Checking Changes to Delete.."
-DELETE_ARTIFACTS=""
-git diff -z --ignore-blank-lines --name-only --diff-filter="D" "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" ${FOLDER} |
-while read -d $'\0' FILE
-do
-	#copy deleted files to temp variable
-	echo $FILE
-	DELETE_ARTIFACTS="$FILE,$DELETE_ARTIFACTS"
-done
+DELETE_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" "${FOLDER}" "D")
 echo $DELETE_ARTIFACTS
 
 
