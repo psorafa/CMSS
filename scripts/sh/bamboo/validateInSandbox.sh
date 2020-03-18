@@ -8,7 +8,7 @@ set -e
 #   3: The Soure Path to Validate - default "cmss"
 
 mkdir -p log
-LOG_FILE=log/validateInScratchSandbox.txt
+LOG_FILE=log/validateInSandbox.txt
 if [ -f $LOG_FILE ];
 then 
     rm ${LOG_FILE}
@@ -20,6 +20,7 @@ ALIAS=${1-"cmss_dev"}
 TEST=${2}
 PACKAGE=${3-"cmss"}
 
+set -e
 set -o xtrace
 
 #validate deployment
