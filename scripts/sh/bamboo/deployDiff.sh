@@ -37,15 +37,17 @@ do
 	#copy changed files to temp variable
 	DEPLOY_ARTIFACTS="$FILE,$DEPLOY_ARTIFACTS"
 done
+echo $DEPLOY_ARTIFACTS
 
 echo "Checking Changes to Delete.."
 DELETE_ARTIFACTS=""
 git diff -z --ignore-blank-lines --name-only --diff-filter="D" "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" ${FOLDER} |
 while read -d $'\0' FILE
 do
-	DELETE_ARTIFACTS="$FILE,$DELETE_ARTIFACTS"
 	#copy deleted files to temp variable
+	DELETE_ARTIFACTS="$FILE,$DELETE_ARTIFACTS"
 done
+echo $DELETE_ARTIFACTS
 
 set -o xtrace
 # convert temp source to Metadata package format
