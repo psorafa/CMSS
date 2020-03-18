@@ -13,4 +13,5 @@ FILTER=${3}
 FOLDER=${4}
 
 my_array=( $(scripts/sh/bamboo/util/gitDiff.sh $CURRENT_COMMIT $SOURCE_COMMIT $FILTER $FOLDER) )
-printf '%s,' "${my_array[@]}"
+my_line=$(printf '%s,' "${my_array[@]}")
+echo ${my_line::-1}

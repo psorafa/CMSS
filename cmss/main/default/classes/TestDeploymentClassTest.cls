@@ -5,5 +5,9 @@ private class TestDeploymentClassTest {
         TestDeploymentClass cls = new TestDeploymentClass();
         System.debug(LoggingLevel.DEBUG, 'TEST');
         System.debug(LoggingLevel.DEBUG, 'TEST');
+        System.debug(LoggingLevel.DEBUG, 'TEST');
+        System.debug(LoggingLevel.DEBUG, 'TEST');
+        System.debug(LoggingLevel.DEBUG, 'TEST');
+        System.debug(LoggingLevel.DEBUG, 'TEST');
     }
 }
