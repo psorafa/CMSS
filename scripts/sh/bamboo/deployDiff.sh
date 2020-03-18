@@ -61,6 +61,7 @@ else
 
 	echo "prepare destructiveChanges.xml"
 	#prepare destructive xml manifest
+	mkdir -p "$TARGET/packageDeploy"
 	cp "$TARGET/packageDestroy/package.xml" "$TARGET/packageDeploy/destructiveChanges.xml"
 fi
 
