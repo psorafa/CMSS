@@ -33,12 +33,14 @@ echo "Checking Changes to Deploy.."
 git diff -z --ignore-blank-lines --name-only --diff-filter="ACMRT" "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" ${FOLDER} |
 while read -d $'\0' FILE
 do
+	#copy changed files to temp location
   	echo $FILE
     FOLDER=$(echo $FILE | sed 's|\(.*\)/.*|\1|')
     mkdir "$TARGET/deploy/$FOLDER" -p
     cp "$FILE" "$TARGET/deploy/$FILE"
+	#ensure that required meta files are present too, e.g. .cls and .cls-meta.xml
     if [[ -f "$FILE-meta.xml" ]]; then
-      cp "$FILE-meta.xml" "$TARGET/deploy/$FILE-meta.xml"
+    	cp "$FILE-meta.xml" "$TARGET/deploy/$FILE-meta.xml"
     fi
 done
 
@@ -46,6 +48,7 @@ echo "Checking Changes to Delete.."
 git diff -z --ignore-blank-lines --name-only --diff-filter="D" "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" ${FOLDER} |
 while read -d $'\0' FILE
 do
+	#create empty files for deletion changes
     FOLDER=$(echo $FILE | sed 's|\(.*\)/.*|\1|')
     mkdir "$TARGET/destroy/$FOLDER" -p
     touch "$TARGET/destroy/$FILE"
@@ -56,20 +59,32 @@ echo "checkout previous version to get deleted files.."
 git checkout $SOURCE_COMMIT
 find "$TARGET/destroy" -type f | while read FILENAME
 do 
-  cp "${FILENAME##*"deploy/destroy/"}" "$FILENAME"  
-  if [[ -f "${FILENAME##*"deploy/destroy/"}-meta.xml" ]]; then
-    cp "${FILENAME##*"deploy/destroy/"}-meta.xml" "$FILENAME-meta.xml"
-  fi
+	#copy the original content of deleted files so that convert would work
+  	cp "${FILENAME##*"deploy/destroy/"}" "$FILENAME"  	  
+	#ensure that required meta files are present too, e.g. .cls and .cls-meta.xml
+  	if [[ -f "${FILENAME##*"deploy/destroy/"}-meta.xml" ]]; then
+    	cp "${FILENAME##*"deploy/destroy/"}-meta.xml" "$FILENAME-meta.xml"
+  	fi
 done
 echo "checkout current version again.."
 git checkout $CURRENT_COMMIT
 
 set -o xtrace
-sfdx force:source:convert -p "$TARGET/deploy" -d "$TARGET/packageDeploy"
-sfdx force:source:convert -p "$TARGET/destroy" -d "$TARGET/packageDestroy"
+# convert temp source to Metadata package format
+if [ -z "$(ls -A $TARGET/deploy)" ]; then
+  	echo "Nothing Changed to Deploy"
+else
+  	sfdx force:source:convert -p "$TARGET/deploy" -d "$TARGET/packageDeploy"
+fi
 
-echo "prepare destructiveChanges.xml"
-cp "$TARGET/packageDestroy/package.xml" "$TARGET/packageDeploy/destructiveChanges.xml"
+if [ -z "$(ls -A $TARGET/destroy)" ]; then
+	echo "Nothing to Delete"
+else
+	sfdx force:source:convert -p "$TARGET/destroy" -d "$TARGET/packageDestroy"
+	echo "prepare destructiveChanges.xml"
+	#prepare destructive xml manifest
+	cp "$TARGET/packageDestroy/package.xml" "$TARGET/packageDeploy/destructiveChanges.xml"
+fi
 
 #deploy with destructive changes as well
 if [ -z  "$TEST" ];
