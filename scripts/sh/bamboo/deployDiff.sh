@@ -29,12 +29,15 @@ mkdir -p "$TARGET/destroy"
 mkdir -p "$TARGET/packageDeploy"
 mkdir -p "$TARGET/packageDestroy"
 
+set -o xtrace
+
 echo "Checking Changes to Deploy.."
 DEPLOY_ARTIFACTS=""
 git diff -z --ignore-blank-lines --name-only --diff-filter="ACMRT" "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" ${FOLDER} |
 while read -d $'\0' FILE
 do
 	#copy changed files to temp variable
+	echo $FILE
 	DEPLOY_ARTIFACTS="$FILE,$DEPLOY_ARTIFACTS"
 done
 echo $DEPLOY_ARTIFACTS
@@ -45,11 +48,11 @@ git diff -z --ignore-blank-lines --name-only --diff-filter="D" "${SOURCE_COMMIT}
 while read -d $'\0' FILE
 do
 	#copy deleted files to temp variable
+	echo $FILE
 	DELETE_ARTIFACTS="$FILE,$DELETE_ARTIFACTS"
 done
 echo $DELETE_ARTIFACTS
 
-set -o xtrace
 # convert temp source to Metadata package format
 if [ -z "$DEPLOY_ARTIFACTS" ]; then
   	echo "Nothing Changed to Deploy"
