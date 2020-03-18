@@ -8,7 +8,7 @@ set -e
 #   3: The Soure Path to Validate - default "cmss"
 
 mkdir -p log
-LOG_FILE=log/validateInScratchSandbox.txt
+LOG_FILE=log/validateInSandbox.txt
 if [ -f $LOG_FILE ];
 then 
     rm ${LOG_FILE}
