@@ -32,7 +32,7 @@ find "$TARGET/packageDestroy" -delete
 set -o xtrace
 
 echo "Checking Changes to Deploy.."
-DEPLOY_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" "${FOLDER}" "ACMRT")
+DEPLOY_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine.sh "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" "${FOLDER}" "ACMRT")
 echo $DEPLOY_ARTIFACTS
 # convert temp source to Metadata package format
 if [ -z "$DEPLOY_ARTIFACTS" ]; then
@@ -42,7 +42,7 @@ else
 fi
 
 echo "Checking Changes to Delete.."
-DELETE_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" "${FOLDER}" "D")
+DELETE_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine.sh "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" "${FOLDER}" "D")
 echo $DELETE_ARTIFACTS
 
 
