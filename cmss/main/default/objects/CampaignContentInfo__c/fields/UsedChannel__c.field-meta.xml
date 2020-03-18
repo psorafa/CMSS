@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UsedChannel__c</fullName>
+    <description>Distribuční kanál</description>
+    <externalId>false</externalId>
+    <label>UsedChannel</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>ALL</fullName>
+                <default>false</default>
+                <label>ALL</label>
+            </value>
+            <value>
+                <fullName>Dopis</fullName>
+                <default>false</default>
+                <label>Dopis</label>
+            </value>
+            <value>
+                <fullName>El. portaly a mob. aplikace</fullName>
+                <default>false</default>
+                <label>El. portaly a mob. aplikace</label>
+            </value>
+            <value>
+                <fullName>E-mail</fullName>
+                <default>false</default>
+                <label>E-mail</label>
+            </value>
+            <value>
+                <fullName>SMS</fullName>
+                <default>false</default>
+                <label>SMS</label>
+            </value>
+            <value>
+                <fullName>Telefon</fullName>
+                <default>false</default>
+                <label>Telefon</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
