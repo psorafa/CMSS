@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Account__c</fullName>
+    <fullName>Lead__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>Klient</description>
+    <description>Lead</description>
     <externalId>false</externalId>
-    <label>Account</label>
-    <referenceTo>Account</referenceTo>
+    <label>Lead</label>
+    <referenceTo>Lead</referenceTo>
     <relationshipLabel>CampaignContentInfos</relationshipLabel>
     <relationshipName>CampaignContentInfos</relationshipName>
     <required>false</required>

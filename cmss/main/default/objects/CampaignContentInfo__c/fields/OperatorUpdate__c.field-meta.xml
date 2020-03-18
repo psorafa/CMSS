@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Account__c</fullName>
+    <fullName>OperatorUpdate__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>Klient</description>
+    <description>Aktualizoval</description>
     <externalId>false</externalId>
-    <label>Account</label>
-    <referenceTo>Account</referenceTo>
-    <relationshipLabel>CampaignContentInfos</relationshipLabel>
-    <relationshipName>CampaignContentInfos</relationshipName>
+    <label>OperatorUpdate</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>CampaignContentInfos1</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
