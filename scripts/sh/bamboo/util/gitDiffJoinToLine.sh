@@ -7,8 +7,8 @@
 #   3: git diff filter - required
 #   4: subfolder to compare - require
 
-SOURCE_COMMIT=${1}
-CURRENT_COMMIT=${2}
+CURRENT_COMMIT=${1}
+SOURCE_COMMIT=${2}
 FILTER=${3}
 FOLDER=${4}
 

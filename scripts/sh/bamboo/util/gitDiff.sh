@@ -7,8 +7,8 @@
 #   3: git diff filter - required
 #   4: subfolder to compare - require
 
-SOURCE_BRANCH=${1}
-CURRENT_BRANCH=${2}
+CURRENT_BRANCH=${1}
+SOURCE_BRANCH=${2}
 FILTER=${3}
 FOLDER=${4}
 
