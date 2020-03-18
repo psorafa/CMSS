@@ -3,6 +3,5 @@ public with sharing class TestDeploymentClass {
         System.debug(LoggingLevel.DEBUG, 'TEST');
         System.debug(LoggingLevel.DEBUG, 'TEST');
         System.debug(LoggingLevel.DEBUG, 'TEST');
-        System.debug(LoggingLevel.DEBUG, 'TEST');
     }
 }
