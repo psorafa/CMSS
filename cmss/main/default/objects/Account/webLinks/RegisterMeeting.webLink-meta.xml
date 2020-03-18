@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>RegisterCall</fullName>
+    <fullName>RegisterMeeting</fullName>
     <availability>online</availability>
-    <description>Rychlý telefonát</description>
     <displayType>button</displayType>
     <encodingKey>UTF-8</encodingKey>
     <hasMenubar>false</hasMenubar>
@@ -11,11 +10,11 @@
     <height>600</height>
     <isResizable>true</isResizable>
     <linkType>url</linkType>
-    <masterLabel>Register Call</masterLabel>
+    <masterLabel>Register Meeting</masterLabel>
     <openType>newWindow</openType>
     <position>none</position>
     <protected>false</protected>
     <showsLocation>false</showsLocation>
     <showsStatus>false</showsStatus>
-    <url>/flow/EventWithObjUpdate?opportunityId={!Opportunity.Id}&amp;accountId={!Opportunity.AccountId}&amp;eventDurationMin=5&amp;eventStartMin=-5&amp;eventType=Call&amp;opportunityStageTo=2&amp;eventResult=1&amp;opportunityStageCheck=1</url>
+    <url>/flow/EventWithObjUpdate?accountId={!Account.Id}&amp;eventDurationMin=5&amp;eventStartMin=-5&amp;eventType=Meeting&amp;eventResult=1</url>
 </WebLink>

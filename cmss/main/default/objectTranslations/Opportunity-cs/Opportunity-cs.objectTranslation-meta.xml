@@ -15,8 +15,8 @@
         </sections>
     </layouts>
     <quickActions>
-        <label>Registrovat schůzku</label>
-        <name>RegisterEvent</name>
+        <label><!-- Arrange Contract --></label>
+        <name>ArrangeContract</name>
     </quickActions>
     <recordTypes>
         <description><!-- Editable opp for stages 1 (nová), 2 (rozpracovaná) and 3 (uzavřená pozitivně) --></description>
@@ -28,8 +28,24 @@
         <label><!-- Not Editable --></label>
         <name>NotEditable</name>
     </recordTypes>
+    <validationRules>
+        <errorMessage>Fázi obchodní příležitosti nelze změnit zpět do fáze &#39;Nová&#39;.</errorMessage>
+        <name>EditOnceOppIsNotNew</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Fázi obchodní příležitosti nelze změnit, jakmile je &#39;Uzvřená negativně&#39; nebo &#39;Spárovaná&#39;.</errorMessage>
+        <name>EditStageOnceOppIsClosed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Prosím vyplňte důvod negativního uzavření obchodní příležitosti.</errorMessage>
+        <name>ReguiredReasonForLostOpp</name>
+    </validationRules>
     <webLinks>
-        <label><!-- RegisterCall --></label>
+        <label>Registrovat volání</label>
         <name>RegisterCall</name>
+    </webLinks>
+    <webLinks>
+        <label>Registrovat schůzku</label>
+        <name>RegisterMeeting</name>
     </webLinks>
 </CustomObjectTranslation>
