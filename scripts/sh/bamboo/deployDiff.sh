@@ -37,9 +37,9 @@ do
     FOLDER=$(echo $FILE | sed 's|\(.*\)/.*|\1|')
     mkdir "$TARGET/deploy/$FOLDER" -p
     cp "$FILE" "$TARGET/deploy/$FILE"
-    if EXISTS "$FILE-meta.xml" (
+    if [[ -f "$FILE-meta.xml" ]]; then
       cp "$FILE-meta.xml" "$TARGET/deploy/$FILE-meta.xml"
-    )
+    fi
 done
 
 echo "Checking Changes to Delete.."
@@ -56,10 +56,10 @@ echo "checkout previous version to get deleted files.."
 git checkout $SOURCE_COMMIT
 find "$TARGET/destroy" -type f | while read FILENAME
 do 
-  cp "${FILENAME##*"deploy/destroy/"}" "$FILENAME"
-  if EXISTS "${FILENAME##*"deploy/destroy/"}-meta.xml" (
+  cp "${FILENAME##*"deploy/destroy/"}" "$FILENAME"  
+  if [[ -f "${FILENAME##*"deploy/destroy/"}-meta.xml" ]]; then
     cp "${FILENAME##*"deploy/destroy/"}-meta.xml" "$FILENAME-meta.xml"
-  )
+  fi
 done
 echo "checkout current version again.."
 git checkout $CURRENT_COMMIT
