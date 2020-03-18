@@ -7,7 +7,8 @@
 #   3: Previously deployed Commit - required
 #   4: The Soure Path to Deploy - default "cmss"
 #   5: What tests should be exeuted - default is empty, i.e. default for given Org
-#   6: Package Folder o use as temporary storage for deployment package
+#   6: Mode - validation instead of deployment, default "deploy", other "validate"
+#   7: Package Folder o use as temporary storage for deployment package
 
 mkdir -p log
 LOG_FILE=log/deployDiff.txt
@@ -20,7 +21,8 @@ CURRENT_COMMIT=$2
 SOURCE_COMMIT=$3
 FOLDER=${4-"cmss"}
 TEST=${5}
-TARGET=${6-"deploy"}
+MODE=${6-"deploy"}
+TARGET=${7-"deploy"}
 
 set -e
 
@@ -72,9 +74,17 @@ if [ -z "$(ls -A $TARGET/packageDeploy)" ]; then
    echo "Nothing to deploy"
 else
 	if [ -z  "$TEST" ];	then
-		sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59
+		if [ "validate" -eq  "$MODE" ]; then
+			sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --checkonly
+		else
+			sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59
+		fi	
 	else
-		sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST
+		if [ "validate" -eq  "$MODE" ];	then
+			sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST --checkonly
+		else
+			sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST
+		fi
 	fi
    	echo "Deploy Successful"
 fi
