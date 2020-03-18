@@ -39,8 +39,16 @@ do
 	#copy changed files to temp variable
 	echo $FILE
 	DEPLOY_ARTIFACTS="$FILE,$DEPLOY_ARTIFACTS"
+	echo $DEPLOY_ARTIFACTS
 done
 echo $DEPLOY_ARTIFACTS
+
+# convert temp source to Metadata package format
+if [ -z "$DEPLOY_ARTIFACTS" ]; then
+  	echo "Nothing Changed to Deploy"
+else
+  	sfdx force:source:convert -p "$DEPLOY_ARTIFACTS" -d "$TARGET/packageDeploy"
+fi
 
 echo "Checking Changes to Delete.."
 DELETE_ARTIFACTS=""
@@ -53,12 +61,6 @@ do
 done
 echo $DELETE_ARTIFACTS
 
-# convert temp source to Metadata package format
-if [ -z "$DEPLOY_ARTIFACTS" ]; then
-  	echo "Nothing Changed to Deploy"
-else
-  	sfdx force:source:convert -p "$DEPLOY_ARTIFACTS" -d "$TARGET/packageDeploy"
-fi
 
 if [ -z "$DELETE_ARTIFACTS" ]; then
 	echo "Nothing to Delete"
