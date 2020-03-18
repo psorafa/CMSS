@@ -65,11 +65,15 @@ else
 fi
 
 #deploy with destructive changes as well
-if [ -z  "$TEST" ];
-then
-  	sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59
+if [ -z "$(ls -A $TARGET/packageDeploy)" ]; then
+   echo "Nothing to deploy"
 else
-	sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST
+	if [ -z  "$TEST" ];	then
+		sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59
+	else
+		sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST
+	fi
+   	echo "Deploy Successful"
 fi
 # this is to let other scripts know that the deployment was successful
 touch successDeploy.tmp
