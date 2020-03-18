@@ -38,6 +38,7 @@ echo $DEPLOY_ARTIFACTS
 # convert temp source to Metadata package format
 if [ -z "$DEPLOY_ARTIFACTS" ]; then
 	echo "Nothing Changed to Deploy"
+	mkdir -p "$TARGET/packageDeploy"
 	cp "config/emptyPackage.xml" "$TARGET/packageDeploy/package.xml"
 else
   	sfdx force:source:convert -p "$DEPLOY_ARTIFACTS" -d "$TARGET/packageDeploy"
