@@ -24,10 +24,11 @@ TARGET=${6-"deploy"}
 
 set -e
 
-mkdir -p "$TARGET/packageDeploy"
+#clear the folders
 find "$TARGET/packageDeploy" -delete
-mkdir -p "$TARGET/packageDestroy"
 find "$TARGET/packageDestroy" -delete
+mkdir -p "$TARGET/packageDeploy"
+mkdir -p "$TARGET/packageDestroy"
 
 set -o xtrace
 
