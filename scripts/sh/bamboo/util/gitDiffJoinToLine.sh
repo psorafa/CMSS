@@ -12,5 +12,5 @@ CURRENT_BRANCH=${2}
 FILTER=${3}
 FOLDER=${4}
 
-my_array=( $(scripts/sh/bamboo/util/diff.sh $CURRENT_COMMIT $SOURCE_COMMIT $FILTER $FOLDER) )
+my_array=( $(scripts/sh/bamboo/util/gitDiff.sh $CURRENT_COMMIT $SOURCE_COMMIT $FILTER $FOLDER) )
 printf '%s,' "${my_array[@]}"
