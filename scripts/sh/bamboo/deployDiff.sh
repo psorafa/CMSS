@@ -37,7 +37,8 @@ DEPLOY_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine.sh "${SOURCE_COMMIT}
 echo $DEPLOY_ARTIFACTS
 # convert temp source to Metadata package format
 if [ -z "$DEPLOY_ARTIFACTS" ]; then
-  	echo "Nothing Changed to Deploy"
+	echo "Nothing Changed to Deploy"
+	cp "config/emptyPackage.xml" "$TARGET/packageDeploy/package.xml"
 else
   	sfdx force:source:convert -p "$DEPLOY_ARTIFACTS" -d "$TARGET/packageDeploy"
 fi
