@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>BillingStreet__c</fullName>
-    <description>Hlavní ulice</description>
+    <fullName>ResignationTo__c</fullName>
+    <description>Datum uplynutí výpovědi</description>
     <externalId>false</externalId>
-    <label>Billing Street</label>
-    <length>255</length>
+    <label>Resignation To</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>Date</type>
 </CustomField>

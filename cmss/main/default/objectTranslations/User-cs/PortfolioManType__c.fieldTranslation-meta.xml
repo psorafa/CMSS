@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Povolený typ správy stavu</label>
+    <name>PortfolioManType__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Povolena správa A</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Povolena správa B</translation>
+    </picklistValues>
+</CustomFieldTranslation>

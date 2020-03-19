@@ -23,6 +23,10 @@
             <section>Product Information</section>
         </sections>
     </layouts>
+    <quickActions>
+        <label><!-- Create Opportunity --></label>
+        <name>CreateOpportunity</name>
+    </quickActions>
     <recordTypes>
         <label><!-- Business Account --></label>
         <name>Business_Account</name>
