@@ -451,6 +451,10 @@
         <fields>OWNER_NAME</fields>
         <relatedList>RelatedCaseList</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>CampaignContentInfo__c.Account__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
     <showInteractionLogPanel>true</showInteractionLogPanel>
