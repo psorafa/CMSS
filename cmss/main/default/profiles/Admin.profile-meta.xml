@@ -27,16 +27,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.BillingHouseNumber__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.BillingStreet__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Account.Birthdate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -68,11 +58,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.CsobStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.DataBoxNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
