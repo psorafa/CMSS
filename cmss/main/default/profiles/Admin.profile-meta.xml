@@ -1727,19 +1727,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-<<<<<<< HEAD
-=======
-        <field>Event.WhatId</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Event.WhoId</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
->>>>>>> 994a80c5583e547822987ed73db11b7ee090e871
         <field>Opportunity.AccountId</field>
         <readable>true</readable>
     </fieldPermissions>
