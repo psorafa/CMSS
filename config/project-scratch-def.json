@@ -1,5 +1,14 @@
 {
-  "orgName": "CMSS",
-  "edition": "Enterprise",
-  "features": ["PersonAccounts"]
+	"orgName": "CMSS",
+	"edition": "Enterprise",
+	"features": ["PersonAccounts"],
+	"settings": {
+		"languageSettings": {
+			"enableEndUserLanguages": true,
+			"enableTranslationWorkbench": true
+		},
+		"nameSettings": {
+			"enableNameSuffix": true
+		}
+	}
 }

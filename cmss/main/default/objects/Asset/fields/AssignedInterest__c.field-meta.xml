@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AssignedInterest__c</fullName>
+    <description>&quot;Připsané úroky
+EDM_SPORICI_UCET.TOTAL_INTEREST_SAVINGS + EDM_SPORICI_UCET.TOTAL_INTEREST_STATE_CONTRIB + EDM_SPORICI_UCET.TOTAL_INTEREST_MANUAL&quot;</description>
+    <externalId>false</externalId>
+    <label>Assigned Interest</label>
+    <precision>14</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

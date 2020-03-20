@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Typ kontaktní informace</label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>Hlavní telefon</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Hlavní e-mail</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Trvalá adresa</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Korespondenční adresa</translation>
+    </picklistValues>
+</CustomFieldTranslation>
