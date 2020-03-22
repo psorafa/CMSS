@@ -23,8 +23,20 @@
             <section>Product Information</section>
         </sections>
     </layouts>
+    <quickActions>
+        <label><!-- Create Opportunity --></label>
+        <name>CreateOpportunity</name>
+    </quickActions>
     <recordTypes>
         <label><!-- Business Account --></label>
         <name>Business_Account</name>
     </recordTypes>
+    <webLinks>
+        <label>Registrovat volání</label>
+        <name>RegisterCall</name>
+    </webLinks>
+    <webLinks>
+        <label>Registrovat schůzku</label>
+        <name>RegisterMeeting</name>
+    </webLinks>
 </CustomObjectTranslation>

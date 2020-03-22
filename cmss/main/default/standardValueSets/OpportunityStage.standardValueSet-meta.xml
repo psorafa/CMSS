@@ -2,45 +2,50 @@
 <StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <sorted>false</sorted>
     <standardValue>
-        <fullName>New</fullName>
+        <fullName>1</fullName>
         <default>false</default>
-        <label>New</label>
+        <description>Nová</description>
+        <label>1</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>10</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Prospecting</fullName>
+        <fullName>2</fullName>
         <default>false</default>
-        <label>Prospecting</label>
+        <description>Rozpracovaná</description>
+        <label>2</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>50</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Closed Won</fullName>
+        <fullName>3</fullName>
         <default>false</default>
-        <label>Closed Won</label>
-        <closed>true</closed>
-        <forecastCategory>Closed</forecastCategory>
+        <description>Uzavřená pozitivně</description>
+        <label>3</label>
+        <closed>false</closed>
+        <forecastCategory>Forecast</forecastCategory>
         <probability>99</probability>
-        <won>true</won>
+        <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Closed Lost</fullName>
+        <fullName>5</fullName>
         <default>false</default>
-        <label>Closed Lost</label>
+        <description>Uzavřený negativně</description>
+        <label>5</label>
         <closed>true</closed>
         <forecastCategory>Omitted</forecastCategory>
         <probability>0</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Matched</fullName>
+        <fullName>7</fullName>
         <default>false</default>
-        <label>Matched</label>
+        <description>Spárovaná</description>
+        <label>7</label>
         <closed>true</closed>
         <forecastCategory>Closed</forecastCategory>
         <probability>100</probability>
