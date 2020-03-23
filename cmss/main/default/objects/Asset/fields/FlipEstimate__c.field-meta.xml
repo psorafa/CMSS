@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FlipEstimate__c</fullName>
+    <description>Předpokládané datum překlopení MU na USS (předpokládané datum přidělení CČ), plněno jen u MU. – viz FS EKO, kap. XVIII.</description>
+    <externalId>false</externalId>
+    <label>Flip Estimate</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>
