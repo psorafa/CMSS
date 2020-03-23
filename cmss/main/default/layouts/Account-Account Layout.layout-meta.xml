@@ -316,9 +316,6 @@
         <quickActionListItems>
             <quickActionName>FeedItem.QuestionPost</quickActionName>
         </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.ContentNote</quickActionName>
-        </quickActionListItems>
     </quickActionList>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
@@ -410,6 +407,10 @@
         <relatedList>ContactInformation__c.Account__c</relatedList>
         <sortField>Type__c</sortField>
         <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>CampaignContentInfo__c.Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

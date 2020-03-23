@@ -16,8 +16,6 @@ ALIAS=$1
 TEST=${2-"RunLocalTests"}
 PACKAGE=${3-"cmss"}
 
-set -e
-
 if [ -z "$ALIAS" ]
 then
     echo "Org Alias is required"

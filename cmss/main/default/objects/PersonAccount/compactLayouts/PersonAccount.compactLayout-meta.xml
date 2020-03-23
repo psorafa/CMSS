@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PersonAccount</fullName>
-    <fields>CombinedName__c</fields>
+    <fields>Name</fields>
+    <fields>PersonTitle</fields>
+    <fields>PersonalIdentificationNr__c</fields>
+    <fields>GlobalId__c</fields>
+    <fields>Phone</fields>
     <fields>PersonEmail</fields>
-    <fields>BillingAddress</fields>
+    <fields>AccountStatus__c</fields>
     <fields>PortfolioMngmtA__c</fields>
     <fields>PortfolioMngmtC__c</fields>
     <label>Person Account</label>

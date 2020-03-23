@@ -419,32 +419,11 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Campaign.NAME</fields>
-        <fields>CampaignEndDate__c</fields>
-        <fields>Product__c</fields>
-        <relatedList>CampaignMember__c.Account__c</relatedList>
-        <sortField>CampaignEndDate__c</sortField>
-        <sortOrder>Asc</sortOrder>
-    </relatedLists>
-    <relatedLists>
         <fields>ASSET.NAME</fields>
         <fields>ProductType__c</fields>
         <fields>ASSET.PRICE</fields>
         <fields>ASSET.PURCHASE_DATE</fields>
         <relatedList>RelatedAssetList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <fields>Type__c</fields>
-        <fields>PhoneNumber__c</fields>
-        <fields>Email__c</fields>
-        <fields>FullAddress__c</fields>
-        <fields>IsMain__c</fields>
-        <relatedList>ContactInformation__c.Account__c</relatedList>
-        <sortField>Type__c</sortField>
-        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
@@ -454,9 +433,6 @@
         <fields>Product__c</fields>
         <fields>OPPORTUNITY.CLOSE_DATE</fields>
         <relatedList>RelatedOpportunityList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -489,6 +465,10 @@
         <fields>CASES.STATUS</fields>
         <fields>OWNER_NAME</fields>
         <relatedList>RelatedCaseList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>CampaignContentInfo__c.Account__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
