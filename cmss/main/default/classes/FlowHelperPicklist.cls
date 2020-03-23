@@ -1,3 +1,10 @@
+/**
+* Translating picklist value by user language. Called from lightning flows.
+* Based on:
+* https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_process_plugin.htm
+* https://ipfs-sec.stackexchange.cloudflare-ipfs.com/salesforce/A/question/50782.html
+* @author Robert Srna
+*/
 global class FlowHelperPicklist implements Process.Plugin { 
 
    global Process.PluginResult invoke(Process.PluginRequest request) { 

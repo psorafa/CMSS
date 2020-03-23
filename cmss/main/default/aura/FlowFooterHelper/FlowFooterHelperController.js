@@ -1,8 +1,22 @@
+/**
+* In lightning flows used instead of standard footer.
+* You see custom buttons for Save and Cancel.
+*
+* Based on
+* https://success.salesforce.com/ideaView?id=08730000000keEFAAY
+* @author Robert Srna
+*/
+
 ({    
     
    init : function(cmp, event, helper) {
-         console.log('log init');
-         //$A.enqueueAction(action);
+      var labelValue = $A.get("{!$Label.c.FlowFooterHelperSaveButton}");
+      cmp.set('v.saveLabel', labelValue);
+      labelValue = $A.get("{!$Label.c.FlowFooterHelperCancelButton}");
+      cmp.set('v.cancelLabel', labelValue);
+       
+      console.log('log init');
+      //$A.enqueueAction(action);
        
       // Figure out which buttons to display
       var availableActions = cmp.get('v.availableActions');
