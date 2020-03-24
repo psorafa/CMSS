@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>IsRegionAssigned__c</fullName>
+    <fullName>IsRegionAssignable__c</fullName>
     <defaultValue>false</defaultValue>
     <description>Typ činnost OZ jej opravňuje spravovat určitý region</description>
     <externalId>false</externalId>
-    <label>Is Region Assigned</label>
+    <label>Is Region Assignable</label>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Checkbox</type>
 </CustomField>
