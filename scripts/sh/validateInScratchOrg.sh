@@ -13,7 +13,7 @@ set -e
 
 ALIAS=${1-"cmss_validate"}
 DEVHUB=${2}
-TEST=${3}
+TEST=${3-"RunLocalTests"}
 CONF=${4-"config/project-scratch-def.json"}
 DAYS=${5-1}
 

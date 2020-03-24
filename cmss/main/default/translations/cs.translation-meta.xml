@@ -2,36 +2,36 @@
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
         <label>Zrušit</label>
-        <name>FlowFooterHelperCancelButton</name>
+        <name>Cancel</name>
     </customLabels>
     <customLabels>
         <label>Uložit</label>
-        <name>FlowFooterHelperSaveButton</name>
+        <name>Save</name>
     </customLabels>
     <flowDefinitions>
         <flows>
-            <fullName>Test_Get_Layouts-1</fullName>
+            <fullName>RegisterEvent-1</fullName>
             <screens>
                 <fields>
-                    <name>disp1</name>
+                    <name>EndDateTime_0</name>
                 </fields>
-                <name>Announcement</name>
-            </screens>
-            <screens>
                 <fields>
-                    <name>quickChoice1</name>
+                    <name>StartDateTime_0</name>
                 </fields>
-                <name>Quick_Choice_Picklist</name>
+                <fields>
+                    <name>Subject</name>
+                </fields>
+                <name>RegisterEventHeader</name>
             </screens>
         </flows>
-        <fullName>Test_Get_Layouts</fullName>
+        <fullName>RegisterEvent</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows>
             <choices>
                 <name>eventTypeDefaultChoice</name>
             </choices>
-            <fullName>EventWithObjUpdate-23</fullName>
+            <fullName>EventWithObjUpdate-1</fullName>
             <screens>
                 <fields>
                     <name>accountNameScreen</name>
@@ -55,42 +55,6 @@
             </screens>
         </flows>
         <fullName>EventWithObjUpdate</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows>
-            <fullName>Test_Quick_Choice2-1</fullName>
-            <screens>
-                <fields>
-                    <name>quickChoice3</name>
-                </fields>
-                <name>Quick_Choice_Icon</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>QuickChoice0</name>
-                </fields>
-                <name>Quick_Choice_Picklist</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>quickChoice1</name>
-                </fields>
-                <name>Quick_Choice_Radio</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>quickChoice2</name>
-                </fields>
-                <name>Quick_Choice_Visual</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>SelectedValuesDisplay</name>
-                </fields>
-                <name>Selected_Values</name>
-            </screens>
-        </flows>
-        <fullName>Test_Quick_Choice2</fullName>
     </flowDefinitions>
     <quickActions>
         <label><!-- LogACall --></label>

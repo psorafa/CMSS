@@ -10,14 +10,6 @@
 ({    
     
    init : function(cmp, event, helper) {
-      var labelValue = $A.get("{!$Label.c.FlowFooterHelperSaveButton}");
-      cmp.set('v.saveLabel', labelValue);
-      labelValue = $A.get("{!$Label.c.FlowFooterHelperCancelButton}");
-      cmp.set('v.cancelLabel', labelValue);
-       
-      console.log('log init');
-      //$A.enqueueAction(action);
-       
       // Figure out which buttons to display
       var availableActions = cmp.get('v.availableActions');
       for (var i = 0; i < availableActions.length; i++) {
@@ -31,7 +23,6 @@
             cmp.set("v.canFinish", true);
          }
       }
-       
    },    
     
     
@@ -59,7 +50,6 @@
       // Fire that action
       var navigate = cmp.get('v.navigateFlow');      
       navigate(actionClicked);
-       
    }    
     
 })

@@ -22,7 +22,7 @@ then
 fi
 
 ALIAS=${1-"cmss_dev"}
-TEST=${2}
+TEST=${2-"RunLocalTests"}
 PACKAGE=${3-"cmss"}
 
 set -e
