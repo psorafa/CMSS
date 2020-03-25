@@ -491,6 +491,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.AssuranceValue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.BenefitType__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -522,6 +527,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.ClosureFeeNotice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.ClosureFee__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -617,6 +627,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.CurrentInterestRate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.CurrentLawRegime__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -736,6 +751,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.InsuranceType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.IsCompetitorProduct</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -811,6 +831,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.PaymentFrequency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.PercentageSaved__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -857,6 +882,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.ProductCode</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.ProductSubtype__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -931,12 +961,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.ReCreditType__c</field>
+        <field>Asset.ReceivalByCmssDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.ReceivalByCMSSDate__c</field>
+        <field>Asset.ReCreditType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1006,7 +1036,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.StateCode_c__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.StateInheritance__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1935,6 +1975,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.IsPrivate</field>
         <readable>false</readable>
@@ -1976,7 +2021,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Opportunity.Reason__c</field>
+        <field>Opportunity.SalesPrice__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2141,11 +2186,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Task.Type</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Task.ValidFrom__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2201,7 +2241,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>User.CommissionAccountNumber__c</field>
+        <field>User.CommissionAccountNr__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2246,7 +2286,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>User.IsRegionAssigned__c</field>
+        <field>User.IsRegionAssignable__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2302,6 +2342,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>User.SortingCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.Suffix__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
