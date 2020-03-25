@@ -777,6 +777,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.ReceivalByCmssDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.ReCreditType__c</field>
         <readable>true</readable>
     </fieldPermissions>
