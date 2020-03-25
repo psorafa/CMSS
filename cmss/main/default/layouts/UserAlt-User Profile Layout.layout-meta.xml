@@ -26,6 +26,10 @@
                 <behavior>Edit</behavior>
                 <field>MobilePhone__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Suffix__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
