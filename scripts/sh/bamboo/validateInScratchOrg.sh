@@ -10,15 +10,24 @@
 
 mkdir -p log
 LOG_FILE=log/validateInScratchOrg.txt
-rm ${LOG_FILE}
+SUCCESS_FILE=successScratchOrg.tmp
+if [ -f $LOG_FILE ];
+then
+    rm ${LOG_FILE}
+fi
 exec > >(tee -a ${LOG_FILE} )
 exec 2> >(tee -a ${LOG_FILE} >&2)
+
+if [ -f SUCCESS_FILE ];
+then
+    rm ${SUCCESS_FILE}
+fi
 
 set -e
 
 ALIAS=${1-"cmss_validate"}
 DEVHUB=${2}
-TEST=${3}
+TEST=${3-"RunLocalTests"}
 CONF=${4-"config/project-scratch-def.json"}
 DAYS=${5-1}
 
@@ -59,4 +68,4 @@ set +o
 echo "Validation Successfull!"
 
 # this is to let other scripts know that the build was successful
-touch successScratchOrg.tmp
+touch ${SUCCESS_FILE}

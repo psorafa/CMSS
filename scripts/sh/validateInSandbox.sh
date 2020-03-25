@@ -8,7 +8,7 @@ set -e
 #   3: The Soure Path to Validate - default "cmss"
 
 ALIAS=${1-"cmss_dev"}
-TEST=${2}
+TEST=${2-"RunLocalTests"}
 PACKAGE=${3-"cmss"}
 
 set -o xtrace
