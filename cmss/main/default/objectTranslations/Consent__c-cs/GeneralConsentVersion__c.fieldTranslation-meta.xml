@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Skupinový souhlas verze</label>
+    <name>GeneralConsentVersion__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>verze 2015</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>verze 2017</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>verze 2019</translation>
+    </picklistValues>
+</CustomFieldTranslation>

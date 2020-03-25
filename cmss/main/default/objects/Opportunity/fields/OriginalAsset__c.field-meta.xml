@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OriginalAsset__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Asset from which was the opportunity created</description>
+    <externalId>false</externalId>
+    <label>Original Asset</label>
+    <referenceTo>Asset</referenceTo>
+    <relationshipLabel>Opportunities</relationshipLabel>
+    <relationshipName>Opportunities</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
