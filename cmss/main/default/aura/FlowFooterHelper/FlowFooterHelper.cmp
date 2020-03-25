@@ -13,9 +13,9 @@
       <!-- If Previous is available, display to the left -->
       <div class="slds-float_left">
 
-            <lightning:button aura:id="NEXT" label="Zrušit"
+            <lightning:button label="{!$Label.c.Cancel}"
                variant="neutral" onclick="{!c.onCancel}" />
-            <lightning:button aura:id="NEXT" label="Pokračovat"
+            <lightning:button label="{!$Label.c.Save}"
                variant="brand" onclick="{!c.onContinue}" />
       </div>
 
