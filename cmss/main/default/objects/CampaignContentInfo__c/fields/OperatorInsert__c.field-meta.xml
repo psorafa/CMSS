@@ -3,7 +3,7 @@
     <fullName>OperatorInsert__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>OperatorInsert</label>
+    <label>Operator Insert</label>
     <referenceTo>User</referenceTo>
     <relationshipName>CampaignContentInfos</relationshipName>
     <required>false</required>
