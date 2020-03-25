@@ -404,11 +404,6 @@
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>Type__c</fields>
         <fields>Value__c</fields>
-        <fields>IsMain__c</fields>
-        <fields>PhoneNumber__c</fields>
-        <fields>Email__c</fields>
-        <fields>FullAddress__c</fields>
-        <fields>NAME</fields>
         <relatedList>ContactInformation__c.Account__c</relatedList>
         <sortField>Type__c</sortField>
         <sortOrder>Asc</sortOrder>
