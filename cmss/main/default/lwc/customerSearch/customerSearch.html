@@ -1,0 +1,116 @@
+<!--
+ - Created by a.olexova on 3/17/2020.
+ -->
+
+<!-- Customer Search -->
+<template>
+    <template if:true={spinner}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+
+    <!--SEARCH FORM-->
+    <div
+            class="slds-grid slds-wrap slds-gutters slds-text-body_regular slds-text-color_default slds-text-align_left slds-box slds-theme_default slds-align--absolute-center">
+
+        <!--HEADER-->
+        <div
+                class="slds-m-top--medium slds-m-bottom_large slds-align_absolute-center slds-col slds-size_1-of-1 slds-text-heading_large slds-large-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1">
+            <lightning-icon icon-name="standard:client" title="Search" size="large"
+                            class="slds-m-right--large"></lightning-icon>
+            {label.clientIdentificationTitle}
+        </div>
+
+        <!--SEARCH FORMS-->
+        <div class="slds-size_1-of-1 slds-grid slds-wrap slds-gutters">
+            <div
+                    class="slds-col slds-size_1-of-1 slds-large-size--1-of-3 slds-medium-size--1-of-3 slds-small-size--1-of-1 slds-m-bottom_medium">
+                <form class="slds-form--stacked slds-box--border slds-theme--shade slds-m-top--small"
+                      style="height:auto;">
+                    <!--FORM CLIENT-->
+                    <template if:true={showClientSearch}>
+                        <div class="slds-m-bottom--large slds-m-top--small slds-m-left--small slds-text-heading_medium">
+                            {label.clientLabel}
+                        </div>
+                        <div class="slds-m-around--small">
+                            <template if:true={showCompRegNum}>
+                                <div class="slds-m-around--small">
+                                    <lightning-input label={labelCompRegNum} maxlength="13"
+                                                     message-when-value-missing={label.missingMessage}
+                                                     minlength="8" name="compRegNr"
+                                                     onchange={disableInputs} pattern="[0-9]*"
+                                                     placeholder={label.compRegNrPlaceholder}
+                                                     readonly={isCompRegNumDisabled}
+                                                     required={isCompRegNumRequired} type="text"
+                                                     value={inputCompRegNum}></lightning-input>
+                                </div>
+                            </template>
+                            <template if:true={showBirthNumber}>
+                                <div class="slds-m-around--small">
+                                    <lightning-input label={labelBirthNumber} maxlength="13"
+                                                     message-when-value-missing={label.missingMessage}
+                                                     minlength="9"
+                                                     name="birthNumber"
+                                                     onchange={disableInputs} pattern="[0-9]*"
+                                                     placeholder={label.birthNrPlaceholder}
+                                                     readonly={isBirthNumberDisabled}
+                                                     required={isBirthNumberRequired} type="text"
+                                                     value={inputBirthNumber}></lightning-input>
+                                </div>
+                            </template>
+
+                            <template if:true={showPersonArea}>
+                                <div class="slds-m-around--small">
+                                    <lightning-input label={labelFirstName} name="firstName"
+                                                     onchange={disableInputs}
+                                                     placeholder={label.firstNamePlaceholder}
+                                                     required={isFirstNameRequired}
+                                                     value={inputFirstName}></lightning-input>
+                                </div>
+                                <div class="slds-m-around--small">
+                                    <lightning-input label={labelLastName}
+                                                     name="lastName"
+                                                     onchange={disableInputs}
+                                                     placeholder={label.lastNamePlaceholder}
+                                                     required={isLastNameRequired}
+                                                     value={inputLastName}></lightning-input>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
+                    <template if:true={showAssetNumber}>
+                        <br/>
+                        <div class="slds-m-bottom--large slds-m-top--small slds-m-left--small slds-text-heading_medium">
+                            {label.assetLabel}
+                        </div>
+                        <div class="slds-m-around--small">
+                            <div class="slds-m-around--small">
+                                <lightning-input label={labelAssetNumber} maxlength="25"
+                                                 message-when-value-missing={label.missingMessage}
+                                                 minlength="7"
+                                                 name="assetNumber"
+                                                 onchange={disableInputs} pattern="[0-9]*"
+                                                 placeholder={label.assetPlaceholder}
+                                                 readonly={isAssetNumberDisabled}
+                                                 required={isAssetNumberRequired} type="text"
+                                                 value={inputAssetNumber}></lightning-input>
+                            </div>
+                        </div>
+                    </template>
+
+                    <br/>
+                    <div class="slds-align_absolute-center slds-m-around--small slds-m-top--x-large">
+                        <lightning-button
+                                class="slds-size_1-of-1 slds-large-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1"
+                                icon-name="utility:search"
+                                label={label.searchButton} onclick={searchClient}
+                                disabled={isSearchButtonDisabled}
+                                variant="brand"></lightning-button>
+                    </div>
+
+                    <!--                    TODO labels - tlačítko, chybové hlášky -->
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
