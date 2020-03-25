@@ -397,8 +397,6 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>CampaignMember__c.Account__c</relatedList>
-        <sortField>CampaignEndDate__c</sortField>
-        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
