@@ -323,6 +323,9 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
+        <relatedList>RelatedContentNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>TASK.WHAT_NAME</fields>
@@ -392,11 +395,7 @@
         <relatedList>RelatedCaseList</relatedList>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Campaign.NAME</fields>
-        <fields>CampaignEndDate__c</fields>
-        <fields>Product__c</fields>
         <relatedList>CampaignMember__c.Account__c</relatedList>
         <sortField>CampaignEndDate__c</sortField>
         <sortOrder>Asc</sortOrder>
@@ -404,6 +403,7 @@
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>Type__c</fields>
+        <fields>Value__c</fields>
         <fields>IsMain__c</fields>
         <fields>PhoneNumber__c</fields>
         <fields>Email__c</fields>
