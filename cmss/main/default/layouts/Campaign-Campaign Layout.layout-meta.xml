@@ -24,6 +24,30 @@
                 <behavior>Edit</behavior>
                 <field>Product__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ActionCategory__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CampaignInfo__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Code__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DataSource__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DateUpdated__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>InputType__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -246,39 +270,9 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1X0000014SXf</masterLabel>
-        <sizeX>3</sizeX>
-        <sizeY>2</sizeY>
-        <summaryLayoutItems>
-            <field>Name</field>
-            <posX>0</posX>
-            <posY>0</posY>
-        </summaryLayoutItems>
-        <summaryLayoutItems>
-            <field>EndDate</field>
-            <posX>0</posX>
-            <posY>1</posY>
-        </summaryLayoutItems>
-        <summaryLayoutItems>
-            <field>Product__c</field>
-            <posX>1</posX>
-            <posY>0</posY>
-        </summaryLayoutItems>
-        <summaryLayoutItems>
-            <field>Description</field>
-            <posX>1</posX>
-            <posY>1</posY>
-        </summaryLayoutItems>
-        <summaryLayoutItems>
-            <field>Type</field>
-            <posX>2</posX>
-            <posY>0</posY>
-        </summaryLayoutItems>
-        <summaryLayoutItems>
-            <field>StartDate</field>
-            <posX>2</posX>
-            <posY>1</posY>
-        </summaryLayoutItems>
+        <masterLabel>00h1X0000014RBh</masterLabel>
+        <sizeX>4</sizeX>
+        <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
     </summaryLayout>
 </Layout>

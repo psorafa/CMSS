@@ -16,19 +16,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CommissionAccountNumber__c</field>
+                <field>Phone1__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IsAgentActive__c</field>
+                <field>Phone2__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IsRegionAssigned__c</field>
+                <field>MobilePhone__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Position__c</field>
+                <field>Suffix__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -38,19 +38,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SuperiorLevel1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SuperiorLevel2__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SuperiorLevel3__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>PortfolioManType__c</field>
+                <field>CompanyName</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -62,65 +50,22 @@
         <label>Contact</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Phone1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MobilePhone__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Phone2__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Email</field>
             </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Cooperation Information</label>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CooperationPartnerType__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CooperationStartDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>AgentActivityStartDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ResignationType__c</field>
+                <field>Address</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>AgentAcivityType__c</field>
+                <field>Phone</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CooperationEndDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>AgentActivityEndDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ResignationTo__c</field>
+                <field>MobilePhone</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -139,104 +84,27 @@
         <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>true</customLabel>
+        <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
-        <label>Custom Links</label>
         <layoutColumns/>
         <layoutColumns/>
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <quickActionList>
-        <quickActionListItems>
-            <quickActionName>NewEvent</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>NewTask</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>NewOpportunity</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>LogACall</quickActionName>
-        </quickActionListItems>
-    </quickActionList>
-    <relatedContent>
-        <relatedContentItems>
-            <layoutItem>
-                <behavior>Readonly</behavior>
-                <field>SuperiorLevel1__c</field>
-            </layoutItem>
-        </relatedContentItems>
-        <relatedContentItems>
-            <layoutItem>
-                <behavior>Readonly</behavior>
-                <field>SuperiorLevel2__c</field>
-            </layoutItem>
-        </relatedContentItems>
-        <relatedContentItems>
-            <layoutItem>
-                <behavior>Readonly</behavior>
-                <field>SuperiorLevel3__c</field>
-            </layoutItem>
-        </relatedContentItems>
-    </relatedContent>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>ContactInformation__c.User__c</relatedList>
-    </relatedLists>
     <relatedLists>
         <relatedList>RelatedGroupList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>ACCOUNT.ADDRESS1_CITY</fields>
-        <fields>ACCOUNT.PHONE1</fields>
-        <relatedList>Account.PortfolioMngmtA__c</relatedList>
+        <relatedList>RelatedFileList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>ACCOUNT.ADDRESS1_CITY</fields>
-        <fields>ACCOUNT.PHONE1</fields>
-        <relatedList>Account.PortfolioMngmtC__c</relatedList>
+        <relatedList>UserFollowersList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>ASSET.NAME</fields>
-        <fields>ASSET.SERIAL_NUMBER</fields>
-        <fields>ASSET.INSTALL_DATE</fields>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>CONTACT.NAME</fields>
-        <fields>PRODUCT2.NAME</fields>
-        <relatedList>Asset.TipsterId__c</relatedList>
+        <relatedList>UserFollowingList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
-    <summaryLayout>
-        <masterLabel>00h3N000000bMp8</masterLabel>
-        <sizeX>3</sizeX>
-        <sizeY>2</sizeY>
-        <summaryLayoutItems>
-            <field>Name</field>
-            <posX>0</posX>
-            <posY>0</posY>
-        </summaryLayoutItems>
-        <summaryLayoutItems>
-            <field>CommissionAccountNumber__c</field>
-            <posX>0</posX>
-            <posY>1</posY>
-        </summaryLayoutItems>
-        <summaryLayoutItems>
-            <field>MobilePhone__c</field>
-            <posX>1</posX>
-            <posY>0</posY>
-        </summaryLayoutItems>
-        <summaryLayoutItems>
-            <field>Phone1__c</field>
-            <posX>1</posX>
-            <posY>1</posY>
-        </summaryLayoutItems>
-        <summaryLayoutStyle>Default</summaryLayoutStyle>
-    </summaryLayout>
 </Layout>

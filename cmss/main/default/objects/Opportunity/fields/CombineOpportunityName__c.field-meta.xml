@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CombineOpportunityName__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Account.IsPersonAccount = true,
+
+IF( ISBLANK( Account.PersonContact.Title  ), &quot;&quot;, Account.PersonContact.Title &amp; &quot; &quot; ) &amp; Account.FirstName &amp; &quot; &quot; &amp; Account.LastName &amp; BLANKVALUE( Account.Suffix , &quot;&quot; ) &amp; &quot;, RČ: &quot; &amp; Account.PersonalIdentificationNr__c  &amp; &quot;, tel.: &quot; &amp; Account.Phone
+,
+Account.Name &amp; &quot;, IČO: &quot; &amp; Account.CompanyRegistrationNumber__c &amp; &quot;, tel.: &quot; &amp; Account.Phone)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Combine Opportunity Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

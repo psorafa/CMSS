@@ -39,6 +39,10 @@
                 <behavior>Edit</behavior>
                 <field>Type__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Value__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -52,6 +56,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Country__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DataBoxNumber__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -142,13 +150,14 @@
             <sortOrder>2</sortOrder>
         </platformActionListItems>
     </platformActionList>
+    <quickActionList/>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3E000001J3Qu</masterLabel>
+        <masterLabel>00h1X000000sRt0</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

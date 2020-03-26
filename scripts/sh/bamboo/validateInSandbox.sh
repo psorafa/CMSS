@@ -6,9 +6,9 @@ set -e
 #   1: Org Alias to validate against - default "cmss_dev"
 #   2: What tests should be exeuted - default is empty, i.e. default for given Org
 #   3: The Soure Path to Validate - default "cmss"
-
 mkdir -p log
-LOG_FILE=log/validateInScratchSandbox.txt
+LOG_FILE=log/validateInSandbox.txt
+SUCCESS_FILE=successSandbox.tmp
 if [ -f $LOG_FILE ];
 then 
     rm ${LOG_FILE}
@@ -16,11 +16,15 @@ fi
 exec > >(tee -a ${LOG_FILE} )
 exec 2> >(tee -a ${LOG_FILE} >&2)
 
+if [ -f SUCCESS_FILE ];
+then
+    rm ${SUCCESS_FILE}
+fi
+
 ALIAS=${1-"cmss_dev"}
-TEST=${2}
+TEST=${2-"RunLocalTests"}
 PACKAGE=${3-"cmss"}
 
-set -e
 set -o xtrace
 
 #validate deployment
@@ -35,4 +39,4 @@ set +o
 echo "Validation Successfull!"
 
 # this is to let other scripts know that the build was successful
-touch successSandbox.tmp
+touch ${SUCCESS_FILE}
