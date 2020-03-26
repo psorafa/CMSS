@@ -3,11 +3,19 @@
     <label>Stav</label>
     <name>StateCode_c__c</name>
     <picklistValues>
-        <masterLabel>0</masterLabel>
-        <translation><!-- 0 --></translation>
+        <masterLabel>1</masterLabel>
+        <translation>platný</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <masterLabel>2</masterLabel>
+        <translation>vypršel</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>převeden</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>splacený</translation>
     </picklistValues>
 </CustomFieldTranslation>

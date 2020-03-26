@@ -2206,12 +2206,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>User.AgentAcivityType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>User.AgentActivityEndDate__c</field>
+        <field>User.AgentActivityType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
