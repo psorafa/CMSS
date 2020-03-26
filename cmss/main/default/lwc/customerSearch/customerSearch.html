@@ -60,16 +60,17 @@
 
                             <template if:true={showPersonArea}>
                                 <div class="slds-m-around--small">
-                                    <lightning-input label={labelFirstName} name="firstName"
-                                                     onchange={disableInputs}
+                                    <lightning-input label={labelFirstName}
+                                                     message-when-value-missing={label.nameMissingMessage}
+                                                     name="firstName" onchange={disableInputs}
                                                      placeholder={label.firstNamePlaceholder}
                                                      required={isFirstNameRequired}
                                                      value={inputFirstName}></lightning-input>
                                 </div>
                                 <div class="slds-m-around--small">
                                     <lightning-input label={labelLastName}
-                                                     name="lastName"
-                                                     onchange={disableInputs}
+                                                     message-when-value-missing={label.nameMissingMessage}
+                                                     name="lastName" onchange={disableInputs}
                                                      placeholder={label.lastNamePlaceholder}
                                                      required={isLastNameRequired}
                                                      value={inputLastName}></lightning-input>
@@ -78,6 +79,7 @@
                         </div>
                     </template>
 
+                    <!--FORM ASSET-->
                     <template if:true={showAssetNumber}>
                         <br/>
                         <div class="slds-m-bottom--large slds-m-top--small slds-m-left--small slds-text-heading_medium">
@@ -107,8 +109,6 @@
                                 disabled={isSearchButtonDisabled}
                                 variant="brand"></lightning-button>
                     </div>
-
-                    <!--                    TODO labels - tlačítko, chybové hlášky -->
                 </form>
             </div>
         </div>
