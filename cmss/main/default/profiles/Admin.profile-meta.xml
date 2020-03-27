@@ -14,7 +14,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Utils</apexClass>
+        <apexClass>RecordTypeUtils</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>RecordTypeUtils_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

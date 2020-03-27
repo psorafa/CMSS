@@ -4,7 +4,7 @@
  * Component to allow searching among all the clients, even those that are not in the portfolio of the current user
  */
 
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track, wire, api } from 'lwc';
 import findRecords from '@salesforce/apex/CustomerSearchController.findRecords';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
@@ -30,33 +30,19 @@ import noRecordsFound from '@salesforce/label/c.NoRecordsFound';
 const CLIENTS = 'CLIENTS';
 
 export default class CustomerSearch extends NavigationMixin(LightningElement) {
-    @track spinner = false;
+    spinner = false;
 
-    @track inputLastName = '';
-    @track inputFirstName = '';
-    @track inputBirthNumber = '';
-    @track inputCompRegNum = '';
-    @track inputAssetNumber = '';
+    inputLastName = '';
+    inputFirstName = '';
+    inputBirthNumber = '';
+    inputCompRegNum = '';
+    inputAssetNumber = '';
 
-    @track labelLastName = '';
-    @track labelFirstName = '';
-    @track labelBirthNumber = '';
-    @track labelCompRegNum = '';
-    @track labelAssetNumber = '';
-
-    @track showCompRegNum = true;
-    @track showBirthNumber = true;
-    @track showAssetNumber= true;
-    @track showPersonArea = false;
-    @track showClientSearch = true;
-
-    @track isBirthNumberRequired = true;
-    @track isCompRegNumRequired = true;
-    @track isFirstNameRequired = false;
-    @track isLastNameRequired = false;
-    @track isAssetNumberRequired = true;
-
-    @track isSearchButtonDisabled = true;
+    labelLastName = '';
+    labelFirstName = '';
+    labelBirthNumber = '';
+    labelCompRegNum = '';
+    labelAssetNumber = '';
 
     label = {clientIdentificationTitle, firstNamePlaceholder, lastNamePlaceholder, birthNrPlaceholder,
                 compRegNrPlaceholder, assetPlaceholder, clientLabel, assetLabel, missingMessage, searchButton,
@@ -82,6 +68,87 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
             }
         }
 
+    @api
+    get isSearchButtonDisabled() {
+        let disabled = false;
+        let inputFields = this.template.querySelectorAll('lightning-input');
+        console.table(inputFields);
+        inputFields.forEach(field => {
+            if (!field.checkValidity()) {
+                disabled = true;
+            }
+        });
+        return disabled;
+    }
+
+    @api
+    get isBirthNumberRequiredAndVisible() {
+        if ((this.inputCompRegNum == undefined || this.inputCompRegNum == '')
+                && (this.inputAssetNumber == undefined || this.inputAssetNumber == '')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @api
+    get isCompRegNumRequiredAndVisible() {
+        if ((this.inputBirthNumber == undefined || this.inputBirthNumber == '')
+                && (this.inputAssetNumber == undefined || this.inputAssetNumber == '')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @api
+    get isAssetNumberRequiredAndVisible() {
+        if ((this.inputBirthNumber == undefined || this.inputBirthNumber == '')
+                && (this.inputCompRegNum == undefined || this.inputCompRegNum == '')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @api
+    get isFirstNameRequired() {
+        if ((this.inputBirthNumber != undefined && this.inputBirthNumber != '')
+                && (this.inputLastName == undefined || this.inputLastName == '')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @api
+    get isLastNameRequired() {
+        if ((this.inputBirthNumber != undefined && this.inputBirthNumber != '')
+                && (this.inputFirstName == undefined || this.inputFirstName == '')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @api
+    get showPersonArea() {
+        if (this.inputBirthNumber != undefined && this.inputBirthNumber != '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @api
+    get showClientSearch() {
+        if (this.inputAssetNumber == undefined || this.inputAssetNumber == '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     renderedCallback(){
     }
 
@@ -91,85 +158,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
     disconnectedCallback(){
     }
 
-    // function that handles input fields in case of change of any input field on the screen
-    // only one of compRegNr, birthNumber and assetNumber can be filled at the time and person area (names) is shown only if Birth Number is not empty
-    disableInputs(event) {
-        this.updateVariables(event);
-
-        if ((this.inputCompRegNum == undefined || this.inputCompRegNum == '') && (this.inputBirthNumber == undefined || this.inputBirthNumber == '') && (this.inputAssetNumber == undefined || this.inputAssetNumber == '')) {
-            // if nothing is filled
-            this.showClientSearch = true;
-            this.showCompRegNum = true;
-            this.isCompRegNumRequired = true;
-            this.showBirthNumber = true;
-            this.isBirthNumberRequired = true;
-            this.showPersonArea = false;
-            this.showAssetNumber = true;
-            this.isAssetNumberRequired = true;
-            this.isSearchButtonDisabled = true;
-        } else if ((this.inputBirthNumber != undefined && this.inputBirthNumber != '') && (this.inputCompRegNum == undefined || this.inputCompRegNum == '' ) && (this.inputAssetNumber == undefined || this.inputAssetNumber == '')) {
-            // if Personal Identification Number is filled in
-            this.showClientSearch = true;
-            this.showBirthNumber = true;
-            this.isBirthNumberRequired = true;
-            this.showPersonArea = true;
-            this.isLastNameRequired = false;
-            this.isFirstNameRequired = false;
-            this.showCompRegNum = false;
-            this.isCompRegNumRequired = false;
-            this.inputCompRegNum = '';
-            this.showAssetNumber = false;
-            this.isAssetNumberRequired = false;
-            this.inputAssetNumber = '';
-            if (event.target.checkValidity()) this.isSearchButtonDisabled = false;
-
-            if ((this.inputFirstName == undefined || this.inputFirstName == '') && (this.inputLastName == undefined || this.inputLastName == '')) {
-                //if neither FirstName nor LastName filled in
-                this.isLastNameRequired = true;
-                this.isFirstNameRequired = true;
-                this.isSearchButtonDisabled = true;
-            } else {
-                //if one of FirstName or LastName not blank
-                this.isSearchButtonDisabled = false;
-                this.isFirstNameRequired = false;
-                this.isLastNameRequired = false;
-                if (event.target.checkValidity()) this.isSearchButtonDisabled = false;
-            }
-        } else if ((this.inputCompRegNum != undefined && this.inputCompRegNum != '') && (this.inputBirthNumber == undefined || this.inputBirthNumber == '') && (this.inputAssetNumber == undefined || this.inputAssetNumber == '')) {
-            // if Company Registration Number is filled in
-            this.showClientSearch = true;
-            this.showCompRegNum = true;
-            this.isCompRegNumRequired = true;
-            this.showBirthNumber = false;
-            this.isBirthNumberRequired = false;
-            this.inputBirthNumber = '';
-            this.showPersonArea = false;
-            this.isLastNameRequired = false;
-            this.isFirstNameRequired = false;
-            this.showAssetNumber = false;
-            this.isAssetNumberRequired = false;
-            this.inputAssetNumber = '';
-            if (event.target.checkValidity()) this.isSearchButtonDisabled = false;
-        } else if ((this.inputAssetNumber != undefined && this.inputAssetNumber != '') && (this.inputCompRegNum == undefined || this.inputCompRegNum == '') && (this.inputBirthNumber == undefined || this.inputBirthNumber == '')) {
-            // if Asset Name is filled in
-            this.showClientSearch = false;
-            this.showAssetNumber = true;
-            this.isAssetNumberRequired = true;
-            this.showCompRegNum = false;
-            this.isCompRegNumRequired = false;
-            this.inputCompRegNum = '';
-            this.showBirthNumber = false;
-            this.isBirthNumberRequired = false;
-            this.inputBirthNumber = '';
-            this.showPersonArea = false;
-            this.isLastNameRequired = false;
-            this.isFirstNameRequired = false;
-            if (event.target.checkValidity()) this.isSearchButtonDisabled = false;
-        }
-    }
-
     // function checking from which input field the change event was fired and updates the relevant variable
-    // used in disableInputs method
     updateVariables(event) {
         if(event.target.name === 'compRegNr') this.inputCompRegNum = event.detail.value;
         else if(event.target.name === 'birthNumber') this.inputBirthNumber = event.detail.value;
@@ -190,14 +179,13 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
         } else if (this.inputBirthNumber && !this.inputFirstName && !this.inputLastName) {
             this.showToast('error', this.label.errorLabel, this.label.nameMissingMessage);
         } else {
+            this.isSearchButtonDisabled = true;
             this.spinner = true;
+            let searchCriteria = {firstName: this.inputFirstName, lastName: this.inputLastName, birthNumber: this.inputBirthNumber,
+                                  compRegNum: this.inputCompRegNum, assetNumber: this.inputAssetNumber, searchAmong: CLIENTS};
+
             findRecords({
-                searchedFirstName: this.inputFirstName,
-                searchedLastName: this.inputLastName,
-                searchedBirthNumber: this.inputBirthNumber,
-                searchedCompRegNum: this.inputCompRegNum,
-                searchedAssetNumber: this.inputAssetNumber,
-                searchAmongWhat: CLIENTS
+                searchCriteria : searchCriteria
             })
             .then ((data) => {
                 if (data && data !== undefined && data.length > 0) {
@@ -205,11 +193,13 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
                 } else {
                     this.hideSpinner();
                     this.showToast('warning', this.label.noRecordsFound, '');
+                    this.isSearchButtonDisabled = false;
                 }
             })
             .catch ((error) => {
                 this.hideSpinner();
                 this.showToast('error', this.label.errorLabel, error.body.exceptionType + ': ' + error.body.message);
+                this.isSearchButtonDisabled = false;
             })
         }
     }

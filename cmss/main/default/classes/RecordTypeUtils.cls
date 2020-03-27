@@ -1,13 +1,13 @@
 /**
  * Created by a.olexova on 3/24/2020.
- * @description class to store methods frequently used by different classes
+ * @description class to store methods related to Record Types frequently used by different classes
  */
 
-public with sharing class Utils {
+public with sharing class RecordTypeUtils {
 
     /**
      * @author aolexova
-     * @description returns the id of the record type based on it developer name and sobejct type
+     * @description returns the id of the record type based on it developer name and sobject type
      * */
     public static String getRecordTypeIdByDeveloperName(String developerName, String sObjectName) {
         if (String.isBlank(developerName) || String.isBlank(sObjectName)) return null;
