@@ -1,9 +1,15 @@
+/**
+* In lightning flows used instead of standard footer.
+* You see custom buttons for Save and Cancel.
+*
+* Based on
+* https://success.salesforce.com/ideaView?id=08730000000keEFAAY
+* @author Robert Srna
+*/
+
 ({    
     
    init : function(cmp, event, helper) {
-         console.log('log init');
-         //$A.enqueueAction(action);
-       
       // Figure out which buttons to display
       var availableActions = cmp.get('v.availableActions');
       for (var i = 0; i < availableActions.length; i++) {
@@ -17,7 +23,6 @@
             cmp.set("v.canFinish", true);
          }
       }
-       
    },    
     
     
@@ -45,7 +50,6 @@
       // Fire that action
       var navigate = cmp.get('v.navigateFlow');      
       navigate(actionClicked);
-       
    }    
     
 })

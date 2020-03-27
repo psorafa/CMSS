@@ -1,3 +1,10 @@
+/**
+* In lightning flows used like last component.
+* Action: openRecord = shows a salesforce record to a user 
+* and therefore end of flow dialog.
+* 
+* @author Robert Srna
+*/
 ({    
     
     doInit : function(component, event, helper) {
