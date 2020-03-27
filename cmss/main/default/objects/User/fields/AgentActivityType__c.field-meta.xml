@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>AgentAcivityType__c</fullName>
+    <fullName>AgentActivityType__c</fullName>
     <description>Jedinečný identifikátor pro entitu Typ činnosti přidruženou k entitě Odbytový orgán.</description>
     <externalId>false</externalId>
-    <label>Agent Acivity Type</label>
+    <label>Agent Activity Type</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Picklist</type>
