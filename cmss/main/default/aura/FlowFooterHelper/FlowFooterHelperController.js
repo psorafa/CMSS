@@ -10,6 +10,14 @@
 ({    
     
    init : function(cmp, event, helper) {
+      var labelValue = $A.get("{!$Label.c.FlowFooterHelperSaveButton}");
+      cmp.set('v.saveLabel', labelValue);
+      labelValue = $A.get("{!$Label.c.FlowFooterHelperCancelButton}");
+      cmp.set('v.cancelLabel', labelValue);
+       
+      console.log('log init');
+      //$A.enqueueAction(action);
+       
       // Figure out which buttons to display
       var availableActions = cmp.get('v.availableActions');
       for (var i = 0; i < availableActions.length; i++) {
@@ -23,6 +31,7 @@
             cmp.set("v.canFinish", true);
          }
       }
+       
    },    
     
     
@@ -33,7 +42,7 @@
 
    onCancel: function(cmp, event, helper) {
       console.log('onCancel');
-	  cmp.set("v.pressedButton", 'cancel');
+     cmp.set("v.pressedButton", 'cancel');
 
       var actionClicked = event.getSource().getLocalId();
       // Fire that action
@@ -44,12 +53,13 @@
     
    onContinue: function(cmp, event, helper) {
       console.log('onContinue');
-	  cmp.set("v.pressedButton", 'continue');   
+     cmp.set("v.pressedButton", 'continue');   
        
       var actionClicked = event.getSource().getLocalId();
       // Fire that action
       var navigate = cmp.get('v.navigateFlow');      
       navigate(actionClicked);
+       
    }    
     
 })

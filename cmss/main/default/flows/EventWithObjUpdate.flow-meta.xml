@@ -235,6 +235,27 @@
         <picklistField>Type</picklistField>
         <picklistObject>Event</picklistObject>
     </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>phoneChoice</name>
+        <dataType>String</dataType>
+        <displayField>PhoneNumber__c</displayField>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>accountId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>contactInformationType</elementReference>
+            </value>
+        </filters>
+        <object>ContactInformation__c</object>
+        <valueField>PhoneNumber__c</valueField>
+    </dynamicChoiceSets>
     <formulas>
         <name>eventEndTimeFormula</name>
         <dataType>DateTime</dataType>
@@ -283,6 +304,12 @@
             <field>EndDateTime</field>
             <value>
                 <elementReference>eventEndScreen</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Phone__c</field>
+            <value>
+                <elementReference>phoneScreen</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -436,6 +463,24 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
+            <name>phoneScreen</name>
+            <choiceReferences>phoneChoice</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Telefon</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>contactInformationType</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
             <name>eventStartScreen</name>
             <dataType>DateTime</dataType>
             <defaultValue>
@@ -497,6 +542,13 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>contactInformationType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>eventDurationMin</name>
         <dataType>Number</dataType>
         <isCollection>false</isCollection>
@@ -537,15 +589,15 @@
         <name>eventTypeTranslated</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>openRecordId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>opportunityId</name>

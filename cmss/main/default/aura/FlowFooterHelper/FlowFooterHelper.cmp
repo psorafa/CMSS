@@ -7,18 +7,20 @@
    <aura:attribute name="canNext" type="Boolean" />
    <aura:attribute name="canFinish" type="Boolean" />
    <aura:attribute name="cancel" type="Boolean"/>
+   <aura:attribute name="saveLabel" type="String"/> 
+   <aura:attribute name="cancelLabel" type="String"/> 
    <aura:handler name="init" value="{!this}" action="{!c.init}" />
         
    <div aura:id="actionButtonBar" class="slds-clearfix slds-p-top_medium">
       <!-- If Previous is available, display to the left -->
       <div class="slds-float_left">
 
-            <lightning:button label="{!$Label.c.Cancel}"
+            <lightning:button aura:id="NEXT" label="{!v.cancelLabel}"
                variant="neutral" onclick="{!c.onCancel}" />
-            <lightning:button label="{!$Label.c.Save}"
+            <lightning:button aura:id="NEXT" label="{!v.saveLabel}"
                variant="brand" onclick="{!c.onContinue}" />
       </div>
 
    </div>
-    
+        
 </aura:component>
