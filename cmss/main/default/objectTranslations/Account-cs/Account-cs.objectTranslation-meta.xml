@@ -3,11 +3,11 @@
     <layouts>
         <layout>Account Layout</layout>
         <sections>
-            <label><!-- Company Information --></label>
+            <label>Informace o firmě</label>
             <section>Company Information</section>
         </sections>
         <sections>
-            <label><!-- Product Information --></label>
+            <label>Informace o produktu</label>
             <section>Product Information</section>
         </sections>
     </layouts>
@@ -15,16 +15,32 @@
         <layout>Person Account Layout</layout>
         <layoutType>PersonAccount</layoutType>
         <sections>
-            <label><!-- Personal Information --></label>
+            <label>Osobní informace</label>
             <section>Personal Information</section>
         </sections>
         <sections>
-            <label><!-- Product Information --></label>
+            <label>Informace o produktu</label>
             <section>Product Information</section>
         </sections>
     </layouts>
+    <quickActions>
+        <label>Sjednat produkt</label>
+        <name>ArrangeContract</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Opportunity --></label>
+        <name>CreateOpportunity</name>
+    </quickActions>
     <recordTypes>
         <label><!-- Business Account --></label>
         <name>Business_Account</name>
     </recordTypes>
+    <webLinks>
+        <label>Registrovat volání</label>
+        <name>RegisterCall</name>
+    </webLinks>
+    <webLinks>
+        <label>Registrovat schůzku</label>
+        <name>RegisterMeeting</name>
+    </webLinks>
 </CustomObjectTranslation>

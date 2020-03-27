@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Akviziční způsob</label>
+    <name>AcquisitionMethod__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Akvizice 1</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>110</masterLabel>
+        <translation>Pošta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>111</masterLabel>
+        <translation>ČSOB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>112</masterLabel>
+        <translation>ČSOB POJ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>113</masterLabel>
+        <translation>GEPARD</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>114</masterLabel>
+        <translation>ČSOB IS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>115</masterLabel>
+        <translation>Broker Trust</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>120</masterLabel>
+        <translation>ext. spoluprac. CMSS termín/tip</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>130</masterLabel>
+        <translation>ext. spoluprac. CMSS predani adres</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Akvizice 2</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>200</masterLabel>
+        <translation>Bankovní linie-OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>250</masterLabel>
+        <translation>Bankovní linie-OM,RV</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Akvizice 3</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>300</masterLabel>
+        <translation>Zprostředkovatel BL</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>350</masterLabel>
+        <translation>Zprostředkovatelská firma</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>351</masterLabel>
+        <translation>Finanční instituce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>352</masterLabel>
+        <translation>ZPR BL pod OBŘ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>Akvizice 4</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>400</masterLabel>
+        <translation>SSK</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>410</masterLabel>
+        <translation>SSK-Vývojová</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>450</masterLabel>
+        <translation>ZPR SSK pod OBŘ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Akvizice 5</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>500</masterLabel>
+        <translation>Odbytová síť</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>501</masterLabel>
+        <translation>Úverová akvizice s tipařem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>502</masterLabel>
+        <translation>Úverová akvizice s OVB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>550</masterLabel>
+        <translation>ZPR pod MOT</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>555</masterLabel>
+        <translation>Odbytová síť - KLP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>Akvizice 6</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>600</masterLabel>
+        <translation>OVB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>650</masterLabel>
+        <translation>Poštovní spořitelna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>666</masterLabel>
+        <translation>RLV</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>700</masterLabel>
+        <translation>Samostatná zprostředkovatelská firma</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>777</masterLabel>
+        <translation>Online stavební spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>778</masterLabel>
+        <translation>Online Měšec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>779</masterLabel>
+        <translation>Online ČSOB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>780</masterLabel>
+        <translation>ČSOB internetbanking</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>Akvizice 8</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>800</masterLabel>
+        <translation>Fotbalový klub</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>Akvizice 9</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>900</masterLabel>
+        <translation>Zkrácený návrh</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>910</masterLabel>
+        <translation>Bez úhrady za uzavření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>920</masterLabel>
+        <translation>častečný poplatek za uzavřeni</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>921</masterLabel>
+        <translation>Pošta-tip,prostor</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>922</masterLabel>
+        <translation>Pošta-termín</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>923</masterLabel>
+        <translation>ČSOB-tip,prostor</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>924</masterLabel>
+        <translation>ČSOB-termín</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>925</masterLabel>
+        <translation>Hypoteční banka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>927</masterLabel>
+        <translation>Finanční instituce - tip, prostor</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>928</masterLabel>
+        <translation>Finanční instituce - termín</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>930</masterLabel>
+        <translation>Centrála ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>931</masterLabel>
+        <translation>Pracovník ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>935</masterLabel>
+        <translation>Pobočka ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>998</masterLabel>
+        <translation>Bez provize</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>999</masterLabel>
+        <translation>Náhradní AZ</translation>
+    </picklistValues>
+</CustomFieldTranslation>

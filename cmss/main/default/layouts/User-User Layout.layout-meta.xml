@@ -8,10 +8,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CommissionAccountNrEnd__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>AgentActivityEndDate__c</field>
             </layoutItems>
             <layoutItems>
@@ -24,7 +20,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CommissionAccountNumber__c</field>
+                <field>CommissionAccountNr__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -44,7 +40,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>AgentAcivityType__c</field>
+                <field>AgentActivityType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -61,6 +57,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>MobilePhone__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Suffix__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>

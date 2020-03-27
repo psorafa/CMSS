@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>User</fullName>
+    <fields>Name</fields>
+    <fields>Title</fields>
+    <fields>CommissionAccountNr__c</fields>
+    <fields>CompanyName</fields>
+    <fields>Phone1__c</fields>
+    <fields>Phone2__c</fields>
+    <fields>MobilePhone__c</fields>
+    <fields>Email</fields>
+    <label>User</label>
+</CompactLayout>

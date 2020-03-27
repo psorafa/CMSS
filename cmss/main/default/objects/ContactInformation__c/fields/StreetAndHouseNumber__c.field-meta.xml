@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StreetAndHouseNumber__c</fullName>
+    <description>Combination of Street and House Number</description>
+    <externalId>false</externalId>
+    <formula>IF( NOT( OR( ISBLANK( Street__c ), ISBLANK( HouseNumber__c ) ) ), 
+     Street__c + &#39; &#39; + HouseNumber__c,
+     IF( NOT( ISBLANK( Street__c )), 
+         Street__c,
+         IF( NOT( ISBLANK(  HouseNumber__c )),
+             HouseNumber__c,
+             &#39;&#39;
+         )
+     )
+ )</formula>
+    <label>Street and House Number</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -4,9 +4,10 @@
     <description>Úroková sazba pro meziúvěr</description>
     <externalId>false</externalId>
     <label>Interest Rate Interim Loan</label>
-    <precision>5</precision>
+    <precision>18</precision>
     <required>false</required>
-    <scale>2</scale>
+    <scale>4</scale>
     <trackFeedHistory>false</trackFeedHistory>
-    <type>Percent</type>
+    <type>Number</type>
+    <unique>false</unique>
 </CustomField>
