@@ -1,27 +1,17 @@
 /**
- * Created by a.kovacova on 3/24/2020.
+ * Created by a.olexova on 3/24/2020.
  */
 
 @IsTest
 private class CustomerSearchController_Test {
 
-    static Account personClient;
-    static Account personClient2;
-    static Account personProspect1;
-    static Account personProspect2;
-    static Account businessClient;
-    static Account businessClient2;
-    static Account businessProspect1;
-    static Account businessProspect2;
-    static Asset asset1;
-    static Asset asset2;
-    static Asset asset3;
-    static Asset asset4;
+    static Account personClient, personClient2, personProspect1, personProspect2, businessClient, businessClient2, businessProspect1;
+    static Asset asset1, asset2, asset3, asset4;
     static Lead lead1;
 
-    private static final String ACCOUNT_OBJECT_STRING = CustomerSearchController.ACCOUNT_OBJECT_STRING;
-    private static final String LEAD_OBJECT_STRING = CustomerSearchController.LEAD_OBJECT_STRING;
-    private static final String ASSET_OBJECT_STRING = CustomerSearchController.ASSET_OBJECT_STRING;
+    static final String ACCOUNT_OBJECT_STRING = CustomerSearchController.ACCOUNT_OBJECT_STRING;
+    static final String LEAD_OBJECT_STRING = CustomerSearchController.LEAD_OBJECT_STRING;
+    static final String ASSET_OBJECT_STRING = CustomerSearchController.ASSET_OBJECT_STRING;
 
     static void testSetup() {
         personClient = getPersonAccountNoInsert('Filoména', 'Fialková', '9011111111', null, '1');
@@ -31,9 +21,8 @@ private class CustomerSearchController_Test {
         businessClient = getBusinessAccountNoInsert('Brýle s.r.o.', '11122233', '1');
         businessClient2 = getBusinessAccountNoInsert('Výmysl a.s.', '33344455', '1');
         businessProspect1 = getBusinessAccountNoInsert('Nový dům', '55566677', '3');
-        businessProspect2 = getBusinessAccountNoInsert('Rýchle prachy', '77788899', '4');
         insert new List<Account>{
-                personClient, personClient2, personProspect1, personProspect2, businessClient, businessClient2, businessProspect1, businessProspect2
+                personClient, personClient2, personProspect1, personProspect2, businessClient, businessClient2, businessProspect1
         };
 
         asset1 = new Asset (Name = '1111111111', AccountId = personClient.Id);

@@ -39,8 +39,7 @@
                                                      minlength="8" name="compRegNr"
                                                      onchange={updateVariables} pattern="[0-9]*"
                                                      placeholder={label.compRegNrPlaceholder}
-                                                     required={isCompRegNumRequiredAndVisible} type="text"
-                                                     value={inputCompRegNum}></lightning-input>
+                                                     required={isCompRegNumRequiredAndVisible} type="text"></lightning-input>
                                 </div>
                             </template>
                             <template if:true={isBirthNumberRequiredAndVisible}>
@@ -51,8 +50,7 @@
                                                      name="birthNumber"
                                                      onchange={updateVariables} pattern="[0-9]*"
                                                      placeholder={label.birthNrPlaceholder}
-                                                     required={isBirthNumberRequiredAndVisible} type="text"
-                                                     value={inputBirthNumber}></lightning-input>
+                                                     required={isBirthNumberRequiredAndVisible} type="text"></lightning-input>
                                 </div>
                             </template>
 
@@ -63,8 +61,7 @@
                                                      minlength="0"
                                                      name="firstName" onchange={updateVariables}
                                                      placeholder={label.firstNamePlaceholder}
-                                                     required={isFirstNameRequired}
-                                                     value={inputFirstName}></lightning-input>
+                                                     required={isFirstNameRequired}></lightning-input>
                                 </div>
                                 <div class="slds-m-around--small" id="lastNameDiv">
                                     <lightning-input label={labelLastName}
@@ -72,8 +69,7 @@
                                                      minlength="0"
                                                      name="lastName" onchange={updateVariables}
                                                      placeholder={label.lastNamePlaceholder}
-                                                     required={isLastNameRequired}
-                                                     value={inputLastName}></lightning-input>
+                                                     required={isLastNameRequired}></lightning-input>
                                 </div>
                             </template>
                         </div>
@@ -93,8 +89,7 @@
                                                  name="assetNumber"
                                                  onchange={updateVariables} pattern="[0-9]*"
                                                  placeholder={label.assetPlaceholder}
-                                                 required={isAssetNumberRequiredAndVisible} type="text"
-                                                 value={inputAssetNumber}></lightning-input>
+                                                 required={isAssetNumberRequiredAndVisible} type="text"></lightning-input>
                             </div>
                         </div>
                     </template>
@@ -105,8 +100,7 @@
                                 class="slds-size_1-of-1 slds-large-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1"
                                 icon-name="utility:search"
                                 label={label.searchButton} onclick={searchClient}
-                                disabled={isSearchButtonDisabled}
-                                variant="brand"></lightning-button>
+                                disabled={isSearchButtonDisabled} variant="brand"></lightning-button>
                     </div>
                 </form>
             </div>

@@ -37,7 +37,7 @@
         <name>InputPlaceholderLastName</name>
     </customLabels>
     <customLabels>
-        <label>Je potřebné vyplnit alespoň část pole Jméno nebo Příjmení.</label>
+        <label>Vyplňte alespoň část pole Jméno nebo Příjmení.</label>
         <name>NamesMissingMessage</name>
     </customLabels>
     <customLabels>
@@ -45,17 +45,13 @@
         <name>NoRecordsFound</name>
     </customLabels>
     <customLabels>
-        <label>Je potřebné vyplnit jedno z následujících polí: Rodné číslo, IČO, Číslo smlouvy</label>
+        <label>Vyplňte jedno z následujících polí: Rodné číslo, IČO, Číslo smlouvy</label>
         <name>RequiredFieldsMessage</name>
     </customLabels>
     <customLabels>
         <label>Hledat</label>
         <name>SearchButton</name>
     </customLabels>
-    <customTabs>
-        <label>Identifikace klienta</label>
-        <name>ClientIdentification</name>
-    </customTabs>
     <customLabels>
         <label>Zrušit</label>
         <name>Cancel</name>
@@ -64,6 +60,10 @@
         <label>Uložit</label>
         <name>Save</name>
     </customLabels>
+    <customTabs>
+        <label>Identifikace klienta</label>
+        <name>ClientIdentification</name>
+    </customTabs>
     <flowDefinitions>
         <flows>
             <fullName>RegisterEvent-1</fullName>

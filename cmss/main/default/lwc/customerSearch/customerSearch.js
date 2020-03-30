@@ -38,13 +38,13 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
     inputCompRegNum = '';
     inputAssetNumber = '';
 
-    labelLastName = '';
-    labelFirstName = '';
-    labelBirthNumber = '';
-    labelCompRegNum = '';
-    labelAssetNumber = '';
+    @track labelLastName = '';
+    @track labelFirstName = '';
+    @track labelBirthNumber = '';
+    @track labelCompRegNum = '';
+    @track labelAssetNumber = '';
 
-    label = {clientIdentificationTitle, firstNamePlaceholder, lastNamePlaceholder, birthNrPlaceholder,
+    @track label = {clientIdentificationTitle, firstNamePlaceholder, lastNamePlaceholder, birthNrPlaceholder,
                 compRegNrPlaceholder, assetPlaceholder, clientLabel, assetLabel, missingMessage, searchButton,
                 nameMissingMessage, errorLabel, noRecordsFound
                 };
@@ -72,9 +72,9 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
     get isSearchButtonDisabled() {
         let disabled = false;
         let inputFields = this.template.querySelectorAll('lightning-input');
-        console.table(inputFields);
         inputFields.forEach(field => {
-            if (!field.checkValidity()) {
+            if ((field.name !== 'firstName' && field.name !== 'lastName' && !field.checkValidity())
+                || ((field.name === 'firstName' || field.name === 'lastName') && this.inputFirstName == '' && this.inputLastName == '')) {
                 disabled = true;
             }
         });
@@ -149,15 +149,6 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
         }
     }
 
-    renderedCallback(){
-    }
-
-    connectedCallback(){
-    }
-
-    disconnectedCallback(){
-    }
-
     // function checking from which input field the change event was fired and updates the relevant variable
     updateVariables(event) {
         if(event.target.name === 'compRegNr') this.inputCompRegNum = event.detail.value;
@@ -171,9 +162,6 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
     //calls the apex method to search the database providing the attributes from input fields
     //on success shows the message that no record found or redirect to the record page (account or lead)
     searchClient(event) {
-        console.log(' =====> searchClient() <===== ')
-        console.log(' =====> compRegNum ' + this.inputCompRegNum + ', birthNum ' + this.inputBirthNumber+ ', firstName ' + this.inputFirstName + ', lastName ' + this.inputLastName + ', assetNum ' + this.inputAssetNumber);
-
         if (!this.inputBirthNumber && !this.inputCompRegNum && !this.inputAssetNumber) {
             this.showToast('error', this.label.errorLabel, this.label.missingMessage);
         } else if (this.inputBirthNumber && !this.inputFirstName && !this.inputLastName) {
@@ -208,7 +196,6 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
     //if apex returns some records, the page is redirected to the first record page (account or lead)
     //in case assets are returned from apex, the method redirects to their related Account instead
     navigateToFoundRecord(data) {
-        console.log(' =====> navigateToFoundRecord() <===== ')
         this.hideSpinner();
         if (this.inputAssetNumber != undefined && this.inputAssetNumber != '') {
             this.navigateToRecordPage(data[0].AccountId);

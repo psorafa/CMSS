@@ -32,7 +32,7 @@ public without sharing class CustomerSearchController {
      */
     @AuraEnabled
     public static List<SObject> findRecords(SearchCriteriaDTO searchCriteria) {
-        System.debug('      =====>  CustomerSearchController.findAccounts  <=====  ');
+        System.debug(' =====>  CustomerSearchController.findAccounts  <=====  ');
         System.debug(' =====> input params: ' + searchCriteria.firstName + ', ' + searchCriteria.lastName + ', ' + searchCriteria.birthNumber + ', ' + searchCriteria.compRegNum + ', ' + searchCriteria.assetNumber + ', ' + searchCriteria.searchAmong + ' <===== ');
 
         searchCriteriaObject = searchCriteria == null ? searchCriteriaObject : searchCriteria;
@@ -60,7 +60,7 @@ public without sharing class CustomerSearchController {
                 callSearchAgainForDifferentScope();
             }
         }
-        System.debug(' =====> returning: ' + finalResults);
+        System.debug(' =====> findRecords returning: ' + finalResults);
         return finalResults;
     }
 
@@ -82,7 +82,7 @@ public without sharing class CustomerSearchController {
             query = 'FIND ' + searchTerm + ' IN ALL FIELDS RETURNING ' + returningString;
         }
 
-        System.debug(' =====> returning query: ' + query);
+        System.debug(' =====> getQueryString returning: ' + query);
         return query;
     }
 
@@ -119,7 +119,7 @@ public without sharing class CustomerSearchController {
     @TestVisible private static final String LEAD_OBJECT_STRING = LEAD_SOBJECT + '(Id,FirstName,LastName)';
     @TestVisible private static final String ASSET_OBJECT_STRING = ASSET_SOBJECT + '(Id,Name,Account.Id,Account.Name WHERE ';
     /**
-     * @description method to build  and @return text to be used in the SOSL query after RETURNING keyword based on the sObject Type for which we need the string
+     * @description method to build and @return text to be used in the SOSL query after RETURNING keyword based on the sObject Type for which we need the string
      * @author Andrea Olexova
      */
     @TestVisible
@@ -153,7 +153,7 @@ public without sharing class CustomerSearchController {
             searchResults = searchResultList.get(0);
         }
 
-        System.debug(' =====>  returning size: ' + searchResults.size());
+        System.debug(' =====> runSosl returning size: ' + searchResults.size());
         return searchResults;
     }
 
@@ -188,7 +188,7 @@ public without sharing class CustomerSearchController {
                 }
             }
         }
-        System.debug(' =====>  filteredSobjects.size: ' + filteredResults.size());
+        System.debug(' =====>  getFilteredResults returning size: ' + filteredResults.size());
         return filteredResults;
     }
 
@@ -201,7 +201,7 @@ public without sharing class CustomerSearchController {
      */
     @TestVisible
     private static void callSearchAgainForDifferentScope() {
-        System.debug(' =====>  CustomerSearchController.getFilteredResults  <=====  ');
+        System.debug(' =====>  CustomerSearchController.callSearchAgainForDifferentScope  <=====  ');
         String searchAmongNewValue = '';
         if (CLIENTS == searchAmong) {
             searchAmongNewValue = PROSPECTS;
