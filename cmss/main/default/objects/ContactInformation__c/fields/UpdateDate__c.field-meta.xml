@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TakeOverDate__c</fullName>
-    <description>Datum, kdy uživatel poprvé změní stav na hodnotu odpovídající převzatému stavu</description>
+    <fullName>UpdateDate__c</fullName>
+    <description>Datum aktualizace</description>
     <externalId>false</externalId>
-    <label>Take Over Date</label>
+    <label>Update Date</label>
     <required>false</required>
+    <trackTrending>false</trackTrending>
     <type>DateTime</type>
 </CustomField>
