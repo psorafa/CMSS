@@ -2,14 +2,6 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <layouts>
         <layout>Task Layout</layout>
-        <sections>
-            <label><!-- Call Information --></label>
-            <section>Call Information</section>
-        </sections>
-        <sections>
-            <label>Prokliky</label>
-            <section>Custom Links</section>
-        </sections>
     </layouts>
     <quickActions>
         <label><!-- Defer --></label>
