@@ -1,7 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-        <fullName>Cancel</fullName>
+        <fullName>Asset</fullName>
+        <categories>CustomerSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Asset</shortDescription>
+        <value>Asset</value>
+    </labels>
+    <labels>
+        <fullName>Client</fullName>
+        <categories>CustomerSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Client</shortDescription>
+        <value>Client</value>
+    </labels>
+    <labels>
+        <fullName>ClientIdentification</fullName>
+        <categories>CustomerSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Client Identification</shortDescription>
+        <value>Client Identification</value>
+    </labels>
+    <labels>
+        <fullName>Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>InputPlaceholderAssetNumber</fullName>
+        <categories>CustomerSearch</categories>
+        <language>cs</language>
+        <protected>false</protected>
+        <shortDescription>Asset Number Placeholder</shortDescription>
+        <value>Input Asset Number</value>
+    </labels>
+    <labels>
+        <fullName>InputPlaceholderBirthNumber</fullName>
+        <categories>CustomerSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Birth Number Placeholder</shortDescription>
+        <value>Input Personal Identification Number</value>
+    </labels>
+    <labels>
+        <fullName>InputPlaceholderCompRegNr</fullName>
+        <categories>CustomerSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company Registration Number Placeholder</shortDescription>
+        <value>Input Company Registration Number</value>
+    </labels>
+    <labels>
+        <fullName>InputPlaceholderFirstName</fullName>
+        <categories>CustomerSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First Name Placeholder</shortDescription>
+        <value>Input First Name</value>
+    </labels>
+    <labels>
+        <fullName>InputPlaceholderLastName</fullName>
+        <categories>CustomerSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last Name Placeholder</shortDescription>
+        <value>Input Last Name</value>
+    </labels>
+    <labels>
+        <fullName>NamesMissingMessage</fullName>
+        <categories>CustomerSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Names Missing Message</shortDescription>
+        <value>Input at least part of First Name or Last Name.</value>
+    </labels>
+    <labels>
+        <fullName>NoRecordsFound</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Records Found</shortDescription>
+        <value>No records found...</value>
+    </labels>
+    <labels>
+        <fullName>RequiredFieldsMessage</fullName>
+        <categories>CustomerSearch</categories>
+        <language>cs</language>
+        <protected>false</protected>
+        <shortDescription>Client Identification Required Fields</shortDescription>
+        <value>One of the following fields needs to be filled in: Personal Identification Number, Company Registration Number, Asset Name</value>
+    </labels>
+    <labels>
+        <fullName>SearchButton</fullName>
+        <categories>CustomerSearch</categories>
+        <language>cs</language>
+        <protected>false</protected>
+        <shortDescription>Search Button</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels><fullName>Cancel</fullName>
         <categories>FlowFooterHelper</categories>
         <language>en_US</language>
         <protected>false</protected>
