@@ -10,27 +10,12 @@
 ({    
     
    init : function(cmp, event, helper) {
-      var labelValue = $A.get("{!$Label.c.FlowFooterHelperSaveButton}");
+      var labelValue = $A.get("{!$Label.c.Save}");
       cmp.set('v.saveLabel', labelValue);
-      labelValue = $A.get("{!$Label.c.FlowFooterHelperCancelButton}");
+      labelValue = $A.get("{!$Label.c.Cancel}");
       cmp.set('v.cancelLabel', labelValue);
        
       console.log('log init');
-      //$A.enqueueAction(action);
-       
-      // Figure out which buttons to display
-      var availableActions = cmp.get('v.availableActions');
-      for (var i = 0; i < availableActions.length; i++) {
-         if (availableActions[i] == "PAUSE") {
-            cmp.set("v.canPause", true);
-         } else if (availableActions[i] == "BACK") {
-            cmp.set("v.canBack", true);
-         } else if (availableActions[i] == "NEXT") {
-            cmp.set("v.canNext", true);
-         } else if (availableActions[i] == "FINISH") {
-            cmp.set("v.canFinish", true);
-         }
-      }
        
    },    
     
@@ -42,7 +27,7 @@
 
    onCancel: function(cmp, event, helper) {
       console.log('onCancel');
-     cmp.set("v.pressedButton", 'cancel');
+      cmp.set("v.pressedButton", 'cancel');
 
       var actionClicked = event.getSource().getLocalId();
       // Fire that action
@@ -51,9 +36,9 @@
        
    },   
     
-   onContinue: function(cmp, event, helper) {
-      console.log('onContinue');
-     cmp.set("v.pressedButton", 'continue');   
+   onSave: function(cmp, event, helper) {
+      console.log('onSave');
+      cmp.set("v.pressedButton", 'save');   
        
       var actionClicked = event.getSource().getLocalId();
       // Fire that action

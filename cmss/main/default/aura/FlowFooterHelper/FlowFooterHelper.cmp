@@ -1,26 +1,28 @@
 <aura:component access="global" implements="lightning:availableForFlowScreens">
+   <aura:attribute name="showSave" type="Boolean" default="true" />
+   <aura:attribute name="showCancel" type="Boolean" default="true"/>
    <aura:attribute name="pressedButton" type="String" />
+
     
-   <!-- Determine which actions are available -->
-   <aura:attribute name="canPause" type="Boolean" />
-   <aura:attribute name="canBack" type="Boolean" />
-   <aura:attribute name="canNext" type="Boolean" />
-   <aura:attribute name="canFinish" type="Boolean" />
-   <aura:attribute name="cancel" type="Boolean"/>
    <aura:attribute name="saveLabel" type="String"/> 
    <aura:attribute name="cancelLabel" type="String"/> 
    <aura:handler name="init" value="{!this}" action="{!c.init}" />
         
    <div aura:id="actionButtonBar" class="slds-clearfix slds-p-top_medium">
-      <!-- If Previous is available, display to the left -->
+
       <div class="slds-float_left">
 
+         <aura:if isTrue="{!v.showSave}">
+            <lightning:button aura:id="NEXT" label="{!v.saveLabel}"
+            variant="brand" onclick="{!c.onSave}" />
+         </aura:if> 
+         <aura:if isTrue="{!v.showCancel}">
             <lightning:button aura:id="NEXT" label="{!v.cancelLabel}"
                variant="neutral" onclick="{!c.onCancel}" />
-            <lightning:button aura:id="NEXT" label="{!v.saveLabel}"
-               variant="brand" onclick="{!c.onContinue}" />
-      </div>
+         </aura:if> 
 
+
+      </div>
    </div>
         
 </aura:component>

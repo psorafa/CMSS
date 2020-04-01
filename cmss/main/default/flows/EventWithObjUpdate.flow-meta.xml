@@ -125,6 +125,11 @@
             <elementReference>eventType</elementReference>
         </value>
     </choices>
+    <choices>
+        <name>phoneDefaultChoice</name>
+        <choiceText>žádný</choiceText>
+        <dataType>String</dataType>
+    </choices>
     <decisions>
         <name>cancelOrContinue</name>
         <label>cancelOrContinue</label>
@@ -465,6 +470,7 @@
         <fields>
             <name>phoneScreen</name>
             <choiceReferences>phoneChoice</choiceReferences>
+            <choiceReferences>phoneDefaultChoice</choiceReferences>
             <dataType>String</dataType>
             <fieldText>Telefon</fieldText>
             <fieldType>DropdownBox</fieldType>
