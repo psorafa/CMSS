@@ -11,7 +11,7 @@
     </fieldOverrides>
     <fieldOverrides>
         <field>Name</field>
-        <formula>Account.LastName</formula>
+        <formula>Account.Name</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>StageName</field>
@@ -22,11 +22,6 @@
     <quickActionLayout>
         <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
         <quickActionLayoutColumns>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>Name</field>
-                <uiBehavior>Required</uiBehavior>
-            </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
                 <field>AccountId</field>
