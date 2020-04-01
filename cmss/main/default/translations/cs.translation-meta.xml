@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
+        <label>Smlouva</label>
+        <name>Asset</name>
+    </customLabels>
+    <customLabels>
+        <label>Klient</label>
+        <name>Client</name>
+    </customLabels>
+    <customLabels>
+        <label>Identifikace klienta</label>
+        <name>ClientIdentification</name>
+    </customLabels>
+    <customLabels>
+        <label>Chyba</label>
+        <name>Error</name>
+    </customLabels>
+    <customLabels>
+        <label>Vložte celé číslo smlouvy nebo kmen smlouvy</label>
+        <name>InputPlaceholderAssetNumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Vložte celé rodní číslo</label>
+        <name>InputPlaceholderBirthNumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Vložte celé IČO</label>
+        <name>InputPlaceholderCompRegNr</name>
+    </customLabels>
+    <customLabels>
+        <label>Vložte alespoň začátek křestního jména</label>
+        <name>InputPlaceholderFirstName</name>
+    </customLabels>
+    <customLabels>
+        <label>Vložte alespoň začátek příjmení</label>
+        <name>InputPlaceholderLastName</name>
+    </customLabels>
+    <customLabels>
+        <label>Vyplňte alespoň část pole Jméno nebo Příjmení.</label>
+        <name>NamesMissingMessage</name>
+    </customLabels>
+    <customLabels>
+        <label>Žádné hodnoty nevyhovují zadaným kritériím.</label>
+        <name>NoRecordsFound</name>
+    </customLabels>
+    <customLabels>
+        <label>Vyplňte jedno z následujících polí: Rodné číslo, IČO, Číslo smlouvy</label>
+        <name>RequiredFieldsMessage</name>
+    </customLabels>
+    <customLabels>
+        <label>Hledat</label>
+        <name>SearchButton</name>
+    </customLabels>
+    <customLabels>
         <label>Zrušit</label>
         <name>FlowFooterHelperCancelButton</name>
     </customLabels>
@@ -8,6 +60,10 @@
         <label>Uložit</label>
         <name>FlowFooterHelperSaveButton</name>
     </customLabels>
+    <customTabs>
+        <label>Identifikace klienta</label>
+        <name>ClientIdentification</name>
+    </customTabs>
     <flowDefinitions>
         <flows>
             <fullName>RegisterEvent-1</fullName>
