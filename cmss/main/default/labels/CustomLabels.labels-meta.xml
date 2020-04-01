@@ -9,6 +9,14 @@
         <value>Asset</value>
     </labels>
     <labels>
+        <fullName>Cancel</fullName>
+        <categories>FlowFooterHelper</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
         <fullName>Client</fullName>
         <categories>CustomerSearch</categories>
         <language>en_US</language>
@@ -72,12 +80,28 @@
         <value>Input Last Name</value>
     </labels>
     <labels>
+        <fullName>InputValuesNotValidMessage</fullName>
+        <categories>Customer Search</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Input Values Not Valid</shortDescription>
+        <value>Some of the entered values is not valid. Please check and repair before trying to search again.</value>
+    </labels>
+    <labels>
         <fullName>NamesMissingMessage</fullName>
         <categories>CustomerSearch</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Names Missing Message</shortDescription>
         <value>Input at least part of First Name or Last Name.</value>
+    </labels>
+    <labels>
+        <fullName>NavigateToRecordButton</fullName>
+        <categories>Customer Search</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Navigate to Record Button</shortDescription>
+        <value>Navigate to Record</value>
     </labels>
     <labels>
         <fullName>NoRecordsFound</fullName>
@@ -95,26 +119,19 @@
         <value>One of the following fields needs to be filled in: Personal Identification Number, Company Registration Number, Asset Name</value>
     </labels>
     <labels>
-        <fullName>SearchButton</fullName>
-        <categories>CustomerSearch</categories>
-        <language>cs</language>
-        <protected>false</protected>
-        <shortDescription>Search Button</shortDescription>
-        <value>Search</value>
-    </labels>
-    <labels><fullName>Cancel</fullName>
-        <categories>FlowFooterHelper</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Cancel</shortDescription>
-        <value>Cancel</value>
-    </labels>
-    <labels>
         <fullName>Save</fullName>
         <categories>FlowFooterHelper</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Save</shortDescription>
         <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>SearchButton</fullName>
+        <categories>CustomerSearch</categories>
+        <language>cs</language>
+        <protected>false</protected>
+        <shortDescription>Search Button</shortDescription>
+        <value>Search</value>
     </labels>
 </CustomLabels>
