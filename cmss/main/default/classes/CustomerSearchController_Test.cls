@@ -33,7 +33,7 @@ private class CustomerSearchController_Test {
                 asset1, asset2, asset3, asset4
         };
 
-        lead1 = new Lead (FirstName = 'Aneta', LastName = 'Antonínová');
+        lead1 = new Lead (FirstName = 'Aneta', LastName = 'Antonínová', PersonalIdentificationNr__c = '1234567890');
         insert lead1;
     }
 
@@ -43,10 +43,9 @@ private class CustomerSearchController_Test {
         List<Id> fixedSearchResults= new List<Id>();
         fixedSearchResults.add(businessClient.Id);
         Test.setFixedSearchResults(fixedSearchResults);
-
         CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(null, null, null, businessClient.CompanyRegistrationNumber__c, null, CustomerSearchController.CLIENTS);
         Test.startTest();
-        List<SObject> results = CustomerSearchController.findRecords(searchCriteria);
+        List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
         Test.stopTest();
     }
 
@@ -56,10 +55,9 @@ private class CustomerSearchController_Test {
         List<Id> fixedSearchResults= new List<Id>();
         fixedSearchResults.add(personClient.Id);
         Test.setFixedSearchResults(fixedSearchResults);
-
         CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(personClient.FirstName, null, personClient.PersonalIdentificationNr__c, null, null, CustomerSearchController.CLIENTS);
         Test.startTest();
-        List<SObject> results = CustomerSearchController.findRecords(searchCriteria);
+        List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
         Test.stopTest();
     }
 
@@ -69,10 +67,9 @@ private class CustomerSearchController_Test {
         List<Id> fixedSearchResults= new List<Id>();
         fixedSearchResults.add(Lead1.Id);
         Test.setFixedSearchResults(fixedSearchResults);
-
-        CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(lead1.FirstName, null, '1234567890', null, null, CustomerSearchController.LEADS);
+        CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(lead1.FirstName, null, lead1.PersonalIdentificationNr__c, null, null, CustomerSearchController.LEADS);
         Test.startTest();
-        List<SObject> results = CustomerSearchController.findRecords(searchCriteria);
+        List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
         Test.stopTest();
     }
 
@@ -82,28 +79,27 @@ private class CustomerSearchController_Test {
         List<Id> fixedSearchResults= new List<Id>();
         fixedSearchResults.add(asset1.Id);
         Test.setFixedSearchResults(fixedSearchResults);
-
         CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(null, null, null, null, asset1.Name, CustomerSearchController.CLIENTS);
         Test.startTest();
-        List<SObject> results = CustomerSearchController.findRecords(searchCriteria);
+        List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
         Test.stopTest();
     }
 
     @IsTest
     static void findRecordsTestNoResultCompRegNum() {
         testSetup();
-        Test.startTest();
         CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(null, null, null, businessClient.CompanyRegistrationNumber__c, null, CustomerSearchController.PROSPECTS);
-        List<SObject> results = CustomerSearchController.findRecords(searchCriteria);
+        Test.startTest();
+        List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
         Test.stopTest();
     }
 
     @IsTest
     static void findRecordsTestNoResultBirthNum() {
         testSetup();
-        Test.startTest();
         CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(personClient.FirstName, personClient.LastName.substring(2), personClient.PersonalIdentificationNr__c, null, null, CustomerSearchController.CLIENTS);
-        List<SObject> results = CustomerSearchController.findRecords(searchCriteria);
+        Test.startTest();
+        List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
         Test.stopTest();
     }
 

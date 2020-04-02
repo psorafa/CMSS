@@ -5,6 +5,10 @@
         <name>Asset</name>
     </customLabels>
     <customLabels>
+        <label>Zrušit</label>
+        <name>Cancel</name>
+    </customLabels>
+    <customLabels>
         <label>Klient</label>
         <name>Client</name>
     </customLabels>
@@ -37,8 +41,16 @@
         <name>InputPlaceholderLastName</name>
     </customLabels>
     <customLabels>
+        <label>Zkontrolujte a opravte vložené hodnoty podle zobrazených chybových hlášek.</label>
+        <name>InputValuesNotValidMessage</name>
+    </customLabels>
+    <customLabels>
         <label>Vyplňte alespoň část pole Jméno nebo Příjmení.</label>
         <name>NamesMissingMessage</name>
+    </customLabels>
+    <customLabels>
+        <label>Přejít na záznam</label>
+        <name>NavigateToRecordButton</name>
     </customLabels>
     <customLabels>
         <label>Žádné hodnoty nevyhovují zadaným kritériím.</label>
@@ -49,39 +61,17 @@
         <name>RequiredFieldsMessage</name>
     </customLabels>
     <customLabels>
-        <label>Hledat</label>
-        <name>SearchButton</name>
-    </customLabels>
-    <customLabels>
-        <label>Zrušit</label>
-        <name>FlowFooterHelperCancelButton</name>
-    </customLabels>
-    <customLabels>
         <label>Uložit</label>
         <name>FlowFooterHelperSaveButton</name>
+    </customLabels>
+    <customLabels>
+        <label>Hledat</label>
+        <name>SearchButton</name>
     </customLabels>
     <customTabs>
         <label>Identifikace klienta</label>
         <name>ClientIdentification</name>
     </customTabs>
-    <flowDefinitions>
-        <flows>
-            <fullName>RegisterEvent-1</fullName>
-            <screens>
-                <fields>
-                    <name>EndDateTime_0</name>
-                </fields>
-                <fields>
-                    <name>StartDateTime_0</name>
-                </fields>
-                <fields>
-                    <name>Subject</name>
-                </fields>
-                <name>RegisterEventHeader</name>
-            </screens>
-        </flows>
-        <fullName>RegisterEvent</fullName>
-    </flowDefinitions>
     <flowDefinitions>
         <flows>
             <choices>
@@ -141,6 +131,24 @@
             </screens>
         </flows>
         <fullName>EventWithObjUpdate</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>RegisterEvent-1</fullName>
+            <screens>
+                <fields>
+                    <name>EndDateTime_0</name>
+                </fields>
+                <fields>
+                    <name>StartDateTime_0</name>
+                </fields>
+                <fields>
+                    <name>Subject</name>
+                </fields>
+                <name>RegisterEventHeader</name>
+            </screens>
+        </flows>
+        <fullName>RegisterEvent</fullName>
     </flowDefinitions>
     <quickActions>
         <label><!-- LogACall --></label>

@@ -31,7 +31,7 @@ public without sharing class CustomerSearchController {
      * @author Andrea Olexova
      */
     @AuraEnabled
-    public static List<SObject> findRecords(SearchCriteriaDTO searchCriteria) {
+    public static List<SearchResultDTO> findRecords(SearchCriteriaDTO searchCriteria) {
         System.debug(' =====>  CustomerSearchController.findAccounts  <=====  ');
         System.debug(' =====> input params: ' + searchCriteria.firstName + ', ' + searchCriteria.lastName + ', ' + searchCriteria.birthNumber + ', ' + searchCriteria.compRegNum + ', ' + searchCriteria.assetNumber + ', ' + searchCriteria.searchAmong + ' <===== ');
 
@@ -43,7 +43,7 @@ public without sharing class CustomerSearchController {
         assetNumber = searchCriteria.assetNumber;
         searchAmong = String.isBlank(searchCriteria.searchAmong) ? searchAmong : searchCriteria.searchAmong; //if searchAmong not provided, we use search among clients by default
 
-        List<SObject> finalResults = new List<SObject>();
+        List<SearchResultDTO> finalResults = new List<SearchResultDTO>();
 
         //one of compRegNum, assetNumber and birthNumber needs to be filled in
         // if birthNumber is filled in, one of fistName or lastName needs to be filled in
@@ -57,7 +57,7 @@ public without sharing class CustomerSearchController {
             }
             if (finalResults.isEmpty()) {
                 //if we do not find any result, we will change the scope of search if still possible or return empty list
-                callSearchAgainForDifferentScope();
+                finalResults = callSearchAgainForDifferentScope();
             }
         }
         System.debug(' =====> findRecords returning: ' + finalResults);
@@ -115,9 +115,9 @@ public without sharing class CustomerSearchController {
 
     //variables are used in the getReturningString() method
     // out of the method so it is accessible from the test class
-    @TestVisible private static final String ACCOUNT_OBJECT_STRING = ACCOUNT_SOBJECT + '(Id,PersonalIdentificationNr__c,CompanyRegistrationNumber__c,FirstName,LastName WHERE ';
-    @TestVisible private static final String LEAD_OBJECT_STRING = LEAD_SOBJECT + '(Id,FirstName,LastName)';
-    @TestVisible private static final String ASSET_OBJECT_STRING = ASSET_SOBJECT + '(Id,Name,Account.Id,Account.Name WHERE ';
+    @TestVisible private static final String ACCOUNT_OBJECT_STRING = ACCOUNT_SOBJECT + '(Id,PersonalIdentificationNr__c,CompanyRegistrationNumber__c,Name,FirstName,LastName,BillingCity,BillingPostalCode WHERE ';
+    @TestVisible private static final String LEAD_OBJECT_STRING = LEAD_SOBJECT + '(Id,FirstName,LastName,Name,PersonalIdentificationNr__c,City,PostalCode)';
+    @TestVisible private static final String ASSET_OBJECT_STRING = ASSET_SOBJECT + '(Id,Name,AccountId,Account.Name,Account.BillingCity,Account.BillingPostalCode,Account.PersonalIdentificationNr__c,Account.CompanyRegistrationNumber__c WHERE ';
     /**
      * @description method to build and @return text to be used in the SOSL query after RETURNING keyword based on the sObject Type for which we need the string
      * @author Andrea Olexova
@@ -158,32 +158,31 @@ public without sharing class CustomerSearchController {
     }
 
     @TestVisible
-    private static List<SObject> getFilteredResults(List<SObject> searchResults) {
+    private static List<SearchResultDTO> getFilteredResults(List<SObject> searchResults) {
         System.debug(' =====>  CustomerSearchController.getFilteredResults  <=====  ');
-        List<SObject> filteredResults = new List<SObject>();
+        List<SearchResultDTO> filteredResults = new List<SearchResultDTO>();
         if (searchResults != null) {
             String sObjectType = String.valueOf(searchResults.getSObjectType());
             if (sObjectType.equalsIgnoreCase(ACCOUNT_SOBJECT)) {
                 for (Account accountResult : (List<Account>) searchResults) {
                     if ((String.isNotBlank(birthNumber) && birthNumber == accountResult.PersonalIdentificationNr__c)
                             || (String.isNotBlank(compRegNum) && compRegNum == accountResult.CompanyRegistrationNumber__c)) {
-                        filteredResults.add(accountResult);
+                        filteredResults.add(new SearchResultDTO(accountResult.Id, accountResult.Name, accountResult.PersonalIdentificationNr__c, accountResult.CompanyRegistrationNumber__c, null, accountResult.BillingCity, accountResult.BillingPostalCode, ACCOUNT_SOBJECT));
                     }
                 }
             } else if (sObjectType.equalsIgnoreCase(ASSET_SOBJECT)) {
                 for (Asset assetResult : (List<Asset>) searchResults) {
                     if (String.isNotBlank(assetNumber) &&
                             (assetNumber == assetResult.Name || assetResult.Name.startsWithIgnoreCase(assetNumber))) {
-                        filteredResults.add(assetResult);
+                        filteredResults.add(new SearchResultDTO(assetResult.AccountId, assetResult.Account.Name, assetResult.Account.PersonalIdentificationNr__c, assetResult.Account.CompanyRegistrationNumber__c, assetResult.Name, assetResult.Account.BillingCity, assetResult.Account.BillingPostalCode, ASSET_SOBJECT));
                     }
                 }
             } else if (sObjectType.equalsIgnoreCase(LEAD_SOBJECT)) {
                 for (Lead leadResult : (List<Lead>) searchResults) {
-                    if ((String.isNotBlank(lastName)
-                            && (lastName == leadResult.LastName || leadResult.LastName.startsWithIgnoreCase(lastName)))
-                            || (String.isNotBlank(firstName)
-                            && (firstName == leadResult.FirstName || leadResult.FirstName.startsWithIgnoreCase(firstName)))) {
-                        filteredResults.add(leadResult);
+                    if ((String.isNotBlank(birthNumber) && birthNumber == leadResult.PersonalIdentificationNr__c)
+                            && ((String.isNotBlank(lastName) && leadResult.LastName.startsWithIgnoreCase(lastName))
+                                || (String.isNotBlank(firstName) && leadResult.FirstName.startsWithIgnoreCase(firstName)))) {
+                        filteredResults.add(new SearchResultDTO(leadResult.Id, leadResult.Name, leadResult.PersonalIdentificationNr__c, null, null, leadResult.City, leadResult.PostalCode, LEAD_SOBJECT));
                     }
                 }
             }
@@ -200,7 +199,7 @@ public without sharing class CustomerSearchController {
      * @author Andrea Olexova
      */
     @TestVisible
-    private static void callSearchAgainForDifferentScope() {
+    private static List<SearchResultDTO> callSearchAgainForDifferentScope() {
         System.debug(' =====>  CustomerSearchController.callSearchAgainForDifferentScope  <=====  ');
         String searchAmongNewValue = '';
         if (CLIENTS == searchAmong) {
@@ -212,8 +211,9 @@ public without sharing class CustomerSearchController {
         //we will check  whether it is filled and whether it is not CLIENTS, so we avoid having infinite loop
         if (String.isNotBlank(searchAmongNewValue) && CLIENTS != searchAmongNewValue) {
             searchCriteriaObject.searchAmong = searchAmongNewValue;
-            findRecords(searchCriteriaObject);
+            return findRecords(searchCriteriaObject);
         }
+        return null;
     }
 
     public class SearchCriteriaDTO {
@@ -233,6 +233,28 @@ public without sharing class CustomerSearchController {
             this.compRegNum = compRegNum;
             this.assetNumber = assetNumber;
             this.searchAmong = String.isBlank(searchAmong) ? CLIENTS : searchAmong;
+        }
+    }
+
+    public class SearchResultDTO {
+        @AuraEnabled public String recordId { get; set; }
+        @AuraEnabled public String name { get; set; }
+        @AuraEnabled public String birthNumber { get; set; }
+        @AuraEnabled public String compRegNum { get; set; }
+        @AuraEnabled public String assetNumber { get; set; }
+        @AuraEnabled public String city { get; set; }
+        @AuraEnabled public String postalCode { get; set; }
+        @AuraEnabled public String sObjectType { get; set; }
+
+        public SearchResultDTO(String recordId, String name, String birthNumber, String compRegNum, String assetNumber, String city, String postalCode, String sObjectType) {
+            this.recordId = recordId;
+            this.name = name;
+            this.birthNumber = birthNumber;
+            this.compRegNum = compRegNum;
+            this.assetNumber = assetNumber;
+            this.city = city;
+            this.postalCode = postalCode;
+            this.sObjectType = sObjectType;
         }
     }
 }

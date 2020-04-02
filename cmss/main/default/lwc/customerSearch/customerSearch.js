@@ -23,6 +23,7 @@ import clientLabel from '@salesforce/label/c.Client';
 import assetLabel from '@salesforce/label/c.Asset';
 import missingMessage from '@salesforce/label/c.RequiredFieldsMessage';
 import nameMissingMessage from '@salesforce/label/c.NamesMissingMessage';
+import invalidValuesMessage from '@salesforce/label/c.InputValuesNotValidMessage';
 import searchButton from '@salesforce/label/c.SearchButton';
 import errorLabel from '@salesforce/label/c.Error';
 import noRecordsFound from '@salesforce/label/c.NoRecordsFound';
@@ -38,6 +39,11 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
     inputCompRegNum = '';
     inputAssetNumber = '';
 
+    @track searchResults = [];
+    @track noRecordsFound = true;
+    @track showResults = false;
+    @track isSearchButtonDisabled = true;
+
     @track labelLastName = '';
     @track labelFirstName = '';
     @track labelBirthNumber = '';
@@ -46,7 +52,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 
     @track label = {clientIdentificationTitle, firstNamePlaceholder, lastNamePlaceholder, birthNrPlaceholder,
                 compRegNrPlaceholder, assetPlaceholder, clientLabel, assetLabel, missingMessage, searchButton,
-                nameMissingMessage, errorLabel, noRecordsFound
+                nameMissingMessage, errorLabel, noRecordsFound, invalidValuesMessage
                 };
 
     //getting the labels of the fields from account object
@@ -67,19 +73,6 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
                 this.labelAssetNumber = data.fields.Name.label;
             }
         }
-
-    @api
-    get isSearchButtonDisabled() {
-        let disabled = false;
-        let inputFields = this.template.querySelectorAll('lightning-input');
-        inputFields.forEach(field => {
-            if ((field.name !== 'firstName' && field.name !== 'lastName' && !field.checkValidity())
-                || ((field.name === 'firstName' || field.name === 'lastName') && this.inputFirstName == '' && this.inputLastName == '')) {
-                disabled = true;
-            }
-        });
-        return disabled;
-    }
 
     @api
     get isBirthNumberRequiredAndVisible() {
@@ -156,19 +149,24 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
         else if(event.target.name === 'assetNumber') this.inputAssetNumber = event.detail.value;
         else if(event.target.name === 'lastName') this.inputLastName = event.detail.value;
         else if(event.target.name === 'firstName') this.inputFirstName = event.detail.value;
+        event.target.reportValidity();
+        this.isSearchCriteriaOk();
     }
 
     //function triggered by onclick event of the search button
     //calls the apex method to search the database providing the attributes from input fields
     //on success shows the message that no record found or redirect to the record page (account or lead)
-    searchClient(event) {
+    searchClient() {
         if (!this.inputBirthNumber && !this.inputCompRegNum && !this.inputAssetNumber) {
             this.showToast('error', this.label.errorLabel, this.label.missingMessage);
         } else if (this.inputBirthNumber && !this.inputFirstName && !this.inputLastName) {
             this.showToast('error', this.label.errorLabel, this.label.nameMissingMessage);
+        } else if (!this.isSearchCriteriaOk()) {
+            this.showToast('error', this.label.errorLabel, this.label.invalidValuesMessage);
         } else {
             this.isSearchButtonDisabled = true;
             this.spinner = true;
+            this.searchResults = [];
             let searchCriteria = {firstName: this.inputFirstName, lastName: this.inputLastName, birthNumber: this.inputBirthNumber,
                                   compRegNum: this.inputCompRegNum, assetNumber: this.inputAssetNumber, searchAmong: CLIENTS};
 
@@ -176,13 +174,19 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
                 searchCriteria : searchCriteria
             })
             .then ((data) => {
-                if (data && data !== undefined && data.length > 0) {
-                    this.navigateToFoundRecord(data);
+                this.searchResults = data;
+                this.isSearchButtonDisabled = false;
+                if (data && data !== undefined && data.length == 1) {
+                    this.noRecordsFound = false;
+                    this.navigateToRecordPage(data[0].recordId);
+                } else if (data && data !== undefined && data.length > 1) {
+                    this.noRecordsFound = false;
                 } else {
-                    this.hideSpinner();
-                    this.showToast('warning', this.label.noRecordsFound, '');
-                    this.isSearchButtonDisabled = false;
+                    this.showToast('info', this.label.noRecordsFound, '');
+                    this.noRecordsFound= true;
                 }
+                this.showResults = true;
+                this.hideSpinner();
             })
             .catch ((error) => {
                 this.hideSpinner();
@@ -192,26 +196,32 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
         }
     }
 
-    // called from  searchClient method
-    //if apex returns some records, the page is redirected to the first record page (account or lead)
-    //in case assets are returned from apex, the method redirects to their related Account instead
-    navigateToFoundRecord(data) {
-        this.hideSpinner();
-        if (this.inputAssetNumber != undefined && this.inputAssetNumber != '') {
-            this.navigateToRecordPage(data[0].AccountId);
-        } else {
-            this.navigateToRecordPage(data[0].Id);
-        }
+    isSearchCriteriaOk() {
+        let ok = true;
+        let inputFields = this.template.querySelectorAll('lightning-input');
+        inputFields.forEach(field => {
+            if (!field.checkValidity()) {
+                ok = false;
+            }
+        });
+        this.isSearchButtonDisabled = !ok;
+        return ok;
     }
 
+    //handler of the event fired from the child component c-customer-search-results
+    //redirects to the specified record page
+    handleRedirectToRecord(event) {
+        this.navigateToRecordPage(event.detail.recordId);
+    }
+
+    // called from  searchClient method
+    //redirects the page to the record page specified by the provided Id
     navigateToRecordPage(recordIdToRedirect) {
         // Navigate to the record page
-        console.log(' =====> navigating to record page for Id : ' + recordIdToRedirect);
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
             attributes: {
                 recordId: recordIdToRedirect,
-                objectApiName: 'Account',
                 actionName: 'view',
             },
         });
@@ -233,4 +243,11 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
         );
     }
 
+    handleKeyPress(event) {
+        if (event.keyCode == 13) {
+            if (this.isSearchCriteriaOk()) {
+                this.searchClient();
+            }
+        }
+    }
 }
