@@ -2031,6 +2031,10 @@
         <name>ListEmailSend</name>
     </userPermissions>
     <userPermissions>
+        <enabled>false</enabled>
+        <name>ConvertLeads</name>
+    </userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>MassInlineEdit</name>
     </userPermissions>
