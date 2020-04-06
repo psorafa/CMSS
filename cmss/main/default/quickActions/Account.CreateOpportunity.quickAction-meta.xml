@@ -10,8 +10,12 @@
         <formula>TODAY() + 90</formula>
     </fieldOverrides>
     <fieldOverrides>
+        <field>CustomText__c</field>
+        <formula>&#39;Vlastní obchodní příležitost&#39;</formula>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>Name</field>
-        <formula>Account.Name</formula>
+        <formula>&#39;random text&#39;</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>StageName</field>
@@ -25,6 +29,11 @@
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
                 <field>AccountId</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>CustomText__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
