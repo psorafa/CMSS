@@ -77,7 +77,7 @@
             <choices>
                 <name>eventTypeDefaultChoice</name>
             </choices>
-            <fullName>EventWithObjUpdate-1</fullName>
+            <fullName>EventWithObjUpdate</fullName>
             <screens>
                 <fields>
                     <name>accountNameScreen</name>
@@ -104,7 +104,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>RegisterEvent-1</fullName>
+            <fullName>RegisterEvent</fullName>
             <screens>
                 <fields>
                     <name>EndDateTime_0</name>
