@@ -1,0 +1,81 @@
+<!--
+ - Created by a.olexova on 3/31/2020.
+ -->
+
+<!-- Customer Search Results -->
+<template>
+    <template if:true={showSearchResults}>
+        <div class="slds-grid slds-wrap slds-gutters slds-text-body_regular slds-text-color_default slds-text-align_left slds-theme_default slds-align--absolute-center">
+            <!-- TABLE CONTENT-->
+            <template if:true={searchResults}>
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-max-medium-table_stacked-horizontal slds-m-around--medium">
+                    <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title={labelName}>{labelName}</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title={labelBirthNumber}>{labelBirthNumber}</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title={labelCompRegNum}>{labelCompRegNum}</div>
+                        </th>
+                        <template if:true={isAssetSearch}>
+                            <th scope="col">
+                                <div class="slds-truncate" title={labelAssetNumber}>{labelAssetNumber}</div>
+                            </th>
+                        </template>
+                        <th scope="col">
+                            <div class="slds-truncate" title={labelCity}>{labelCity}</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title={labelPostalCode}>{labelPostalCode}</div>
+                        </th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <template for:each={searchResults} for:item='item'>
+                        <tr key={item.recordId}>
+                            <td data-label={labelName}>
+                                <div class="slds-truncate">{item.name}</div>
+                            </td>
+                            <td data-label={labelBirthNumber}>
+                                <div class="slds-truncate">{item.birthNumber}</div>
+                            </td>
+                            <td data-label={labelCompRegNum}>
+                                <div class="slds-truncate">{item.compRegNum}</div>
+                            </td>
+
+                            <template if:true={isAssetSearch}>
+                                <td data-label={labelAssetNumber}>
+                                    <div class="slds-truncate">{item.assetNumber}</div>
+                                </td>
+                            </template>
+                            <td data-label={labelCity}>
+                                <div class="slds-truncate">{item.city}</div>
+                            </td>
+                            <td data-label={labelPostalCode}>
+                                <div class="slds-truncate">{item.postalCode}</div>
+                            </td>
+                            <!--REDIRECTING TO SELECTED RECORD DETAIL-->
+                            <td>
+                                <lightning-button label={label.goToRecordDetail} title={label.goToRecordDetail}
+                                                  value={item} onclick={navigateToRecordPage}>
+                                </lightning-button>
+                            </td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <template if:true={showNoRecordFound}>
+                <div class="slds-align_absolute-center slds-m-bottom--medium slds-m-top--large slds-text-heading_medium">
+                    {label.noRecordsFound}
+                </div>
+            </template>
+        </div>
+    </template>
+</template>

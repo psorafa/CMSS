@@ -122,11 +122,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>StateCode_c__c</field>
+                <field>StateCode__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ProductType__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
