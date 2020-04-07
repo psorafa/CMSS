@@ -1,10 +1,11 @@
 {
-	"extends": ["@salesforce/eslint-config-lwc/recommended"],
+	"plugins": ["@salesforce/eslint-plugin-aura"],
+	"extends": ["plugin:@salesforce/eslint-plugin-aura/recommended"],
 	"rules": {
 		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"indent-legacy": ["error", "tab", { "SwitchCase": 1 }],
 		"no-tabs": ["error", { "allowIndentationTabs": true }],
-		"no-console": "error",
-		"lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
+		"no-unused-expressions": "off",
+		"quote-props": "off"
 	}
 }
