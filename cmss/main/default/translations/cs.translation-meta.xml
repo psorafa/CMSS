@@ -77,7 +77,7 @@
             <choices>
                 <name>eventTypeDefaultChoice</name>
             </choices>
-            <fullName>EventWithObjUpdate-1</fullName>
+            <fullName>EventWithObjUpdate</fullName>
             <screens>
                 <fields>
                     <name>accountNameScreen</name>
@@ -96,36 +96,6 @@
                 </fields>
                 <fields>
                     <name>flowFooterScreen</name>
-                </fields>
-                <name>labelScreen</name>
-            </screens>
-        </flows>
-        <flows>
-            <choices>
-                <name>eventTypeDefaultChoice</name>
-            </choices>
-            <fullName>EventWithObjUpdate-2</fullName>
-            <screens>
-                <fields>
-                    <name>accountNameScreen</name>
-                </fields>
-                <fields>
-                    <name>eventDescriptionScreen</name>
-                </fields>
-                <fields>
-                    <name>eventEndScreen</name>
-                </fields>
-                <fields>
-                    <name>eventStartScreen</name>
-                </fields>
-                <fields>
-                    <name>eventTypeScreen</name>
-                </fields>
-                <fields>
-                    <name>flowFooterScreen</name>
-                </fields>
-                <fields>
-                    <name>phoneScreen</name>
                 </fields>
                 <name>labelScreen</name>
             </screens>
@@ -134,7 +104,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <fullName>RegisterEvent-1</fullName>
+            <fullName>RegisterEvent</fullName>
             <screens>
                 <fields>
                     <name>EndDateTime_0</name>
