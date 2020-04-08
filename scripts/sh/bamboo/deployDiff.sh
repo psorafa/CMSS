@@ -17,8 +17,8 @@ exec > >(tee -a ${LOG_FILE} )
 exec 2> >(tee -a ${LOG_FILE} >&2)
 
 ALIAS=$1
-PREVIOUS_COMMIT=$2
-LATEST_COMMIT=$3
+SOURCE_COMMIT=$2
+TARGET_COMMIT=$3
 FOLDER=${4-"cmss"}
 TEST=${5}
 MODE=${6-"deploy"}
@@ -30,7 +30,7 @@ find "$TARGET/packageDeploy/" -delete
 mkdir -p "$TARGET/packageDestroy"
 find "$TARGET/packageDestroy/" -delete
 
-echo "DeployDiff $MODE with $TEST to $ALIAS from $PREVIOUS_COMMIT to $LATEST_COMMIT"
+echo "DeployDiff $MODE with $TEST to $ALIAS from $SOURCE_COMMIT to $TARGET_COMMIT"
 
 set -e
 
@@ -43,7 +43,7 @@ find "$TARGET/packageDestroy/" -delete
 set -o xtrace
 
 echo "Checking Changes to Deploy.."
-DEPLOY_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine.sh "${PREVIOUS_COMMIT}" "${LATEST_COMMIT}" "ACMRT" "${FOLDER}")
+DEPLOY_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine.sh "${SOURCE_COMMIT}" "${TARGET_COMMIT}" "ACMRT" "${FOLDER}")
 echo "To deploy:$DEPLOY_ARTIFACTS"
 # convert temp source to Metadata package format
 if [ -z "$DEPLOY_ARTIFACTS" ]; then
@@ -51,25 +51,38 @@ if [ -z "$DEPLOY_ARTIFACTS" ]; then
 	mkdir -p "$TARGET/packageDeploy"
 	cp "config/emptyPackage.xml" "$TARGET/packageDeploy/package.xml"
 else
-  	sfdx force:source:convert -p "$DEPLOY_ARTIFACTS" -d "$TARGET/packageDeploy"
+    DEPLOY_ARTIFACTS_LEN=${#DEPLOY_ARTIFACTS}
+    if [ "$DEPLOY_ARTIFACTS_LEN" -gt 8000 ];
+    then
+        echo "diff too long, converting all"
+        sfdx force:source:convert -p "$FOLDER" -d "$TARGET/packageDeploy"
+    else
+        sfdx force:source:convert -p "$DEPLOY_ARTIFACTS" -d "$TARGET/packageDeploy"
+    fi  	
 fi
 
 echo "Checking Changes to Delete.."
-DELETE_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine.sh "${PREVIOUS_COMMIT}" "${LATEST_COMMIT}" "D" "${FOLDER}")
+DELETE_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine.sh "${SOURCE_COMMIT}" "${TARGET_COMMIT}" "D" "${FOLDER}")
 echo "To delete:$DELETE_ARTIFACTS"
 
 
 if [ -z "$DELETE_ARTIFACTS" ]; then
 	echo "Nothing to Delete"
 else
+    DELETE_ARTIFACTS_LEN=${#DELETE_ARTIFACTS}
+    if [ "$DELETE_ARTIFACTS_LEN" -gt 8000 ];
+    then
+        echo "delete diff too long, cannot process"
+        exit -1
+    fi
 	#go back to original commit and copy deleted files
 	echo "checkout previous version to get deleted files.."
-	git checkout $PREVIOUS_COMMIT
+	git checkout $SOURCE_COMMIT
 
 	sfdx force:source:convert -p "$DELETE_ARTIFACTS" -d "$TARGET/packageDestroy"
 
 	echo "checkout current version again.."
-	git checkout $LATEST_COMMIT
+	git checkout $TARGET_COMMIT
 
 	echo "prepare destructiveChanges.xml"
 	#prepare destructive xml manifest
