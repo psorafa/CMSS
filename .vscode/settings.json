@@ -27,5 +27,8 @@
 	"apexPMD.runOnFileOpen": true,
 	"apexPMD.enableCache": true,
 	"editor.formatOnPaste": true,
-	"editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "apexPMD.rulesets": [
+        "config/apexPmdRuleSet.xml"
+    ]
 }
