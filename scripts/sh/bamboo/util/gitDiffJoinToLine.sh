@@ -14,6 +14,6 @@ FOLDER=${4}
 
 set -e
 
-mapfile -t my_array < <(scripts/sh/util/gitDiff.sh "$PREVIOUS_COMMIT" "$LATEST_COMMIT" "$FILTER" $FOLDER)
+mapfile -t my_array < <(scripts/sh/bamboo/util/gitDiff.sh "$PREVIOUS_COMMIT" "$LATEST_COMMIT" "$FILTER" $FOLDER)
 my_line=$(printf '%s,' "${my_array[@]}")
 echo ${my_line::-1}
