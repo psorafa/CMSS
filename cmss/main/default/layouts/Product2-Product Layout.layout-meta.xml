@@ -74,9 +74,10 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>OPPORTUNITY.NAME</fields>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>OPPORTUNITY.CLOSE_DATE</fields>
+        <relatedList>RelatedStandardPriceList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedPricebookEntryList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
