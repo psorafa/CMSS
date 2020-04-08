@@ -23,6 +23,7 @@ then
 fi
 
 set -o xtrace
+set -e
 
 #deploy to org (CHECK ONLY SO FAR FOR TESTING)
 if [ -z  "$TEST" ];
