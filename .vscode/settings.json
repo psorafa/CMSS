@@ -1,0 +1,31 @@
+{
+	"eslint.enable": true,
+	"eslint.alwaysShowStatus": true,
+	"eslint.format.enable": true,
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[cmp]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[apex]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[page]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.detectIndentation": false,
+	"apexPMD.runOnFileOpen": true,
+	"apexPMD.enableCache": true,
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true
+}

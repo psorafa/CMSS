@@ -39,6 +39,8 @@ fi
 #push source
 echo "Pushing source..."
 sfdx force:source:push --targetusername $ALIAS
+#workaround to catch translation errors that silently fail in push
+sfdx force:source:deploy --sourcepath cmss/main/default/translations --targetusername $ALIAS
 
 #run tests
 if [ -n "$TEST" ];
