@@ -22,6 +22,7 @@ TARGET_COMMIT=$3
 FOLDER=${4-"cmss"}
 TEST=${5}
 MODE=${6-"deploy"}
+SOURCE_LEN_LIMIT=${7-8000}
 TARGET=${7-"deploy"}
 
 #clear the folders
@@ -52,7 +53,7 @@ if [ -z "$DEPLOY_ARTIFACTS" ]; then
 	cp "config/emptyPackage.xml" "$TARGET/packageDeploy/package.xml"
 else
     DEPLOY_ARTIFACTS_LEN=${#DEPLOY_ARTIFACTS}
-    if [ "$DEPLOY_ARTIFACTS_LEN" -gt 8000 ];
+    if [ "$DEPLOY_ARTIFACTS_LEN" -gt $SOURCE_LEN_LIMIT ];
     then
         echo "diff too long, converting all"
         sfdx force:source:convert -p "$FOLDER" -d "$TARGET/packageDeploy"
@@ -70,7 +71,7 @@ if [ -z "$DELETE_ARTIFACTS" ]; then
 	echo "Nothing to Delete"
 else
     DELETE_ARTIFACTS_LEN=${#DELETE_ARTIFACTS}
-    if [ "$DELETE_ARTIFACTS_LEN" -gt 8000 ];
+    if [ "$DELETE_ARTIFACTS_LEN" -gt $SOURCE_LEN_LIMIT ];
     then
         echo "delete diff too long, cannot process"
         exit -1
