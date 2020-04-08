@@ -17,8 +17,8 @@ exec > >(tee -a ${LOG_FILE} )
 exec 2> >(tee -a ${LOG_FILE} >&2)
 
 ALIAS=$1
-CURRENT_COMMIT=$2
-SOURCE_COMMIT=$3
+PREVIOUS_COMMIT=$2
+LATEST_COMMIT=$3
 FOLDER=${4-"cmss"}
 TEST=${5}
 MODE=${6-"deploy"}
@@ -32,11 +32,21 @@ find "$TARGET/packageDeploy/" -delete
 mkdir -p "$TARGET/packageDestroy"
 find "$TARGET/packageDestroy/" -delete
 
+echo "DeployDiff $MODE with $TEST to $ALIAS from $PREVIOUS_COMMIT to $LATEST_COMMIT"
+
+set -e
+
+#clear the folders
+mkdir -p "$TARGET/packageDeploy"
+find "$TARGET/packageDeploy/" -delete
+mkdir -p "$TARGET/packageDestroy"
+find "$TARGET/packageDestroy/" -delete
+
 set -o xtrace
 
 echo "Checking Changes to Deploy.."
-DEPLOY_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine.sh "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" "ACMRT" "${FOLDER}")
-echo $DEPLOY_ARTIFACTS
+DEPLOY_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine.sh "${PREVIOUS_COMMIT}" "${LATEST_COMMIT}" "ACMRT" "${FOLDER}")
+echo "To deploy:$DEPLOY_ARTIFACTS"
 # convert temp source to Metadata package format
 if [ -z "$DEPLOY_ARTIFACTS" ]; then
 	echo "Nothing Changed to Deploy"
@@ -47,8 +57,8 @@ else
 fi
 
 echo "Checking Changes to Delete.."
-DELETE_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine.sh "${SOURCE_COMMIT}" "${CURRENT_COMMIT}" "D" "${FOLDER}")
-echo $DELETE_ARTIFACTS
+DELETE_ARTIFACTS=$(scripts/sh/bamboo/util/gitDiffJoinToLine.sh "${PREVIOUS_COMMIT}" "${LATEST_COMMIT}" "D" "${FOLDER}")
+echo "To delete:$DELETE_ARTIFACTS"
 
 
 if [ -z "$DELETE_ARTIFACTS" ]; then
@@ -56,12 +66,12 @@ if [ -z "$DELETE_ARTIFACTS" ]; then
 else
 	#go back to original commit and copy deleted files
 	echo "checkout previous version to get deleted files.."
-	git checkout $SOURCE_COMMIT
+	git checkout $PREVIOUS_COMMIT
 
 	sfdx force:source:convert -p "$DELETE_ARTIFACTS" -d "$TARGET/packageDestroy"
 
 	echo "checkout current version again.."
-	git checkout $CURRENT_COMMIT
+	git checkout $LATEST_COMMIT
 
 	echo "prepare destructiveChanges.xml"
 	#prepare destructive xml manifest
@@ -70,7 +80,7 @@ else
 fi
 
 #deploy with destructive changes as well
-if [ -z "$(ls -A $TARGET/packageDeploy)" ]; then
+if [ -z "$DELETE_ARTIFACTS" ] && [ -z "$DEPLOY_ARTIFACTS" ]; then
    echo "Nothing to deploy"
 else
 	if [ -z  "$TEST" ];	then

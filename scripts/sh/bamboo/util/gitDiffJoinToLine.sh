@@ -7,11 +7,13 @@
 #   3: git diff filter - required
 #   4: subfolder to compare - require
 
-CURRENT_COMMIT=${1}
-SOURCE_COMMIT=${2}
+PREVIOUS_COMMIT=${1}
+LATEST_COMMIT=${2}
 FILTER=${3}
 FOLDER=${4}
 
-my_array=( $(scripts/sh/bamboo/util/gitDiff.sh "$CURRENT_COMMIT" "$SOURCE_COMMIT" "$FILTER" $FOLDER) )
+set -e
+
+mapfile -t my_array < <(scripts/sh/util/gitDiff.sh "$PREVIOUS_COMMIT" "$LATEST_COMMIT" "$FILTER" $FOLDER)
 my_line=$(printf '%s,' "${my_array[@]}")
 echo ${my_line::-1}
