@@ -34,13 +34,6 @@ find "$TARGET/packageDestroy/" -delete
 echo "DeployDiff $MODE with $TEST to $ALIAS from $SOURCE_COMMIT to $TARGET_COMMIT"
 
 set -e
-
-#clear the folders
-mkdir -p "$TARGET/packageDeploy"
-find "$TARGET/packageDeploy/" -delete
-mkdir -p "$TARGET/packageDestroy"
-find "$TARGET/packageDestroy/" -delete
-
 set -o xtrace
 
 echo "Checking Changes to Deploy.."
@@ -96,13 +89,13 @@ if [ -z "$DELETE_ARTIFACTS" ] && [ -z "$DEPLOY_ARTIFACTS" ]; then
    echo "Nothing to deploy"
 else
 	if [ -z  "$TEST" ];	then
-		if [ "validate" -eq  "$MODE" ]; then
+		if [ "validate" =  "$MODE" ]; then
 			sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --checkonly
 		else
 			sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59
 		fi	
 	else
-		if [ "validate" -eq  "$MODE" ];	then
+		if [ "validate" =  "$MODE" ];	then
 			sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST --checkonly
 		else
 			sfdx force:mdapi:deploy --deploydir  "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST
