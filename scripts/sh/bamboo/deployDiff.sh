@@ -24,8 +24,6 @@ TEST=${5}
 MODE=${6-"deploy"}
 TARGET=${7-"deploy"}
 
-set -e
-
 #clear the folders
 mkdir -p "$TARGET/packageDeploy"
 find "$TARGET/packageDeploy/" -delete
