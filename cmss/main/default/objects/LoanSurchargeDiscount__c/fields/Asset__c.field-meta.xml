@@ -6,7 +6,8 @@
     <externalId>false</externalId>
     <label>Asset</label>
     <referenceTo>Asset</referenceTo>
-    <relationshipName>Asset_Changes</relationshipName>
+    <relationshipLabel>Loan Surcharge Discounts</relationshipLabel>
+    <relationshipName>Loan_Surcharge_Discounts</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

@@ -2,12 +2,11 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Asset__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>Odkaz na smlouvu</description>
+    <description>Smlouva</description>
     <externalId>false</externalId>
     <label>Asset</label>
     <referenceTo>Asset</referenceTo>
-    <relationshipLabel>Asset Changes</relationshipLabel>
-    <relationshipName>Asset_Changes</relationshipName>
+    <relationshipName>Asset_DIMAs</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
