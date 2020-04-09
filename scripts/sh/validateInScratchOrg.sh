@@ -37,10 +37,16 @@ else
 fi
 
 #push source
-echo "Pushing source..."
-sfdx force:source:push --targetusername $ALIAS
+echo "Validating source deploy sequence..."
+sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/main/default/
+sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/main/util/
+sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/customer-360/
+sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/customer-search/
+sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/activity-management/
+sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/product-contract/
+sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/app/
 #workaround to catch translation errors that silently fail in push
-sfdx force:source:deploy --sourcepath cmss/main/default/translations --targetusername $ALIAS
+sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/main/default/translations
 
 #run tests
 if [ -n "$TEST" ];
