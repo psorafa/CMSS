@@ -71,12 +71,12 @@ else
     fi
 	#go back to original commit and copy deleted files
 	echo "checkout previous version to get deleted files.."
-	git checkout $SOURCE_COMMIT
+	git checkout $TARGET_COMMIT
 
 	sfdx force:source:convert -p "$DELETE_ARTIFACTS" -d "$TARGET/packageDestroy"
 
 	echo "checkout current version again.."
-	git checkout $TARGET_COMMIT
+	git checkout $SOURCE_COMMIT
 
 	echo "prepare destructiveChanges.xml"
 	#prepare destructive xml manifest
