@@ -2220,6 +2220,10 @@
         <recordType>Opportunity.Editable</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Opportunity-Opportunity Layout Not Editable</layout>
+        <recordType>Opportunity.NotEditable</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>PersonAccount-Person Account Layout</layout>
         <recordType>PersonAccount.PersonAccount</recordType>
     </layoutAssignments>
