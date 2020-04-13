@@ -9,14 +9,16 @@ public with sharing class RecordTypeUtils {
 	 * @description returns the id of the record type based on it developer name and sobject type
 	 * */
 	public static String getRecordTypeIdByDeveloperName(String developerName, String sObjectName) {
-		if (String.isBlank(developerName) || String.isBlank(sObjectName))
+		if (String.isBlank(developerName) || String.isBlank(sObjectName)) {
 			return null;
+		}
 
 		String recordTypeId;
 		RecordTypeInfo rti = getRecordTypeInfoByDeveloperName(developerName, sObjectName);
 
-		if (rti != null && String.isNotBlank(rti.getRecordTypeId()))
+		if (rti != null && String.isNotBlank(rti.getRecordTypeId())) {
 			recordTypeId = rti.getRecordTypeId();
+		}
 
 		return recordTypeId;
 	}
@@ -28,14 +30,16 @@ public with sharing class RecordTypeUtils {
 	 * @param sObjectName - name of the object for witch we want the information about the record type
 	 */
 	public static RecordTypeInfo getRecordTypeInfoByDeveloperName(String developerName, String sObjectName) {
-		if (String.isBlank(developerName) || String.isBlank(sObjectName))
+		if (String.isBlank(developerName) || String.isBlank(sObjectName)) {
 			return null;
+		}
 
 		Map<String, Schema.RecordTypeInfo> rtMap = getRecordTypeInfoMapByDeveloperName(sObjectName);
 		RecordTypeInfo rti;
 
-		if (rtMap != null && rtMap.containsKey(developerName))
+		if (rtMap != null && rtMap.containsKey(developerName)) {
 			rti = rtMap.get(developerName);
+		}
 
 		return rti;
 	}
@@ -46,8 +50,9 @@ public with sharing class RecordTypeUtils {
 	 * @param sObjectName - name of the object for which we want the map of the record types infos
 	 */
 	public static Map<String, Schema.RecordTypeInfo> getRecordTypeInfoMapByDeveloperName(String sObjectName) {
-		if (String.isBlank(sObjectName))
+		if (String.isBlank(sObjectName)) {
 			return null;
+		}
 		Schema.SObjectType sObjType = Schema.getGlobalDescribe().get(sObjectName);
 		return sObjType.getDescribe().getRecordTypeInfosByDeveloperName();
 	}
