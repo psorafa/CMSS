@@ -177,6 +177,33 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>parentFieldApiName</name>
+                <value>Account.Id</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListApiName</name>
+                <value>Consents__r</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>NONE</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>rowsToDisplay</name>
+                <value>10</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showActionBar</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListSingleContainer</componentName>
+        </componentInstances>
+        <name>Facet-f4eab34b-35be-49c6-bd1b-0fd0b4bb0b03</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
                 <name>body</name>
                 <value>Facet-7f324823-1a51-4ac5-970e-3752fa6382e3</value>
             </componentInstanceProperties>
@@ -227,6 +254,17 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Kontaktní informace</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-f4eab34b-35be-49c6-bd1b-0fd0b4bb0b03</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Souhlasy</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
@@ -287,15 +325,7 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentInstanceProperties>
-                <name>decorate</name>
-                <value>false</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>richTextValue</name>
-                <value>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;img src=&quot;https://dream-enterprise-5028--c.documentforce.com/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Png&amp;amp;versionId=0681X000000qgWw&amp;amp;operationContext=CHATTER&amp;amp;contentId=05T1X000002DwGf&quot; alt=&quot;renditionDownload&quot;&gt;&lt;/p&gt;</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:richText</componentName>
+            <componentName>consentIcons</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
