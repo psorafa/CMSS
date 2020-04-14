@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # arguments:
 
@@ -21,7 +20,7 @@ DAYS=${5-1}
 function finish {
     # remove scratch org
     echo "Deleting scratch org..."
-    sfdx force:org:delete --targetusername $ALIAS --noprompt
+    #sfdx force:org:delete --targetusername $ALIAS --noprompt
     echo "Done."
 }
 trap finish EXIT
@@ -45,8 +44,6 @@ sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/customer-sear
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/activity-management/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/product-contract/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/app/
-#workaround to catch translation errors that silently fail in push
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/app/translations
 
 #run tests
 if [ -n "$TEST" ];
