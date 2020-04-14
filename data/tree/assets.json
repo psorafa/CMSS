@@ -1,276 +1,1058 @@
 [
-    {
-        "attributes": {
-            "type": "Asset",
-            "referenceId": "AssetRef1"
-        },
-        "Account": {
-            "attributes": {
-                "type": "Account",
-                "url": "/services/data/v48.0/sobjects/Account/0011X00000TaZEUQA3"
-            },
-            "ExternalId__c": "ext333"
-        },
-        "RootAsset": {
-            "attributes": {
-                "type": "Asset",
-                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002kWG1QAM"
-            },
-            "ExternalId__c": "ext123122"
-        },
-        "Product2": {
-            "attributes": {
-                "type": "Product2",
-                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oxnlQAA"
-            },
-            "ProductCode": "11"
-        },
-        "Name": "MMalý SP",
-        "InstallDate": "2019-12-01",
-        "PurchaseDate": "2019-12-01",
-        "UsageEndDate": "2025-11-30",
-        "Status": "Installed",
-        "Price": 300000,
-        "Quantity": 1,
-        "ExternalId__c": "ext123122"
-    },
-    {
-        "attributes": {
-            "type": "Asset",
-            "referenceId": "AssetRef2"
-        },
-        "Account": {
-            "attributes": {
-                "type": "Account",
-                "url": "/services/data/v48.0/sobjects/Account/0011X00000TbHkoQAF"
-            },
-            "ExternalId__c": "ext888"
-        },
-        "RootAsset": {
-            "attributes": {
-                "type": "Asset",
-                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002kWVbQAM"
-            },
-            "ExternalId__c": "externa1111"
-        },
-        "Product2": {
-            "attributes": {
-                "type": "Product2",
-                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oxnlQAA"
-            },
-            "ProductCode": "11"
-        },
-        "Name": "Slivka - SP",
-        "InstallDate": "2018-03-01",
-        "PurchaseDate": "2018-03-01",
-        "UsageEndDate": "2024-02-29",
-        "Status": "Installed",
-        "Price": 400000,
-        "Quantity": 1,
-        "ExternalId__c": "externa1111",
-        "ProductType__c": "2"
-    },
-    {
-        "attributes": {
-            "type": "Asset",
-            "referenceId": "AssetRef3"
-        },
-        "Account": {
-            "attributes": {
-                "type": "Account",
-                "url": "/services/data/v48.0/sobjects/Account/0011X00000TbHkoQAF"
-            },
-            "ExternalId__c": "ext888"
-        },
-        "RootAsset": {
-            "attributes": {
-                "type": "Asset",
-                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002kWVgQAM"
-            },
-            "ExternalId__c": "external123411"
-        },
-        "Product2": {
-            "attributes": {
-                "type": "Product2",
-                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oy57QAA"
-            },
-            "ProductCode": "12"
-        },
-        "Name": "Slivka J. - úvěr",
-        "InstallDate": "2018-02-03",
-        "PurchaseDate": "2018-02-03",
-        "Status": "Installed",
-        "Price": 300000,
-        "Quantity": 1,
-        "ExternalId__c": "external123411",
-        "ProductType__c": "0"
-    },
-    {
-        "attributes": {
-            "type": "Asset",
-            "referenceId": "AssetRef4"
-        },
-        "Account": {
-            "attributes": {
-                "type": "Account",
-                "url": "/services/data/v48.0/sobjects/Account/0011X00000TbHkqQAF"
-            },
-            "ExternalId__c": "ext1110"
-        },
-        "RootAsset": {
-            "attributes": {
-                "type": "Asset",
-                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002kWVWQA2"
-            },
-            "ExternalId__c": "ext444"
-        },
-        "Product2": {
-            "attributes": {
-                "type": "Product2",
-                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oxnlQAA"
-            },
-            "ProductCode": "11"
-        },
-        "Name": "V.Slivková - SP",
-        "InstallDate": "2017-03-01",
-        "PurchaseDate": "2017-03-01",
-        "Status": "Installed",
-        "Price": 300000,
-        "Quantity": 1,
-        "ExternalId__c": "ext444",
-        "ProductType__c": "1"
-    },
-    {
-        "attributes": {
-            "type": "Asset",
-            "referenceId": "AssetRef5"
-        },
-        "Account": {
-            "attributes": {
-                "type": "Account",
-                "url": "/services/data/v48.0/sobjects/Account/0011X00000TaShfQAF"
-            },
-            "ExternalId__c": "ext111"
-        },
-        "RootAsset": {
-            "attributes": {
-                "type": "Asset",
-                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002kZOxQAM"
-            },
-            "ExternalId__c": "ext888"
-        },
-        "Product2": {
-            "attributes": {
-                "type": "Product2",
-                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oy57QAA"
-            },
-            "ProductCode": "12"
-        },
-        "Name": "Úvěr",
-        "PurchaseDate": "2019-12-04",
-        "Price": 800000,
-        "ExternalId__c": "ext888"
-    },
-    {
-        "attributes": {
-            "type": "Asset",
-            "referenceId": "AssetRef6"
-        },
-        "Account": {
-            "attributes": {
-                "type": "Account",
-                "url": "/services/data/v48.0/sobjects/Account/0011X00000TaShfQAF"
-            },
-            "ExternalId__c": "ext111"
-        },
-        "RootAsset": {
-            "attributes": {
-                "type": "Asset",
-                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002k0YIQAY"
-            },
-            "ExternalId__c": "ext333"
-        },
-        "Product2": {
-            "attributes": {
-                "type": "Product2",
-                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oxnlQAA"
-            },
-            "ProductCode": "11"
-        },
-        "Name": "Stavební spoření",
-        "InstallDate": "2018-02-01",
-        "PurchaseDate": "2018-02-01",
-        "Status": "Installed",
-        "Price": 400000,
-        "Quantity": 1,
-        "ExternalId__c": "ext333"
-    },
-    {
-        "attributes": {
-            "type": "Asset",
-            "referenceId": "AssetRef7"
-        },
-        "Account": {
-            "attributes": {
-                "type": "Account",
-                "url": "/services/data/v48.0/sobjects/Account/0011X00000TaTU9QAN"
-            },
-            "ExternalId__c": "ext222"
-        },
-        "RootAsset": {
-            "attributes": {
-                "type": "Asset",
-                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002k0Y3QAI"
-            },
-            "ExternalId__c": "ext1111"
-        },
-        "Product2": {
-            "attributes": {
-                "type": "Product2",
-                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oxnlQAA"
-            },
-            "ProductCode": "11"
-        },
-        "Name": "Stavební spoření",
-        "InstallDate": "2016-02-01",
-        "PurchaseDate": "2016-02-01",
-        "UsageEndDate": "2022-02-01",
-        "Price": 25000,
-        "Quantity": 1,
-        "ExternalId__c": "ext1111"
-    },
-    {
-        "attributes": {
-            "type": "Asset",
-            "referenceId": "AssetRef8"
-        },
-        "Account": {
-            "attributes": {
-                "type": "Account",
-                "url": "/services/data/v48.0/sobjects/Account/0011X00000TaTU9QAN"
-            },
-            "ExternalId__c": "ext222"
-        },
-        "RootAsset": {
-            "attributes": {
-                "type": "Asset",
-                "url": "/services/data/v48.0/sobjects/Asset/02i1X000002k0Y8QAI"
-            },
-            "ExternalId__c": "ext222"
-        },
-        "Product2": {
-            "attributes": {
-                "type": "Product2",
-                "url": "/services/data/v48.0/sobjects/Product2/01t1X000003oy5HQAQ"
-            },
-            "ProductCode": "13"
-        },
-        "Name": "Meziúvěr",
-        "InstallDate": "2019-09-01",
-        "PurchaseDate": "2019-09-01",
-        "Status": "Installed",
-        "Price": 250000,
-        "Quantity": 1,
-        "ExternalId__c": "ext222"
-    }
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef1"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t4h59QAA"
+			},
+			"ExternalId__c": "00000019"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchSQAS"
+			},
+			"ExternalId__c": "657629708"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000002"
+		},
+		"Name": "5154059606",
+		"Status": "1",
+		"ExternalId__c": "657629708",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef2"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t4h5TQAQ"
+			},
+			"ExternalId__c": "00000001"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchTQAS"
+			},
+			"ExternalId__c": "482769817"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY5QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000003"
+		},
+		"Name": "1597879701",
+		"Status": "2",
+		"ExternalId__c": "482769817",
+		"ProductType__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef3"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8oQAE"
+			},
+			"ExternalId__c": "00000002"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchUQAS"
+			},
+			"ExternalId__c": "820827392"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY6QAK"
+			},
+			"Name": "Meziúvěr",
+			"ExternalId": "0000004"
+		},
+		"Name": "1610932301",
+		"Status": "3",
+		"ExternalId__c": "820827392",
+		"ProductType__c": "8"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef4"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8pQAE"
+			},
+			"ExternalId__c": "00000003"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchVQAS"
+			},
+			"ExternalId__c": "565876297"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"Name": "Úvěr",
+			"ExternalId": "0000005"
+		},
+		"Name": "2759743001",
+		"Status": "1",
+		"ExternalId__c": "565876297",
+		"ProductType__c": "9"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef5"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8qQAE"
+			},
+			"ExternalId__c": "00000004"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchWQAS"
+			},
+			"ExternalId__c": "265871681"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY8QAK"
+			},
+			"Name": "RŽP",
+			"ExternalId": "0000006"
+		},
+		"Name": "1642265902",
+		"Status": "2",
+		"ExternalId__c": "265871681",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef6"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8rQAE"
+			},
+			"ExternalId__c": "00000005"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchXQAS"
+			},
+			"ExternalId__c": "154263723"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY9QAK"
+			},
+			"Name": "IŽP",
+			"ExternalId": "0000007"
+		},
+		"Name": "1173485303",
+		"Status": "3",
+		"ExternalId__c": "154263723",
+		"ProductType__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef7"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8sQAE"
+			},
+			"ExternalId__c": "00000006"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchYQAS"
+			},
+			"ExternalId__c": "287298392"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AkdyQAC"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000001"
+		},
+		"Name": "135400001",
+		"Status": "1",
+		"ExternalId__c": "287298392",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef8"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8tQAE"
+			},
+			"ExternalId__c": "00000007"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchZQAS"
+			},
+			"ExternalId__c": "232736729"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000002"
+		},
+		"Name": "3737992802",
+		"Status": "2",
+		"ExternalId__c": "232736729",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef9"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8uQAE"
+			},
+			"ExternalId__c": "00000008"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchaQAC"
+			},
+			"ExternalId__c": "788882232"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY5QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000003"
+		},
+		"Name": "654283101",
+		"Status": "3",
+		"ExternalId__c": "788882232",
+		"ProductType__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef10"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8vQAE"
+			},
+			"ExternalId__c": "00000009"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchbQAC"
+			},
+			"ExternalId__c": "263280209"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY6QAK"
+			},
+			"Name": "Meziúvěr",
+			"ExternalId": "0000004"
+		},
+		"Name": "4791167904",
+		"Status": "1",
+		"ExternalId__c": "263280209",
+		"ProductType__c": "8"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef11"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8wQAE"
+			},
+			"ExternalId__c": "00000010"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchcQAC"
+			},
+			"ExternalId__c": "232908737"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"Name": "Úvěr",
+			"ExternalId": "0000005"
+		},
+		"Name": "769790087",
+		"Status": "2",
+		"ExternalId__c": "232908737",
+		"ProductType__c": "9"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef12"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8xQAE"
+			},
+			"ExternalId__c": "00000011"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchdQAC"
+			},
+			"ExternalId__c": "999725572"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY8QAK"
+			},
+			"Name": "RŽP",
+			"ExternalId": "0000006"
+		},
+		"Name": "17126189287",
+		"Status": "3",
+		"ExternalId__c": "999725572",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef13"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8yQAE"
+			},
+			"ExternalId__c": "00000012"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RcheQAC"
+			},
+			"ExternalId__c": "222767932"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY9QAK"
+			},
+			"Name": "IŽP",
+			"ExternalId": "0000007"
+		},
+		"Name": "269273298",
+		"Status": "1",
+		"ExternalId__c": "222767932",
+		"ProductType__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef14"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8zQAE"
+			},
+			"ExternalId__c": "00000013"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchfQAC"
+			},
+			"ExternalId__c": "892000283"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AkdyQAC"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000001"
+		},
+		"Name": "287238949",
+		"Status": "2",
+		"ExternalId__c": "892000283",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef15"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M90QAE"
+			},
+			"ExternalId__c": "00000014"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchgQAC"
+			},
+			"ExternalId__c": "213221332"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000002"
+		},
+		"Name": "663829992",
+		"Status": "3",
+		"ExternalId__c": "213221332",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef16"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M91QAE"
+			},
+			"ExternalId__c": "00000015"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchhQAC"
+			},
+			"ExternalId__c": "809769792"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY5QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000003"
+		},
+		"Name": "368920901",
+		"Status": "1",
+		"ExternalId__c": "809769792",
+		"ProductType__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef17"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M92QAE"
+			},
+			"ExternalId__c": "00000016"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchiQAC"
+			},
+			"ExternalId__c": "873892379"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY6QAK"
+			},
+			"Name": "Meziúvěr",
+			"ExternalId": "0000004"
+		},
+		"Name": "2625878266",
+		"Status": "2",
+		"ExternalId__c": "873892379",
+		"ProductType__c": "8"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef18"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M93QAE"
+			},
+			"ExternalId__c": "00000017"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchjQAC"
+			},
+			"ExternalId__c": "996567892"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000002"
+		},
+		"Name": "2620522385",
+		"Status": "3",
+		"ExternalId__c": "996567892",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef19"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M94QAE"
+			},
+			"ExternalId__c": "00000018"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchkQAC"
+			},
+			"ExternalId__c": "227660073"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY5QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000003"
+		},
+		"Name": "2615166504",
+		"Status": "1",
+		"ExternalId__c": "227660073",
+		"ProductType__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef20"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlrQAE"
+			},
+			"ExternalId__c": "00000020"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchlQAC"
+			},
+			"ExternalId__c": "123273822"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY6QAK"
+			},
+			"Name": "Meziúvěr",
+			"ExternalId": "0000004"
+		},
+		"Name": "2609810622",
+		"Status": "2",
+		"ExternalId__c": "123273822",
+		"ProductType__c": "8"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef21"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlsQAE"
+			},
+			"ExternalId__c": "00000021"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchmQAC"
+			},
+			"ExternalId__c": "629739827"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"Name": "Úvěr",
+			"ExternalId": "0000005"
+		},
+		"Name": "2604454741",
+		"Status": "3",
+		"ExternalId__c": "629739827",
+		"ProductType__c": "9"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef22"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PltQAE"
+			},
+			"ExternalId__c": "00000022"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchnQAC"
+			},
+			"ExternalId__c": "635629739"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY8QAK"
+			},
+			"Name": "RŽP",
+			"ExternalId": "0000006"
+		},
+		"Name": "2599098859",
+		"Status": "1",
+		"ExternalId__c": "635629739",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef23"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PluQAE"
+			},
+			"ExternalId__c": "00000023"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchoQAC"
+			},
+			"ExternalId__c": "272983823"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY9QAK"
+			},
+			"Name": "IŽP",
+			"ExternalId": "0000007"
+		},
+		"Name": "2593742978",
+		"Status": "2",
+		"ExternalId__c": "272983823",
+		"ProductType__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef24"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlvQAE"
+			},
+			"ExternalId__c": "00000024"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchpQAC"
+			},
+			"ExternalId__c": "556787865"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000002"
+		},
+		"Name": "2588387096",
+		"Status": "3",
+		"ExternalId__c": "556787865",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef25"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlwQAE"
+			},
+			"ExternalId__c": "00000025"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchqQAC"
+			},
+			"ExternalId__c": "265552992"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY5QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000003"
+		},
+		"Name": "2583031215",
+		"Status": "1",
+		"ExternalId__c": "265552992",
+		"ProductType__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef26"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlxQAE"
+			},
+			"ExternalId__c": "00000026"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchrQAC"
+			},
+			"ExternalId__c": "272636782"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY6QAK"
+			},
+			"Name": "Meziúvěr",
+			"ExternalId": "0000004"
+		},
+		"Name": "2577675334",
+		"Status": "2",
+		"ExternalId__c": "272636782",
+		"ProductType__c": "8"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef27"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlyQAE"
+			},
+			"ExternalId__c": "00000027"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchsQAC"
+			},
+			"ExternalId__c": "879798092"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"Name": "Úvěr",
+			"ExternalId": "0000005"
+		},
+		"Name": "2572319452",
+		"Status": "3",
+		"ExternalId__c": "879798092",
+		"ProductType__c": "9"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef28"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M93QAE"
+			},
+			"ExternalId__c": "00000017"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchtQAC"
+			},
+			"ExternalId__c": "222999171"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AkdyQAC"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000001"
+		},
+		"Name": "2566963571",
+		"Status": "1",
+		"ExternalId__c": "222999171",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef29"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M94QAE"
+			},
+			"ExternalId__c": "00000018"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchuQAC"
+			},
+			"ExternalId__c": "220988322"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000002"
+		},
+		"Name": "2561607689",
+		"Status": "2",
+		"ExternalId__c": "220988322",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef30"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlrQAE"
+			},
+			"ExternalId__c": "00000020"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchvQAC"
+			},
+			"ExternalId__c": "662685456"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY5QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000003"
+		},
+		"Name": "2556251808",
+		"Status": "3",
+		"ExternalId__c": "662685456",
+		"ProductType__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef31"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlsQAE"
+			},
+			"ExternalId__c": "00000021"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchwQAC"
+			},
+			"ExternalId__c": "972277992"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY5QAK"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000003"
+		},
+		"Name": "2550895926",
+		"Status": "1",
+		"ExternalId__c": "972277992",
+		"ProductType__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef32"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PltQAE"
+			},
+			"ExternalId__c": "00000022"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchxQAC"
+			},
+			"ExternalId__c": "222718771"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AkdyQAC"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000001"
+		},
+		"Name": "2545540045",
+		"Status": "2",
+		"ExternalId__c": "222718771",
+		"ProductType__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Asset",
+			"referenceId": "AssetRef33"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PluQAE"
+			},
+			"ExternalId__c": "00000023"
+		},
+		"RootAsset": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchyQAC"
+			},
+			"ExternalId__c": "115178823"
+		},
+		"Product2": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AkdyQAC"
+			},
+			"Name": "Stavební spoření",
+			"ExternalId": "0000001"
+		},
+		"Name": "2265367823",
+		"Status": "3",
+		"ExternalId__c": "115178823",
+		"ProductType__c": "6"
+	}
 ]
