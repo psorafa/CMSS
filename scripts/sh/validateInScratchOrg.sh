@@ -46,7 +46,7 @@ sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/activity-mana
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/product-contract/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/app/
 #workaround to catch translation errors that silently fail in push
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/main/default/translations
+sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/app/translations
 
 #run tests
 if [ -n "$TEST" ];
