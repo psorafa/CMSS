@@ -1,7 +1,12 @@
 /**
- * Created by a.kovacova on 4/8/2020.
+ * Created by a.olexova on 4/8/2020.
  */
 
+/**
+ * @author aolexova
+ * @description method to get a consent linked to the account with the ID from @param accountId
+ *     returns the latest created consent, although there should never be more than 1 consent per client
+ */
 public with sharing class ConsentIconsController {
 	@AuraEnabled(Cacheable=true)
 	public static Consent__c findConsent(String accountId) {
