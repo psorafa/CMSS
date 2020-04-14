@@ -69,7 +69,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 
 	//getting the labels of the fields from account object
 	@wire(getObjectInfo, { objectApiName: ACCOUNT_OBJECT })
-	accInfo({ data, error }) {
+	accInfo({ data }) {
 		if (data) {
 			this.labelBirthNumber = data.fields.PersonalIdentificationNr__c.label;
 			this.labelCompRegNum = data.fields.CompanyRegistrationNumber__c.label;
@@ -80,7 +80,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 
 	//getting the labels of the fields from asset object
 	@wire(getObjectInfo, { objectApiName: ASSET_OBJECT })
-	assetInfo({ data, error }) {
+	assetInfo({ data }) {
 		if (data) {
 			this.labelAssetNumber = data.fields.Name.label;
 		}
@@ -88,91 +88,52 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 
 	@api
 	get isBirthNumberRequiredAndVisible() {
-		if (
-			(this.inputCompRegNum == undefined || this.inputCompRegNum == '') &&
-			(this.inputAssetNumber == undefined || this.inputAssetNumber == '')
-		) {
-			return true;
-		} else {
-			return false;
-		}
+		return !this.inputCompRegNum && !this.inputAssetNumber;
 	}
 
 	@api
 	get isCompRegNumRequiredAndVisible() {
-		if (
-			(this.inputBirthNumber == undefined || this.inputBirthNumber == '') &&
-			(this.inputAssetNumber == undefined || this.inputAssetNumber == '')
-		) {
-			return true;
-		} else {
-			return false;
-		}
+		return !this.inputBirthNumber && !this.inputAssetNumber;
 	}
 
 	@api
 	get isAssetNumberRequiredAndVisible() {
-		if (
-			(this.inputBirthNumber == undefined || this.inputBirthNumber == '') &&
-			(this.inputCompRegNum == undefined || this.inputCompRegNum == '')
-		) {
-			return true;
-		} else {
-			return false;
-		}
+		return !this.inputBirthNumber && !this.inputCompRegNum;
 	}
 
 	@api
 	get isFirstNameRequired() {
-		if (
-			this.inputBirthNumber != undefined &&
-			this.inputBirthNumber != '' &&
-			(this.inputLastName == undefined || this.inputLastName == '')
-		) {
-			return true;
-		} else {
-			return false;
-		}
+		return this.inputBirthNumber && !this.inputLastName;
 	}
 
 	@api
 	get isLastNameRequired() {
-		if (
-			this.inputBirthNumber != undefined &&
-			this.inputBirthNumber != '' &&
-			(this.inputFirstName == undefined || this.inputFirstName == '')
-		) {
-			return true;
-		} else {
-			return false;
-		}
+		return this.inputBirthNumber && !this.inputFirstName;
 	}
 
 	@api
 	get showPersonArea() {
-		if (this.inputBirthNumber != undefined && this.inputBirthNumber != '') {
-			return true;
-		} else {
-			return false;
-		}
+		return this.inputBirthNumber && true;
 	}
 
 	@api
 	get showClientSearch() {
-		if (this.inputAssetNumber == undefined || this.inputAssetNumber == '') {
-			return true;
-		} else {
-			return false;
-		}
+		return !this.inputAssetNumber;
 	}
 
 	// function checking from which input field the change event was fired and updates the relevant variable
 	updateVariables(event) {
-		if (event.target.name === 'compRegNr') this.inputCompRegNum = event.detail.value;
-		else if (event.target.name === 'birthNumber') this.inputBirthNumber = event.detail.value;
-		else if (event.target.name === 'assetNumber') this.inputAssetNumber = event.detail.value;
-		else if (event.target.name === 'lastName') this.inputLastName = event.detail.value;
-		else if (event.target.name === 'firstName') this.inputFirstName = event.detail.value;
+		if (event.target.name === 'compRegNr') {
+			this.inputCompRegNum = event.detail.value;
+		} else if (event.target.name === 'birthNumber') {
+			this.inputBirthNumber = event.detail.value;
+		} else if (event.target.name === 'assetNumber') {
+			this.inputAssetNumber = event.detail.value;
+		} else if (event.target.name === 'lastName') {
+			this.inputLastName = event.detail.value;
+		} else if (event.target.name === 'firstName') {
+			this.inputFirstName = event.detail.value;
+		}
 		event.target.reportValidity();
 		this.isSearchCriteriaOk();
 	}
@@ -206,20 +167,20 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 				.then(data => {
 					this.searchResults = data;
 					this.isSearchButtonDisabled = false;
-					if (data && data !== undefined && data.length == 1) {
+					if (data && data.length === 1) {
 						this.noRecordsFound = false;
 						this.navigateToRecordPage(data[0].recordId);
-					} else if (data && data !== undefined && data.length > 1) {
+					} else if (data && data.length > 1) {
 						this.noRecordsFound = false;
 					} else {
 						this.showToast('info', this.label.noRecordsFound, '');
 						this.noRecordsFound = true;
 					}
 					this.showResults = true;
-					this.hideSpinner();
+					this.spinner = false;
 				})
 				.catch(error => {
-					this.hideSpinner();
+					this.spinner = false;
 					this.showToast(
 						'error',
 						this.label.errorLabel,
@@ -261,12 +222,6 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 		});
 	}
 
-	hideSpinner() {
-		this.delayTimeout = setTimeout(() => {
-			this.spinner = false;
-		}, 500);
-	}
-
 	showToast(v, t, m) {
 		this.dispatchEvent(
 			new ShowToastEvent({
@@ -278,10 +233,8 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	}
 
 	handleKeyPress(event) {
-		if (event.keyCode == 13) {
-			if (this.isSearchCriteriaOk()) {
-				this.searchClient();
-			}
+		if ((event.keyCode === 13 || event.keyCode === '13') && this.isSearchCriteriaOk()) {
+			this.searchClient();
 		}
 	}
 }

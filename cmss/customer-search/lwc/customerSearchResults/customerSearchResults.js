@@ -4,7 +4,6 @@
  */
 
 import { LightningElement, track, api, wire } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
 
 import ACCOUNT_OBJECT from '@salesforce/schema/Account';
 import ASSET_OBJECT from '@salesforce/schema/Asset';
@@ -33,7 +32,7 @@ export default class CustomerSearchResults extends LightningElement {
 
 	//getting the labels of the fields from Account object
 	@wire(getObjectInfo, { objectApiName: ACCOUNT_OBJECT })
-	accInfo({ data, error }) {
+	accInfo({ data }) {
 		if (data) {
 			this.labelBirthNumber = data.fields.PersonalIdentificationNr__c.label;
 			this.labelCompRegNum = data.fields.CompanyRegistrationNumber__c.label;
@@ -45,7 +44,7 @@ export default class CustomerSearchResults extends LightningElement {
 
 	//getting the labels of the fields from Asset object
 	@wire(getObjectInfo, { objectApiName: ASSET_OBJECT })
-	assetInfo({ data, error }) {
+	assetInfo({ data }) {
 		if (data) {
 			this.labelAssetNumber = data.fields.Name.label;
 		}

@@ -4,14 +4,17 @@
 
 @IsTest
 private class CustomerSearchController_Test {
-	static Account personClient,
-		personClient2,
-		personProspect1,
-		personProspect2,
-		businessClient,
-		businessClient2,
-		businessProspect1;
-	static Asset asset1, asset2, asset3, asset4;
+	static Account personClient;
+	static Account personClient2;
+	static Account personProspect1;
+	static Account personProspect2;
+	static Account businessClient;
+	static Account businessClient2;
+	static Account businessProspect1;
+	static Asset asset1;
+	static Asset asset2;
+	static Asset asset3;
+	static Asset asset4;
 	static Lead lead1;
 
 	static final String ACCOUNT_OBJECT_STRING = CustomerSearchController.ACCOUNT_OBJECT_STRING;
@@ -52,7 +55,7 @@ private class CustomerSearchController_Test {
 		List<Id> fixedSearchResults = new List<Id>();
 		fixedSearchResults.add(businessClient.Id);
 		Test.setFixedSearchResults(fixedSearchResults);
-		CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(
+		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			null,
 			null,
 			null,
@@ -61,7 +64,7 @@ private class CustomerSearchController_Test {
 			CustomerSearchController.CLIENTS
 		);
 		Test.startTest();
-		List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
+		List<SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
 		Test.stopTest();
 	}
 
@@ -71,7 +74,7 @@ private class CustomerSearchController_Test {
 		List<Id> fixedSearchResults = new List<Id>();
 		fixedSearchResults.add(personClient.Id);
 		Test.setFixedSearchResults(fixedSearchResults);
-		CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(
+		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			personClient.FirstName,
 			null,
 			personClient.PersonalIdentificationNr__c,
@@ -80,7 +83,7 @@ private class CustomerSearchController_Test {
 			CustomerSearchController.CLIENTS
 		);
 		Test.startTest();
-		List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
+		List<SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
 		Test.stopTest();
 	}
 
@@ -90,7 +93,7 @@ private class CustomerSearchController_Test {
 		List<Id> fixedSearchResults = new List<Id>();
 		fixedSearchResults.add(Lead1.Id);
 		Test.setFixedSearchResults(fixedSearchResults);
-		CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(
+		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			lead1.FirstName,
 			null,
 			lead1.PersonalIdentificationNr__c,
@@ -99,7 +102,7 @@ private class CustomerSearchController_Test {
 			CustomerSearchController.LEADS
 		);
 		Test.startTest();
-		List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
+		List<SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
 		Test.stopTest();
 	}
 
@@ -109,7 +112,7 @@ private class CustomerSearchController_Test {
 		List<Id> fixedSearchResults = new List<Id>();
 		fixedSearchResults.add(asset1.Id);
 		Test.setFixedSearchResults(fixedSearchResults);
-		CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(
+		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			null,
 			null,
 			null,
@@ -118,14 +121,14 @@ private class CustomerSearchController_Test {
 			CustomerSearchController.CLIENTS
 		);
 		Test.startTest();
-		List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
+		List<SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
 		Test.stopTest();
 	}
 
 	@IsTest
 	static void findRecordsTestNoResultCompRegNum() {
 		testSetup();
-		CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(
+		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			null,
 			null,
 			null,
@@ -134,14 +137,14 @@ private class CustomerSearchController_Test {
 			CustomerSearchController.PROSPECTS
 		);
 		Test.startTest();
-		List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
+		List<SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
 		Test.stopTest();
 	}
 
 	@IsTest
 	static void findRecordsTestNoResultBirthNum() {
 		testSetup();
-		CustomerSearchController.SearchCriteriaDTO searchCriteria = new CustomerSearchController.SearchCriteriaDTO(
+		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			personClient.FirstName,
 			personClient.LastName.substring(2),
 			personClient.PersonalIdentificationNr__c,
@@ -150,7 +153,7 @@ private class CustomerSearchController_Test {
 			CustomerSearchController.CLIENTS
 		);
 		Test.startTest();
-		List<CustomerSearchController.SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
+		List<SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
 		Test.stopTest();
 	}
 

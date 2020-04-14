@@ -9,18 +9,26 @@ public without sharing class CustomerSearchController {
 	public static final String LEADS = 'LEADS';
 
 	//names of SObjects possibly returned by sosl query
-	public static final String ACCOUNT_SOBJECT = 'Account';
-	public static final String ASSET_SOBJECT = 'Asset';
-	public static final String LEAD_SOBJECT = 'Lead';
+	@TestVisible
+	private static final String ACCOUNT_SOBJECT = 'Account';
+	@TestVisible
+	private static final String ASSET_SOBJECT = 'Asset';
+	@TestVisible
+	private static final String LEAD_SOBJECT = 'Lead';
 
 	//inputs from findRecords method
 	@TestVisible
-	private static String firstName,
-		lastName,
-		birthNumber,
-		compRegNum,
-		assetNumber,
-		searchAmong = CLIENTS;
+	private static String firstName;
+	@TestVisible
+	private static String lastName;
+	@TestVisible
+	private static String birthNumber;
+	@TestVisible
+	private static String compRegNum;
+	@TestVisible
+	private static String assetNumber;
+	@TestVisible
+	private static String searchAmong = CLIENTS;
 	@TestVisible
 	private static SearchCriteriaDTO searchCriteriaObject = new SearchCriteriaDTO();
 
@@ -38,23 +46,6 @@ public without sharing class CustomerSearchController {
 	 */
 	@AuraEnabled
 	public static List<SearchResultDTO> findRecords(SearchCriteriaDTO searchCriteria) {
-		System.debug(' =====>  CustomerSearchController.findAccounts  <=====  ');
-		System.debug(
-			' =====> input params: ' +
-			searchCriteria.firstName +
-			', ' +
-			searchCriteria.lastName +
-			', ' +
-			searchCriteria.birthNumber +
-			', ' +
-			searchCriteria.compRegNum +
-			', ' +
-			searchCriteria.assetNumber +
-			', ' +
-			searchCriteria.searchAmong +
-			' <===== '
-		);
-
 		searchCriteriaObject = searchCriteria == null ? searchCriteriaObject : searchCriteria;
 		firstName = searchCriteria.firstName;
 		lastName = searchCriteria.lastName;
@@ -67,11 +58,7 @@ public without sharing class CustomerSearchController {
 
 		//one of compRegNum, assetNumber and birthNumber needs to be filled in
 		// if birthNumber is filled in, one of fistName or lastName needs to be filled in
-		if (
-			String.isNotBlank(compRegNum) ||
-			String.isNotBlank(assetNumber) ||
-			(String.isNotBlank(birthNumber) && (String.isNotBlank(firstName) || String.isNotBlank(lastName)))
-		) {
+		if (validateInputs()) {
 			String query = getQueryString();
 			List<SObject> searchResults = String.isNotBlank(query) ? runSosl(query) : new List<SObject>();
 
@@ -83,8 +70,18 @@ public without sharing class CustomerSearchController {
 				finalResults = callSearchAgainForDifferentScope();
 			}
 		}
-		System.debug(' =====> findRecords returning: ' + finalResults);
 		return finalResults;
+	}
+
+	/**
+	 * @description method to validate whether the parametres of findRecords method are valid and @return true if valid, false if not
+	 * @author Andrea Olexova
+	 */
+	@TestVisible
+	private static Boolean validateInputs() {
+		return String.isNotBlank(compRegNum) ||
+			String.isNotBlank(assetNumber) ||
+			(String.isNotBlank(birthNumber) && (String.isNotBlank(firstName) || String.isNotBlank(lastName)));
 	}
 
 	/**
@@ -93,7 +90,6 @@ public without sharing class CustomerSearchController {
 	 */
 	@TestVisible
 	private static String getQueryString() {
-		System.debug(' =====>  CustomerSearchController.getQueryString  <=====  ');
 		String query = '';
 		String searchTerm = '';
 		String returningString = '';
@@ -105,7 +101,6 @@ public without sharing class CustomerSearchController {
 			query = 'FIND ' + searchTerm + ' IN ALL FIELDS RETURNING ' + returningString;
 		}
 
-		System.debug(' =====> getQueryString returning: ' + query);
 		return query;
 	}
 
@@ -115,7 +110,6 @@ public without sharing class CustomerSearchController {
 	 */
 	@TestVisible
 	private static String getSearchTerm() {
-		System.debug(' =====>  CustomerSearchController.getSearchTerm  <=====  ');
 		String searchTerm = '\'';
 
 		if (String.isNotBlank(birthNumber)) {
@@ -155,7 +149,6 @@ public without sharing class CustomerSearchController {
 	 */
 	@TestVisible
 	private static String getReturningString() {
-		System.debug(' =====>  CustomerSearchController.getReturningString  <=====  ');
 		String whereCondition = String.isBlank(birthNumber) ? '' : 'IsPersonAccount = true' + ' AND ';
 		whereCondition += String.isBlank(assetNumber) ? 'AccountStatus__c ' : 'Account.AccountStatus__c ';
 
@@ -166,12 +159,12 @@ public without sharing class CustomerSearchController {
 		}
 		whereCondition += '\'1\'';
 
-		if (LEADS == searchAmong)
+		if (LEADS == searchAmong) {
 			return LEAD_OBJECT_STRING;
-		else if (String.isNotBlank(assetNumber))
+		} else if (String.isNotBlank(assetNumber)) {
 			return ASSET_OBJECT_STRING + whereCondition + ')';
-		else
-			return ACCOUNT_OBJECT_STRING + whereCondition + ')';
+		}
+		return ACCOUNT_OBJECT_STRING + whereCondition + ')';
 	}
 
 	/**
@@ -181,7 +174,6 @@ public without sharing class CustomerSearchController {
 	 */
 	@TestVisible
 	private static List<SObject> runSosl(String query) {
-		System.debug(' =====>  CustomerSearchController.runSosl  <=====  ');
 		List<List<SObject>> searchResultList = Search.query(query);
 		List<SObject> searchResults = new List<SObject>();
 
@@ -189,13 +181,11 @@ public without sharing class CustomerSearchController {
 			searchResults = searchResultList.get(0);
 		}
 
-		System.debug(' =====> runSosl returning size: ' + searchResults.size());
 		return searchResults;
 	}
 
 	@TestVisible
 	private static List<SearchResultDTO> getFilteredResults(List<SObject> searchResults) {
-		System.debug(' =====>  CustomerSearchController.getFilteredResults  <=====  ');
 		List<SearchResultDTO> filteredResults = new List<SearchResultDTO>();
 		if (searchResults != null) {
 			String sObjectType = String.valueOf(searchResults.getSObjectType());
@@ -262,7 +252,6 @@ public without sharing class CustomerSearchController {
 				}
 			}
 		}
-		System.debug(' =====>  getFilteredResults returning size: ' + filteredResults.size());
 		return filteredResults;
 	}
 
@@ -275,92 +264,17 @@ public without sharing class CustomerSearchController {
 	 */
 	@TestVisible
 	private static List<SearchResultDTO> callSearchAgainForDifferentScope() {
-		System.debug(' =====>  CustomerSearchController.callSearchAgainForDifferentScope  <=====  ');
 		String searchAmongNewValue = '';
 		if (CLIENTS == searchAmong) {
 			searchAmongNewValue = PROSPECTS;
 		} else if (PROSPECTS == searchAmong && String.isNotBlank(birthNumber)) {
 			searchAmongNewValue = LEADS;
 		}
-		System.debug(' =====>  searchAmongNewValue: ' + searchAmongNewValue);
 		//we will check  whether it is filled and whether it is not CLIENTS, so we avoid having infinite loop
 		if (String.isNotBlank(searchAmongNewValue) && CLIENTS != searchAmongNewValue) {
 			searchCriteriaObject.searchAmong = searchAmongNewValue;
 			return findRecords(searchCriteriaObject);
 		}
 		return null;
-	}
-
-	public class SearchCriteriaDTO {
-		@AuraEnabled
-		public String firstName { get; set; }
-		@AuraEnabled
-		public String lastName { get; set; }
-		@AuraEnabled
-		public String birthNumber { get; set; }
-		@AuraEnabled
-		public String compRegNum { get; set; }
-		@AuraEnabled
-		public String assetNumber { get; set; }
-		@AuraEnabled
-		public String searchAmong { get; set; }
-
-		public SearchCriteriaDTO() {
-		}
-
-		public SearchCriteriaDTO(
-			String firstName,
-			String lastName,
-			String birthNumber,
-			String compRegNum,
-			String assetNumber,
-			String searchAmong
-		) {
-			this.firstName = firstName;
-			this.lastName = lastName;
-			this.birthNumber = birthNumber;
-			this.compRegNum = compRegNum;
-			this.assetNumber = assetNumber;
-			this.searchAmong = String.isBlank(searchAmong) ? CLIENTS : searchAmong;
-		}
-	}
-
-	public class SearchResultDTO {
-		@AuraEnabled
-		public String recordId { get; set; }
-		@AuraEnabled
-		public String name { get; set; }
-		@AuraEnabled
-		public String birthNumber { get; set; }
-		@AuraEnabled
-		public String compRegNum { get; set; }
-		@AuraEnabled
-		public String assetNumber { get; set; }
-		@AuraEnabled
-		public String city { get; set; }
-		@AuraEnabled
-		public String postalCode { get; set; }
-		@AuraEnabled
-		public String sObjectType { get; set; }
-
-		public SearchResultDTO(
-			String recordId,
-			String name,
-			String birthNumber,
-			String compRegNum,
-			String assetNumber,
-			String city,
-			String postalCode,
-			String sObjectType
-		) {
-			this.recordId = recordId;
-			this.name = name;
-			this.birthNumber = birthNumber;
-			this.compRegNum = compRegNum;
-			this.assetNumber = assetNumber;
-			this.city = city;
-			this.postalCode = postalCode;
-			this.sObjectType = sObjectType;
-		}
 	}
 }

@@ -19,7 +19,8 @@ private class RecordTypeUtils_Test {
 		Test.startTest();
 		System.assertEquals(
 			busAccountRT.Id,
-			RecordTypeUtils.getRecordTypeIdByDeveloperName(BUS_ACC_RT_DEV_NAME, ACCOUNT_SOBJECT)
+			RecordTypeUtils.getRecordTypeIdByDeveloperName(BUS_ACC_RT_DEV_NAME, ACCOUNT_SOBJECT),
+			'The record type id is not as expected.'
 		);
 		Test.stopTest();
 	}
@@ -35,7 +36,8 @@ private class RecordTypeUtils_Test {
 		Test.startTest();
 		System.assertEquals(
 			personAccountRT.Id,
-			RecordTypeUtils.getRecordTypeIdByDeveloperName(PERSON_ACC_RT_DEV_NAME, ACCOUNT_SOBJECT)
+			RecordTypeUtils.getRecordTypeIdByDeveloperName(PERSON_ACC_RT_DEV_NAME, ACCOUNT_SOBJECT),
+			'The record type id is not as expected.'
 		);
 		Test.stopTest();
 	}
