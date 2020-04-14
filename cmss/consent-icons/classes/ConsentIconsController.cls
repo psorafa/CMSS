@@ -1,30 +1,32 @@
 /**
- * Created by a.olexova on 4/8/2020.
+ * Created by a.kovacova on 4/8/2020.
  */
 
 public with sharing class ConsentIconsController {
-	@AuraEnabled
+	@AuraEnabled(Cacheable=true)
 	public static Consent__c findConsent(String accountId) {
-		List<Consent__c> consents = [
-			SELECT
-				Id,
-				Name,
-				GeneralConsent__c,
-				GeneralConsentVersion__c,
-				Account__c,
-				EmailConsent__c,
-				EntityConsent__c,
-				SMSConsent__c,
-				PortalConsent__c,
-				PhoneConsent__c,
-				PostConsent__c
-			FROM Consent__c
-			WHERE Account__c = :accountId
-			ORDER BY CreatedDate DESC
-			LIMIT 1
-		];
-		if (!consents.isEmpty()) {
-			return consents.get(0);
+		if (String.isNotBlank(accountId)) {
+			List<Consent__c> consents = [
+				SELECT
+					Id,
+					Name,
+					GeneralConsent__c,
+					GeneralConsentVersion__c,
+					Account__c,
+					EmailConsent__c,
+					EntityConsent__c,
+					SMSConsent__c,
+					PortalConsent__c,
+					PhoneConsent__c,
+					PostConsent__c
+				FROM Consent__c
+				WHERE Account__c = :accountId
+				ORDER BY CreatedDate DESC
+				LIMIT 1
+			];
+			if (!consents.isEmpty()) {
+				return consents.get(0);
+			}
 		}
 		return null;
 	}
