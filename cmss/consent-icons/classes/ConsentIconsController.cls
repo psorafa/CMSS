@@ -1,5 +1,5 @@
 /**
- * Created by a.kovacova on 4/8/2020.
+ * Created by a.olexova on 4/8/2020.
  */
 
 public with sharing class ConsentIconsController {
