@@ -187,8 +187,8 @@ public without sharing class CustomerSearchController {
 	@TestVisible
 	private static List<SearchResultDTO> getFilteredResults(List<SObject> searchResults) {
 		List<SearchResultDTO> filteredResults = new List<SearchResultDTO>();
-		if (searchResults != null) {
-			String sObjectType = String.valueOf(searchResults.getSObjectType());
+		if (searchResults != null && !searchResults.isEmpty()) {
+			String sObjectType = String.valueOf(searchResults.get(0).getSObjectType());
 			if (sObjectType.equalsIgnoreCase(ACCOUNT_SOBJECT)) {
 				for (Account accountResult : (List<Account>) searchResults) {
 					if (
