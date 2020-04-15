@@ -14,10 +14,6 @@
         <formula>CampaignMember__c.Account__r.Name &amp;&#39; - &#39;&amp; text(TODAY()) &amp;&#39; - &#39;&amp; CampaignMember__c.Campaign__r.Product__r.Name</formula>
     </fieldOverrides>
     <fieldOverrides>
-        <field>Product__c</field>
-        <formula>CampaignMember__c.Campaign__r.Product__c</formula>
-    </fieldOverrides>
-    <fieldOverrides>
         <field>StageName</field>
         <literalValue>Prospecting</literalValue>
     </fieldOverrides>
@@ -40,11 +36,6 @@
                 <emptySpace>false</emptySpace>
                 <field>StageName</field>
                 <uiBehavior>Required</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>Product__c</field>
-                <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
         <quickActionLayoutColumns/>

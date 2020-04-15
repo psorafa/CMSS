@@ -38,6 +38,10 @@
                                                      required={isCompRegNumRequiredAndVisible}
                                                      type="text"></lightning-input>
                                 </div>
+                                <div style="display:none">
+                                    <!-- workaround for a bug where labels are not being translated -->
+                                    {label.compRegNrPlaceholder}
+                                </div>
                             </template>
                             <template if:true={isBirthNumberRequiredAndVisible}>
                                 <div class="slds-m-around--small" id="birthNumberDiv">

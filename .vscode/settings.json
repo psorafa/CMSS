@@ -1,4 +1,9 @@
 {
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#6d1010",
+		"titleBar.activeBackground": "#d10808",
+		"titleBar.activeForeground": "#F0FEF2"
+	},
 	"eslint.enable": true,
 	"eslint.alwaysShowStatus": true,
 	"eslint.format.enable": true,
@@ -27,5 +32,8 @@
 	"apexPMD.runOnFileOpen": true,
 	"apexPMD.enableCache": true,
 	"editor.formatOnPaste": true,
-	"editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "apexPMD.rulesets": [
+        "config/apexPmdRuleSet.xml"
+    ]
 }
