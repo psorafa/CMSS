@@ -2,18 +2,41 @@
  * Created by a.olexova on 4/13/2020.
  */
 
-import { LightningElement, api, wire } from 'lwc';
+import { LightningElement, api, track, wire } from 'lwc';
 import consentIcons from '@salesforce/resourceUrl/ConsentIcons';
-import findConsent from '@salesforce/apex/ConsentIconsController.findConsent';
+import getConsentForAccount from '@salesforce/apex/ConsentIconsController.getConsentForAccount';
+
+import postCommunication from '@salesforce/label/c.PostCommunication';
+import phoneCommunication from '@salesforce/label/c.PhoneCommunication';
+import emailCommunication from '@salesforce/label/c.EmailCommunication';
+import smsCommunication from '@salesforce/label/c.SmsCommunication';
+import portalCommunication from '@salesforce/label/c.PortalCommunication';
+import errorLabel from '@salesforce/label/c.Error';
 
 export default class ConsentIcons extends LightningElement {
 	@api recordId;
 	foundConsent;
+	@track errorMessage;
+	@track showErrorMessage = false;
+	@track label = {
+		errorLabel,
+		postCommunication,
+		phoneCommunication,
+		emailCommunication,
+		smsCommunication,
+		portalCommunication
+	};
 
 	//getting the consent of this account
-	@wire(findConsent, { accountId: '$recordId' })
-	consent({ data }) {
-		this.foundConsent = data;
+	@wire(getConsentForAccount, { accountId: '$recordId' })
+	consent({ error, data }) {
+		if (data) {
+			this.foundConsent = data;
+		}
+		if (error) {
+			this.showErrorMessage = true;
+			this.errorMessage = this.label.errorLabel + ': ' + error.body.message;
+		}
 	}
 
 	@api

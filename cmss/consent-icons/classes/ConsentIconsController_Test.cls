@@ -48,46 +48,92 @@ private class ConsentIconsController_Test {
 	}
 
 	@IsTest
-	static void testFindConsentNoConsent() {
+	static void testGetConsentForAccountNoConsent() {
 		testSetup();
 		Consent__c foundConsent;
 		Test.startTest();
-		foundConsent = ConsentIconsController.findConsent(accNoConsent.Id);
+		foundConsent = ConsentIconsController.getConsentForAccount(accNoConsent.Id);
 		Test.stopTest();
-		System.assertEquals(null, foundConsent, 'The result of findConsent should be null.');
+		System.assertEquals(null, foundConsent, 'The result of getConsentForAccount should be null.');
 	}
 
 	@IsTest
-	static void testFindConsentWithResult1() {
+	static void testGetConsentForAccountWithResult1() {
 		testSetup();
 		Consent__c foundConsent;
 		Test.setCreatedDate(consent1.Id, Datetime.now());
 		Test.setCreatedDate(consent2.Id, Datetime.now().addDays(-5));
 		Test.startTest();
-		foundConsent = ConsentIconsController.findConsent(accWithConsent.Id);
+		foundConsent = ConsentIconsController.getConsentForAccount(accWithConsent.Id);
 		Test.stopTest();
-		System.assertEquals(consent1.Id, foundConsent.Id, 'The result of findConsent should be consent1.');
+		System.assertEquals(consent1.Id, foundConsent.Id, 'The result of getConsentForAccount should be consent1.');
 	}
 
 	@IsTest
-	static void testFindConsentWithResult2() {
+	static void testGetConsentForAccountWithResult2() {
 		testSetup();
 		Consent__c foundConsent;
 		Test.setCreatedDate(consent1.Id, Datetime.now().addDays(-5));
 		Test.setCreatedDate(consent2.Id, Datetime.now());
 		Test.startTest();
-		foundConsent = ConsentIconsController.findConsent(accWithConsent.Id);
+		foundConsent = ConsentIconsController.getConsentForAccount(accWithConsent.Id);
 		Test.stopTest();
-		System.assertEquals(consent2.Id, foundConsent.Id, 'The result of findConsent should be consent2.');
+		System.assertEquals(consent2.Id, foundConsent.Id, 'The result of getConsentForAccount should be consent2.');
 	}
 
 	@IsTest
-	static void testFindConsentInvalidInput() {
+	static void testGetConsentForAccountNullInput() {
 		testSetup();
 		Consent__c foundConsent;
 		Test.startTest();
-		foundConsent = ConsentIconsController.findConsent(null);
+		foundConsent = ConsentIconsController.getConsentForAccount(null);
 		Test.stopTest();
-		System.assertEquals(null, foundConsent, 'The result of findConsent should be null.');
+		System.assertEquals(null, foundConsent, 'The result of getConsentForAccount should be null.');
+	}
+
+	@IsTest
+	static void testGetConsentForAccountInvalidInput() {
+		testSetup();
+		Consent__c foundConsent;
+		Test.startTest();
+		foundConsent = ConsentIconsController.getConsentForAccount(consent1.Id);
+		Test.stopTest();
+		System.assertEquals(null, foundConsent, 'The result of getConsentForAccount should be null.');
+	}
+
+	@IsTest
+	static void testGetConsentForAccountQueryException() {
+		testSetup();
+		Profile standardUserProfile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+		User uNoAccessToQueriedObject = new User(
+			FirstName = 'Uzivatel',
+			LastName = 'Testovaci',
+			ProfileId = standardUserProfile.Id,
+			Email = 'test@user.test',
+			Username = 'test@user.test.consentIconController',
+			Alias = 'UTest',
+			LanguageLocaleKey = 'en_US',
+			LocaleSidKey = 'cs_CZ',
+			TimeZoneSidKey = 'Europe/Prague',
+			EmailEncodingKey = 'UTF-8'
+		);
+		insert uNoAccessToQueriedObject;
+		System.runAs(uNoAccessToQueriedObject) {
+			Consent__c foundConsent;
+			String message;
+			String errorType;
+			Test.startTest();
+			try {
+				foundConsent = ConsentIconsController.getConsentForAccount(accWithConsent.Id);
+			} catch (Exception e) {
+				message = e.getMessage();
+				errorType = e.getTypeName();
+			} finally {
+				System.assert(String.isNotBlank(message), 'Error message should not be blank.');
+				System.assert(String.isNotBlank(errorType), 'Error type should not be blank.');
+				System.assertEquals('System.AuraHandledException', errorType, 'Error Type not as expected.');
+			}
+			Test.stopTest();
+		}
 	}
 }

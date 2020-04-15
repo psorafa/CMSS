@@ -5,16 +5,31 @@
 <!-- Consent Icons -->
 <template>
 	<lightning-card>
+		<template if:true={showErrorMessage}>
+			<div class="slds-text-align_right slds-align-top slds-text-color_error">
+				{errorMessage}
+			</div>
+		</template>
 		<div class="slds-m-around_xxx-small slds-text-align_right slds-align-top">
-			<img src={phoneIcon} width="24px" height="24px" />
+			<span class="slds-icon_container" title={label.phoneCommunication}>
+				<img src={phoneIcon} width="24px" height="24px" alt={label.phoneCommunication} />
+			</span>
 			&nbsp;
-			<img src={smsIcon} width="24px" height="24px" />
+			<span class="slds-icon_container" title={label.smsCommunication}>
+				<img src={smsIcon} width="24px" height="24px" alt={label.smsCommunication} />
+			</span>
 			&nbsp;
-			<img src={emailIcon} width="24px" height="24px" />
+			<span class="slds-icon_container" title={label.emailCommunication}>
+				<img src={emailIcon} width="24px" height="24px" alt={label.emailCommunication} />
+			</span>
 			&nbsp;
-			<img src={postIcon} width="24px" height="24px" />
+			<span class="slds-icon_container" title={label.postCommunication}>
+				<img src={postIcon} width="24px" height="24px" alt={label.postCommunication} />
+			</span>
 			&nbsp;
-			<img src={portalIcon} width="24px" height="24px" />
+			<span class="slds-icon_container" title={label.portalCommunication}>
+				<img src={portalIcon} width="24px" height="24px" alt={label.portalCommunication} />
+			</span>
 			&nbsp;
 		</div>
 	</lightning-card>
