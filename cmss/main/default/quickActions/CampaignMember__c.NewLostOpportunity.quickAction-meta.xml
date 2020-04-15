@@ -14,10 +14,6 @@
         <formula>CampaignMember__c.Account__r.Name &amp;&#39; - &#39;&amp; text(TODAY()) &amp;&#39; - &#39;&amp; CampaignMember__c.Campaign__r.Product__r.Name</formula>
     </fieldOverrides>
     <fieldOverrides>
-        <field>Product__c</field>
-        <formula>CampaignMember__c.Campaign__r.Product__c</formula>
-    </fieldOverrides>
-    <fieldOverrides>
         <field>StageName</field>
         <literalValue>Closed Lost</literalValue>
     </fieldOverrides>
