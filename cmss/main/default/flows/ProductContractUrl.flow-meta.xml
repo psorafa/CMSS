@@ -87,7 +87,7 @@
     </assignments>
     <assignments>
         <name>dbDataGetter1</name>
-        <label>dbDataGetter1</label>
+        <label>retrieve accountId from opp</label>
         <locationX>495</locationX>
         <locationY>68</locationY>
         <assignmentItems>
@@ -110,7 +110,7 @@
     </assignments>
     <assignments>
         <name>dbDataGetter2</name>
-        <label>dbDataGetter2</label>
+        <label>retrieve app process from product</label>
         <locationX>1010</locationX>
         <locationY>148</locationY>
         <assignmentItems>
@@ -126,7 +126,7 @@
     </assignments>
     <assignments>
         <name>dbDataGetter3</name>
-        <label>dbDataGetter3</label>
+        <label>retrieve globalId</label>
         <locationX>230</locationX>
         <locationY>289</locationY>
         <assignmentItems>
@@ -142,7 +142,7 @@
     </assignments>
     <assignments>
         <name>dbDataGetter4</name>
-        <label>dbDataGetter4</label>
+        <label>retrieve accountId from flow input</label>
         <locationX>525</locationX>
         <locationY>205</locationY>
         <assignmentItems>
@@ -155,6 +155,19 @@
         <connector>
             <targetReference>getAccount</targetReference>
         </connector>
+    </assignments>
+    <assignments>
+        <name>exit</name>
+        <label>exit</label>
+        <locationX>419</locationX>
+        <locationY>1080</locationY>
+        <assignmentItems>
+            <assignToReference>showButtons</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>showButtons</elementReference>
+            </value>
+        </assignmentItems>
     </assignments>
     <assignments>
         <name>finalHtml</name>
@@ -283,7 +296,7 @@
     </decisions>
     <decisions>
         <name>isPreffered</name>
-        <label>isPreffered</label>
+        <label>preffered item - appliationProcessId known</label>
         <locationX>300</locationX>
         <locationY>609</locationY>
         <defaultConnector>
@@ -309,8 +322,8 @@
     <decisions>
         <name>join</name>
         <label>join</label>
-        <locationX>1016</locationX>
-        <locationY>463</locationY>
+        <locationX>1009</locationX>
+        <locationY>454</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>default</name>
@@ -472,7 +485,11 @@
             <label>oppProductDefinedTrue</label>
         </rules>
     </decisions>
-    <description>Dialog shows user possible application for contracts</description>
+    <description>Dialog shows end user application list for contract details. It has either tabular (text) or image (imgVertical/imgHorizontal) displayMode. If there is a product on opportunity with corresponding applicationProcessId (see ProductContract metadata), this component can higlight item or it can open URL automatically.
+
+In URL there may be parameters ({GlobalId}, {OppportunityId}) used and component will replace it with values from SFDB.
+
+A cancel button may be hidden (showButtons parameter).</description>
     <formulas>
         <name>getCurrentUser</name>
         <dataType>String</dataType>
@@ -653,10 +670,35 @@
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
+        <connector>
+            <targetReference>exit</targetReference>
+        </connector>
         <fields>
             <name>ProductUrlListScreen</name>
             <fieldText>&lt;p&gt;{!productHtml}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>myFooter</name>
+            <extensionName>c:FlowFooterHelper</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>showSave</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>showButtons</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
@@ -843,5 +885,15 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>showButtons</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>true</booleanValue>
+        </value>
     </variables>
 </Flow>
