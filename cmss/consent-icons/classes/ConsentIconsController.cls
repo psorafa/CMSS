@@ -9,7 +9,7 @@ public with sharing class ConsentIconsController {
 	 *     returns the latest created consent, although there should never be more than 1 consent per client
 	 */
 	@AuraEnabled(Cacheable=true)
-	public static Consent__c getConsentForAccount(String accountId) {
+	public static Consent__c getConsentForAccount(Id accountId) {
 		if (String.isNotBlank(accountId)) {
 			try {
 				List<Consent__c> consents = [
@@ -35,9 +35,17 @@ public with sharing class ConsentIconsController {
 					return consents.get(0);
 				}
 			} catch (QueryException qException) {
-				throw new AuraHandledException(qException.getTypeName() + ': ' + qException.getMessage());
+				String message = qException.getTypeName() + ': ' + qException.getMessage();
+				AuraHandledException auraException = new AuraHandledException(message);
+				auraException.setMessage(message);
+				throw auraException;
 			}
+		} else {
+			String message = 'Missing parameter: accountId.';
+			AuraHandledException auraException = new AuraHandledException(message);
+			auraException.setMessage(message);
+			throw auraException;
 		}
-		return null;
+		return new Consent__c();
 	}
 }

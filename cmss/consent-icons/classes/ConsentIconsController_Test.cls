@@ -54,7 +54,11 @@ private class ConsentIconsController_Test {
 		Test.startTest();
 		foundConsent = ConsentIconsController.getConsentForAccount(accNoConsent.Id);
 		Test.stopTest();
-		System.assertEquals(null, foundConsent, 'The result of getConsentForAccount should be null.');
+		System.assertEquals(
+			new Consent__c(),
+			foundConsent,
+			'The result of getConsentForAccount should be empty Consent__c.'
+		);
 	}
 
 	@IsTest
@@ -85,10 +89,21 @@ private class ConsentIconsController_Test {
 	static void testGetConsentForAccountNullInput() {
 		testSetup();
 		Consent__c foundConsent;
+		String message;
+		String errorType;
 		Test.startTest();
-		foundConsent = ConsentIconsController.getConsentForAccount(null);
+		try {
+			foundConsent = ConsentIconsController.getConsentForAccount(null);
+		} catch (Exception e) {
+			message = e.getMessage();
+			errorType = e.getTypeName();
+		} finally {
+			System.assert(String.isNotBlank(message), 'Error message should not be blank.');
+			System.assert(String.isNotBlank(errorType), 'Error type should not be blank.');
+			System.assertEquals('Missing parameter: accountId.', message, 'Error Message not as expected.');
+			System.assertEquals('System.AuraHandledException', errorType, 'Error Type not as expected.');
+		}
 		Test.stopTest();
-		System.assertEquals(null, foundConsent, 'The result of getConsentForAccount should be null.');
 	}
 
 	@IsTest
@@ -98,13 +113,22 @@ private class ConsentIconsController_Test {
 		Test.startTest();
 		foundConsent = ConsentIconsController.getConsentForAccount(consent1.Id);
 		Test.stopTest();
-		System.assertEquals(null, foundConsent, 'The result of getConsentForAccount should be null.');
+		System.assertEquals(
+			new Consent__c(),
+			foundConsent,
+			'The result of getConsentForAccount should be empty Consent__c.'
+		);
 	}
 
 	@IsTest
 	static void testGetConsentForAccountQueryException() {
 		testSetup();
-		Profile standardUserProfile = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+		Profile standardUserProfile = [
+			SELECT Id
+			FROM Profile
+			WHERE Name = 'Standard User' OR Name = 'Standardní uživatel'
+			LIMIT 1
+		];
 		User uNoAccessToQueriedObject = new User(
 			FirstName = 'Uzivatel',
 			LastName = 'Testovaci',
@@ -131,7 +155,9 @@ private class ConsentIconsController_Test {
 			} finally {
 				System.assert(String.isNotBlank(message), 'Error message should not be blank.');
 				System.assert(String.isNotBlank(errorType), 'Error type should not be blank.');
-				System.assertEquals('System.AuraHandledException', errorType, 'Error Type not as expected.');
+                System.assert(message.startsWithIgnoreCase('System.QueryException:'), 'Error Message not as expected: ' + message);
+                System.assertEquals('System.AuraHandledException', errorType, 'Error Type not as expected.');
+
 			}
 			Test.stopTest();
 		}
