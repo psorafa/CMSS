@@ -20,7 +20,7 @@ DAYS=${5-1}
 function finish {
     # remove scratch org
     echo "Deleting scratch org..."
-    #sfdx force:org:delete --targetusername $ALIAS --noprompt
+    sfdx force:org:delete --targetusername $ALIAS --noprompt
     echo "Done."
 }
 trap finish EXIT
