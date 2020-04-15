@@ -4,14 +4,54 @@
     <name>Reinsurance_Type__c</name>
     <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <translation>Záruky -  fyzické osoby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>Ostatní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15</masterLabel>
+        <translation>Směnka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>18</masterLabel>
+        <translation>Pojištění</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <translation>Záruky -  právnické osoby</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>3</masterLabel>
-        <translation><!-- 3 --></translation>
+        <masterLabel>21</masterLabel>
+        <translation>Bez zajištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>23</masterLabel>
+        <translation>Zástavní právo k vkladu vlastnímu &quot;v domě&quot;</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>25</masterLabel>
+        <translation>Zástavní právo k vkladu jinému &quot;v domě&quot;</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>29</masterLabel>
+        <translation>Zástavní právo k vkladu stavebního spoření u jiné SS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>31</masterLabel>
+        <translation>Bankovní záruky od jiných bank</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>35</masterLabel>
+        <translation>S následným zajištěním</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>36</masterLabel>
+        <translation>Zástavní právo k pohl. z vkladu v CIZÍ MĚNĚ u j.bank</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>37</masterLabel>
+        <translation>Nemovité zástavy</translation>
     </picklistValues>
 </CustomFieldTranslation>

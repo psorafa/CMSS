@@ -3,15 +3,39 @@
     <label>Fáze</label>
     <name>Phase__c</name>
     <picklistValues>
-        <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <masterLabel>10</masterLabel>
+        <translation>Schválení – podklady pro schválení úvěrového případu</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <masterLabel>21</masterLabel>
+        <translation>1. etapa čerpání</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>3</masterLabel>
-        <translation><!-- 3 --></translation>
+        <masterLabel>22</masterLabel>
+        <translation>2. etapa čerpání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>23</masterLabel>
+        <translation>3. etapa čerpání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30</masterLabel>
+        <translation>Doklady doložení účelu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>31</masterLabel>
+        <translation>Podklady při „Návrhu na vklad“ TBD ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>40</masterLabel>
+        <translation>Ostatní – podklady pro právnícké osoby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>80</masterLabel>
+        <translation>Schválení – podklady pro schválení změny</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>90</masterLabel>
+        <translation>Doklady po schválení změny</translation>
     </picklistValues>
 </CustomFieldTranslation>

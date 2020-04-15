@@ -4,14 +4,26 @@
     <name>Status__c</name>
     <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <translation>Požadované</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <translation>Platné</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>3</masterLabel>
-        <translation><!-- 3 --></translation>
+        <translation>Platné až ve 2. etapě čerpání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>Neplatné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Automaticky uvolněné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>Uvolněné</translation>
     </picklistValues>
 </CustomFieldTranslation>

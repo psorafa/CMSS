@@ -3,15 +3,331 @@
     <label>Druh změny</label>
     <name>ChangeType__c</name>
     <picklistValues>
-        <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <masterLabel>10001</masterLabel>
+        <translation>Pojistná smlouva - změna smlouvy v limitu</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <masterLabel>10002</masterLabel>
+        <translation>Pojistná smlouva - změna smlouvy nad limit</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>3</masterLabel>
-        <translation><!-- 3 --></translation>
+        <masterLabel>10003</masterLabel>
+        <translation>Pojistná smlouva - devinkulace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1001</masterLabel>
+        <translation>Změna zajištění - vyvázání nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1002</masterLabel>
+        <translation>Změna zajištění - výměna nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1003</masterLabel>
+        <translation>Změna zajištění - vyvázání části nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1004</masterLabel>
+        <translation>Změna zajištění - výměna části nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1005</masterLabel>
+        <translation>Změna zajištění - vyvázání ručitele</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1006</masterLabel>
+        <translation>Změna zajištění - výměna ručitele</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1007</masterLabel>
+        <translation>Změna zajištění - vyvázání pohledávky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1008</masterLabel>
+        <translation>Změna zajištění - výměna pohledávky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1009</masterLabel>
+        <translation>Změna zajištění - doplnění zajištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1099</masterLabel>
+        <translation>Změna zajištění - jiná změna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11001</masterLabel>
+        <translation>Ukončení smluvního vztahu - ukončení sml.vztahu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12001</masterLabel>
+        <translation>Jiná změna - jiná změna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12002</masterLabel>
+        <translation>Jiná změna - změna úrokové sazby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12003</masterLabel>
+        <translation>Jiná změna - změna fixace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12004</masterLabel>
+        <translation>Jiná změna - změna výše ÚS splátky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12005</masterLabel>
+        <translation>Jiná změna - změna CS produktů</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12006</masterLabel>
+        <translation>Jiná změna - změna dospořování</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12007</masterLabel>
+        <translation>Jiná změna - změna osobních údajů klienta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12008</masterLabel>
+        <translation>Jiná změna - změna podmínek čerpání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12009</masterLabel>
+        <translation>Jiná změna - změna typu čerpání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12010</masterLabel>
+        <translation>Jiná změna - ISIR</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13001</masterLabel>
+        <translation>Potvrzení - Potvrzení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14001</masterLabel>
+        <translation>Změna zajištění_PO - vyvázání nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14002</masterLabel>
+        <translation>Změna zajištění_PO - výměna nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14003</masterLabel>
+        <translation>Změna zajištění_PO - vyvázání části nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14004</masterLabel>
+        <translation>Změna zajištění_PO - výměna části nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14005</masterLabel>
+        <translation>Změna zajištění_PO - vyvázání pohledávky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14006</masterLabel>
+        <translation>Změna zajištění_PO - výměna pohledávky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14007</masterLabel>
+        <translation>Změna zajištění_PO - doplnění zajištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14008</masterLabel>
+        <translation>Změna zajištění_PO - jiná změna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15001</masterLabel>
+        <translation>Změna účastníků_PO - role právo podpisu PO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16001</masterLabel>
+        <translation>Vyvázání účtu_PO - vkladového účtu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17001</masterLabel>
+        <translation>Souhlas_PO - se změnou vlastníka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17002</masterLabel>
+        <translation>Souhlas_PO - s rekonstrukcí, přístavbou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17003</masterLabel>
+        <translation>Souhlas_PO - se ZP na druhém místě</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17004</masterLabel>
+        <translation>Souhlas_PO - souhlasu s věcným břemenem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17005</masterLabel>
+        <translation>Souhlas_PO - souhlasu s výstavbou na pozemku</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17006</masterLabel>
+        <translation>Souhlas_PO - jiný souhlas</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>18001</masterLabel>
+        <translation>Pojistná událost_PO - výše plnění limitu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>18002</masterLabel>
+        <translation>Pojistná událost_PO - výše plnění nad limit</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>19001</masterLabel>
+        <translation>Změna účelu_PO - výměny účelu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>19002</masterLabel>
+        <translation>Změna účelu_PO - doplnění účelu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20001</masterLabel>
+        <translation>Kontrola čerpání - povinné kontrola</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20002</masterLabel>
+        <translation>Kontrola čerpání - volitelné kontrole před čerpáním</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2001</masterLabel>
+        <translation>Změna účastníků - vyvázání dlužníka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2002</masterLabel>
+        <translation>Změna účastníků - vyvázání přistupitele</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2003</masterLabel>
+        <translation>Změna účastníků - výměny přistupitele</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2004</masterLabel>
+        <translation>Změna účastníků - doplnění přistupitele</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2005</masterLabel>
+        <translation>Změna účastníků - vyvázání spoludlužníka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2006</masterLabel>
+        <translation>Změna účastníků - výměny spoludlužníka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2007</masterLabel>
+        <translation>Změna účastníků - doplnění spoludlužníka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2008</masterLabel>
+        <translation>Změna účastníků - role právo podpisu PO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21001</masterLabel>
+        <translation>Pojistná smlouva_PO - změny smlouvy v limitu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21002</masterLabel>
+        <translation>Pojistná smlouva_PO - devinkulace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22001</masterLabel>
+        <translation>Jiná změna_PO - jiná změna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22002</masterLabel>
+        <translation>Jiná změna_PO - změny úrokové sazby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22003</masterLabel>
+        <translation>Jiná změna_PO - změny fixace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22004</masterLabel>
+        <translation>Jiná změna_PO - změny výše ÚS splátky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22005</masterLabel>
+        <translation>Jiná změna_PO - změny CS produktů</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22006</masterLabel>
+        <translation>Jiná změna_PO - změny dospořování</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22007</masterLabel>
+        <translation>Jiná změna_PO - změny osobních údajů klienta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22008</masterLabel>
+        <translation>Jiná změna_PO - změny podmínek čerpání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22009</masterLabel>
+        <translation>Jiná změna_PO - změny typu čerpání;</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22010</masterLabel>
+        <translation>Jiná změna_PO - ISIR</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>23001</masterLabel>
+        <translation>Potvrzení_PO - potvrzení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3001</masterLabel>
+        <translation>Vyvázání účtu - vkladového účtu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4001</masterLabel>
+        <translation>Převod úvěru - převodu úvěru</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5001</masterLabel>
+        <translation>Souhlas - souhlasu se změnou vlastníka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5002</masterLabel>
+        <translation>Souhlas - souhlasu s rekonstrukcí, přístavbou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5003</masterLabel>
+        <translation>Souhlas - souhlasu se zástavním právem na druhém místě</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5004</masterLabel>
+        <translation>Souhlas - souhlasu s věcným břemenem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5005</masterLabel>
+        <translation>Souhlas - souhlasu s výstavbou na pozemku</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5006</masterLabel>
+        <translation>Souhlas - jiný souhlas</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6001</masterLabel>
+        <translation>Úmrtí - úmrtí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7001</masterLabel>
+        <translation>Pojistná událost - výše plnění v limitu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7002</masterLabel>
+        <translation>Pojistná událost - výše plnění nad limit</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8001</masterLabel>
+        <translation>Změna účelu - výměny účelu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8002</masterLabel>
+        <translation>Změna účelu - doplnění účelu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9001</masterLabel>
+        <translation>Změna v kompetenci úvěrů - změny podmínek</translation>
     </picklistValues>
 </CustomFieldTranslation>
