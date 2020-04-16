@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Kategorie</label>
+    <name>Category__c</name>
+    <picklistValues>
+        <masterLabel>Campaign</masterLabel>
+        <translation>Kampaň</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Impuls</masterLabel>
+        <translation>Impuls</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Own Opportunity</masterLabel>
+        <translation>Vlastní Příležitost</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Retention</masterLabel>
+        <translation>Retence</translation>
+    </picklistValues>
+</CustomFieldTranslation>

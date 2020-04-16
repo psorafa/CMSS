@@ -10,23 +10,22 @@
         <formula>TODAY() + 90</formula>
     </fieldOverrides>
     <fieldOverrides>
+        <field>CustomText__c</field>
+        <formula>&#39;Vlastní obchodní příležitost&#39;</formula>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>Name</field>
-        <formula>Account.LastName</formula>
+        <formula>&#39;random text&#39;</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>StageName</field>
         <literalValue>1</literalValue>
     </fieldOverrides>
     <label>Create Opportunity</label>
-    <optionsCreateFeedItem>true</optionsCreateFeedItem>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <quickActionLayout>
         <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
         <quickActionLayoutColumns>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>Name</field>
-                <uiBehavior>Required</uiBehavior>
-            </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
                 <field>AccountId</field>
@@ -34,7 +33,12 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Product__c</field>
+                <field>CustomText__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Name</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>

@@ -5,61 +5,58 @@
 			"referenceId": "Product2Ref1"
 		},
 		"Name": "Stavební spoření",
-		"ProductCode": "11",
-		"IsActive": true,
-		"ProductType__c": "9"
+		"IsActive": false,
+		"ExternalId": "0000001",
+		"ProductType__c": "6"
 	},
 	{
 		"attributes": {
 			"type": "Product2",
 			"referenceId": "Product2Ref2"
 		},
-		"Name": "Úvěry",
-		"ProductCode": "12",
+		"Name": "Stavební spoření",
 		"IsActive": true,
-		"ProductType__c": "8"
+		"ExternalId": "0000002",
+		"ProductType__c": "6"
 	},
 	{
 		"attributes": {
 			"type": "Product2",
 			"referenceId": "Product2Ref3"
 		},
-		"Name": "Meziúvěry",
-		"ProductCode": "13",
+		"Name": "Stavební spoření",
 		"IsActive": true,
-		"ProductType__c": "6"
+		"ExternalId": "0000003",
+		"ProductType__c": "4"
 	},
 	{
 		"attributes": {
 			"type": "Product2",
 			"referenceId": "Product2Ref4"
 		},
-		"Name": "RŽP",
-		"ProductCode": "41",
-		"Description": "Rizikové životní pojištění",
-		"IsActive": false,
-		"ProductType__c": "6"
+		"Name": "Meziúvěr",
+		"IsActive": true,
+		"ExternalId": "0000004",
+		"ProductType__c": "8"
 	},
 	{
 		"attributes": {
 			"type": "Product2",
 			"referenceId": "Product2Ref5"
 		},
-		"Name": "SB_44444",
-		"ProductCode": "SB_44444",
-		"Description": "SB_44444",
-		"IsActive": false,
-		"ProductType__c": "4"
+		"Name": "Úvěr",
+		"IsActive": true,
+		"ExternalId": "0000005",
+		"ProductType__c": "9"
 	},
 	{
 		"attributes": {
 			"type": "Product2",
 			"referenceId": "Product2Ref6"
 		},
-		"Name": "Autopojištění",
-		"ProductCode": "Zeus_33",
-		"Description": "Zeus_33 autopojištění do 400 000",
+		"Name": "RŽP",
 		"IsActive": true,
+		"ExternalId": "0000006",
 		"ProductType__c": "6"
 	},
 	{
@@ -67,9 +64,9 @@
 			"type": "Product2",
 			"referenceId": "Product2Ref7"
 		},
-		"Name": "Běžný účet CZK",
-		"ProductCode": "BU_CZK",
+		"Name": "IŽP",
 		"IsActive": true,
-		"ProductType__c": "8"
+		"ExternalId": "0000007",
+		"ProductType__c": "4"
 	}
 ]
