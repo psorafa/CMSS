@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Spoření Expo+</label>
+    <protected>false</protected>
+    <values>
+        <field>ApplicationProcessId__c</field>
+        <value xsi:type="xsd:string">StavebniSporeni</value>
+    </values>
+    <values>
+        <field>ApplicationUrl__c</field>
+        <value xsi:type="xsd:string">https://expoplus.cmss.cz</value>
+    </values>
+    <values>
+        <field>ImageName__c</field>
+        <value xsi:type="xsd:string">/resource/ProductIcons/Stavebni-sporeni_tmave_modra.png</value>
+    </values>
+    <values>
+        <field>Priority__c</field>
+        <value xsi:type="xsd:string">b01</value>
+    </values>
+    <values>
+        <field>WaitForUser__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+</CustomMetadata>
