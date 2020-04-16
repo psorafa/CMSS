@@ -125,24 +125,6 @@
         </flows>
         <fullName>EventWithObjUpdate</fullName>
     </flowDefinitions>
-    <flowDefinitions>
-        <flows>
-            <fullName>RegisterEvent</fullName>
-            <screens>
-                <fields>
-                    <name>EndDateTime_0</name>
-                </fields>
-                <fields>
-                    <name>StartDateTime_0</name>
-                </fields>
-                <fields>
-                    <name>Subject</name>
-                </fields>
-                <name>RegisterEventHeader</name>
-            </screens>
-        </flows>
-        <fullName>RegisterEvent</fullName>
-    </flowDefinitions>
     <quickActions>
         <label><!-- LogACall --></label>
         <name>LogACall</name>
