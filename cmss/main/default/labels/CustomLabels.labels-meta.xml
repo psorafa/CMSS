@@ -33,6 +33,14 @@
         <value>Client Identification</value>
     </labels>
     <labels>
+        <fullName>EmailCommunication</fullName>
+        <categories>Consents</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Communication</shortDescription>
+        <value>Email Communication</value>
+    </labels>
+    <labels>
         <fullName>Error</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -111,6 +119,30 @@
         <value>No records found...</value>
     </labels>
     <labels>
+        <fullName>PhoneCommunication</fullName>
+        <categories>Consents</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Phone Communication</shortDescription>
+        <value>Phone Communication</value>
+    </labels>
+    <labels>
+        <fullName>PortalCommunication</fullName>
+        <categories>Consents</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portal Communication</shortDescription>
+        <value>Portal Communication</value>
+    </labels>
+    <labels>
+        <fullName>PostCommunication</fullName>
+        <categories>Consents</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Post Communication</shortDescription>
+        <value>Post Communication</value>
+    </labels>
+    <labels>
         <fullName>RequiredFieldsMessage</fullName>
         <categories>CustomerSearch</categories>
         <language>en_US</language>
@@ -133,5 +165,13 @@
         <protected>false</protected>
         <shortDescription>Search Button</shortDescription>
         <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>SmsCommunication</fullName>
+        <categories>Consents</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SMS Communication</shortDescription>
+        <value>SMS Communication</value>
     </labels>
 </CustomLabels>
