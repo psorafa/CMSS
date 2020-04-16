@@ -90,15 +90,15 @@ if [ -z "$DELETE_ARTIFACTS" ] && [ -z "$DEPLOY_ARTIFACTS" ]; then
 else
 	if [ -z  "$TEST" ];	then
 		if [ "validate" =  "$MODE" ]; then
-			sfdx force:mdapi:deploy --deploydir --ignorewarnings "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --checkonly
+			sfdx force:mdapi:deploy --ignorewarnings --deploydir "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --checkonly
 		else
-			sfdx force:mdapi:deploy --deploydir --ignorewarnings "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59
+			sfdx force:mdapi:deploy --ignorewarnings --deploydir "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59
 		fi	
 	else
 		if [ "validate" =  "$MODE" ];	then
-			sfdx force:mdapi:deploy --deploydir --ignorewarnings "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST --checkonly
+			sfdx force:mdapi:deploy --ignorewarnings --deploydir "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST --checkonly
 		else
-			sfdx force:mdapi:deploy --deploydir --ignorewarnings "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST
+			sfdx force:mdapi:deploy --ignorewarnings --deploydir "$TARGET/packageDeploy" --targetusername $ALIAS --wait 59 --testlevel $TEST
 		fi
 	fi
    	echo "Deploy Successful"
