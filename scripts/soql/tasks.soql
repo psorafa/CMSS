@@ -1,0 +1,8 @@
+SELECT Id, Subject, ActivityDate, Status, Priority, Description, Type, Account.ExternalId__c, 
+    IsClosed, Asset__r.ExternalId__c, Author__c, 
+    Category__c, DelegatedDate__c, ExternalId__c, 
+    Result__c, Phone__c, Sender__c, Source__c, Topic__c, UpdatedBy__c
+FROM Task
+WHERE Asset__c != null AND Asset__r.ExternalId__c != null 
+    AND AccountId != null AND Account.ExternalId__c != null
+LIMIT 30
