@@ -15,7 +15,7 @@ FOLDER=${4}
 set -e
 
 IFS=$'\n'
-ORIGINAL_FILES=$(git diff -w --ignore-blank-lines --name-only --diff-filter="${FILTER}" "${TARGET_COMMIT}" "${SOURCE_COMMIT}" -- "${FOLDER}" | sed s/\"//g)
+ORIGINAL_FILES=$(git diff -w --ignore-blank-lines --name-only --diff-filter="${FILTER}" "${TARGET_COMMIT}" "${SOURCE_COMMIT}" -- . ":!**/*/.*" "${FOLDER}" | sed s/\"//g)
 
 for FILE in $ORIGINAL_FILES; do
     echo "${FILE}"
