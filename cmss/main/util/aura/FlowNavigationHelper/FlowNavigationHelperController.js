@@ -1,41 +1,56 @@
 /**
- * In lightning flows used like last component.
- * Action: openRecord = shows a salesforce record to a user
- * and therefore end of flow dialog.
- *
- * @author Robert Srna
- */
-({
-	doInit: function(component, event, helper) {
-		console.log('doInit');
-		$A.enqueueAction(action);
-	},
+* In lightning flows used like last component.
+* Action: openRecord = shows a salesforce record to a user 
+* and therefore end of flow dialog.
+* 
+* @author Robert Srna
+*/
+({    
+    
+    doInit : function(component, event, helper) {
+        console.log('doInit');
+        $A.enqueueAction(action);                
+     },    
+    
+    
+    invoke : function(component, event, helper) {    
+    	console.log('invoke');
+        
+        var helperAction = component.get("v.helperAction");
+        console.log('helperAction='+helperAction);
+        
+        if(helperAction=='exit') {
+            var a = component.get('c.exitAction');
+        	$A.enqueueAction(a);
+        } else if (helperAction=='openRecord') {
+            var a = component.get('c.openRecord');
+            $A.enqueueAction(a);
+        } else if (helperAction=='openUrl') {
+            var a = component.get('c.openUrl');
+        	$A.enqueueAction(a);            
+        }
+        
+    },
+    
+    exitAction : function(component, event, helper) {
+        console.log('exitAction enter');
+        window.open('www.seznam.cz','_top');
 
-	invoke: function(component, event, helper) {
-		console.log('invoke');
+    },
 
-		var helperAction = component.get('v.helperAction');
-		console.log('helperAction=' + helperAction);
+    
+    openUrl : function(component, event, helper) {
+        console.log('openUrl enter');
+        var link = component.get("v.openUrl");
+        window.open(link,'_top');
 
-		if (helperAction == 'exit') {
-			var a = component.get('c.exitAction');
-			$A.enqueueAction(a);
-		} else if (helperAction == 'openRecord') {
-			var a = component.get('c.openRecord');
-			$A.enqueueAction(a);
-		}
-	},
+    },
 
-	exitAction: function(component, event, helper) {
-		console.log('exitAction enter');
-		window.open('www.seznam.cz', '_top');
-	},
-
-	openRecord: function(component, event, helper) {
-		// Get the record ID attribute
-		var record = component.get('v.openRecordId');
-
-		/* toto je spravny kod, ale kvuli chybe zde redirect nefunguje
+    openRecord : function (component, event, helper) {
+        // Get the record ID attribute
+        var record = component.get("v.openRecordId");
+   
+        /* toto je spravny kod, ale kvuli chybe zde redirect nefunguje
          * https://success.salesforce.com/issues_view?id=a1p3A0000019QSOQA2
    // Get the Lightning event that opens a record in a new tab
    var redirect = $A.get("e.force:navigateToSObject");
@@ -53,18 +68,19 @@
     console.log('redirect:' + redirect);
         console.log('muj konec');
         
-*/
-
-		/* toto byl pokus a asi stejny problem jako u navigateToSObject
+*/ 
+        /* toto byl pokus a asi stejny problem jako u navigateToSObject
         var eUrl= $A.get("e.force:navigateToURL");
     eUrl.setParams({
       "url": '/'+record 
     });
     eUrl.fire();
-*/
-
-		//window.open('https://srna-dev-ed--c.eu15.visual.force.com/'+record,'_top');
-		//window.open('/'+record,'_top');
-		window.open('/lightning/r/' + record + '/view', '_top');
-	}
-});
+*/        
+        
+        //window.open('https://srna-dev-ed--c.eu15.visual.force.com/'+record,'_top');
+        //window.open('/'+record,'_top');
+        window.open('/lightning/r/'+record+'/view','_top');
+        
+    }
+    
+})
