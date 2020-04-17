@@ -24,7 +24,10 @@
         	$A.enqueueAction(a);
         } else if (helperAction=='openRecord') {
             var a = component.get('c.openRecord');
-        	$A.enqueueAction(a);
+            $A.enqueueAction(a);
+        } else if (helperAction=='openUrl') {
+            var a = component.get('c.openUrl');
+        	$A.enqueueAction(a);            
         }
         
     },
@@ -34,7 +37,15 @@
         window.open('www.seznam.cz','_top');
 
     },
+
     
+    openUrl : function(component, event, helper) {
+        console.log('openUrl enter');
+        var link = component.get("v.openUrl");
+        window.open(link,'_top');
+
+    },
+
     openRecord : function (component, event, helper) {
         // Get the record ID attribute
         var record = component.get("v.openRecordId");

@@ -22,7 +22,7 @@
 	"[json]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"[apex]": {
+	"[apex, trigger]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[page]": {
@@ -32,8 +32,6 @@
 	"apexPMD.runOnFileOpen": true,
 	"apexPMD.enableCache": true,
 	"editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "apexPMD.rulesets": [
-        "config/apexPmdRuleSet.xml"
-    ]
+	"editor.formatOnSave": true,
+	"apexPMD.rulesets": ["config/apexPmdRuleSet.xml"]
 }
