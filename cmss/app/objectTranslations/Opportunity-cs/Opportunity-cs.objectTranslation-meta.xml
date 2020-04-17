@@ -2,17 +2,9 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <layouts>
         <layout>Opportunity Layout Editable</layout>
-        <sections>
-            <label>Produkt</label>
-            <section>Product</section>
-        </sections>
     </layouts>
     <layouts>
         <layout>Opportunity Layout Not Editable</layout>
-        <sections>
-            <label>Produkt</label>
-            <section>Product</section>
-        </sections>
     </layouts>
     <quickActions>
         <label><!-- Arrange Contract --></label>
