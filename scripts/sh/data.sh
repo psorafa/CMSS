@@ -10,31 +10,35 @@ ALIAS="${1}"
 
 mkdir scripts/apex/tmp -p
 
-accountsScript="scripts/apex/tmp/importAccounts.apex"
-scripts/sh/data/Accounts.sh "$accountsScript"
+TARGETPATH="scripts/apex/tmp"
 
-productScript="scripts/apex/tmp/importProducts.apex"
-scripts/sh/data/Products.sh "$productScript"
+scripts/sh/util/mergeJson.sh "scripts/apex/importAccounts.apex" "data/tree/businessAccounts.json" "{1}" "$TARGETPATH/importAccounts.apex"
+scripts/sh/util/mergeJson.sh "$TARGETPATH/importAccounts.apex" "data/tree/personAccounts.json" "{0}" "$TARGETPATH/importAccounts.apex"
 
-#opportunityScript="scripts/apex/tmp/importOpportunities.apex"
-#scripts/sh/data/Opportunities.sh "$opportunityScript"
+scripts/sh/util/mergeJson.sh "scripts/apex/importProducts.apex" "data/tree/products.json" "{0}" "$TARGETPATH/importProducts.apex"
 
-assetScript="scripts/apex/tmp/importAssets.apex"
-scripts/sh/data/Assets.sh "$assetScript"
+#scripts/sh/util/mergeJson.sh "scripts/apex/importOpportunities.apex" "data/tree/opportunities.json" "{0}" "$TARGETPATH/importOpportunities.apex"
+
+scripts/sh/util/mergeJson.sh "scripts/apex/importAssets.apex" "data/tree/assets.json" "{0}" "$TARGETPATH/importAssets.apex"
+
+scripts/sh/util/mergeJson.sh "scripts/apex/importTasks.apex" "data/tree/assetTasks.json" "{0}" "$TARGETPATH/importTasks.apex"
+scripts/sh/util/mergeJson.sh "scripts/apex/importTasks.apex" "data/tree/assetTasks2.json" "{0}" "$TARGETPATH/importTasks2.apex"
 
 set -o xtrace
 if [ -z "$ALIAS" ];
 then
-    sfdx force:apex:execute --apexcodefile $accountsScript
-    sfdx force:apex:execute --apexcodefile $productScript
-    #sfdx force:apex:execute --apexcodefile $opportunityScript
-    sfdx force:apex:execute --apexcodefile $assetScript
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAccounts.apex"
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importProducts.apex"
+    #sfdx force:apex:execute --apexcodefile "$TARGETPATH/importOpportunities.apex"
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssets.apex"
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks.apex"
 else
-    sfdx force:apex:execute --apexcodefile $accountsScript --targetusername $ALIAS
-    sfdx force:apex:execute --apexcodefile $productScript --targetusername $ALIAS
-    #sfdx force:apex:execute --apexcodefile $opportunityScript --targetusername $ALIAS
-    sfdx force:apex:execute --apexcodefile $assetScript --targetusername $ALIAS
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAccounts.apex" --targetusername $ALIAS
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importProducts.apex" --targetusername $ALIAS
+    #sfdx force:apex:execute --apexcodefile "$TARGETPATH/importOpportunities.apex" --targetusername $ALIAS
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssets.apex" --targetusername $ALIAS
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks.apex" --targetusername $ALIAS
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks2.apex" --targetusername $ALIAS
 fi
 
 rm -r scripts/apex/tmp
-
