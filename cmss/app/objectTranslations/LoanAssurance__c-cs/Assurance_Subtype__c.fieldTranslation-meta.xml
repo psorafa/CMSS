@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Podtyp zajištění</label>
+    <name>Assurance_Subtype__c</name>
+    <picklistValues>
+        <masterLabel>10001</masterLabel>
+        <translation>Záruky -  fyzické osoby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>110001</masterLabel>
+        <translation>Ostatní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>150001</masterLabel>
+        <translation>Směnka - pro úvěr FO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>150002</masterLabel>
+        <translation>Směnka - pro úvěr PO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>180002</masterLabel>
+        <translation>Pojištění - Pojištění - rizikové úvěrové</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>180003</masterLabel>
+        <translation>Pojištění - Pojištění - životní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20001</masterLabel>
+        <translation>Záruky -  právnické osoby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>210001</masterLabel>
+        <translation>Bez zajištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>230001</masterLabel>
+        <translation>Zástavní právo k vkladu vlastnímu &quot;v domě&quot;</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>250001</masterLabel>
+        <translation>Zástavní právo k vkladu jinému &quot;v domě&quot;</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>290001</masterLabel>
+        <translation>Zástavní právo k vkladu stavebního spoření u jiné SS - stavební spoření (u jiné SS)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>290002</masterLabel>
+        <translation>Zástavní právo k pohl. z vkladu u jiných bank (CZK) - jiný typ účtu u banky, nikoli u SS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>290003</masterLabel>
+        <translation>Zástavní právo k pohl. z vkladu u jiných bank (CZK) - vkladní knížka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>310001</masterLabel>
+        <translation>Bankovní záruky od jiných bank</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>350001</masterLabel>
+        <translation>S následným zajištěním</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>360001</masterLabel>
+        <translation>Zástavní právo k pohl. z vkladu v CIZÍ MĚNĚ u j.bank</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>370001</masterLabel>
+        <translation>Nemovité zástavy - objekt bydlení - 1. místo - plomba</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3700010</masterLabel>
+        <translation>Nemovité zástavy - NE objekt bydlení - násl. místo - plomba</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3700012</masterLabel>
+        <translation>Nemovité zástavy - NE objekt bydlení - násl. místo - zástava</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3700013</masterLabel>
+        <translation>Nemovité zástavy - objekt bydlení - 1.místo - předplomba</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3700014</masterLabel>
+        <translation>Nemovité zástavy - objekt bydlení - násl.místo - předplomba</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3700015</masterLabel>
+        <translation>Nemovité zástavy - NE objekt bydlení - 1.místo - předplomba</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3700016</masterLabel>
+        <translation>Nemovité zástavy - NE objekt bydlení - násl.místo - předplomba</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>370003</masterLabel>
+        <translation>Nemovité zástavy - objekt bydlení - 1. místo - zástava</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>370004</masterLabel>
+        <translation>Nemovité zástavy - objekt bydlení - násl. místo - plomba</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>370006</masterLabel>
+        <translation>Nemovité zástavy - objekt bydlení - násl. místo - zástava</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>370007</masterLabel>
+        <translation>Nemovité zástavy - NE objekt bydlení - 1. místo - plomba</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>370009</masterLabel>
+        <translation>Nemovité zástavy - NE objekt bydlení - 1. místo - zástava</translation>
+    </picklistValues>
+</CustomFieldTranslation>
