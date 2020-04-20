@@ -4,10 +4,34 @@
     <name>DetailComplaintPriority__c</name>
     <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <translation>Adresováno představenstvu ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Předžalobní výzva</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <translation>Adresováno dozorčí radě</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Jiné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>Podezření na podvod</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Adresováno ombudsmanovi ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>Hromádné podání advokátem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>Platební rozkaz</translation>
     </picklistValues>
 </CustomFieldTranslation>

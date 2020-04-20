@@ -4,10 +4,46 @@
     <name>ComplaintSolvingType__c</name>
     <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <translation>Náprava stavu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Předání k vyřízení jiné instituci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>Zamítnuto</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <translation>Finanční náhrada, např. Náhrada SP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Omluva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>Vysvětlení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Ústupek klientovi (obchodní rozhodnutí)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>Zrušení obchodu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>Změna poradce, opatření vůči smluvnímu partnerovi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>Prošetření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>Ostatní</translation>
     </picklistValues>
 </CustomFieldTranslation>

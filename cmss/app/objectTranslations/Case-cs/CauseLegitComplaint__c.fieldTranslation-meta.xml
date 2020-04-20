@@ -4,10 +4,26 @@
     <name>CauseLegitComplaint__c</name>
     <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <translation>Pochybení pracovníka ČMSS</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <translation>Pochybení smluvního partnera</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Pochybení Kooperačního partnera</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>Nastavení systému ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Ostatní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>Nesledováno</translation>
     </picklistValues>
 </CustomFieldTranslation>
