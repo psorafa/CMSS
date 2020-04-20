@@ -1,0 +1,639 @@
+[
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef1"
+		},
+		"Subject": "Zavolat klientovi ohledně nové nabídky",
+		"ActivityDate": "2020-06-20",
+		"Status": "Deferred",
+		"Priority": "Low",
+		"Description": "Zavolat klientovi ohledně nové nabídky",
+		"Type": "Call",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M94QAE"
+			},
+			"ExternalId__c": "00000018"
+		},
+		"IsClosed": false,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchuQAC"
+			},
+			"ExternalId__c": "220988322"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12377",
+		"Topic__c": "7"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef2"
+		},
+		"Subject": "Doplnit údaje na smlouvě",
+		"ActivityDate": "2020-06-19",
+		"Status": "Deferred",
+		"Priority": "Low",
+		"Description": "Doplnit údaje na smlouvě",
+		"Type": "Meeting",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlrQAE"
+			},
+			"ExternalId__c": "00000020"
+		},
+		"IsClosed": false,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchvQAC"
+			},
+			"ExternalId__c": "662685456"
+		},
+		"Author__c": "Centrála",
+		"Category__c": "1",
+		"ExternalId__c": "abc12378",
+		"Topic__c": "8"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef3"
+		},
+		"Subject": "Poslat klientovi nabídku",
+		"ActivityDate": "2020-06-18",
+		"Status": "Deferred",
+		"Priority": "Low",
+		"Description": "Poslat klientovi nabídku",
+		"Type": "Other",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlsQAE"
+			},
+			"ExternalId__c": "00000021"
+		},
+		"IsClosed": false,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchwQAC"
+			},
+			"ExternalId__c": "972277992"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12379",
+		"Topic__c": "9"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef4"
+		},
+		"Subject": "Zavolat klientovi ohledně nové nabídky",
+		"ActivityDate": "2020-04-18",
+		"Status": "Completed",
+		"Priority": "Normal",
+		"Description": "Zavolat klientovi ohledně nové nabídky",
+		"Type": "Call",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PluQAE"
+			},
+			"ExternalId__c": "00000023"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchyQAC"
+			},
+			"ExternalId__c": "115178823"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12380",
+		"Result__c": "1",
+		"Topic__c": "10"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef5"
+		},
+		"Subject": "Zavolat klientovi ohledně nové nabídky",
+		"ActivityDate": "2020-04-15",
+		"Status": "Completed",
+		"Priority": "Normal",
+		"Description": "Zavolat klientovi ohledně nové nabídky",
+		"Type": "Call",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t4h59QAA"
+			},
+			"ExternalId__c": "00000019"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchSQAS"
+			},
+			"ExternalId__c": "657629708"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12383",
+		"Result__c": "4",
+		"Topic__c": "13"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef6"
+		},
+		"Subject": "Zavolat klientovi ohledně nové nabídky",
+		"ActivityDate": "2020-04-14",
+		"Status": "Completed",
+		"Priority": "Normal",
+		"Description": "Zavolat klientovi ohledně nové nabídky",
+		"Type": "Call",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t4h5TQAQ"
+			},
+			"ExternalId__c": "00000001"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchTQAS"
+			},
+			"ExternalId__c": "482769817"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12384",
+		"Result__c": "5",
+		"Topic__c": "1"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef7"
+		},
+		"Subject": "Poslat klientovi nabídku",
+		"ActivityDate": "2020-04-13",
+		"Status": "Completed",
+		"Priority": "Normal",
+		"Description": "Poslat klientovi nabídku",
+		"Type": "Other",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8oQAE"
+			},
+			"ExternalId__c": "00000002"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchUQAS"
+			},
+			"ExternalId__c": "820827392"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12385",
+		"Result__c": "6",
+		"Topic__c": "2"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef8"
+		},
+		"Subject": "Poslat klientovi nabídku",
+		"ActivityDate": "2020-04-12",
+		"Status": "Completed",
+		"Priority": "Normal",
+		"Description": "Poslat klientovi nabídku",
+		"Type": "Other",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8pQAE"
+			},
+			"ExternalId__c": "00000003"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchVQAS"
+			},
+			"ExternalId__c": "565876297"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12386",
+		"Result__c": "7",
+		"Topic__c": "3"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef9"
+		},
+		"Subject": "Poslat klientovi nabídku",
+		"ActivityDate": "2020-04-11",
+		"Status": "Completed",
+		"Priority": "Normal",
+		"Description": "Poslat klientovi nabídku",
+		"Type": "Other",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8qQAE"
+			},
+			"ExternalId__c": "00000004"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchWQAS"
+			},
+			"ExternalId__c": "265871681"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12387",
+		"Result__c": "8",
+		"Topic__c": "4"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef10"
+		},
+		"Subject": "Poslat klientovi nabídku",
+		"ActivityDate": "2020-04-10",
+		"Status": "Completed",
+		"Priority": "High",
+		"Description": "Poslat klientovi nabídku",
+		"Type": "Other",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8rQAE"
+			},
+			"ExternalId__c": "00000005"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchXQAS"
+			},
+			"ExternalId__c": "154263723"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12388",
+		"Result__c": "9",
+		"Topic__c": "5"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef11"
+		},
+		"Subject": "Poslat klientovi nabídku",
+		"ActivityDate": "2020-04-09",
+		"Status": "Completed",
+		"Priority": "High",
+		"Description": "Poslat klientovi nabídku",
+		"Type": "Other",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8sQAE"
+			},
+			"ExternalId__c": "00000006"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchYQAS"
+			},
+			"ExternalId__c": "287298392"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12389",
+		"Result__c": "10",
+		"Topic__c": "6"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef12"
+		},
+		"Subject": "Poslat klientovi nabídku",
+		"ActivityDate": "2020-04-08",
+		"Status": "Completed",
+		"Priority": "High",
+		"Description": "Poslat klientovi nabídku",
+		"Type": "Other",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8tQAE"
+			},
+			"ExternalId__c": "00000007"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchZQAS"
+			},
+			"ExternalId__c": "232736729"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12390",
+		"Result__c": "11",
+		"Topic__c": "7"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef13"
+		},
+		"Subject": "Poslat klientovi nabídku",
+		"ActivityDate": "2020-04-07",
+		"Status": "Completed",
+		"Priority": "High",
+		"Description": "Poslat klientovi nabídku",
+		"Type": "Other",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8uQAE"
+			},
+			"ExternalId__c": "00000008"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchaQAC"
+			},
+			"ExternalId__c": "788882232"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12391",
+		"Result__c": "12",
+		"Topic__c": "8"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef14"
+		},
+		"Subject": "Zavolat klientovi ohledně nové nabídky",
+		"ActivityDate": "2020-04-06",
+		"Status": "Completed",
+		"Priority": "High",
+		"Description": "Zavolat klientovi ohledně nové nabídky",
+		"Type": "Call",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8vQAE"
+			},
+			"ExternalId__c": "00000009"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchbQAC"
+			},
+			"ExternalId__c": "263280209"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12392",
+		"Result__c": "13",
+		"Topic__c": "9"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef15"
+		},
+		"Subject": "Zavolat klientovi ohledně nové nabídky",
+		"ActivityDate": "2020-04-05",
+		"Status": "Completed",
+		"Priority": "High",
+		"Description": "Zavolat klientovi ohledně nové nabídky",
+		"Type": "Call",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8wQAE"
+			},
+			"ExternalId__c": "00000010"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchcQAC"
+			},
+			"ExternalId__c": "232908737"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12393",
+		"Result__c": "14",
+		"Topic__c": "10"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef16"
+		},
+		"Subject": "Zavolat klientovi ohledně nové nabídky",
+		"ActivityDate": "2020-04-04",
+		"Status": "Completed",
+		"Priority": "High",
+		"Description": "Zavolat klientovi ohledně nové nabídky",
+		"Type": "Call",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8xQAE"
+			},
+			"ExternalId__c": "00000011"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchdQAC"
+			},
+			"ExternalId__c": "999725572"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12394",
+		"Result__c": "15",
+		"Topic__c": "11"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef17"
+		},
+		"Subject": "Zavolat klientovi ohledně nové nabídky",
+		"ActivityDate": "2020-04-03",
+		"Status": "Completed",
+		"Priority": "Normal",
+		"Description": "Zavolat klientovi ohledně nové nabídky",
+		"Type": "Call",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8yQAE"
+			},
+			"ExternalId__c": "00000012"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RcheQAC"
+			},
+			"ExternalId__c": "222767932"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12395",
+		"Result__c": "16",
+		"Topic__c": "12"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef18"
+		},
+		"Subject": "Zavolat klientovi ohledně nové nabídky",
+		"ActivityDate": "2020-04-02",
+		"Status": "Completed",
+		"Priority": "Normal",
+		"Description": "Zavolat klientovi ohledně nové nabídky",
+		"Type": "Call",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8zQAE"
+			},
+			"ExternalId__c": "00000013"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchfQAC"
+			},
+			"ExternalId__c": "892000283"
+		},
+		"Author__c": "Regionální manažer",
+		"Category__c": "3",
+		"ExternalId__c": "abc12396",
+		"Result__c": "17",
+		"Topic__c": "13"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef19"
+		},
+		"Subject": "Doplnit údaje na smlouvě",
+		"ActivityDate": "2020-04-01",
+		"Status": "Completed",
+		"Priority": "Normal",
+		"Description": "Doplnit údaje na smlouvě",
+		"Type": "Meeting",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M90QAE"
+			},
+			"ExternalId__c": "00000014"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchgQAC"
+			},
+			"ExternalId__c": "213221332"
+		},
+		"Author__c": "Centrála",
+		"Category__c": "1",
+		"ExternalId__c": "abc12397",
+		"Result__c": "16",
+		"Topic__c": "1"
+	},
+	{
+		"attributes": {
+			"type": "Task",
+			"referenceId": "TaskRef20"
+		},
+		"Subject": "Doplnit údaje na smlouvě",
+		"ActivityDate": "2020-03-31",
+		"Status": "Completed",
+		"Priority": "Normal",
+		"Description": "Doplnit údaje na smlouvě",
+		"Type": "Meeting",
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PltQAE"
+			},
+			"ExternalId__c": "00000022"
+		},
+		"IsClosed": true,
+		"Asset__r": {
+			"attributes": {
+				"type": "Asset",
+				"url": "/services/data/v48.0/sobjects/Asset/02i5E000003RchxQAC"
+			},
+			"ExternalId__c": "222718771"
+		},
+		"Author__c": "Centrála",
+		"Category__c": "1",
+		"ExternalId__c": "abc12398",
+		"Result__c": "17",
+		"Topic__c": "2"
+	}
+]
