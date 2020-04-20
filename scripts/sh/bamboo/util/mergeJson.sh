@@ -9,4 +9,5 @@ TMP_PATH=${4}
 scriptString=$(<"$SCRIPT_PATH")
 jsonData=$(grep "" "$JSON_PATH" | awk '{print}' ORS='')
 
-echo ${scriptString/"$MARKER"/$jsonData} > "$TMP_PATH"
+mergedString=${scriptString/"$MARKER"/$jsonData}
+echo "$mergedString" > "$TMP_PATH"
