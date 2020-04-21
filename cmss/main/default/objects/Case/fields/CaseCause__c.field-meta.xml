@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>DetailComplaintPriority__c</fullName>
-    <description>Upřesnění komu je klientské podání adresováno.</description>
+    <fullName>CaseCause__c</fullName>
+    <description>Příčiny</description>
     <externalId>false</externalId>
-    <label>Detail Complaint Priority</label>
+    <label>Case Cause</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Picklist</type>
+    <type>MultiselectPicklist</type>
     <valueSet>
         <valueSetDefinition>
             <sorted>false</sorted>
@@ -38,6 +38,21 @@
                 <label>5</label>
             </value>
             <value>
+                <fullName>6</fullName>
+                <default>false</default>
+                <label>6</label>
+            </value>
+            <value>
+                <fullName>7</fullName>
+                <default>false</default>
+                <label>7</label>
+            </value>
+            <value>
+                <fullName>8</fullName>
+                <default>false</default>
+                <label>8</label>
+            </value>
+            <value>
                 <fullName>9</fullName>
                 <default>false</default>
                 <label>9</label>
@@ -47,6 +62,27 @@
                 <default>false</default>
                 <label>10</label>
             </value>
+            <value>
+                <fullName>11</fullName>
+                <default>false</default>
+                <label>11</label>
+            </value>
+            <value>
+                <fullName>12</fullName>
+                <default>false</default>
+                <label>12</label>
+            </value>
+            <value>
+                <fullName>13</fullName>
+                <default>false</default>
+                <label>13</label>
+            </value>
+            <value>
+                <fullName>14</fullName>
+                <default>false</default>
+                <label>14</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
+    <visibleLines>4</visibleLines>
 </CustomField>
