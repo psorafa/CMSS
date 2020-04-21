@@ -1575,11 +1575,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.CaseNumber</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.HistoricCaseNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
