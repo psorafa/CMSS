@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Příčina</label>
+    <name>CaseCause__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>kvalita poradenctví, přístup ke klientovi, poskytnuté informace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>zpochybnění platnosti (nepodepsal smlouvu nebo je podepsala 3.osoba)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>ztráta nebo nedoručení pošty</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12</masterLabel>
+        <translation>konec fixace (ve vazbě na úrokovou sazbu)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13</masterLabel>
+        <translation>zvýšení úrokové sazby - nedospořování</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14</masterLabel>
+        <translation>zvýšení úrokové sazby - CS produkty</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>neprovedený úkon</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>nerealizované financování (neposkytnutý MÚ)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>nevhodná výše CČ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>nezískání výhody (např. DIMA akce)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>podmínky VOP, postupy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>postup v rozporu s pokyny ne MP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>rychlost vyřízení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>úkon proveden chybně</translation>
+    </picklistValues>
+</CustomFieldTranslation>
