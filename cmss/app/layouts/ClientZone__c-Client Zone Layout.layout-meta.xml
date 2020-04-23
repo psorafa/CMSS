@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
@@ -26,7 +26,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Role__c</field>
+                <field>Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ContractStatus__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -41,6 +45,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Role__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -107,9 +115,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns />
-        <layoutColumns />
-        <layoutColumns />
+        <layoutColumns/>
+        <layoutColumns/>
+        <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
     <miniLayout>
@@ -128,14 +136,14 @@
             <sortOrder>0</sortOrder>
         </platformActionListItems>
     </platformActionList>
-    <quickActionList />
+    <quickActionList/>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3N000000ukea</masterLabel>
+        <masterLabel>00h3N000000UPLE</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>2</sizeY>
         <summaryLayoutItems>
@@ -157,6 +165,21 @@
             <field>Email__c</field>
             <posX>1</posX>
             <posY>1</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>Role__c</field>
+            <posX>2</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>ContractStatus__c</field>
+            <posX>2</posX>
+            <posY>1</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>Status__c</field>
+            <posX>3</posX>
+            <posY>0</posY>
         </summaryLayoutItems>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
     </summaryLayout>

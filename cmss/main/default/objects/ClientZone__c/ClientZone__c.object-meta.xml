@@ -156,7 +156,7 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Client Zone</label>
     <nameField>
-        <displayFormat>CZ-{000000}</displayFormat>
+        <displayFormat>{0000000}</displayFormat>
         <label>Client Zone Name</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
