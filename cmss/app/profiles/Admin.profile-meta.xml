@@ -2140,6 +2140,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>LoanCaseDoc__c.Text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>LoanSurchargeDiscount__c.Asset__c</field>
         <readable>true</readable>
     </fieldPermissions>

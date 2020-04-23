@@ -61,5 +61,12 @@
         <value><!-- Loan Case Doc --></value>
     </caseValues>
     <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Loan Case Doc Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel><!-- LoanCaseDocs Name --></nameFieldLabel>
 </CustomObjectTranslation>
