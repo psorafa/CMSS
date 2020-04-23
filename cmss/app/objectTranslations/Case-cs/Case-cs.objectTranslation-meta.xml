@@ -61,12 +61,55 @@
         <value>Klientských podáních</value>
     </caseValues>
     <gender>Neuter</gender>
+    <layouts>
+        <layout>Case Feed Layout</layout>
+        <layoutType>CaseInteraction</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Case Layout</layout>
+        <sections>
+            <label><!-- Complain about --></label>
+            <section>Complain about</section>
+        </sections>
+        <sections>
+            <label><!-- Complainer --></label>
+            <section>Complainer</section>
+        </sections>
+        <sections>
+            <label><!-- Solution --></label>
+            <section>Solution</section>
+        </sections>
+    </layouts>
     <quickActions>
-        <label>            <!-- NewChildCase --></label>
+        <label><!-- NewChildCase --></label>
         <name>NewChildCase</name>
     </quickActions>
     <quickActions>
-        <label>            <!-- SendEmail --></label>
+        <label><!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
+    <validationRules>
+        <errorMessage>Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <name>ComplaintReceivingConfirmDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pokud Interní opatření = Ano, vyplňte Komentář k internímu opatření</errorMessage>
+        <name>IfInternalPrecautionTrueNoteMustBeFilled</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pokud Interní opatření = Ano, vyberte hodnota z pole Druhy interního opatření</errorMessage>
+        <name>IfInternalPrecautionTrueTypeMustBePicked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Příchod nesmí být zadán do budoucnosti.</errorMessage>
+        <name>ReceivedDateInFuture</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Odeslání odpovědi na podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <name>ResponseSentDate</name>
+    </validationRules>
 </CustomObjectTranslation>
