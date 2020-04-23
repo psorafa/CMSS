@@ -378,15 +378,6 @@
         </relatedContentItems>
     </relatedContent>
     <relatedLists>
-        <fields>MILESTONETYPE.MILESTONE</fields>
-        <fields>CASEMILESTONE.TARGET_DATE</fields>
-        <fields>CASEMILESTONE.COMPLETION_DATE</fields>
-        <fields>CASEMILESTONE.TIME_REMAIN_MINS</fields>
-        <fields>CASEMILESTONE.IS_VIOLATED_IN</fields>
-        <fields>CASEMILESTONE.IS_COMPLETED_IN</fields>
-        <relatedList>RelatedCaseMilestoneList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>SOLUTION.ISSUE</fields>
         <fields>SOLUTION.SOLUTION_NUMBER</fields>
         <fields>SOLUTION.STATUS</fields>

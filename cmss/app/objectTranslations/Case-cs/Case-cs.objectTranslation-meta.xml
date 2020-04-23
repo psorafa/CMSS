@@ -65,31 +65,31 @@
         <layout>Case Feed Layout</layout>
         <layoutType>CaseInteraction</layoutType>
         <sections>
-            <label><!-- Fields --></label>
+            <label>Fields</label>
             <section>Fields</section>
         </sections>
     </layouts>
     <layouts>
         <layout>Case Layout</layout>
         <sections>
-            <label><!-- Complain about --></label>
+            <label>Complain about</label>
             <section>Complain about</section>
         </sections>
         <sections>
-            <label><!-- Complainer --></label>
+            <label>Complainer</label>
             <section>Complainer</section>
         </sections>
         <sections>
-            <label><!-- Solution --></label>
+            <label>Solutio</label>
             <section>Solution</section>
         </sections>
     </layouts>
     <quickActions>
-        <label><!-- NewChildCase --></label>
+        <label>            <!-- NewChildCase --></label>
         <name>NewChildCase</name>
     </quickActions>
     <quickActions>
-        <label><!-- SendEmail --></label>
+        <label>            <!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
     <validationRules>
