@@ -1279,6 +1279,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.HistoricCaseNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Case.InternalPrecaution__c</field>
         <readable>true</readable>
@@ -1301,11 +1306,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.ThirtyDayPeriodOverReason__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.HistoricCaseNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
