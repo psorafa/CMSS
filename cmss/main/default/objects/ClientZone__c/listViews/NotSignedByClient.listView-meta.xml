@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NotSignedByClient</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Username__c</columns>
+    <columns>VerificationPhone__c</columns>
+    <columns>Email__c</columns>
+    <columns>Role__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CancellationDate__c</columns>
+    <columns>ClosedBy__c</columns>
+    <columns>SignatureDate__c</columns>
+    <columns>AgreementDate__c</columns>
+    <columns>Status__c</columns>
+    <columns>ContractStatus__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ContractStatus__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Role__c</field>
+        <operation>equals</operation>
+        <value>6</value>
+    </filters>
+    <label>Nepodepsané KZ - Klient</label>
+</ListView>

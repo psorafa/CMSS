@@ -2259,6 +2259,9 @@
         <layout>Case-Case Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>ClientZone__c-Client Zone Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CommunityMemberLayout-Community Member Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2485,6 +2488,10 @@
     <tabVisibilities>
         <tab>ClientIdentification</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>ClientZone__c</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>ContactInformation__c</tab>
