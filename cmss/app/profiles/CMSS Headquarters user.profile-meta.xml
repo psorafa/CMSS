@@ -15,27 +15,27 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CustomerSearchController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CustomerSearchController_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>FlowHelperPicklist</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>FlowHelperPicklistTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>RecordTypeUtils</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>RecordTypeUtils_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <custom>true</custom>
     <fieldPermissions>
@@ -471,7 +471,7 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.ContractPrint__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -729,7 +729,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Asset.Product2ExternalID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1071,7 +1071,7 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>AssetRelationship.ContractOrder__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1086,7 +1086,7 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>AssetRelationship.IsReleased__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1209,7 +1209,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CampaignMember__c.Product__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1279,7 +1279,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Case.HistoricCaseNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1481,7 +1481,7 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ContactInformation__c.Lead__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1921,7 +1921,7 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.OriginalAsset__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1934,7 +1934,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Opportunity.ProductType__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1979,7 +1979,7 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Product2.ProductType__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2487,7 +2487,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>ClientIdentification</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>ClientZone__c</tab>
