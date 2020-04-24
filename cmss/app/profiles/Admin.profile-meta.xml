@@ -1574,11 +1574,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.HistoricCaseNumber__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Case.AccountingFundsType__c</field>
         <readable>true</readable>
@@ -1644,6 +1639,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.HistoricCaseNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Case.InternalPrecaution__c</field>
         <readable>true</readable>
@@ -1665,7 +1665,72 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.ThirtyDayPeriodOverReason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.AgreementDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.CancellationDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.ClosedBy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.ContractStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ClientZone__c.Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.IsAccessRestricted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.NumberOfAnnexes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.Role__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.SignatureDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.Username__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.VerificationPhone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2639,308 +2704,305 @@
         <layout>Case-Case Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <<<<<<< HEAD
         <layout>ClientZone__c-Client Zone Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-=======
->>>>>>> parent of fc9d660... Profiles - Admin, CMSS Headquarters
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>ContactInformation__c-Contact Information Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-<layout>Event-Event Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-<layout>FinancialOperation__c-Financial Operation Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-<layout>LoanAssurance__c-Loan Assurance Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-<layout>LoanCaseDoc__c-Loan Case Doc Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-<layout>LoanSurchargeDiscount__c-Loan Surcharge Discount Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-<layout>Opportunity-Opportunity Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-<layout>Opportunity-Opportunity Layout Editable</layout>
-<recordType>Opportunity.Editable</recordType>
-</layoutAssignments>
-<layoutAssignments>
-<layout>Opportunity-Opportunity Layout Not Editable</layout>
-<recordType>Opportunity.NotEditable</recordType>
-</layoutAssignments>
-<layoutAssignments>
-<layout>PersonAccount-Person Account Layout</layout>
-<recordType>PersonAccount.PersonAccount</recordType>
-</layoutAssignments>
-<layoutAssignments>
-<layout>PicklistValue__c-Picklist Value Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-<layout>Product2-Product Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-<layout>Task-Task Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-<layout>User-User Layout</layout>
-</layoutAssignments>
-<layoutAssignments>
-<layout>UserAlt-User Profile Layout</layout>
-</layoutAssignments>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>Account</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>AccountRelation__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>Asset</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>AssetAccountRelation__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>AssetChange__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>AssetDIMA__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>Campaign</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>CampaignContentInfo__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>CampaignMember__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>ClientZone__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>Consent__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>ContactInformation__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>FinancialOperation__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>Lead</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>LoanAssurance__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>LoanCaseDoc__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>LoanSurchargeDiscount__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>Opportunity</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>PicklistValue__c</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<objectPermissions>
-<allowCreate>true</allowCreate>
-<allowDelete>true</allowDelete>
-<allowEdit>true</allowEdit>
-<allowRead>true</allowRead>
-<modifyAllRecords>true</modifyAllRecords>
-<object>Product2</object>
-<viewAllRecords>true</viewAllRecords>
-</objectPermissions>
-<recordTypeVisibilities>
-<default>true</default>
-<personAccountDefault>true</personAccountDefault>
-<recordType>Account.Business_Account</recordType>
-<visible>true</visible>
-</recordTypeVisibilities>
-<recordTypeVisibilities>
-<default>true</default>
-<recordType>Opportunity.Editable</recordType>
-<visible>true</visible>
-</recordTypeVisibilities>
-<recordTypeVisibilities>
-<default>false</default>
-<recordType>Opportunity.NotEditable</recordType>
-<visible>true</visible>
-</recordTypeVisibilities>
-<recordTypeVisibilities>
-<default>true</default>
-<personAccountDefault>true</personAccountDefault>
-<recordType>PersonAccount.PersonAccount</recordType>
-<visible>true</visible>
-</recordTypeVisibilities>
-<tabVisibilities>
-<tab>CampaignMember__c</tab>
-<visibility>Hidden</visibility>
-</tabVisibilities>
-<tabVisibilities>
-<tab>ClientIdentification</tab>
-<visibility>DefaultOn</visibility>
-</tabVisibilities>
-<tabVisibilities>
-<tab>ClientZone__c</tab>
-<visibility>DefaultOn</visibility>
-</tabVisibilities>
-<tabVisibilities>
-<tab>ContactInformation__c</tab>
-<visibility>DefaultOn</visibility>
-</tabVisibilities>
-<tabVisibilities>
-<tab>PicklistValue__c</tab>
-<visibility>Hidden</visibility>
-</tabVisibilities>
-<tabVisibilities>
-<tab>standard-Account</tab>
-<visibility>DefaultOn</visibility>
-</tabVisibilities>
-<tabVisibilities>
-<tab>standard-Asset</tab>
-<visibility>DefaultOn</visibility>
-</tabVisibilities>
-<tabVisibilities>
-<tab>standard-Campaign</tab>
-<visibility>DefaultOn</visibility>
-</tabVisibilities>
-<tabVisibilities>
-<tab>standard-Lead</tab>
-<visibility>DefaultOn</visibility>
-</tabVisibilities>
-<tabVisibilities>
-<tab>standard-Opportunity</tab>
-<visibility>DefaultOn</visibility>
-</tabVisibilities>
-<tabVisibilities>
-<tab>standard-Product2</tab>
-<visibility>DefaultOn</visibility>
-</tabVisibilities>
-<tabVisibilities>
-<tab>standard-Task</tab>
-<visibility>DefaultOn</visibility>
-</tabVisibilities>
-<userLicense>Salesforce</userLicense>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Event-Event Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FinancialOperation__c-Financial Operation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LoanAssurance__c-Loan Assurance Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LoanCaseDoc__c-Loan Case Doc Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LoanSurchargeDiscount__c-Loan Surcharge Discount Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Opportunity Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Opportunity Layout Editable</layout>
+        <recordType>Opportunity.Editable</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Opportunity Layout Not Editable</layout>
+        <recordType>Opportunity.NotEditable</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PersonAccount-Person Account Layout</layout>
+        <recordType>PersonAccount.PersonAccount</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PicklistValue__c-Picklist Value Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product2-Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>User-User Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UserAlt-User Profile Layout</layout>
+    </layoutAssignments>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Account</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>AccountRelation__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Asset</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>AssetAccountRelation__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>AssetChange__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>AssetDIMA__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Campaign</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>CampaignContentInfo__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>CampaignMember__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>ClientZone__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Consent__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>ContactInformation__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>FinancialOperation__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Lead</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>LoanAssurance__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>LoanCaseDoc__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>LoanSurchargeDiscount__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Opportunity</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>PicklistValue__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Product2</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType>Account.Business_Account</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Opportunity.Editable</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.NotEditable</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <tabVisibilities>
+        <tab>CampaignMember__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>ClientIdentification</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>ClientZone__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>ContactInformation__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>PicklistValue__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Account</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Asset</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Campaign</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Lead</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Opportunity</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Product2</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Task</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <userLicense>Salesforce</userLicense>
 </Profile>
