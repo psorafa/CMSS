@@ -1388,11 +1388,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.IsStopped</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.IsVisibleInCss</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1422,11 +1417,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.ProductId</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Case.Reason</field>
         <readable>true</readable>
@@ -1445,16 +1435,6 @@
         <editable>true</editable>
         <field>Case.ResponseSent__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.SlaExitDate</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.SlaStartDate</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1492,8 +1472,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.SuppliedPhone</field>
         <editable>true</editable>
         <field>ClientZone__c.AgreementDate__c</field>
         <readable>true</readable>
@@ -1550,13 +1528,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.ThirtyDayPeriodOverReason__c</field>
         <field>ClientZone__c.Username__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.Type</field>
         <field>ClientZone__c.VerificationPhone__c</field>
         <readable>true</readable>
     </fieldPermissions>
