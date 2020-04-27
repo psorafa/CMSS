@@ -3,63 +3,70 @@
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>false</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změna smlouvy</value>
     </caseValues>
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>true</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změny smlouvy</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>false</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změnu smlouvy</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>true</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změny smlouvy</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>false</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změny smlouvy</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>true</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změn smlouvy</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>false</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změně smlouvy</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>true</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změnách smlouvy</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>false</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změnou smlouvy</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>true</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změnami smlouvy</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>false</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změně smlouvy</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>true</plural>
-        <value><!-- Asset Change --></value>
+        <value>Změnách smlouvy</value>
     </caseValues>
-    <gender><!-- Neuter --></gender>
-    <nameFieldLabel><!-- AssetChange Name --></nameFieldLabel>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>AssetChange Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Změna smlouvy</nameFieldLabel>
 </CustomObjectTranslation>
