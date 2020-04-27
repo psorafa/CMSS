@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IfInternalPrecautionTrueNoteMustBeFilled</fullName>
+    <active>true</active>
+    <description>If Internal Precaution is &quot;Yes&quot;, Precaution Note must be filled.</description>
+    <errorConditionFormula>ISPICKVAL(InternalPrecaution__c, &quot;Yes&quot;) &amp;&amp; ISBLANK(PrecautionNote__c)</errorConditionFormula>
+    <errorDisplayField>PrecautionNote__c</errorDisplayField>
+    <errorMessage>If Internal Precaution is &quot;Yes&quot;, Precaution Note must be filled.</errorMessage>
+</ValidationRule>
