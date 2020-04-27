@@ -16,7 +16,7 @@ fi
 exec > >(tee -a ${LOG_FILE} )
 exec 2> >(tee -a ${LOG_FILE} >&2)
 
-if [ -f SUCCESS_FILE ];
+if [ -f $SUCCESS_FILE ];
 then
     rm ${SUCCESS_FILE}
 fi
