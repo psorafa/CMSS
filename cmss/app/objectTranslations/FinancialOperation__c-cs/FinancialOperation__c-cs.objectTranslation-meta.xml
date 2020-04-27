@@ -3,63 +3,70 @@
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>false</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obrat na smlouvě</value>
     </caseValues>
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>true</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obraty na smlouvě</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>false</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obrat na smlouvě</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>true</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obraty na smlouvě</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>false</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obratu na smlouvě</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>true</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obratů na smlouvě</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>false</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obratu na smlouvě</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>true</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obratům na smlouvě</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>false</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obratem na smlouvě</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>true</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obraty na smlouvě</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>false</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obratu na smlouvě</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>true</plural>
-        <value><!-- Financial Operation --></value>
+        <value>Obratech na smlouvě</value>
     </caseValues>
-    <gender><!-- Neuter --></gender>
-    <nameFieldLabel><!-- FinancialOperation Name --></nameFieldLabel>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>Financial Operation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Obrat na smlouvě</nameFieldLabel>
 </CustomObjectTranslation>
