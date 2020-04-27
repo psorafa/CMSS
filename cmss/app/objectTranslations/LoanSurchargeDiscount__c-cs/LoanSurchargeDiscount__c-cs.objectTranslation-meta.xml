@@ -3,63 +3,70 @@
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>false</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážka a sleva</value>
     </caseValues>
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>true</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážky a slevy</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>false</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážku a slevu</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>true</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážky a slevy</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>false</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážky a slevy</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>true</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážek a slev</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>false</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážce a slevě</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>true</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážkám a slevám</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>false</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážkou a slevou</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>true</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážkami a slevami</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>false</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážce a slevě</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>true</plural>
-        <value><!-- Loan Surcharge Discount --></value>
+        <value>Přirážkách a slevách</value>
     </caseValues>
-    <gender><!-- Neuter --></gender>
-    <nameFieldLabel><!-- Loan Surcharge Discount Name --></nameFieldLabel>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>Loan Surcharge Discount Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Přirážka a sleva</nameFieldLabel>
 </CustomObjectTranslation>
