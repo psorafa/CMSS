@@ -512,7 +512,6 @@
         <fields>CREATED_DATE</fields>
         <fields>CancellationDate__c</fields>
         <fields>Status__c</fields>
-        <fields>ContractStatus__c</fields>
         <relatedList>ClientZone__c.Account__c</relatedList>
         <sortField>NAME</sortField>
         <sortOrder>Desc</sortOrder>
