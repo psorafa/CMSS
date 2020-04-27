@@ -414,6 +414,8 @@
         <fields>VerificationPhone__c</fields>
         <fields>Email__c</fields>
         <fields>Role__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>CancellationDate__c</fields>
         <fields>Status__c</fields>
         <fields>ContractStatus__c</fields>
         <relatedList>ClientZone__c.Account__c</relatedList>
@@ -427,7 +429,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3N000000whWl</masterLabel>
+        <masterLabel>00h3N000000yDQD</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
