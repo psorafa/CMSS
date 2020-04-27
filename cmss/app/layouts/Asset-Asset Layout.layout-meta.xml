@@ -207,11 +207,6 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>FeedItem.TextPost</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>0</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>FeedItem.ContentPost</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>1</sortOrder>
@@ -220,6 +215,11 @@
             <actionName>Edit</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>2</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>FeedItem.TextPost</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>ViewAssetHierarchy</actionName>
@@ -279,13 +279,73 @@
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>ChangeType__c</fields>
+        <fields>ChangeCreationDate__c</fields>
+        <fields>ChangeClosureDate__c</fields>
+        <fields>NewContractConditions__c</fields>
+        <relatedList>AssetChange__c.Asset__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>DimaCode__c</fields>
+        <fields>DimaName__c</fields>
+        <fields>BenefitValue__c</fields>
+        <fields>ValidFrom__c</fields>
+        <fields>ValidTo__c</fields>
+        <relatedList>AssetDIMA__c.Asset__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>OperationName__c</fields>
+        <fields>OperationDate__c</fields>
+        <fields>OperationAmount__c</fields>
+        <fields>SenderRecipientName__c</fields>
+        <relatedList>FinancialOperation__c.Asset__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Group__c</fields>
+        <fields>Number__c</fields>
+        <fields>Phase__c</fields>
+        <fields>Status__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>DueDate__c</fields>
+        <relatedList>LoanCaseDoc__c.Asset__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Reinsurance_Type__c</fields>
+        <fields>Assurance_Subtype__c</fields>
+        <fields>AssuranceValue__c</fields>
+        <fields>ValidFrom__c</fields>
+        <fields>ValidTo__c</fields>
+        <relatedList>LoanAssurance__c.Asset__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>CsProductNumber__c</fields>
+        <fields>LoanCaseId__c</fields>
+        <fields>SurchargeDiscountName__c</fields>
+        <fields>SurchrgDiscountAmount__c</fields>
+        <fields>ValidFrom__c</fields>
+        <fields>ValidTo__c</fields>
+        <relatedList>LoanSurchargeDiscount__c.Asset__c</relatedList>
+    </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1X0000014SY2</masterLabel>
+        <masterLabel>00h3N000000wJhj</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>2</sizeY>
         <summaryLayoutItems>
