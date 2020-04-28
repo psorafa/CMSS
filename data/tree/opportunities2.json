@@ -1,0 +1,860 @@
+[
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef1"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlsQAE"
+			},
+			"ExternalId__c": "00000021"
+		},
+		"Name": "Enygma, a.s. Vlastní obchodní příležitost",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-07",
+		"ExternalId__c": "Opp000031",
+		"Reason__c": "2",
+		"Category__c": "Own Opportunity",
+		"CustomText__c": "Vlastní obchodní příležitost",
+		"DueDate__c": "2020-03-21",
+		"OfferNumber__c": 111151,
+		"OfferType__c": "ePrescore",
+		"OrderNumber__c": 555551,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef2"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PltQAE"
+			},
+			"ExternalId__c": "00000022"
+		},
+		"Name": "Sportisimo Příležitost z retence",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-09",
+		"ExternalId__c": "Opp000032",
+		"Reason__c": "2",
+		"Author__c": "Manažer",
+		"Category__c": "Retention",
+		"CustomText__c": "Příležitost z retence",
+		"DueDate__c": "2020-03-23",
+		"OfferNumber__c": 111152,
+		"OfferType__c": "ePrescore",
+		"OrderNumber__c": 555552,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef3"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PluQAE"
+			},
+			"ExternalId__c": "00000023"
+		},
+		"Name": "Filantropie, s.r.o. CMSS zvýhodněné produkty Příležitost z kampaně",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-11",
+		"ExternalId__c": "Opp000033",
+		"Reason__c": "2",
+		"Author__c": "Manažer",
+		"Category__c": "Campaign",
+		"CustomText__c": "Příležitost z kampaně",
+		"DueDate__c": "2020-03-25",
+		"OfferNumber__c": 111153,
+		"OfferType__c": "ePrescore",
+		"OrderNumber__c": 555553,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef4"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlvQAE"
+			},
+			"ExternalId__c": "00000024"
+		},
+		"Name": "Plyšoví Medvídci, a.s. Příležitost z impulsu",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-13",
+		"ExternalId__c": "Opp000034",
+		"Reason__c": "2",
+		"Author__c": "Manažer",
+		"Category__c": "Impuls",
+		"CustomText__c": "Příležitost z impulsu",
+		"DueDate__c": "2020-03-27",
+		"OfferNumber__c": 111154,
+		"OfferType__c": "ePrescore",
+		"OrderNumber__c": 555554,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef5"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlwQAE"
+			},
+			"ExternalId__c": "00000025"
+		},
+		"Name": "Vláďovo Pečivo, a.s. Vlastní obchodní příležitost",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-15",
+		"ExternalId__c": "Opp000035",
+		"Reason__c": "2",
+		"Category__c": "Own Opportunity",
+		"CustomText__c": "Vlastní obchodní příležitost",
+		"DueDate__c": "2020-03-29",
+		"OfferNumber__c": 111155,
+		"OfferType__c": "ePrescore",
+		"OrderNumber__c": 555555,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef6"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlxQAE"
+			},
+			"ExternalId__c": "00000026"
+		},
+		"Name": "Kola, s.r.o. Příležitost z retence",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-17",
+		"ExternalId__c": "Opp000036",
+		"Reason__c": "2",
+		"Author__c": "Manažer",
+		"Category__c": "Retention",
+		"CustomText__c": "Příležitost z retence",
+		"DueDate__c": "2020-03-31",
+		"OfferNumber__c": 111156,
+		"OfferType__c": "ePrescore",
+		"OrderNumber__c": 555556,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef7"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5PlyQAE"
+			},
+			"ExternalId__c": "00000027"
+		},
+		"Name": "Francouzské Bistro, s.r.o. CMSS zvýhodněné produkty Příležitost z kampaně",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-19",
+		"ExternalId__c": "Opp000037",
+		"Reason__c": "2",
+		"Author__c": "Manažer",
+		"Category__c": "Campaign",
+		"CustomText__c": "Příležitost z kampaně",
+		"DueDate__c": "2020-04-02",
+		"OfferNumber__c": 111157,
+		"OfferType__c": "ePrescore",
+		"OrderNumber__c": 555557,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef8"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8oQAE"
+			},
+			"ExternalId__c": "00000002"
+		},
+		"Name": "Pešek Příležitost z impulsu",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-21",
+		"ExternalId__c": "Opp000038",
+		"Reason__c": "2",
+		"Author__c": "Manažer",
+		"Category__c": "Impuls",
+		"CustomText__c": "Příležitost z impulsu",
+		"DueDate__c": "2020-04-04",
+		"OfferNumber__c": 111158,
+		"OfferType__c": "ePrescore",
+		"OrderNumber__c": 555558,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef9"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8pQAE"
+			},
+			"ExternalId__c": "00000003"
+		},
+		"Name": "Poutník Vlastní obchodní příležitost",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-23",
+		"ExternalId__c": "Opp000039",
+		"Reason__c": "15",
+		"Category__c": "Own Opportunity",
+		"CustomText__c": "Vlastní obchodní příležitost",
+		"DueDate__c": "2020-04-06",
+		"OfferNumber__c": 111159,
+		"OfferType__c": "ePrescore",
+		"OrderNumber__c": 555559,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef10"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8qQAE"
+			},
+			"ExternalId__c": "00000004"
+		},
+		"Name": "Fiala Příležitost z retence",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-25",
+		"ExternalId__c": "Opp000040",
+		"Reason__c": "15",
+		"Author__c": "Manažer",
+		"Category__c": "Retention",
+		"CustomText__c": "Příležitost z retence",
+		"DueDate__c": "2020-04-08",
+		"OfferNumber__c": 111160,
+		"OfferType__c": "Běžný účet",
+		"OrderNumber__c": 555560,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef11"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8rQAE"
+			},
+			"ExternalId__c": "00000005"
+		},
+		"Name": "Soukeník CMSS zvýhodněné produkty Příležitost z kampaně",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-27",
+		"ExternalId__c": "Opp000041",
+		"Reason__c": "15",
+		"Author__c": "Manažer",
+		"Category__c": "Campaign",
+		"CustomText__c": "Příležitost z kampaně",
+		"DueDate__c": "2020-04-10",
+		"OfferNumber__c": 111161,
+		"OfferType__c": "Běžný účet",
+		"OrderNumber__c": 555561,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef12"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8sQAE"
+			},
+			"ExternalId__c": "00000006"
+		},
+		"Name": "Novotný Příležitost z impulsu",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-29",
+		"ExternalId__c": "Opp000042",
+		"Reason__c": "15",
+		"Author__c": "Manažer",
+		"Category__c": "Impuls",
+		"CustomText__c": "Příležitost z impulsu",
+		"DueDate__c": "2020-04-12",
+		"OfferNumber__c": 111162,
+		"OfferType__c": "Běžný účet",
+		"OrderNumber__c": 555562,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef13"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8tQAE"
+			},
+			"ExternalId__c": "00000007"
+		},
+		"Name": "Novák Vlastní obchodní příležitost",
+		"Description": "Má zájem o stavební spoření",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-02-29",
+		"ExternalId__c": "Opp000043",
+		"Reason__c": "15",
+		"Category__c": "Own Opportunity",
+		"CustomText__c": "Vlastní obchodní příležitost",
+		"DueDate__c": "2020-03-14",
+		"OfferNumber__c": 111163,
+		"OfferType__c": "Běžný účet",
+		"OrderNumber__c": 555563,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY4QAK"
+			},
+			"ExternalId": "0000002"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef14"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8uQAE"
+			},
+			"ExternalId__c": "00000008"
+		},
+		"Name": "Petříček Příležitost z retence",
+		"Description": "Má zájem o úvěr",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-02",
+		"ExternalId__c": "Opp000044",
+		"Reason__c": "15",
+		"Author__c": "Manažer",
+		"Category__c": "Retention",
+		"CustomText__c": "Příležitost z retence",
+		"DueDate__c": "2020-03-16",
+		"OfferNumber__c": 111164,
+		"OfferType__c": "eÚvěry",
+		"OrderNumber__c": 555564,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef15"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8vQAE"
+			},
+			"ExternalId__c": "00000009"
+		},
+		"Name": "Soukup CMSS zvýhodněné produkty Příležitost z kampaně",
+		"Description": "Má zájem o úvěr",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-04",
+		"ExternalId__c": "Opp000045",
+		"Reason__c": "15",
+		"Author__c": "Manažer",
+		"Category__c": "Campaign",
+		"CustomText__c": "Příležitost z kampaně",
+		"DueDate__c": "2020-03-18",
+		"OfferNumber__c": 111165,
+		"OfferType__c": "eÚvěry",
+		"OrderNumber__c": 555565,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef16"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8wQAE"
+			},
+			"ExternalId__c": "00000010"
+		},
+		"Name": "Blažek Příležitost z impulsu",
+		"Description": "Má zájem o úvěr",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-06",
+		"ExternalId__c": "Opp000046",
+		"Reason__c": "15",
+		"Author__c": "Manažer",
+		"Category__c": "Impuls",
+		"CustomText__c": "Příležitost z impulsu",
+		"DueDate__c": "2020-03-20",
+		"OfferNumber__c": 111166,
+		"OfferType__c": "eÚvěry",
+		"OrderNumber__c": 555566,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef17"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8xQAE"
+			},
+			"ExternalId__c": "00000011"
+		},
+		"Name": "Kolomazníková Vlastní obchodní příležitost",
+		"Description": "Má zájem o úvěr",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-08",
+		"ExternalId__c": "Opp000047",
+		"Reason__c": "15",
+		"Category__c": "Own Opportunity",
+		"CustomText__c": "Vlastní obchodní příležitost",
+		"DueDate__c": "2020-03-22",
+		"OfferNumber__c": 111167,
+		"OfferType__c": "eÚvěry",
+		"OrderNumber__c": 555567,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef18"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8yQAE"
+			},
+			"ExternalId__c": "00000012"
+		},
+		"Name": "Ztracená Příležitost z retence",
+		"Description": "Má zájem o úvěr",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-10",
+		"ExternalId__c": "Opp000048",
+		"Reason__c": "15",
+		"Author__c": "Manažer",
+		"Category__c": "Retention",
+		"CustomText__c": "Příležitost z retence",
+		"DueDate__c": "2020-03-24",
+		"OfferNumber__c": 111168,
+		"OfferType__c": "eÚvěry",
+		"OrderNumber__c": 555568,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef19"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M8zQAE"
+			},
+			"ExternalId__c": "00000013"
+		},
+		"Name": "Nová CMSS zvýhodněné produkty Příležitost z kampaně",
+		"Description": "Má zájem o úvěr",
+		"StageName": "7",
+		"Amount": 2500000,
+		"Probability": 100,
+		"CloseDate": "2020-03-12",
+		"ExternalId__c": "Opp000049",
+		"Reason__c": "15",
+		"Author__c": "Manažer",
+		"Category__c": "Campaign",
+		"CustomText__c": "Příležitost z kampaně",
+		"DueDate__c": "2020-03-26",
+		"OfferNumber__c": 111169,
+		"OfferType__c": "eÚvěry",
+		"OrderNumber__c": 555569,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef20"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M90QAE"
+			},
+			"ExternalId__c": "00000014"
+		},
+		"Name": "Veselá Příležitost z impulsu",
+		"Description": "Má zájem o úvěr",
+		"StageName": "5",
+		"Amount": 500000,
+		"Probability": 0,
+		"CloseDate": "2020-03-14",
+		"ExternalId__c": "Opp000050",
+		"Reason__c": "16",
+		"Author__c": "Manažer",
+		"Category__c": "Impuls",
+		"CustomText__c": "Příležitost z impulsu",
+		"DueDate__c": "2020-03-28",
+		"OfferNumber__c": 111170,
+		"OfferType__c": "eÚvěry",
+		"OrderNumber__c": 555570,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef21"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M91QAE"
+			},
+			"ExternalId__c": "00000015"
+		},
+		"Name": "Pralinková Vlastní obchodní příležitost",
+		"Description": "Má zájem o úvěr",
+		"StageName": "5",
+		"Amount": 500000,
+		"Probability": 0,
+		"CloseDate": "2020-03-16",
+		"ExternalId__c": "Opp000051",
+		"Reason__c": "16",
+		"Category__c": "Own Opportunity",
+		"CustomText__c": "Vlastní obchodní příležitost",
+		"DueDate__c": "2020-03-30",
+		"OfferNumber__c": 111171,
+		"OfferType__c": "eÚvěry",
+		"OrderNumber__c": 555571,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef22"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M92QAE"
+			},
+			"ExternalId__c": "00000016"
+		},
+		"Name": "Světlá Příležitost z retence",
+		"Description": "Má zájem o úvěr",
+		"StageName": "5",
+		"Amount": 500000,
+		"Probability": 0,
+		"CloseDate": "2020-03-18",
+		"ExternalId__c": "Opp000052",
+		"Reason__c": "16",
+		"Author__c": "Manažer",
+		"Category__c": "Retention",
+		"CustomText__c": "Příležitost z retence",
+		"DueDate__c": "2020-04-01",
+		"OfferNumber__c": 111172,
+		"OfferType__c": "eÚvěry",
+		"OrderNumber__c": 555572,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef23"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M93QAE"
+			},
+			"ExternalId__c": "00000017"
+		},
+		"Name": "Janků CMSS zvýhodněné produkty Příležitost z kampaně",
+		"Description": "Má zájem o úvěr",
+		"StageName": "5",
+		"Amount": 500000,
+		"Probability": 0,
+		"CloseDate": "2020-03-20",
+		"ExternalId__c": "Opp000053",
+		"Reason__c": "16",
+		"Author__c": "Manažer",
+		"Category__c": "Campaign",
+		"CustomText__c": "Příležitost z kampaně",
+		"DueDate__c": "2020-04-03",
+		"OfferNumber__c": 111173,
+		"OfferType__c": "eÚvěry",
+		"OrderNumber__c": 555573,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	},
+	{
+		"attributes": {
+			"type": "Opportunity",
+			"referenceId": "OpportunityRef24"
+		},
+		"Account": {
+			"attributes": {
+				"type": "Account",
+				"url": "/services/data/v48.0/sobjects/Account/0015E00000t5M94QAE"
+			},
+			"ExternalId__c": "00000018"
+		},
+		"Name": "Koutná Příležitost z impulsu",
+		"Description": "Má zájem o úvěr",
+		"StageName": "5",
+		"Amount": 500000,
+		"Probability": 0,
+		"CloseDate": "2020-03-22",
+		"ExternalId__c": "Opp000054",
+		"Reason__c": "16",
+		"Author__c": "Manažer",
+		"Category__c": "Impuls",
+		"CustomText__c": "Příležitost z impulsu",
+		"DueDate__c": "2020-04-05",
+		"OfferNumber__c": 111174,
+		"OfferType__c": "eÚvěry",
+		"OrderNumber__c": 555574,
+		"ProductType__c": "9",
+		"Product__r": {
+			"attributes": {
+				"type": "Product2",
+				"url": "/services/data/v48.0/sobjects/Product2/01t5E000004AlY7QAK"
+			},
+			"ExternalId": "0000005"
+		}
+	}
+]
