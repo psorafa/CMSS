@@ -61,5 +61,27 @@
         <value><!-- Case Type --></value>
     </caseValues>
     <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Case Type With Asset Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Case Type Without Asset Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel><!-- CaseType Name --></nameFieldLabel>
+    <recordTypes>
+        <label>S návazností na produkt</label>
+        <name>CaseTypeWithAsset</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Bez návaznosti na produkt</label>
+        <name>CaseTypeWithoutAsset</name>
+    </recordTypes>
 </CustomObjectTranslation>
