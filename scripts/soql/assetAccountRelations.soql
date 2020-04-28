@@ -1,0 +1,6 @@
+SELECT Id, Name, Asset__r.ExternalId__c, Account__r.ExternalId__c, DateUpdated__c, ExternalId__c, IsReleased__c, 
+    Asset__r.Product2.ExternalId, RelationType__c, SystemId__c, ValidFrom__c, ValidTo__c 
+FROM AssetAccountRelation__c 
+WHERE Asset__r.ExternalId__c != null AND Account__r.ExternalId__c != null
+LIMIT 20
+OFFSET 20

@@ -25,6 +25,9 @@ scripts/sh/util/mergeJson.sh "scripts/apex/importAssets.apex" "data/tree/assets.
 scripts/sh/util/mergeJson.sh "scripts/apex/importTasks.apex" "data/tree/assetTasks.json" "{0}" "$TARGETPATH/importTasks.apex"
 scripts/sh/util/mergeJson.sh "scripts/apex/importTasks.apex" "data/tree/assetTasks2.json" "{0}" "$TARGETPATH/importTasks2.apex"
 
+scripts/sh/util/mergeJson.sh "scripts/apex/importAssetAccountRelations.apex" "data/tree/assetAccountRelations.json" "{0}" "$TARGETPATH/importAssetAccountRelations.apex"
+scripts/sh/util/mergeJson.sh "scripts/apex/importAssetAccountRelations.apex" "data/tree/assetAccountRelations2.json" "{0}" "$TARGETPATH/importAssetAccountRelations2.apex"
+
 set -o xtrace
 if [ -z "$ALIAS" ];
 then
@@ -35,6 +38,8 @@ then
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssets.apex"
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks.apex"
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks2.apex"
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations.apex"
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations2.apex"
 else
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAccounts.apex" --targetusername $ALIAS
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importProducts.apex" --targetusername $ALIAS
@@ -43,6 +48,8 @@ else
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssets.apex" --targetusername $ALIAS
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks.apex" --targetusername $ALIAS
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks2.apex" --targetusername $ALIAS
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations.apex" --targetusername $ALIAS
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations2.apex" --targetusername $ALIAS
 fi
 
 rm -r scripts/apex/tmp
