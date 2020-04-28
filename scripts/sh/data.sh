@@ -32,6 +32,7 @@ then
     #sfdx force:apex:execute --apexcodefile "$TARGETPATH/importOpportunities.apex"
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssets.apex"
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks.apex"
+    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks2.apex"
 else
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAccounts.apex" --targetusername $ALIAS
     sfdx force:apex:execute --apexcodefile "$TARGETPATH/importProducts.apex" --targetusername $ALIAS
