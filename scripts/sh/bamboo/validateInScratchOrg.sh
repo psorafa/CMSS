@@ -35,7 +35,7 @@ killAll=0
 
 #wrap sfdx source push with timeout
 pushWithTimeout() {
-    timeout -k 1 15 \
+    timeout -k 1 15m \
     sfdx force:source:deploy --targetusername "$1" --sourcepath "$2"
 }
 
