@@ -18,6 +18,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Priority</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>DetailComplaintPriority__c</field>
             </layoutItems>
             <layoutItems>
@@ -28,16 +32,8 @@
                 <behavior>Edit</behavior>
                 <field>CaseType__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>InstitutionType__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CaseSource__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>CaseCause__c</field>
@@ -72,12 +68,12 @@
         <label>Complainer</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>AccountId</field>
+                <behavior>Edit</behavior>
+                <field>CaseSource__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ContactId</field>
+                <behavior>Readonly</behavior>
+                <field>AccountId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -85,6 +81,10 @@
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>InstitutionType__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ComplainerFirstName__c</field>
@@ -156,10 +156,6 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Origin</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Priority</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -274,6 +270,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>LastModifiedById</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ContactId</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
