@@ -47,6 +47,7 @@ function finish {
     echo "Deleting scratch org..."
     sfdx force:org:delete --targetusername $ALIAS --noprompt
     echo "Done."
+    kill -9 -$$
 }
 trap finish EXIT
 set -o xtrace
