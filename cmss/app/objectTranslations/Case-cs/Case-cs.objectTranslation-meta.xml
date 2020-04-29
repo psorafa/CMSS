@@ -62,14 +62,6 @@
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
-        <layout>Case Feed Layout</layout>
-        <layoutType>CaseInteraction</layoutType>
-        <sections>
-            <label><!-- Fields --></label>
-            <section>Fields</section>
-        </sections>
-    </layouts>
-    <layouts>
         <layout>Case Layout</layout>
         <sections>
             <label>Complain about</label>
@@ -85,11 +77,11 @@
         </sections>
     </layouts>
     <quickActions>
-        <label><!-- NewChildCase --></label>
+        <label>            <!-- NewChildCase --></label>
         <name>NewChildCase</name>
     </quickActions>
     <quickActions>
-        <label><!-- SendEmail --></label>
+        <label>            <!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
     <validationRules>
