@@ -31,10 +31,11 @@ DEVHUB=${2}
 TEST=${3-"RunLocalTests"}
 CONF=${4-"config/project-scratch-def.json"}
 DAYS=${5-1}
+killAll=0
 
 #wrap sfdx source push with timeout
 pushWithTimeout() {
-    timeout -k 1 15m \
+    timeout -k 1 15 \
     sfdx force:source:deploy --targetusername "$1" --sourcepath "$2"
 }
 
@@ -42,12 +43,15 @@ pushWithTimeout() {
 function finish {
     if (($? == 124)); then
       echo "Push seems to be stuck, please re-run validation manually."
+      killAll=1
     fi
     # remove scratch org
     echo "Deleting scratch org..."
     sfdx force:org:delete --targetusername $ALIAS --noprompt
     echo "Done."
-    kill -9 -$$
+    if (($killAll == 1)); then
+      kill -9 -$$
+    fi
 }
 trap finish EXIT
 set -o xtrace
