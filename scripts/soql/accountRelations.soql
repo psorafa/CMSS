@@ -1,0 +1,4 @@
+SELECT Id, Name, Account__r.ExternalId__c, DateUpdated__c, ExternalId__c, 
+    RelatedAccount__r.ExternalId__c, RelationType__c, SystemId__c, ValidFrom__c, ValidTo__c 
+FROM AccountRelation__c
+WHERE Account__r.ExternalId__c != NULL AND RelatedAccount__r.ExternalId__c != NULL
