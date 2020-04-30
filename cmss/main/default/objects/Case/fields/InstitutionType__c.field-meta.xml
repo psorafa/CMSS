@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>ComplaintLegitimacy__c</fullName>
-    <description>Informace zda se jedná o oprávněné podání</description>
+    <fullName>InstitutionType__c</fullName>
+    <description>Typ instituce</description>
     <externalId>false</externalId>
-    <label>Complaint Legitimacy</label>
+    <label>Institution Type</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
@@ -21,6 +21,11 @@
                 <fullName>2</fullName>
                 <default>false</default>
                 <label>2</label>
+            </value>
+            <value>
+                <fullName>3</fullName>
+                <default>false</default>
+                <label>3</label>
             </value>
             <value>
                 <fullName>4</fullName>
