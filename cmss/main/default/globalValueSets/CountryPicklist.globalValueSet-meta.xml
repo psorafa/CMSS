@@ -11,6 +11,11 @@
         <label>AD</label>
     </customValue>
     <customValue>
+        <fullName>0</fullName>
+        <default>false</default>
+        <label>Undefined</label>
+    </customValue>
+    <customValue>
         <fullName>2</fullName>
         <default>false</default>
         <label>AE</label>
@@ -1265,6 +1270,6 @@
         <default>false</default>
         <label>TL</label>
     </customValue>
-    <masterLabel>Country</masterLabel>
+    <masterLabel>CountryPicklist</masterLabel>
     <sorted>false</sorted>
 </GlobalValueSet>
