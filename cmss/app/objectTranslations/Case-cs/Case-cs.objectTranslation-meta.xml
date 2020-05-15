@@ -84,6 +84,11 @@
         <label>            <!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
+    <recordTypes>
+        <description>            <!-- Record type for Client Claims (complaints, incidents, requests) --></description>
+        <label>            <!-- Client Claim --></label>
+        <name>ClientClaim</name>
+    </recordTypes>
     <validationRules>
         <errorMessage>Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ComplaintReceivingConfirmDate</name>
@@ -97,11 +102,19 @@
         <name>IfInternalPrecautionTrueTypeMustBePicked</name>
     </validationRules>
     <validationRules>
+        <errorMessage>Pole Klient musí být vyplněno pro Zdroj případu &quot;Klient&quot;</errorMessage>
+        <name>IfSourceClientAccountIdRequired</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>Příchod nesmí být zadán do budoucnosti.</errorMessage>
         <name>ReceivedDateInFuture</name>
     </validationRules>
     <validationRules>
         <errorMessage>Odeslání odpovědi na podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ResponseSentDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pole Odeslání odpovědi na podání musí být vyplněno před nastavením Statusu na Vyřešeno.</errorMessage>
+        <name>StatusCompletedOnlyIfResponseSentFilled</name>
     </validationRules>
 </CustomObjectTranslation>

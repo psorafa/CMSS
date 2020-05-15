@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StatusCompletedOnlyIfResponseSentFilled</fullName>
+    <active>true</active>
+    <description>If ResponsSent__c is blank, Status cannot be Completed (picklist value 2)</description>
+    <errorConditionFormula>AND( ISBLANK(  ResponseSent__c ),  ISPICKVAL( Status, &#39;2&#39; ) )</errorConditionFormula>
+    <errorDisplayField>ResponseSent__c</errorDisplayField>
+    <errorMessage>Response Sent must be filled before Status is changed to Completed.</errorMessage>
+</ValidationRule>

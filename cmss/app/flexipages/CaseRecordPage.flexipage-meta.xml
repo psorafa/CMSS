@@ -150,6 +150,13 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>hideMarkCompleteButton</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentName>support:milestones</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
                 <name>tabs</name>
                 <value>sidebartabs</value>
             </componentInstanceProperties>
