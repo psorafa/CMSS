@@ -1338,6 +1338,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.MultipleComplainers__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.OwnerDepartment__c</field>
         <readable>true</readable>
     </fieldPermissions>
