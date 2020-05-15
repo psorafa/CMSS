@@ -67,10 +67,6 @@
                 <behavior>Readonly</behavior>
                 <field>ElapsedTimeInDays</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ActualElapsedTimeInMins</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
