@@ -2,9 +2,9 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ResponseSentDate</fullName>
     <active>true</active>
-    <description>Response Sent date/time must be equal or older than now and must be newer then Received Date.</description>
+    <description>Response Sent date/time must be equal or older than now and must be later then Received Date.</description>
     <errorConditionFormula>ResponseSent__c &gt; NOW()  || 
 	 ResponseSent__c &lt; ReceivedDate__c</errorConditionFormula>
     <errorDisplayField>ResponseSent__c</errorDisplayField>
-    <errorMessage>Response Sent must be older than now and must be newer then Received Date.</errorMessage>
+    <errorMessage>Response Sent must be older than now and must be later then Received Date.</errorMessage>
 </ValidationRule>
