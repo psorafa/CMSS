@@ -265,6 +265,10 @@
                 <behavior>Readonly</behavior>
                 <field>SuppliedEmail</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>EntitlementId</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
