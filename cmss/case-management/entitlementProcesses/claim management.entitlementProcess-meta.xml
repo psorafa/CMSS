@@ -15,21 +15,6 @@
             <operation>equals</operation>
             <value>Client Claim</value>
         </milestoneCriteriaFilterItems>
-        <milestoneCriteriaFilterItems>
-            <field>Case.IsClosed</field>
-            <operation>equals</operation>
-            <value>false</value>
-        </milestoneCriteriaFilterItems>
-        <milestoneCriteriaFilterItems>
-            <field>Case.ComplaintReceivingConfirmation__c</field>
-            <operation>equals</operation>
-            <value/>
-        </milestoneCriteriaFilterItems>
-        <milestoneCriteriaFilterItems>
-            <field>Case.ResponseSent__c</field>
-            <operation>equals</operation>
-            <value/>
-        </milestoneCriteriaFilterItems>
         <milestoneName>Odeslání potvrzení o přijetí podání</milestoneName>
         <minutesToComplete>8640</minutesToComplete>
         <useCriteriaStartTime>false</useCriteriaStartTime>
@@ -39,16 +24,6 @@
             <field>Case.RecordTypeId</field>
             <operation>equals</operation>
             <value>Client Claim</value>
-        </milestoneCriteriaFilterItems>
-        <milestoneCriteriaFilterItems>
-            <field>Case.IsClosed</field>
-            <operation>equals</operation>
-            <value>false</value>
-        </milestoneCriteriaFilterItems>
-        <milestoneCriteriaFilterItems>
-            <field>Case.ResponseSent__c</field>
-            <operation>equals</operation>
-            <value/>
         </milestoneCriteriaFilterItems>
         <milestoneName>Odeslání odpovědi na podání</milestoneName>
         <minutesToComplete>44640</minutesToComplete>
