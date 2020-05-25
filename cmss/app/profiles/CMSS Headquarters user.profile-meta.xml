@@ -46,6 +46,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
+    <customSettingAccesses>
+        <enabled>true</enabled>
+        <name>ClientClaimEntitlement__c</name>
+    </customSettingAccesses>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AccountStatus__c</field>
