@@ -98,8 +98,12 @@
         <name>IfInternalPrecautionTrueNoteMustBeFilled</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Pokud Interní opatření = Ano, vyberte hodnota z pole Druhy interního opatření</errorMessage>
+        <errorMessage>Pokud Interní opatření = Ano, vyberte hodnotu z pole Druhy interního opatření</errorMessage>
         <name>IfInternalPrecautionTrueTypeMustBePicked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pole Stupeň podání - detail musí být vyplněno pro Stupeň podání II.</errorMessage>
+        <name>IfPriority2DetailPriorityMustBeFilled</name>
     </validationRules>
     <validationRules>
         <errorMessage>Pole Klient musí být vyplněno pro Zdroj případu &quot;Klient&quot;</errorMessage>
