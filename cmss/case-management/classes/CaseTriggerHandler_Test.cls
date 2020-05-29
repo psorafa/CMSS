@@ -1,0 +1,245 @@
+/**
+ * Created by a.olexova on 5/21/2020.
+ */
+
+@IsTest
+private class CaseTriggerHandler_Test {
+	static Case c1;
+	static Case c2;
+	static Case c3;
+
+	static void testSetup() {
+		Account acc = new Account(
+			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('PersonAccount', 'Account'),
+			FirstName = 'Filip',
+			LastName = 'Fiala',
+			Phone = '111222333',
+			GlobalId__c = 'Test123'
+		);
+		insert acc;
+		Entitlement ent = new Entitlement(
+			Name = 'Default',
+			AccountId = acc.Id,
+			SlaProcessId = [SELECT Id FROM SlaProcess WHERE Name = 'claim management']
+			.Id,
+			StartDate = Date.today().addDays(-100),
+			EndDate = Date.today().addDays(20000)
+		);
+		insert ent;
+		ClientClaimEntitlement__c csEntitlement = new ClientClaimEntitlement__c(
+			EntitlementId__c = ent.Id,
+			ReceivingConfirmationMilestoneName__c = 'Odeslání potvrzení o přijetí podání',
+			ResponseSentMilestoneName__c = 'Odeslání odpovědi na podání'
+		);
+		insert csEntitlement;
+
+		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('ClientClaim', 'Case');
+		c1 = new Case(
+			RecordTypeId = clientClaimRTId,
+			ReceivedDate__c = Datetime.now().addDays(-50),
+			Origin = '1',
+			Source__c = '1',
+			AccountId = acc.Id,
+			EntitlementId = ent.Id
+		);
+		c2 = new Case(
+			RecordTypeId = clientClaimRTId,
+			ReceivedDate__c = Datetime.now().addDays(-10),
+			Origin = '1',
+			Source__c = '1',
+			AccountId = acc.Id,
+			EntitlementId = ent.Id
+		);
+		c3 = new Case(
+			RecordTypeId = clientClaimRTId,
+			ReceivedDate__c = Datetime.now().addDays(-3),
+			Origin = '1',
+			Source__c = '1',
+			AccountId = acc.Id,
+			EntitlementId = ent.Id
+		);
+		insert new List<Case>{ c1, c2, c3 };
+	}
+
+	@IsTest
+	static void testHandleMilestoneCompletionNoUpdate() {
+		testSetup();
+		Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
+		Datetime completionDate = Datetime.now().addDays(-1);
+
+		c1.ReceivedDate__c = completionDate;
+		c1.ComplainerFirstName__c = 'testFirstName';
+		c1.ComplainerFirstName__c = 'testLastName';
+		c2.Source__c = '2';
+		c2.Description = 'descrioption 123';
+		c3.Origin = '2';
+
+		Test.startTest();
+		update new List<Case>{ c1, c2, c3 };
+		Test.stopTest();
+
+		List<CaseMilestone> caseMilestones = [
+			SELECT Id, CaseId, CompletionDate, MilestoneType.Name, IsCompleted, IsViolated
+			FROM CaseMilestone
+			WHERE CaseId IN :caseIds
+		];
+		System.assert(!caseMilestones.isEmpty(), 'Case Milestones not found.');
+		for (CaseMilestone cm : caseMilestones) {
+			System.assertEquals(false, cm.IsCompleted, 'Case Milestone should NOT be completed yet.');
+			System.assertEquals(
+				null,
+				cm.CompletionDate,
+				'Case Milestone Completion Date should be not filled for for Milestone Type: ' + cm.MilestoneType.Name
+			);
+		}
+	}
+
+	@IsTest
+	static void testHandleMilestoneCompletionResponse() {
+		testSetup();
+		Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
+		Datetime completionDate = Datetime.now().addDays(-1);
+
+		c1.ResponseSent__c = completionDate;
+		c2.ResponseSent__c = completionDate.addHours(1);
+		c3.Description = 'response sent test - no milestone update for c3';
+
+		Test.startTest();
+		update new List<Case>{ c1, c2, c3 };
+		Test.stopTest();
+
+		List<CaseMilestone> caseMilestones = [
+			SELECT Id, CaseId, Case.ResponseSent__c, CompletionDate, MilestoneType.Name, IsCompleted, IsViolated
+			FROM CaseMilestone
+			WHERE CaseId IN :caseIds
+		];
+		System.assert(!caseMilestones.isEmpty(), 'Case Milestones not found.');
+		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getInstance();
+		for (CaseMilestone cm : caseMilestones) {
+			if (c3.Id == cm.CaseId || csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name) {
+				System.assertEquals(false, cm.IsCompleted, 'Case Milestone should NOT be completed yet.');
+				System.assertEquals(
+					null,
+					cm.CompletionDate,
+					'Case Milestone Completion Date should be not filled for for c3'
+				);
+			} else if (csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name) {
+				System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed.');
+				System.assertEquals(
+					cm.Case.ResponseSent__c,
+					cm.CompletionDate,
+					'Case Milestone Completion Date not as expected.'
+				);
+			}
+		}
+	}
+
+	@IsTest
+	static void testHandleMilestoneCompletionConfirmation() {
+		testSetup();
+		Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
+		Datetime completionDate = Datetime.now().addDays(-1);
+
+		c1.ComplaintReceivingConfirmation__c = completionDate;
+		c2.ComplaintReceivingConfirmation__c = completionDate.addHours(1);
+		c3.Description = 'confirmation sent test - no milestone update for c3';
+
+		Test.startTest();
+		update new List<Case>{ c1, c2, c3 };
+		Test.stopTest();
+
+		List<CaseMilestone> caseMilestones = [
+			SELECT
+				Id,
+				CaseId,
+				Case.ComplaintReceivingConfirmation__c,
+				CompletionDate,
+				MilestoneType.Name,
+				IsCompleted,
+				IsViolated
+			FROM CaseMilestone
+			WHERE CaseId IN :caseIds
+		];
+		System.assert(!caseMilestones.isEmpty(), 'Case Milestones not found.');
+		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getInstance();
+		for (CaseMilestone cm : caseMilestones) {
+			if (c3.Id == cm.CaseId || csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name) {
+				System.assertEquals(false, cm.IsCompleted, 'Case Milestone should NOT be completed yet.');
+				System.assertEquals(
+					null,
+					cm.CompletionDate,
+					'Case Milestone Completion Date should be not filled for for c3'
+				);
+			} else if (csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name) {
+				System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed.');
+				System.assertEquals(
+					cm.Case.ComplaintReceivingConfirmation__c,
+					cm.CompletionDate,
+					'Case Milestone Completion Date not as expected.'
+				);
+			}
+		}
+	}
+
+	@IsTest
+	static void testHandleMilestoneCompletionConfirmationAndResponse() {
+		testSetup();
+		Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
+		Datetime completionDateResponse = Datetime.now().addHours(-24);
+		Datetime completionDateConfirmation = Datetime.now().addHours(-30);
+
+		c1.ComplaintReceivingConfirmation__c = completionDateConfirmation;
+		c1.ResponseSent__c = completionDateResponse;
+		c2.ComplaintReceivingConfirmation__c = completionDateConfirmation.addHours(1);
+		c2.ResponseSent__c = completionDateResponse.addHours(1);
+		c3.Description = 'confirmation and response sent test - no milestone update for c3';
+
+		Test.startTest();
+		update new List<Case>{ c1, c2, c3 };
+		Test.stopTest();
+
+		List<CaseMilestone> caseMilestones = [
+			SELECT
+				Id,
+				CaseId,
+				Case.ResponseSent__c,
+				Case.ComplaintReceivingConfirmation__c,
+				CompletionDate,
+				MilestoneType.Name,
+				IsCompleted,
+				IsViolated
+			FROM CaseMilestone
+			WHERE CaseId IN :caseIds
+		];
+		System.assert(!caseMilestones.isEmpty(), 'Case Milestones not found.');
+		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getInstance();
+		for (CaseMilestone cm : caseMilestones) {
+			if (c3.Id == cm.CaseId) {
+				System.assertEquals(false, cm.IsCompleted, 'Case Milestone should NOT be completed yet.');
+				System.assertEquals(
+					null,
+					cm.CompletionDate,
+					'Case Milestone Completion Date should be not filled for for c3'
+				);
+			} else if (
+				csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name ||
+				csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name
+			) {
+				System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed');
+				if (csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name) {
+					System.assertEquals(
+						cm.Case.ResponseSent__c,
+						cm.CompletionDate,
+						'Case Milestone Completion Date not as expected.'
+					);
+				} else if (csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name) {
+					System.assertEquals(
+						cm.Case.ComplaintReceivingConfirmation__c,
+						cm.CompletionDate,
+						'Case Milestone Completion Date not as expected.'
+					);
+				}
+			}
+		}
+	}
+}
