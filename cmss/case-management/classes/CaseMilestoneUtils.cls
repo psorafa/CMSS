@@ -5,7 +5,13 @@
 public with sharing class CaseMilestoneUtils {
 	public static void completeMilestones(Set<Id> caseIds, String milestoneName, Datetime completionDate) {
 		List<CaseMilestone> caseMilestones = [
-			SELECT Id, CompletionDate, IsCompleted, Case.ResponseSent__c, Case.ComplaintReceivingConfirmation__c
+			SELECT
+				Id,
+				CompletionDate,
+				IsCompleted,
+				Case.ResponseSent__c,
+				Case.ComplaintReceivingConfirmation__c,
+				MilestoneType.Name
 			FROM CaseMilestone
 			WHERE CaseId IN :caseIds AND MilestoneType.Name = :milestoneName AND CompletionDate = null
 		];
