@@ -62,6 +62,14 @@
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
+        <layout>Case Feed Layout</layout>
+        <layoutType>CaseInteraction</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>Case Layout</layout>
         <sections>
             <label>Complain about</label>
@@ -76,18 +84,46 @@
             <section>Solution</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>GDPR</layout>
+        <sections>
+            <label><!-- Applicant Information --></label>
+            <section>Applicant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- GDPR Case Information --></label>
+            <section>GDPR Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- Request Validation --></label>
+            <section>Request Validation</section>
+        </sections>
+        <sections>
+            <label><!-- Solving --></label>
+            <section>Solving</section>
+        </sections>
+    </layouts>
     <quickActions>
-        <label>            <!-- NewChildCase --></label>
+        <label><!-- NewChildCase --></label>
         <name>NewChildCase</name>
     </quickActions>
     <quickActions>
-        <label>            <!-- SendEmail --></label>
+        <label><!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
     <recordTypes>
-        <description>            <!-- Record type for Client Claims (complaints, incidents, requests) --></description>
-        <label>            <!-- Client Claim --></label>
+        <description><!-- Record type for Client Claims (complaints, incidents, requests) --></description>
+        <label><!-- Client Claim --></label>
         <name>ClientClaim</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- GDPR claim --></description>
+        <label><!-- GDPR --></label>
+        <name>GDPR</name>
     </recordTypes>
     <validationRules>
         <errorMessage>Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
