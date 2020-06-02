@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IfAccountBlankNameRequired</fullName>
+    <active>true</active>
+    <description>Valid for GDPR - if account is not found, user must fill applicant&#39;s attribute Complainer First Name</description>
+    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;  &amp;&amp; ISBLANK (AccountId)  &amp;&amp; ISBLANK (ComplainerFirstName__c)</errorConditionFormula>
+    <errorDisplayField>ComplainerFirstName__c</errorDisplayField>
+    <errorMessage>Povinné pole</errorMessage>
+</ValidationRule>

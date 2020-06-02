@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IfAccountBlankAddressRequired</fullName>
+    <active>true</active>
+    <description>Valid for GDPR - if account is not found, user must fill contact address</description>
+    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;  &amp;&amp; ISBLANK (AccountId)  &amp;&amp; (ISBLANK (Street__c) || ISBLANK(City__c) || ISBLANK(PostCodeID__c))</errorConditionFormula>
+    <errorDisplayField>Street__c</errorDisplayField>
+    <errorMessage>Povinné pole</errorMessage>
+</ValidationRule>
