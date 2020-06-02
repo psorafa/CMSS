@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>ComplainerFirstName__c</fullName>
-    <description>Křestní jméno podávajícího</description>
+    <fullName>PhoneNumber__c</fullName>
+    <description>Telefonní číslo podávajícího</description>
     <externalId>false</externalId>
     <inlineHelpText>Pokud vyberete klienta, údaj se doplní automaticky po uložení GDPR podání.</inlineHelpText>
-    <label>Complainer First Name</label>
-    <length>80</length>
+    <label>Phone Number</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>Phone</type>
 </CustomField>

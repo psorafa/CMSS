@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>ResponseSent__c</fullName>
-    <description>Pole obsahující informaci, kdy došlo k odeslání odpovědi na podání podávájícímu</description>
+    <fullName>ForwardedToCSOB__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Příznak, zda bylo podání předáno do ČSOB</description>
     <externalId>false</externalId>
-    <label>Response Sent</label>
-    <required>false</required>
+    <label>Forwarded To CSOB</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>DateTime</type>
+    <type>Checkbox</type>
 </CustomField>

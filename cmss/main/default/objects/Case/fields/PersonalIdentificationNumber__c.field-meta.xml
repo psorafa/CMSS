@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>ComplainerFirstName__c</fullName>
-    <description>Křestní jméno podávajícího</description>
+    <fullName>PersonalIdentificationNumber__c</fullName>
+    <description>Rodné číslo podávajícího</description>
     <externalId>false</externalId>
-    <inlineHelpText>Pokud vyberete klienta, údaj se doplní automaticky po uložení GDPR podání.</inlineHelpText>
-    <label>Complainer First Name</label>
-    <length>80</length>
+    <label>Personal Identification Number</label>
+    <length>10</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>

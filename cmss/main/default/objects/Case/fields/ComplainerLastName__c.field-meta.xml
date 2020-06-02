@@ -3,6 +3,7 @@
     <fullName>ComplainerLastName__c</fullName>
     <description>Příjmení podávajícího</description>
     <externalId>false</externalId>
+    <inlineHelpText>Pokud vyberete klienta, údaj se doplní automaticky po uložení GDPR podání.</inlineHelpText>
     <label>Complainer Last Name</label>
     <length>80</length>
     <required>false</required>
