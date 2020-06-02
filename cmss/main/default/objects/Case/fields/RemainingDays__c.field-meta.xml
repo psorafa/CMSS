@@ -3,7 +3,7 @@
     <fullName>RemainingDays__c</fullName>
     <description>Calculates number of days (rounded down) that remains for Client Claim to be solved</description>
     <externalId>false</externalId>
-    <formula>IF( AND ( RecordType.DeveloperName = &#39;ClientClaim&#39;, NOT( ISBLANK( ReceivedDate__c ) ), ISBLANK(  ResponseSent__c ) ), MFLOOR ( ReceivedDate__c + 30 - NOW() ), null )</formula>
+    <formula>IF( AND ( IsClientClaim__c, NOT( ISBLANK( ReceivedDate__c ) ), ISBLANK(  ResponseSent__c ) ), MFLOOR ( ReceivedDate__c + 30 - NOW() ), null )</formula>
     <label>Remaining Days</label>
     <precision>18</precision>
     <required>false</required>

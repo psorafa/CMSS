@@ -2,9 +2,6 @@
  * Created by a.olexova on 5/21/2020.
  */
 public class CaseTriggerHandler extends TriggerHandler {
-	@TestVisible
-	private static String clientClaimRTId;
-
 	public override void afterUpdate() {
 		List<Case> newList = Trigger.New;
 		Map<Id, Case> oldMap = (Map<Id, Case>) Trigger.oldMap;
@@ -23,8 +20,6 @@ public class CaseTriggerHandler extends TriggerHandler {
 	private void handleMilestoneCompletion(List<Case> newList, Map<Id, Case> oldMap) {
 		Set<Id> relevantCaseIdsConfirmation = new Set<Id>();
 		Set<Id> relevantCaseIdsResponse = new Set<Id>();
-
-		clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('ClientClaim', 'Case');
 
 		for (Case newCase : newList) {
 			if (isRelevantForAction(newCase, oldMap, ACTION_COMPLETE_RESPONSE_MILESTONE)) {
@@ -52,8 +47,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 	private static Boolean isRelevantForAction(Case newCase, Map<Id, Case> oldMap, String actionName) {
 		Case oldCase = oldMap != null ? oldMap.get(newCase.Id) : null;
 		if (
-			ACTION_COMPLETE_RESPONSE_MILESTONE == actionName &&
-			newCase.RecordTypeId == clientClaimRTId &&
+			ACTION_COMPLETE_RESPONSE_MILESTONE == actionName && newCase.IsClientClaim &&
 			String.isNotBlank(newCase.EntitlementId) &&
 			newCase.ResponseSent__c != null &&
 			oldCase != null &&
@@ -61,8 +55,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 		) {
 			return true;
 		} else if (
-			ACTION_COMPLETE_CONFIRMATION_MILESTONE == actionName &&
-			newCase.RecordTypeId == clientClaimRTId &&
+			ACTION_COMPLETE_CONFIRMATION_MILESTONE == actionName && newCase.IsClientClaim &&
 			String.isNotBlank(newCase.EntitlementId) &&
 			newCase.ComplaintReceivingConfirmation__c != null &&
 			oldCase != null &&

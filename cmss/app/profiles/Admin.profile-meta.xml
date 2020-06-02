@@ -1367,6 +1367,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.IsClientClaim__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.MultipleComplainers__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2443,7 +2448,15 @@
         <layout>CampaignMember__c-CampaignMember Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Case-Case Layout</layout>
+        <layout>Case-ClientClaimConfirmationSent</layout>
+        <recordType>Case.ClientClaimConfirmationSent</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-ClosedClientClaim</layout>
+        <recordType>Case.ClosedClientClaim</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-NewClientClaim</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CaseMilestone-Case Milestone Layout</layout>
@@ -2656,14 +2669,24 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>
-        <default>true</default>
+        <default>false</default>
         <personAccountDefault>true</personAccountDefault>
         <recordType>Account.Business_Account</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Case.ClientClaimConfirmationSent</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Case.ClosedClientClaim</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <default>true</default>
-        <recordType>Case.ClientClaim</recordType>
+        <recordType>Case.NewClientClaim</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

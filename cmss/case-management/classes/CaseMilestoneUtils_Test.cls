@@ -34,7 +34,7 @@ private class CaseMilestoneUtils_Test {
 		);
 		insert csEntitlement;
 
-		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('ClientClaim', 'Case');
+		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
 		c1WithResponseSent = new Case(
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Datetime.now().addDays(-50),

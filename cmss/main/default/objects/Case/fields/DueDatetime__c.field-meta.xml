@@ -3,7 +3,7 @@
     <fullName>DueDatetime__c</fullName>
     <description>Due date is calculated as Received Date + 30 days</description>
     <externalId>false</externalId>
-    <formula>IF(  AND( RecordType.DeveloperName = &#39;ClientClaim&#39;, NOT( ISBLANK( ReceivedDate__c) ) ), ReceivedDate__c + 30, null)</formula>
+    <formula>IF(  AND( IsClientClaim__c , NOT( ISBLANK( ReceivedDate__c) ) ), ReceivedDate__c + 30, null)</formula>
     <label>Due Date</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

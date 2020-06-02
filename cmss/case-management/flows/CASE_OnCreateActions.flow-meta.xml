@@ -22,31 +22,31 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>operatorDataType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.RecordType.DeveloperName</leftValueReference>
+                <leftValueReference>myVariable_current.IsClientClaim__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>ClientClaim</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -111,31 +111,31 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>operatorDataType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.RecordType.DeveloperName</leftValueReference>
+                <leftValueReference>myVariable_current.IsClientClaim__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>ClientClaim</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -214,11 +214,11 @@
                 <stringValue>$Setup.ClientClaimEntitlement__c.EntitlementId__c </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_3296860484</name>
+        <name>formula_2_myRule_1_A1_2795828083</name>
         <dataType>String</dataType>
         <expression>{!$Setup.ClientClaimEntitlement__c.EntitlementId__c}</expression>
     </formulas>
-    <interviewLabel>CASE_OnCreateActions-4_InterviewLabel</interviewLabel>
+    <interviewLabel>CASE_OnCreateActions-2_InterviewLabel</interviewLabel>
     <label>CASE_OnCreateActions</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -323,7 +323,7 @@
             </processMetadataValues>
             <field>EntitlementId</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_3296860484</elementReference>
+                <elementReference>formula_2_myRule_1_A1_2795828083</elementReference>
             </value>
         </inputAssignments>
         <object>Case</object>

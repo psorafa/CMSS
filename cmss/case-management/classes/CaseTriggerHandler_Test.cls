@@ -33,7 +33,7 @@ private class CaseTriggerHandler_Test {
 		);
 		insert csEntitlement;
 
-		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('ClientClaim', 'Case');
+		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
 		c1 = new Case(
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Datetime.now().addDays(-50),
