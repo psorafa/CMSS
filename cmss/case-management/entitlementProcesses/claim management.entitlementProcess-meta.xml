@@ -11,9 +11,9 @@
     </exitCriteriaFilterItems>
     <milestones>
         <milestoneCriteriaFilterItems>
-            <field>Case.RecordTypeId</field>
+            <field>Case.IsClientClaim__c</field>
             <operation>equals</operation>
-            <value>Client Claim</value>
+            <value>true</value>
         </milestoneCriteriaFilterItems>
         <milestoneName>Odeslání potvrzení o přijetí podání</milestoneName>
         <minutesToComplete>8640</minutesToComplete>
@@ -21,9 +21,9 @@
     </milestones>
     <milestones>
         <milestoneCriteriaFilterItems>
-            <field>Case.RecordTypeId</field>
+            <field>Case.IsClientClaim__c</field>
             <operation>equals</operation>
-            <value>Client Claim</value>
+            <value>true</value>
         </milestoneCriteriaFilterItems>
         <milestoneName>Odeslání odpovědi na podání</milestoneName>
         <minutesToComplete>44640</minutesToComplete>

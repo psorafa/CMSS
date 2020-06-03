@@ -62,7 +62,37 @@
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
-        <layout>Case Layout</layout>
+        <layout>ClientClaimConfirmationSent</layout>
+        <sections>
+            <label>Complain about</label>
+            <section>Complain about</section>
+        </sections>
+        <sections>
+            <label>Complainer</label>
+            <section>Complainer</section>
+        </sections>
+        <sections>
+            <label>Solution</label>
+            <section>Solution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>ClosedClientClaim</layout>
+        <sections>
+            <label>Complain about</label>
+            <section>Complain about</section>
+        </sections>
+        <sections>
+            <label>Complainer</label>
+            <section>Complainer</section>
+        </sections>
+        <sections>
+            <label>Solutio</label>
+            <section>Solution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>NewClientClaim</layout>
         <sections>
             <label>Complain about</label>
             <section>Complain about</section>
@@ -77,17 +107,39 @@
         </sections>
     </layouts>
     <quickActions>
+        <label>Zrušit podání</label>
+        <name>ClaimCancellation</name>
+    </quickActions>
+    <quickActions>
         <label>            <!-- NewChildCase --></label>
         <name>NewChildCase</name>
+    </quickActions>
+    <quickActions>
+        <label>Potvrzení o přijetí odesláno</label>
+        <name>ReceivingConfirmationSent</name>
+    </quickActions>
+    <quickActions>
+        <label>Odpověď na podání odeslána</label>
+        <name>ResponseSent</name>
     </quickActions>
     <quickActions>
         <label>            <!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
     <recordTypes>
+        <description>            <!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
+        <label>            <!-- Client Claim Confirmation Sent --></label>
+        <name>ClientClaimConfirmationSent</name>
+    </recordTypes>
+    <recordTypes>
+        <description>            <!-- The client claim record type with a non editable layout for closed cases --></description>
+        <label>            <!-- Closed Client Claim --></label>
+        <name>ClosedClientClaim</name>
+    </recordTypes>
+    <recordTypes>
         <description>            <!-- Record type for Client Claims (complaints, incidents, requests) --></description>
-        <label>            <!-- Client Claim --></label>
-        <name>ClientClaim</name>
+        <label>            <!-- New Client Claim --></label>
+        <name>NewClientClaim</name>
     </recordTypes>
     <validationRules>
         <errorMessage>Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>

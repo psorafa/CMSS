@@ -47,7 +47,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 	private static Boolean isRelevantForAction(Case newCase, Map<Id, Case> oldMap, String actionName) {
 		Case oldCase = oldMap != null ? oldMap.get(newCase.Id) : null;
 		if (
-			ACTION_COMPLETE_RESPONSE_MILESTONE == actionName && newCase.IsClientClaim &&
+			ACTION_COMPLETE_RESPONSE_MILESTONE == actionName && newCase.IsClientClaim__c &&
 			String.isNotBlank(newCase.EntitlementId) &&
 			newCase.ResponseSent__c != null &&
 			oldCase != null &&
@@ -55,7 +55,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 		) {
 			return true;
 		} else if (
-			ACTION_COMPLETE_CONFIRMATION_MILESTONE == actionName && newCase.IsClientClaim &&
+			ACTION_COMPLETE_CONFIRMATION_MILESTONE == actionName && newCase.IsClientClaim__c &&
 			String.isNotBlank(newCase.EntitlementId) &&
 			newCase.ComplaintReceivingConfirmation__c != null &&
 			oldCase != null &&
