@@ -23,7 +23,7 @@ public with sharing class CaseMilestoneUtils {
 
 	private static void updateMilestones(List<CaseMilestone> caseMilestones, Datetime completionDate) {
 		List<CaseMilestone> cmsToUpdate = new List<CaseMilestone>();
-		ClientClaimEntitlement__c csEntitlementInfo = ClientClaimEntitlement__c.getInstance();
+		ClientClaimEntitlement__c csEntitlementInfo = ClientClaimEntitlement__c.getOrgDefaults();
 
 		for (CaseMilestone cm : caseMilestones) {
 			Datetime originalCompletionDate = cm.CompletionDate;

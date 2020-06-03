@@ -28,6 +28,7 @@ private class CaseMilestoneUtils_Test {
 		);
 		insert ent;
 		ClientClaimEntitlement__c csEntitlement = new ClientClaimEntitlement__c(
+			SetupOwnerId = UserInfo.getOrganizationId(),
 			EntitlementId__c = ent.Id,
 			ReceivingConfirmationMilestoneName__c = 'Odeslání potvrzení o přijetí podání',
 			ResponseSentMilestoneName__c = 'Odeslání odpovědi na podání'
@@ -84,7 +85,7 @@ private class CaseMilestoneUtils_Test {
 			c4WithConfirmationSent.Id
 		};
 		Datetime completionDate = Datetime.now().addHours(-12);
-		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getInstance();
+		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getOrgDefaults();
 		System.assertNotEquals(null, csEntitlement, 'Custom setting record not existing.');
 		Test.startTest();
 		CaseMilestoneUtils.completeMilestones(caseIds, csEntitlement.ResponseSentMilestoneName__c, completionDate);
@@ -130,7 +131,7 @@ private class CaseMilestoneUtils_Test {
 			c4WithConfirmationSent.Id
 		};
 
-		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getInstance();
+		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getOrgDefaults();
 		System.assertNotEquals(null, csEntitlement, 'Custom setting record not existing.');
 		Test.startTest();
 		CaseMilestoneUtils.completeMilestones(caseIds, csEntitlement.ResponseSentMilestoneName__c, null);
@@ -185,7 +186,7 @@ private class CaseMilestoneUtils_Test {
 			c4WithConfirmationSent.Id
 		};
 
-		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getInstance();
+		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getOrgDefaults();
 		System.assertNotEquals(null, csEntitlement, 'Custom setting record not existing.');
 		Test.startTest();
 		CaseMilestoneUtils.completeMilestones(caseIds, csEntitlement.ReceivingConfirmationMilestoneName__c, null);

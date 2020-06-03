@@ -73,7 +73,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 	 */
 	@TestVisible
 	private static void completeRelevantMilestones(Set<Id> caseIdsResponse, Set<Id> caseIdsConfirmation) {
-		ClientClaimEntitlement__c csEntitlementInfo = ClientClaimEntitlement__c.getInstance();
+		ClientClaimEntitlement__c csEntitlementInfo = ClientClaimEntitlement__c.getOrgDefaults();
 		if (csEntitlementInfo != null) {
 			String responseMilestoneName = csEntitlementInfo.ResponseSentMilestoneName__c;
 			String confirmMilestoneName = csEntitlementInfo.ReceivingConfirmationMilestoneName__c;

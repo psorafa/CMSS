@@ -27,7 +27,8 @@ private class CaseTriggerHandler_Test {
 		);
 		insert ent;
 		ClientClaimEntitlement__c csEntitlement = new ClientClaimEntitlement__c(
-			EntitlementId__c = ent.Id,
+			SetupOwnerId = UserInfo.getOrganizationId(),
+            EntitlementId__c = ent.Id,
 			ReceivingConfirmationMilestoneName__c = 'Odeslání potvrzení o přijetí podání',
 			ResponseSentMilestoneName__c = 'Odeslání odpovědi na podání'
 		);
@@ -114,7 +115,7 @@ private class CaseTriggerHandler_Test {
 			WHERE CaseId IN :caseIds
 		];
 		System.assert(!caseMilestones.isEmpty(), 'Case Milestones not found.');
-		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getInstance();
+		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getOrgDefaults();
 		for (CaseMilestone cm : caseMilestones) {
 			if (c3.Id == cm.CaseId || csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name) {
 				System.assertEquals(false, cm.IsCompleted, 'Case Milestone should NOT be completed yet.');
@@ -161,7 +162,7 @@ private class CaseTriggerHandler_Test {
 			WHERE CaseId IN :caseIds
 		];
 		System.assert(!caseMilestones.isEmpty(), 'Case Milestones not found.');
-		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getInstance();
+		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getOrgDefaults();
 		for (CaseMilestone cm : caseMilestones) {
 			if (c3.Id == cm.CaseId || csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name) {
 				System.assertEquals(false, cm.IsCompleted, 'Case Milestone should NOT be completed yet.');
@@ -212,7 +213,7 @@ private class CaseTriggerHandler_Test {
 			WHERE CaseId IN :caseIds
 		];
 		System.assert(!caseMilestones.isEmpty(), 'Case Milestones not found.');
-		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getInstance();
+		ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getOrgDefaults();
 		for (CaseMilestone cm : caseMilestones) {
 			if (c3.Id == cm.CaseId) {
 				System.assertEquals(false, cm.IsCompleted, 'Case Milestone should NOT be completed yet.');
