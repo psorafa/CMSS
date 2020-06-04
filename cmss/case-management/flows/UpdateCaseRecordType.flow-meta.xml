@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>IsInputValid</name>
+        <label>IsInputValid</label>
+        <locationX>230</locationX>
+        <locationY>52</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>CaseIdAndRecordTypeNameProvided</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>InputCaseId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>InputNewRecordTypeName</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>GetRecordTypeIdByDevName</targetReference>
+            </connector>
+            <label>Case Id And Record Type Name Provided</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>We will continue only if we the record type id was found</description>
+        <name>IsRecordTypeIdFound</name>
+        <label>Is Record Type Id Found</label>
+        <locationX>549</locationX>
+        <locationY>310</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>RecordTypeIdFound</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>RecordTypeId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>UpdateCaseWithNewRecordType</targetReference>
+            </connector>
+            <label>Record Type Id Found</label>
+        </rules>
+    </decisions>
+    <description>Flow to update Record Type of the case based on the provided CaseId and new Record Type Developer Name</description>
+    <interviewLabel>Update Case Record Type {!$Flow.CurrentDateTime}. Input parametres: CaseId {!InputCaseId}, Record Type Developer Name {!InputNewRecordTypeName}</interviewLabel>
+    <label>Update Case Record Type</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>We will update Record Type Id on the Case with the found Id</description>
+        <name>UpdateCaseWithNewRecordType</name>
+        <label>Update Case With New Record Type</label>
+        <locationX>838</locationX>
+        <locationY>311</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>InputCaseId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>RecordTypeId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>IsInputValid</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>We will get the Record Type Id that we will assign to the Case</description>
+        <name>GetRecordTypeIdByDevName</name>
+        <label>Get Record Type Id By Dev Name</label>
+        <locationX>280</locationX>
+        <locationY>307</locationY>
+        <connector>
+            <targetReference>IsRecordTypeIdFound</targetReference>
+        </connector>
+        <flowName>GetRecordTypeIdByNameAndSObjectType</flowName>
+        <inputAssignments>
+            <name>InputObjectType</name>
+            <value>
+                <elementReference>CaseSObjectType</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>InputRecordTypeDeveloperName</name>
+            <value>
+                <elementReference>InputNewRecordTypeName</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>RecordTypeId</assignToReference>
+            <name>OutputRecordTypeId</name>
+        </outputAssignments>
+    </subflows>
+    <variables>
+        <description>Name of the object Case that we will use to query Record Types for</description>
+        <name>CaseSObjectType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Case</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>The Case Id for which RecordTypeId will be changed.</description>
+        <name>InputCaseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The Name of the new Record Type of the Case</description>
+        <name>InputNewRecordTypeName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The Record Type Id that we queried based on the provided Record Type Developer Name</description>
+        <name>RecordTypeId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

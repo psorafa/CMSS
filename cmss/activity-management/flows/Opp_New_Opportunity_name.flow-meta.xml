@@ -33,27 +33,37 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>IF( [Opportunity].Account.IsPersonAccount  = true,
-
-[Opportunity].Account.LastName  &amp;  &quot; &quot; &amp; [Opportunity].Campaign.Name &amp; &quot; &quot; &amp;[Opportunity].CustomText__c,
-
-[Opportunity].Account.Name &amp;  &quot; &quot; &amp; [Opportunity].Campaign.Name &amp; &quot; &quot; &amp;[Opportunity].CustomText__c)</stringValue>
+                <stringValue>IF( [Opportunity].Account.IsPersonAccount  = true, 
+            [Opportunity].Account.LastName, 
+            [Opportunity].Account.Name
+)
+&amp; &quot; &quot; &amp; 
+IF(NOT(ISBLANK([Opportunity].CampaignId)), 
+            [Opportunity].Campaign.Name, 
+            &quot;&quot;
+) 
+&amp; &quot; &quot; &amp; [Opportunity].CustomText__c</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_3589086931</name>
+        <name>formula_2_myRule_1_A1_9517515883</name>
         <dataType>String</dataType>
-        <expression>IF( {!myVariable_current.Account.IsPersonAccount}  = true,
-
-{!myVariable_current.Account.LastName}  &amp;  &quot; &quot; &amp; {!myVariable_current.Campaign.Name} &amp; &quot; &quot; &amp;{!myVariable_current.CustomText__c},
-
-{!myVariable_current.Account.Name} &amp;  &quot; &quot; &amp; {!myVariable_current.Campaign.Name} &amp; &quot; &quot; &amp;{!myVariable_current.CustomText__c})</expression>
+        <expression>IF( {!myVariable_current.Account.IsPersonAccount}  = true, 
+            {!myVariable_current.Account.LastName}, 
+            {!myVariable_current.Account.Name}
+)
+&amp; &quot; &quot; &amp; 
+IF(NOT(ISBLANK({!myVariable_current.CampaignId})), 
+            {!myVariable_current.Campaign.Name}, 
+            &quot;&quot;
+) 
+&amp; &quot; &quot; &amp; {!myVariable_current.CustomText__c}</expression>
     </formulas>
     <formulas>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
         <expression>true</expression>
     </formulas>
-    <interviewLabel>Opp_New_Opportunity_name-9_InterviewLabel</interviewLabel>
+    <interviewLabel>Opp_New_Opportunity_name-2_InterviewLabel</interviewLabel>
     <label>Opp - New Opportunity name</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -161,7 +171,7 @@
             </processMetadataValues>
             <field>Name</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_3589086931</elementReference>
+                <elementReference>formula_2_myRule_1_A1_9517515883</elementReference>
             </value>
         </inputAssignments>
         <object>Opportunity</object>
