@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>ClaimsDueDateIn7Days</fullName>
+    <fullName>ClientClaims_All</fullName>
     <columns>CASES.CASE_NUMBER</columns>
     <columns>CASES.TYPE</columns>
     <columns>CASES.STATUS</columns>
@@ -8,11 +8,10 @@
     <columns>Source__c</columns>
     <columns>SourceDescription__c</columns>
     <columns>OWNER_NAME</columns>
-    <columns>ResponseSent__c</columns>
     <columns>ComplaintReceivingConfirmation__c</columns>
-    <columns>ComplaintLegitimacy__c</columns>
+    <columns>ExtensionInfoSent__c</columns>
+    <columns>ResponseSent__c</columns>
     <columns>DueDatetime__c</columns>
-    <columns>MultipleComplainers__c</columns>
     <columns>RemainingDays__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
@@ -20,15 +19,5 @@
         <operation>equals</operation>
         <value>1</value>
     </filters>
-    <filters>
-        <field>CASES.STATUS</field>
-        <operation>equals</operation>
-        <value>1</value>
-    </filters>
-    <filters>
-        <field>DueDatetime__c</field>
-        <operation>lessOrEqual</operation>
-        <value>NEXT_N_DAYS:7</value>
-    </filters>
-    <label>K vyřešení do 7 dnů</label>
+    <label>Klientská podání - všechna</label>
 </ListView>

@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>AllSolvedClientClaims</fullName>
+    <fullName>ClientClaims_AllMine</fullName>
     <columns>CASES.CASE_NUMBER</columns>
     <columns>CASES.TYPE</columns>
+    <columns>CASES.STATUS</columns>
     <columns>ReceivedDate__c</columns>
     <columns>Source__c</columns>
     <columns>SourceDescription__c</columns>
-    <columns>OWNER_NAME</columns>
-    <columns>ResponseSent__c</columns>
     <columns>ComplaintReceivingConfirmation__c</columns>
-    <columns>ComplaintLegitimacy__c</columns>
+    <columns>ExtensionInfoSent__c</columns>
+    <columns>ResponseSent__c</columns>
     <columns>DueDatetime__c</columns>
-    <columns>MultipleComplainers__c</columns>
     <columns>RemainingDays__c</columns>
-    <filterScope>Everything</filterScope>
+    <filterScope>Mine</filterScope>
     <filters>
         <field>IsClientClaim__c</field>
         <operation>equals</operation>
         <value>1</value>
     </filters>
-    <filters>
-        <field>CASES.STATUS</field>
-        <operation>equals</operation>
-        <value>2</value>
-    </filters>
-    <label>Všechna vyřešená podání</label>
+    <label>Klientská podání - všechna má</label>
 </ListView>

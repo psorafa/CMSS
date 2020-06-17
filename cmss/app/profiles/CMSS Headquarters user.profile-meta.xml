@@ -1352,6 +1352,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.ExtensionInfoSent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.HistoricCaseNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>

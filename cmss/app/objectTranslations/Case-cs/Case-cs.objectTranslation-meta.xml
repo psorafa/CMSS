@@ -62,7 +62,7 @@
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
-        <layout>ClientClaimConfirmationSent</layout>
+           <layout>ClientClaimConfirmationSent</layout>
         <sections>
             <label>Klientské podání</label>
             <section>Complain about</section>
@@ -127,8 +127,8 @@
         <name>SendEmail</name>
     </quickActions>
     <recordTypes>
-        <description
-		><!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
+        <description>
+        <!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
         <label><!-- Client Claim Confirmation Sent --></label>
         <name>ClientClaimConfirmationSent</name>
     </recordTypes>
@@ -143,8 +143,8 @@
         <name>NewClientClaim</name>
     </recordTypes>
     <validationRules>
-        <errorMessage
-		>Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <errorMessage>
+        Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ComplaintReceivingConfirmDate</name>
     </validationRules>
     <validationRules>
@@ -168,13 +168,13 @@
         <name>ReceivedDateInFuture</name>
     </validationRules>
     <validationRules>
-        <errorMessage
-		>Odeslání odpovědi na podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <errorMessage>
+        Odeslání odpovědi na podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ResponseSentDate</name>
     </validationRules>
     <validationRules>
-        <errorMessage
-		>Pole Odeslání odpovědi na podání musí být vyplněno před nastavením Statusu na Vyřešeno.</errorMessage>
+        <errorMessage>
+        Pole Odeslání odpovědi na podání musí být vyplněno před nastavením Statusu na Vyřešeno.</errorMessage>
         <name>StatusCompletedOnlyIfResponseSentFilled</name>
     </validationRules>
 </CustomObjectTranslation>
