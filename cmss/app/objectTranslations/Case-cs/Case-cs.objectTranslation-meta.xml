@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <caseType>Nominative</caseType>
@@ -62,47 +62,47 @@
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
-        <layout>ClientClaimConfirmationSent</layout>
+           <layout>ClientClaimConfirmationSent</layout>
         <sections>
-            <label>Complain about</label>
+            <label>Klientské podání</label>
             <section>Complain about</section>
         </sections>
         <sections>
-            <label>Complainer</label>
+            <label>Podávající</label>
             <section>Complainer</section>
         </sections>
         <sections>
-            <label>Solution</label>
+            <label>Řešení</label>
             <section>Solution</section>
         </sections>
     </layouts>
     <layouts>
         <layout>ClosedClientClaim</layout>
         <sections>
-            <label>Complain about</label>
+            <label>Klientské podání</label>
             <section>Complain about</section>
         </sections>
         <sections>
-            <label>Complainer</label>
+            <label>Podávající</label>
             <section>Complainer</section>
         </sections>
         <sections>
-            <label>Solutio</label>
+            <label>Řešení</label>
             <section>Solution</section>
         </sections>
     </layouts>
     <layouts>
         <layout>NewClientClaim</layout>
         <sections>
-            <label>Complain about</label>
+            <label>Klientské podání</label>
             <section>Complain about</section>
         </sections>
         <sections>
-            <label>Complainer</label>
+            <label>Podávající</label>
             <section>Complainer</section>
         </sections>
         <sections>
-            <label>Solutio</label>
+            <label>Řešení</label>
             <section>Solution</section>
         </sections>
     </layouts>
@@ -111,7 +111,7 @@
         <name>ClaimCancellation</name>
     </quickActions>
     <quickActions>
-        <label>            <!-- NewChildCase --></label>
+        <label><!-- NewChildCase --></label>
         <name>NewChildCase</name>
     </quickActions>
     <quickActions>
@@ -123,26 +123,28 @@
         <name>ResponseSent</name>
     </quickActions>
     <quickActions>
-        <label>            <!-- SendEmail --></label>
+        <label><!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
     <recordTypes>
-        <description>            <!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
-        <label>            <!-- Client Claim Confirmation Sent --></label>
+        <description>
+        <!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
+        <label><!-- Client Claim Confirmation Sent --></label>
         <name>ClientClaimConfirmationSent</name>
     </recordTypes>
     <recordTypes>
-        <description>            <!-- The client claim record type with a non editable layout for closed cases --></description>
-        <label>            <!-- Closed Client Claim --></label>
+        <description><!-- The client claim record type with a non editable layout for closed cases --></description>
+        <label><!-- Closed Client Claim --></label>
         <name>ClosedClientClaim</name>
     </recordTypes>
     <recordTypes>
-        <description>            <!-- Record type for Client Claims (complaints, incidents, requests) --></description>
-        <label>            <!-- New Client Claim --></label>
+        <description><!-- Record type for Client Claims (complaints, incidents, requests) --></description>
+        <label><!-- New Client Claim --></label>
         <name>NewClientClaim</name>
     </recordTypes>
     <validationRules>
-        <errorMessage>Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <errorMessage>
+        Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ComplaintReceivingConfirmDate</name>
     </validationRules>
     <validationRules>
@@ -166,11 +168,13 @@
         <name>ReceivedDateInFuture</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Odeslání odpovědi na podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <errorMessage>
+        Odeslání odpovědi na podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ResponseSentDate</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Pole Odeslání odpovědi na podání musí být vyplněno před nastavením Statusu na Vyřešeno.</errorMessage>
+        <errorMessage>
+        Pole Odeslání odpovědi na podání musí být vyplněno před nastavením Statusu na Vyřešeno.</errorMessage>
         <name>StatusCompletedOnlyIfResponseSentFilled</name>
     </validationRules>
 </CustomObjectTranslation>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SourceDescription__c</fullName>
+    <description>Case source detail description</description>
+    <externalId>false</externalId>
+    <formula>CASE( TEXT( Source__c) ,
+      &#39;1&#39;, IF(Account.IsPersonAccount, Account.FirstName + &#39; &#39; + Account.LastName, Account.Name),
+      &#39;2&#39;, ComplainerFirstName__c + &#39; &#39; + ComplainerLastName__c,
+      &#39;3&#39;, CASE( TEXT( InstitutionType__c),
+               &#39;1&#39;, &#39;FA&#39;,
+               &#39;2&#39;, &#39;ČNB&#39;,
+               &#39;3&#39;, &#39;MF ČR&#39;,
+               &#39;4&#39;, &#39;ČSOB&#39;,
+               &#39;&#39;),
+      &#39;4&#39;, ComplainerContractor__r.FirstName + &#39; &#39; + ComplainerContractor__r.LastName,
+      &#39;&#39;)</formula>
+    <inlineHelpText>Detailní popis zdroje podání</inlineHelpText>
+    <label>Source Description</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

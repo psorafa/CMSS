@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ClientClaims_NoReactionIn5Days</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>ReceivedDate__c</columns>
+    <columns>Source__c</columns>
+    <columns>SourceDescription__c</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>ComplaintReceivingConfirmation__c</columns>
+    <columns>ResponseSent__c</columns>
+    <columns>DueDatetime__c</columns>
+    <columns>RemainingDays__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>IsClientClaim__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>ReceivedDate__c</field>
+        <operation>lessThan</operation>
+        <value>LAST_N_DAYS:6</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>ComplaintReceivingConfirmation__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Stížnosti bez reakce do 5 pracovních dnů</label>
+</ListView>
