@@ -87,24 +87,24 @@
     <layouts>
         <layout>GDPR</layout>
         <sections>
-            <label><!-- Applicant Information --></label>
+            <label>Podávající</label>
             <section>Applicant Information</section>
         </sections>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label>Odkazy</label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- GDPR Case Information --></label>
+            <label>Informace k GDPR podání</label>
             <section>GDPR Case Information</section>
         </sections>
         <sections>
-            <label><!-- Request Validation --></label>
-            <section>Request Validation</section>
+            <label>Řešení</label>
+            <section>Solving</section>
         </sections>
         <sections>
-            <label><!-- Solving --></label>
-            <section>Solving</section>
+            <label>Systémové informace</label>
+            <section>System Information</section>
         </sections>
     </layouts>
     <quickActions>
@@ -128,6 +128,50 @@
     <validationRules>
         <errorMessage>Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ComplaintReceivingConfirmDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfAccountBlankLastNameRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfAccountBlankNameRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteAnswerFormRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Rodné číslo nebo datum narození je povinné</errorMessage>
+        <name>GDPRIfRequestCompleteBirthDateRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteLastNameRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteNameRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteRequestTypeRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteSubjectFoundReq</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteSubjectSameRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Příchod nesmí být před 1.1.2018</errorMessage>
+        <name>GDPRReceivedDateLessThan2018</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRRequestNotCompleteOwnerRequired</name>
     </validationRules>
     <validationRules>
         <errorMessage>Pokud Interní opatření = Ano, vyplňte Komentář k internímu opatření</errorMessage>

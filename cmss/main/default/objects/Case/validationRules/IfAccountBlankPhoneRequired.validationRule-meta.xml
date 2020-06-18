@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>IfAccountBlankPhoneRequired</fullName>
-    <active>true</active>
-    <description>Valid for GDPR - if account is not found, user must fill phone number</description>
-    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;  &amp;&amp; ISBLANK (AccountId)  &amp;&amp; ISBLANK (PhoneNumber__c)</errorConditionFormula>
-    <errorDisplayField>PhoneNumber__c</errorDisplayField>
-    <errorMessage>Povinné pole</errorMessage>
-</ValidationRule>

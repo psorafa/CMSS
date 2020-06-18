@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GDPRIfRequestCompleteRequestTypeRequired</fullName>
+    <active>true</active>
+    <description>Valid for GDPR - if request is checked as complete, request type is required</description>
+    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;  &amp;&amp; ISBLANK( AccountId ) &amp;&amp;  RequestComplete__c  = true  &amp;&amp;    ISBLANK(  RequestType__c  )</errorConditionFormula>
+    <errorDisplayField>RequestType__c</errorDisplayField>
+    <errorMessage>Required field</errorMessage>
+</ValidationRule>
