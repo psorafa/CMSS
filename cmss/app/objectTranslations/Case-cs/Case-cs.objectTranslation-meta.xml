@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <caseType>Nominative</caseType>
@@ -62,25 +62,47 @@
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
-        <layout>Case Feed Layout</layout>
-        <layoutType>CaseInteraction</layoutType>
+           <layout>ClientClaimConfirmationSent</layout>
         <sections>
-            <label><!-- Fields --></label>
-            <section>Fields</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Case Layout</layout>
-        <sections>
-            <label>Complain about</label>
+            <label>Klientské podání</label>
             <section>Complain about</section>
         </sections>
         <sections>
-            <label>Complainer</label>
+            <label>Podávající</label>
             <section>Complainer</section>
         </sections>
         <sections>
-            <label>Solutio</label>
+            <label>Řešení</label>
+            <section>Solution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>ClosedClientClaim</layout>
+        <sections>
+            <label>Klientské podání</label>
+            <section>Complain about</section>
+        </sections>
+        <sections>
+            <label>Podávající</label>
+            <section>Complainer</section>
+        </sections>
+        <sections>
+            <label>Řešení</label>
+            <section>Solution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>NewClientClaim</layout>
+        <sections>
+            <label>Klientské podání</label>
+            <section>Complain about</section>
+        </sections>
+        <sections>
+            <label>Podávající</label>
+            <section>Complainer</section>
+        </sections>
+        <sections>
+            <label>Řešení</label>
             <section>Solution</section>
         </sections>
     </layouts>
@@ -108,17 +130,40 @@
         </sections>
     </layouts>
     <quickActions>
+        <label>Zrušit podání</label>
+        <name>ClaimCancellation</name>
+    </quickActions>
+    <quickActions>
         <label><!-- NewChildCase --></label>
         <name>NewChildCase</name>
+    </quickActions>
+    <quickActions>
+        <label>Potvrzení o přijetí odesláno</label>
+        <name>ReceivingConfirmationSent</name>
+    </quickActions>
+    <quickActions>
+        <label>Odpověď na podání odeslána</label>
+        <name>ResponseSent</name>
     </quickActions>
     <quickActions>
         <label><!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
     <recordTypes>
+        <description>
+        <!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
+        <label><!-- Client Claim Confirmation Sent --></label>
+        <name>ClientClaimConfirmationSent</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- The client claim record type with a non editable layout for closed cases --></description>
+        <label><!-- Closed Client Claim --></label>
+        <name>ClosedClientClaim</name>
+    </recordTypes>
+    <recordTypes>
         <description><!-- Record type for Client Claims (complaints, incidents, requests) --></description>
-        <label><!-- Client Claim --></label>
-        <name>ClientClaim</name>
+        <label><!-- New Client Claim --></label>
+        <name>NewClientClaim</name>
     </recordTypes>
     <recordTypes>
         <description><!-- GDPR claim --></description>
@@ -126,7 +171,8 @@
         <name>GDPR</name>
     </recordTypes>
     <validationRules>
-        <errorMessage>Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <errorMessage>
+        Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ComplaintReceivingConfirmDate</name>
     </validationRules>
     <validationRules>
@@ -178,8 +224,12 @@
         <name>IfInternalPrecautionTrueNoteMustBeFilled</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Pokud Interní opatření = Ano, vyberte hodnota z pole Druhy interního opatření</errorMessage>
+        <errorMessage>Pokud Interní opatření = Ano, vyberte hodnotu z pole Druhy interního opatření</errorMessage>
         <name>IfInternalPrecautionTrueTypeMustBePicked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pole Stupeň podání - detail musí být vyplněno pro Stupeň podání II.</errorMessage>
+        <name>IfPriority2DetailPriorityMustBeFilled</name>
     </validationRules>
     <validationRules>
         <errorMessage>Pole Klient musí být vyplněno pro Zdroj případu &quot;Klient&quot;</errorMessage>
@@ -190,11 +240,13 @@
         <name>ReceivedDateInFuture</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Odeslání odpovědi na podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <errorMessage>
+        Odeslání odpovědi na podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ResponseSentDate</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Pole Odeslání odpovědi na podání musí být vyplněno před nastavením Statusu na Vyřešeno.</errorMessage>
+        <errorMessage>
+        Pole Odeslání odpovědi na podání musí být vyplněno před nastavením Statusu na Vyřešeno.</errorMessage>
         <name>StatusCompletedOnlyIfResponseSentFilled</name>
     </validationRules>
 </CustomObjectTranslation>
