@@ -3,7 +3,7 @@
     <description>The action indicates that the the response to the claim has been sent to the complainer. May be extended to also send the response by email.</description>
     <fieldOverrides>
         <field>ResponseSent__c</field>
-        <formula>NOW()</formula>
+        <formula>TODAY()</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Status</field>
@@ -38,7 +38,7 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>DueDatetime__c</field>
+                <field>DueDate__c</field>
                 <uiBehavior>Readonly</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>

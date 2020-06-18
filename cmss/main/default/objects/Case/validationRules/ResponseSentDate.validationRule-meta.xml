@@ -3,7 +3,7 @@
     <fullName>ResponseSentDate</fullName>
     <active>true</active>
     <description>Response Sent date/time must be equal or older than now and must be later then Received Date.</description>
-    <errorConditionFormula>ResponseSent__c &gt; NOW()  || 
+    <errorConditionFormula>ResponseSent__c &gt; TODAY()  || 
 	 ResponseSent__c &lt; ReceivedDate__c</errorConditionFormula>
     <errorDisplayField>ResponseSent__c</errorDisplayField>
     <errorMessage>Response Sent must be older than now and must be later then Received Date.</errorMessage>

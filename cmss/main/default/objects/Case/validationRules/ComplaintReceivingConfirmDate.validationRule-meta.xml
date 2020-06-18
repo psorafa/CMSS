@@ -3,7 +3,7 @@
     <fullName>ComplaintReceivingConfirmDate</fullName>
     <active>true</active>
     <description>Complaint Receiving Confirmation date can&#39;t be later than today and can&#39;t be older than Received Date.</description>
-    <errorConditionFormula>ComplaintReceivingConfirmation__c &gt; NOW() ||  
+    <errorConditionFormula>ComplaintReceivingConfirmation__c &gt; TODAY() ||  
 	ComplaintReceivingConfirmation__c &lt; ReceivedDate__c</errorConditionFormula>
     <errorDisplayField>ComplaintReceivingConfirmation__c</errorDisplayField>
     <errorMessage>Complaint Receiving Confirm date can&#39;t be later than today and can&#39;t be older than Received Date.</errorMessage>

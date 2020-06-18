@@ -38,39 +38,39 @@ private class CaseMilestoneUtils_Test {
 		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
 		c1WithResponseSent = new Case(
 			RecordTypeId = clientClaimRTId,
-			ReceivedDate__c = Datetime.now().addDays(-50),
+			ReceivedDate__c = Date.today().addDays(-50),
 			Origin = '1',
 			Source__c = '1',
 			AccountId = acc.Id,
 			EntitlementId = ent.Id,
-			ResponseSent__c = Datetime.now().addHours(-4)
+			ResponseSent__c = Date.today().addDays(-4)
 		);
 		c2WithResponseSent = new Case(
 			RecordTypeId = clientClaimRTId,
-			ReceivedDate__c = Datetime.now().addDays(-10),
+			ReceivedDate__c = Date.today().addDays(-10),
 			Origin = '1',
 			Source__c = '1',
 			AccountId = acc.Id,
 			EntitlementId = ent.Id,
-			ResponseSent__c = Datetime.now().addHours(-2)
+			ResponseSent__c = Date.today()
 		);
 		c3WithConfirmationSent = new Case(
 			RecordTypeId = clientClaimRTId,
-			ReceivedDate__c = Datetime.now().addDays(-3),
+			ReceivedDate__c = Date.today().addDays(-3),
 			Origin = '1',
 			Source__c = '1',
 			AccountId = acc.Id,
 			EntitlementId = ent.Id,
-			ComplaintReceivingConfirmation__c = Datetime.now().addHours(-3)
+			ComplaintReceivingConfirmation__c = Date.today().addDays(-2)
 		);
 		c4WithConfirmationSent = new Case(
 			RecordTypeId = clientClaimRTId,
-			ReceivedDate__c = Datetime.now().addDays(-3),
+			ReceivedDate__c = Date.today().addDays(-3),
 			Origin = '1',
 			Source__c = '1',
 			AccountId = acc.Id,
 			EntitlementId = ent.Id,
-			ComplaintReceivingConfirmation__c = Datetime.now().addHours(-1)
+			ComplaintReceivingConfirmation__c = Date.today()
 		);
 		insert new List<Case>{ c1WithResponseSent, c2WithResponseSent, c3WithConfirmationSent, c4WithConfirmationSent };
 	}
@@ -152,13 +152,13 @@ private class CaseMilestoneUtils_Test {
 				if (c1WithResponseSent.Id == cm.CaseId) {
 					System.assertEquals(
 						c1WithResponseSent.ResponseSent__c,
-						cm.CompletionDate,
+						Date.newInstance(cm.CompletionDate.year(), cm.CompletionDate.month(), cm.CompletionDate.day()),
 						'Case Milestone Completion Date not as expected for Case 1'
 					);
 				} else if (c2WithResponseSent.Id == cm.CaseId) {
 					System.assertEquals(
 						c2WithResponseSent.ResponseSent__c,
-						cm.CompletionDate,
+						Date.newInstance(cm.CompletionDate.year(), cm.CompletionDate.month(), cm.CompletionDate.day()),
 						'Case Milestone Completion Date not as expected for Case 2'
 					);
 				}
@@ -207,13 +207,13 @@ private class CaseMilestoneUtils_Test {
 				if (c3WithConfirmationSent.Id == cm.CaseId) {
 					System.assertEquals(
 						c3WithConfirmationSent.ComplaintReceivingConfirmation__c,
-						cm.CompletionDate,
+						Date.newInstance(cm.CompletionDate.year(), cm.CompletionDate.month(), cm.CompletionDate.day()),
 						'Case Milestone Completion Date not as expected for Case 1'
 					);
 				} else if (c4WithConfirmationSent.Id == cm.CaseId) {
 					System.assertEquals(
 						c4WithConfirmationSent.ComplaintReceivingConfirmation__c,
-						cm.CompletionDate,
+						Date.newInstance(cm.CompletionDate.year(), cm.CompletionDate.month(), cm.CompletionDate.day()),
 						'Case Milestone Completion Date not as expected for Case 2'
 					);
 				}

@@ -33,10 +33,26 @@ public with sharing class CaseMilestoneUtils {
 				String responseMilestoneName = csEntitlementInfo.ResponseSentMilestoneName__c;
 				String confirmMilestoneName = csEntitlementInfo.ReceivingConfirmationMilestoneName__c;
 
-				if (String.isNotBlank(confirmMilestoneName) && confirmMilestoneName == cm.MilestoneType.Name) {
-					cm.CompletionDate = cm.Case.ComplaintReceivingConfirmation__c;
-				} else if (String.isNotBlank(responseMilestoneName) && responseMilestoneName == cm.MilestoneType.Name) {
-					cm.CompletionDate = cm.Case.ResponseSent__c;
+				if (
+					String.isNotBlank(confirmMilestoneName) &&
+					confirmMilestoneName == cm.MilestoneType.Name &&
+					cm.Case.ComplaintReceivingConfirmation__c != null
+				) {
+					Date newCompletionDate = cm.Case.ComplaintReceivingConfirmation__c;
+					Time newCompletionTime = newCompletionDate == Date.today()
+						? Time.newInstance(Datetime.now().hour(), Datetime.now().minute(), Datetime.now().second(), 0)
+						: Time.newInstance(20, 0, 0, 0);
+					cm.CompletionDate = Datetime.newInstance(newCompletionDate, newCompletionTime);
+				} else if (
+					String.isNotBlank(responseMilestoneName) &&
+					responseMilestoneName == cm.MilestoneType.Name &&
+					cm.Case.ResponseSent__c != null
+				) {
+					Date newCompletionDate = cm.Case.ResponseSent__c;
+					Time newCompletionTime = newCompletionDate == Date.today()
+						? Time.newInstance(Datetime.now().hour(), Datetime.now().minute(), Datetime.now().second(), 0)
+						: Time.newInstance(20, 0, 0, 0);
+					cm.CompletionDate = Datetime.newInstance(newCompletionDate, newCompletionTime);
 				}
 			}
 			if (originalCompletionDate != cm.CompletionDate) {

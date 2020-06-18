@@ -1533,7 +1533,7 @@
             </processMetadataValues>
             <field>SlaStartDate</field>
             <value>
-                <elementReference>myVariable_current.ReceivedDate__c</elementReference>
+                <elementReference>myVariable_current.ReceivedDatetimeFormula__c</elementReference>
             </value>
         </inputAssignments>
         <object>Case</object>
