@@ -49,17 +49,17 @@ public class CaseTriggerHandler extends TriggerHandler {
 		if (
 			ACTION_COMPLETE_RESPONSE_MILESTONE == actionName && newCase.IsClientClaim__c &&
 			String.isNotBlank(newCase.EntitlementId) &&
-			newCase.ResponseSent__c != null &&
+			newCase.ResponseSentDate__c != null &&
 			oldCase != null &&
-			oldCase.ResponseSent__c != newCase.ResponseSent__c
+			oldCase.ResponseSentDate__c != newCase.ResponseSentDate__c
 		) {
 			return true;
 		} else if (
 			ACTION_COMPLETE_CONFIRMATION_MILESTONE == actionName && newCase.IsClientClaim__c &&
 			String.isNotBlank(newCase.EntitlementId) &&
-			newCase.ComplaintReceivingConfirmation__c != null &&
+			newCase.ReceivingConfirmationDate__c != null &&
 			oldCase != null &&
-			oldCase.ComplaintReceivingConfirmation__c != newCase.ComplaintReceivingConfirmation__c
+			oldCase.ReceivingConfirmationDate__c != newCase.ReceivingConfirmationDate__c
 		) {
 			return true;
 		}

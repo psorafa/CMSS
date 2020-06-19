@@ -8,8 +8,8 @@
     <columns>Source__c</columns>
     <columns>SourceDescription__c</columns>
     <columns>OWNER_NAME</columns>
-    <columns>ResponseSent__c</columns>
-    <columns>ComplaintReceivingConfirmation__c</columns>
+    <columns>ResponseSentDate__c</columns>
+    <columns>ReceivingConfirmationDate__c</columns>
     <columns>DueDate__c</columns>
     <columns>RemainingDays__c</columns>
     <filterScope>Everything</filterScope>

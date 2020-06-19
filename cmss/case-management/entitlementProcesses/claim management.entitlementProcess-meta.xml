@@ -3,7 +3,7 @@
     <SObjectType>Case</SObjectType>
     <active>true</active>
     <description>An entitlement process for client claims - will be available for all accounts and cases of record type Client Claim</description>
-    <entryStartDateField>Case.ReceivedDatetimeFormula__c</entryStartDateField>
+    <entryStartDateField>Case.ReceivedDatetime__c</entryStartDateField>
     <exitCriteriaFilterItems>
         <field>Case.IsClosed</field>
         <operation>equals</operation>

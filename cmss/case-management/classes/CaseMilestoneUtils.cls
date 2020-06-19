@@ -9,8 +9,8 @@ public with sharing class CaseMilestoneUtils {
 				Id,
 				CompletionDate,
 				IsCompleted,
-				Case.ResponseSent__c,
-				Case.ComplaintReceivingConfirmation__c,
+				Case.ResponseSentDate__c,
+				Case.ReceivingConfirmationDate__c,
 				MilestoneType.Name
 			FROM CaseMilestone
 			WHERE CaseId IN :caseIds AND MilestoneType.Name = :milestoneName AND CompletionDate = null
@@ -36,9 +36,9 @@ public with sharing class CaseMilestoneUtils {
 				if (
 					String.isNotBlank(confirmMilestoneName) &&
 					confirmMilestoneName == cm.MilestoneType.Name &&
-					cm.Case.ComplaintReceivingConfirmation__c != null
+					cm.Case.ReceivingConfirmationDate__c != null
 				) {
-					Date newCompletionDate = cm.Case.ComplaintReceivingConfirmation__c;
+					Date newCompletionDate = cm.Case.ReceivingConfirmationDate__c;
 					Time newCompletionTime = newCompletionDate == Date.today()
 						? Time.newInstance(Datetime.now().hour(), Datetime.now().minute(), Datetime.now().second(), 0)
 						: Time.newInstance(20, 0, 0, 0);
@@ -46,9 +46,9 @@ public with sharing class CaseMilestoneUtils {
 				} else if (
 					String.isNotBlank(responseMilestoneName) &&
 					responseMilestoneName == cm.MilestoneType.Name &&
-					cm.Case.ResponseSent__c != null
+					cm.Case.ResponseSentDate__c != null
 				) {
-					Date newCompletionDate = cm.Case.ResponseSent__c;
+					Date newCompletionDate = cm.Case.ResponseSentDate__c;
 					Time newCompletionTime = newCompletionDate == Date.today()
 						? Time.newInstance(Datetime.now().hour(), Datetime.now().minute(), Datetime.now().second(), 0)
 						: Time.newInstance(20, 0, 0, 0);

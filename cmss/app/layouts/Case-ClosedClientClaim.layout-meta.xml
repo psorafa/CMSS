@@ -38,7 +38,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>ComplaintReceivingConfirmation__c</field>
+                <field>ReceivingConfirmationDate__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -198,7 +198,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>ResponseSent__c</field>
+                <field>ResponseSentDate__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

@@ -313,8 +313,8 @@
         </inputParameters>
     </actionCalls>
     <decisions>
-        <name>isChangedDecision11_myRule_10_ComplaintReceivingConfirmation_c</name>
-        <label>isChangedDecision11_myRule_10_ComplaintReceivingConfirmation_c</label>
+        <name>isChangedDecision11_myRule_10_ReceivingConfirmationDate_c</name>
+        <label>isChangedDecision11_myRule_10_ReceivingConfirmationDate_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
@@ -322,7 +322,7 @@
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_11_myRule_10_ComplaintReceivingConfirmation_c</name>
+            <name>isChangedRule_11_myRule_10_ReceivingConfirmationDate_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -332,16 +332,16 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>myVariable_old.ComplaintReceivingConfirmation__c</leftValueReference>
+                <leftValueReference>myVariable_old.ReceivingConfirmationDate__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>myVariable_current.ComplaintReceivingConfirmation__c</elementReference>
+                    <elementReference>myVariable_current.ReceivingConfirmationDate__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>isChangedDecision14_myRule_13_Status</targetReference>
             </connector>
-            <label>isChangedRule_11_myRule_10_ComplaintReceivingConfirmation_c</label>
+            <label>isChangedRule_11_myRule_10_ReceivingConfirmationDate_c</label>
         </rules>
     </decisions>
     <decisions>
@@ -446,7 +446,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision11_myRule_10_ComplaintReceivingConfirmation_c</targetReference>
+            <targetReference>isChangedDecision11_myRule_10_ReceivingConfirmationDate_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -460,14 +460,14 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>myVariable_old.ResponseSent__c</leftValueReference>
+                <leftValueReference>myVariable_old.ResponseSentDate__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>myVariable_current.ResponseSent__c</elementReference>
+                    <elementReference>myVariable_current.ResponseSentDate__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision11_myRule_10_ComplaintReceivingConfirmation_c</targetReference>
+                <targetReference>isChangedDecision11_myRule_10_ReceivingConfirmationDate_c</targetReference>
             </connector>
             <label>isChangedRule_8_myRule_7_ResponseSent_c</label>
         </rules>
@@ -1024,7 +1024,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.ResponseSent__c</leftValueReference>
+                <leftValueReference>myVariable_current.ResponseSentDate__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -1172,7 +1172,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_11_myRule_10_ComplaintReceivingConfirmation_c</leftValueReference>
+                <leftValueReference>isChangedRule_11_myRule_10_ReceivingConfirmationDate_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -1203,7 +1203,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.ComplaintReceivingConfirmation__c</leftValueReference>
+                <leftValueReference>myVariable_current.ReceivingConfirmationDate__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -1533,7 +1533,7 @@
             </processMetadataValues>
             <field>SlaStartDate</field>
             <value>
-                <elementReference>myVariable_current.ReceivedDatetimeFormula__c</elementReference>
+                <elementReference>myVariable_current.ReceivedDatetime__c</elementReference>
             </value>
         </inputAssignments>
         <object>Case</object>
