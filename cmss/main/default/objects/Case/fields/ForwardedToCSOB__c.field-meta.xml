@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ForwardedToCSOB__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Příznak, zda bylo podání předáno do ČSOB</description>
+    <externalId>false</externalId>
+    <label>Forwarded To CSOB</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

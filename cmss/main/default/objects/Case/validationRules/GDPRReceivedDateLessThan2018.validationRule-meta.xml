@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GDPRReceivedDateLessThan2018</fullName>
+    <active>true</active>
+    <description>Received Date for GDPR must be higher than 1.1.2018</description>
+    <errorConditionFormula>DATEVALUE(ReceivedDate__c ) &lt;  DATE(2018,01,01)</errorConditionFormula>
+    <errorDisplayField>ReceivedDate__c</errorDisplayField>
+    <errorMessage>Received Date must be higher than 1. 1. 2018.</errorMessage>
+</ValidationRule>

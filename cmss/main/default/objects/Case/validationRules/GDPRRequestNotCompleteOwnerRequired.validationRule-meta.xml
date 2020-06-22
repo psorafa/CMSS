@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GDPRRequestNotCompleteOwnerRequired</fullName>
+    <active>true</active>
+    <description>Valid for GDPR claims - if Request Complete false, last name is required</description>
+    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;  &amp;&amp;  
+RequestComplete__c  = false &amp;&amp;  
+ISBLANK( Owner:User.AgentId__c )</errorConditionFormula>
+    <errorDisplayField>OwnerId</errorDisplayField>
+    <errorMessage>Required field</errorMessage>
+</ValidationRule>
