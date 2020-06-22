@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>GDPR</fullName>
+    <fullName>ClosedGDPRClaim</fullName>
     <active>true</active>
     <businessProcess>Client Claim</businessProcess>
-    <description>GDPR claim</description>
-    <label>GDPR</label>
+    <description>Record type with read-only fields for closed GDPR claims</description>
+    <label>Closed GDPR Claim</label>
     <picklistValues>
         <picklist>AccountingFundsType__c</picklist>
         <values>

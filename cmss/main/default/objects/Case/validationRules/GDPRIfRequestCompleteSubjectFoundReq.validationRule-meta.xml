@@ -3,7 +3,7 @@
     <fullName>GDPRIfRequestCompleteSubjectFoundReq</fullName>
     <active>true</active>
     <description>Valid for GDPR - if request is checked as complete,subject found is required</description>
-    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;  &amp;&amp;  ISBLANK( AccountId ) &amp;&amp; RequestComplete__c  = true  &amp;&amp;   SubjectFound__c = false</errorConditionFormula>
+    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;  &amp;&amp; RequestComplete__c  = true  &amp;&amp;   SubjectFound__c = false</errorConditionFormula>
     <errorDisplayField>SubjectFound__c</errorDisplayField>
     <errorMessage>Required field</errorMessage>
 </ValidationRule>

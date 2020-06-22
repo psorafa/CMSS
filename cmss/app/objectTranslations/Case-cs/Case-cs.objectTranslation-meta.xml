@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <caseType>Nominative</caseType>
@@ -62,7 +62,7 @@
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
-           <layout>ClientClaimConfirmationSent</layout>
+        <layout>ClientClaimConfirmationSent</layout>
         <sections>
             <label>Klientské podání</label>
             <section>Complain about</section>
@@ -92,18 +92,26 @@
         </sections>
     </layouts>
     <layouts>
-        <layout>NewClientClaim</layout>
-        <sections>
-            <label>Klientské podání</label>
-            <section>Complain about</section>
-        </sections>
+        <layout>ClosedGDPR</layout>
         <sections>
             <label>Podávající</label>
-            <section>Complainer</section>
+            <section>Applicant Information</section>
+        </sections>
+        <sections>
+            <label>Odkazy</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Informace k GDPR podání</label>
+            <section>GDPR Case Information</section>
         </sections>
         <sections>
             <label>Řešení</label>
-            <section>Solution</section>
+            <section>Solving</section>
+        </sections>
+        <sections>
+            <label>Systémové informace</label>
+            <section>System Information</section>
         </sections>
     </layouts>
     <layouts>
@@ -129,6 +137,21 @@
             <section>System Information</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>NewClientClaim</layout>
+        <sections>
+            <label>Klientské podání</label>
+            <section>Complain about</section>
+        </sections>
+        <sections>
+            <label>Podávající</label>
+            <section>Complainer</section>
+        </sections>
+        <sections>
+            <label>Řešení</label>
+            <section>Solution</section>
+        </sections>
+    </layouts>
     <quickActions>
         <label>Zrušit podání</label>
         <name>ClaimCancellation</name>
@@ -150,8 +173,7 @@
         <name>SendEmail</name>
     </quickActions>
     <recordTypes>
-        <description>
-        <!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
+        <description><!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
         <label><!-- Client Claim Confirmation Sent --></label>
         <name>ClientClaimConfirmationSent</name>
     </recordTypes>
@@ -161,14 +183,19 @@
         <name>ClosedClientClaim</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Record type for Client Claims (complaints, incidents, requests) --></description>
-        <label><!-- New Client Claim --></label>
-        <name>NewClientClaim</name>
+        <description><!-- Record type with read-only fields for closed GDPR claims --></description>
+        <label><!-- Closed GDPR Claim --></label>
+        <name>ClosedGDPRClaim</name>
     </recordTypes>
     <recordTypes>
         <description><!-- GDPR claim --></description>
         <label><!-- GDPR --></label>
         <name>GDPR</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type for Client Claims (complaints, incidents, requests) --></description>
+        <label><!-- New Client Claim --></label>
+        <name>NewClientClaim</name>
     </recordTypes>
     <validationRules>
         <errorMessage>

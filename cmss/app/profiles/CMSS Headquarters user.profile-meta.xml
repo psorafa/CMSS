@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>standard__LightningSales</application>
@@ -1376,6 +1376,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.ExtensionInfoSent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Case.ForwardedToCSOB__c</field>
         <readable>true</readable>
@@ -1383,11 +1388,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.GDPRCaseNumber__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.ExtensionInfoSent__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1421,6 +1421,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.IsSetInvalidationBan__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.IsSignatureVerified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Case.MultipleComplainers__c</field>
         <readable>true</readable>
@@ -1451,7 +1461,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-      <editable>false</editable>
+    <editable>false</editable>
         <field>Case.Reason</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1487,17 +1497,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.SetInvalidationBan__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Case.SetRestriction__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.SignatureVerified__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1516,6 +1516,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SourceDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Case.Street__c</field>
         <readable>true</readable>
@@ -1523,11 +1528,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.SubjectFound__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.SourceDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2576,12 +2576,16 @@
         <recordType>Case.ClosedClientClaim</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Case-NewClientClaim</layout>
-        <recordType>Case.NewClientClaim</recordType>
+        <layout>Case-ClosedGDPR</layout>
+        <recordType>Case.ClosedGDPRClaim</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Case-GDPR</layout>
         <recordType>Case.GDPR</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-NewClientClaim</layout>
+        <recordType>Case.NewClientClaim</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CaseMilestone-Case Milestone Layout</layout>
@@ -2792,13 +2796,18 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>Case.NewClientClaim</recordType>
+        <default>false</default>
+        <recordType>Case.ClosedGDPRClaim</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Case.GDPR</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Case.NewClientClaim</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -2848,7 +2857,7 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
-    <tab>standard-Case</tab>
+        <tab>standard-Case</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
