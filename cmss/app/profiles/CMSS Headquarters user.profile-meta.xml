@@ -1427,6 +1427,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.IsSetRestriction__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.IsSignatureVerified__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1461,7 +1466,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    <editable>false</editable>
+        <editable>false</editable>
         <field>Case.Reason</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1493,11 +1498,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.ResponseSent__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.SetRestriction__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
