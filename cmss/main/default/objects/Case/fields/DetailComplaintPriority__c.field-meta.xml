@@ -3,10 +3,9 @@
     <fullName>DetailComplaintPriority__c</fullName>
     <description>Upřesnění komu je klientské podání adresováno.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Volba &quot;Jiné&quot; zahrnuje také GDPR , MIFID a PSD2 podání.</inlineHelpText>
+    <inlineHelpText>Option &quot;Other&quot; includes also GDPR , MIFID and PSD2 claims</inlineHelpText>
     <label>Detail Complaint Priority</label>
     <required>false</required>
-    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
