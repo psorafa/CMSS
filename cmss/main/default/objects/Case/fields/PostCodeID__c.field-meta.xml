@@ -3,11 +3,10 @@
     <fullName>PostCodeID__c</fullName>
     <description>Adresa podávajícího - PSČ</description>
     <externalId>false</externalId>
-    <inlineHelpText>Pokud vyberete klienta, údaj se doplní automaticky po uložení GDPR podání.</inlineHelpText>
+    <inlineHelpText>If account is selected, attribute is filled automatically after save</inlineHelpText>
     <label>Post Code ID</label>
     <length>20</length>
     <required>false</required>
-    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
