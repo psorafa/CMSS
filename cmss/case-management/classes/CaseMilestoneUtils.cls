@@ -9,8 +9,8 @@ public with sharing class CaseMilestoneUtils {
 				Id,
 				CompletionDate,
 				IsCompleted,
-				Case.ResponseSent__c,
-				Case.ComplaintReceivingConfirmation__c,
+				Case.ResponseSentDate__c,
+				Case.ReceivingConfirmationDate__c,
 				MilestoneType.Name
 			FROM CaseMilestone
 			WHERE CaseId IN :caseIds AND MilestoneType.Name = :milestoneName AND CompletionDate = null
@@ -33,10 +33,26 @@ public with sharing class CaseMilestoneUtils {
 				String responseMilestoneName = csEntitlementInfo.ResponseSentMilestoneName__c;
 				String confirmMilestoneName = csEntitlementInfo.ReceivingConfirmationMilestoneName__c;
 
-				if (String.isNotBlank(confirmMilestoneName) && confirmMilestoneName == cm.MilestoneType.Name) {
-					cm.CompletionDate = cm.Case.ComplaintReceivingConfirmation__c;
-				} else if (String.isNotBlank(responseMilestoneName) && responseMilestoneName == cm.MilestoneType.Name) {
-					cm.CompletionDate = cm.Case.ResponseSent__c;
+				if (
+					String.isNotBlank(confirmMilestoneName) &&
+					confirmMilestoneName == cm.MilestoneType.Name &&
+					cm.Case.ReceivingConfirmationDate__c != null
+				) {
+					Date newCompletionDate = cm.Case.ReceivingConfirmationDate__c;
+					Time newCompletionTime = newCompletionDate == Date.today()
+						? Time.newInstance(Datetime.now().hour(), Datetime.now().minute(), Datetime.now().second(), 0)
+						: Time.newInstance(20, 0, 0, 0);
+					cm.CompletionDate = Datetime.newInstance(newCompletionDate, newCompletionTime);
+				} else if (
+					String.isNotBlank(responseMilestoneName) &&
+					responseMilestoneName == cm.MilestoneType.Name &&
+					cm.Case.ResponseSentDate__c != null
+				) {
+					Date newCompletionDate = cm.Case.ResponseSentDate__c;
+					Time newCompletionTime = newCompletionDate == Date.today()
+						? Time.newInstance(Datetime.now().hour(), Datetime.now().minute(), Datetime.now().second(), 0)
+						: Time.newInstance(20, 0, 0, 0);
+					cm.CompletionDate = Datetime.newInstance(newCompletionDate, newCompletionTime);
 				}
 			}
 			if (originalCompletionDate != cm.CompletionDate) {

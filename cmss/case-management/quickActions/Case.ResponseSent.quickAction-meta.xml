@@ -2,8 +2,8 @@
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>The action indicates that the the response to the claim has been sent to the complainer. May be extended to also send the response by email.</description>
     <fieldOverrides>
-        <field>ResponseSent__c</field>
-        <formula>NOW()</formula>
+        <field>ResponseSentDate__c</field>
+        <formula>TODAY()</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Status</field>
@@ -16,7 +16,7 @@
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>ResponseSent__c</field>
+                <field>ResponseSentDate__c</field>
                 <uiBehavior>Required</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
@@ -38,7 +38,7 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>DueDatetime__c</field>
+                <field>DueDate__c</field>
                 <uiBehavior>Readonly</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>

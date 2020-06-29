@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <emailDefault>false</emailDefault>
     <excludeButtons>CaseHierarchy</excludeButtons>
@@ -127,11 +127,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>ComplaintReceivingConfirmation__c</field>
+                <field>ReceivingConfirmationDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>ResponseSent__c</field>
+                <field>ResponseSentDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -167,9 +167,9 @@
         <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <layoutSections>
@@ -218,7 +218,7 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
     </platformActionList>
-    <quickActionList/>
+    <quickActionList />
     <relatedContent>
         <relatedContentItems>
             <layoutItem>

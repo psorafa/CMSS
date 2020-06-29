@@ -3,7 +3,7 @@
     <fullName>ReceivedDateInFuture</fullName>
     <active>true</active>
     <description>Received Date can&#39;t be in the future.</description>
-    <errorConditionFormula>ReceivedDate__c &gt; NOW()</errorConditionFormula>
+    <errorConditionFormula>ReceivedDate__c &gt; TODAY()</errorConditionFormula>
     <errorDisplayField>ReceivedDate__c</errorDisplayField>
     <errorMessage>Received Date can&#39;t be in the future.</errorMessage>
 </ValidationRule>

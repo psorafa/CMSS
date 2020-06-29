@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ResponseSentMilestoneName__c</fullName>
-    <description>Name of the Milestone Type that tracks the filling of the case field ResponseSent__c. When the field is filled in, it means that the case is resolved and closed.</description>
+    <description>Name of the Milestone Type that tracks the filling of the case field ResponseSentDate__c. When the field is filled in, it means that the case is resolved and closed.</description>
     <externalId>false</externalId>
     <label>Response Sent Milestone Name</label>
     <length>255</length>

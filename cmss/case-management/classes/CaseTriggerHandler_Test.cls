@@ -28,7 +28,7 @@ private class CaseTriggerHandler_Test {
 		insert ent;
 		ClientClaimEntitlement__c csEntitlement = new ClientClaimEntitlement__c(
 			SetupOwnerId = UserInfo.getOrganizationId(),
-            EntitlementId__c = ent.Id,
+			EntitlementId__c = ent.Id,
 			ReceivingConfirmationMilestoneName__c = 'Odeslání potvrzení o přijetí podání',
 			ResponseSentMilestoneName__c = 'Odeslání odpovědi na podání'
 		);
@@ -37,7 +37,7 @@ private class CaseTriggerHandler_Test {
 		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
 		c1 = new Case(
 			RecordTypeId = clientClaimRTId,
-			ReceivedDate__c = Datetime.now().addDays(-50),
+			ReceivedDate__c = Date.today().addDays(-50),
 			Origin = '1',
 			Source__c = '1',
 			AccountId = acc.Id,
@@ -45,7 +45,7 @@ private class CaseTriggerHandler_Test {
 		);
 		c2 = new Case(
 			RecordTypeId = clientClaimRTId,
-			ReceivedDate__c = Datetime.now().addDays(-10),
+			ReceivedDate__c = Date.today().addDays(-10),
 			Origin = '1',
 			Source__c = '1',
 			AccountId = acc.Id,
@@ -53,7 +53,7 @@ private class CaseTriggerHandler_Test {
 		);
 		c3 = new Case(
 			RecordTypeId = clientClaimRTId,
-			ReceivedDate__c = Datetime.now().addDays(-3),
+			ReceivedDate__c = Date.today().addDays(-3),
 			Origin = '1',
 			Source__c = '1',
 			AccountId = acc.Id,
@@ -66,7 +66,7 @@ private class CaseTriggerHandler_Test {
 	static void testHandleMilestoneCompletionNoUpdate() {
 		testSetup();
 		Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
-		Datetime completionDate = Datetime.now().addDays(-1);
+		Date completionDate = Date.today().addDays(-1);
 
 		c1.ReceivedDate__c = completionDate;
 		c1.ComplainerFirstName__c = 'testFirstName';
@@ -99,10 +99,10 @@ private class CaseTriggerHandler_Test {
 	static void testHandleMilestoneCompletionResponse() {
 		testSetup();
 		Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
-		Datetime completionDate = Datetime.now().addDays(-1);
+		Date completionDate = Date.today().addDays(-2);
 
-		c1.ResponseSent__c = completionDate;
-		c2.ResponseSent__c = completionDate.addHours(1);
+		c1.ResponseSentDate__c = completionDate;
+		c2.ResponseSentDate__c = completionDate.addDays(1);
 		c3.Description = 'response sent test - no milestone update for c3';
 
 		Test.startTest();
@@ -110,7 +110,7 @@ private class CaseTriggerHandler_Test {
 		Test.stopTest();
 
 		List<CaseMilestone> caseMilestones = [
-			SELECT Id, CaseId, Case.ResponseSent__c, CompletionDate, MilestoneType.Name, IsCompleted, IsViolated
+			SELECT Id, CaseId, Case.ResponseSentDate__c, CompletionDate, MilestoneType.Name, IsCompleted, IsViolated
 			FROM CaseMilestone
 			WHERE CaseId IN :caseIds
 		];
@@ -127,8 +127,8 @@ private class CaseTriggerHandler_Test {
 			} else if (csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name) {
 				System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed.');
 				System.assertEquals(
-					cm.Case.ResponseSent__c,
-					cm.CompletionDate,
+					cm.Case.ResponseSentDate__c,
+					Date.newInstance(cm.CompletionDate.year(), cm.CompletionDate.month(), cm.CompletionDate.day()),
 					'Case Milestone Completion Date not as expected.'
 				);
 			}
@@ -139,10 +139,10 @@ private class CaseTriggerHandler_Test {
 	static void testHandleMilestoneCompletionConfirmation() {
 		testSetup();
 		Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
-		Datetime completionDate = Datetime.now().addDays(-1);
+		Date completionDate = Date.today().addDays(-2);
 
-		c1.ComplaintReceivingConfirmation__c = completionDate;
-		c2.ComplaintReceivingConfirmation__c = completionDate.addHours(1);
+		c1.ReceivingConfirmationDate__c = completionDate;
+		c2.ReceivingConfirmationDate__c = completionDate.addDays(1);
 		c3.Description = 'confirmation sent test - no milestone update for c3';
 
 		Test.startTest();
@@ -153,7 +153,7 @@ private class CaseTriggerHandler_Test {
 			SELECT
 				Id,
 				CaseId,
-				Case.ComplaintReceivingConfirmation__c,
+				Case.ReceivingConfirmationDate__c,
 				CompletionDate,
 				MilestoneType.Name,
 				IsCompleted,
@@ -174,8 +174,8 @@ private class CaseTriggerHandler_Test {
 			} else if (csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name) {
 				System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed.');
 				System.assertEquals(
-					cm.Case.ComplaintReceivingConfirmation__c,
-					cm.CompletionDate,
+					cm.Case.ReceivingConfirmationDate__c,
+					Date.newInstance(cm.CompletionDate.year(), cm.CompletionDate.month(), cm.CompletionDate.day()),
 					'Case Milestone Completion Date not as expected.'
 				);
 			}
@@ -186,13 +186,13 @@ private class CaseTriggerHandler_Test {
 	static void testHandleMilestoneCompletionConfirmationAndResponse() {
 		testSetup();
 		Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
-		Datetime completionDateResponse = Datetime.now().addHours(-24);
-		Datetime completionDateConfirmation = Datetime.now().addHours(-30);
+		Date completionDateResponse = Date.today().addDays(-1);
+		Date completionDateConfirmation = Date.today().addDays(-2);
 
-		c1.ComplaintReceivingConfirmation__c = completionDateConfirmation;
-		c1.ResponseSent__c = completionDateResponse;
-		c2.ComplaintReceivingConfirmation__c = completionDateConfirmation.addHours(1);
-		c2.ResponseSent__c = completionDateResponse.addHours(1);
+		c1.ReceivingConfirmationDate__c = completionDateConfirmation;
+		c1.ResponseSentDate__c = completionDateResponse;
+		c2.ReceivingConfirmationDate__c = completionDateConfirmation.addDays(1);
+		c2.ResponseSentDate__c = completionDateResponse.addDays(1);
 		c3.Description = 'confirmation and response sent test - no milestone update for c3';
 
 		Test.startTest();
@@ -203,8 +203,8 @@ private class CaseTriggerHandler_Test {
 			SELECT
 				Id,
 				CaseId,
-				Case.ResponseSent__c,
-				Case.ComplaintReceivingConfirmation__c,
+				Case.ResponseSentDate__c,
+				Case.ReceivingConfirmationDate__c,
 				CompletionDate,
 				MilestoneType.Name,
 				IsCompleted,
@@ -229,14 +229,14 @@ private class CaseTriggerHandler_Test {
 				System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed');
 				if (csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name) {
 					System.assertEquals(
-						cm.Case.ResponseSent__c,
-						cm.CompletionDate,
+						cm.Case.ResponseSentDate__c,
+						Date.newInstance(cm.CompletionDate.year(), cm.CompletionDate.month(), cm.CompletionDate.day()),
 						'Case Milestone Completion Date not as expected.'
 					);
 				} else if (csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name) {
 					System.assertEquals(
-						cm.Case.ComplaintReceivingConfirmation__c,
-						cm.CompletionDate,
+						cm.Case.ReceivingConfirmationDate__c,
+						Date.newInstance(cm.CompletionDate.year(), cm.CompletionDate.month(), cm.CompletionDate.day()),
 						'Case Milestone Completion Date not as expected.'
 					);
 				}
