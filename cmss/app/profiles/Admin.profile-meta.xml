@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>standard__LightningSales</application>
@@ -66,10 +66,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <custom>false</custom>
-    <customSettingAccesses>
-        <enabled>true</enabled>
-        <name>ClientClaimEntitlement__c</name>
-    </customSettingAccesses>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AccountStatus__c</field>
@@ -203,11 +199,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.HasSbProduct__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.ISector__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1846,13 +1837,13 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>ContactInformation__c.StreetAndHouseNumber__c</field>
+        <editable>true</editable>
+        <field>ContactInformation__c.Street__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>ContactInformation__c.Street__c</field>
+        <editable>false</editable>
+        <field>ContactInformation__c.StreetAndHouseNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
