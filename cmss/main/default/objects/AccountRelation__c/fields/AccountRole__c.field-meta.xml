@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AccountRole__c</fullName>
+    <externalId>false</externalId>
+    <label>Account Role</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1501</fullName>
+                <default>false</default>
+                <label>1501</label>
+            </value>
+            <value>
+                <fullName>1502</fullName>
+                <default>false</default>
+                <label>1502</label>
+            </value>
+            <value>
+                <fullName>1503</fullName>
+                <default>false</default>
+                <label>1503</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

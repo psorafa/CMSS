@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Role osoby 1</label>
+    <name>AccountRole__c</name>
+    <picklistValues>
+        <masterLabel>1501</masterLabel>
+        <translation>KZ zástupce k podpisu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1502</masterLabel>
+        <translation>KZ zastupovaný</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1503</masterLabel>
+        <translation>KZ zástupce podepsaný</translation>
+    </picklistValues>
+</CustomFieldTranslation>

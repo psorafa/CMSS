@@ -156,10 +156,9 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Client Zone</label>
     <nameField>
-        <displayFormat>{0000000}</displayFormat>
         <label>Client Zone Name</label>
         <trackHistory>true</trackHistory>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Client Zones</pluralLabel>
     <searchLayouts>
