@@ -17,5 +17,5 @@
     <protected>false</protected>
     <showsLocation>false</showsLocation>
     <showsStatus>false</showsStatus>
-    <url>/flow/EventWithObjUpdate?opportunityId={!Opportunity.Id}&amp;accountId={!Opportunity.AccountId}&amp;eventDurationMin=5&amp;eventStartMin=-5&amp;eventType=Call&amp;opportunityStageTo=2&amp;eventResult=1&amp;opportunityStageCheck=1</url>
+    <url>/flow/EventWithObjUpdate?opportunityId={!Opportunity.Id}&amp;accountId={!Opportunity.AccountId}&amp;eventDurationMin=5&amp;eventStartMin=-5&amp;eventType=Call&amp;opportunityStageTo=2&amp;eventResult=1&amp;opportunityStageCheck=1&amp;contactInformationType=0</url>
 </WebLink>

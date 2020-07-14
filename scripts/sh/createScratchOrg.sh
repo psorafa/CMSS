@@ -27,6 +27,9 @@ fi
 #push source
 sfdx force:source:push --targetusername $ALIAS
 
+#workaround to catch translation errors that silently fail in push
+sfdx force:source:deploy --sourcepath cmss/app/translations --targetusername $ALIAS
+
 #setup data
 scripts/sh/data.sh $ALIAS
 

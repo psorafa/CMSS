@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ClientClaims_NotSolvedIn25Days</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>ReceivedDate__c</columns>
+    <columns>Source__c</columns>
+    <columns>SourceDescription__c</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>ResponseSentDate__c</columns>
+    <columns>ReceivingConfirmationDate__c</columns>
+    <columns>DueDate__c</columns>
+    <columns>RemainingDays__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>IsClientClaim__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>ReceivedDate__c</field>
+        <operation>lessThan</operation>
+        <value>LAST_N_DAYS:25</value>
+    </filters>
+    <filters>
+        <field>ExtensionInfoSent__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Klientská podání - nevyřízená do 25 dnů</label>
+</ListView>

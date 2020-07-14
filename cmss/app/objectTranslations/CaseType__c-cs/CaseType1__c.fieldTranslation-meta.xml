@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Druh podání 1</label>
+    <name>CaseType1__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>název pole - druh</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>návrh smlouvy, zvýšení, změny smluv</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>platební styk (inkaso, SIPO, přeúčtování)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12</masterLabel>
+        <translation>přespoření CČ, zániky smluv</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13</masterLabel>
+        <translation>změna FP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14</masterLabel>
+        <translation>nedoručený výpis/potvrzení o úrocích</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15</masterLabel>
+        <translation>přidělení CČ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16</masterLabel>
+        <translation>snížení nákladů ČMSS (např. hromadné akce ke klientům, BONVOP, NOZ ...)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17</masterLabel>
+        <translation>CUT</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>18</masterLabel>
+        <translation>DIMA- dodatek, dospořování</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>19</masterLabel>
+        <translation>DIMA akce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>GDPR (únik, zneužití, porušení bankovního tajemství)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20</masterLabel>
+        <translation>znalecké posudky, ocenění nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21</masterLabel>
+        <translation>vymáhání, upomínky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22</masterLabel>
+        <translation>BRKI, SOLUS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>23</masterLabel>
+        <translation>postup při vyřizování MÚ/Ú</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24</masterLabel>
+        <translation>výše úrokové sazby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>25</masterLabel>
+        <translation>předčasné splacení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>26</masterLabel>
+        <translation>storno/odstoupení od smlouvy / výpověď</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>27</masterLabel>
+        <translation>účelovost</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>28</masterLabel>
+        <translation>smluvní dokumentace, ESIP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>29</masterLabel>
+        <translation>pojistná smlouva / změny</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>účtování úhrad, odpuštění poplatků</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30</masterLabel>
+        <translation>splátky pojistného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>31</masterLabel>
+        <translation>pojistné plnění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>32</masterLabel>
+        <translation>storno/odstoupení od smlouvy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>33</masterLabel>
+        <translation>produkty PSB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>34</masterLabel>
+        <translation>hypoteční úvěr</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>přístup ke klientům (OZ i ČMSS)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>ostatní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>storno/odstoupení od stavebního spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>storno/odstoupení oz zvýšení CČ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>výpověď</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>státní podpora</translation>
+    </picklistValues>
+</CustomFieldTranslation>

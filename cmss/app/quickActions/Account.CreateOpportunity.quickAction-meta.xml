@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates new opportunity</description>
+    <fieldOverrides>
+        <field>AccountId</field>
+        <formula>Account.Id</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>CloseDate</field>
+        <formula>TODAY() + 90</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>CustomText__c</field>
+        <formula>&#39;Vlastní obchodní příležitost&#39;</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Name</field>
+        <formula>&#39;random text&#39;</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>StageName</field>
+        <literalValue>1</literalValue>
+    </fieldOverrides>
+    <label>Create Opportunity</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>AccountId</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>CustomText__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Name</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>CloseDate</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>StageName</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+    </quickActionLayout>
+    <successMessage>New Opportunity was created</successMessage>
+    <targetObject>Opportunity</targetObject>
+    <targetParentField>Account</targetParentField>
+    <targetRecordType>Opportunity.Editable</targetRecordType>
+    <type>Create</type>
+</QuickAction>

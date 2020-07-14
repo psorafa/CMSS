@@ -1,5 +1,5 @@
-SELECT Id, Account.ExternalId__c, RootAsset.ExternalId__c, Product2.Name, Product2.ProductCode, 
+SELECT Id, Account.ExternalId__c, RootAsset.ExternalId__c, Product2.Name, Product2.ExternalId, 
     Name, SerialNumber, InstallDate, PurchaseDate, UsageEndDate, Status, Price, Quantity, 
     Description, ExternalId__c, ProductType__c 
 FROM Asset 
-WHERE Account.ExternalId__c != NULL
+WHERE Account.ExternalId__c != NULL AND (RootAssetId = NULL OR RootAsset.ExternalId__c != NULL)

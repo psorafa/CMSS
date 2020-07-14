@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <description>Input is valid if we have sObject Type and at least one of the Record Type Developer Name or Name input.</description>
+        <name>IsInputValid</name>
+        <label>Is Input Valid</label>
+        <locationX>274</locationX>
+        <locationY>198</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>SObjectTypeAndDeveloperNameProvided</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>InputObjectType</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>InputRecordTypeDeveloperName</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>GetRecordTypeIdByDeveloperName</targetReference>
+            </connector>
+            <label>SObject Type and Developer Name Provided</label>
+        </rules>
+        <rules>
+            <name>SObjectTypeAndNameProvided</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>InputObjectType</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>InputRecordTypeLabel</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>GetRecordTypeIdByName</targetReference>
+            </connector>
+            <label>SObject Type And Name Provided</label>
+        </rules>
+    </decisions>
+    <description>Searches the record types by the provided sObjectType and Developer Name or Name</description>
+    <interviewLabel>Get Record Type Id by Name and sObject Type {!$Flow.CurrentDateTime}. Provided input parameters: SObjetct Type {!InputObjectType}, Developer Name {!InputRecordTypeDeveloperName}, Name {!InputRecordTypeLabel}</interviewLabel>
+    <label>Get Record Type Id by Name and sObject Type</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>We will search the record types for the provided sObjectType and Developer Name</description>
+        <name>GetRecordTypeIdByDeveloperName</name>
+        <label>Get Record Type Id By Developer Name</label>
+        <locationX>524</locationX>
+        <locationY>84</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>InputRecordTypeDeveloperName</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>InputObjectType</elementReference>
+            </value>
+        </filters>
+        <object>RecordType</object>
+        <outputAssignments>
+            <assignToReference>OutputRecordTypeId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <description>We will search record types by provided sObjectType and Name</description>
+        <name>GetRecordTypeIdByName</name>
+        <label>GetRecordTypeIdByName</label>
+        <locationX>525</locationX>
+        <locationY>254</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>InputRecordTypeLabel</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>InputObjectType</elementReference>
+            </value>
+        </filters>
+        <object>RecordType</object>
+        <outputAssignments>
+            <assignToReference>OutputRecordTypeId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <runInMode>DefaultMode</runInMode>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>IsInputValid</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>The name of the sObject for which we will query the Record Type Id</description>
+        <name>InputObjectType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The developer name of the Record Type for which we will query its Id</description>
+        <name>InputRecordTypeDeveloperName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The name (label) of the Record Type for which we will query its Id</description>
+        <name>InputRecordTypeLabel</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Found Record Type Id</description>
+        <name>OutputRecordTypeId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

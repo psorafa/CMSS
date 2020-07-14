@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IfInternalPrecautionTrueTypeMustBePicked</fullName>
+    <active>true</active>
+    <description>If Internal Precaution is &quot;Yes&quot; Internal Precaution Type must be chosen.</description>
+    <errorConditionFormula>ISPICKVAL(InternalPrecaution__c, &quot;Yes&quot;) &amp;&amp; ISBLANK(InternalPrecautionType__c)</errorConditionFormula>
+    <errorDisplayField>InternalPrecautionType__c</errorDisplayField>
+    <errorMessage>If Internal Precaution is &quot;Yes&quot;, Internal Precaution Type must be chosen.</errorMessage>
+</ValidationRule>

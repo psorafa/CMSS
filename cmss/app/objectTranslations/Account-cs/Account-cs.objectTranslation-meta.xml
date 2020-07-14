@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Account Layout</layout>
+        <sections>
+            <label>Informace o firmě</label>
+            <section>Company Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Person Account Layout</layout>
+        <layoutType>PersonAccount</layoutType>
+    </layouts>
+    <quickActions>
+        <label>Sjednat produkt</label>
+        <name>ArrangeContract</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Opportunity --></label>
+        <name>CreateOpportunity</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- Business Account --></label>
+        <name>Business_Account</name>
+    </recordTypes>
+    <webLinks>
+        <label>Registrovat volání</label>
+        <name>RegisterCall</name>
+    </webLinks>
+    <webLinks>
+        <label>Registrovat schůzku</label>
+        <name>RegisterMeeting</name>
+    </webLinks>
+</CustomObjectTranslation>

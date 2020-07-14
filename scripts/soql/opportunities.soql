@@ -1,4 +1,9 @@
-SELECT Id, Product__r.ProductCode, CampaignId, Type, CloseDate, Amount, StageName, Description, 
-    Name, AccountId, Account.ExternalId__c 
+SELECT Id, Account.ExternalId__c, RecordTypeId, Name, Description, StageName, Amount, Probability, 
+    CloseDate, CampaignId, CampaignMember__c, Discount__c, ExternalId__c, ListPrice__c, 
+    OriginalAsset__c, Reason__c, SalesPrice__c, Author__c, Category__c, CustomText__c, 
+    DeactivateDate__c, DelegatedDate__c, DueDate__c, OfferNumber__c, OfferType__c, OrderNumber__c, ProductType__c, 
+    Product__c, Product__r.ExternalId 
 FROM Opportunity 
-WHERE Account.ExternalId__c != NULL
+WHERE Account.ExternalId__c != NULL AND Product__c != null
+LIMIT 30
+OFFSET 30

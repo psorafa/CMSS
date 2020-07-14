@@ -196,8 +196,11 @@
         <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <enableFeeds>true</enableFeeds>
+    <compactLayoutAssignment>Case</compactLayoutAssignment>
+    <enableFeeds>false</enableFeeds>
+    <externalSharingModel>Private</externalSharingModel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
     <searchLayouts>
         <customTabListAdditionalFields>CASES.CASE_NUMBER</customTabListAdditionalFields>
         <customTabListAdditionalFields>CASES.SUBJECT</customTabListAdditionalFields>
@@ -213,11 +216,13 @@
         <lookupPhoneDialogsAdditionalFields>NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CASES.STATUS</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CASES.CASE_NUMBER</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CASES.SUBJECT</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CASES.TYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CASES.PRIORITY</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CASES.STATUS</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CASES.CREATED_DATE</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ReceivedDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>DueDate__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
 </CustomObject>

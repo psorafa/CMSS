@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label>Smlouva</label>
+        <name>Asset</name>
+    </customLabels>
+    <customLabels>
+        <label>Zrušit</label>
+        <name>Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label>Klient</label>
+        <name>Client</name>
+    </customLabels>
+    <customLabels>
+        <label>Identifikace klienta</label>
+        <name>ClientIdentification</name>
+    </customLabels>
+    <customLabels>
+        <label>Email</label>
+        <name>EmailCommunication</name>
+    </customLabels>
+    <customLabels>
+        <label>Chyba</label>
+        <name>Error</name>
+    </customLabels>
+    <customLabels>
+        <label>Vložte celé číslo smlouvy nebo kmen smlouvy</label>
+        <name>InputPlaceholderAssetNumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Vložte celé rodné číslo</label>
+        <name>InputPlaceholderBirthNumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Vložte celé IČO</label>
+        <name>InputPlaceholderCompRegNr</name>
+    </customLabels>
+    <customLabels>
+        <label>Vložte alespoň začátek křestního jména</label>
+        <name>InputPlaceholderFirstName</name>
+    </customLabels>
+    <customLabels>
+        <label>Vložte alespoň začátek příjmení</label>
+        <name>InputPlaceholderLastName</name>
+    </customLabels>
+    <customLabels>
+        <label>Zkontrolujte a opravte vložené hodnoty podle zobrazených chybových hlášek.</label>
+        <name>InputValuesNotValidMessage</name>
+    </customLabels>
+    <customLabels>
+        <label>Vyplňte alespoň část pole Jméno nebo Příjmení.</label>
+        <name>NamesMissingMessage</name>
+    </customLabels>
+    <customLabels>
+        <label>Přejít na záznam</label>
+        <name>NavigateToRecordButton</name>
+    </customLabels>
+    <customLabels>
+        <label>Žádné hodnoty nevyhovují zadaným kritériím.</label>
+        <name>NoRecordsFound</name>
+    </customLabels>
+    <customLabels>
+        <label>Telefon</label>
+        <name>PhoneCommunication</name>
+    </customLabels>
+    <customLabels>
+        <label>Sociální sítě</label>
+        <name>PortalCommunication</name>
+    </customLabels>
+    <customLabels>
+        <label>Dopis</label>
+        <name>PostCommunication</name>
+    </customLabels>
+    <customLabels>
+        <label>Vyplňte jedno z následujících polí: Rodné číslo, IČO, Číslo smlouvy</label>
+        <name>RequiredFieldsMessage</name>
+    </customLabels>
+    <customLabels>
+        <label>Uložit</label>
+        <name>Save</name>
+    </customLabels>
+    <customLabels>
+        <label>Hledat</label>
+        <name>SearchButton</name>
+    </customLabels>
+    <customLabels>
+        <label>SMS</label>
+        <name>SmsCommunication</name>
+    </customLabels>
+    <customTabs>
+        <label>Identifikace klienta</label>
+        <name>ClientIdentification</name>
+    </customTabs>
+    <flowDefinitions>
+        <flows>
+            <choices>
+                <name>eventTypeDefaultChoice</name>
+            </choices>
+            <fullName>EventWithObjUpdate</fullName>
+            <screens>
+                <fields>
+                    <name>accountNameScreen</name>
+                </fields>
+                <fields>
+                    <name>eventDescriptionScreen</name>
+                </fields>
+                <fields>
+                    <name>eventEndScreen</name>
+                </fields>
+                <fields>
+                    <name>eventStartScreen</name>
+                </fields>
+                <fields>
+                    <name>eventTypeScreen</name>
+                </fields>
+                <fields>
+                    <name>flowFooterScreen</name>
+                </fields>
+                <fields>
+                    <name>phoneScreen</name>
+                </fields>
+                <name>labelScreen</name>
+            </screens>
+        </flows>
+        <fullName>EventWithObjUpdate</fullName>
+    </flowDefinitions>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewAccount --></label>
+        <name>NewAccount</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCase --></label>
+        <name>NewCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewContact --></label>
+        <name>NewContact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewEvent --></label>
+        <name>NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewGroup --></label>
+        <name>NewGroup</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewLead --></label>
+        <name>NewLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewNote --></label>
+        <name>NewNote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewOpportunity --></label>
+        <name>NewOpportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewTask --></label>
+        <name>NewTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+</Translations>

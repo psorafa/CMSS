@@ -11,6 +11,7 @@
 mkdir -p log
 LOG_FILE=log/validateInScratchOrg.txt
 SUCCESS_FILE=successScratchOrg.tmp
+
 if [ -f $LOG_FILE ];
 then
     rm ${LOG_FILE}
@@ -30,13 +31,27 @@ DEVHUB=${2}
 TEST=${3-"RunLocalTests"}
 CONF=${4-"config/project-scratch-def.json"}
 DAYS=${5-1}
+killAll=0
+
+#wrap sfdx source push with timeout
+pushWithTimeout() {
+    timeout -k 1 15m \
+    sfdx force:source:deploy --targetusername "$1" --sourcepath "$2"
+}
 
 #cleanup when done
 function finish {
+    if (($? == 124)); then
+      echo "Push seems to be stuck, please re-run validation manually."
+      killAll=1
+    fi
     # remove scratch org
     echo "Deleting scratch org..."
     sfdx force:org:delete --targetusername $ALIAS --noprompt
     echo "Done."
+    if (($killAll == 1)); then
+      kill -9 -$$
+    fi
 }
 trap finish EXIT
 set -o xtrace
@@ -52,7 +67,15 @@ fi
 
 #push source
 echo "Pushing source..."
-sfdx force:source:push --targetusername $ALIAS
+pushWithTimeout $ALIAS cmss/main/default/
+pushWithTimeout $ALIAS cmss/main/util/
+pushWithTimeout $ALIAS cmss/customer-360/
+pushWithTimeout $ALIAS cmss/customer-search/
+pushWithTimeout $ALIAS cmss/consent-icons/
+pushWithTimeout $ALIAS cmss/activity-management/
+pushWithTimeout $ALIAS cmss/product-contract/
+pushWithTimeout $ALIAS cmss/case-management/
+pushWithTimeout $ALIAS cmss/app/
 
 #run tests
 if [ -n "$TEST" ];

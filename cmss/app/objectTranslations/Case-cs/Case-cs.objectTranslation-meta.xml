@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Klientské podání</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Klientská podání</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Klientské podání</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Klientská podání</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Klientské podání</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Klientská podání</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Klientskému podání</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Klientským podáním</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value>Klientským podáním</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value>Klientskými podáními</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <value>Klientském podání</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <value>Klientských podáních</value>
+    </caseValues>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>ClientClaimConfirmationSent</layout>
+        <sections>
+            <label>Klientské podání</label>
+            <section>Complain about</section>
+        </sections>
+        <sections>
+            <label>Podávající</label>
+            <section>Complainer</section>
+        </sections>
+        <sections>
+            <label>Řešení</label>
+            <section>Solution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>ClosedClientClaim</layout>
+        <sections>
+            <label>Klientské podání</label>
+            <section>Complain about</section>
+        </sections>
+        <sections>
+            <label>Podávající</label>
+            <section>Complainer</section>
+        </sections>
+        <sections>
+            <label>Řešení</label>
+            <section>Solution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>ClosedGDPR</layout>
+        <sections>
+            <label>Podávající</label>
+            <section>Applicant Information</section>
+        </sections>
+        <sections>
+            <label>Odkazy</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Informace k GDPR podání</label>
+            <section>GDPR Case Information</section>
+        </sections>
+        <sections>
+            <label>Řešení</label>
+            <section>Solving</section>
+        </sections>
+        <sections>
+            <label>Systémové informace</label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>GDPR</layout>
+        <sections>
+            <label>Podávající</label>
+            <section>Applicant Information</section>
+        </sections>
+        <sections>
+            <label>Odkazy</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Informace k GDPR podání</label>
+            <section>GDPR Case Information</section>
+        </sections>
+        <sections>
+            <label>Řešení</label>
+            <section>Solving</section>
+        </sections>
+        <sections>
+            <label>Systémové informace</label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>NewClientClaim</layout>
+        <sections>
+            <label>Klientské podání</label>
+            <section>Complain about</section>
+        </sections>
+        <sections>
+            <label>Podávající</label>
+            <section>Complainer</section>
+        </sections>
+        <sections>
+            <label>Řešení</label>
+            <section>Solution</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label>Zrušit podání</label>
+        <name>ClaimCancellation</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewChildCase --></label>
+        <name>NewChildCase</name>
+    </quickActions>
+    <quickActions>
+        <label>Potvrzení o přijetí odesláno</label>
+        <name>ReceivingConfirmationSent</name>
+    </quickActions>
+    <quickActions>
+        <label>Odpověď na podání odeslána</label>
+        <name>ResponseSent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <recordTypes>
+        <description><!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
+        <label><!-- Client Claim Confirmation Sent --></label>
+        <name>ClientClaimConfirmationSent</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- The client claim record type with a non editable layout for closed cases --></description>
+        <label><!-- Closed Client Claim --></label>
+        <name>ClosedClientClaim</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type with read-only fields for closed GDPR claims --></description>
+        <label><!-- Closed GDPR Claim --></label>
+        <name>ClosedGDPRClaim</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- GDPR claim --></description>
+        <label><!-- GDPR --></label>
+        <name>GDPR</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type for Client Claims (complaints, incidents, requests) --></description>
+        <label><!-- New Client Claim --></label>
+        <name>NewClientClaim</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage>
+        Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <name>ComplaintReceivingConfirmDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfAccountBlankLastNameRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfAccountBlankNameRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteAnswerFormRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Rodné číslo nebo datum narození je povinné</errorMessage>
+        <name>GDPRIfRequestCompleteBirthDateRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteLastNameRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteNameRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteRequestTypeRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteSubjectFoundReq</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRIfRequestCompleteSubjectSameRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Příchod nesmí být před 1.1.2018</errorMessage>
+        <name>GDPRReceivedDateLessThan2018</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>GDPRRequestNotCompleteOwnerRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pokud Interní opatření = Ano, vyplňte Komentář k internímu opatření</errorMessage>
+        <name>IfInternalPrecautionTrueNoteMustBeFilled</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pokud Interní opatření = Ano, vyberte hodnotu z pole Druhy interního opatření</errorMessage>
+        <name>IfInternalPrecautionTrueTypeMustBePicked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pole Stupeň podání - detail musí být vyplněno pro Stupeň podání II.</errorMessage>
+        <name>IfPriority2DetailPriorityMustBeFilled</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pole Klient musí být vyplněno pro Zdroj případu &quot;Klient&quot;</errorMessage>
+        <name>IfSourceClientAccountIdRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Příchod nesmí být zadán do budoucnosti.</errorMessage>
+        <name>ReceivedDateInFuture</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>
+        Odeslání odpovědi na podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <name>ResponseSentDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>
+        Pole Odeslání odpovědi na podání musí být vyplněno před nastavením Statusu na Vyřešeno.</errorMessage>
+        <name>StatusCompletedOnlyIfResponseSentFilled</name>
+    </validationRules>
+</CustomObjectTranslation>

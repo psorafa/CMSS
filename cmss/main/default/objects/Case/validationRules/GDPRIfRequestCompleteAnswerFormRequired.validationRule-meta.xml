@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GDPRIfRequestCompleteAnswerFormRequired</fullName>
+    <active>true</active>
+    <description>Valid for GDPR - if request is checked as complete, answer form is required</description>
+    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;   &amp;&amp;  RequestComplete__c  = true  &amp;&amp;    ISBLANK( TEXT (AnswerForm__c) )</errorConditionFormula>
+    <errorDisplayField>AnswerForm__c</errorDisplayField>
+    <errorMessage>Required field</errorMessage>
+</ValidationRule>
