@@ -1642,6 +1642,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ClientZone__c.ConditionsAcceptationDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.ConditionsValidFrom__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ClientZone__c.ContractStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1658,6 +1668,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ClientZone__c.IsAccessRestricted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ClientZone__c.ModifiedOn__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
