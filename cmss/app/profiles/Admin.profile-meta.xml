@@ -92,6 +92,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.BirthCountry__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.ClientZoneAccess__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -343,6 +348,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.SbId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.StayType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1803,6 +1813,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ContactInformation__c.DataBoxNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ContactInformation__c.DataSource__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
