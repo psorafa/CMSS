@@ -572,12 +572,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.ClosingAgentId__c</field>
+        <field>Asset.ClientTransfer__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.ClosureFee__c</field>
+        <field>Asset.ClaimRetirementPensionDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.ClosingAgentId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -852,6 +857,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.InterestPaymentAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.IsInherited__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -887,7 +897,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.LoanAmount__c</field>
+        <field>Asset.LoanPaymentAmount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -982,12 +992,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.PresavingsDepositFailures__c</field>
+        <field>Asset.PrepaidMonths__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.PresavingsDepositFailuresNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.PresavingsDepositFailures__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1032,17 +1047,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.Program__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Asset.ProgramRestartDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.ProgramStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Program__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1102,17 +1117,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.ReCreditType__c</field>
+        <field>Asset.ReminderCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.RejectedDate__c</field>
+        <field>Asset.RepaymentPercentage__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.RemainingDraw__c</field>
+        <field>Asset.RepaymentStartDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2387,12 +2402,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>LoanAssurance__c.Assurance_Subtype__c</field>
+        <field>LoanAssurance__c.AssuranceValue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>LoanAssurance__c.AssuranceValue__c</field>
+        <field>LoanAssurance__c.AssuranceSubtype__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
