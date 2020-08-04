@@ -2158,11 +2158,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.IsSelfServiceClosed</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Case.IsSetInvalidationBan__c</field>
         <readable>true</readable>
@@ -2186,11 +2181,6 @@
         <editable>false</editable>
         <field>Case.IsVisibleInCss</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.IsVisibleInSelfService</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
