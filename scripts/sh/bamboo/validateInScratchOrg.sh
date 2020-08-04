@@ -75,8 +75,8 @@ pushWithTimeout $ALIAS cmss/consent-icons/
 pushWithTimeout $ALIAS cmss/activity-management/
 pushWithTimeout $ALIAS cmss/product-contract/
 pushWithTimeout $ALIAS cmss/case-management/
-pushWithTimeout $ALIAS cmss/app/
 pushWithTimeout $ALIAS cmss/integrations/
+pushWithTimeout $ALIAS cmss/app/
 
 #run tests
 if [ -n "$TEST" ];
