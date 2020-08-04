@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Status MF --></label>
+    <name>StatusMF__c</name>
+    <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>pokračování DPS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>založení nového DPS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100</masterLabel>
+        <translation>doplnění informací do DPS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>101</masterLabel>
+        <translation>založení nového DPS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12</masterLabel>
+        <translation>ukončení DPS s vypořádáním</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13</masterLabel>
+        <translation>vypovězení DPS před nárokem na dávku</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14</masterLabel>
+        <translation>ukončení vypovězeného DPS po 3 letech</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16</masterLabel>
+        <translation>ukončení DPS při úmrtí účastníka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17</masterLabel>
+        <translation>vypovězení DPS s nárokem na odbytné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>18</masterLabel>
+        <translation>vypovězení DPS s nárokem na jedorázové vyrovnání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>individuální převedení DPS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21</masterLabel>
+        <translation>částečné vracení s ukončením DPS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22</masterLabel>
+        <translation>úplné vracení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>25</masterLabel>
+        <translation>částečné vracení s přípravou na převod</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>26</masterLabel>
+        <translation>částečné vracení ze změnou stavu spořeí na 0</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>hromadné převedení DPS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>31</masterLabel>
+        <translation>ukončení DPS vypovězeného nebo připraveného na převod</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>obnova DPS pozastavené</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>převod obhospodařování účastnických fondů par. 109</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>95</masterLabel>
+        <translation>zneplatnění ukončeného DPS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>96</masterLabel>
+        <translation>změny a doložení idetifikace účastníka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>97</masterLabel>
+        <translation>oprava čísla smlouvy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>99</masterLabel>
+        <translation>donárokování</translation>
+    </picklistValues>
+</CustomFieldTranslation>
