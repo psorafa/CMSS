@@ -11,9 +11,9 @@ global with sharing class MockServicesUtil {
 	}
 
 	global static String generateUUID() {
-		Blob b = Crypto.GenerateAESKey(128);
-		String h = EncodingUtil.ConvertTohex(b);
-		return h.SubString(0, 8) + '-' + h.SubString(8, 12) + '-' + h.SubString(12, 16) + '-' + h.SubString(16, 20) + '-' + h.substring(20);
+		Blob b = Crypto.GenerateAesKey(128);
+		String h = EncodingUtil.ConvertToHex(b);
+		return h.substring(0, 8) + '-' + h.substring(8, 12) + '-' + h.substring(12, 16) + '-' + h.substring(16, 20) + '-' + h.substring(20);
 	}
 
 }
