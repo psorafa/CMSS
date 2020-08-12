@@ -84,7 +84,7 @@
     <custom>false</custom>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.AccountNumber__c</field>
+        <field>Account.AccountNumber</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -569,7 +569,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.AccountNumber</field>
+        <field>Asset.AccountNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
