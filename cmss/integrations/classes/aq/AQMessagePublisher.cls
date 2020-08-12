@@ -11,12 +11,16 @@ public class AQMessagePublisher {
 	}
 
 	public void addMessage(Id recordId, Map<String, Object> changedFields) {
-		messages.add(new AQMessage__e(
+		AQMessage__e message = new AQMessage__e(
 			EntityName__c = entityName,
 			RecordId__c = recordId,
 			ChangeType__c = changeType,
-			ChangedFields__c = JSON.serialize(changedFields)
-		));
+			NewValues__c = JSON.serialize(changedFields)
+		);
+		if (changeType == 'UPDATE') {
+			message.ChangedFields__c = JSON.serialize(changedFields.keySet());
+		}
+		messages.add(message);
 	}
 
 	public void addMessage(Id recordId) {
