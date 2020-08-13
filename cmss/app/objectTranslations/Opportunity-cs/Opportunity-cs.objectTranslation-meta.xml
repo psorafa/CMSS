@@ -2,10 +2,30 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <layouts>
         <layout>Opportunity Layout Editable</layout>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Product --></label>
+            <section>Product</section>
+        </sections>
     </layouts>
     <layouts>
         <layout>Opportunity Layout Not Editable</layout>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Product --></label>
+            <section>Product</section>
+        </sections>
     </layouts>
+    <quickActions>
+        <label><!-- Arrange Contract --></label>
+        <name>ArrangeContract</name>
+    </quickActions>
     <quickActions>
         <label>Sjednávač</label>
         <name>ShowContractApp</name>
@@ -21,7 +41,7 @@
         <name>NotEditable</name>
     </recordTypes>
     <validationRules>
-        <errorMessage>Fázi obchodní příležitosti nelze změnit zpět do fáze &#39;Nová&#39;.</errorMessage>
+        <errorMessage>Fázi obchodní příležitosti nelze změnit zpět do fáze &apos;Nová&apos;.</errorMessage>
         <name>EditOnceOppIsNotNew</name>
     </validationRules>
     <validationRules>

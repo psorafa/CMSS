@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Důvod zrušení</label>
+    <name>CancellationReason__c</name>
+    <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>Bez storna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>200</masterLabel>
+        <translation>Zánik pojištění pro neplacení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>201</masterLabel>
+        <translation>Storno pro neplacení pojistného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>202</masterLabel>
+        <translation>Zánik pojištění po redukci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>203</masterLabel>
+        <translation>Zánik pojištění pro nedostatečnou KH.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>204</masterLabel>
+        <translation>Zánik pojištění po redukci UL</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>210</masterLabel>
+        <translation>Náhrada</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>212</masterLabel>
+        <translation>Dohoda s konverzí PS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>230</masterLabel>
+        <translation>Výpověď pojištění ze strany pojistníka do 2 měs.od uzavření PS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>232</masterLabel>
+        <translation>Popis 232</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>240</masterLabel>
+        <translation>Výpověď pojištění ze strany pojistitele do 2 měs.od uzavření PS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>241</masterLabel>
+        <translation>Výpověď pojištění ze strany pojistitele pro nedodání údajů</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>242</masterLabel>
+        <translation>Nesouhlas s rizikovou přirážkou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>243</masterLabel>
+        <translation>Nedodání požadovaného vyšetření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>244</masterLabel>
+        <translation>Nedodání zdravotní dokumentace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>245</masterLabel>
+        <translation>Sjednání v pracovní neschopnosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>246</masterLabel>
+        <translation>Výpověď pojištění ze strany pojistitele pro neakceptovatelnou chybu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>247</masterLabel>
+        <translation>Odklad rozhodnutí o přijetí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>248</masterLabel>
+        <translation>Vyloučení VCH pro velké riziko</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>249</masterLabel>
+        <translation>Storno z finančních důvodů</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>250</masterLabel>
+        <translation>Nedodání finančních dokumentů</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>260</masterLabel>
+        <translation>Výpověď pojištění ze strany pojistníka ke konci poj.období</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>261</masterLabel>
+        <translation>Výpověď ze strany klienta ke konci poj. období (s došetřením příčiny)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>262</masterLabel>
+        <translation>Výpověď pojištění písemnou dohodou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>263</masterLabel>
+        <translation>Výpověď s výplatou odbytného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>264</masterLabel>
+        <translation>Výpověď pojištění ze strany pojistníka po škodní události</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>265</masterLabel>
+        <translation>Výpověď ze strany pojistníka z důvodu nesouhl.s pojistným na další poj.obd.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>270</masterLabel>
+        <translation>Výpověď ze strany pojišťovny ke konci pojistného období</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>271</masterLabel>
+        <translation>Výpověď pojištění ze strany pojistitele po škodní události</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>272</masterLabel>
+        <translation>Odstoupení od smlouvy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>273</masterLabel>
+        <translation>Výpověď z důvodu uvedení pojistitele v omyl při upl.nároku na poj.plnění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>280</masterLabel>
+        <translation>Zánik pojištěné věci - totální škoda po PU</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>281</masterLabel>
+        <translation>Zánik pojištění z důvodu změny vlastníka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>282</masterLabel>
+        <translation>Zánik společného jmění manželů</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>283</masterLabel>
+        <translation>Umrtí pojištěného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>284</masterLabel>
+        <translation>Úmrtí pojištěného (po PU)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>285</masterLabel>
+        <translation>Úmrtí pojistníka nebo vlastníka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>286</masterLabel>
+        <translation>Uplynutí pojistné doby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>287</masterLabel>
+        <translation>Vážná choroba s PU.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>288</masterLabel>
+        <translation>Nepojištěné dožití konce nerezervotvorného pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>289</masterLabel>
+        <translation>Vážná choroba bez PU.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>292</masterLabel>
+        <translation>Ukončení činnosti pojištěného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>293</masterLabel>
+        <translation>Odstoupení pojistníka do 14 dní od sjednání PS na dálku</translation>
+    </picklistValues>
+</CustomFieldTranslation>
