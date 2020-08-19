@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <layouts>
-        <layout>Opportunity Layout Editable</layout>
+        <layout>LACRLayout</layout>
         <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-        <sections>
-            <label><!-- Product --></label>
-            <section>Product</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Opportunity Layout Not Editable</layout>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-        <sections>
-            <label><!-- Product --></label>
-            <section>Product</section>
+            <label>Datumy</label>
+            <section>Dates</section>
         </sections>
     </layouts>
     <quickActions>
