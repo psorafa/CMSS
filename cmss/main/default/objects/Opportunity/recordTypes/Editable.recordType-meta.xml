@@ -6,6 +6,40 @@
     <description>Editable opp for stages 1 (nová), 2 (rozpracovaná) and 3 (uzavřená pozitivně)</description>
     <label>Editable</label>
     <picklistValues>
+        <picklist>Category__c</picklist>
+        <values>
+            <fullName>Campaign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Impuls</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Own Opportunity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retention</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>DataSource__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>ForecastCategoryName</picklist>
         <values>
             <fullName>Best Case</fullName>
@@ -25,6 +59,13 @@
         </values>
         <values>
             <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Partner</fullName>
             <default>false</default>
         </values>
     </picklistValues>
