@@ -1,34 +1,34 @@
 public class AQMessagePublisher {
 
-	private List<AQMessage__e> messages;
+	private List<SObject> messages;
 	private String changeType;
 	private String entityName;
+	private SObjectType messageType;
 
-	public AQMessagePublisher(String changeType, String entityName) {
+	public AQMessagePublisher(String changeType, SObjectType entityType, SObjectType messageType) {
 		this.changeType = changeType;
-		this.entityName = entityName;
-		this.messages = new List<AQMessage__e>();
+		this.entityName = '' + entityType;
+		this.messages = new List<SObject>();
+		this.messageType = messageType;
 	}
 
 	public void addMessage(Id recordId, Map<String, Object> changedFields) {
-		AQMessage__e message = new AQMessage__e(
-			EntityName__c = entityName,
-			RecordId__c = recordId,
-			ChangeType__c = changeType,
-			NewValues__c = JSON.serialize(changedFields)
-		);
+		SObject message = messageType.newSObject();
+		message.put('EntityName__c', entityName);
+		message.put('RecordId__c', recordId);
+		message.put('ChangeType__c', changeType);
+		message.put('NewValues__c', JSON.serialize(changedFields));
 		if (changeType == 'UPDATE') {
-			message.ChangedFields__c = JSON.serialize(changedFields.keySet());
+			message.put('ChangedFields__c', JSON.serialize(changedFields.keySet()));
 		}
 		messages.add(message);
 	}
 
 	public void addMessage(Id recordId) {
-		messages.add(new AQMessage__e(
-			EntityName__c = entityName,
-			RecordId__c = recordId,
-			ChangeType__c = changeType
-		));
+		SObject message = messageType.newSObject();
+		message.put('EntityName__c', entityName);
+		message.put('RecordId__c', recordId);
+		message.put('ChangeType__c', changeType);
 	}
 
 	public void publish() {

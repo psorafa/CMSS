@@ -69,13 +69,13 @@ fi
 echo "Pushing source..."
 pushWithTimeout $ALIAS cmss/main/default/
 pushWithTimeout $ALIAS cmss/main/util/
+pushWithTimeout $ALIAS cmss/integrations/
 pushWithTimeout $ALIAS cmss/customer-360/
 pushWithTimeout $ALIAS cmss/customer-search/
 pushWithTimeout $ALIAS cmss/consent-icons/
 pushWithTimeout $ALIAS cmss/activity-management/
 pushWithTimeout $ALIAS cmss/product-contract/
 pushWithTimeout $ALIAS cmss/case-management/
-pushWithTimeout $ALIAS cmss/integrations/
 pushWithTimeout $ALIAS cmss/app/
 
 #run tests
