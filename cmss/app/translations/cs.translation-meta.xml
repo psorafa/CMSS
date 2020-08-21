@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
         <label>Smlouva</label>
@@ -93,11 +93,21 @@
         <name>ClientIdentification</name>
     </customTabs>
     <flowDefinitions>
+        <flows/>
+        <fullName>CASE_OnUpdateActions</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>CaseTypeWithAsset</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
         <flows>
             <choices>
                 <name>eventTypeDefaultChoice</name>
             </choices>
-            <fullName>EventWithObjUpdate</fullName>
+            <choices>
+                <name>phoneDefaultChoice</name>
+            </choices>
             <screens>
                 <fields>
                     <name>accountNameScreen</name>
@@ -124,6 +134,36 @@
             </screens>
         </flows>
         <fullName>EventWithObjUpdate</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>GetRecordTypeIdByNameAndSObjectType</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>ProductUrlListScreen</name>
+                </fields>
+                <fields>
+                    <name>myFooter</name>
+                </fields>
+                <name>ProductUrlScreen</name>
+            </screens>
+        </flows>
+        <fullName>ProductContractUrl</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>UpdateCaseRecordType</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>CASE_OnCreateActions</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Opp_New_Opportunity_name</fullName>
     </flowDefinitions>
     <quickActions>
         <label><!-- LogACall --></label>
@@ -169,4 +209,17 @@
         <label><!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
+    <reportTypes>
+        <description><!-- Screen Flows --></description>
+        <label><!-- Screen Flows --></label>
+        <name>screen_flows_prebuilt_crt</name>
+        <sections>
+            <label><!-- Flow Interview Log Entries --></label>
+            <name>Flow Interview Log Entries</name>
+        </sections>
+        <sections>
+            <label><!-- Flow Interview Logs --></label>
+            <name>Flow Interview Logs</name>
+        </sections>
+    </reportTypes>
 </Translations>

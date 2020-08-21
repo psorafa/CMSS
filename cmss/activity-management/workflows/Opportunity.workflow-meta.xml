@@ -1,36 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fieldUpdates>
-        <fullName>OppRecordTypeEditable</fullName>
-        <description>Changes opp record typ to Editable</description>
-        <field>RecordTypeId</field>
-        <lookupValue>Editable</lookupValue>
-        <lookupValueType>RecordType</lookupValueType>
-        <name>Opp Record Type Editable</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>OppRecordTypeNotEditable</fullName>
-        <description>Changes opp record typ to NotEditable</description>
-        <field>RecordTypeId</field>
-        <lookupValue>NotEditable</lookupValue>
-        <lookupValueType>RecordType</lookupValueType>
-        <name>Opp Record Type Not Editable</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
     <rules>
         <fullName>OppEditable</fullName>
-        <actions>
-            <name>OppRecordTypeEditable</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 OR 2 OR 3</booleanFilter>
         <criteriaItems>
             <field>Opportunity.StageName</field>
@@ -52,11 +24,7 @@
     </rules>
     <rules>
         <fullName>OppNotEditable</fullName>
-        <actions>
-            <name>OppRecordTypeNotEditable</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
             <field>Opportunity.StageName</field>
