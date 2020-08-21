@@ -4039,7 +4039,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-LACRLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>AccountRelation__c-Account Relation Layout</layout>
@@ -4119,7 +4119,7 @@
         <layout>Opportunity-LACRLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PersonAccount-Person Account Layout</layout>
+        <layout>PersonAccount-LACRPersonLayout</layout>
         <recordType>PersonAccount.PersonAccount</recordType>
     </layoutAssignments>
     <layoutAssignments>
