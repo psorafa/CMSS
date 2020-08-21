@@ -13,6 +13,9 @@ public class AQMessagePublisher {
 	}
 
 	public void addMessage(Id recordId, Map<String, Object> changedFields) {
+		if (changedFields.isEmpty()) {
+			return;
+		}
 		SObject message = messageType.newSObject();
 		message.put('EntityName__c', entityName);
 		message.put('RecordId__c', recordId);
