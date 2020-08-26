@@ -3375,6 +3375,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>LoanCaseDoc__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>LoanCaseDoc__c.Group__c</field>
         <readable>true</readable>
     </fieldPermissions>
