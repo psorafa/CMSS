@@ -196,7 +196,7 @@
         <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>User</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
     <externalSharingModel>Private</externalSharingModel>
     <searchLayouts>
@@ -213,8 +213,8 @@
         <searchResultsAdditionalFields>FULL_NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CORE.USERS.TITLE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CommissionAccountNr__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>SalesAgentType__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CORE.USERS.EMAIL</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Phone1__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>IsAgentActive__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>

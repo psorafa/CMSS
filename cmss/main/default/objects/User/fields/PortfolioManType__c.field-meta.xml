@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PortfolioManType__c</fullName>
     <description>K jakému typ správy má uživatel oprávnění. Pokud prázdné, nemá žádné oprávnění.</description>
@@ -8,7 +8,7 @@
     <trackFeedHistory>false</trackFeedHistory>
     <type>Picklist</type>
     <valueSet>
-        <restricted>true</restricted>
+        <restricted>false</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>

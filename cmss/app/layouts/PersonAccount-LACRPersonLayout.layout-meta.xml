@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>AccountHierarchy</excludeButtons>
+    <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
-    <excludeButtons>Edit</excludeButtons>
+    <excludeButtons>EnableCustomerPortalUser</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
     <excludeButtons>LoginToNetworkAsPersonUser</excludeButtons>
     <excludeButtons>LoginToPortalAsPersonUser</excludeButtons>
     <excludeButtons>PartnerScorecard</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
+    <excludeButtons>ViewCustomerPortalUser</excludeButtons>
     <excludeButtons>XClean</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -25,10 +29,6 @@
                 <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Name</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>PortfolioMngmtA__c</field>
             </layoutItems>
@@ -37,20 +37,28 @@
                 <field>PortfolioMngmtC__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Required</behavior>
+                <field>Name</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PersonTitle</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Phone</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CompanyEmail__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ParentId</field>
+                <field>PersonEmail</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ExternalId__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CombinedName__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -72,7 +80,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CsobStatus__c</field>
+                <field>AmountOffer__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -80,11 +88,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>AmountOffer__c</field>
+                <field>InterestRateInterimLoan__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>InterestRateInterimLoan__c</field>
+                <field>CsobStatus__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -93,23 +101,35 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Company Information</label>
+        <label>Personal Information</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CompanyRegistrationNumber__c</field>
+                <field>PersonalIdentificationNr__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>DateOfCreation__c</field>
+                <field>Gender__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Age__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>LegalForm__c</field>
+                <field>Birthdate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VatNumber__c</field>
+                <field>PlaceOfBirth__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Nationality__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DateOfDeath__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -119,11 +139,23 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CompanyEndDate__c</field>
+                <field>CompanyRegistrationNumber__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>InstitutionType__c</field>
+                <field>VatNumber__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MaidenName__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MaritalStatus__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MaritalStatusChanged__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -179,10 +211,59 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>DateOfStayFrom__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DateOfStayUntil__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsResident__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>IsForeigner__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsLegallyIncompetent__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsPoliticallyExposed__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>ISector__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IdCardType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IdCardNumber__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IdCardValidTo__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsIdCardInvalid__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Education__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>JobCategory__c</field>
+            </layoutItems>
+        </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -214,10 +295,6 @@
                 <behavior>Edit</behavior>
                 <field>ShippingAddress</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Website</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -228,22 +305,22 @@
         <label>System Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>CreatedById</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>DateUpdated__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CreatedById</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>LastModifiedById</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>DataSource__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>LastModifiedById</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -261,34 +338,14 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>Edit</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>0</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>NewOpportunity</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>1</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>RegisterCall</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>2</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>RegisterMeeting</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>3</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>NewTask</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>4</sortOrder>
+            <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>NewEvent</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>5</sortOrder>
+            <sortOrder>1</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
@@ -323,6 +380,38 @@
         <relatedList>RelatedActivityList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>TASK.SUBJECT</fields>
+        <fields>TASK.WHAT_NAME</fields>
+        <fields>TASK.DUE_DATE</fields>
+        <fields>TASK.LAST_UPDATE</fields>
+        <fields>ACTIVITY.TASK</fields>
+        <fields>TASK.WHO_NAME</fields>
+        <fields>CORE.USERS.FULL_NAME</fields>
+        <relatedList>RelatedHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>EmailConsent__c</fields>
+        <fields>EntityConsent__c</fields>
+        <fields>GeneralConsent__c</fields>
+        <fields>GeneralConsentVersion__c</fields>
+        <fields>PhoneConsent__c</fields>
+        <fields>PortalConsent__c</fields>
+        <fields>PostConsent__c</fields>
+        <fields>SMSConsent__c</fields>
+        <relatedList>Consent__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Campaign.NAME</fields>
+        <fields>CampaignEndDate__c</fields>
+        <relatedList>CampaignMember__c.Account__c</relatedList>
+        <sortField>CampaignEndDate__c</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
         <fields>ASSET.NAME</fields>
         <fields>ProductType__c</fields>
         <fields>ASSET.PRICE</fields>
@@ -331,17 +420,14 @@
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
-        <fields>NAME</fields>
-        <fields>GeneralConsentVersion__c</fields>
-        <fields>GeneralConsent__c</fields>
-        <fields>PhoneConsent__c</fields>
-        <fields>SMSConsent__c</fields>
-        <fields>EmailConsent__c</fields>
-        <fields>PostConsent__c</fields>
-        <fields>PortalConsent__c</fields>
-        <fields>EntityConsent__c</fields>
-        <fields>ExternalId__c</fields>
-        <relatedList>Consent__c.Account__c</relatedList>
+        <fields>Type__c</fields>
+        <fields>PhoneNumber__c</fields>
+        <fields>Email__c</fields>
+        <fields>FullAddress__c</fields>
+        <fields>IsMain__c</fields>
+        <relatedList>ContactInformation__c.Account__c</relatedList>
+        <sortField>Type__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
@@ -385,18 +471,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>CampaignMember__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <fields>Type__c</fields>
-        <fields>Value__c</fields>
-        <relatedList>ContactInformation__c.Account__c</relatedList>
-        <sortField>Type__c</sortField>
-        <sortOrder>Asc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>CampaignContentInfo__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -413,16 +487,55 @@
         <sortField>NAME</sortField>
         <sortOrder>Desc</sortOrder>
     </relatedLists>
-    <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
     <showInteractionLogPanel>true</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1x000000l53Z</masterLabel>
+        <masterLabel>00h1X000001KAgV</masterLabel>
         <sizeX>4</sizeX>
-        <sizeY>0</sizeY>
+        <sizeY>2</sizeY>
+        <summaryLayoutItems>
+            <field>Name</field>
+            <posX>0</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>PersonTitle</field>
+            <posX>0</posX>
+            <posY>1</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>Phone</field>
+            <posX>1</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>PersonEmail</field>
+            <posX>1</posX>
+            <posY>1</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>PersonalIdentificationNr__c</field>
+            <posX>2</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>Birthdate__c</field>
+            <posX>2</posX>
+            <posY>1</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>SbId__c</field>
+            <posX>3</posX>
+            <posY>0</posY>
+        </summaryLayoutItems>
+        <summaryLayoutItems>
+            <field>GlobalId__c</field>
+            <posX>3</posX>
+            <posY>1</posY>
+        </summaryLayoutItems>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
     </summaryLayout>
 </Layout>
