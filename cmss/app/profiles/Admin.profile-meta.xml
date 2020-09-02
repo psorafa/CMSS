@@ -3974,16 +3974,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>NonLifeInsuranceAttach__c.Asset__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>NonLifeInsuranceAttach__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>NonLifeInsuranceBinding__c.Asset__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4380,36 +4370,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>PensionStrategy__c.Strategy__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>PensionTransaction__c.Amount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>PensionTransaction__c.Asset__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>PensionTransaction__c.CreditedDate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>PensionTransaction__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>PensionTransaction__c.PaymentCode__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>PensionTransaction__c.PostingDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5154,9 +5114,6 @@
         <layout>NonLifeInsurance__c-Non Life Insurance Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>NonLifeInsuranceAttach__c-Non LifeInsurance Attach Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>NonLifeInsuranceBinding__c-Non LifeInsurance Binding Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -5176,9 +5133,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>PensionStrategy__c-Pension Strategy Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>PensionTransaction__c-Pension Transaction Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PersonAccount-LACRPersonLayout</layout>
@@ -5487,15 +5441,6 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
-        <object>NonLifeInsuranceAttach__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
         <object>NonLifeInsuranceBinding__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -5551,15 +5496,6 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>PensionStrategy__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>PensionTransaction__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
