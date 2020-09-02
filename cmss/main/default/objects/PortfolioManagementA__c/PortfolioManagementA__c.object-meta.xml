@@ -155,8 +155,9 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Portfolio Management A</label>
     <nameField>
+        <displayFormat>PMA-{000000}</displayFormat>
         <label>Portfolio Management A Name</label>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Portfolio Management A</pluralLabel>
     <searchLayouts/>

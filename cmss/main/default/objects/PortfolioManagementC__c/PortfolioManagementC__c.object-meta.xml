@@ -155,8 +155,9 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Portfolio Management C</label>
     <nameField>
+        <displayFormat>PMC-{000000}</displayFormat>
         <label>Portfolio Management C Name</label>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Portfolio Management C</pluralLabel>
     <searchLayouts/>

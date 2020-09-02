@@ -155,8 +155,9 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Non Life Insurance</label>
     <nameField>
+        <displayFormat>NP-{000000}</displayFormat>
         <label>Non Life Insurance Name</label>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Non Life Insurances</pluralLabel>
     <searchLayouts/>
