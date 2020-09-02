@@ -5,8 +5,8 @@ global with sharing class SF_PersonManagementSOAP {
 	}
 
 	global class CreateClientRequest {
-		webService ClientType clientType;
-		webService List<PersonCommunicationType> personCommunicationType;
+		webService ClientType client;
+		webService List<PersonCommunicationType> personCommunications;
 	}
 
 	global class ClientType {
@@ -21,10 +21,6 @@ global with sharing class SF_PersonManagementSOAP {
 		webService String gender;
 		webService String spSa;
 		webService String spSc;
-		webService String ico;
-		webService String clientZone;
-		webService String loginKz;
-		webService String activatedKz;
 		webService String isPoliticallyExposed;
 		webService String isCrResident;
 		webService String loyaltyProgram;
@@ -37,15 +33,6 @@ global with sharing class SF_PersonManagementSOAP {
 		webService AddressType address;
 		webService String email;
 		webService String phone;
-		webService Date validFrom;
-		webService Date validTo;
-		webService Date agenda;
-		webService Date role;
-		webService Date roleObjectId;
-		webService Date objectType;
-		webService Boolean priority;
-		webService Boolean nonConfirm;
-		webService String communicationMcsbGuid;
 		webService String extCommunicationId;
 		webService String sourceApp;
 	}
