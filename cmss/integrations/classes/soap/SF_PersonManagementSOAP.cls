@@ -7,7 +7,6 @@ global with sharing class SF_PersonManagementSOAP {
 	global class CreateClientRequest {
 		webService ClientType clientType;
 		webService List<PersonCommunicationType> personCommunicationType;
-		webService String personNumber;
 	}
 
 	global class ClientType {
@@ -20,8 +19,8 @@ global with sharing class SF_PersonManagementSOAP {
 		webService String clientGlobalId;
 		webService Date birthDate;
 		webService String gender;
-		webService ClientNumberType spSa;
-		webService ClientNumberType spSc;
+		webService String spSa;
+		webService String spSc;
 		webService String ico;
 		webService String clientZone;
 		webService String loginKz;
@@ -31,19 +30,13 @@ global with sharing class SF_PersonManagementSOAP {
 		webService String loyaltyProgram;
 	}
 
-	global class ClientNumberType {
-		webService Long basicNumber;
-		webService Long checkNumber;
-		webService Long endNumber;
-	}
-
 	global class PersonCommunicationType {
 		webService String contactType;
 		webService String contactSubType;
 		webService String contactValue;
-		webService ExtendedAddressType address;
-		webService ExtendedWebEmailType email;
-		webService ExtendedPhoneType phone;
+		webService AddressType address;
+		webService String email;
+		webService String phone;
 		webService Date validFrom;
 		webService Date validTo;
 		webService Date agenda;
@@ -57,33 +50,11 @@ global with sharing class SF_PersonManagementSOAP {
 		webService String sourceApp;
 	}
 
-	global class ExtendedAddressType {
+	global class AddressType {
 		webService String city;
 		webService String country;
-		webService Integer streetNumber;
-		webService String zipCode;
 		webService String streetName;
-		webService String poBox;
-		webService String addNameInfo;
-		webService String addAddressInfo;
-		webService String note;
-		webService String tinTaxNumber;
-		webService String tinNote;
-		webService String contactFlag;
-		webService String contactId;
-	}
-
-	global class ExtendedWebEmailType {
-		webService String value;
-		webService String note;
-		webService String contactFlag;
-		webService String contactId;
-	}
-
-	global class ExtendedPhoneType {
-		webService String phone;
-		webService String note;
-		webService String contactFlag;
-		webService String contactId;
+		webService Integer houseNumber;
+		webService String zipCode;
 	}
 }
