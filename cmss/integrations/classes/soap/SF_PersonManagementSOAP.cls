@@ -11,6 +11,7 @@ global with sharing class SF_PersonManagementSOAP {
 
 	global class ClientType {
 		webService String personNumber;
+		webService String personalIdentityNumber;
 		webService String name;
 		webService String firstName;
 		webService String lastName;
