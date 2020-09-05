@@ -4,9 +4,8 @@
     <description>Text</description>
     <externalId>false</externalId>
     <label>Text</label>
-    <length>255</length>
-    <required>false</required>
+    <length>10000</length>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
 </CustomField>
