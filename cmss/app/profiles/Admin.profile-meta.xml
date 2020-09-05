@@ -2110,6 +2110,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>AssetChange__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>AssetChange__c.NewContractConditions__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2141,6 +2146,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>AssetDIMA__c.DimaName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AssetDIMA__c.ExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3705,10 +3715,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-    <fieldPermissions>
-        <editable>true</editable>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>LifeInsuranceFonds__c.AllocationProcent__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3809,6 +3815,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>LoanAssurance__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>LoanAssurance__c.ReinsuranceType__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3885,6 +3896,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>LoanSurchargeDiscount__c.CsProductNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>LoanSurchargeDiscount__c.ExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5094,7 +5110,6 @@
     <layoutAssignments>
         <layout>InternalConsent__c-Internal Consent Layout</layout>
     </layoutAssignments>
-    <layoutAssignments>
     <layoutAssignments>
         <layout>LifeInsuranceFonds__c-Life Insurance Fonds Layout</layout>
     </layoutAssignments>
