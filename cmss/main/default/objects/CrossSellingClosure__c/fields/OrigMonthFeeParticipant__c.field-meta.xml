@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>ContractsAttendanceStamp__c</fullName>
+    <fullName>OrigMonthFeeParticipant__c</fullName>
     <externalId>false</externalId>
-    <label>Contracts Attendance Stamp</label>
+    <label>Original Month Fee Participant</label>
+    <precision>14</precision>
     <required>false</required>
+    <scale>4</scale>
     <trackTrending>false</trackTrending>
-    <type>Date</type>
+    <type>Currency</type>
 </CustomField>
