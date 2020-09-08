@@ -1380,6 +1380,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.InterestRateValidTo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.IsCompetitorProduct</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1510,7 +1515,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.MortgageLength__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.MortgagePurpose__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.MortgageStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.MortgageType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1856,6 +1876,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.SerialNumber</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Service__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3325,7 +3350,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CrossSellingClosure__c.ContractsAttendanceStamp__c</field>
+        <field>CrossSellingClosure__c.ContractAttendanceStamp__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3365,17 +3390,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CrossSellingClosure__c.OriginalMonthFeeEmployer__c</field>
+        <field>CrossSellingClosure__c.OrigMonthFeeEmployer__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CrossSellingClosure__c.OriginalMonthFeeParticipant__c</field>
+        <field>CrossSellingClosure__c.OrigMonthFeeParticipant__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CrossSellingClosure__c.OriginalMonthFeeThirdPerson__c</field>
+        <field>CrossSellingClosure__c.OrigMonthFeeThirdPerson__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3526,6 +3551,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Event.Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3955,6 +3985,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>NonLifeInsurance__c.EstateHeading__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>NonLifeInsurance__c.ExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4115,7 +4150,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>NonLifeInsuranceObject__c.HouseholdInsurancePremiumWithoutDisc__c</field>
+        <field>NonLifeInsuranceObject__c.HouseholdInsuranceWithoutDisc__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4460,6 +4495,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>PortfolioManagementA__c.Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PortfolioManagementA__c.ValidFrom__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4469,9 +4509,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PortfolioManagementC__c.Account__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4515,6 +4555,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>PortfolioManagementC__c.Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PortfolioManagementC__c.ValidFrom__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4526,6 +4571,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>PortfolioManagementImpulse__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PortfolioManagementImpulse__c.AssetID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4555,6 +4605,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>PortfolioManagementImpulse__c.LoanCaseId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PortfolioManagementImpulse__c.ManagerTypeACPU__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4571,6 +4626,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>PortfolioManagementImpulse__c.ModifiedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PortfolioManagementImpulse__c.NewPortfolioManACPU__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PortfolioManagementImpulse__c.NewPortfolioManCCPU__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4781,6 +4846,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
