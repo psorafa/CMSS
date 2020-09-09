@@ -94,19 +94,15 @@
     </customTabs>
     <flowDefinitions>
         <flows/>
-        <fullName>CASE_OnUpdateActions</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows/>
-        <fullName>CaseTypeWithAsset</fullName>
+        <fullName>UpdateCaseRecordType</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows>
             <choices>
-                <name>eventTypeDefaultChoice</name>
+                <name>phoneDefaultChoice</name>
             </choices>
             <choices>
-                <name>phoneDefaultChoice</name>
+                <name>eventTypeDefaultChoice</name>
             </choices>
             <screens>
                 <fields>
@@ -140,6 +136,10 @@
         <fullName>GetRecordTypeIdByNameAndSObjectType</fullName>
     </flowDefinitions>
     <flowDefinitions>
+        <flows/>
+        <fullName>Opp_New_Opportunity_name</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
         <flows>
             <screens>
                 <fields>
@@ -155,15 +155,15 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
-        <fullName>UpdateCaseRecordType</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows/>
         <fullName>CASE_OnCreateActions</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
-        <fullName>Opp_New_Opportunity_name</fullName>
+        <fullName>CASE_OnUpdateActions</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>CaseTypeWithAsset</fullName>
     </flowDefinitions>
     <quickActions>
         <label><!-- LogACall --></label>
