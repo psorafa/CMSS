@@ -4040,17 +4040,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>NonLifeInsuranceBinding__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>NonLifeInsuranceBinding__c.HouseholdRestrictedAmount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>NonLifeInsuranceBinding__c.HouseholdRestrictedInBenefits__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>NonLifeInsuranceBinding__c.ObjectID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4130,6 +4130,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>NonLifeInsuranceObject__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>NonLifeInsuranceObject__c.HouseholdInhabitents__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4156,11 +4161,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>NonLifeInsuranceObject__c.HouseholdLocation__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>NonLifeInsuranceObject__c.ObjectID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
