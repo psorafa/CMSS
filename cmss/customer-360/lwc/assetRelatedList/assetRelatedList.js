@@ -6,7 +6,16 @@
 import { LightningElement, api, track } from 'lwc';
 import getDataForDatatable from '@salesforce/apex/AssetRelatedListController.getDataForDataTable';
 
+import assetsLabel from '@salesforce/label/c.Assets';
+import relationLabel from '@salesforce/label/c.Relation';
+
 export default class AssetRelatedList extends LightningElement {
+
+    label = {
+        assetsLabel,
+        relationLabel
+    }
+
 	@track jsonData;
 	@track error;
 	@api recordId;
@@ -16,7 +25,7 @@ export default class AssetRelatedList extends LightningElement {
 
     get relationColumnDefinition() {
         return {
-            label: 'TODO Relation',
+            label: label.relationLabel,
             fieldName: 'Relation.Link',
             hideDefaultActions: 'true',
             type: 'url',
