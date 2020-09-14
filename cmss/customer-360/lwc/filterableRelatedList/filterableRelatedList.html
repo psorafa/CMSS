@@ -1,0 +1,18 @@
+<!--
+ - Created by tadea on 10.09.2020.
+ -->
+
+<!-- Filterable Related List -->
+<template>
+    <c-generic-related-list
+            cols={columns}
+            icon-name={iconName}
+            json-data={jsonData}
+            related-object-name={childObjectName}
+            related-list-name={listName}
+    >
+    </c-generic-related-list>
+    <template if:true={error}>
+        <pre>{error}</pre>
+    </template>
+</template>
