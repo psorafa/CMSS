@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>48.0</apiVersion>
+    <description>Related list that allows you to specify WHERE condition</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Filterable Related List</masterLabel>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="childObjectName" type="String" label="Child Object" description="API name of an object that will be shown in related list" required="true" />
+            <property name="parentFieldName" type="String" label="Parent Field" description="API name of lookup or M-D relationship field to parent. Eg.: AccountId, CustomAccount__c" required="true" />
+            <property name="columns" type="String" label="Columns" description="Columns to be displayed. Comma-separated API names" required="true"/>
+            <property name="listName" type="String" label="List Title" description="Title of related list" required="true"/>
+            <property name="condition" type="String" label="Condition" description="SOQL condition (without WHERE word). Eg.: RecordType.DeveloperName = 'My_Type'" required="false"/>
+            <property name="iconName" type="String" label="Icon" description="Icon to be displayed next to title. Eg.: standard:contact" required="true" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
