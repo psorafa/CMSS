@@ -22,11 +22,11 @@ public with sharing class Logger {
 	}
 
 	public static void debug(String message, Exception ex) {
-		debug(message, ex, '');
+		debug(message, ex, null);
 	}
 
 	public static void debug(String message) {
-		debug(message, null, '');
+		debug(message, null, null);
 	}
 
 	// info level log methods
@@ -36,11 +36,11 @@ public with sharing class Logger {
 	}
 
 	public static void info(String message, Exception ex) {
-		info(message, ex, '');
+		info(message, ex, null);
 	}
 
 	public static void info(String message) {
-		info(message, null, '');
+		info(message, null, null);
 	}
 
 	// warn level log methods
@@ -50,11 +50,11 @@ public with sharing class Logger {
 	}
 
 	public static void warn(String message, Exception ex) {
-		warn(message, ex, '');
+		warn(message, ex, null);
 	}
 
 	public static void warn(String message) {
-		warn(message, null, '');
+		warn(message, null, null);
 	}
 
 	// error level log methods
@@ -64,25 +64,27 @@ public with sharing class Logger {
 	}
 
 	public static void error(String message, Exception ex) {
-		error(message, ex, '');
+		error(message, ex, null);
 	}
 
 	public static void error(String message) {
-		error(message, null, '');
+		error(message, null, null);
 	}
 
 	public static LogEvent__e createLogEvent(String logLevel, String message, Exception ex, String payload) {
 		LogEvent__e logEvent = new LogEvent__e();
 		logEvent.Message__c = message;
-		logEvent.Exception__c = ex.getMessage();
+		if (ex != null) {
+			logEvent.Exception__c = ex.getMessage();
+		}
+		if (payload != null) {
+			logEvent.Payload__c = payload;
+		}
 		logEvent.Level__c = logLevel;
-		logEvent.Payload__c = payload;
 		return logEvent;
 	}
 
 	public static void saveLogs() {
-		System.debug('BEFORE LogEvents insert - logEventsToPublish size() ' + logEventsToPublish.size());
-		System.debug('BEFORE LogEvents insert - logEventsToPublish: ' + logEventsToPublish);
 		List<Database.SaveResult> results = EventBus.publish(logEventsToPublish);
 
 		for (Database.SaveResult sr : results) {
