@@ -1,14 +1,13 @@
 public class LogEventTriggerHandler {
 
 	public static void afterInsert(List<LogEvent__e> newEvents) {
-		System.debug('platform event published: ' + newEvents);
 		List<Log__c> logsToSave = new List<Log__c>();
 
 		for (LogEvent__e logEvent : newEvents) {
 			Log__c log = createLog(logEvent);
 			logsToSave.add(log);
-			insertLogs(logsToSave);
 		}
+		insertLogs(logsToSave);
 	}
 
 	private static Log__c createLog(LogEvent__e logEvent) {
