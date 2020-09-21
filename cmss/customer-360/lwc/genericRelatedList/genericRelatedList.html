@@ -1,0 +1,40 @@
+<!--
+ * @File Name          : genericRelatedList - LWC
+ * @Description        : Generic related list for dynamic use of displaying different objects with parametric settings of fields,
+                         number of displayed records, etd. to substitute standard related list.
+ * @Author             : Jaroslav Krejčí - 6.3.20
+-->
+<template>
+	<article class="slds-card slds-card_boundary slds-color__background_gray-3">
+		<div class="slds-card__header slds-grid">
+			<header class="slds-media slds-media_center slds-has-flexi-truncate">
+				<div class="slds-media__figure">
+					<span class="slds-icon_container slds-icon-standard-account">
+						<lightning-icon icon-name={iconName} size="small"></lightning-icon>
+					</span>
+				</div>
+				<div class="slds-media__body">
+					<h2 class="slds-card__header-title">
+						<span class="slds-card__header-link slds-truncate">
+							{headerTitle}
+						</span>
+					</h2>
+				</div>
+			</header>
+		</div>
+		<div class="slds-card__body">
+			<lightning-spinner if:true={loading}></lightning-spinner>
+			<template if:true={anyData} class="slds-m-left_small slds-m-bottom_small">
+				<lightning-datatable
+						key-field="Id"
+						data={records}
+						columns={colsData}
+						hide-checkbox-column="true"
+				></lightning-datatable>
+			</template>
+			<template if:true={error}>
+				<pre>{error}</pre>
+			</template>
+		</div>
+	</article>
+</template>

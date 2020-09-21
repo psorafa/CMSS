@@ -44,5 +44,9 @@ global with sharing class SF_PersonManagementSOAP {
 		webService String streetName;
 		webService Integer houseNumber;
 		webService String zipCode;
+		webService Date validFrom;
+		webService Date validTo;
+		webService String type;
+		webService String subType;
 	}
 }

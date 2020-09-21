@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Level__c</fullName>
+    <description>choose debug log level, default is 1st value [debug]</description>
+    <externalId>false</externalId>
+    <inlineHelpText>choose debug log level, default is 1st value [debug]</inlineHelpText>
+    <label>Level</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>debug</fullName>
+                <default>true</default>
+                <label>debug</label>
+            </value>
+            <value>
+                <fullName>info</fullName>
+                <default>false</default>
+                <label>info</label>
+            </value>
+            <value>
+                <fullName>warn</fullName>
+                <default>false</default>
+                <label>warn</label>
+            </value>
+            <value>
+                <fullName>error</fullName>
+                <default>false</default>
+                <label>error</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
