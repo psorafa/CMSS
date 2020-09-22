@@ -126,6 +126,24 @@
         <type>Flexipage</type>
         <pageOrSobjectType>User</pageOrSobjectType>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>PortfolioManagementARecordPage</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>PortfolioManagementA__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>PortfolioManagementARecordPage</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>PortfolioManagementA__c</pageOrSobjectType>
+    </actionOverrides>
     <formFactors>Small</formFactors>
     <formFactors>Medium</formFactors>
     <formFactors>Large</formFactors>
@@ -142,5 +160,8 @@
     <tabs>standard-Task</tabs>
     <tabs>standard-Event</tabs>
     <tabs>ClientZone__c</tabs>
+    <tabs>standard-OtherUserProfile</tabs>
+    <tabs>PortfolioManagementA__c</tabs>
+    <tabs>PortfolioManagementC__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

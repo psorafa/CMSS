@@ -25,7 +25,65 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>force:detailPanel</componentName>
+            <componentInstanceProperties>
+                <name>configName</name>
+                <value>CMSSEmployee</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>objName</name>
+                <value>User</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>profileNames</name>
+                <value>System Administrator</value>
+            </componentInstanceProperties>
+            <componentName>APRD:objectDetails</componentName>
+            <visibilityRule>
+                <booleanFilter>1 AND 2</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.EmployeeNumber}</leftValue>
+                    <operator>NE</operator>
+                    <rightValue>&apos;&apos;</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.CommissionAccountNr__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>&apos;&apos;</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>configName</name>
+                <value>Contractor</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>objName</name>
+                <value>User</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>profileNames</name>
+                <value>System Administrator</value>
+            </componentInstanceProperties>
+            <componentName>APRD:objectDetails</componentName>
+            <visibilityRule>
+                <booleanFilter>1 OR (2 AND 3)</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.CommissionAccountNr__c}</leftValue>
+                    <operator>NE</operator>
+                    <rightValue>&apos;&apos;</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.CommissionAccountNr__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>&apos;&apos;</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.EmployeeNumber}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>&apos;&apos;</rightValue>
+                </criteria>
+            </visibilityRule>
         </componentInstances>
         <name>detailTabContent</name>
         <type>Facet</type>
@@ -52,25 +110,165 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>NONE</value>
+                <name>childObjectName</name>
+                <value>ContactInformation__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>rowsToDisplay</name>
-                <value>10</value>
+                <name>columns</name>
+                <value>Name,Type__c,Area__c,Value__c,ValidFrom__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>showActionBar</name>
+                <name>condition</name>
+                <value>(ValidTo__C = null OR ValidTo__c &gt; TODAY)</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>custom:custom28</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>listName</name>
+                <value>Kontaktní informace</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>parentFieldName</name>
+                <value>User__c</value>
+            </componentInstanceProperties>
+            <componentName>filterableRelatedList</componentName>
+        </componentInstances>
+        <name>Facet-162e1a4d-497f-406f-ac81-b2768305f7d5</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>childObjectName</name>
+                <value>Account</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>columns</name>
+                <value>Name,CombinedName__c,BillingStreet,BillingCity,BillingPostalCode,Phone,CompanyEmail__c,PersonEmail,PersonType__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>standard:person_account</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>listName</name>
+                <value>Portfolio Management A</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>parentFieldName</name>
+                <value>PortfolioMngmtA__c</value>
+            </componentInstanceProperties>
+            <componentName>filterableRelatedList</componentName>
+        </componentInstances>
+        <name>Facet-2d81126e-7220-4c59-a41a-78855e9133e7</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>childObjectName</name>
+                <value>Account</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>columns</name>
+                <value>Name,CombinedName__c,BillingStreet,BillingCity,BillingPostalCode,Phone,CompanyEmail__c,PersonEmail,PersonType__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>standard:person_account</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>listName</name>
+                <value>Portfolio Management C</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>parentFieldName</name>
+                <value>PortfolioMngmtC__c</value>
+            </componentInstanceProperties>
+            <componentName>filterableRelatedList</componentName>
+        </componentInstances>
+        <name>Facet-e02399a5-334d-4ced-8d44-aa284e5deeaf</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>active</name>
                 <value>true</value>
             </componentInstanceProperties>
-            <componentName>force:relatedListContainer</componentName>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-162e1a4d-497f-406f-ac81-b2768305f7d5</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Kontaktní informace</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>active</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-2d81126e-7220-4c59-a41a-78855e9133e7</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Portfolio Management A</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-e02399a5-334d-4ced-8d44-aa284e5deeaf</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Portfolio Management C</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <name>Facet-0454c846-692c-4cb0-8174-6db2a6e9829c</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
                 <name>tabs</name>
                 <value>maintabs</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>tabs</name>
+                <value>Facet-0454c846-692c-4cb0-8174-6db2a6e9829c</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tabset</componentName>
+            <visibilityRule>
+                <booleanFilter>1 OR (2 AND 3)</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.CommissionAccountNr__c}</leftValue>
+                    <operator>NE</operator>
+                    <rightValue>&apos;&apos;</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.CommissionAccountNr__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>&apos;&apos;</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.EmployeeNumber}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>&apos;&apos;</rightValue>
+                </criteria>
+            </visibilityRule>
         </componentInstances>
         <name>main</name>
         <type>Region</type>

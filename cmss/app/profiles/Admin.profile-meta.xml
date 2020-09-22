@@ -3290,6 +3290,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ContactInformation__c.SubType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ContactInformation__c.TechnicalStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5690,6 +5695,14 @@
     <tabVisibilities>
         <tab>PicklistValue__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>PortfolioManagementA__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>PortfolioManagementC__c</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Account</tab>

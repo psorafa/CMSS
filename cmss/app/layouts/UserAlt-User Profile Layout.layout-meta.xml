@@ -235,6 +235,10 @@
                 <behavior>Required</behavior>
                 <field>TimeZoneSidKey</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AgentId__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -264,6 +268,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Type__c</fields>
+        <fields>Area__c</fields>
+        <fields>Value__c</fields>
+        <fields>ValidFrom__c</fields>
         <relatedList>ContactInformation__c.User__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
