@@ -25,7 +25,7 @@ export default class AssetRelatedList extends LightningElement {
 
     get relationColumnDefinition() {
         return {
-            label: label.relationLabel,
+            label: this.label.relationLabel,
             fieldName: 'Relation.Link',
             hideDefaultActions: 'true',
             type: 'url',
