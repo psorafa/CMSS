@@ -89,6 +89,9 @@ public with sharing class Logger {
 		logEvent.Message__c = message;
 		if (ex != null) {
 			logEvent.Exception__c = ex.getMessage();
+			String stack = ex.getStackTraceString().substringBetween('Class.', ':');
+			System.debug(stack);
+			logEvent.ClassMethodName__c = stack;
 		}
 		if (payload != null) {
 			logEvent.Payload__c = payload;

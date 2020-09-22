@@ -12,6 +12,7 @@ public class LogEventTriggerHandler {
 
 	private static Log__c createLog(LogEvent__e logEvent) {
 		Log__c log = new Log__c();
+		log.ClassMethodName__c = logEvent.ClassMethodName__c;
 		log.Exception__c = logEvent.Exception__c;
 		log.Level__c = logEvent.Level__c;
 		log.Payload__c = logEvent.Payload__c;

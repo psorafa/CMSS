@@ -171,6 +171,28 @@ private class LoggerTest {
 		}
 	}
 
+	@IsTest
+	static void classMethodNameTest() {
+		insertLoggingCustomSettings('debug');
+		String debugMessage = 'debug message';
+
+		Test.startTest();
+		try {
+			throw new DmlException('test exc');
+		} catch (Exception exc) {
+			Logger.debug(debugMessage, exc);
+			Logger.saveLogs();
+			Test.getEventBus().deliver();
+		}
+		Test.stopTest();
+
+		List<Log__c> logs = [SELECT Id, ClassMethodName__c, Level__c, Exception__c, Message__c, Payload__c FROM Log__c ORDER BY Level__c];
+		System.assertEquals(1, logs.size());
+		System.debug('inserted logs: ' + logs);
+
+		System.assertEquals('LoggerTest.classMethodNameTest', logs[0].ClassMethodName__c);
+	}
+
 	private static void insertLoggingCustomSettings(String level) {
 		LoggingSetting__c loggingSetting = new LoggingSetting__c(Level__c = level);
 		insert loggingSetting;
