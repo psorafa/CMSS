@@ -35,6 +35,9 @@ else
     sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile $CONF --targetdevhubusername $DEVHUB
 fi
 
+#install packages
+sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wait 8 -u $ALIAS
+
 #push source
 echo "Validating source deploy sequence..."
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/main/default/

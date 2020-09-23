@@ -24,6 +24,9 @@ else
     sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF --targetdevhubusername  $DEVHUB --setdefaultusername
 fi
 
+#install packages
+sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wait 8 -u $ALIAS
+
 #push source
 sfdx force:source:push --targetusername $ALIAS
 

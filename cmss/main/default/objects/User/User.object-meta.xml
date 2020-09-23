@@ -211,11 +211,13 @@
         <lookupPhoneDialogsAdditionalFields>Phone1__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Phone2__c</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>FULL_NAME</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CORE.USERS.TITLE</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CommissionAccountNr__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>SalesAgentType__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CommissionAccountBase__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>EMPLOYEE_NUMBER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Position__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>AgentActivityType__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CORE.USERS.EMAIL</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>IsAgentActive__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.CELL</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.ACTIVE</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
 </CustomObject>
