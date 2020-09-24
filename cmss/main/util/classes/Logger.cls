@@ -23,7 +23,7 @@ public with sharing class Logger {
 	// debug level log methods
 	public static void debug(String message, Exception ex, String payload) {
 		if (defaultLogLevelNumber >= 4) {
-			logEventsToPublish.add(createLogEvent(DEBUG_LEVEL, message, ex, payload));
+			createLogEvent(DEBUG_LEVEL, message, ex, payload);
 		}
 	}
 
@@ -38,7 +38,7 @@ public with sharing class Logger {
 	// info level log methods
 	public static void info(String message, Exception ex, String payload) {
 		if (defaultLogLevelNumber >= 3) {
-			logEventsToPublish.add(createLogEvent(INFO_LEVEL, message, ex, payload));
+			createLogEvent(INFO_LEVEL, message, ex, payload);
 		}
 	}
 
@@ -53,7 +53,7 @@ public with sharing class Logger {
 	// warn level log methods
 	public static void warn(String message, Exception ex, String payload) {
 		if (defaultLogLevelNumber >= 2) {
-			logEventsToPublish.add(createLogEvent(WARN_LEVEL, message, ex, payload));
+			createLogEvent(WARN_LEVEL, message, ex, payload);
 		}
 	}
 
@@ -68,7 +68,7 @@ public with sharing class Logger {
 	// error level log methods
 	public static void error(String message, Exception ex, String payload) {
 		if (defaultLogLevelNumber >= 1) {
-			logEventsToPublish.add(createLogEvent(ERROR_LEVEL, message, ex, payload));
+			createLogEvent(ERROR_LEVEL, message, ex, payload);
 		}
 	}
 
@@ -80,7 +80,7 @@ public with sharing class Logger {
 		error(message, null, null);
 	}
 
-	public static LogEvent__e createLogEvent(String logLevel, String message, Exception ex, String payload) {
+	public static void createLogEvent(String logLevel, String message, Exception ex, String payload) {
 		LogEvent__e logEvent = new LogEvent__e();
 		logEvent.Message__c = message;
 		if (ex != null) {
@@ -95,7 +95,7 @@ public with sharing class Logger {
 		}
 		stackTraceMethod = stackTraceMethod.substringBetween('Class.', ':');
 		logEvent.ClassMethodName__c = stackTraceMethod;
-		return logEvent;
+		logEventsToPublish.add(logEvent);
 	}
 
 	public static void saveLogs() {
