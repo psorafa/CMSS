@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CommissionAccountNr__c</fullName>
     <description>Číslo provizního účtu</description>
-    <externalId>false</externalId>
+    <externalId>true</externalId>
     <label>Commission Account Nr</label>
     <length>255</length>
     <required>false</required>
