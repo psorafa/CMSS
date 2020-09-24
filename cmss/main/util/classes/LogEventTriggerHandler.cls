@@ -23,9 +23,7 @@ public class LogEventTriggerHandler {
 	private static void insertLogs(List<Log__c> logsToSave) {
 		List<Database.SaveResult> results = Database.insert(logsToSave);
 		for (Database.SaveResult sr : results) {
-			if (sr.isSuccess()) {
-				System.debug('Successfully inserted log.');
-			} else {
+			if (!sr.isSuccess()) {
 				for (Database.Error err : sr.getErrors()) {
 					System.debug('Error while saving log returned: ' +
 							err.getStatusCode() +

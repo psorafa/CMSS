@@ -23,8 +23,7 @@ public with sharing class Logger {
 	// debug level log methods
 	public static void debug(String message, Exception ex, String payload) {
 		if (defaultLogLevelNumber >= 4) {
-			LogEvent__e logEvent = createLogEvent(DEBUG_LEVEL, message, ex, payload);
-			logEventsToPublish.add(logEvent);
+			logEventsToPublish.add(createLogEvent(DEBUG_LEVEL, message, ex, payload));
 		}
 	}
 
@@ -39,8 +38,7 @@ public with sharing class Logger {
 	// info level log methods
 	public static void info(String message, Exception ex, String payload) {
 		if (defaultLogLevelNumber >= 3) {
-			LogEvent__e logEvent = createLogEvent(INFO_LEVEL, message, ex, payload);
-			logEventsToPublish.add(logEvent);
+			logEventsToPublish.add(createLogEvent(INFO_LEVEL, message, ex, payload));
 		}
 	}
 
@@ -55,8 +53,7 @@ public with sharing class Logger {
 	// warn level log methods
 	public static void warn(String message, Exception ex, String payload) {
 		if (defaultLogLevelNumber >= 2) {
-			LogEvent__e logEvent = createLogEvent(WARN_LEVEL, message, ex, payload);
-			logEventsToPublish.add(logEvent);
+			logEventsToPublish.add(createLogEvent(WARN_LEVEL, message, ex, payload));
 		}
 	}
 
@@ -71,8 +68,7 @@ public with sharing class Logger {
 	// error level log methods
 	public static void error(String message, Exception ex, String payload) {
 		if (defaultLogLevelNumber >= 1) {
-			LogEvent__e logEvent = createLogEvent(ERROR_LEVEL, message, ex, payload);
-			logEventsToPublish.add(logEvent);
+			logEventsToPublish.add(createLogEvent(ERROR_LEVEL, message, ex, payload));
 		}
 	}
 
@@ -88,34 +84,26 @@ public with sharing class Logger {
 		LogEvent__e logEvent = new LogEvent__e();
 		logEvent.Message__c = message;
 		if (ex != null) {
-			logEvent.Exception__c = ex.getMessage();
+			logEvent.Exception__c = ex.getMessage() + ' | ' + ex.getStackTraceString();
 		}
-		if (payload != null) {
-			logEvent.Payload__c = payload;
-		}
-		try {
-			throw new DmlException('log exception');
-		} catch (DmlException exc) {
-			String stack = exc.getStackTraceString().substringAfter('\n');
-			while (stack.startsWith('Class.Logger.')) {
-				stack = stack.substringAfter('\n');
-			}
-			stack = stack.substringBetween('Class.', ':');
-			logEvent.ClassMethodName__c = stack;
-		}
+		logEvent.Payload__c = payload;
 		logEvent.Level__c = logLevel;
+		String stackTraceMethod = new DmlException().getStackTraceString();
+		stackTraceMethod = stackTraceMethod.substringAfter('\n');
+		while (stackTraceMethod.startsWith('Class.Logger.')) {
+			stackTraceMethod = stackTraceMethod.substringAfter('\n');
+		}
+		stackTraceMethod = stackTraceMethod.substringBetween('Class.', ':');
+		logEvent.ClassMethodName__c = stackTraceMethod;
 		return logEvent;
 	}
 
 	public static void saveLogs() {
 		List<Database.SaveResult> results = EventBus.publish(logEventsToPublish);
-
 		for (Database.SaveResult sr : results) {
-			if (sr.isSuccess()) {
-				System.debug('Successfully published event: sr:' + sr);
-			} else {
+			if (!sr.isSuccess()) {
 				for (Database.Error err : sr.getErrors()) {
-					System.debug('Error returned: ' +
+					System.debug('Error publishing log events: ' +
 							err.getStatusCode() +
 							' - ' +
 							err.getMessage());
