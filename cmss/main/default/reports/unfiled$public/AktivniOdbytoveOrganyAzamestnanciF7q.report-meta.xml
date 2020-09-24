@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>User*User$CommissionAccountBase__c</field>
+    </columns>
+    <columns>
+        <field>User$EmployeeNumber</field>
+    </columns>
+    <columns>
+        <field>User$Name</field>
+    </columns>
+    <columns>
+        <field>User$UserRole</field>
+    </columns>
+    <columns>
+        <field>User*User$CooperationPartnerType__c</field>
+    </columns>
+    <columns>
+        <field>User*User$AgentActivityType__c</field>
+    </columns>
+    <columns>
+        <field>User$Email</field>
+    </columns>
+    <columns>
+        <field>User*User$MobilePhone__c</field>
+    </columns>
+    <columns>
+        <field>User$Manager</field>
+    </columns>
+    <description>Aktivní uživatelé typu odbytový orgán a zaměstnanec</description>
+    <filter>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <column>User$IsActive</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Aktivní odbytové orgány a zaměstnanci</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>UserWithManager__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>User*User$AgentActivityEndDate__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>
