@@ -1,24 +1,30 @@
 public with sharing class Logger {
 
+	private static String defaultLogLevel = 'debug';
+	private static Integer defaultLogLevelNumber = 4;
 	private static final String DEBUG_LEVEL = 'debug';
 	private static final String INFO_LEVEL = 'info';
 	private static final String WARN_LEVEL = 'warn';
 	private static final String ERROR_LEVEL = 'error';
+	private static final Map<String, Integer> logLevelNumberMap = new Map<String, Integer>{
+			DEBUG_LEVEL => 4, INFO_LEVEL => 3, WARN_LEVEL => 2, ERROR_LEVEL => 1
+	};
 
 	private static List<LogEvent__e> logEventsToPublish = new List<LogEvent__e>();
 
-	/*static {
+	static {
 		String logLevelPreferred = LoggingSetting__c.getOrgDefaults().Level__c;
 		if (logLevelPreferred != null) {
-			System.debug('logging level is: ' + logLevelPreferred);
-			logLevel = logLevelPreferred;
+			defaultLogLevel = logLevelPreferred;
 		}
-	}*/
+		defaultLogLevelNumber = logLevelNumberMap.get(defaultLogLevel);
+	}
 
 	// debug level log methods
 	public static void debug(String message, Exception ex, String payload) {
-		LogEvent__e logEvent = createLogEvent(DEBUG_LEVEL, message, ex, payload);
-		logEventsToPublish.add(logEvent);
+		if (defaultLogLevelNumber >= 4) {
+			createLogEvent(DEBUG_LEVEL, message, ex, payload);
+		}
 	}
 
 	public static void debug(String message, Exception ex) {
@@ -31,8 +37,9 @@ public with sharing class Logger {
 
 	// info level log methods
 	public static void info(String message, Exception ex, String payload) {
-		LogEvent__e logEvent = createLogEvent(INFO_LEVEL, message, ex, payload);
-		logEventsToPublish.add(logEvent);
+		if (defaultLogLevelNumber >= 3) {
+			createLogEvent(INFO_LEVEL, message, ex, payload);
+		}
 	}
 
 	public static void info(String message, Exception ex) {
@@ -45,8 +52,9 @@ public with sharing class Logger {
 
 	// warn level log methods
 	public static void warn(String message, Exception ex, String payload) {
-		LogEvent__e logEvent = createLogEvent(WARN_LEVEL, message, ex, payload);
-		logEventsToPublish.add(logEvent);
+		if (defaultLogLevelNumber >= 2) {
+			createLogEvent(WARN_LEVEL, message, ex, payload);
+		}
 	}
 
 	public static void warn(String message, Exception ex) {
@@ -59,8 +67,9 @@ public with sharing class Logger {
 
 	// error level log methods
 	public static void error(String message, Exception ex, String payload) {
-		LogEvent__e logEvent = createLogEvent(ERROR_LEVEL, message, ex, payload);
-		logEventsToPublish.add(logEvent);
+		if (defaultLogLevelNumber >= 1) {
+			createLogEvent(ERROR_LEVEL, message, ex, payload);
+		}
 	}
 
 	public static void error(String message, Exception ex) {
@@ -71,28 +80,30 @@ public with sharing class Logger {
 		error(message, null, null);
 	}
 
-	public static LogEvent__e createLogEvent(String logLevel, String message, Exception ex, String payload) {
+	public static void createLogEvent(String logLevel, String message, Exception ex, String payload) {
 		LogEvent__e logEvent = new LogEvent__e();
 		logEvent.Message__c = message;
 		if (ex != null) {
-			logEvent.Exception__c = ex.getMessage();
+			logEvent.Exception__c = ex.getMessage() + ' | ' + ex.getStackTraceString();
 		}
-		if (payload != null) {
-			logEvent.Payload__c = payload;
-		}
+		logEvent.Payload__c = payload;
 		logEvent.Level__c = logLevel;
-		return logEvent;
+		String stackTraceMethod = new DmlException().getStackTraceString();
+		stackTraceMethod = stackTraceMethod.substringAfter('\n');
+		while (stackTraceMethod.startsWith('Class.Logger.')) {
+			stackTraceMethod = stackTraceMethod.substringAfter('\n');
+		}
+		stackTraceMethod = stackTraceMethod.substringBetween('Class.', ':');
+		logEvent.ClassMethodName__c = stackTraceMethod;
+		logEventsToPublish.add(logEvent);
 	}
 
 	public static void saveLogs() {
 		List<Database.SaveResult> results = EventBus.publish(logEventsToPublish);
-
 		for (Database.SaveResult sr : results) {
-			if (sr.isSuccess()) {
-				System.debug('Successfully published event: sr:' + sr);
-			} else {
-				for(Database.Error err : sr.getErrors()) {
-					System.debug('Error returned: ' +
+			if (!sr.isSuccess()) {
+				for (Database.Error err : sr.getErrors()) {
+					System.debug('Error publishing log events: ' +
 							err.getStatusCode() +
 							' - ' +
 							err.getMessage());
