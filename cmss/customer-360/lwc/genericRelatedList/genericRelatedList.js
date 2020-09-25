@@ -12,7 +12,6 @@ export default class GenericRelatedList extends LightningElement {
 
 	@api cols;
 	@api iconName;
-	@api parentComponent;
 	@api relatedObjectName;
 	@api colsAddition
 
