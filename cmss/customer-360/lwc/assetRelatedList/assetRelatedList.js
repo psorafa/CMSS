@@ -22,6 +22,16 @@ export default class AssetRelatedList extends LightningElement {
 	@api columns;
 	@api conditionAssets;
 	@api conditionRelations;
+	@api listName
+	@api iconName
+
+	get listTitle() {
+	    return this.listName || this.label.assetsLabel
+    }
+
+    get icon() {
+        return this.iconName || 'standard:product'
+    }
 
     get relationColumnDefinition() {
         return {
