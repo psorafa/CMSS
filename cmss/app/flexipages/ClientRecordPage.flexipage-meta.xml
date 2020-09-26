@@ -81,6 +81,131 @@
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>columns</name>
+                <value>Name, AccountType__c, Closed__c, TariffCode__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>conditionAssets</name>
+                <value>(RecordType.DeveloperName = &apos;BuildingSavings&apos; OR RecordType.DeveloperName = &apos;CreditAndIntermediateLoan&apos;)</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>standard:asset_object</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>listName</name>
+                <value>Stavební spoření</value>
+            </componentInstanceProperties>
+            <componentName>assetRelatedList</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>columns</name>
+                <value>Name, RequestSignDate__c, CreditAmount__c, Status__c, CurrentBalance__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>conditionAssets</name>
+                <value>RecordType.DeveloperName = &apos;CreditCases&apos;</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>listName</name>
+                <value>Úvěrové případy</value>
+            </componentInstanceProperties>
+            <componentName>assetRelatedList</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>columns</name>
+                <value>Name, RequestSignDate__c, ConfirmationDate__c, InsuranceType__c, InsuranceStatus__c, DateUpdated__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>conditionAssets</name>
+                <value>RecordType.DeveloperName = &apos;RiskLifeInsurance&apos;</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>standard:employee_asset</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>listName</name>
+                <value>Rizikové životní pojištění</value>
+            </componentInstanceProperties>
+            <componentName>assetRelatedList</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>columns</name>
+                <value>Name, MortgageStatus__c, RequestSignDate__c, LoanAmount__c, DateUpdated__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>conditionAssets</name>
+                <value>RecordType.DeveloperName = &apos;Mortgages&apos;</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>standard:investment_account</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>listName</name>
+                <value>Hypoteční úvěry</value>
+            </componentInstanceProperties>
+            <componentName>assetRelatedList</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>columns</name>
+                <value>Name, ProductCloseDate__c, DateUpdated__c, AmountRepayment__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>conditionAssets</name>
+                <value>RecordType.DeveloperName = &apos;PMO&apos;</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>standard:asset_action_source</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>listName</name>
+                <value>Pojistné produkty</value>
+            </componentInstanceProperties>
+            <componentName>assetRelatedList</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>columns</name>
+                <value>Name, ProductCloseDate__c, DateUpdated__c, AmountRepayment__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>conditionAssets</name>
+                <value>RecordType.DeveloperName = &apos;PensionProducts&apos;</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>standard:maintenance_asset</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>listName</name>
+                <value>Penzijní produkty</value>
+            </componentInstanceProperties>
+            <componentName>assetRelatedList</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>columns</name>
+                <value>Name, AccountType__c, ProductSubtype__c, ProductCloseDate__c, DateUpdated__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>conditionAssets</name>
+                <value>RecordType.DeveloperName = &apos;CSOBCurrentAccount&apos;</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>listName</name>
+                <value>Běžné a spořící účty</value>
+            </componentInstanceProperties>
+            <componentName>assetRelatedList</componentName>
+        </componentInstances>
         <name>Facet-b9c9b05f-ffa8-4b69-88b2-89e4e045f33d</name>
         <type>Facet</type>
     </flexiPageRegions>

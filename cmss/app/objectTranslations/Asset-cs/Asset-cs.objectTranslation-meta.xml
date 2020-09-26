@@ -7,4 +7,49 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
+    <recordTypes>
+        <description><!-- Stavební spoření --></description>
+        <label>Stavební spoření</label>
+        <name>BuildingSavings</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Běžný účet ČSOB --></description>
+        <label>Běžný účet ČSOB</label>
+        <name>CSOBCurrentAccount</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Úvěr a meziúvěr --></description>
+        <label>Úvěr a meziúvěr</label>
+        <name>CreditAndIntermediateLoan</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Úvěrové případy --></description>
+        <label>Úvěrové případy</label>
+        <name>CreditCases</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Investiční životní pojištění --></description>
+        <label>Investiční životní pojištění</label>
+        <name>InvestmentLifeInsurance</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hypoteční úvěry --></description>
+        <label>Hypoteční úvěry</label>
+        <name>Mortgages</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Pojistné produkty --></description>
+        <label>PMO</label>
+        <name>PMO</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Penzijní produkty --></description>
+        <label>Penzijní produkty</label>
+        <name>PensionProducts</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Rizikové životní pojištění --></description>
+        <label>Rizikové životní pojištění</label>
+        <name>RiskLifeInsurance</name>
+    </recordTypes>
 </CustomObjectTranslation>
