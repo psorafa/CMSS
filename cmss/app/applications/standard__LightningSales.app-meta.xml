@@ -147,20 +147,20 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>PortfolioManagementCRecordPage</content>
+        <content>ContactInformationRecordPage</content>
         <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>PortfolioManagementC__c</pageOrSobjectType>
+        <pageOrSobjectType>ContactInformation__c</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>PortfolioManagementCRecordPage</content>
+        <content>ContactInformationRecordPage</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>PortfolioManagementC__c</pageOrSobjectType>
+        <pageOrSobjectType>ContactInformation__c</pageOrSobjectType>
     </actionOverrides>
     <formFactors>Small</formFactors>
     <formFactors>Medium</formFactors>

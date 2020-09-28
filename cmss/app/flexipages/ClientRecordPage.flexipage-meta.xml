@@ -121,18 +121,30 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>parentFieldApiName</name>
-                <value>Account.Id</value>
+                <name>childObjectName</name>
+                <value>ContactInformation__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>relatedListApiName</name>
-                <value>ContactInformation__r</value>
+                <name>columns</name>
+                <value>Name,Type__c,SubType__c,Value__c,ValidFrom__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>GRID</value>
+                <name>condition</name>
+                <value>(ValidTo__c = null OR ValidTo__c &gt; TODAY)</value>
             </componentInstanceProperties>
-            <componentName>force:relatedListSingleContainer</componentName>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>custom:custom28</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>listName</name>
+                <value>Kontaktní informace</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>parentFieldName</name>
+                <value>Account__c</value>
+            </componentInstanceProperties>
+            <componentName>filterableRelatedList</componentName>
         </componentInstances>
         <name>Facet-a6fe615e-a4a6-4161-881f-f236b84f5eef</name>
         <type>Facet</type>
@@ -295,7 +307,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relatedListApiName</name>
-                <value>PortfolioManagementA__r</value>
+                <value>PortfolioManagementC__r</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>
@@ -318,7 +330,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relatedListApiName</name>
-                <value>PortfolioManagementImpulses__r</value>
+                <value>PortfolioManagementRequests__r</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>

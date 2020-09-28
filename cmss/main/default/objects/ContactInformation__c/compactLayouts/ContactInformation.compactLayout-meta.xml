@@ -3,12 +3,9 @@
     <fullName>ContactInformation</fullName>
     <fields>Type__c</fields>
     <fields>IsMain__c</fields>
-    <fields>PhoneNumber__c</fields>
-    <fields>Email__c</fields>
-    <fields>FullAddress__c</fields>
-    <fields>Account__c</fields>
-    <fields>Asset__c</fields>
-    <fields>Lead__c</fields>
-    <fields>User__c</fields>
+    <fields>SubType__c</fields>
+    <fields>Value__c</fields>
+    <fields>ValidFrom__c</fields>
+    <fields>ValidTo__c</fields>
     <label>Contact Information</label>
 </CompactLayout>
