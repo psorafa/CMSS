@@ -409,12 +409,36 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
+        <fields>PortfolioManager__c</fields>
+        <fields>PortfolioManChangeReason__c</fields>
+        <fields>ValidFrom__c</fields>
+        <fields>ValidTo__c</fields>
         <relatedList>PortfolioManagementA__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
+        <fields>PortfolioManager__c</fields>
+        <fields>PortfolioManChangeReason__c</fields>
+        <fields>ValidFrom__c</fields>
+        <fields>ValidTo__c</fields>
         <relatedList>PortfolioManagementC__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>PortfolioManagementType__c</fields>
+        <fields>PortfolioManager__c</fields>
+        <fields>PortfolioManChangeReason__c</fields>
+        <fields>ValidFrom__c</fields>
+        <fields>RequestStatus__c</fields>
+        <fields>PortfolioManChangeResult__c</fields>
+        <fields>ErrorMessage__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>CREATEDBY_USER</fields>
+        <relatedList>PortfolioManagementRequest__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -538,10 +562,6 @@
         <relatedList>ClientZone__c.Account__c</relatedList>
         <sortField>NAME</sortField>
         <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>PortfolioManagementRequest__c.Account__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
