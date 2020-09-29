@@ -31,6 +31,10 @@
                 <behavior>Edit</behavior>
                 <field>ValidFrom__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ClientZoneID__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
