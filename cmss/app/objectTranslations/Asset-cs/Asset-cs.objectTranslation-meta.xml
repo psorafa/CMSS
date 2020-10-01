@@ -13,13 +13,13 @@
         <name>BuildingSavings</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Běžný účet ČSOB --></description>
-        <label>Běžný účet ČSOB</label>
+        <description><!-- ČSOB účty --></description>
+        <label>ČSOB účty</label>
         <name>CSOBCurrentAccount</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Úvěr a meziúvěr --></description>
-        <label>Úvěr a meziúvěr</label>
+        <description><!-- Úvěry a meziúvěry --></description>
+        <label>Úvěry a meziúvěry</label>
         <name>CreditAndIntermediateLoan</name>
     </recordTypes>
     <recordTypes>
@@ -38,13 +38,13 @@
         <name>Mortgages</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Pojistné produkty --></description>
-        <label>PMO</label>
+        <description><!-- Pojištění majetku a odpovědnosti --></description>
+        <label>Pojištění majetku a odpovědnosti</label>
         <name>PMO</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Penzijní produkty --></description>
-        <label>Penzijní produkty</label>
+        <description><!-- Penzijní připojištění --></description>
+        <label>Penzijní připojištění</label>
         <name>PensionProducts</name>
     </recordTypes>
     <recordTypes>

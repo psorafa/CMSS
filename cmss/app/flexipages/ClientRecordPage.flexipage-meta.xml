@@ -60,29 +60,6 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>parentFieldApiName</name>
-                <value>Account.Id</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListApiName</name>
-                <value>Assets</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>ADVGRID</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>rowsToDisplay</name>
-                <value>10</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>showActionBar</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentName>force:relatedListSingleContainer</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
                 <name>columns</name>
                 <value>Name, AccountType__c, Closed__c, TariffCode__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c</value>
             </componentInstanceProperties>
@@ -111,7 +88,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>listName</name>
-                <value>Úvěrové případy</value>
+                <value>Úvěry meziúvěry</value>
             </componentInstanceProperties>
             <componentName>assetRelatedList</componentName>
         </componentInstances>
@@ -168,7 +145,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>listName</name>
-                <value>Pojistné produkty</value>
+                <value>Pojištění majetku a odpovědnosti</value>
             </componentInstanceProperties>
             <componentName>assetRelatedList</componentName>
         </componentInstances>
@@ -187,7 +164,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>listName</name>
-                <value>Penzijní produkty</value>
+                <value>Penzijní připojištění</value>
             </componentInstanceProperties>
             <componentName>assetRelatedList</componentName>
         </componentInstances>
@@ -202,7 +179,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>listName</name>
-                <value>Běžné a spořící účty</value>
+                <value>ČSOB účty</value>
             </componentInstanceProperties>
             <componentName>assetRelatedList</componentName>
         </componentInstances>
@@ -228,11 +205,11 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>
-                <value>NONE</value>
+                <value>ADVGRID</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>rowsToDisplay</name>
-                <value>10</value>
+                <value>5</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>showActionBar</name>
