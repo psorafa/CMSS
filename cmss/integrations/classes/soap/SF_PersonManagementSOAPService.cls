@@ -2,9 +2,10 @@ global with sharing class SF_PersonManagementSOAPService {
 
 	webService static Id createClient(CreateClientRequest request) {
 		try {
-			return ClientService.createClientAndContactInfos(request);
+			Logger.info('createClient request data', JSON.serialize(request));
+			return ClientService.createClientAndContactInfos(request.client, request.personCommunications);
 		} catch (Exception exc) {
-			Logger.error('SF_PersonManagementSOAPService.createClient ContactInformation insert failed', exc, request.toString());
+			Logger.error('SF_PersonManagementSOAPService.createClient createClient operation failed', exc, request.toString());
 			throw exc;
 		} finally {
 			Logger.saveLogs();
