@@ -3,7 +3,7 @@ public with sharing class ClientService {
 	private static List<ContactInformation__c> contactInfoList = new List<ContactInformation__c>();
 
 	public static Id createClientAndContactInfos(SF_PersonManagementSOAPService.CreateClientRequest request) {
-		Logger.info('createClient request data', null, request.toString());
+		Logger.info('createClient request data', null, JSON.serialize(request));
 		Id accountId = ClientService.insertAccount(request);
 		ClientService.createContactInfos(request.personCommunications, accountId);
 		return accountId;
@@ -42,7 +42,7 @@ public with sharing class ClientService {
 			createContactInformation(commType, accountId);
 		}
 		insert contactInfoList;
-		Logger.info('ClientService inserted Contact_Information__c list.', contactInfoList.toString());
+		Logger.info('ClientService inserted ContactInformation__c list.', String.join(contactInfoList, ','));
 	}
 
 	private static void createContactInformation(SF_PersonManagementSOAPService.PersonCommunicationType commType, Id accountId) {
