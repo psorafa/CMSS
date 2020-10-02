@@ -31,6 +31,10 @@ public with sharing class Logger {
 		debug(message, ex, null);
 	}
 
+	public static void debug(String message, String payload) {
+		debug(message, null, payload);
+	}
+
 	public static void debug(String message) {
 		debug(message, null, null);
 	}
@@ -44,6 +48,10 @@ public with sharing class Logger {
 
 	public static void info(String message, Exception ex) {
 		info(message, ex, null);
+	}
+
+	public static void info(String message, String payload) {
+		info(message, null, payload);
 	}
 
 	public static void info(String message) {
@@ -61,6 +69,10 @@ public with sharing class Logger {
 		warn(message, ex, null);
 	}
 
+	public static void warn(String message, String payload) {
+		warn(message, null, payload);
+	}
+
 	public static void warn(String message) {
 		warn(message, null, null);
 	}
@@ -74,6 +86,10 @@ public with sharing class Logger {
 
 	public static void error(String message, Exception ex) {
 		error(message, ex, null);
+	}
+
+	public static void error(String message, String payload) {
+		error(message, null, payload);
 	}
 
 	public static void error(String message) {
