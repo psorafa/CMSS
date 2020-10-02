@@ -3,7 +3,7 @@ public with sharing class ClientService {
 	private static List<ContactInformation__c> contactInfoList = new List<ContactInformation__c>();
 
 	public static Id createClientAndContactInfos(SF_PersonManagementSOAPService.CreateClientRequest request) {
-		Logger.info('createClient request data', null, JSON.serialize(request));
+		Logger.info('createClient request data', JSON.serialize(request));
 		Id accountId = ClientService.insertAccount(request);
 		ClientService.createContactInfos(request.personCommunications, accountId);
 		return accountId;
