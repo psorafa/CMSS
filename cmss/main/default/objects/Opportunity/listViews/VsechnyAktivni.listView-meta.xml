@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>All</fullName>
+    <fullName>VsechnyAktivni</fullName>
     <columns>OPPORTUNITY.NAME</columns>
     <columns>ACCOUNT.NAME</columns>
     <columns>CORE.USERS.FULL_NAME</columns>
@@ -10,5 +10,10 @@
     <columns>CreatedDateTime__c</columns>
     <columns>OPPORTUNITY.CLOSE_DATE</columns>
     <filterScope>Everything</filterScope>
-    <label>Všechny</label>
+    <filters>
+        <field>OPPORTUNITY.CLOSE_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>Všechny aktivní</label>
 </ListView>
