@@ -24,7 +24,6 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService String spSc;
 		webService String isPoliticallyExposed;
 		webService String isCrResident;
-		webService String loyaltyProgram;
 	}
 
 	global class PersonCommunicationType {
@@ -32,10 +31,7 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService String contactSubType;
 		webService String contactValue;
 		webService AddressType address;
-		webService String email;
-		webService String phone;
 		webService String extCommunicationId;
-		webService String sourceApp;
 	}
 
 	global class AddressType {
@@ -46,7 +42,5 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService String zipCode;
 		webService Date validFrom;
 		webService Date validTo;
-		webService String type;
-		webService String subType;
 	}
 }

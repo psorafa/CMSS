@@ -20,14 +20,11 @@ public with sharing class ClientService {
 		Account client = new Account(
 				SbId__c = request.client.personNumber,
 				PersonalIdentificationNr__c = request.client.personalIdentityNumber,
-				PersonTitle = request.client.prefixTitle,
-				Suffix = request.client.suffixTitle,
 				GlobalId__c = request.client.clientGlobalId,
 				Birthdate__c = request.client.birthDate,
 				Gender__c = request.client.gender,
-//				PortfolioManagementA__r = request.client.spSa,
-//				PortfolioManagementC__r = request.client.spSc,
-//				loyalty program ??
+				PortfolioMngmtA__c = getUserIdByCommissionAccountNr(request.client.spSa),
+				PortfolioMngmtC__c = getUserIdByCommissionAccountNr(request.client.spSc),
 				IsPoliticallyExposed__c = Boolean.valueOf(request.client.isPoliticallyExposed),
 				IsResident__c = Boolean.valueOf(request.client.isCrResident)
 		);
@@ -35,8 +32,12 @@ public with sharing class ClientService {
 		if (request.client.lastName != null) {
 			client.FirstName = request.client.firstName;
 			client.LastName = request.client.lastName;
+			client.PersonTitle = request.client.prefixTitle;
+			client.Suffix = request.client.suffixTitle;
+			client.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('PersonAccount').getRecordTypeId();
 		} else {
 			client.Name = request.client.name;
+			client.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
 		}
 
 		try {
@@ -53,7 +54,6 @@ public with sharing class ClientService {
 		}
 		if (!contactInfoList.isEmpty()) {
 			try {
-				System.debug('contactInfoList toString(): ' + contactInfoList.toString());
 				insert contactInfoList;
 			} catch (Exception ex) {
 				Logger.error('SF_PersonManagementSOAPService.createContactInfos Contact info list insert failed', ex, contactInfoList.toString());
@@ -66,19 +66,42 @@ public with sharing class ClientService {
 		ContactInformation__c contactInfo = new ContactInformation__c(
 				Account__c = accountId,
 				Type__c = commType.contactType,
-				SubType__c = commType.contactSubType,
-				Email__c = commType.email,
-				PhoneNumber__c = commType.phone,
-//				Fax__c = commType.??,
-//				DataBoxNumber__c = commType.??,
-				City__c = commType.address.city,
-				Country__c = commType.address.country,
-				Street__c = commType.address.streetName,
-				HouseNumber__c = commType.address.houseNumber,
-				PostalCode__c = commType.address.zipCode,
-				ValidFrom__c = commType.address.validFrom,
-				ValidTo__c = commType.address.validTo
+				SubType__c = commType.contactSubType
 		);
+		if ('1'.equals(commType.contactType)) {
+			contactInfo.City__c = commType.address.city;
+			contactInfo.Country__c = commType.address.country;
+			contactInfo.Street__c = commType.address.streetName;
+			contactInfo.HouseNumber__c = commType.address.houseNumber;
+			contactInfo.PostalCode__c = commType.address.zipCode;
+			contactInfo.ValidFrom__c = commType.address.validFrom;
+			contactInfo.ValidTo__c = commType.address.validTo;
+		} else if ('2'.equals(commType.contactType)) {
+			contactInfo.PhoneNumber__c = commType.contactValue;
+		} else if ('3'.equals(commType.contactType)) {
+			if (commType.contactValue.contains('@')) {
+				contactInfo.Email__c = commType.contactValue;
+			} else {
+				contactInfo.DataBoxNumber__c = commType.contactValue;
+			}
+		} else if ('4'.equals(commType.contactType)) {
+			contactInfo.DataBoxNumber__c = commType.contactValue;
+		}
 		contactInfoList.add(contactInfo);
+	}
+
+	private static Id getUserIdByCommissionAccountNr(String clientGlobalId) {
+		if (clientGlobalId == null) {
+			return null;
+		}
+		List<User> users = [SELECT Id FROM User WHERE CommissionAccountNr__c = :clientGlobalId LIMIT 1];
+		if (!users.isEmpty()) {
+			return users.get(0).Id;
+		}
+		throw new ClientServiceException('Unknown commission account number: ' + clientGlobalId);
+	}
+
+	private class ClientServiceException extends Exception {
+
 	}
 }
