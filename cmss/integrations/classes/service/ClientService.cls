@@ -3,17 +3,10 @@ public with sharing class ClientService {
 	private static List<ContactInformation__c> contactInfoList = new List<ContactInformation__c>();
 
 	public static Id createClientAndContactInfos(SF_PersonManagementSOAPService.CreateClientRequest request) {
-		try {
-			Logger.info('createClient request data', null, request.toString());
-			Id accountId = ClientService.insertAccount(request);
-			ClientService.createContactInfos(request.personCommunications, accountId);
-			return accountId;
-		} catch (Exception exc) {
-			Logger.error('SF_PersonManagementSOAPService.createClient ContactInformation insert failed', exc, request.toString());
-			throw exc;
-		} finally {
-			Logger.saveLogs();
-		}
+		Logger.info('createClient request data', null, request.toString());
+		Id accountId = ClientService.insertAccount(request);
+		ClientService.createContactInfos(request.personCommunications, accountId);
+		return accountId;
 	}
 
 	public static Id insertAccount(SF_PersonManagementSOAPService.CreateClientRequest request) {
@@ -39,12 +32,8 @@ public with sharing class ClientService {
 			client.Name = request.client.name;
 			client.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
 		}
-
-		try {
-			insert client;
-		} catch (Exception ex) {
-			Logger.error('SF_PersonManagementSOAPService.createClient Account insert failed', ex, request.toString());
-		}
+		insert client;
+		Logger.info('ClientService inserted account.', 'accountId:' + client.Id);
 		return client.Id;
 	}
 
@@ -52,14 +41,8 @@ public with sharing class ClientService {
 		for (SF_PersonManagementSOAPService.PersonCommunicationType commType : communicationTypes) {
 			createContactInformation(commType, accountId);
 		}
-		if (!contactInfoList.isEmpty()) {
-			try {
-				insert contactInfoList;
-			} catch (Exception ex) {
-				Logger.error('SF_PersonManagementSOAPService.createContactInfos Contact info list insert failed', ex, contactInfoList.toString());
-				throw ex;
-			}
-		}
+		insert contactInfoList;
+		Logger.info('ClientService inserted Contact_Information__c list.', contactInfoList.toString());
 	}
 
 	private static void createContactInformation(SF_PersonManagementSOAPService.PersonCommunicationType commType, Id accountId) {
