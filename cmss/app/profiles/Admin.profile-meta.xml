@@ -66,10 +66,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PersonManagementSOAP</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>RecordTypeUtils</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -83,6 +79,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SearchResultDTO</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SF_PersonManagementSOAP</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SF_PersonManagementSOAPService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -5255,10 +5259,6 @@
     </fieldPermissions>
     <layoutAssignments>
         <layout>Account-LACRLayout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Account-LACRLayout</layout>
-        <recordType>Account.Business_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>AccountRelation__c-Account Relation Layout</layout>
