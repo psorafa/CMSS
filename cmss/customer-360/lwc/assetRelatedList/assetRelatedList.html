@@ -3,16 +3,14 @@
  * @Description        : Parent related list of(genericRelatedList LWC) for dynamic use of 
                          displaying asset list with parametric settings of RecordType, etc.
  * @Author             : Jaroslav Krejčí - 6.3.20
- * @Last Modified By   : Jaroslav Krejčí - 30.4.20
 -->
 <template>
 	<c-generic-related-list
 		cols={columns}
-		icon-name="standard:product"
+		icon-name={icon}
 		json-data={jsonData}
-		related-list-name={label.assetsLabel}
+		related-list-name={listTitle}
 		related-object-name="Asset"
-		parent-component="assetRelatedList"
 		cols-addition={relationColumnDefinition}
 	></c-generic-related-list>
 	<template if:true={error}>

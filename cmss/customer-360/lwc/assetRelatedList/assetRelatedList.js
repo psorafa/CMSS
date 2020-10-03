@@ -22,10 +22,20 @@ export default class AssetRelatedList extends LightningElement {
 	@api columns;
 	@api conditionAssets;
 	@api conditionRelations;
+	@api listName
+	@api iconName
+
+	get listTitle() {
+	    return this.listName || this.label.assetsLabel
+    }
+
+    get icon() {
+        return this.iconName || 'standard:product'
+    }
 
     get relationColumnDefinition() {
         return {
-            label: label.relationLabel,
+            label: this.label.relationLabel,
             fieldName: 'Relation.Link',
             hideDefaultActions: 'true',
             type: 'url',

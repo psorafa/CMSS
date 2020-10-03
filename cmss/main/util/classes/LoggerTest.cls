@@ -3,6 +3,7 @@ private class LoggerTest {
 
 	@IsTest
 	static void debugTest() {
+		insertLoggingCustomSettings('debug');
 		// debug
 		String debugMessage1st = '1st debug, exc, payload';
 		String debugMessage2nd = '2nd debug, exc';
@@ -81,5 +82,119 @@ private class LoggerTest {
 				System.assertEquals('error', log.Level__c);
 			}
 		}
+	}
+
+	@IsTest
+	static void onlyInfoLevelTest() {
+		insertLoggingCustomSettings('info');
+		String debugMessage = 'debug message';
+		String infoMessage = 'info message';
+		String warnMessage = 'warn message';
+		String errorMessage = 'error message';
+
+		Test.startTest();
+		Logger.debug(debugMessage);
+		Logger.info(infoMessage);
+		Logger.warn(warnMessage);
+		Logger.error(errorMessage);
+		Logger.saveLogs();
+		Test.getEventBus().deliver();
+		Test.stopTest();
+
+		List<Log__c> logs = [SELECT Id, Level__c, Exception__c, Message__c, Payload__c FROM Log__c ORDER BY Level__c];
+		System.assertEquals(3, logs.size());
+		System.debug('inserted logs.size(): ' + logs.size());
+		System.debug('inserted logs: ' + logs);
+		for (Log__c log : logs) {
+			System.assertNotEquals('debug', log.Level__c);
+			System.assertNotEquals(debugMessage, log.Message__c);
+		}
+	}
+
+	@IsTest
+	static void onlyWarnLevelTest() {
+		insertLoggingCustomSettings('warn');
+		String debugMessage = 'debug message';
+		String infoMessage = 'info message';
+		String warnMessage = 'warn message';
+		String errorMessage = 'error message';
+
+		Test.startTest();
+		Logger.debug(debugMessage);
+		Logger.info(infoMessage);
+		Logger.warn(warnMessage);
+		Logger.error(errorMessage);
+		Logger.saveLogs();
+		Test.getEventBus().deliver();
+		Test.stopTest();
+
+		List<Log__c> logs = [SELECT Id, Level__c, Exception__c, Message__c, Payload__c FROM Log__c ORDER BY Level__c];
+		System.assertEquals(2, logs.size());
+		System.debug('inserted logs.size(): ' + logs.size());
+		System.debug('inserted logs: ' + logs);
+		for (Log__c log : logs) {
+			System.assertNotEquals('debug', log.Level__c);
+			System.assertNotEquals(debugMessage, log.Message__c);
+			System.assertNotEquals('info', log.Level__c);
+			System.assertNotEquals(infoMessage, log.Message__c);
+		}
+	}
+
+	@IsTest
+	static void onlyErrorLevelTest() {
+		insertLoggingCustomSettings('error');
+		String debugMessage = 'debug message';
+		String infoMessage = 'info message';
+		String warnMessage = 'warn message';
+		String errorMessage = 'error message';
+
+		Test.startTest();
+		Logger.debug(debugMessage);
+		Logger.info(infoMessage);
+		Logger.warn(warnMessage);
+		Logger.error(errorMessage);
+		Logger.saveLogs();
+		Test.getEventBus().deliver();
+		Test.stopTest();
+
+		List<Log__c> logs = [SELECT Id, Level__c, Exception__c, Message__c, Payload__c FROM Log__c ORDER BY Level__c];
+		System.assertEquals(1, logs.size());
+		System.debug('inserted logs.size(): ' + logs.size());
+		System.debug('inserted logs: ' + logs);
+		for (Log__c log : logs) {
+			System.assertNotEquals('debug', log.Level__c);
+			System.assertNotEquals(debugMessage, log.Message__c);
+			System.assertNotEquals('info', log.Level__c);
+			System.assertNotEquals(infoMessage, log.Message__c);
+			System.assertNotEquals('warn', log.Level__c);
+			System.assertNotEquals(warnMessage, log.Message__c);
+		}
+	}
+
+	@IsTest
+	static void classMethodNameTest() {
+		insertLoggingCustomSettings('debug');
+		String debugMessage = 'debug message';
+
+		Test.startTest();
+		try {
+			throw new DmlException('test exc');
+		} catch (Exception exc) {
+			Logger.debug(debugMessage, exc);
+			Logger.saveLogs();
+			Test.getEventBus().deliver();
+		}
+		Test.stopTest();
+
+		List<Log__c> logs = [SELECT Id, ClassMethodName__c, Level__c, Exception__c, Message__c, Payload__c FROM Log__c ORDER BY Level__c];
+		System.assertEquals(1, logs.size());
+		System.debug('inserted logs: ' + logs);
+
+		System.assertEquals('LoggerTest.classMethodNameTest', logs[0].ClassMethodName__c);
+	}
+
+	private static void insertLoggingCustomSettings(String level) {
+		LoggingSetting__c loggingSetting = new LoggingSetting__c(Level__c = level);
+		insert loggingSetting;
 	}
 }

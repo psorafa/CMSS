@@ -12,6 +12,7 @@ public class LogEventTriggerHandler {
 
 	private static Log__c createLog(LogEvent__e logEvent) {
 		Log__c log = new Log__c();
+		log.ClassMethodName__c = logEvent.ClassMethodName__c;
 		log.Exception__c = logEvent.Exception__c;
 		log.Level__c = logEvent.Level__c;
 		log.Payload__c = logEvent.Payload__c;
@@ -22,9 +23,7 @@ public class LogEventTriggerHandler {
 	private static void insertLogs(List<Log__c> logsToSave) {
 		List<Database.SaveResult> results = Database.insert(logsToSave);
 		for (Database.SaveResult sr : results) {
-			if (sr.isSuccess()) {
-				System.debug('Successfully inserted log.');
-			} else {
+			if (!sr.isSuccess()) {
 				for (Database.Error err : sr.getErrors()) {
 					System.debug('Error while saving log returned: ' +
 							err.getStatusCode() +

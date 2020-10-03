@@ -3,11 +3,12 @@
     <fullName>All</fullName>
     <columns>OPPORTUNITY.NAME</columns>
     <columns>ACCOUNT.NAME</columns>
-    <columns>OPPORTUNITY.AMOUNT</columns>
-    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
     <columns>OPPORTUNITY.STAGE_NAME</columns>
-    <columns>OPPORTUNITY.PROBABILITY</columns>
-    <columns>CORE.USERS.LAST_NAME</columns>
+    <columns>Reason__c</columns>
+    <columns>DueDate__c</columns>
+    <columns>CreatedDateTime__c</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
     <filterScope>Everything</filterScope>
     <label>Všechny</label>
 </ListView>

@@ -11,8 +11,10 @@
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
             <property name="columns" type="String" label="Columns" description="Columns to be displayed. Comma-separated API names" required="true"/>
-            <property name="conditionAssets" type="String" label="Condition" description="SOQL condition for assets (without WHERE word). Eg.: ProductType__c = '1'" required="false"/>
-            <property name="conditionRelations" type="String" label="Condition" description="SOQL condition for relationships (without WHERE word). Eg.: RelationType__C = '1' = 'My_Type'" required="false"/>
+            <property name="conditionAssets" type="String" label="Asset Condition" description="SOQL condition for Asset (without WHERE word). Eg.: ProductType__c = '1'" required="false"/>
+            <property name="conditionRelations" type="String" label="Relation Condition" description="SOQL condition for AssetAccountRelation__c (without WHERE word). Eg.: RelationType__C = '1' = 'My_Type'" required="false"/>
+            <property name="listName" type="String" label="List Title" description="Title of this related list"/>
+            <property name="iconName" type="String" label="Icon" description="Icon to be displayed next to title. Eg.: standard:contact" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
