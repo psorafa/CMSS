@@ -19,7 +19,7 @@ private class SF_PersonManagementSOAPServiceTest {
 	private static Date validFrom = Date.today().addMonths(-3);
 	private static Date validTo = Date.today();
 
-	private static String phone  = '987654321';
+	private static String phone = '987654321';
 	private static String dataBoxA = 'a1b2c3d4';
 	private static String dataBoxZ = 'z9y8x7w6';
 	private static String email = 'test@mail.invalid';
@@ -29,7 +29,7 @@ private class SF_PersonManagementSOAPServiceTest {
 		User userSpaA = createUser('testUserSpaA', 'spsA');
 		User userSpaC = createUser('testUserSpaC', 'spsC');
 
-		SF_PersonManagementSOAPService.CreateClientRequest clientRequest = prepareData(true);
+		SF_PersonManagementSOAPService.CreateClientRequest clientRequest = prepareData(true, true);
 
 		Test.startTest();
 		Id accountId = SF_PersonManagementSOAPService.createClient(clientRequest);
@@ -82,7 +82,7 @@ private class SF_PersonManagementSOAPServiceTest {
 		User userSpaA = createUser('testUserSpaA', 'spsA');
 		User userSpaC = createUser('testUserSpaC', 'spsC');
 
-		SF_PersonManagementSOAPService.CreateClientRequest clientRequest = prepareData(false);
+		SF_PersonManagementSOAPService.CreateClientRequest clientRequest = prepareData(false, true);
 
 		Test.startTest();
 		Id accountId = SF_PersonManagementSOAPService.createClient(clientRequest);
@@ -93,11 +93,34 @@ private class SF_PersonManagementSOAPServiceTest {
 		System.assertEquals(Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId(), accounts.get(0).RecordTypeId);
 	}
 
-	private static SF_PersonManagementSOAPService.CreateClientRequest prepareData(Boolean personAccount) {
+	@IsTest
+	static void createClientWithEmptyContactInfoTest() {
+		User userSpaA = createUser('testUserSpaA', 'spsA');
+		User userSpaC = createUser('testUserSpaC', 'spsC');
+
+		SF_PersonManagementSOAPService.CreateClientRequest clientRequest = prepareData(true, false);
+		System.debug('LTE request with empty contactInfos: ' + clientRequest);
+
+		Test.startTest();
+		Id accountId = SF_PersonManagementSOAPService.createClient(clientRequest);
+		Test.stopTest();
+
+		List<Account> accounts = [
+				SELECT Id, SbId__c, PortfolioMngmtA__c, PortfolioMngmtC__c, RecordTypeId, PersonalIdentificationNr__c, PersonTitle, Suffix, GlobalId__c, Birthdate__c, Gender__c, IsPoliticallyExposed__c, IsResident__c
+				FROM Account
+				WHERE Id = :accountId
+		];
+		System.assertEquals(1, accounts.size());
+		System.assertEquals(Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('PersonAccount').getRecordTypeId(), accounts.get(0).RecordTypeId);
+	}
+
+	private static SF_PersonManagementSOAPService.CreateClientRequest prepareData(Boolean personAccount, Boolean createPersonCommunications) {
 		SF_PersonManagementSOAPService.CreateClientRequest request = new SF_PersonManagementSOAPService.CreateClientRequest();
 		SF_PersonManagementSOAPService.ClientType clientType = new SF_PersonManagementSOAPService.ClientType();
 		request.client = clientType;
-		request.personCommunications = new List<SF_PersonManagementSOAPService.PersonCommunicationType>();
+		if (createPersonCommunications) {
+			request.personCommunications = new List<SF_PersonManagementSOAPService.PersonCommunicationType>();
+		}
 		request.client.personNumber = clientPersonNumber;
 		request.client.personalIdentityNumber = clientPersonalIdentityNumber;
 		request.client.name = 'ClientName';
@@ -117,11 +140,13 @@ private class SF_PersonManagementSOAPServiceTest {
 		request.client.isPoliticallyExposed = String.valueOf(isPoliticallyExposed);
 		request.client.isCrResident = String.valueOf(isResident);
 
-		request.personCommunications.add(createCommType(1, ''));
-		request.personCommunications.add(createCommType(2, '987654321'));
-		request.personCommunications.add(createCommType(3, 'a1b2c3d4'));
-		request.personCommunications.add(createCommType(3, 'test@mail.invalid'));
-		request.personCommunications.add(createCommType(4, 'z9y8x7w6'));
+		if (createPersonCommunications) {
+			request.personCommunications.add(createCommType(1, ''));
+			request.personCommunications.add(createCommType(2, '987654321'));
+			request.personCommunications.add(createCommType(3, 'a1b2c3d4'));
+			request.personCommunications.add(createCommType(3, 'test@mail.invalid'));
+			request.personCommunications.add(createCommType(4, 'z9y8x7w6'));
+		}
 
 		return request;
 	}

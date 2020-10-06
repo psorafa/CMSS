@@ -41,6 +41,9 @@ public with sharing class ClientService {
 	}
 
 	public static void createContactInfos(List<SF_PersonManagementSOAPService.PersonCommunicationType> communicationTypes, Id accountId) {
+		if (communicationTypes == null || communicationTypes.isEmpty()) {
+			return;
+		}
 		for (SF_PersonManagementSOAPService.PersonCommunicationType commType : communicationTypes) {
 			createContactInformation(commType, accountId);
 		}
