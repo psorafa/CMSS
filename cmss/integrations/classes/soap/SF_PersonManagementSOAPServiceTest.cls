@@ -137,8 +137,8 @@ private class SF_PersonManagementSOAPServiceTest {
 		request.client.gender = gender;
 		request.client.spSa = 'spsA';
 		request.client.spSc = 'spsC';
-		request.client.isPoliticallyExposed = String.valueOf(isPoliticallyExposed);
-		request.client.isCrResident = String.valueOf(isResident);
+		request.client.isPoliticallyExposed = isPoliticallyExposed;
+		request.client.isCrResident = isResident;
 
 		if (createPersonCommunications) {
 			request.personCommunications.add(createCommType(1, ''));
