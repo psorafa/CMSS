@@ -74,8 +74,8 @@ global with sharing class SF_PersonManagementSOAP {
 		webService String gender;
 		webService String spSa;
 		webService String spSc;
-		webService String isPoliticallyExposed;
-		webService String isCrResident;
+		webService Boolean isPoliticallyExposed;
+		webService Boolean isCrResident;
 		webService String loyaltyProgram;
 	}
 
