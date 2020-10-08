@@ -5,7 +5,19 @@ global with sharing class SF_PersonManagementSOAPService {
 			Logger.info('createClient request data', JSON.serialize(request));
 			return ClientService.createClientAndContactInfos(request.client, request.personCommunications);
 		} catch (Exception exc) {
-			Logger.error('SF_PersonManagementSOAPService.createClient createClient operation failed', exc, request.toString());
+			Logger.error('SF_PersonManagementSOAPService.createClient createClient operation failed', exc, JSON.serialize(request));
+			throw exc;
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
+	webService static CreateCZContractResponseType createClientZone(String globalId, CreateClientZoneRequest request) {
+		try {
+			Logger.info('createClientZone request data: globalId: ', globalId + ', request: ' + JSON.serialize(request));
+			return ClientZoneService.createClientZone(globalId, request);
+		} catch (Exception exc) {
+			Logger.error('SF_PersonManagementSOAPService.createClientZone createClientZone operation failed', exc, JSON.serialize(request));
 			throw exc;
 		} finally {
 			Logger.saveLogs();
@@ -15,6 +27,11 @@ global with sharing class SF_PersonManagementSOAPService {
 	global class CreateClientRequest {
 		webService ClientType client;
 		webService List<PersonCommunicationType> personCommunications;
+	}
+
+	global class CreateClientZoneRequest {
+		webService ClientZoneType clientZone;
+		webService List<AccountRelationType> accountRelations;
 	}
 
 	global class ClientType {
@@ -50,5 +67,30 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService String zipCode;
 		webService Date validFrom;
 		webService Date validTo;
+	}
+
+	global class ClientZoneType {
+		webService String contractNumber;
+		webService String userName;
+		webService String verificationPhone;
+		webService String email;
+		webService String role;
+		webService String closedBy;
+		webService String globalId;
+		webService String clientId;
+	}
+
+	global class AccountRelationType {
+		webService String relatedClientId;
+		webService String clientRole;
+		webService Datetime validTo;
+		webService String externalId;
+	}
+
+	global class CreateCZContractResponseType {
+		webService Boolean isSuccess;
+		webService Integer errorNumber;
+		webService String errorMessage;
+		webService String clientZoneId;
 	}
 }
