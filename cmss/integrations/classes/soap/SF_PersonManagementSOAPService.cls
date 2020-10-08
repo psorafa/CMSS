@@ -83,7 +83,7 @@ global with sharing class SF_PersonManagementSOAPService {
 	global class AccountRelationType {
 		webService String relatedClientId;
 		webService String clientRole;
-		webService Datetime validTo;
+		webService Date validTo;
 		webService String externalId;
 	}
 
