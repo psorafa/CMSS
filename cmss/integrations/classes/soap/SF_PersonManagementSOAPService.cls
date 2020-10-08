@@ -30,8 +30,8 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService String gender;
 		webService String spSa;
 		webService String spSc;
-		webService String isPoliticallyExposed;
-		webService String isCrResident;
+		webService Boolean isPoliticallyExposed;
+		webService Boolean isCrResident;
 	}
 
 	global class PersonCommunicationType {

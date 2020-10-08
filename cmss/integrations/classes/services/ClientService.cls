@@ -20,8 +20,8 @@ public with sharing class ClientService {
 			Gender__c = clientType.gender,
 			PortfolioMngmtA__c = getUserIdByCommissionAccountNr(clientType.spSa),
 			PortfolioMngmtC__c = getUserIdByCommissionAccountNr(clientType.spSc),
-			IsPoliticallyExposed__c = Boolean.valueOf(clientType.isPoliticallyExposed),
-			IsResident__c = Boolean.valueOf(clientType.isCrResident)
+			IsPoliticallyExposed__c = clientType.isPoliticallyExposed,
+			IsResident__c = clientType.isCrResident
 		);
 
 		if (clientType.lastName != null) {
