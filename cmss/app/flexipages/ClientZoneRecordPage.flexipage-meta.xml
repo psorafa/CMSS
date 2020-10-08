@@ -7,6 +7,10 @@
                 <value>false</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
+                <name>enableActionsConfiguration</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>hideChatterActions</name>
                 <value>true</value>
             </componentInstanceProperties>
@@ -23,8 +27,8 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
-        <name>leftcol</name>
-        <type>Region</type>
+        <name>Facet-59015cc7-83e9-440f-963a-37ab4b31621d</name>
+        <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
@@ -50,36 +54,50 @@
             </componentInstanceProperties>
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
+        <name>Facet-c13a5a44-e958-4533-9710-1233fade6a03</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>parentFieldApiName</name>
-                <value>ClientZone__c.Account__c</value>
+                <name>body</name>
+                <value>Facet-59015cc7-83e9-440f-963a-37ab4b31621d</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>relatedListApiName</name>
-                <value>ContactInformation__r</value>
+                <name>title</name>
+                <value>Standard.Tab.detail</value>
             </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>ADVGRID</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>rowsToDisplay</name>
-                <value>10</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>showActionBar</name>
-                <value>false</value>
-            </componentInstanceProperties>
-            <componentName>force:relatedListSingleContainer</componentName>
+            <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <name>rightcol</name>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-c13a5a44-e958-4533-9710-1233fade6a03</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Historie změn</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <name>Facet-8557d8dd-a3c0-45ac-9cc3-50856fabe57f</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>tabs</name>
+                <value>Facet-8557d8dd-a3c0-45ac-9cc3-50856fabe57f</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tabset</componentName>
+        </componentInstances>
+        <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>Client Zone Record Page</masterLabel>
     <sobjectType>ClientZone__c</sobjectType>
     <template>
-        <name>flexipage:recordHomeTwoColEqualHeaderTemplateDesktop</name>
+        <name>flexipage:recordHomeSingleColTemplateDesktop</name>
     </template>
     <type>RecordPage</type>
 </FlexiPage>
