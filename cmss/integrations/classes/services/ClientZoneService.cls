@@ -1,13 +1,18 @@
 public with sharing class ClientZoneService {
 
-	public static SF_PersonManagementSOAPService.CreateCZContractResponseType createClientZone(String globalId, SF_PersonManagementSOAPService.CreateClientZoneRequest request) {
+	public static SF_PersonManagementSOAPService.CreateCZContractResponseType createClientZone(SF_PersonManagementSOAPService.CreateClientZoneRequest request) {
 		SF_PersonManagementSOAPService.CreateCZContractResponseType response = new SF_PersonManagementSOAPService.CreateCZContractResponseType();
-
-		List<Account> accounts = [SELECT Id FROM Account WHERE GlobalId__c = :globalId LIMIT 1];
-		if (globalId == null || accounts.isEmpty()) {
+		if (request.clientZone.globalId == null) {
+			response.isSuccess = false;
+			response.errorMessage = 'GlobalId specified in request was null!';
+			response.errorNumber = -5;
+			return response;
+		}
+		List<Account> accounts = [SELECT Id FROM Account WHERE GlobalId__c = :request.clientZone.globalId LIMIT 1];
+		if (accounts.isEmpty()) {
 			//			throw new ClientZoneServiceException('GlobalId in request was null!');
 			response.isSuccess = false;
-			response.errorMessage = 'No client found for globalId specified in request or globalId was null!';
+			response.errorMessage = 'No client found for globalId specified in request!';
 			response.errorNumber = -5;
 			return response;
 //			throw new ClientZoneServiceException('No client found for globalId specified in request or globalId was null!');
@@ -29,8 +34,10 @@ public with sharing class ClientZoneService {
 				updateClientZone(clientZones.get(0), request.clientZone);
 			}
 		}
-		if (request.accountRelations != null || !request.accountRelations.isEmpty()) {
-			createAccountRelations(request.accountRelations);
+		if (request.accountRelations != null) {
+			if (!request.accountRelations.isEmpty()) {
+				createAccountRelations(request.accountRelations);
+			}
 		}
 
 		return response;
@@ -44,7 +51,8 @@ public with sharing class ClientZoneService {
 				ClosedBy__c = clientZoneRequest.closedBy,
 				Email__c = clientZoneRequest.email,
 				Role__c = clientZoneRequest.role,
-				Account__c = accountId
+				Account__c = accountId,
+				ExternalId__c = clientZoneRequest.globalId
 		);
 		insert clientZone;
 		return clientZone.Id;
@@ -63,16 +71,15 @@ public with sharing class ClientZoneService {
 		List<AccountRelation__c> accountRelationsToInsert = new List<AccountRelation__c>();
 		for (SF_PersonManagementSOAPService.AccountRelationType accountRelation : accountRelations) {
 			AccountRelation__c accountRel = new AccountRelation__c(
+					Account__c = accountRelation.relatedClientId,
 					RelatedAccount__c = accountRelation.relatedClientId,
 					RelatedAccountRole__c = accountRelation.clientRole,
+					AccountRole__c = accountRelation.clientRole,
 					ValidTo__c = accountRelation.validTo,
 					ExternalId__c = accountRelation.externalId
 			);
 			accountRelationsToInsert.add(accountRel);
 		}
 		insert accountRelationsToInsert;
-	}
-
-	private class ClientZoneServiceException extends Exception {
 	}
 }
