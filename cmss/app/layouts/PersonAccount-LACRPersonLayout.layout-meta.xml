@@ -559,8 +559,9 @@
         <fields>VerificationPhone__c</fields>
         <fields>Email__c</fields>
         <fields>Role__c</fields>
-        <fields>CREATED_DATE</fields>
-        <fields>CancellationDate__c</fields>
+        <fields>ClosedBy__c</fields>
+        <fields>SignatureDate__c</fields>
+        <fields>AgreementDate__c</fields>
         <fields>Status__c</fields>
         <relatedList>ClientZone__c.Account__c</relatedList>
         <sortField>NAME</sortField>
