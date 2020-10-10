@@ -52,7 +52,11 @@ public with sharing class ClientZoneService {
 				Email__c = clientZoneRequest.email,
 				Role__c = clientZoneRequest.role,
 				Account__c = accountId,
-				ExternalId__c = clientZoneRequest.globalId
+				ExternalId__c = clientZoneRequest.globalId,
+				NumberOfAnnexes__c = 0,
+				Status__c = '1',
+				ContractStatus__c = '1',
+				CreatedDate__c = Datetime.now()
 		);
 		insert clientZone;
 		return clientZone.Id;
@@ -64,6 +68,11 @@ public with sharing class ClientZoneService {
 		clientZone.Username__c = clientZoneRequest.userName;
 		clientZone.VerificationPhone__c = clientZoneRequest.verificationPhone;
 		clientZone.Email__c = clientZoneRequest.email;
+		clientZone.Role__c = clientZoneRequest.role;
+		clientZone.NumberOfAnnexes__c = 0;
+		clientZone.Status__c = '0';
+		clientZone.ContractStatus__c = '1';
+		clientZone.ModifiedDate__c = Datetime.now();
 		update clientZone;
 	}
 
@@ -76,7 +85,10 @@ public with sharing class ClientZoneService {
 					RelatedAccountRole__c = accountRelation.clientRole,
 					AccountRole__c = accountRelation.clientRole,
 					ValidTo__c = accountRelation.validTo,
-					ExternalId__c = accountRelation.externalId
+					ValidFrom__c = Date.today(),
+					IsActive__c = true,
+					ExternalId__c = accountRelation.externalId,
+					RelationTypeNEL__c = '5'
 			);
 			accountRelationsToInsert.add(accountRel);
 		}
