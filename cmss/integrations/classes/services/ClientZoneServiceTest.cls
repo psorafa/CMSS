@@ -19,7 +19,7 @@ private class ClientZoneServiceTest {
 		List<ClientZone__c> clientZonesEmpty = [SELECT Id FROM ClientZone__c WHERE Account__c = :client.Id LIMIT 1];
 		System.assert(clientZonesEmpty.isEmpty());
 
-		List<SF_PersonManagementSOAPService.AccountRelationType> accountRelationTypes = new List<SF_PersonManagementSOAPService.AccountRelationType>();
+		List<SF_PersonManagementSOAPService.ClientRelationType> accountRelationTypes = new List<SF_PersonManagementSOAPService.ClientRelationType>();
 		accountRelationTypes.add(prepareAccountRelationType(validTo1));
 		accountRelationTypes.add(prepareAccountRelationType(validTo2));
 		accountRelationTypes.add(prepareAccountRelationType(validTo3));
@@ -61,7 +61,7 @@ private class ClientZoneServiceTest {
 		System.assertEquals(3, correctValidToCount);
 	}
 
-	private static SF_PersonManagementSOAPService.CreateClientZoneRequest prepareData(List<SF_PersonManagementSOAPService.AccountRelationType> accountRelationTypes) {
+	private static SF_PersonManagementSOAPService.CreateClientZoneRequest prepareData(List<SF_PersonManagementSOAPService.ClientRelationType> accountRelationTypes) {
 		SF_PersonManagementSOAPService.CreateClientZoneRequest request = new SF_PersonManagementSOAPService.CreateClientZoneRequest();
 		SF_PersonManagementSOAPService.ClientZoneType clientZoneType = new SF_PersonManagementSOAPService.ClientZoneType();
 		request.clientZone = clientZoneType;
@@ -80,8 +80,8 @@ private class ClientZoneServiceTest {
 		return request;
 	}
 
-	private static SF_PersonManagementSOAPService.AccountRelationType prepareAccountRelationType(Date validTo) {
-		SF_PersonManagementSOAPService.AccountRelationType accountRelationType = new SF_PersonManagementSOAPService.AccountRelationType();
+	private static SF_PersonManagementSOAPService.ClientRelationType prepareAccountRelationType(Date validTo) {
+		SF_PersonManagementSOAPService.ClientRelationType accountRelationType = new SF_PersonManagementSOAPService.ClientRelationType();
 		accountRelationType.relatedClientId = client.Id;
 		accountRelationType.clientRole = clientRole;
 		accountRelationType.validTo = validTo;

@@ -29,7 +29,7 @@ global with sharing class SF_PersonManagementSOAPService {
 
 	global class CreateClientZoneRequest {
 		webService ClientZoneType clientZone;
-		webService List<AccountRelationType> accountRelations;
+		webService List<ClientRelationType> accountRelations;
 	}
 
 	global class ClientType {
@@ -78,7 +78,7 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService String clientId;
 	}
 
-	global class AccountRelationType {
+	global class ClientRelationType {
 		webService String relatedClientId;
 		webService String clientRole;
 		webService Date validTo;

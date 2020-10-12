@@ -76,9 +76,9 @@ public with sharing class ClientZoneService {
 		update clientZone;
 	}
 
-	private static void createAccountRelations(List<SF_PersonManagementSOAPService.AccountRelationType> accountRelations) {
+	private static void createAccountRelations(List<SF_PersonManagementSOAPService.ClientRelationType> accountRelations) {
 		List<AccountRelation__c> accountRelationsToInsert = new List<AccountRelation__c>();
-		for (SF_PersonManagementSOAPService.AccountRelationType accountRelation : accountRelations) {
+		for (SF_PersonManagementSOAPService.ClientRelationType accountRelation : accountRelations) {
 			AccountRelation__c accountRel = new AccountRelation__c(
 					Account__c = accountRelation.relatedClientId,
 					RelatedAccount__c = accountRelation.relatedClientId,
