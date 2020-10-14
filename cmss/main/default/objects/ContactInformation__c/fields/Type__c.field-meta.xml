@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Type__c</fullName>
-    <description>Typ kontaktní informace (domáci telefon, hlavni telefon, mobil, další telefon, hlavni email, další email, trvalá adresa, kontaktní adresa, přechodní adresa, sídlo, …..) - potřeba ješte dořešit číselník a updatnout hodnoty</description>
+    <description>Typ kontaktní informace (domáci telefon, hlavni telefon, mobil, další telefon, hlavni email, další email, trvalá adresa, kontaktní adresa, přechodní adresa, sídlo, …..)</description>
     <externalId>false</externalId>
     <label>Type</label>
     <required>false</required>
