@@ -26,8 +26,9 @@ global with sharing class SF_PersonManagementSOAPService {
 		} finally {
 			Logger.saveLogs();
 		}
-	}
-
+    }
+    
+    webService static CreateCZContractResponseType createClientZone(CreateClientZoneRequest request) {
 	webService static Decimal getNewCZContractID() {
 		try {
 			Logger.info('getNewCZContractID');
