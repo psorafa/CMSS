@@ -320,6 +320,17 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>SBID__c</fields>
+        <fields>CSID__c</fields>
+        <fields>NewGlobalID__c</fields>
+        <fields>OldGlobalID__c</fields>
+        <fields>ActionType__c</fields>
+        <fields>CreatedOn__c</fields>
+        <relatedList>ConsolidationResult__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>NAME</fields>
         <relatedList>InternalConsent__c.Account__c</relatedList>
     </relatedLists>
