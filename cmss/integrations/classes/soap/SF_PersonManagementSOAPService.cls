@@ -28,22 +28,6 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
-	webService static CreateCZContractResponseType createClientZone(CreateClientZoneRequest request) {
-		try {
-			return ClientZoneService.createClientZone(request);
-		} catch (Exception exc) {
-			Logger.error(
-				'SF_PersonManagementSOAPService.createClientZone createClientZone operation failed, exc message: ' +
-				exc.getMessage(),
-				exc,
-				JSON.serialize(request)
-			);
-			throw exc;
-		} finally {
-			Logger.saveLogs();
-		}
-	}
-
 	webService static Decimal ClientZoneService() {
 		try {
 			Logger.info('getNewCZContractID');
