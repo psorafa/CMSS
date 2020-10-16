@@ -18,20 +18,19 @@ public with sharing class ClientZoneService {
 //			throw new ClientZoneServiceException('No client found for globalId specified in request or globalId was null!');
 		}
 
-		List<ClientZone__c> clientZones = [SELECT Id, Role__c FROM ClientZone__c WHERE Account__c = :accounts.get(0).Id AND Status__c = '1'];
+		List<ClientZone__c> clientZones = [SELECT Id, Role__c FROM ClientZone__c WHERE Account__c = :accounts.get(0).Id AND Status__c = '1' ORDER BY LastModifiedDate DESC];
 		if (clientZones.isEmpty()) {
 			response.clientZoneId = insertClientZone(accounts.get(0).Id, request.clientZone);
 			response.isSuccess = true;
 		} else {
 			ClientZone__c clZone = clientZones.get(0);
-			if (request.clientZone.role == '7') {
+
+			if (Integer.valueOf(request.clientZone.role) >= Integer.valueOf(clZone.Role__c) || clZone.Role__c == '8') {
+				updateClientZone(clZone, request.clientZone);
+				response.isSuccess = true;
+			} else {
 				response.errorNumber = -3;
 				response.isSuccess = false;
-			} else if (Integer.valueOf(request.clientZone.role) <= Integer.valueOf(clZone.Role__c) && clZone.Role__c != '8') {
-				response.errorNumber = -3;
-				response.isSuccess = false;
-			} else if (Integer.valueOf(request.clientZone.role) <= Integer.valueOf(clZone.Role__c) && clZone.Role__c != '8') {
-				updateClientZone(clientZones.get(0), request.clientZone);
 			}
 		}
 		if (request.accountRelations != null) {
@@ -70,7 +69,7 @@ public with sharing class ClientZoneService {
 		clientZone.Email__c = clientZoneRequest.email;
 		clientZone.Role__c = clientZoneRequest.role;
 		clientZone.NumberOfAnnexes__c = 0;
-		clientZone.Status__c = '0';
+		clientZone.Status__c = '1';
 		clientZone.ContractStatus__c = '1';
 		clientZone.ModifiedDate__c = Datetime.now();
 		update clientZone;

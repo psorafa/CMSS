@@ -2,9 +2,12 @@ global with sharing class SF_PersonManagementSOAPService {
 
 	webService static Id createClient(CreateClientRequest request) {
 		try {
-			return ClientService.createClientAndContactInfos(request.client, request.personCommunications);
+			Logger.debug('SF_PersonManagementSOAPService.createClient started.', null, JSON.serialize(request));
+			Id result = ClientService.createClientAndContactInfos(request.client, request.personCommunications);
+			Logger.debug('SF_PersonManagementSOAPService.createClient finished.', null, JSON.serialize(result));
+			return result;
 		} catch (Exception exc) {
-			Logger.error('SF_PersonManagementSOAPService.createClient createClient operation failed', exc, JSON.serialize(request));
+			Logger.error('SF_PersonManagementSOAPService.createClient operation failed', exc);
 			throw exc;
 		} finally {
 			Logger.saveLogs();
@@ -13,9 +16,12 @@ global with sharing class SF_PersonManagementSOAPService {
 
 	webService static CreateCZContractResponseType createClientZone(CreateClientZoneRequest request) {
 		try {
-			return ClientZoneService.createClientZone(request);
+			Logger.debug('SF_PersonManagementSOAPService.createClientZone started.', null, JSON.serialize(request));
+			CreateCZContractResponseType result = ClientZoneService.createClientZone(request);
+			Logger.debug('SF_PersonManagementSOAPService.createClientZone finished.', null, JSON.serialize(result));
+			return result;
 		} catch (Exception exc) {
-			Logger.error('SF_PersonManagementSOAPService.createClientZone createClientZone operation failed, exc message: ' + exc.getMessage(), exc, JSON.serialize(request));
+			Logger.error('SF_PersonManagementSOAPService.createClientZone operation failed: ' + exc.getMessage(), exc);
 			throw exc;
 		} finally {
 			Logger.saveLogs();
