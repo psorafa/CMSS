@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Poji_t_n_majetku_a_odpov_dnosti</fullName>
+    <columns>ASSET.NAME</columns>
+    <columns>ProductCloseDate__c</columns>
+    <columns>DateUpdated__c</columns>
+    <columns>AmountRepayment__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ASSET.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset.PMO</value>
+    </filters>
+    <label>Pojištění majetku a odpovědnosti</label>
+</ListView>
