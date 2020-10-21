@@ -28,7 +28,7 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
-	webService static Decimal ClientZoneService() {
+	webService static Decimal getNewCZContractID() {
 		try {
 			Logger.info('getNewCZContractID');
 			return ClientZoneService.getNewCZContractID();
