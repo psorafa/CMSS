@@ -162,7 +162,7 @@ public with sharing class ClientZoneService {
 			}
 		}
 
-		
+
 		if (!accountRelationsToInsert.isEmpty()) {
 			insert accountRelationsToInsert;
 			response.isSuccess = true;

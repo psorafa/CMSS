@@ -36,7 +36,7 @@ private class ClientZoneServiceTest {
 		System.debug('LTEST prepared req: ' + clientZoneRequest);
 
 		Test.startTest();
-		Id createdCZId = ClientZoneService.createClientZone(requestBody.clientZone, requestBody.clientRelations);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 
 		List<ClientZone__c> clientZones = [SELECT Id, Name, Username__c, VerificationPhone__c, Email__c, Role__c, ClosedBy__c, ExternalId__c, Account__c FROM ClientZone__c WHERE Id = :createdCZId LIMIT 1];
@@ -78,7 +78,7 @@ private class ClientZoneServiceTest {
 
 		SF_PersonManagementSOAPService.CreateClientZoneRequest clientZoneRequest = prepareData(null, globalIdUpdate, clientRole1, closedBy);
 		Test.startTest();
-		Id createdCZId = ClientZoneService.createClientZone(requestBody.clientZone, requestBody.clientRelations);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 
 		System.assertEquals(clientZone.Id, createdCZId);
@@ -93,7 +93,7 @@ private class ClientZoneServiceTest {
 
 		SF_PersonManagementSOAPService.CreateClientZoneRequest clientZoneRequest = prepareData(null, globalIdUpdate, clientRole2, closedBy);
 		Test.startTest();
-		Id createdCZId = ClientZoneService.createClientZone(requestBody.clientZone, requestBody.clientRelations);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 
 		System.assertEquals(clientZone.Id, createdCZId);
@@ -108,7 +108,7 @@ private class ClientZoneServiceTest {
 
 		SF_PersonManagementSOAPService.CreateClientZoneRequest clientZoneRequest = prepareData(null, globalIdUpdate, clientRole1, closedBy);
 		Test.startTest();
-		Id createdCZId = ClientZoneService.createClientZone(requestBody.clientZone, requestBody.clientRelations);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 
 		System.assertEquals(clientZone.Id, createdCZId);
@@ -123,7 +123,7 @@ private class ClientZoneServiceTest {
 
 		SF_PersonManagementSOAPService.CreateClientZoneRequest clientZoneRequest = prepareData(null, globalIdUpdate, clientRole8NoAccess, closedBy);
 		Test.startTest();
-		Id createdCZId = ClientZoneService.createClientZone(requestBody.clientZone, requestBody.clientRelations);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 
 		System.assertEquals(clientZone.Id, createdCZId);
@@ -138,11 +138,7 @@ private class ClientZoneServiceTest {
 
 		SF_PersonManagementSOAPService.CreateClientZoneRequest clientZoneRequest = prepareData(null, globalIdUpdate, clientRole2, closedBy);
 		Test.startTest();
-		try {
-			ClientZoneService.createClientZone(requestBody.clientZone, requestBody.clientRelations);
-		} catch (SOAPCommonTypes.BusinessException ex) {
-			System.assertEquals(202, ex.getErrorNumber());
-		}
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 	}
 
@@ -164,7 +160,7 @@ private class ClientZoneServiceTest {
 		System.debug('LTEST prepared req: ' + clientZoneRequest);
 
 		Test.startTest();
-		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createClientZone(clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 		System.debug('LTEST resp: ' + czContractResponseType);
 		System.assertEquals(false, czContractResponseType.isSuccess);
