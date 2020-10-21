@@ -28,6 +28,18 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
+	webService static Decimal getNewCZContractID() {
+		try {
+			Logger.info('getNewCZContractID');
+			return ClientZoneService.getNewCZContractID();
+		} catch (Exception exc) {
+			Logger.error('SF_PersonManagementSOAPService.ClientZoneService getNewCZContractID operation failed', exc);
+			throw exc;
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
 	global class CreateClientRequest {
 		webService ClientType client;
 		webService List<PersonCommunicationType> personCommunications;
