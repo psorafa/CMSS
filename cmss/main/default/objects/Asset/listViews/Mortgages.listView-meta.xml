@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mortgages</fullName>
+    <columns>ASSET.NAME</columns>
+    <columns>MortgageStatus__c</columns>
+    <columns>RequestSignDate__c</columns>
+    <columns>LoanAmount__c</columns>
+    <columns>DateUpdated__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ASSET.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset.Mortgages</value>
+    </filters>
+    <label>Hypoteční úvěry</label>
+</ListView>
