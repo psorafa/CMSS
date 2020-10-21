@@ -159,6 +159,29 @@ private class ClientZoneServiceTest {
 		System.assertEquals(-3, czContractResponseType.errorNumber);
 	}
 
+	@isTest
+	static void getNewCZContractIDTest() {
+		//in Test Class instantiate the custom settings object
+		NumericalSeriesSettings__c customSettingsValue = new NumericalSeriesSettings__c();
+		//and create the records of the custom settings
+		customSettingsValue.ContractNumber__c = 5.0;
+		//and insert it in Test class itself.
+		insert customSettingsValue;
+
+		Test.startTest();
+		Decimal lastIssuedContractNumber = ClientZoneService.getNewCZContractID();
+		Test.stopTest();
+
+		NumericalSeriesSettings__c newIssuedContractNumber = [
+			SELECT ContractNumber__c
+			FROM NumericalSeriesSettings__c
+			LIMIT 1
+		];
+		System.assertEquals(6, lastIssuedContractNumber);
+		System.assert(newIssuedContractNumber != null);
+		System.assertEquals(6, newIssuedContractNumber.ContractNumber__c);
+	}
+
 	private static SF_PersonManagementSOAPService.CreateClientZoneRequest prepareData(List<SF_PersonManagementSOAPService.ClientRelationType> accountRelationTypes, String globalId, String chosenRole) {
 		SF_PersonManagementSOAPService.CreateClientZoneRequest request = new SF_PersonManagementSOAPService.CreateClientZoneRequest();
 		SF_PersonManagementSOAPService.ClientZoneType clientZoneType = new SF_PersonManagementSOAPService.ClientZoneType();
