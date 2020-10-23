@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loans_and_intermediate_loans</fullName>
+    <columns>ASSET.NAME</columns>
+    <columns>RequestSignDate__c</columns>
+    <columns>CreditAmount__c</columns>
+    <columns>CurrentBalance__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ASSET.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset.CreditAndIntermediateLoan</value>
+    </filters>
+    <label>Úvěry a meziúvěry</label>
+</ListView>
