@@ -1,14 +1,23 @@
 global with sharing class SF_PersonManagementSOAPService {
 
-	webService static Id createClient(CreateClientRequest request) {
+	webService static CreateClientResponse createClient(CreateClientRequest request) {
+		Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
 		try {
-			Logger.debug('SF_PersonManagementSOAPService.createClient started.', null, JSON.serialize(request));
-			Id result = ClientService.createClientAndContactInfos(request.client, request.personCommunications);
-			Logger.debug('SF_PersonManagementSOAPService.createClient finished.', null, JSON.serialize(result));
-			return result;
-		} catch (Exception exc) {
-			Logger.error('SF_PersonManagementSOAPService.createClient operation failed', exc);
-			throw exc;
+			CreateClientResponse response = (CreateClientResponse) SOAPResponseFactory.constructResponse(CreateClientResponse.class, request.requestHeader);
+			Id result = ClientService.createClientAndContactInfos(request.requestBody.client, request.requestBody.personCommunications);
+			response.responseBody = new CreateClientResponseBody(result);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			CreateClientResponse response = (CreateClientResponse) SOAPResponseFactory.constructFaultResponse(CreateClientResponse.class, request.requestHeader, e);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
 		} finally {
 			Logger.saveLogs();
 		}
@@ -16,9 +25,9 @@ global with sharing class SF_PersonManagementSOAPService {
 
 	webService static CreateCZContractResponseType createClientZone(CreateClientZoneRequest request) {
 		try {
-			Logger.debug('SF_PersonManagementSOAPService.createClientZone started.', null, JSON.serialize(request));
+			Logger.debug('SF_PersonManagementSOAPService.createClientZone started.', JSON.serialize(request));
 			CreateCZContractResponseType result = ClientZoneService.createClientZone(request);
-			Logger.debug('SF_PersonManagementSOAPService.createClientZone finished.', null, JSON.serialize(result));
+			Logger.debug('SF_PersonManagementSOAPService.createClientZone finished.', JSON.serialize(result));
 			return result;
 		} catch (Exception exc) {
 			Logger.error('SF_PersonManagementSOAPService.createClientZone operation failed: ' + exc.getMessage(), exc);
@@ -40,9 +49,29 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
-	global class CreateClientRequest {
+	global class CreateClientRequest  {
+		webService SOAPCommonTypes.CommonHeader requestHeader;
+		webService CreateClientRequestBody requestBody;
+	}
+
+	global class CreateClientRequestBody {
 		webService ClientType client;
 		webService List<PersonCommunicationType> personCommunications;
+	}
+
+	global class CreateClientResponse {
+		webService SOAPCommonTypes.CommonHeader responseHeader;
+		webService Boolean isFault = false;
+		webService SOAPCommonTypes.Fault fault;
+		webService CreateClientResponseBody responseBody;
+	}
+
+	global class CreateClientResponseBody {
+		webService Id clientId;
+
+		CreateClientResponseBody(Id accountId) {
+			this.clientId = accountId;
+		}
 	}
 
 	global class CreateClientZoneRequest {

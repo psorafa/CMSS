@@ -12,6 +12,9 @@ public with sharing class ClientService {
 	}
 
 	public static Id insertAccount(SF_PersonManagementSOAPService.ClientType clientType) {
+		if (accountAlreadyExists(clientType.clientGlobalId)) {
+			throw new SOAPCommonTypes.BusinessException(202, 'Record already exists: Client - Global ID: ' + clientType.clientGlobalId);
+		}
 		Account client = new Account(
 			SbId__c = clientType.personNumber,
 			PersonalIdentificationNr__c = clientType.personalIdentityNumber,
@@ -23,7 +26,6 @@ public with sharing class ClientService {
 			IsPoliticallyExposed__c = clientType.isPoliticallyExposed,
 			IsResident__c = clientType.isCrResident
 		);
-
 		if (clientType.lastName != null) {
 			client.FirstName = clientType.firstName;
 			client.LastName = clientType.lastName;
@@ -36,7 +38,7 @@ public with sharing class ClientService {
 		}
 		PermissionUtility.checkForInsert(client);
 		insert client;
-		Logger.info('ClientService inserted account.', 'accountId:' + client.Id);
+		Logger.debug('Inserted account', JSON.serialize(client));
 		return client.Id;
 	}
 
@@ -49,7 +51,7 @@ public with sharing class ClientService {
 		}
 		PermissionUtility.checkForInsert(contactInfoList);
 		insert contactInfoList;
-		Logger.info('ClientService inserted ContactInformation__c list.', String.join(contactInfoList, ','));
+		Logger.info('Inserted ContactInformation__c list', JSON.serialize(contactInfoList));
 	}
 
 	private static void createContactInformation(SF_PersonManagementSOAPService.PersonCommunicationType commType, Id accountId) {
@@ -80,18 +82,21 @@ public with sharing class ClientService {
 		contactInfoList.add(contactInfo);
 	}
 
-	private static Id getUserIdByCommissionAccountNr(String clientGlobalId) {
-		if (clientGlobalId == null) {
+	private static Boolean accountAlreadyExists(String globalId) {
+		for (Account a : [SELECT Id FROM Account WHERE GlobalId__c = :globalId LIMIT 1]) {
+			return true;
+		}
+		return false;
+	}
+
+	private static Id getUserIdByCommissionAccountNr(String commissionAccountNumber) {
+		if (commissionAccountNumber == null) {
 			return null;
 		}
-		List<User> users = [SELECT Id FROM User WHERE CommissionAccountNr__c = :clientGlobalId LIMIT 1];
+		List<User> users = [SELECT Id FROM User WHERE CommissionAccountNr__c = :commissionAccountNumber LIMIT 1];
 		if (!users.isEmpty()) {
 			return users.get(0).Id;
 		}
-		throw new ClientServiceException('Unknown commission account number: ' + clientGlobalId);
-	}
-
-	private class ClientServiceException extends Exception {
-
+		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: User - CAN (čpú): ' + commissionAccountNumber);
 	}
 }
