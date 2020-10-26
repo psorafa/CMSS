@@ -51,7 +51,7 @@ global with sharing class SF_PersonManagementSOAPService {
 		Logger.debug('Incoming request', JSON.serialize(request));
 		try {
 			GetNewCZContractIDResponseType response = (GetNewCZContractIDResponseType) SOAPResponseFactory.constructResponse(GetNewCZContractIDResponseType.class, request.requestHeader);
-			Decimal contractId = ClientZoneService.getNewCZContractID();
+			Long contractId = ClientZoneService.getNewCZContractID().longValue();
 			response.responseBody = new GetNewCZContractIDResponseBody(contractId);
 			Logger.debug('Returning success response', JSON.serialize(response));
 			return response;
@@ -140,9 +140,9 @@ global with sharing class SF_PersonManagementSOAPService {
 	}
 
 	global class GetNewCZContractIDResponseBody {
-		webService Decimal contractId;
+		webService Long contractId;
 
-		GetNewCZContractIDResponseBody(Decimal contractId) {
+		GetNewCZContractIDResponseBody(Long contractId) {
 			this.contractId = contractId;
 		}
 	}
