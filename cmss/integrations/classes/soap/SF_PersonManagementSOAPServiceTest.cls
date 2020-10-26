@@ -29,10 +29,10 @@ private class SF_PersonManagementSOAPServiceTest {
 		User userSpaA = createUser('testUserSpaA', 'spsA');
 		User userSpaC = createUser('testUserSpaC', 'spsC');
 
-		SF_PersonManagementSOAPService.CreateClientRequest clientRequest = prepareCreateClientRequest(true, true);
+		SF_PersonManagementSOAPService.CreateClientRequestType clientRequest = prepareCreateClientRequest(true, true);
 
 		Test.startTest();
-		SF_PersonManagementSOAPService.CreateClientResponse response = SF_PersonManagementSOAPService.createClient(clientRequest);
+		SF_PersonManagementSOAPService.CreateClientResponseType response = SF_PersonManagementSOAPService.createClient(clientRequest);
 		Test.stopTest();
 		System.assert(!response.isFault, 'Error occurred: ' + JSON.serialize(response.fault));
 
@@ -86,10 +86,10 @@ private class SF_PersonManagementSOAPServiceTest {
 		User userSpaA = createUser('testUserSpaA', 'spsA');
 		User userSpaC = createUser('testUserSpaC', 'spsC');
 
-		SF_PersonManagementSOAPService.CreateClientRequest clientRequest = prepareCreateClientRequest(false, true);
+		SF_PersonManagementSOAPService.CreateClientRequestType clientRequest = prepareCreateClientRequest(false, true);
 
 		Test.startTest();
-		SF_PersonManagementSOAPService.CreateClientResponse response = SF_PersonManagementSOAPService.createClient(clientRequest);
+		SF_PersonManagementSOAPService.CreateClientResponseType response = SF_PersonManagementSOAPService.createClient(clientRequest);
 		Test.stopTest();
 
 		Account account = [
@@ -108,7 +108,7 @@ private class SF_PersonManagementSOAPServiceTest {
 	static void createClientWithEmptyContactInfoTest() {
 		createUser('testUserSpaA', 'spsA');
 		createUser('testUserSpaC', 'spsC');
-		SF_PersonManagementSOAPService.CreateClientRequest clientRequest = prepareCreateClientRequest(true, false);
+		SF_PersonManagementSOAPService.CreateClientRequestType clientRequest = prepareCreateClientRequest(true, false);
 
 		Test.startTest();
 		SF_PersonManagementSOAPService.createClient(clientRequest);
@@ -118,10 +118,10 @@ private class SF_PersonManagementSOAPServiceTest {
 	@IsTest
 	static void createClient_unknownCPU() {
 		createUser('testUserSpaA', 'spsA');
-		SF_PersonManagementSOAPService.CreateClientRequest clientRequest = prepareCreateClientRequest(false, false);
+		SF_PersonManagementSOAPService.CreateClientRequestType clientRequest = prepareCreateClientRequest(false, false);
 
 		Test.startTest();
-		SF_PersonManagementSOAPService.CreateClientResponse response = SF_PersonManagementSOAPService.createClient(clientRequest);
+		SF_PersonManagementSOAPService.CreateClientResponseType response = SF_PersonManagementSOAPService.createClient(clientRequest);
 		Test.stopTest();
 
 		System.assert(response.isFault);
@@ -137,10 +137,10 @@ private class SF_PersonManagementSOAPServiceTest {
 		);
 		createUser('testUserSpaA', 'spsA');
 		createUser('testUserSpaC', 'spsC');
-		SF_PersonManagementSOAPService.CreateClientRequest clientRequest = prepareCreateClientRequest(false, false);
+		SF_PersonManagementSOAPService.CreateClientRequestType clientRequest = prepareCreateClientRequest(false, false);
 
 		Test.startTest();
-		SF_PersonManagementSOAPService.CreateClientResponse response = SF_PersonManagementSOAPService.createClient(clientRequest);
+		SF_PersonManagementSOAPService.CreateClientResponseType response = SF_PersonManagementSOAPService.createClient(clientRequest);
 		Test.stopTest();
 
 		System.assert(response.isFault);
@@ -148,7 +148,7 @@ private class SF_PersonManagementSOAPServiceTest {
 		System.assertEquals('Record already exists: Client - Global ID: ' + clientGlobalId, response.fault.message);
 	}
 
-	private static SF_PersonManagementSOAPService.CreateClientRequest prepareCreateClientRequest(Boolean personAccount, Boolean createPersonCommunications) {
+	private static SF_PersonManagementSOAPService.CreateClientRequestType prepareCreateClientRequest(Boolean personAccount, Boolean createPersonCommunications) {
 		SF_PersonManagementSOAPService.CreateClientRequestBody requestBody = new SF_PersonManagementSOAPService.CreateClientRequestBody();
 		SF_PersonManagementSOAPService.ClientType clientType = new SF_PersonManagementSOAPService.ClientType();
 		requestBody.client = clientType;
@@ -181,7 +181,7 @@ private class SF_PersonManagementSOAPServiceTest {
 			requestBody.personCommunications.add(createCommType(3, 'test@mail.invalid'));
 			requestBody.personCommunications.add(createCommType(4, 'z9y8x7w6'));
 		}
-		SF_PersonManagementSOAPService.CreateClientRequest request = new SF_PersonManagementSOAPService.CreateClientRequest();
+		SF_PersonManagementSOAPService.CreateClientRequestType request = new SF_PersonManagementSOAPService.CreateClientRequestType();
 		request.requestBody = requestBody;
 		return request;
 	}
