@@ -46,13 +46,24 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
-	webService static Decimal getNewCZContractID() {
+	webService static GetNewCZContractIDResponseType getNewCZContractID(GetNewCZContractIDRequestType request) {
+		Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
 		try {
-			Logger.info('getNewCZContractID');
-			return ClientZoneService.getNewCZContractID();
-		} catch (Exception exc) {
-			Logger.error('SF_PersonManagementSOAPService.ClientZoneService getNewCZContractID operation failed', exc);
-			throw exc;
+			GetNewCZContractIDResponseType response = (GetNewCZContractIDResponseType) SOAPResponseFactory.constructResponse(GetNewCZContractIDResponseType.class, request.requestHeader);
+			Decimal contractId = ClientZoneService.getNewCZContractID();
+			response.responseBody = new GetNewCZContractIDResponseBody(contractId);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			GetNewCZContractIDResponseType response = (GetNewCZContractIDResponseType) SOAPResponseFactory.constructFaultResponse(GetNewCZContractIDResponseType.class, request.requestHeader, e);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
 		} finally {
 			Logger.saveLogs();
 		}
@@ -111,6 +122,28 @@ global with sharing class SF_PersonManagementSOAPService {
 
 		CreateCZContractResponseBody(Id clientZoneId) {
 			this.clientZoneId = clientZoneId;
+		}
+	}
+
+	/*
+	 * ----------------    getNewCZContractID request & response types    ----------------
+	 */
+	global class GetNewCZContractIDRequestType {
+		webService SOAPCommonTypes.CommonHeader requestHeader;
+	}
+
+	global class GetNewCZContractIDResponseType {
+		webService SOAPCommonTypes.CommonHeader responseHeader;
+		webService Boolean isFault;
+		webService SOAPCommonTypes.Fault fault;
+		webService GetNewCZContractIDResponseBody responseBody;
+	}
+
+	global class GetNewCZContractIDResponseBody {
+		webService Decimal contractId;
+
+		GetNewCZContractIDResponseBody(Decimal contractId) {
+			this.contractId = contractId;
 		}
 	}
 
