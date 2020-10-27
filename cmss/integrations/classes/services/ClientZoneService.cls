@@ -33,30 +33,36 @@ public with sharing class ClientZoneService {
 		return createdClientZoneId;
 	}
 
-	private static ClientZone__c insertClientZone(Id accountId, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest) {
-		List<User> closedByUserId = [SELECT Id FROM User WHERE GlobalId__c = :clientZoneRequest.closedBy];
+	private static ClientZone__c insertClientZone(Id accountId, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedBySfId) {
+		ClientZone__c clientZone = new ClientZone__c();
+		clientZone.Name = clientZoneRequest.contractNumber;
+		clientZone.VerificationPhone__c = clientZoneRequest.verificationPhone;
+		clientZone.Username__c = clientZoneRequest.userName;
+		clientZone.ClosedBy__c = closedBySfId;
+		clientZone.Email__c = clientZoneRequest.email;
+		clientZone.Role__c = clientZoneRequest.role;
+		clientZone.Account__c = accountId;
+		clientZone.ExternalId__c = clientZoneRequest.globalId;
+		clientZone.NumberOfAnnexes__c = 0;
+		clientZone.Status__c = '1';
+		clientZone.ContractStatus__c = '1';
+		clientZone.CreatedDate__c = Datetime.now();
+		clientZone.ModifiedDate__c = Datetime.now();
+
+		insert clientZone;
+		System.debug('LTE inserted clientZone: ' + clientZone);
+		return clientZone;
+	}
+
+	private static Id getClosedByUser(String closedByRequest) {
+		List<User> closedByUserId = [SELECT Id FROM User WHERE CommissionAccountNr__c = :closedByRequest];
 		Id closedById;
 		if (!closedByUserId.isEmpty()) {
 			closedById = closedByUserId.get(0).Id;
+			return closedById;
 		} else {
 			return null;
 		}
-		ClientZone__c clientZone = new ClientZone__c(
-			Name = clientZoneRequest.contractNumber,
-			VerificationPhone__c = clientZoneRequest.verificationPhone,
-			Username__c = clientZoneRequest.userName,
-			ClosedBy__c = clientZoneRequest.closedBy,
-			Email__c = clientZoneRequest.email,
-			Role__c = clientZoneRequest.role,
-			Account__c = accountId,
-			ExternalId__c = clientZoneRequest.globalId,
-			NumberOfAnnexes__c = 0,
-			Status__c = '1',
-			ContractStatus__c = '1',
-			CreatedDate__c = Datetime.now()
-		);
-		insert clientZone;
-		return clientZone;
 	}
 
 	public static Decimal getNewCZContractID() {
@@ -105,20 +111,40 @@ public with sharing class ClientZoneService {
 		return clientZone;
 	}
 
-	private static SF_PersonManagementSOAPService.CreateCZContractResponseType upsertAccountRelations(SF_PersonManagementSOAPService.CreateClientZoneRequest request, ClientZone__c clZone) {
+	private static SF_PersonManagementSOAPService.CreateCZContractResponseType upsertAccountRelations(SF_PersonManagementSOAPService.CreateClientZoneRequest request, ClientZone__c clZone, Id clientSfId) {
 		SF_PersonManagementSOAPService.CreateCZContractResponseType response = new SF_PersonManagementSOAPService.CreateCZContractResponseType();
 
-		List<AccountRelation__c> upsertAccountRelations = new List<AccountRelation__c>();
+//		List<AccountRelation__c> upsertAccountRelations = new List<AccountRelation__c>();
 		List<AccountRelation__c> accountRelationsToInsert = new List<AccountRelation__c>();
 		List<AccountRelation__c> accountRelationsToUpdate = new List<AccountRelation__c>();
 
 		Map<String, Id> relatedClientGlobalIdsByIds = getRelatedClientIds(request.clientRelations);
+		System.debug('LTE ' + relatedClientGlobalIdsByIds);
+
 		List<AccountRelation__c> relations = [
-				SELECT Id, Account__c, Account__r.GlobalId__c, RelatedAccount__c, RelatedAccountRole__c
+				SELECT Id, Account__c, Account__r.GlobalId__c, RelatedAccount__c, RelatedAccount__r.GlobalId__c, RelatedAccountRole__c
 				FROM AccountRelation__c
 				WHERE RelatedAccount__r.GlobalId__c = :request.clientZone.globalId AND Account__r.GlobalId__c IN :relatedClientGlobalIdsByIds.keySet()
 		];
-		if (relations.isEmpty()) {
+		System.debug('LTE existing relations: ' + relations);
+		Map<String, AccountRelation__c> clientToRelateWithRelationMap = buildExistingRelationsMap(relations);
+		System.debug('LTE existing rels globalId MAP: ' + clientToRelateWithRelationMap);
+
+		for (SF_PersonManagementSOAPService.ClientRelationType requestRelation : request.clientRelations) {
+			System.debug('LTE comparing req.relClientId rel to MAP: ' + requestRelation.relatedClientId);
+			if (clientToRelateWithRelationMap.containsKey(requestRelation.relatedClientId)) {
+				AccountRelation__c toUpdate = clientToRelateWithRelationMap.get(requestRelation.relatedClientId);
+				System.debug('LTE accRel update bef: ' + toUpdate);
+				accountRelationsToUpdate.add(updateAccountRelation(toUpdate, requestRelation, clZone, clientSfId));
+				System.debug('LTE accRel update aft: ' + accountRelationsToUpdate);
+			} else {
+				System.debug('LTE accRel insert bef. ');
+				accountRelationsToInsert.add(insertAccountRelation(requestRelation, relatedClientGlobalIdsByIds.get(requestRelation.relatedClientId), clZone, clientSfId));
+				System.debug('LTE accRel insert aft: ' + accountRelationsToInsert);
+			}
+		}
+
+		/*if (relations.isEmpty()) {
 			for (SF_PersonManagementSOAPService.ClientRelationType clientRelation : request.clientRelations) {
 				AccountRelation__c accountRel = new AccountRelation__c();
 				accountRel.ExternalId__c = clientRelation.externalId;
@@ -129,7 +155,7 @@ public with sharing class ClientZoneService {
 				accountRel.ValidTo__c = clientRelation.validTo;
 				accountRel.ValidFrom__c = Date.today();
 				accountRel.IsActive__c = true;
-				accountRel.RelatedAccount__c = client.Id;
+				accountRel.RelatedAccount__c = clientSfId;
 				accountRel.Account__c = relatedClientGlobalIdsByIds.get(clientRelation.relatedClientId);
 
 				accountRelationsToInsert.add(accountRel);
@@ -148,7 +174,7 @@ public with sharing class ClientZoneService {
 							sfRelation.ValidTo__c = clientRelation.validTo;
 							sfRelation.ValidFrom__c = Date.today();
 							sfRelation.IsActive__c = true;
-							sfRelation.RelatedAccount__c = client.Id;
+							sfRelation.RelatedAccount__c = clientSfId;
 							sfRelation.Account__c = relatedClientGlobalIdsByIds.get(clientRelation.relatedClientId);
 							accountRelationsToUpdate.add(sfRelation);
 						}
@@ -160,20 +186,58 @@ public with sharing class ClientZoneService {
 					return response;
 				}
 			}
-		}
+		}*/
 
 
 		if (!accountRelationsToInsert.isEmpty()) {
+			System.debug('LTE inserting accRels: ' + accountRelationsToInsert);
 			insert accountRelationsToInsert;
 			response.isSuccess = true;
 		}
 
 		if (!accountRelationsToUpdate.isEmpty()) {
-			insert accountRelationsToUpdate;
+			System.debug('LTE updating accRels: ' + accountRelationsToUpdate);
+			update accountRelationsToUpdate;
 			response.isSuccess = true;
 		}
 
+		/*if (!upsertAccountRelations.isEmpty()) {
+			System.debug('LTE upserting accRels: ' + upsertAccountRelations);
+			upsert upsertAccountRelations;
+			response.isSuccess = true;
+		}*/
+
 		return response;
+	}
+
+	private static AccountRelation__c updateAccountRelation(AccountRelation__c toUpdate, SF_PersonManagementSOAPService.ClientRelationType requestRelation, ClientZone__c clZone, Id clientSfId) {
+		toUpdate.ExternalId__c = requestRelation.externalId;
+		toUpdate.RelationTypeNEL__c = '5';
+		toUpdate.AccountRole__c = '1502';
+		toUpdate.RelatedAccountRole__c = '1501';
+		toUpdate.ClientZoneID__c = clZone.Id;
+		toUpdate.ValidTo__c = requestRelation.validTo;
+		toUpdate.ValidFrom__c = Date.today();
+		toUpdate.IsActive__c = true;
+		toUpdate.RelatedAccount__c = clientSfId;
+		System.debug('LTE update rel: ' + toUpdate);
+		return toUpdate;
+	}
+
+	private static AccountRelation__c insertAccountRelation(SF_PersonManagementSOAPService.ClientRelationType requestRelation, Id relatedAccountId, ClientZone__c clZone, Id clientSfId) {
+		AccountRelation__c accountRelation = new AccountRelation__c();
+		accountRelation.ExternalId__c = requestRelation.externalId;
+		accountRelation.RelationTypeNEL__c = '5';
+		accountRelation.AccountRole__c = '1502';
+		accountRelation.RelatedAccountRole__c = '1501';
+		accountRelation.ClientZoneID__c = clZone.Id;
+		accountRelation.ValidTo__c = requestRelation.validTo;
+		accountRelation.ValidFrom__c = Date.today();
+		accountRelation.IsActive__c = true;
+		accountRelation.RelatedAccount__c = clientSfId;
+		accountRelation.Account__c = relatedAccountId;
+		System.debug('LTE insert rel: ' + accountRelation);
+		return accountRelation;
 	}
 
 	private static Map<String, Id> getRelatedClientIds(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations) {
@@ -187,5 +251,23 @@ public with sharing class ClientZoneService {
 			relatedClientGlobalIdsByIds.put(client.GlobalId__c, client.Id);
 		}
 		return relatedClientGlobalIdsByIds;
+	}
+
+	private static Map<String, AccountRelation__c> buildExistingRelationsMap(List<AccountRelation__c> existingRelations) {
+		Map<String, AccountRelation__c> clientToRelateWithRelationMap = new Map<String, AccountRelation__c>();
+		for (AccountRelation__c relation : existingRelations) {
+			System.debug('LTE buildMap rels: ' + relation.RelatedAccount__r.GlobalId__c);
+			clientToRelateWithRelationMap.put(relation.RelatedAccount__r.GlobalId__c, relation);
+		}
+		return clientToRelateWithRelationMap;
+	}
+
+	private static SF_PersonManagementSOAPService.CreateCZContractResponseType returnResponse(Boolean isSuccess, Integer errorNumber, String errorMessage, String clientZoneId) {
+		SF_PersonManagementSOAPService.CreateCZContractResponseType response = new SF_PersonManagementSOAPService.CreateCZContractResponseType();
+		response.isSuccess = isSuccess;
+		response.errorMessage = errorMessage;
+		response.errorNumber = errorNumber;
+		response.clientZoneId = clientZoneId;
+		return response;
 	}
 }

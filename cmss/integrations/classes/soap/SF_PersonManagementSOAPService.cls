@@ -241,7 +241,6 @@ global with sharing class SF_PersonManagementSOAPService {
 
 	global class ClientRelationType {
 		webService String relatedClientId;
-		webService String clientRole;
 		webService Date validTo;
 		webService String externalId;
 	}
