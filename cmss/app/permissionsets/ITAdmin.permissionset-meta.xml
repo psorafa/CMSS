@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>IT admin + Správce klientské zóny)</description>
+    <classAccesses>
+        <apexClass>AssetRelatedListController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GenericRelatedListController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <description>IT admin + Správce klientské zóny</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.AccountId</field>
