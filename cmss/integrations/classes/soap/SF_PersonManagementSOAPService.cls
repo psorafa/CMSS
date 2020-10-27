@@ -226,7 +226,6 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService String role;
 		webService String closedBy;
 		webService String globalId;
-		webService String clientId;
 	}
 
 	global class ClientZoneUpdateType {

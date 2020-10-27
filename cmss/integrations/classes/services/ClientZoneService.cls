@@ -16,7 +16,8 @@ public with sharing class ClientZoneService {
 		if (clientZones.isEmpty()) {
 			createdClientZoneId = insertClientZone(accounts.get(0).Id, clientZone);
 		} else {
-			ClientZone__c clZone = clientZones.get(0);
+			clZone = clientZones.get(0);
+			System.debug('LTE clZone one assign: ' + clZone);
 
 			if (Integer.valueOf(clientZone.role) >= Integer.valueOf(clZone.Role__c) || clZone.Role__c == '8') {
 				updateClientZone(clZone, clientZone);
@@ -33,7 +34,14 @@ public with sharing class ClientZoneService {
 		return createdClientZoneId;
 	}
 
-	private static Id insertClientZone(Id accountId, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest) {
+	private static ClientZone__c insertClientZone(Id accountId, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest) {
+		List<User> closedByUserId = [SELECT Id FROM User WHERE GlobalId__c = :clientZoneRequest.closedBy];
+		Id closedById;
+		if (!closedByUserId.isEmpty()) {
+			closedById = closedByUserId.get(0).Id;
+		} else {
+			return null;
+		}
 		ClientZone__c clientZone = new ClientZone__c(
 			Name = clientZoneRequest.contractNumber,
 			VerificationPhone__c = clientZoneRequest.verificationPhone,
@@ -49,7 +57,7 @@ public with sharing class ClientZoneService {
 			CreatedDate__c = Datetime.now()
 		);
 		insert clientZone;
-		return clientZone.Id;
+		return clientZone;
 	}
 
 	public static Decimal getNewCZContractID() {
@@ -95,24 +103,93 @@ public with sharing class ClientZoneService {
 		clientZone.ContractStatus__c = '1';
 		clientZone.ModifiedDate__c = Datetime.now();
 		update clientZone;
+		return clientZone;
 	}
 
-	private static void createAccountRelations(List<SF_PersonManagementSOAPService.ClientRelationType> accountRelations) {
+	private static SF_PersonManagementSOAPService.CreateCZContractResponseType upsertAccountRelations(SF_PersonManagementSOAPService.CreateClientZoneRequest request, ClientZone__c clZone) {
+		SF_PersonManagementSOAPService.CreateCZContractResponseType response = new SF_PersonManagementSOAPService.CreateCZContractResponseType();
+
+		List<AccountRelation__c> upsertAccountRelations = new List<AccountRelation__c>();
 		List<AccountRelation__c> accountRelationsToInsert = new List<AccountRelation__c>();
-		for (SF_PersonManagementSOAPService.ClientRelationType accountRelation : accountRelations) {
-			AccountRelation__c accountRel = new AccountRelation__c(
-				Account__c = accountRelation.relatedClientId,
-				RelatedAccount__c = accountRelation.relatedClientId,
-				RelatedAccountRole__c = accountRelation.clientRole,
-				AccountRole__c = accountRelation.clientRole,
-				ValidTo__c = accountRelation.validTo,
-				ValidFrom__c = Date.today(),
-				IsActive__c = true,
-				ExternalId__c = accountRelation.externalId,
-				RelationTypeNEL__c = '5'
-			);
-			accountRelationsToInsert.add(accountRel);
+		List<AccountRelation__c> accountRelationsToUpdate = new List<AccountRelation__c>();
+
+		Map<String, Id> relatedClientGlobalIdsByIds = getRelatedClientIds(request.clientRelations);
+		List<AccountRelation__c> relations = [
+				SELECT Id, Account__c, Account__r.GlobalId__c, RelatedAccount__c, RelatedAccountRole__c
+				FROM AccountRelation__c
+				WHERE RelatedAccount__r.GlobalId__c = :request.clientZone.globalId AND Account__r.GlobalId__c IN :relatedClientGlobalIdsByIds.keySet()
+		];
+		System.debug('LTE relations: ' + relations);
+		if (relations.isEmpty()) {
+			for (SF_PersonManagementSOAPService.ClientRelationType clientRelation : request.clientRelations) {
+				AccountRelation__c accountRel = new AccountRelation__c();
+				accountRel.ExternalId__c = clientRelation.externalId;
+				accountRel.RelationTypeNEL__c = '5';
+				accountRel.AccountRole__c = '1502';
+				accountRel.RelatedAccountRole__c = '1501';
+				accountRel.ClientZoneID__c = clZone.Id;
+				accountRel.ValidTo__c = clientRelation.validTo;
+				accountRel.ValidFrom__c = Date.today();
+				accountRel.IsActive__c = true;
+				accountRel.RelatedAccount__c = client.Id;
+				accountRel.Account__c = relatedClientGlobalIdsByIds.get(clientRelation.relatedClientId);
+
+				accountRelationsToInsert.add(accountRel);
+			}
+		} else {
+
+			for (SF_PersonManagementSOAPService.ClientRelationType clientRelation : request.clientRelations) {
+				System.debug('LTE accRel update: ' + clientRelation);
+				if (clientRelation.relatedClientId == request.clientZone.globalId) {
+					for (AccountRelation__c sfRelation : relations) {
+						if (clientRelation.relatedClientId == sfRelation.Account__r.GlobalId__c) {
+							System.debug('LTE same globId: ' + clientRelation.relatedClientId);
+							sfRelation.ExternalId__c = clientRelation.externalId;
+							sfRelation.RelationTypeNEL__c = '5';
+							sfRelation.AccountRole__c = '1502';
+							sfRelation.RelatedAccountRole__c = '1501';
+							sfRelation.ClientZoneID__c = clZone.Id;
+							sfRelation.ValidTo__c = clientRelation.validTo;
+							sfRelation.ValidFrom__c = Date.today();
+							sfRelation.IsActive__c = true;
+							sfRelation.RelatedAccount__c = client.Id;
+							sfRelation.Account__c = relatedClientGlobalIdsByIds.get(clientRelation.relatedClientId);
+							accountRelationsToUpdate.add(sfRelation);
+						}
+					}
+				} else {
+					response.isSuccess = false;
+					response.errorNumber = -6;
+					response.errorMessage = 'Client id specified in representing client list does not equal account relation id. ';
+					return response;
+				}
+			}
 		}
-		insert accountRelationsToInsert;
+
+		if (!accountRelationsToInsert.isEmpty()) {
+			insert accountRelationsToInsert;
+			response.isSuccess = true;
+		}
+
+		if (!accountRelationsToUpdate.isEmpty()) {
+			insert accountRelationsToUpdate;
+			response.isSuccess = true;
+		}
+
+		return response;
+	}
+
+	private static Map<String, Id> getRelatedClientIds(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations) {
+		Map<String, Id> relatedClientGlobalIdsByIds = new Map<String, Id>();
+		List<String> globalIds = new List<String>();
+		for (SF_PersonManagementSOAPService.ClientRelationType relation : clientRelations) {
+			globalIds.add(relation.relatedClientId);
+		}
+		List<Account> clients = [SELECT Id, GlobalId__c FROM Account WHERE GlobalId__c IN :globalIds];
+		for (Account client : clients) {
+			relatedClientGlobalIdsByIds.put(client.GlobalId__c, client.Id);
+		}
+		System.debug('LTE related client IDs map: ' + relatedClientGlobalIdsByIds);
+		return relatedClientGlobalIdsByIds;
 	}
 }
