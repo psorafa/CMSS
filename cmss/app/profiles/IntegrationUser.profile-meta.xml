@@ -5490,6 +5490,20 @@
     <layoutAssignments>
         <layout>ProductContractUrl__mdt-Product Contract Url Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Meeting Layout</layout>
+        <recordType>Task.Meeting</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Phone Call Layout</layout>
+        <recordType>Task.PhoneCall</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>User-User Layout</layout>
+    </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Business_Account</recordType>
