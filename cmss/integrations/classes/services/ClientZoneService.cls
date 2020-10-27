@@ -17,7 +17,6 @@ public with sharing class ClientZoneService {
 			createdClientZoneId = insertClientZone(accounts.get(0).Id, clientZone);
 		} else {
 			clZone = clientZones.get(0);
-			System.debug('LTE clZone one assign: ' + clZone);
 
 			if (Integer.valueOf(clientZone.role) >= Integer.valueOf(clZone.Role__c) || clZone.Role__c == '8') {
 				updateClientZone(clZone, clientZone);
@@ -119,7 +118,6 @@ public with sharing class ClientZoneService {
 				FROM AccountRelation__c
 				WHERE RelatedAccount__r.GlobalId__c = :request.clientZone.globalId AND Account__r.GlobalId__c IN :relatedClientGlobalIdsByIds.keySet()
 		];
-		System.debug('LTE relations: ' + relations);
 		if (relations.isEmpty()) {
 			for (SF_PersonManagementSOAPService.ClientRelationType clientRelation : request.clientRelations) {
 				AccountRelation__c accountRel = new AccountRelation__c();
@@ -139,11 +137,9 @@ public with sharing class ClientZoneService {
 		} else {
 
 			for (SF_PersonManagementSOAPService.ClientRelationType clientRelation : request.clientRelations) {
-				System.debug('LTE accRel update: ' + clientRelation);
 				if (clientRelation.relatedClientId == request.clientZone.globalId) {
 					for (AccountRelation__c sfRelation : relations) {
 						if (clientRelation.relatedClientId == sfRelation.Account__r.GlobalId__c) {
-							System.debug('LTE same globId: ' + clientRelation.relatedClientId);
 							sfRelation.ExternalId__c = clientRelation.externalId;
 							sfRelation.RelationTypeNEL__c = '5';
 							sfRelation.AccountRole__c = '1502';
@@ -189,7 +185,6 @@ public with sharing class ClientZoneService {
 		for (Account client : clients) {
 			relatedClientGlobalIdsByIds.put(client.GlobalId__c, client.Id);
 		}
-		System.debug('LTE related client IDs map: ' + relatedClientGlobalIdsByIds);
 		return relatedClientGlobalIdsByIds;
 	}
 }
