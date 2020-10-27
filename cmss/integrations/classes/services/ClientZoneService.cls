@@ -5,21 +5,29 @@ public with sharing class ClientZoneService {
 		List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations
 	) {
 		Id createdClientZoneId;
+		Id clientSfId;
 		if (clientZone.globalId == null) {
 			throw new SOAPCommonTypes.BusinessException(101, 'Attribute globalId is required');
 		}
 		List<Account> accounts = [SELECT Id FROM Account WHERE GlobalId__c = :clientZone.globalId LIMIT 1];
 		if (accounts.isEmpty()) {
 			throw new SOAPCommonTypes.BusinessException(201, 'Record not found: Client - Global ID: ' + clientZone.globalId);
+		} else {
+			clientSfId = accounts.get(0).Id;
 		}
 		List<ClientZone__c> clientZones = [SELECT Id, Role__c FROM ClientZone__c WHERE Account__c = :accounts.get(0).Id AND Status__c = '1' ORDER BY LastModifiedDate DESC];
+		ClientZone__c clZone;
+		Id closedById;
 		if (clientZones.isEmpty()) {
-			createdClientZoneId = insertClientZone(accounts.get(0).Id, clientZone);
-		} else {
+			closedById = getClosedByUser(clientZone.closedBy);
+			createdClientZoneId = insertClientZone(accounts.get(0).Id, clientZone, closedById);
+		} else if (clientZones.size() > 1) {
+			throw new SOAPCommonTypes.BusinessException(202, 'More than 1 ClientZone exist: Client GlobalId: ' + clientZone.globalId);
+		} {
 			clZone = clientZones.get(0);
-
+			closedById = getClosedByUser(clientZone.closedBy);
 			if (Integer.valueOf(clientZone.role) >= Integer.valueOf(clZone.Role__c) || clZone.Role__c == '8') {
-				updateClientZone(clZone, clientZone);
+				updateClientZone(clZone, clientZone, closedById);
 				createdClientZoneId = clZone.Id;
 			} else {
 				throw new SOAPCommonTypes.BusinessException(202, 'Record already exists: ClientZone - SF ID: ' + clZone.Id);
@@ -27,13 +35,13 @@ public with sharing class ClientZoneService {
 		}
 		if (clientRelations != null) {
 			if (!clientRelations.isEmpty()) {
-				createAccountRelations(clientRelations);
+				upsertAccountRelations(clientRelations, clientZone.globalId, clZone, clientSfId);
 			}
 		}
 		return createdClientZoneId;
 	}
 
-	private static ClientZone__c insertClientZone(Id accountId, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedBySfId) {
+	private static Id insertClientZone(Id accountId, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedBySfId) {
 		ClientZone__c clientZone = new ClientZone__c();
 		clientZone.Name = clientZoneRequest.contractNumber;
 		clientZone.VerificationPhone__c = clientZoneRequest.verificationPhone;
@@ -50,8 +58,7 @@ public with sharing class ClientZoneService {
 		clientZone.ModifiedDate__c = Datetime.now();
 
 		insert clientZone;
-		System.debug('LTE inserted clientZone: ' + clientZone);
-		return clientZone;
+		return clientZone.Id;
 	}
 
 	private static Id getClosedByUser(String closedByRequest) {
@@ -107,30 +114,31 @@ public with sharing class ClientZoneService {
 		clientZone.Status__c = '1';
 		clientZone.ContractStatus__c = '1';
 		clientZone.ModifiedDate__c = Datetime.now();
+		clientZone.ClosedBy__c = closedById;
 		update clientZone;
 		return clientZone;
 	}
 
-	private static SF_PersonManagementSOAPService.CreateCZContractResponseType upsertAccountRelations(SF_PersonManagementSOAPService.CreateClientZoneRequest request, ClientZone__c clZone, Id clientSfId) {
+	private static SF_PersonManagementSOAPService.CreateCZContractResponseType upsertAccountRelations(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations, String externalId, ClientZone__c clZone, Id clientSfId) {
 		SF_PersonManagementSOAPService.CreateCZContractResponseType response = new SF_PersonManagementSOAPService.CreateCZContractResponseType();
 
 //		List<AccountRelation__c> upsertAccountRelations = new List<AccountRelation__c>();
 		List<AccountRelation__c> accountRelationsToInsert = new List<AccountRelation__c>();
 		List<AccountRelation__c> accountRelationsToUpdate = new List<AccountRelation__c>();
 
-		Map<String, Id> relatedClientGlobalIdsByIds = getRelatedClientIds(request.clientRelations);
+		Map<String, Id> relatedClientGlobalIdsByIds = getRelatedClientIds(clientRelations);
 		System.debug('LTE ' + relatedClientGlobalIdsByIds);
 
 		List<AccountRelation__c> relations = [
 				SELECT Id, Account__c, Account__r.GlobalId__c, RelatedAccount__c, RelatedAccount__r.GlobalId__c, RelatedAccountRole__c
 				FROM AccountRelation__c
-				WHERE RelatedAccount__r.GlobalId__c = :request.clientZone.globalId AND Account__r.GlobalId__c IN :relatedClientGlobalIdsByIds.keySet()
+				WHERE ExternalId__c = :externalId
 		];
 		System.debug('LTE existing relations: ' + relations);
 		Map<String, AccountRelation__c> clientToRelateWithRelationMap = buildExistingRelationsMap(relations);
 		System.debug('LTE existing rels globalId MAP: ' + clientToRelateWithRelationMap);
 
-		for (SF_PersonManagementSOAPService.ClientRelationType requestRelation : request.clientRelations) {
+		for (SF_PersonManagementSOAPService.ClientRelationType requestRelation : clientRelations) {
 			System.debug('LTE comparing req.relClientId rel to MAP: ' + requestRelation.relatedClientId);
 			if (clientToRelateWithRelationMap.containsKey(requestRelation.relatedClientId)) {
 				AccountRelation__c toUpdate = clientToRelateWithRelationMap.get(requestRelation.relatedClientId);
@@ -144,61 +152,16 @@ public with sharing class ClientZoneService {
 			}
 		}
 
-		/*if (relations.isEmpty()) {
-			for (SF_PersonManagementSOAPService.ClientRelationType clientRelation : request.clientRelations) {
-				AccountRelation__c accountRel = new AccountRelation__c();
-				accountRel.ExternalId__c = clientRelation.externalId;
-				accountRel.RelationTypeNEL__c = '5';
-				accountRel.AccountRole__c = '1502';
-				accountRel.RelatedAccountRole__c = '1501';
-				accountRel.ClientZoneID__c = clZone.Id;
-				accountRel.ValidTo__c = clientRelation.validTo;
-				accountRel.ValidFrom__c = Date.today();
-				accountRel.IsActive__c = true;
-				accountRel.RelatedAccount__c = clientSfId;
-				accountRel.Account__c = relatedClientGlobalIdsByIds.get(clientRelation.relatedClientId);
-
-				accountRelationsToInsert.add(accountRel);
-			}
-		} else {
-
-			for (SF_PersonManagementSOAPService.ClientRelationType clientRelation : request.clientRelations) {
-				if (clientRelation.relatedClientId == request.clientZone.globalId) {
-					for (AccountRelation__c sfRelation : relations) {
-						if (clientRelation.relatedClientId == sfRelation.Account__r.GlobalId__c) {
-							sfRelation.ExternalId__c = clientRelation.externalId;
-							sfRelation.RelationTypeNEL__c = '5';
-							sfRelation.AccountRole__c = '1502';
-							sfRelation.RelatedAccountRole__c = '1501';
-							sfRelation.ClientZoneID__c = clZone.Id;
-							sfRelation.ValidTo__c = clientRelation.validTo;
-							sfRelation.ValidFrom__c = Date.today();
-							sfRelation.IsActive__c = true;
-							sfRelation.RelatedAccount__c = clientSfId;
-							sfRelation.Account__c = relatedClientGlobalIdsByIds.get(clientRelation.relatedClientId);
-							accountRelationsToUpdate.add(sfRelation);
-						}
-					}
-				} else {
-					response.isSuccess = false;
-					response.errorNumber = -6;
-					response.errorMessage = 'Client id specified in representing client list does not equal account relation id. ';
-					return response;
-				}
-			}
-		}*/
-
-
 		if (!accountRelationsToInsert.isEmpty()) {
 			System.debug('LTE inserting accRels: ' + accountRelationsToInsert);
 			insert accountRelationsToInsert;
-			response.isSuccess = true;
+			response.isFault = false;
 		}
 
 		if (!accountRelationsToUpdate.isEmpty()) {
 			System.debug('LTE updating accRels: ' + accountRelationsToUpdate);
 			update accountRelationsToUpdate;
-			response.isSuccess = true;
+			response.isFault = false;
 		}
 
 		/*if (!upsertAccountRelations.isEmpty()) {
@@ -260,14 +223,5 @@ public with sharing class ClientZoneService {
 			clientToRelateWithRelationMap.put(relation.RelatedAccount__r.GlobalId__c, relation);
 		}
 		return clientToRelateWithRelationMap;
-	}
-
-	private static SF_PersonManagementSOAPService.CreateCZContractResponseType returnResponse(Boolean isSuccess, Integer errorNumber, String errorMessage, String clientZoneId) {
-		SF_PersonManagementSOAPService.CreateCZContractResponseType response = new SF_PersonManagementSOAPService.CreateCZContractResponseType();
-		response.isSuccess = isSuccess;
-		response.errorMessage = errorMessage;
-		response.errorNumber = errorNumber;
-		response.clientZoneId = clientZoneId;
-		return response;
 	}
 }
