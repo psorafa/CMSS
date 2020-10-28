@@ -5330,6 +5330,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
+        <layout>Account-Account Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Account-LACRLayout</layout>
         <recordType>Account.Business_Account</recordType>
     </layoutAssignments>
@@ -5340,12 +5343,24 @@
         <layout>Asset-Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Asset-Investment Life Insurance</layout>
-        <recordType>Asset.InvestmentLifeInsurance</recordType>
+        <layout>Asset-BuildingSavings</layout>
+        <recordType>Asset.BuildingSavings</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Asset-LoanCase</layout>
+        <layout>Asset-Credit and Intermediate Loan</layout>
         <recordType>Asset.CreditAndIntermediateLoan</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-CreditCase</layout>
+        <recordType>Asset.CreditCases</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-CSOB Current Account</layout>
+        <recordType>Asset.CSOBCurrentAccount</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Investment Life Insurance</layout>
+        <recordType>Asset.InvestmentLifeInsurance</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Asset-Mortgages</layout>
