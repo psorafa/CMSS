@@ -77,12 +77,11 @@ public with sharing class ClientZoneService {
 		existingClientZone.SignatureDate__c = clientZoneUpdate.signatureDate;
 		existingClientZone.AgreementDate__c = clientZoneUpdate.agreementDate;
 		existingClientZone.Status__c = clientZoneUpdate.status;
-		PermissionUtility.checkForInsert(existingClientZone);
+		PermissionUtility.checkForUpdate(existingClientZone);
 		try {
 			update existingClientZone;
 		} catch (DmlException e) {
 			throw new SOAPCommonTypes.BusinessException(301, 'Cannot update record: ' + e.getMessage(), e);
-			// todo tohle otestovat... treba nejakou validaci, co to zarizne
 		}
 	}
 

@@ -22,7 +22,7 @@ public with sharing class PermissionUtility {
 			throw new InsufficientAccessException('No permission to update SObject: ' + so.getSObjectType());
 		}
 		for (DescribeFieldResult descr : getFieldDescribesFromSObject(so)) {
-			if (!descr.isUpdateable()) {
+			if (!descr.isUpdateable() && descr.getName() != 'Id') {
 				throw new InsufficientAccessException('No permission to update field: ' + descr.getName());
 			}
 		}

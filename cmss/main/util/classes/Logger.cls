@@ -102,7 +102,8 @@ public with sharing class Logger {
         logEvent.TransactionId__c = transactionId;
 		logEvent.Message__c = message;
 		if (ex != null) {
-			logEvent.Exception__c = ex.getMessage() + ' | ' + ex.getStackTraceString();
+			DmlException outerException = new DmlException(ex);
+			logEvent.Exception__c = ex.getMessage() + '\n' + outerException.getStackTraceString().substringAfter('Caused by');
 		}
 		logEvent.Payload__c = payload;
 		logEvent.Level__c = logLevel;
