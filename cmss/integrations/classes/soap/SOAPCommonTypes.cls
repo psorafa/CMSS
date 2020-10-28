@@ -34,6 +34,11 @@ global with sharing class SOAPCommonTypes {
 			this.errorNumber = errorNumber;
 		}
 
+		public BusinessException(Integer errorNumber, String message, Exception e) {
+			this(message, e);
+			this.errorNumber = errorNumber;
+		}
+
 		public Integer getErrorNumber() {
 			return errorNumber;
 		}

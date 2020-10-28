@@ -69,6 +69,28 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
+	webService static UpdateCZResponseType updateCZ(UpdateCZRequestType request) {
+		Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
+		try {
+			UpdateCZResponseType response = (UpdateCZResponseType) SOAPResponseFactory.constructResponse(UpdateCZResponseType.class, request.requestHeader);
+			ClientZoneService.updateClientZone(request.requestBody);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			UpdateCZResponseType response = (UpdateCZResponseType) SOAPResponseFactory.constructFaultResponse(UpdateCZResponseType.class, request.requestHeader, e);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
 	/*
 	 * ----------------    createClient request and response types    ----------------
 	 */
@@ -147,6 +169,20 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
+	/*
+	 * ----------------    updateCZ request & response types    ----------------
+	 */
+	global class UpdateCZRequestType {
+		webService SOAPCommonTypes.CommonHeader requestHeader;
+		webService ClientZoneUpdateType requestBody;
+	}
+
+	global class UpdateCZResponseType {
+		webService SOAPCommonTypes.CommonHeader responseHeader;
+		webService Boolean isFault;
+		webService SOAPCommonTypes.Fault fault;
+	}
+
 	global class ClientType {
 		webService String personNumber;
 		webService String personalIdentityNumber;
@@ -191,6 +227,17 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService String closedBy;
 		webService String globalId;
 		webService String clientId;
+	}
+
+	global class ClientZoneUpdateType {
+		webService Id id;
+		webService String userName;
+		webService String verificationPhone;
+		webService String email;
+		webService String role;
+		webService Date signatureDate;
+		webService Date agreementDate;
+		webService String status;
 	}
 
 	global class ClientRelationType {

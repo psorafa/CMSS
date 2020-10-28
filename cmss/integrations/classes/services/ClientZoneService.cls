@@ -65,6 +65,34 @@ public with sharing class ClientZoneService {
 		return lastIssuedContractNumber.ContractNumber__c;
 	}
 
+	public static void updateClientZone(SF_PersonManagementSOAPService.ClientZoneUpdateType clientZoneUpdate) {
+		if (clientZoneUpdate.id == null) {
+			throw new SOAPCommonTypes.BusinessException(101, 'Missing required attribute: id');
+		}
+		ClientZone__c existingClientZone = getClientZone(clientZoneUpdate.Id);
+		existingClientZone.Username__c = clientZoneUpdate.userName;
+		existingClientZone.VerificationPhone__c = clientZoneUpdate.verificationPhone;
+		existingClientZone.Email__c = clientZoneUpdate.email;
+		existingClientZone.Role__c = clientZoneUpdate.role;
+		existingClientZone.SignatureDate__c = clientZoneUpdate.signatureDate;
+		existingClientZone.AgreementDate__c = clientZoneUpdate.agreementDate;
+		existingClientZone.Status__c = clientZoneUpdate.status;
+		PermissionUtility.checkForInsert(existingClientZone);
+		try {
+			update existingClientZone;
+		} catch (DmlException e) {
+			throw new SOAPCommonTypes.BusinessException(301, 'Cannot update record: ' + e.getMessage(), e);
+			// todo tohle otestovat... treba nejakou validaci, co to zarizne
+		}
+	}
+
+	private static ClientZone__c getClientZone(Id clientZoneId) {
+		for (ClientZone__c cz : [SELECT Id FROM ClientZone__c WHERE Id = :clientZoneId LIMIT 1]) {
+			return cz;
+		}
+		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: ClientZone - Id: ' + clientZoneId);
+	}
+
 	private static void updateClientZone(ClientZone__c clientZone, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest) {
 		clientZone.ClosedBy__c = clientZoneRequest.closedBy;
 		clientZone.Name = clientZoneRequest.contractNumber;
