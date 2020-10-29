@@ -17,6 +17,10 @@ private class ClientZoneServiceTest {
 	private static String globalId = '01234';
 	private static Account client = createAccount('TestAcc', globalId);
 
+	private static String externalId1 = 'ext1';
+	private static String externalId2 = 'ext2';
+	private static String externalId3 = 'ext3';
+
 	private static Date validTo1 = Date.today().addMonths(12);
 	private static Date validTo2 = Date.today().addMonths(13);
 	private static Date validTo3 = Date.today().addMonths(14);
