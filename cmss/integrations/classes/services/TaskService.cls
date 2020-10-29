@@ -11,12 +11,19 @@ public with sharing class TaskService {
 		}
 
 		for (Task taskItem : taskList) {
+<<<<<<< HEAD
 			if (taskItem.Type != null) {
 				String taskTypeDevName = rtMappingMap.get(taskItem.Type);
 				taskItem.RecordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
 					.get(taskTypeDevName)
 					.getRecordTypeId();
 			}
+=======
+			String taskTypeDevName = rtMappingMap.get(taskItem.Type);
+			taskItem.RecordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
+				.get(taskTypeDevName)
+				.getRecordTypeId();
+>>>>>>> Activity RecordType Assignment, user fields translation
 		}
 	}
 }
