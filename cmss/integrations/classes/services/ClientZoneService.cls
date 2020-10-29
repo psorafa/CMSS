@@ -1,8 +1,8 @@
 public with sharing class ClientZoneService {
 
 	public static Id createClientZone(
-		SF_PersonManagementSOAPService.ClientZoneType clientZone,
-		List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations
+			SF_PersonManagementSOAPService.ClientZoneType clientZone,
+			List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations
 	) {
 		Id clientZoneId;
 		Id clientSfId;
@@ -15,20 +15,17 @@ public with sharing class ClientZoneService {
 		} else {
 			clientSfId = accounts.get(0).Id;
 		}
-		List<ClientZone__c> clientZones = [SELECT Id, Role__c FROM ClientZone__c WHERE Account__c = :accounts.get(0).Id AND Status__c = '1' ORDER BY LastModifiedDate DESC];
-		System.debug('LTE clZones: ' + clientZones);
+		List<ClientZone__c> clientZones = [SELECT Id, Role__c FROM ClientZone__c WHERE Account__c = :accounts.get(0).Id AND Status__c = '1'];
 		ClientZone__c clZone;
 		Id closedById;
 		if (clientZones.isEmpty()) {
-			System.debug('LTE clZones list empty, insert.');
 			closedById = getClosedByUser(clientZone.closedBy);
-			clientZoneId = insertClientZone(accounts.get(0).Id, clientZone, closedById);
+			clZone = insertClientZone(clientSfId, clientZone, closedById);
+			clientZoneId = clZone.Id;
 		} else if (clientZones.size() > 1) {
-			System.debug('LTE clZones list more than 1 -> fail');
 			throw new SOAPCommonTypes.BusinessException(202, 'More than 1 ClientZone exist: Client GlobalId: ' + clientZone.globalId);
 		} else {
 			clZone = clientZones.get(0);
-			System.debug('LTE clZones list is 1, update.');
 			closedById = getClosedByUser(clientZone.closedBy);
 			if (Integer.valueOf(clientZone.role) >= Integer.valueOf(clZone.Role__c) || clZone.Role__c == '8') {
 				clientZoneId = updateClientZone(clZone, clientZone, closedById);
@@ -38,13 +35,13 @@ public with sharing class ClientZoneService {
 		}
 		if (clientRelations != null) {
 			if (!clientRelations.isEmpty()) {
-				upsertAccountRelations(clientRelations, clientZone.globalId, clZone, clientSfId);
+				upsertAccountRelations(clientRelations, clZone, clientSfId);
 			}
 		}
 		return clientZoneId;
 	}
 
-	private static Id insertClientZone(Id accountId, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedBySfId) {
+	private static ClientZone__c insertClientZone(Id accountId, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedBySfId) {
 		ClientZone__c clientZone = new ClientZone__c();
 		clientZone.Name = clientZoneRequest.contractNumber;
 		clientZone.VerificationPhone__c = clientZoneRequest.verificationPhone;
@@ -61,7 +58,7 @@ public with sharing class ClientZoneService {
 		clientZone.ModifiedDate__c = Datetime.now();
 
 		insert clientZone;
-		return clientZone.Id;
+		return clientZone;
 	}
 
 	private static Id getClosedByUser(String closedByRequest) {
@@ -106,8 +103,7 @@ public with sharing class ClientZoneService {
 		}
 	}
 
-    private static Id updateClientZone(ClientZone__c clientZone, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedById) {
-		clientZone.ClosedBy__c = clientZoneRequest.closedBy;
+	private static Id updateClientZone(ClientZone__c clientZone, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedById) {
 		clientZone.Name = clientZoneRequest.contractNumber;
 		clientZone.Username__c = clientZoneRequest.userName;
 		clientZone.VerificationPhone__c = clientZoneRequest.verificationPhone;
@@ -122,56 +118,36 @@ public with sharing class ClientZoneService {
 		return clientZone.Id;
 	}
 
-	private static SF_PersonManagementSOAPService.CreateCZContractResponseType upsertAccountRelations(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations, String externalId, ClientZone__c clZone, Id clientSfId) {
+	private static SF_PersonManagementSOAPService.CreateCZContractResponseType upsertAccountRelations(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations, ClientZone__c clZone, Id clientSfId) {
 		SF_PersonManagementSOAPService.CreateCZContractResponseType response = new SF_PersonManagementSOAPService.CreateCZContractResponseType();
 
-//		List<AccountRelation__c> upsertAccountRelations = new List<AccountRelation__c>();
 		List<AccountRelation__c> accountRelationsToInsert = new List<AccountRelation__c>();
 		List<AccountRelation__c> accountRelationsToUpdate = new List<AccountRelation__c>();
 
 		Map<String, Id> relatedClientGlobalIdsByIds = getRelatedClientIds(clientRelations);
-		System.debug('LTE ' + relatedClientGlobalIdsByIds);
 
-		List<AccountRelation__c> relations = [
-				SELECT Id, Account__c, Account__r.GlobalId__c, RelatedAccount__c, RelatedAccount__r.GlobalId__c, RelatedAccountRole__c
-				FROM AccountRelation__c
-				WHERE ExternalId__c = :externalId
-		];
-		System.debug('LTE existing relations: ' + relations);
+		Set<String> externalIdsSet = buildExternalIdsSet(clientRelations);
+		List<AccountRelation__c> relations = [SELECT Id, ExternalId__c FROM AccountRelation__c WHERE ExternalId__c IN :externalIdsSet];
 		Map<String, AccountRelation__c> clientToRelateWithRelationMap = buildExistingRelationsMap(relations);
-		System.debug('LTE existing rels globalId MAP: ' + clientToRelateWithRelationMap);
 
 		for (SF_PersonManagementSOAPService.ClientRelationType requestRelation : clientRelations) {
-			System.debug('LTE comparing req.relClientId rel to MAP: ' + requestRelation.relatedClientId);
-			if (clientToRelateWithRelationMap.containsKey(requestRelation.relatedClientId)) {
-				AccountRelation__c toUpdate = clientToRelateWithRelationMap.get(requestRelation.relatedClientId);
-				System.debug('LTE accRel update bef: ' + toUpdate);
+			if (clientToRelateWithRelationMap.containsKey(requestRelation.externalId)) {
+				AccountRelation__c toUpdate = clientToRelateWithRelationMap.get(requestRelation.externalId);
 				accountRelationsToUpdate.add(updateAccountRelation(toUpdate, requestRelation, clZone, clientSfId));
-				System.debug('LTE accRel update aft: ' + accountRelationsToUpdate);
 			} else {
-				System.debug('LTE accRel insert bef. ');
 				accountRelationsToInsert.add(insertAccountRelation(requestRelation, relatedClientGlobalIdsByIds.get(requestRelation.relatedClientId), clZone, clientSfId));
-				System.debug('LTE accRel insert aft: ' + accountRelationsToInsert);
 			}
 		}
 
 		if (!accountRelationsToInsert.isEmpty()) {
-			System.debug('LTE inserting accRels: ' + accountRelationsToInsert);
 			insert accountRelationsToInsert;
 			response.isFault = false;
 		}
 
 		if (!accountRelationsToUpdate.isEmpty()) {
-			System.debug('LTE updating accRels: ' + accountRelationsToUpdate);
 			update accountRelationsToUpdate;
 			response.isFault = false;
 		}
-
-		/*if (!upsertAccountRelations.isEmpty()) {
-			System.debug('LTE upserting accRels: ' + upsertAccountRelations);
-			upsert upsertAccountRelations;
-			response.isSuccess = true;
-		}*/
 
 		return response;
 	}
@@ -186,7 +162,6 @@ public with sharing class ClientZoneService {
 		toUpdate.ValidFrom__c = Date.today();
 		toUpdate.IsActive__c = true;
 		toUpdate.RelatedAccount__c = clientSfId;
-		System.debug('LTE update rel: ' + toUpdate);
 		return toUpdate;
 	}
 
@@ -201,8 +176,10 @@ public with sharing class ClientZoneService {
 		accountRelation.ValidFrom__c = Date.today();
 		accountRelation.IsActive__c = true;
 		accountRelation.RelatedAccount__c = clientSfId;
+		if (relatedAccountId == null) {
+			throw new SOAPCommonTypes.BusinessException(201, 'No related client found for speficied globalId.');
+		}
 		accountRelation.Account__c = relatedAccountId;
-		System.debug('LTE insert rel: ' + accountRelation);
 		return accountRelation;
 	}
 
@@ -213,8 +190,12 @@ public with sharing class ClientZoneService {
 			globalIds.add(relation.relatedClientId);
 		}
 		List<Account> clients = [SELECT Id, GlobalId__c FROM Account WHERE GlobalId__c IN :globalIds];
-		for (Account client : clients) {
-			relatedClientGlobalIdsByIds.put(client.GlobalId__c, client.Id);
+		if (!clients.isEmpty()) {
+			for (Account client : clients) {
+				relatedClientGlobalIdsByIds.put(client.GlobalId__c, client.Id);
+			}
+		} else {
+			throw new SOAPCommonTypes.BusinessException(201, 'Upsert account relation failed, no clients found for specified related client.');
 		}
 		return relatedClientGlobalIdsByIds;
 	}
@@ -222,9 +203,16 @@ public with sharing class ClientZoneService {
 	private static Map<String, AccountRelation__c> buildExistingRelationsMap(List<AccountRelation__c> existingRelations) {
 		Map<String, AccountRelation__c> clientToRelateWithRelationMap = new Map<String, AccountRelation__c>();
 		for (AccountRelation__c relation : existingRelations) {
-			System.debug('LTE buildMap rels: ' + relation.RelatedAccount__r.GlobalId__c);
-			clientToRelateWithRelationMap.put(relation.RelatedAccount__r.GlobalId__c, relation);
+			clientToRelateWithRelationMap.put(relation.ExternalId__c, relation);
 		}
 		return clientToRelateWithRelationMap;
+	}
+
+	private static Set<String> buildExternalIdsSet(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations) {
+		Set<String> externalIdsSet = new Set<String>();
+		for (SF_PersonManagementSOAPService.ClientRelationType clientRelation : clientRelations) {
+			externalIdsSet.add(clientRelation.externalId);
+		}
+		return externalIdsSet;
 	}
 }
