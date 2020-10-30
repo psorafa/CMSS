@@ -89,7 +89,7 @@ public with sharing class ClientService {
 		return false;
 	}
 
-	private static Id getUserIdByCommissionAccountNr(String commissionAccountNumber) {
+	public static Id getUserIdByCommissionAccountNr(String commissionAccountNumber) {
 		if (commissionAccountNumber == null) {
 			return null;
 		}

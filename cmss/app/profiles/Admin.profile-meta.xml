@@ -74,10 +74,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>OpportunitySOAP</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>RecordTypeUtils</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -91,6 +87,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SearchResultDTO</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SF_OpportunitySOAPService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
