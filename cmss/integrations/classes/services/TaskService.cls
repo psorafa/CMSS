@@ -10,7 +10,7 @@ public with sharing class TaskService {
 			rtMappingMap.put(rtMappingItem.TypeAPIName__c, rtMappingItem.RecordTypeDeveloperName__c);
 		}
 
-		for (Task taskItem : taskList) {
+		for (Task taskItem : taskList ) {
 			if (taskItem.Type != null) {
 				String taskTypeDevName = rtMappingMap.get(taskItem.Type);
 				taskItem.RecordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
