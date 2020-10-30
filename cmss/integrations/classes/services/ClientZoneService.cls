@@ -7,7 +7,7 @@ public with sharing class ClientZoneService {
 		Id clientZoneId;
 		Id clientSfId;
 		if (clientZone.globalId == null) {
-			throw new SOAPCommonTypes.BusinessException(101, 'Attribute globalId is required');
+			throw new SOAPCommonTypes.BusinessException(101, 'Mising required attribute: globalId');
 		}
 		List<Account> accounts = [SELECT Id FROM Account WHERE GlobalId__c = :clientZone.globalId LIMIT 1];
 		if (accounts.isEmpty()) {
@@ -23,7 +23,7 @@ public with sharing class ClientZoneService {
 			clZone = insertClientZone(clientSfId, clientZone, closedById);
 			clientZoneId = clZone.Id;
 		} else if (clientZones.size() > 1) {
-			throw new SOAPCommonTypes.BusinessException(202, 'More than 1 ClientZone exist: Client GlobalId: ' + clientZone.globalId);
+			throw new SOAPCommonTypes.BusinessException(203, 'More than 1 ClientZone exist for Client GlobalId: ' + clientZone.globalId);
 		} else {
 			clZone = clientZones.get(0);
 			closedById = getClosedByUser(clientZone.closedBy);
@@ -68,7 +68,7 @@ public with sharing class ClientZoneService {
 			closedById = closedByUserId.get(0).Id;
 			return closedById;
 		} else {
-			throw new SOAPCommonTypes.BusinessException(202, 'No user found for specified account commision number: ' + closedByRequest);
+			throw new SOAPCommonTypes.BusinessException(201, 'Record not found: User - CPU: ' + closedByRequest);
 		}
 	}
 
@@ -177,7 +177,7 @@ public with sharing class ClientZoneService {
 		accountRelation.IsActive__c = true;
 		accountRelation.RelatedAccount__c = clientSfId;
 		if (relatedAccountId == null) {
-			throw new SOAPCommonTypes.BusinessException(201, 'No related client found for speficied globalId.');
+			throw new SOAPCommonTypes.BusinessException(201, 'Record not found: Client - globalId: ' + requestRelation.relatedClientId);
 		}
 		accountRelation.Account__c = relatedAccountId;
 		return accountRelation;
@@ -194,8 +194,6 @@ public with sharing class ClientZoneService {
 			for (Account client : clients) {
 				relatedClientGlobalIdsByIds.put(client.GlobalId__c, client.Id);
 			}
-		} else {
-			throw new SOAPCommonTypes.BusinessException(201, 'Upsert account relation failed, no clients found for specified related client.');
 		}
 		return relatedClientGlobalIdsByIds;
 	}
