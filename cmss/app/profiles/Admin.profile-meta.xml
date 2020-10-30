@@ -1321,7 +1321,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>	FirstPaymentDateAfterLastDraw__c</field>
+        <field>Asset.FirstPaymentDateAfterLastDraw__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2542,6 +2542,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CampaignMember__c.AccountEmail__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CampaignMember__c.AccountPhone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
