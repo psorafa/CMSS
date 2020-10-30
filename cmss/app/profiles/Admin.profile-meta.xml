@@ -2545,11 +2545,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>CampaignMember__c.AccountPhone__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>CampaignMember__c.Asset__c</field>
         <readable>true</readable>
