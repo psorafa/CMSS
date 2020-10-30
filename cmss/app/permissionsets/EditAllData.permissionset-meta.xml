@@ -2912,11 +2912,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Consent__c.Lead__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Consent__c.PhoneConsent__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4232,11 +4227,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>PortfolioManagementA__c.PortfolioManagementImpulse__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>PortfolioManagementA__c.PortfolioManager__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4288,11 +4278,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>PortfolioManagementC__c.PortfolioManChangeReason__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>PortfolioManagementC__c.PortfolioManagementImpulse__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4598,11 +4583,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>User.CommissionAccountBase__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>User.CommissionAccountNrCheck__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
