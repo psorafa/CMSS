@@ -39,7 +39,7 @@ private class Triggers_Test {
 
 	@IsTest
 	static void testTaskTrigger() {
-		Task t = TestDataFactory.getTask();
+		Task t = TestDataFactory.getTask(new Task());
 		insert t;
 		t.Subject = 'another subject';
 		update t;

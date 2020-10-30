@@ -11,8 +11,8 @@ public with sharing class OpportunityService {
 			opportunity.ValidFrom__c = System.now();
 		}
 		if (data.validTo == null) {
-			opportunity.CloseDate = data.validTo.addDays(90).date();
-			opportunity.ValidTo__c = data.validTo.addDays(120);
+			opportunity.CloseDate = System.now().addDays(90).date();
+			opportunity.ValidTo__c = System.now().addDays(120);
 		}
 		opportunity.DueDate__c = Date.today().addDays(90);
 		try {
