@@ -246,6 +246,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.DateOfDeletion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.DateOfRegistration__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1312,6 +1317,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.FirstPaymentDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.FirstPaymentDateAfterLastDraw__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3076,6 +3086,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ClientZone__c.ContractNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ClientZone__c.ContractStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3151,6 +3166,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Consent__c.AgentCPU__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Consent__c.AllConsent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Consent__c.ConsentId__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3171,6 +3196,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Consent__c.CreatedBy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Consent__c.CreatedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Consent__c.EmailConsent__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3182,6 +3217,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Consent__c.GeneralConsent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Consent__c.Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3202,6 +3242,26 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Consent__c.SMSConsent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Consent__c.SubstitutePerson__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Consent__c.SubstituteRole__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Consent__c.UpdatedBy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Consent__c.UpdatedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4866,6 +4926,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>PortfolioManagementRequest__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PortfolioManagementRequest__c.PortfolioManagementType__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5231,6 +5296,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>User.ManagerKP__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>User.MobilePhone__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5317,6 +5387,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>User.SuperiorLevel4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.UserRoleId</field>
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
@@ -5793,7 +5868,7 @@
         <modifyAllRecords>true</modifyAllRecords>
         <object>Log__c</object>
         <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>  
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
