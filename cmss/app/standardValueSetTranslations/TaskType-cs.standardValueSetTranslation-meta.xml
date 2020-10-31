@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <valueTranslation>
-        <masterLabel>Call</masterLabel>
-        <translation>Telefonát</translation>
+        <masterLabel>_PhoneCall</masterLabel>
+        <translation>Telefonní hovor</translation>
     </valueTranslation>
     <valueTranslation>
-        <masterLabel>Meeting</masterLabel>
+        <masterLabel>_Meeting</masterLabel>
         <translation>Schůzka</translation>
     </valueTranslation>
     <valueTranslation>
-        <masterLabel>Other</masterLabel>
-        <translation>Ostatní</translation>
+        <masterLabel>_Task</masterLabel>
+        <translation>Úkol</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>_Letter</masterLabel>
+        <translation>Dotaz/dopis</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>_Email</masterLabel>
+        <translation>E-mail</translation>
     </valueTranslation>
 </StandardValueSetTranslation>
