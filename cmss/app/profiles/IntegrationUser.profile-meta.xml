@@ -110,10 +110,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>OpportunityService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PermissionUtility</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -143,7 +139,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SF_OpportunitySOAPService</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SF_OpportunitySOAPServiceTest</apexClass>
@@ -155,7 +151,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SF_PersonManagementSOAPServiceTest</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SOAPCommonTypes</apexClass>
