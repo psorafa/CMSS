@@ -34,7 +34,7 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Asset__c</field>
             </layoutItems>
             <layoutItems>
@@ -56,10 +56,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>CancellationDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OwnerId</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
