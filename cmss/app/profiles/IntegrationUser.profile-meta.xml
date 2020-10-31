@@ -110,10 +110,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>SF_OpportunitySOAPService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PermissionUtility</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -123,6 +119,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>RecordTypeUtils_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ReferenceUtility</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -138,12 +138,40 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>SF_OpportunitySOAPService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SF_OpportunitySOAPServiceTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SF_PersonManagementSOAPService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SF_PersonManagementSOAPServiceTest</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SOAPCommonTypes</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SOAPResponseFactory</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SOAPResponseFactoryTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TaskService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TaskServiceTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>TestDataFactory</apexClass>
@@ -155,6 +183,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Triggers_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Validation</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
@@ -286,6 +318,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.DateOfDeath__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.DateOfDeletion__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -690,6 +727,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AQAccount__e.ExternalId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AQAccount__e.NewValues__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -711,6 +753,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AQAccountRelation__e.EntityName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AQAccountRelation__e.ExternalId__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -740,6 +787,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AQClientZone__e.ExternalId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AQClientZone__e.NewValues__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -765,6 +817,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AQOpportunity__e.ExternalId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AQOpportunity__e.NewValues__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -786,6 +843,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AQTask__e.EntityName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AQTask__e.ExternalId__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1361,6 +1423,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset.FirstPaymentDate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset.FirstPaymentDateAfterLastDraw__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3120,6 +3187,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>ClientZone__c.ContractNumber__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>ClientZone__c.ContractStatus__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -3195,6 +3267,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Consent__c.AgentCPU__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Consent__c.AllConsent__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Consent__c.ConsentId__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -3215,6 +3297,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Consent__c.CreatedBy__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Consent__c.CreatedDate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Consent__c.EmailConsent__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -3226,6 +3318,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Consent__c.GeneralConsent__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Consent__c.Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3246,6 +3343,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Consent__c.SMSConsent__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Consent__c.SubstitutePerson__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Consent__c.SubstituteRole__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Consent__c.UpdatedBy__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Consent__c.UpdatedDate__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4100,6 +4217,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Log__c.TransactionId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>LogEvent__e.ClassMethodName__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -4121,6 +4243,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>LogEvent__e.Payload__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>LogEvent__e.TransactionId__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4840,6 +4967,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>PortfolioManagementRequest__c.ExternalId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>PortfolioManagementRequest__c.PortfolioManagementType__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -5090,6 +5222,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>TaskRecordTypeMapping__mdt.RecordTypeDeveloperName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TaskRecordTypeMapping__mdt.TypeAPIName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.AgentActivityEndDate__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -5195,6 +5337,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.ManagerKP__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.MobilePhone__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -5284,7 +5431,13 @@
         <readable>false</readable>
     </fieldPermissions>
     <layoutAssignments>
+        <layout>Account-Account Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>AccountRelation__c-Account Relation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>AssetAccountRelation__c-Asset Account Relation Layout</layout>
@@ -5296,13 +5449,25 @@
         <layout>AssetDIMA__c-AssetDIMA Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>AssetRelationship-Asset Relationship Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Campaign-Campaign Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CampaignMember__c-CampaignMember Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseMilestone-Case Milestone Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CaseType__c-Case Type With Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ClientZone__c-Client Zone Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CommunityMemberLayout-Community Member Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ConsolidationResult__c-Consolidation Result Layout</layout>
@@ -5312,6 +5477,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>CrossSellingClosure__c-Cross Selling Closure Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Event-Event Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>FinancialOperation__c-Financial Operation Layout</layout>
@@ -5333,6 +5501,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>LoanSurchargeDiscount__c-Loan Surcharge Discount Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Log__c-Log Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>NonLifeInsurance__c-Non Life Insurance Layout</layout>
@@ -5375,6 +5546,9 @@
         <layout>PortfolioManagementRequest__c-Portfolio Management Request Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Product2-Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>ProductContractUrl__mdt-Product Contract Url Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -5387,6 +5561,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Task-Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>TaskRecordTypeMapping__mdt-Task Record Type Mapping Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>User-User Layout</layout>
@@ -5522,6 +5699,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Log__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>PicklistValue__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -5568,6 +5749,10 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>ApexRestServices</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>ApiEnabled</name>
     </userPermissions>
     <userPermissions>
@@ -5576,11 +5761,27 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>BulkApiHardDelete</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>ChatterInternalUser</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>LightningConsoleAllowedForUser</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RunReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>SelectFilesFromSalesforce</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>SubscribeToLightningReports</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

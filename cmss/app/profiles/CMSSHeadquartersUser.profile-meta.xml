@@ -110,10 +110,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>SF_OpportunitySOAPService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PermissionUtility</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -135,6 +131,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SearchResultDTO</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SF_OpportunitySOAPService</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
