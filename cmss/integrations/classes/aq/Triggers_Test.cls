@@ -30,7 +30,7 @@ private class Triggers_Test {
 
 	@IsTest
 	static void testOpportunityTrigger() {
-		Opportunity o = TestDataFactory.getOpportunity(null);
+		Opportunity o = TestDataFactory.getOpportunity();
 		insert o;
 		o.Name = 'another name';
 		update o;
@@ -39,7 +39,7 @@ private class Triggers_Test {
 
 	@IsTest
 	static void testTaskTrigger() {
-		Task t = TestDataFactory.getTask(null);
+		Task t = TestDataFactory.getTask(new Task());
 		insert t;
 		t.Subject = 'another subject';
 		update t;

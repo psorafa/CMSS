@@ -13,32 +13,35 @@ private class ClientZoneServiceTest {
 	private static String clientRole5 = '5';
 	private static String clientRole6 = '6';
 	private static String clientRole7 = '7';
-	private static User closedBy = createUser('testUser');
+	private static String closedBy = createUser('Mr.Tester', 'uGlobId', 'closedBy1234').CommissionAccountNr__c;
 	private static String globalId = '01234';
 	private static Account client = createAccount('TestAcc', globalId);
 
+	private static String externalId1 = 'ext1';
+	private static String externalId2 = 'ext2';
+	private static String externalId3 = 'ext3';
+
 	private static Date validTo1 = Date.today().addMonths(12);
-	private static Date validTo2 = Date.today().addMonths(12);
-	private static Date validTo3 = Date.today().addMonths(12);
+	private static Date validTo2 = Date.today().addMonths(13);
+	private static Date validTo3 = Date.today().addMonths(14);
 
 	@IsTest
 	static void createClientZoneTest() {
 		List<ClientZone__c> clientZonesEmpty = [SELECT Id FROM ClientZone__c WHERE Account__c = :client.Id LIMIT 1];
 		System.assert(clientZonesEmpty.isEmpty());
 
-		List<SF_PersonManagementSOAPService.ClientRelationType> accountRelationTypes = new List<SF_PersonManagementSOAPService.ClientRelationType>();
-		accountRelationTypes.add(prepareAccountRelationType(validTo1));
-		accountRelationTypes.add(prepareAccountRelationType(validTo2));
-		accountRelationTypes.add(prepareAccountRelationType(validTo3));
-		SF_PersonManagementSOAPService.CreateClientZoneRequest clientZoneRequest = prepareData(accountRelationTypes, globalId, clientRole8NoAccess);
-		System.debug('LTEST prepared req: ' + clientZoneRequest);
+		User user = createUser('MrTester', 'mrTesterGlobal', 'closedBy9876');
+		List<SF_PersonManagementSOAPService.ClientRelationType> clientRelationTypes = new List<SF_PersonManagementSOAPService.ClientRelationType>();
+		clientRelationTypes.add(prepareAccountRelationType(validTo1, client.GlobalId__c, externalId1));
+		clientRelationTypes.add(prepareAccountRelationType(validTo2, client.GlobalId__c, externalId2));
+		clientRelationTypes.add(prepareAccountRelationType(validTo3, client.GlobalId__c, externalId3));
+		SF_PersonManagementSOAPService.CreateCZContractRequestType clientZoneRequest = prepareCreateClientRequest(clientRelationTypes, globalId, clientRole8NoAccess, user.CommissionAccountNr__c);
 
 		Test.startTest();
-		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createClientZone(clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 
-		System.debug('LTEST resp: ' + czContractResponseType);
-		List<ClientZone__c> clientZones = [SELECT Id, Name, Username__c, VerificationPhone__c, Email__c, Role__c, ClosedBy__c, ExternalId__c, Account__c FROM ClientZone__c WHERE Account__c = :client.Id LIMIT 1];
+		List<ClientZone__c> clientZones = [SELECT Id, Name, Username__c, VerificationPhone__c, Email__c, Role__c, ClosedBy__c, ExternalId__c, Account__c FROM ClientZone__c WHERE Account__c = :client.Id];
 		System.assertEquals(1, clientZones.size());
 		ClientZone__c clientZone = clientZones.get(0);
 		System.assertEquals(clientZone.Name, contractNumber);
@@ -46,7 +49,7 @@ private class ClientZoneServiceTest {
 		System.assertEquals(clientZone.VerificationPhone__c, verPhone);
 		System.assertEquals(clientZone.Email__c, mail);
 		System.assertEquals(clientZone.Role__c, clientRole8NoAccess);
-		System.assertEquals(clientZone.ClosedBy__c, closedBy.Id);
+		System.assertEquals(clientZone.ClosedBy__c, user.Id);
 		System.assertEquals(clientZone.ExternalId__c, globalId);
 		System.assertEquals(clientZone.Account__c, client.Id);
 
@@ -58,11 +61,10 @@ private class ClientZoneServiceTest {
 		Integer correctValidToCount = 0;
 		for (AccountRelation__c accountRelation : accountRelations) {
 			System.assertEquals(client.Id, accountRelation.RelatedAccount__c);
-			System.assertEquals(clientRole7, accountRelation.RelatedAccountRole__c);
-			System.assertEquals(clientRole7, accountRelation.AccountRole__c);
+			System.assertEquals('1501', accountRelation.RelatedAccountRole__c);
+			System.assertEquals('1502', accountRelation.AccountRole__c);
 			if (validTo1 == accountRelation.ValidTo__c || validTo2 == accountRelation.ValidTo__c || validTo3 == accountRelation.ValidTo__c) {
 				correctValidToCount++;
-				System.debug('LTEST validTo upped: ' + correctValidToCount);
 			}
 		}
 		System.assertEquals(3, correctValidToCount);
@@ -74,16 +76,13 @@ private class ClientZoneServiceTest {
 		Account account = createAccount('updateAcc', globalIdUpdate);
 		ClientZone__c clientZone = new ClientZone__c(Status__c = '1', Account__c = account.Id, Role__c = '8');
 		insert clientZone;
-		System.debug('LTEST sel ClZone after insert: ' + [SELECT Id, Account__c FROM ClientZone__c WHERE Id = :clientZone.Id]);
 
-		SF_PersonManagementSOAPService.CreateClientZoneRequest clientZoneRequest = prepareData(null, globalIdUpdate, clientRole1);
-		System.debug('LTEST req: ' + clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractRequestType clientZoneRequest = prepareCreateClientRequest(null, globalIdUpdate, clientRole1, closedBy);
 		Test.startTest();
-		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createClientZone(clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 
-		System.debug('LTEST update resp.: ' + czContractResponseType);
-		System.assert(czContractResponseType.isSuccess);
+		System.assertEquals(clientZone.Id, czContractResponseType.responseBody.clientZoneId);
 	}
 
 	@IsTest
@@ -92,16 +91,13 @@ private class ClientZoneServiceTest {
 		Account account = createAccount('updateAcc', globalIdUpdate);
 		ClientZone__c clientZone = new ClientZone__c(Status__c = '1', Account__c = account.Id, Role__c = '1');
 		insert clientZone;
-		System.debug('LTEST sel ClZone after insert: ' + [SELECT Id, Account__c FROM ClientZone__c WHERE Id = :clientZone.Id]);
 
-		SF_PersonManagementSOAPService.CreateClientZoneRequest clientZoneRequest = prepareData(null, globalIdUpdate, clientRole2);
-		System.debug('LTEST req: ' + clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractRequestType clientZoneRequest = prepareCreateClientRequest(null, globalIdUpdate, clientRole2, closedBy);
 		Test.startTest();
-		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createClientZone(clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 
-		System.debug('LTEST update resp.: ' + czContractResponseType);
-		System.assert(czContractResponseType.isSuccess);
+		System.assertEquals(clientZone.Id, czContractResponseType.responseBody.clientZoneId);
 	}
 
 	@IsTest
@@ -110,16 +106,13 @@ private class ClientZoneServiceTest {
 		Account account = createAccount('updateAcc', globalIdUpdate);
 		ClientZone__c clientZone = new ClientZone__c(Status__c = '1', Account__c = account.Id, Role__c = '1');
 		insert clientZone;
-		System.debug('LTEST sel ClZone after insert: ' + [SELECT Id, Account__c FROM ClientZone__c WHERE Id = :clientZone.Id]);
 
-		SF_PersonManagementSOAPService.CreateClientZoneRequest clientZoneRequest = prepareData(null, globalIdUpdate, clientRole1);
-		System.debug('LTEST req: ' + clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractRequestType clientZoneRequest = prepareCreateClientRequest(null, globalIdUpdate, clientRole1, closedBy);
 		Test.startTest();
-		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createClientZone(clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 
-		System.debug('LTEST update resp.: ' + czContractResponseType);
-		System.assert(czContractResponseType.isSuccess);
+		System.assertEquals(clientZone.Id, czContractResponseType.responseBody.clientZoneId);
 	}
 
 	@IsTest
@@ -128,16 +121,13 @@ private class ClientZoneServiceTest {
 		Account account = createAccount('updateAcc', globalIdUpdate);
 		ClientZone__c clientZone = new ClientZone__c(Status__c = '1', Account__c = account.Id, Role__c = '8');
 		insert clientZone;
-		System.debug('LTEST sel ClZone after insert: ' + [SELECT Id, Account__c FROM ClientZone__c WHERE Id = :clientZone.Id]);
 
-		SF_PersonManagementSOAPService.CreateClientZoneRequest clientZoneRequest = prepareData(null, globalIdUpdate, clientRole8NoAccess);
-		System.debug('LTEST req: ' + clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractRequestType clientZoneRequest = prepareCreateClientRequest(null, globalIdUpdate, clientRole8NoAccess, closedBy);
 		Test.startTest();
-		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createClientZone(clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
 
-		System.debug('LTEST update resp.: ' + czContractResponseType);
-		System.assert(czContractResponseType.isSuccess);
+		System.assertEquals(clientZone.Id, czContractResponseType.responseBody.clientZoneId);
 	}
 
 	@IsTest
@@ -146,20 +136,28 @@ private class ClientZoneServiceTest {
 		Account account = createAccount('updateAcc', globalIdUpdate);
 		ClientZone__c clientZone = new ClientZone__c(Status__c = '1', Account__c = account.Id, Role__c = '6');
 		insert clientZone;
-		System.debug('LTEST sel ClZone after insert: ' + [SELECT Id, Account__c FROM ClientZone__c WHERE Id = :clientZone.Id]);
 
-		SF_PersonManagementSOAPService.CreateClientZoneRequest clientZoneRequest = prepareData(null, globalIdUpdate, clientRole2);
-		System.debug('LTEST req: ' + clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractRequestType clientZoneRequest = prepareCreateClientRequest(null, globalIdUpdate, clientRole2, closedBy);
 		Test.startTest();
-		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createClientZone(clientZoneRequest);
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
 		Test.stopTest();
-
-		System.debug('LTEST update resp.: ' + czContractResponseType);
-		System.assert(!czContractResponseType.isSuccess);
-		System.assertEquals(-3, czContractResponseType.errorNumber);
+		System.assert(czContractResponseType.isFault);
 	}
 
-	@isTest
+	@IsTest
+	static void createClientZoneClosedByUserDoesntExistTest() {
+		List<ClientZone__c> clientZonesEmpty = [SELECT Id FROM ClientZone__c WHERE Account__c = :client.Id LIMIT 1];
+		System.assert(clientZonesEmpty.isEmpty());
+
+		SF_PersonManagementSOAPService.CreateCZContractRequestType clientZoneRequest = prepareCreateClientRequest(null, globalId, clientRole8NoAccess, 'closedBy9876');
+
+		Test.startTest();
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
+		Test.stopTest();
+		System.assert(czContractResponseType.isFault);
+	}
+
+    @IsTest
 	static void getNewCZContractIDTest() {
 		//in Test Class instantiate the custom settings object
 		NumericalSeriesSettings__c customSettingsValue = new NumericalSeriesSettings__c();
@@ -182,31 +180,124 @@ private class ClientZoneServiceTest {
 		System.assertEquals(6, newIssuedContractNumber.ContractNumber__c);
 	}
 
-	private static SF_PersonManagementSOAPService.CreateClientZoneRequest prepareData(List<SF_PersonManagementSOAPService.ClientRelationType> accountRelationTypes, String globalId, String chosenRole) {
-		SF_PersonManagementSOAPService.CreateClientZoneRequest request = new SF_PersonManagementSOAPService.CreateClientZoneRequest();
+	@IsTest
+	static void mixedInsertUpdateOfAccountRelation() {
+		String startGlobalId = 'startGlobalId';
+		String globalIdAnother = 'globalIdAnother';
+		Account account = createAccount('updateAcc', startGlobalId);
+		Account anotherAcc = createAccount('anotherAcc', globalIdAnother);
+		ClientZone__c clientZone = new ClientZone__c(Status__c = '1', Account__c = account.Id, Role__c = '1');
+		insert clientZone;
+		AccountRelation__c accountRelation = new AccountRelation__c(IsActive__c = true, Account__c = account.Id, RelatedAccount__c = account.Id, AccountRole__c = '5', ClientZoneID__c = clientZone.Id, ExternalId__c = externalId1);
+		insert accountRelation;
+
+		List<SF_PersonManagementSOAPService.ClientRelationType> clientRelationTypes = new List<SF_PersonManagementSOAPService.ClientRelationType>();
+		clientRelationTypes.add(prepareAccountRelationType(validTo1, client.GlobalId__c, externalId1));
+		clientRelationTypes.add(prepareAccountRelationType(validTo2, anotherAcc.GlobalId__c, externalId2));
+
+		SF_PersonManagementSOAPService.CreateCZContractRequestType clientZoneRequest = prepareCreateClientRequest(clientRelationTypes, startGlobalId, clientRole2, closedBy);
+
+		Test.startTest();
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
+		Test.stopTest();
+
+		System.assert(!czContractResponseType.isFault);
+		List<AccountRelation__c> accountRelations = [SELECT Id FROM AccountRelation__c];
+		System.assertEquals(2, accountRelations.size());
+	}
+
+	@IsTest
+	static void updateCZTest() {
+		Date aDate = Date.today();
+		Account account = createAccount('test', 'globalId');
+		ClientZone__c clientZone = new ClientZone__c(
+			Name = 'testCZ',
+			Account__c = account.Id
+		);
+		insert clientZone;
+
+		SF_PersonManagementSOAPService.ClientZoneUpdateType cz = new SF_PersonManagementSOAPService.ClientZoneUpdateType();
+		cz.id = clientZone.Id;
+		cz.userName = 'usrnm';
+		cz.verificationPhone = '123123123';
+		cz.email = 'test@test.test';
+		cz.role = '1';
+		cz.signatureDate = aDate;
+		cz.agreementDate = aDate;
+		cz.status = '1';
+		SF_PersonManagementSOAPService.UpdateCZRequestType req = new SF_PersonManagementSOAPService.UpdateCZRequestType();
+		req.requestBody = cz;
+		req.requestHeader = new SOAPCommonTypes.CommonHeader();
+
+		Test.startTest();
+		SF_PersonManagementSOAPService.UpdateCZResponseType res = SF_PersonManagementSOAPService.updateCZ(req);
+		Test.stopTest();
+
+		System.assert(!res.isFault);
+		clientZone = [SELECT Username__c, VerificationPhone__c, Email__c, Role__c, SignatureDate__c, AgreementDate__c, Status__c FROM ClientZone__c WHERE Id = :clientZone.Id];
+		System.assertEquals(cz.userName, clientZone.Username__c);
+		System.assertEquals(cz.verificationPhone, clientZone.VerificationPhone__c);
+		System.assertEquals(cz.email, clientZone.Email__c);
+		System.assertEquals(cz.role, clientZone.Role__c);
+		System.assertEquals(cz.signatureDate, clientZone.SignatureDate__c);
+		System.assertEquals(cz.agreementDate, clientZone.AgreementDate__c);
+		System.assertEquals(cz.status, clientZone.Status__c);
+	}
+
+	@IsTest
+	static void updateCZTestErrors() {
+		Account account = createAccount('test', 'globalId');
+		ClientZone__c clientZone = new ClientZone__c(
+			Name = 'testCZ',
+			Account__c = account.Id
+		);
+		insert clientZone;
+		delete clientZone;
+
+		SF_PersonManagementSOAPService.ClientZoneUpdateType cz = new SF_PersonManagementSOAPService.ClientZoneUpdateType();
+		cz.id = clientZone.Id;
+		SF_PersonManagementSOAPService.UpdateCZRequestType req = new SF_PersonManagementSOAPService.UpdateCZRequestType();
+		req.requestBody = cz;
+		req.requestHeader = new SOAPCommonTypes.CommonHeader();
+
+		Test.startTest();
+		SF_PersonManagementSOAPService.UpdateCZResponseType res = SF_PersonManagementSOAPService.updateCZ(req);
+		System.assert(res.isFault);
+		System.assertEquals(201, res.fault.errorNumber);
+
+		cz.id = null;
+		res = SF_PersonManagementSOAPService.updateCZ(req);
+		System.assert(res.isFault);
+		System.assertEquals(101, res.fault.errorNumber);
+		Test.stopTest();
+	}
+
+    private static SF_PersonManagementSOAPService.CreateCZContractRequestType prepareCreateClientRequest(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelationTypes, String globalId, String chosenRole, String closedBy) {
+		SF_PersonManagementSOAPService.CreateCZContractRequestType request = new SF_PersonManagementSOAPService.CreateCZContractRequestType();
+	    SF_PersonManagementSOAPService.CreateCZContractRequestBody requestBody = new SF_PersonManagementSOAPService.CreateCZContractRequestBody();
 		SF_PersonManagementSOAPService.ClientZoneType clientZoneType = new SF_PersonManagementSOAPService.ClientZoneType();
-		request.clientZone = clientZoneType;
+		requestBody.clientZone = clientZoneType;
 
-		request.clientZone.contractNumber = contractNumber;
-		request.clientZone.userName = userName;
-		request.clientZone.verificationPhone = verPhone;
-		request.clientZone.email = mail;
-		request.clientZone.role = chosenRole;
-		request.clientZone.closedBy = closedBy.Id;
-		request.clientZone.globalId = globalId;
-		request.clientZone.clientId = client.Id;
+		requestBody.clientZone.contractNumber = contractNumber;
+		requestBody.clientZone.userName = userName;
+		requestBody.clientZone.verificationPhone = verPhone;
+		requestBody.clientZone.email = mail;
+		requestBody.clientZone.role = chosenRole;
+		requestBody.clientZone.closedBy = closedBy;
+		requestBody.clientZone.globalId = globalId;
 
-		request.accountRelations = accountRelationTypes;
+		requestBody.clientRelations = clientRelationTypes;
+
+		request.requestBody = requestBody;
 
 		return request;
 	}
 
-	private static SF_PersonManagementSOAPService.ClientRelationType prepareAccountRelationType(Date validTo) {
+	private static SF_PersonManagementSOAPService.ClientRelationType prepareAccountRelationType(Date validTo, String clientGlobalId, String externalId) {
 		SF_PersonManagementSOAPService.ClientRelationType accountRelationType = new SF_PersonManagementSOAPService.ClientRelationType();
-		accountRelationType.relatedClientId = client.Id;
-		accountRelationType.clientRole = clientRole7;
+		accountRelationType.relatedClientId = clientGlobalId;
 		accountRelationType.validTo = validTo;
-		accountRelationType.externalId = generateRandomNumberInString();
+		accountRelationType.externalId = externalId;
 
 		return accountRelationType;
 	}
@@ -219,13 +310,16 @@ private class ClientZoneServiceTest {
 		return account;
 	}
 
-	private static User createUser(String userName) {
+	private static User createUser(String userName, String globalIdUser, String commissionAccountNr) {
 		Id standardProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User'].Id;
-		System.debug(standardProfileId);
 		User user = new User();
+		user.FirstName = 'FirstName';
 		user.LastName = userName;
 		user.Username = userName + '@mail.invalid';
-		user.Email = userName + '@mail.invalid';
+		user.Email = userName.trim() + '@mail.invalid';
+		user.GlobalId__c = globalIdUser;
+		user.CommissionAccountNr__c = commissionAccountNr;
+
 		user.ProfileId = standardProfileId;
 		user.Alias = 'tstU';
 		user.TimeZoneSidKey = 'Europe/Prague';

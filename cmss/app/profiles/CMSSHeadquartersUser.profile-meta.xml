@@ -110,7 +110,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>OpportunitySOAP</apexClass>
+        <apexClass>SF_OpportunitySOAPService</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -135,10 +135,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SearchResultDTO</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SF_PersonManagementSOAP</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
