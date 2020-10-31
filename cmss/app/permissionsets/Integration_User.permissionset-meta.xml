@@ -2017,11 +2017,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AssetChange__c.Asset__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>AssetChange__c.ChangeAuthor__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2048,11 +2043,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>AssetChange__c.NewContractConditions__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>AssetDIMA__c.Asset__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2862,11 +2852,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CaseType__c.Case__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>CaseType__c.CaseType1__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3232,11 +3217,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CrossSellingClosure__c.Asset__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>CrossSellingClosure__c.CancellationDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3582,11 +3562,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>InternalConsent__c.Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>InternalConsent__c.CreatedBy__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3652,11 +3627,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>LifeInsuranceFonds__c.Asset__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>LifeInsuranceFonds__c.AssignmentDateBeginning__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3688,11 +3658,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>LifeInsuranceRisk__c.Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>LifeInsuranceRisk__c.Asset__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3732,11 +3697,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>LoanAssurance__c.Asset__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>LoanAssurance__c.AssuranceSubtype__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3768,11 +3728,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>LoanAssurance__c.ValidTo__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>LoanCaseDoc__c.Asset__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3813,11 +3768,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>LoanCaseDoc__c.Text__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>LoanSurchargeDiscount__c.Asset__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3882,11 +3832,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>NonLifeInsurance__c.Asset__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>NonLifeInsurance__c.EstateHeading__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3927,11 +3872,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>NonLifeInsuranceBinding__c.Asset__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>NonLifeInsuranceBinding__c.BindingID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3967,11 +3907,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>NonLifeInsuranceDiscount__c.Asset__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>NonLifeInsuranceDiscount__c.ExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3993,11 +3928,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>NonLifeInsuranceObject__c.AddressZipCode__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>NonLifeInsuranceObject__c.Asset__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4298,11 +4228,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>PensionStrategy__c.Amount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>PensionStrategy__c.Asset__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

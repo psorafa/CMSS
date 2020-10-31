@@ -458,11 +458,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CaseType__c.Case__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>CaseType__c.ClosingAgentId__c</field>
         <readable>true</readable>
     </fieldPermissions>
