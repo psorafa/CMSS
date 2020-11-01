@@ -3,11 +3,20 @@ public class TestDataFactory {
 
 	private static Integer accountCounter = 0;
 	private static Integer opportunityCounter = 0;
+	private static Integer assetCounter = 0;
+	private static Integer userCounter = 0;
 
 	public static Account getAccount() {
-		return new Account(
-			Name = 'Test account ' + ++accountCounter
+		return getAccount(new Account());
+	}
+
+	public static Account getAccount(Account so) {
+		Account template = new Account(
+			Name = 'Test account ' + ++accountCounter,
+			GlobalId__c = 'G' + accountCounter
 		);
+		copyFields(so, template);
+		return template;
 	}
 
 	public static AccountRelation__c getAccountRelation(Id accountId, Id relatedAccountId) {
@@ -38,29 +47,79 @@ public class TestDataFactory {
 		);
 	}
 
-	public static Opportunity getOpportunity(Id accountId) {
-		if (accountId == null) {
-			Account a = getAccount();
-			insert a;
-			accountId = a.Id;
-		}
-		return new Opportunity(
-			Name = 'Opportunity ' + ++opportunityCounter,
-			StageName = '1',
-			AccountId = accountId,
-			CloseDate = Date.today()
-		);
+	public static Opportunity getOpportunity() {
+		return getOpportunity(new Opportunity());
 	}
 
-	public static Task getTask(Id whatId) {
-		if (whatId == null) {
+	public static Opportunity getOpportunity(Opportunity so) {
+		Opportunity template = new Opportunity(
+			Name = 'Opportunity ' + ++opportunityCounter,
+			StageName = '1',
+			CloseDate = Date.today()
+		);
+		copyFields(so, template);
+		if (template.AccountId == null) {
 			Account a = getAccount();
 			insert a;
-			whatId = a.Id;
+			template.AccountId = a.Id;
 		}
-		return new Task(
-			WhatId = whatId,
+		return template;
+	}
+
+	public static Task getTask(Task so) {
+		Task template = new Task(
 			Subject = 'Test task'
 		);
+		copyFields(so, template);
+		if (template.WhatId == null) {
+			Account a = getAccount();
+			insert a;
+			template.WhatId = a.Id;
+		}
+		return template;
+	}
+
+	public static Asset getAsset(Asset so) {
+		Asset template = new Asset(
+			Name = 'Asset' + ++assetCounter
+		);
+		copyFields(so, template);
+		if (template.AccountId == null) {
+			Account a = getAccount();
+			insert a;
+			template.AccountId = a.Id;
+		}
+		return template;
+	}
+
+	public static User getUser(User so) {
+		Id profileId = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id;
+		String username = 'user' + ++userCounter;
+		User template = new User(
+			LastName = username,
+			Username = username + '@mail.invalid',
+			Email = username + '@mail.invalid',
+			CommissionAccountNr__c = 'CPU' + userCounter,
+			ProfileId = profileId,
+			Alias = 'tstU',
+			TimeZoneSidKey = 'Europe/Prague',
+			LocaleSidKey = 'cs_CZ',
+			EmailEncodingKey = 'UTF-8',
+			LanguageLocaleKey = 'en_US'
+		);
+		copyFields(so, template);
+		return template;
+	}
+
+	private static void copyFields(SObject source, SObject destination) {
+		if (source == null) {
+			return;
+		}
+		Map<String, Object> soMap = (Map<String, Object>) JSON.deserializeUntyped(JSON.serialize(source));
+		for (String fieldName : soMap.keySet()) {
+			if (fieldName != 'attributes') {
+				destination.put(fieldName, soMap.get(fieldName));
+			}
+		}
 	}
 }

@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <layouts>
+        <layout>Meeting Layout</layout>
+        <sections>
+            <label>Základní informace</label>
+            <section>Basic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Phone Call Layout</layout>
+        <sections>
+            <label>Základní informace</label>
+            <section>Basic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>Task Layout</layout>
+        <sections>
+            <label>Základní informace</label>
+            <section>Basic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
     </layouts>
     <quickActions>
         <label><!-- Defer --></label>
@@ -99,4 +129,19 @@
         <label><!-- UpdateStatus_4 --></label>
         <name>UpdateStatus_4</name>
     </quickActions>
+    <recordTypes>
+        <description>Schůzka</description>
+        <label>Schůzka</label>
+        <name>Meeting</name>
+    </recordTypes>
+    <recordTypes>
+        <description>Telefonní hovor</description>
+        <label>Telefonní hovor</label>
+        <name>PhoneCall</name>
+    </recordTypes>
+    <recordTypes>
+        <description>Úkol</description>
+        <label>Úkol</label>
+        <name>Task</name>
+    </recordTypes>
 </CustomObjectTranslation>

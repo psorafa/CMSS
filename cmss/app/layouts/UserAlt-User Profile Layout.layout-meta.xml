@@ -119,10 +119,6 @@
                 <behavior>Edit</behavior>
                 <field>CommissionAccountNr__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CommissionAccountNrCheck__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

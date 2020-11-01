@@ -320,6 +320,17 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>SBID__c</fields>
+        <fields>CSID__c</fields>
+        <fields>NewGlobalID__c</fields>
+        <fields>OldGlobalID__c</fields>
+        <fields>ActionType__c</fields>
+        <fields>CreatedOn__c</fields>
+        <relatedList>ConsolidationResult__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>NAME</fields>
         <relatedList>InternalConsent__c.Account__c</relatedList>
     </relatedLists>
@@ -461,8 +472,9 @@
         <fields>VerificationPhone__c</fields>
         <fields>Email__c</fields>
         <fields>Role__c</fields>
-        <fields>CREATED_DATE</fields>
-        <fields>CancellationDate__c</fields>
+        <fields>ClosedBy__c</fields>
+        <fields>SignatureDate__c</fields>
+        <fields>AgreementDate__c</fields>
         <fields>Status__c</fields>
         <relatedList>ClientZone__c.Account__c</relatedList>
         <sortField>NAME</sortField>

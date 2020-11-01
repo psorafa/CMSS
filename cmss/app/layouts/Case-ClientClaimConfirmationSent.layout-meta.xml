@@ -384,7 +384,6 @@
         <fields>RECORDTYPE</fields>
         <fields>AssetNumber__c</fields>
         <fields>CaseType1__c</fields>
-        <fields>OWNER.ALIAS</fields>
         <relatedList>CaseType__c.Case__c</relatedList>
     </relatedLists>
     <relatedObjects>ContactId</relatedObjects>

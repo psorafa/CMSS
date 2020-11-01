@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>APRD__ReadonlyFields__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">FirstName,LastName,Suffix__c,Title,Department,Position__c,ManagerId,Email,MobilePhone__c,UserRoleId</value>
     </values>
     <values>
         <field>APRD__SectionFieldMapping__c</field>

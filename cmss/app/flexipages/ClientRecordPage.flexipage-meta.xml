@@ -267,7 +267,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>rowsToDisplay</name>
-                <value>3</value>
+                <value>5</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>showActionBar</name>
@@ -281,72 +281,53 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>parentFieldApiName</name>
-                <value>Account.Id</value>
+                <name>childObjectName</name>
+                <value>AccountRelation__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>relatedListApiName</name>
-                <value>AccountRelations__r</value>
+                <name>columns</name>
+                <value>Name, RelatedAccount__c, RelationType__c, ValidFrom__c, ValidTo__c, SystemId__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>NONE</value>
+                <name>condition</name>
+                <value>IsActive__c = true</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>rowsToDisplay</name>
-                <value>10</value>
+                <name>iconName</name>
+                <value>standard:person_account</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>showActionBar</name>
-                <value>true</value>
+                <name>listName</name>
+                <value>Osobní vztahy</value>
             </componentInstanceProperties>
-            <componentName>force:relatedListSingleContainer</componentName>
+            <componentInstanceProperties>
+                <name>parentFieldName</name>
+                <value>Account__c</value>
+            </componentInstanceProperties>
+            <componentName>filterableRelatedList</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
-                <name>parentFieldApiName</name>
-                <value>Account.Id</value>
+                <name>childObjectName</name>
+                <value>AssetAccountRelation__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>relatedListApiName</name>
-                <value>AccountRelationsRelated__r</value>
+                <name>columns</name>
+                <value>Name, Asset__c, ProductType__c, RelationType__c, ValidFrom__c, ValidTo__c, SystemId__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>NONE</value>
+                <name>iconName</name>
+                <value>standard:employee_asset</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>rowsToDisplay</name>
-                <value>10</value>
+                <name>listName</name>
+                <value>Vedlejší role klienta na smlouvách</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>showActionBar</name>
-                <value>true</value>
+                <name>parentFieldName</name>
+                <value>Account__c</value>
             </componentInstanceProperties>
-            <componentName>force:relatedListSingleContainer</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>parentFieldApiName</name>
-                <value>Account.Id</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListApiName</name>
-                <value>AssetAccountRelations__r</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>NONE</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>rowsToDisplay</name>
-                <value>10</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>showActionBar</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentName>force:relatedListSingleContainer</componentName>
+            <componentName>filterableRelatedList</componentName>
         </componentInstances>
         <name>Facet-91021b20-fca5-4cce-b38d-7f8c9f626ed0</name>
         <type>Facet</type>

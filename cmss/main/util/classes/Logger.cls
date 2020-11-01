@@ -1,6 +1,7 @@
 public with sharing class Logger {
 
 	private static String defaultLogLevel = 'debug';
+    private static String transactionId = getUUID();
 	private static Integer defaultLogLevelNumber = 4;
 	private static final String DEBUG_LEVEL = 'debug';
 	private static final String INFO_LEVEL = 'info';
@@ -98,9 +99,11 @@ public with sharing class Logger {
 
 	public static void createLogEvent(String logLevel, String message, Exception ex, String payload) {
 		LogEvent__e logEvent = new LogEvent__e();
+        logEvent.TransactionId__c = transactionId;
 		logEvent.Message__c = message;
 		if (ex != null) {
-			logEvent.Exception__c = ex.getMessage() + ' | ' + ex.getStackTraceString();
+			DmlException outerException = new DmlException(ex);
+			logEvent.Exception__c = ex.getMessage() + '\n' + outerException.getStackTraceString().substringAfter('Caused by');
 		}
 		logEvent.Payload__c = payload;
 		logEvent.Level__c = logLevel;
@@ -126,5 +129,12 @@ public with sharing class Logger {
 				}
 			}
 		}
-	}
+    }
+    
+    public static String getUUID()  {
+        Blob b = Crypto.GenerateAESKey(128);
+        String h = EncodingUtil.ConvertTohex(b);
+        String guid = h.SubString(0,8)+ '-' + h.SubString(8,12) + '-' + h.SubString(12,16) + '-' + h.SubString(16,20) + '-' + h.substring(20);
+        return guid;
+    }
 }
