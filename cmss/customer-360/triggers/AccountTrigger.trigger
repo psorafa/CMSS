@@ -9,6 +9,9 @@ trigger AccountTrigger on Account (before insert, before update, before delete, 
 		}
 	}
 	if (Trigger.isBefore) {
+		if (Trigger.isInsert || Trigger.isUpdate) {
+			AccountConsolidationUtility.changeOwnerOfInvalidatedAccounts(Trigger.new);
+		}
 		if (Trigger.isDelete) {
 			AQMessageService.handleDelete(Trigger.old, Account.SObjectType);
 		}
