@@ -5618,15 +5618,43 @@
         <name>ChatterInternalUser</name>
     </userPermissions>
     <userPermissions>
+    <userPermissions>
         <enabled>false</enabled>
-        <name>EditTask</name>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>EmailMass</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>EmailSingle</name>
+    </userPermissions>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ExportReport</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>EmailSingle</name>
+    </userPermissions>
         <name>LightningConsoleAllowedForUser</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+    <userPermissions>
+        <enabled>fasle</enabled>
+        <name>ListEmailSend</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>MassInlineEdit</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RunReports</name>
+    </userPermissions>
         <name>ViewHelpLink</name>
     </userPermissions>
 </Profile>
