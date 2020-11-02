@@ -5640,7 +5640,7 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>LightningConsoleAllowedForUser</name>
-    </userPermissions>
+    </userPermissions>  
     <userPermissions>
         <enabled>false</enabled>
         <name>ListEmailSend</name>
@@ -5653,6 +5653,10 @@
         <enabled>true</enabled>
         <name>RunReports</name>
     </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>TransactionalEmailSend</name>
+    </userPermissions>  
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewHelpLink</name>
