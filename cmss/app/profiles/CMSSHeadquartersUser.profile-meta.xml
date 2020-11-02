@@ -1,9 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
+        <application>Service_Cloud_Console</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__AllTabSet</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__AppLauncher</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__AppLauncher</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Community</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Community</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>standard__LightningSales</application>
         <default>true</default>
         <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__SalesforceCMS</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Service</application>
+        <default>false</default>
+        <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
         <apexClass>ActivityManagementSOAP</apexClass>
@@ -5353,6 +5393,13 @@
         <layout>NonLifeInsuranceRisk__c-Non Life Insurance Risk Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Opportunity-LACRLayout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Opportunity Layout</layout>
+        <recordType>Opportunity.Editable</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>PensionStrategy__c-Pension Strategy Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -5569,6 +5616,12 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ChatterInternalUser</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>EditTask</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
