@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>ChangeRecordType</excludeButtons>
+    <excludeButtons>Delete</excludeButtons>
     <excludeButtons>DeleteSeries</excludeButtons>
+    <excludeButtons>Edit</excludeButtons>
+    <excludeButtons>FollowupTask</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <excludeButtons>ViewSeries</excludeButtons>
     <layoutSections>
