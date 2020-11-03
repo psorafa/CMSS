@@ -3,63 +3,70 @@
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>false</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správa stavu C</value>
     </caseValues>
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>true</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správy stavu C</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>false</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správu stavu C</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>true</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správy stavu C</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>false</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správy stavu C</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>true</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správ stavu C</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>false</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správě stavu C</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>true</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správám stavu C</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>false</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správou stavu C</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>true</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správami stavu C</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>false</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správě stavu C</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>true</plural>
-        <value><!-- Portfolio Management C --></value>
+        <value>Správách stavu C</value>
     </caseValues>
-    <gender><!-- Neuter --></gender>
-    <nameFieldLabel><!-- Portfolio Management C Name --></nameFieldLabel>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>Portfolio Management C Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Správa stavu C</nameFieldLabel>
 </CustomObjectTranslation>
