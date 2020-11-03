@@ -3,26 +3,21 @@ public without sharing class AccountConsolidationUtility {
 	public static final String MERGE = '1';
 	public static final String PARTIAL_MERGE = '2';
 	public static final String SPLIT = '3';
-
-	public final List<SObjectType> salesforceMasteredEntities = new List<SObjectType>{
-		Case.SObjectType,
-		Opportunity.SObjectType,
-		Task.SObjectType,
-		ClientZone__c.SObjectType
-	};
-
-	public final Map<SObjectType, String> relationFieldsMap = new Map<SObjectType, String>{
-		Case.SObjectType => 'AccountId',
-		Opportunity.SObjectType => 'AccountId',
-		Task.SObjectType => 'WhatId',
-		ClientZone__c.SObjectType => 'Account__c'
-	};
+	public static final Id CLIENT_CONSOLIDATION_RT = Case.SObjectType.getDescribe().getRecordTypeInfosByDeveloperName().get('Client_Consolidation').recordTypeId;
 
 	private List<ConsolidationResult__c> toBeMerged = new List<ConsolidationResult__c>();
 	private List<ConsolidationResult__c> toCreateCases = new List<ConsolidationResult__c>();
-	Map<String, Account> accountsByGlobalIdsMap;
 
-	AccountConsolidationUtility(List<ConsolidationResult__c> consolidationResults) {
+	Map<String, Account> oldAccountsByGlobalIdsMap;
+	Map<String, Account> newAccountsByGlobalIdsMap;
+
+	List<Case> casesToUpdate = new List<Case>();
+	List<Case> opportunitiesToUpdate = new List<Case>();
+	List<Case> tasksToUpdate = new List<Case>();
+	List<Case> clientZonesToUpdate = new List<Case>();
+
+
+	public AccountConsolidationUtility(List<ConsolidationResult__c> consolidationResults) {
 		for (ConsolidationResult__c consolidationResult : consolidationResults) {
 			if (consolidationResult.ActionType__c == MERGE) {
 				toBeMerged.add(consolidationResult);
@@ -30,78 +25,106 @@ public without sharing class AccountConsolidationUtility {
 				toCreateCases.add(consolidationResult);
 			}
 		}
-		accountsByGlobalIdsMap = prepareAccountsByGlobalIdsMap(getGlobalIds(consolidationResults));
+		initAccountsMaps(consolidationResults);
 	}
 
-	public static void changeOwnerOfInvalidatedAccounts(List<Account> accounts) {
-		// todo tohle asi vyndám do triggeru
-		Id ownerForHiddenRecordsId = CommonSetting__c.getOrgDefaults().OwnerForHiddenRecords__c;
-		if (ownerForHiddenRecordsId != null) {
-			for (Account a : accounts) {
-				if (a.IsInvalid__c && a.OwnerId != ownerForHiddenRecordsId) {
-					a.OwnerId = ownerForHiddenRecordsId;
-				}
-			}
+	private void initAccountsMaps(List<ConsolidationResult__c> consolidationResults) {
+		Set<Id> oldGlobalIds = new Set<Id>();
+		Set<Id> newGlobalIds = new Set<Id>();
+		for (ConsolidationResult__c result : consolidationResults) {
+			oldGlobalIds.add(result.OldGlobalID__c);
+			newGlobalIds.add(result.NewGlobalID__c);
 		}
+		oldAccountsByGlobalIdsMap = mapAccountsByGlobalId([
+			SELECT
+				Id, GlobalId__c, (SELECT Id, AccountId FROM Cases), (SELECT Id, AccountId FROM Opportunities), (SELECT Id, WhatId FROM Tasks), (SELECT Id, Account__c FROM ClientZones__r)
+			FROM Account
+			WHERE GlobalId__c IN :oldGlobalIds
+		]);
+		newAccountsByGlobalIdsMap = mapAccountsByGlobalId([
+			SELECT Id, GlobalId__c, (SELECT Id, Account__c FROM ClientZones__r)
+			FROM Account
+			WHERE GlobalId__c IN :newGlobalIds
+		]);
+	}
+
+	private Map<String, Account> mapAccountsByGlobalId(List<Account> accounts) {
+		Map<String, Account> accountMap = new Map<String, Account>();
+		for (Account a : accounts) {
+			accountMap.put(a.GlobalId__c, a);
+		}
+		return accountMap;
 	}
 
 	public void process() {
-		processMerges(toBeMerged);
-		processCaseCreations(toCreateCases);
+		processMerges();
+		processCaseCreations();
+		update casesToUpdate;
+		update opportunitiesToUpdate;
+		update tasksToUpdate;
+		update clientZonesToUpdate;
+		insert toCreateCases;
 	}
 
-	private void processMerges(List<ConsolidationResult__c> consolidationResults) {
-		Map<SObjectType, List<SObject>> recordsToUpdate = initRecordsToUpdateMap();
-		for (SObjectType sObjectType : salesforceMasteredEntities) {
-			moveRelatedRecordsToNewAccount(sObjectType, consolidationResults);
+	private void processMerges() {
+		for (ConsolidationResult__c result : toBeMerged) {
+			Account oldAccount = oldAccountsByGlobalIdsMap.get(result.OldGlobalID__c);
+			Account newAccount = newAccountsByGlobalIdsMap.get(result.NewGlobalID__c);
+			if (!oldAccount.ClientZones__r.isEmpty() && !newAccount.ClientZones__r.isEmpty()) {
+				toCreateCases.add(result);
+				continue;
+			}
+			reparentCases(oldAccount.Cases, newAccount.Id);
+			reparentOpportunities(oldAccount.Opportunities, newAccount.Id);
+			reparentTasks(oldAccount.Tasks, newAccount.Id);
+			reparentClientZones(oldAccount.ClientZones__r, newAccount.Id);
 		}
 	}
 
-	private void moveRelatedRecordsToNewAccount(SObjectType sObjectType, List<ConsolidationResult__c> consolidationResults) {
-		// musim: najit vsechny related zaznamy pro old
-		// zmenit na new
-		// ...a ulozit, to vypada celkem ok
-		Set<Id> oldAccountIds = new Set<Id>();
-		for (ConsolidationResult__c consolidationResult : consolidationResults) {
-			oldAccountIds.add(accountsByGlobalIdsMap.get(consolidationResult.OldGlobalID__c));
+	private void processCaseCreations() {
+		for (ConsolidationResult__c result : toCreateCases) {
+			toCreateCases.add(new Case(
+				RecordTypeId = CLIENT_CONSOLIDATION_RT,
+				Subject = 'Manual client consolidation',
+				AccountId = oldAccountsByGlobalIdsMap.get(result.OldGlobalID__c).Id,
+				ConsolidationResult__c = result.Id
+			));
 		}
-		for (SObject record : selectRecords(sObjectType, oldAccountIds)) {
-
-		}
-		// todo jeste mi to chybi old-to-new globalId mapa
-		// todo a taky nejak kontrolovat, ze novej account ma tu kleintskou zonu... popravde, nevimno
-		// todo taky je moznost si ty data vyselectit uz vlastne v ramci accountu... coooo? bude to pak uplne jinak, ale mozna snazsi
 	}
 
-	private List<SObject> selectRecords(SObjectType sObjectType, Set<Id> accountIds) {
-		String accountRelationField = relationFieldsMap.get(sObjectType);
-		String query = 'SELECT Id, ' + accountRelationField + ' FROM ' + sObjectType + ' WHERE ' + accountRelationField + '(\'' + String.join(accountIds, '\',\'') + '\')';
-		return Database.query(query);
-	}
-
-	private Map<SObjectType, List<SObject>> initRecordsToUpdateMap() {
-		Map<SObjectType, List<SObject>> theMap = new Map<SObjectType, List<SObject>>();
-		for (SObjectType sObjectType : salesforceMasteredEntities) {
-			theMap.put(sObjectType, new List<SObject>());
+	private void reparentCases(List<Case> cases, Id newAccountId) {
+		for (Case c : cases) {
+			casesToUpdate.add(new Case(
+				Id = c.Id,
+				AccountId = newAccountId
+			));
 		}
-		return theMap;
 	}
 
-	private Set<String> getGlobalIds(List<ConsolidationResult__c> consolidationResults) {
-		Set<String> globalIds = new Set<String>();
-		for (ConsolidationResult__c consolidationResult : consolidationResults) {
-			globalIds.add(consolidationResult.NewGlobalID__c);
-			globalIds.add(consolidationResult.OldGlobalID__c);
+	private void reparentOpportunities(List<Opportunity> opportunities, Id newAccountId) {
+		for (Opportunity o : opportunities) {
+			opportunitiesToUpdate.add(new Opportunity(
+				Id = o.Id,
+				AccountId = newAccountId
+			));
 		}
-		return globalIds;
 	}
 
-	private Map<String, Account> prepareAccountsByGlobalIdsMap(Set<String> globalIds) {
-		Map<String, Account> accountsByGlobalIds = new Map<String, Account>();
-		for (Account a : [SELECT Id, GlobalId__c FROM Account WHERE GlobalId__c IN :globalIds]) {
-			accountsByGlobalIds.put(a.GlobalId__c, a);
+	private void reparentTasks(List<Task> tasks, Id newAccountId) {
+		for (Task t : tasks) {
+			tasksToUpdate.add(new Task(
+				Id = t.Id,
+				WhatId = newAccountId
+			));
 		}
-		return accountsByGlobalIds;
 	}
 
+	private void reparentClientZones(List<ClientZone__c> clientZones, Id newAccountId) {
+		for (ClientZone__c cz : clientZones) {
+			clientZonesToUpdate.add(new ClientZone__c(
+				Id = cz.Id,
+				Account__c = newAccountId
+			));
+		}
+	}
 }

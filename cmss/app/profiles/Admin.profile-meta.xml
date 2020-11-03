@@ -2572,6 +2572,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.ConsolidationResult__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.ContactId</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5111,6 +5116,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>CampaignMember__c-CampaignMember Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Client Consolidation</layout>
+        <recordType>Case.Client_Consolidation</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Case-ClientClaimConfirmationSent</layout>
