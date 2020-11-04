@@ -36,15 +36,17 @@ public class TestDataFactory {
 		);
 	}
 
-	public static ClientZone__c getClientZone(Id accountId) {
-		if (accountId == null) {
+	public static ClientZone__c getClientZone(ClientZone__c so) {
+		ClientZone__c template = new ClientZone__c(
+
+		);
+		copyFields(so, template);
+		if (template.Account__c == null) {
 			Account a = getAccount();
 			insert a;
-			accountId = a.Id;
+			template.Account__c = a.Id;
 		}
-		return new ClientZone__c(
-			Account__c = accountId
-		);
+		return template;
 	}
 
 	public static Opportunity getOpportunity() {
@@ -82,6 +84,19 @@ public class TestDataFactory {
 	public static Asset getAsset(Asset so) {
 		Asset template = new Asset(
 			Name = 'Asset' + ++assetCounter
+		);
+		copyFields(so, template);
+		if (template.AccountId == null) {
+			Account a = getAccount();
+			insert a;
+			template.AccountId = a.Id;
+		}
+		return template;
+	}
+
+	public static Case getCase(Case so) {
+		Case template = new Case(
+			Subject = 'Case' + ++assetCounter
 		);
 		copyFields(so, template);
 		if (template.AccountId == null) {

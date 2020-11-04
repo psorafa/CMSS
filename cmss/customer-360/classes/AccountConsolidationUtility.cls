@@ -1,8 +1,6 @@
 public without sharing class AccountConsolidationUtility {
 
-	public static final String MERGE = '1';
-	public static final String PARTIAL_MERGE = '2';
-	public static final String SPLIT = '3';
+	public static final String MERGE_ACTION_TYPE = '1';
 	public static final Id CLIENT_CONSOLIDATION_RT = Case.SObjectType.getDescribe().getRecordTypeInfosByDeveloperName().get('Client_Consolidation').recordTypeId;
 
 	private List<ConsolidationResult__c> toBeMerged = new List<ConsolidationResult__c>();
@@ -12,14 +10,14 @@ public without sharing class AccountConsolidationUtility {
 	Map<String, Account> newAccountsByGlobalIdsMap;
 
 	List<Case> casesToUpdate = new List<Case>();
-	List<Case> opportunitiesToUpdate = new List<Case>();
-	List<Case> tasksToUpdate = new List<Case>();
-	List<Case> clientZonesToUpdate = new List<Case>();
-
+	List<Opportunity> opportunitiesToUpdate = new List<Opportunity>();
+	List<Task> tasksToUpdate = new List<Task>();
+	List<ClientZone__c> clientZonesToUpdate = new List<ClientZone__c>();
+	List<Case> casesToCreate = new List<Case>();
 
 	public AccountConsolidationUtility(List<ConsolidationResult__c> consolidationResults) {
 		for (ConsolidationResult__c consolidationResult : consolidationResults) {
-			if (consolidationResult.ActionType__c == MERGE) {
+			if (consolidationResult.ActionType__c == MERGE_ACTION_TYPE) {
 				toBeMerged.add(consolidationResult);
 			} else {
 				toCreateCases.add(consolidationResult);
@@ -29,8 +27,8 @@ public without sharing class AccountConsolidationUtility {
 	}
 
 	private void initAccountsMaps(List<ConsolidationResult__c> consolidationResults) {
-		Set<Id> oldGlobalIds = new Set<Id>();
-		Set<Id> newGlobalIds = new Set<Id>();
+		Set<String> oldGlobalIds = new Set<String>();
+		Set<String> newGlobalIds = new Set<String>();
 		for (ConsolidationResult__c result : consolidationResults) {
 			oldGlobalIds.add(result.OldGlobalID__c);
 			newGlobalIds.add(result.NewGlobalID__c);
@@ -83,7 +81,7 @@ public without sharing class AccountConsolidationUtility {
 
 	private void processCaseCreations() {
 		for (ConsolidationResult__c result : toCreateCases) {
-			toCreateCases.add(new Case(
+			casesToCreate.add(new Case(
 				RecordTypeId = CLIENT_CONSOLIDATION_RT,
 				Subject = 'Manual client consolidation',
 				AccountId = oldAccountsByGlobalIdsMap.get(result.OldGlobalID__c).Id,
