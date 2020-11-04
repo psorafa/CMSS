@@ -156,10 +156,6 @@
                 <behavior>Edit</behavior>
                 <field>ClaimRetirementPensionDate__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ClientId__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -188,27 +184,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Closed__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>ClientTransfer__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CltSurname__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CltRelatedRole__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CltFullname__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CltFirstName__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -221,10 +197,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ClosureType__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CltBirthNumber__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -245,10 +217,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>CreditFeeSum__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CreditState__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -277,10 +245,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ContractTerminationCanceled__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ContractNumber__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -341,10 +305,6 @@
         <editHeading>true</editHeading>
         <label>Additional Information</label>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>AccountNumber__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>AccountOpening__c</field>
@@ -483,10 +443,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CltPremiName__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>PaymentMethod__c</field>
             </layoutItems>
             <layoutItems>
@@ -536,10 +492,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>AssignmentDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Product__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -656,10 +608,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ReductionInsuranceContractTo__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>RelatedRole__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -853,10 +801,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SspStateCode__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>SerialNumber</field>
             </layoutItems>
             <layoutItems>
@@ -906,10 +850,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>YearPremiumWithoutDiscount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SystemId__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
