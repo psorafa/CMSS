@@ -66,7 +66,7 @@ private class AccountConsolidationUtilityTest {
 		Account newAccount = [
 			SELECT Id, (SELECT Id FROM Cases), (SELECT Id FROM Opportunities), (SELECT Id FROM Tasks), (SELECT Id FROM ClientZones__r)
 			FROM Account
-			WHERE Id = :a1.Id
+			WHERE Id = :a2.Id
 		];
 
 		System.assert(oldAccount.Cases.isEmpty());
@@ -74,7 +74,7 @@ private class AccountConsolidationUtilityTest {
 		System.assert(oldAccount.Tasks.isEmpty());
 		System.assert(oldAccount.ClientZones__r.isEmpty());
 
-		System.assertEquals(2, newAccount.Cases.size(), newAccount.Cases);
+		System.assertEquals(2, newAccount.Cases.size());
 		System.assertEquals(2, newAccount.Opportunities.size());
 		System.assertEquals(2, newAccount.Tasks.size());
 		System.assertEquals(1, newAccount.ClientZones__r.size());
