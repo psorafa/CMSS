@@ -1,10 +1,11 @@
 public class AccountTriggerHandler extends TriggerHandler {
-
 	public override void beforeInsert() {
+		invalidateAccount(Trigger.new);
 		changeOwnerOfInvalidatedAccounts(Trigger.new);
 	}
 
 	public override void beforeUpdate() {
+		invalidateAccount(Trigger.new);
 		changeOwnerOfInvalidatedAccounts(Trigger.new);
 	}
 
@@ -34,6 +35,16 @@ public class AccountTriggerHandler extends TriggerHandler {
 				if (a.IsInvalid__c && a.OwnerId != ownerForHiddenRecordsId) {
 					a.OwnerId = ownerForHiddenRecordsId;
 				}
+			}
+		}
+	}
+
+	@TestVisible
+	private static void invalidateAccount(List<Account> accounts) {
+		//Pokud je vyplněný date of deletion nebo pokud je status klienta 4 nebo 5
+		for (Account a : accounts) {
+			if (a.DateOfDeletion__c != null || a.AccountStatus__c == '4' || a.AccountStatus__c == '5') {
+				a.isInvalid__c = true;
 			}
 		}
 	}
