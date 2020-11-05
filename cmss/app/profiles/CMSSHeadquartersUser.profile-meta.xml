@@ -3220,16 +3220,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ConsolidationResult__c.NewGlobalID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ConsolidationResult__c.OldGlobalID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>ConsolidationResult__c.SBID__c</field>
         <readable>false</readable>
     </fieldPermissions>
