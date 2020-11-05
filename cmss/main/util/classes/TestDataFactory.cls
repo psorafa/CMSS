@@ -133,7 +133,7 @@ public class TestDataFactory {
 		Map<String, Object> soMap = (Map<String, Object>) JSON.deserializeUntyped(JSON.serialize(source));
 		for (String fieldName : soMap.keySet()) {
 			if (fieldName != 'attributes') {
-				destination.put(fieldName, soMap.get(fieldName));
+				destination.put(fieldName, source.get(fieldName));
 			}
 		}
 	}
