@@ -61,7 +61,7 @@ public without sharing class AccountConsolidationUtility {
 		update opportunitiesToUpdate;
 		update tasksToUpdate;
 		update clientZonesToUpdate;
-		insert toCreateCases;
+		insert casesToCreate;
 	}
 
 	private void processMerges() {
