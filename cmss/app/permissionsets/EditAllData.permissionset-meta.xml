@@ -272,6 +272,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.IsInvalid__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.IsLegallyIncompetent__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2293,6 +2298,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.ComplaintLegitimacy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.ConsolidationResult__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

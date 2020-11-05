@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>ClientConsolidation</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>Client_Consolidation_Solvers</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName = &apos;Client_Consolidation&apos;</formula>
+            <template>unfiled$public/New_Client_Consolidation_Case_Created</template>
+        </ruleEntry>
+    </assignmentRule>
+</AssignmentRules>
