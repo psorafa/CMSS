@@ -4685,6 +4685,11 @@
         <field>User.SuperiorLevel4__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.UPN__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Read All Data</label>
     <license>Salesforce</license>
