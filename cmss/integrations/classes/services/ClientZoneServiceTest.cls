@@ -50,7 +50,6 @@ private class ClientZoneServiceTest {
 		System.assertEquals(clientZone.ClosedBy__c, user.Id);
 		System.assertEquals(clientZone.ExternalId__c, globalId);
 		System.assertEquals(clientZone.Account__c, client.Id);
-		System.assertEquals(clientZone.Modi, client.Id);
 
 		List<AccountRelation__c> accountRelations = [
 				SELECT Id, Account__c, AccountRole__c, RelatedAccount__c, RelatedAccountRole__c, ValidTo__c
