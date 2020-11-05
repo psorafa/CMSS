@@ -111,8 +111,11 @@ private class SF_PersonManagementSOAPServiceTest {
 		SF_PersonManagementSOAPService.CreateClientRequestType clientRequest = prepareCreateClientRequest(true, false);
 
 		Test.startTest();
-		SF_PersonManagementSOAPService.createClient(clientRequest);
+		SF_PersonManagementSOAPService.CreateClientResponseType response = SF_PersonManagementSOAPService.createClient(clientRequest);
 		Test.stopTest();
+
+		System.assertEquals(false, response.isFault);
+		System.assertNotEquals(null, response.responseBody.clientId);
 	}
 
 	@IsTest
