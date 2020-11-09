@@ -2687,6 +2687,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CaseType__c.ProductType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CaseType__c.TargetAmount__c</field>
         <readable>true</readable>
     </fieldPermissions>
