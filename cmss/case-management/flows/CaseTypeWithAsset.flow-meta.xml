@@ -170,7 +170,7 @@
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.Asset__r.ProductType__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>9</stringValue>
                 </rightValue>
@@ -189,7 +189,7 @@
                 <stringValue>[CaseType__c].Asset__c.Name </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_8409564580</name>
+        <name>formula_2_myRule_1_A1_4392962454</name>
         <dataType>String</dataType>
         <expression>{!myVariable_current.Asset__r.Name}</expression>
     </formulas>
@@ -200,11 +200,11 @@
                 <stringValue>[CaseType__c].Asset__c.Name </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_7246537088</name>
+        <name>formula_5_myRule_4_A1_6731675341</name>
         <dataType>String</dataType>
         <expression>{!myVariable_current.Asset__r.Name}</expression>
     </formulas>
-    <interviewLabel>CaseTypeWithAsset-5_InterviewLabel</interviewLabel>
+    <interviewLabel>CaseTypeWithAsset-8_InterviewLabel</interviewLabel>
     <label>Case Type With Asset</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -312,7 +312,7 @@
             </processMetadataValues>
             <field>AssetNumber__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_8409564580</elementReference>
+                <elementReference>formula_2_myRule_1_A1_4392962454</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -536,7 +536,7 @@
             </processMetadataValues>
             <field>AssetNumber__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_7246537088</elementReference>
+                <elementReference>formula_5_myRule_4_A1_6731675341</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

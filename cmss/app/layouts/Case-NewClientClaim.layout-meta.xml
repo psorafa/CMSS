@@ -36,6 +36,18 @@
                 <behavior>Readonly</behavior>
                 <field>ReceivingConfirmationDate__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ComplaintClosingReason__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ComplaintReceivingConfirmation__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -234,6 +246,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ThirtyDayPeriodOverReason__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrentState__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SolutionPurpose__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
