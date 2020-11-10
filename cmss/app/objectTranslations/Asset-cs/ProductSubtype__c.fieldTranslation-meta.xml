@@ -3,15 +3,243 @@
     <label>Podtyp produktu</label>
     <name>ProductSubtype__c</name>
     <picklistValues>
-        <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <masterLabel>11000</masterLabel>
+        <translation>nedefinováno</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <masterLabel>11001</masterLabel>
+        <translation>PHÚ 70</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>3</masterLabel>
-        <translation><!-- 3 --></translation>
+        <masterLabel>11002</masterLabel>
+        <translation>PHÚ 85</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11003</masterLabel>
+        <translation>PHÚ 100</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11004</masterLabel>
+        <translation>HUF 70</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11005</masterLabel>
+        <translation>HUF 85</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11006</masterLabel>
+        <translation>HUF 100</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11007</masterLabel>
+        <translation>nedefinováno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060001</masterLabel>
+        <translation>Mini</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060002</masterLabel>
+        <translation>Junior</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060003</masterLabel>
+        <translation>Klasik</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060004</masterLabel>
+        <translation>Plus</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060005</masterLabel>
+        <translation>Handicap</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060006</masterLabel>
+        <translation>Senior</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060007</masterLabel>
+        <translation>Rezerva pro potenciální nový program</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060008</masterLabel>
+        <translation>Červené konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060009</masterLabel>
+        <translation>Postkonto (všechny programy)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060010</masterLabel>
+        <translation>První konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060011</masterLabel>
+        <translation>Osobní účet z Prvního konta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060012</masterLabel>
+        <translation>Poštovní účet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060013</masterLabel>
+        <translation>Poštovní účet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060020</masterLabel>
+        <translation>Plus Konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060021</masterLabel>
+        <translation>Premium konto (do  17.6.2020)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13060999</masterLabel>
+        <translation>nerozlišeno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13061000</masterLabel>
+        <translation>Červené konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13062000</masterLabel>
+        <translation>nerozlišeno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13063000</masterLabel>
+        <translation>nerozlišeno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13063008</masterLabel>
+        <translation>Červené konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13067000</masterLabel>
+        <translation>Plus Konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13067020</masterLabel>
+        <translation>Plus Konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13068000</masterLabel>
+        <translation>Premium konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13068021</masterLabel>
+        <translation>Premium konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13069000</masterLabel>
+        <translation>Spoření s bonusem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14090001</masterLabel>
+        <translation>Doplňkové penzijní spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14090002</masterLabel>
+        <translation>Transformovaný fond Stabilita</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14090999</masterLabel>
+        <translation>nedefinováno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14092001</masterLabel>
+        <translation>Doplňkové penzijní spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14092002</masterLabel>
+        <translation>Transformovaný fond Stabilita</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15000</masterLabel>
+        <translation>nedefinováno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15001</masterLabel>
+        <translation>5 - 9 let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15002</masterLabel>
+        <translation>10 - 12 let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15003</masterLabel>
+        <translation>13 - 15 let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15004</masterLabel>
+        <translation>16 - 17 let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15005</masterLabel>
+        <translation>16 - 17 let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15006</masterLabel>
+        <translation>16 - 17 let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16000</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16012</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16019</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16022</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16025</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16027</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16034</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16035</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16036</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16042</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16060</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16083</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16084</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16091</masterLabel>
+        <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16110</masterLabel>
+        <translation>Domov od Lišky</translation>
     </picklistValues>
 </CustomFieldTranslation>

@@ -2625,6 +2625,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.AnswerForm__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2715,6 +2720,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.ComplaintClosingReason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.ComplaintReceivingConfirmation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.ContactId</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2741,6 +2756,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.CurrentState__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2966,6 +2986,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.SolvingType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.SolutionPurpose__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

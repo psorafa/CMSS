@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>0</fullName>
+        <default>false</default>
+        <label>0</label>
+    </customValue>
+    <customValue>
+        <fullName>1</fullName>
+        <default>false</default>
+        <label>1</label>
+    </customValue>
+    <customValue>
+        <fullName>2</fullName>
+        <default>false</default>
+        <label>2</label>
+    </customValue>
+    <customValue>
+        <fullName>7</fullName>
+        <default>false</default>
+        <label>7</label>
+    </customValue>
+    <customValue>
+        <fullName>9</fullName>
+        <default>false</default>
+        <label>9</label>
+    </customValue>
+    <customValue>
+        <fullName>11</fullName>
+        <default>false</default>
+        <label>11</label>
+    </customValue>
+    <customValue>
+        <fullName>13</fullName>
+        <default>false</default>
+        <label>13</label>
+    </customValue>
+    <customValue>
+        <fullName>14</fullName>
+        <default>false</default>
+        <label>14</label>
+    </customValue>
+    <customValue>
+        <fullName>15</fullName>
+        <default>false</default>
+        <label>15</label>
+    </customValue>
+    <customValue>
+        <fullName>16</fullName>
+        <default>false</default>
+        <label>16</label>
+    </customValue>
+    <description>0 = Úvěrový případ
+1 = Úvěr
+2 = Meziúvěr
+7 = Rizikového životního pojištění
+9 = Spořící účet
+11 = Hypotéka
+13 = Účty ČSOB
+14 = Penzijní produkty
+15 = Investiční životní pojištění
+16 = Pojištění majetku a odpovědnosti</description>
+    <masterLabel>Product Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

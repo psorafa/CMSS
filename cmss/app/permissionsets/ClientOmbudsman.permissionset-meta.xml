@@ -13,6 +13,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.AnswerForm__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -88,7 +93,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.ComplaintClosingReason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.ComplaintLegitimacy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.ComplaintReceivingConfirmation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -119,6 +134,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.CurrentState__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -343,6 +363,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.SolutionPurpose__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.SolverDepartmentNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -469,6 +494,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CaseType__c.ProductCloseDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CaseType__c.ProductType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
