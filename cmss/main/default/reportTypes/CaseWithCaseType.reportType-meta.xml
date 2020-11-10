@@ -97,11 +97,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IsSelfServiceClosed</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>CurrentState__c</field>
             <table>Case</table>
         </columns>
@@ -498,11 +493,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Type</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IsVisibleInSelfService</field>
             <table>Case</table>
         </columns>
         <columns>
