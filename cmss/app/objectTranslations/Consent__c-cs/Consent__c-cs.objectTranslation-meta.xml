@@ -61,5 +61,16 @@
         <value><!-- Consent --></value>
     </caseValues>
     <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Consent Layout</layout>
+        <sections>
+            <label>Hodnoty souhlasu</label>
+            <section>Channel Values</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel><!-- Consent Name --></nameFieldLabel>
 </CustomObjectTranslation>

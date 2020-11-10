@@ -61,5 +61,12 @@
         <value>Interních souhlasech</value>
     </caseValues>
     <gender>Neuter</gender>
+    <layouts>
+        <layout>Internal Consent Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel>Interní souhlas</nameFieldLabel>
 </CustomObjectTranslation>

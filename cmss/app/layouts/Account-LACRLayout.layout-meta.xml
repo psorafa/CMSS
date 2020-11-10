@@ -331,7 +331,22 @@
         <relatedList>ConsolidationResult__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
+        <fields>AllConsent__c</fields>
+        <fields>PhoneConsent__c</fields>
+        <fields>SMSConsent__c</fields>
+        <fields>EmailConsent__c</fields>
+        <fields>PostConsent__c</fields>
+        <fields>PortalConsent__c</fields>
+        <relatedList>Consent__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>InternalConsentValue__c</fields>
+        <fields>ValidFrom__c</fields>
+        <fields>ValidTo__c</fields>
         <relatedList>InternalConsent__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -382,20 +397,6 @@
         <fields>ASSET.PRICE</fields>
         <fields>ASSET.PURCHASE_DATE</fields>
         <relatedList>RelatedAssetList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <fields>NAME</fields>
-        <fields>GeneralConsentVersion__c</fields>
-        <fields>GeneralConsent__c</fields>
-        <fields>PhoneConsent__c</fields>
-        <fields>SMSConsent__c</fields>
-        <fields>EmailConsent__c</fields>
-        <fields>PostConsent__c</fields>
-        <fields>PortalConsent__c</fields>
-        <fields>EntityConsent__c</fields>
-        <fields>ExternalId__c</fields>
-        <relatedList>Consent__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>OPPORTUNITY.NAME</fields>
