@@ -108,10 +108,6 @@
                 <field>CreatedBy__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>CreatedById</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ExternalId__c</field>
             </layoutItems>
@@ -124,10 +120,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>UpdatedBy__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>LastModifiedById</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
