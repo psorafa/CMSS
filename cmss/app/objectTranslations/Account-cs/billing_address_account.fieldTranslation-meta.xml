@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
-        <caseType>Genitive</caseType>
+        <caseType>Accusative</caseType>
         <plural>false</plural>
-        <value>Země</value>
+        <value>Adresu</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
-        <plural>true</plural>
-        <value>Zemí</value>
+        <plural>false</plural>
+        <value>Adresy</value>
     </caseValues>
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>false</plural>
-        <value>Země</value>
-    </caseValues>
-    <caseValues>
-        <caseType>Nominative</caseType>
-        <plural>true</plural>
-        <value>Země</value>
+        <value>Adresa</value>
     </caseValues>
     <gender>Feminine</gender>
-    <name>billing_country_account</name>
+    <name>billing_address_account</name>
 </CustomFieldTranslation>

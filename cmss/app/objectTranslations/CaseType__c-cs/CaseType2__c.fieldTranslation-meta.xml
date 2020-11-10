@@ -3,16 +3,12 @@
     <label>Druh podání 2</label>
     <name>CaseType2__c</name>
     <picklistValues>
-        <masterLabel>1</masterLabel>
-        <translation>název pole - druh</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>10</masterLabel>
         <translation>návrh smlouvy, zvýšení, změny smluv</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>11</masterLabel>
-        <translation>návrh smlouvy, zvýšení, změny smluv</translation>
+        <translation>platební styk (inkaso, SIPO, přeúčtování)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>12</masterLabel>
@@ -75,10 +71,6 @@
         <translation>předčasné splacení</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>26</masterLabel>
-        <translation>storno/odstoupení od smlouvy / výpověď</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>27</masterLabel>
         <translation>účelovost</translation>
     </picklistValues>
@@ -92,7 +84,7 @@
     </picklistValues>
     <picklistValues>
         <masterLabel>3</masterLabel>
-        <translation>účtování úhrad, odpuštění poplatků</translation>
+        <translation>účtování úhrad, nesouhlas s poplatky, odpuštění poplatků</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>30</masterLabel>
@@ -115,8 +107,40 @@
         <translation>hypoteční úvěr</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>35</masterLabel>
+        <translation>internetové bankovnictví</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>36</masterLabel>
+        <translation>klientská zóna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>37</masterLabel>
+        <translation>dědictví</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>38</masterLabel>
+        <translation>převod finančních prostředků</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>39</masterLabel>
+        <translation>výše úrokové sazby - nedospořování</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>4</masterLabel>
         <translation>přístup ke klientům (OZ i ČMSS)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>40</masterLabel>
+        <translation>výše úrokové sazby - cs-produkty</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>41</masterLabel>
+        <translation>výše úrokové sazby - refixace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>42</masterLabel>
+        <translation>odklad splátek, úprava splácení</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>5</masterLabel>
@@ -132,7 +156,7 @@
     </picklistValues>
     <picklistValues>
         <masterLabel>8</masterLabel>
-        <translation>výpověď</translation>
+        <translation>výpověď smlouvy o stavebním spoření</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>9</masterLabel>
