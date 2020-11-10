@@ -317,11 +317,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>HasCommentsUnreadByOwner</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>OwnerDepartment__c</field>
             <table>Case</table>
         </columns>
