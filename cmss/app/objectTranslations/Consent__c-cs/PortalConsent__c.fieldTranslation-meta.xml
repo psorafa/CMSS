@@ -3,15 +3,15 @@
     <label>Souhlas el. portál</label>
     <name>PortalConsent__c</name>
     <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>Nevyjádřil se</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1</masterLabel>
         <translation>Ano</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
         <translation>Ne</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>3</masterLabel>
-        <translation>Nevyjádřil se</translation>
     </picklistValues>
 </CustomFieldTranslation>
