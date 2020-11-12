@@ -129,7 +129,7 @@ private class SF_PersonManagementSOAPServiceTest {
 
 		System.assert(response.isFault);
 		System.assertEquals(201, response.fault.errorNumber);
-		System.assertEquals('Record not found: User - CAN (čpú): spsC', response.fault.message);
+		System.assertEquals('Record not found: User - CPU: spsC', response.fault.message);
 	}
 
 	@IsTest

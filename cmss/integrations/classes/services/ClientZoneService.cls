@@ -1,32 +1,23 @@
 public with sharing class ClientZoneService {
 
 	public static Id createClientZone(
-			SF_PersonManagementSOAPService.ClientZoneType clientZone,
-			List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations
+		SF_PersonManagementSOAPService.ClientZoneType clientZone,
+		List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations
 	) {
 		Id clientZoneId;
-		Id clientSfId;
-		if (clientZone.globalId == null) {
-			throw new SOAPCommonTypes.BusinessException(101, 'Mising required attribute: globalId');
-		}
-		List<Account> accounts = [SELECT Id FROM Account WHERE GlobalId__c = :clientZone.globalId LIMIT 1];
-		if (accounts.isEmpty()) {
-			throw new SOAPCommonTypes.BusinessException(201, 'Record not found: Client - Global ID: ' + clientZone.globalId);
-		} else {
-			clientSfId = accounts.get(0).Id;
-		}
-		List<ClientZone__c> clientZones = [SELECT Id, Role__c FROM ClientZone__c WHERE Account__c = :accounts.get(0).Id AND Status__c = '1'];
+		Validation.requireAttribute(clientZone.globalId, 'GlobalId');
+		Id clientSfId = ReferenceUtility.getAccountByGlobalId(clientZone.globalId).Id;
+		List<ClientZone__c> clientZones = [SELECT Id, Role__c FROM ClientZone__c WHERE Account__c = :clientSfId AND Status__c = '1'];
 		ClientZone__c clZone;
-		Id closedById;
+		Validation.requireAttribute(clientZone.closedBy, 'closedBy');
+		Id closedById = ReferenceUtility.getUserByCPU(clientZone.closedBy).Id;
 		if (clientZones.isEmpty()) {
-			closedById = getClosedByUser(clientZone.closedBy);
 			clZone = insertClientZone(clientSfId, clientZone, closedById);
 			clientZoneId = clZone.Id;
 		} else if (clientZones.size() > 1) {
 			throw new SOAPCommonTypes.BusinessException(203, 'More than 1 ClientZone exist for Client GlobalId: ' + clientZone.globalId);
 		} else {
 			clZone = clientZones.get(0);
-			closedById = getClosedByUser(clientZone.closedBy);
 			if (Integer.valueOf(clientZone.role) >= Integer.valueOf(clZone.Role__c) || clZone.Role__c == '8') {
 				clientZoneId = updateClientZone(clZone, clientZone, closedById);
 			} else {
@@ -56,20 +47,8 @@ public with sharing class ClientZoneService {
 		clientZone.ContractStatus__c = '1';
 		clientZone.CreatedDate__c = Datetime.now();
 		clientZone.ModifiedDate__c = Datetime.now();
-
-		insert clientZone;
+		DmlUtility.insertRecord(clientZone);
 		return clientZone;
-	}
-
-	private static Id getClosedByUser(String closedByRequest) {
-		List<User> closedByUserId = [SELECT Id FROM User WHERE CommissionAccountNr__c = :closedByRequest];
-		Id closedById;
-		if (!closedByUserId.isEmpty()) {
-			closedById = closedByUserId.get(0).Id;
-			return closedById;
-		} else {
-			throw new SOAPCommonTypes.BusinessException(201, 'Record not found: User - CPU: ' + closedByRequest);
-		}
 	}
 
 	public static Decimal getNewCZContractID() {
@@ -95,12 +74,14 @@ public with sharing class ClientZoneService {
 		existingClientZone.SignatureDate__c = clientZoneUpdate.signatureDate;
 		existingClientZone.AgreementDate__c = clientZoneUpdate.agreementDate;
 		existingClientZone.Status__c = clientZoneUpdate.status;
-		PermissionUtility.checkForUpdate(existingClientZone);
-		try {
-			update existingClientZone;
-		} catch (DmlException e) {
-			throw new SOAPCommonTypes.BusinessException(302, 'Cannot update record: ' + e.getMessage(), e);
-		}
+		DmlUtility.updateRecord(existingClientZone);
+	}
+
+	public static void changeCZContractRelations(SF_PersonManagementSOAPService.ChangeCZContractRelationsRequestBody request) {
+		Validation.requireAttribute(request.clientZoneId, 'clientZoneId');
+		Validation.requireAttribute(request.amendmentNumber, 'amendmentNumber');
+		ChangeCZContractRelationsHandler handler = new ChangeCZContractRelationsHandler(request);
+		handler.handle();
 	}
 
 	private static Id updateClientZone(ClientZone__c clientZone, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedById) {
@@ -114,7 +95,7 @@ public with sharing class ClientZoneService {
 		clientZone.ContractStatus__c = '1';
 		clientZone.ModifiedDate__c = Datetime.now();
 		clientZone.ClosedBy__c = closedById;
-		update clientZone;
+		DmlUtility.updateRecord(clientZone);
 		return clientZone.Id;
 	}
 
@@ -124,7 +105,7 @@ public with sharing class ClientZoneService {
 		List<AccountRelation__c> accountRelationsToInsert = new List<AccountRelation__c>();
 		List<AccountRelation__c> accountRelationsToUpdate = new List<AccountRelation__c>();
 
-		Map<String, Id> relatedClientGlobalIdsByIds = getRelatedClientIds(clientRelations);
+		Map<String, Id> accountIdsByGlobalIds = ReferenceUtility.getAccountIdsByGlobalIds(clientRelations);
 
 		Set<String> externalIdsSet = buildExternalIdsSet(clientRelations);
 		List<AccountRelation__c> relations = [SELECT Id, ExternalId__c FROM AccountRelation__c WHERE ExternalId__c IN :externalIdsSet];
@@ -135,20 +116,12 @@ public with sharing class ClientZoneService {
 				AccountRelation__c toUpdate = clientToRelateWithRelationMap.get(requestRelation.externalId);
 				accountRelationsToUpdate.add(updateAccountRelation(toUpdate, requestRelation, clZone, clientSfId));
 			} else {
-				accountRelationsToInsert.add(insertAccountRelation(requestRelation, relatedClientGlobalIdsByIds.get(requestRelation.relatedClientId), clZone, clientSfId));
+				accountRelationsToInsert.add(insertAccountRelation(requestRelation, accountIdsByGlobalIds.get(requestRelation.relatedClientId), clZone, clientSfId));
 			}
 		}
 
-		if (!accountRelationsToInsert.isEmpty()) {
-			insert accountRelationsToInsert;
-			response.isFault = false;
-		}
-
-		if (!accountRelationsToUpdate.isEmpty()) {
-			update accountRelationsToUpdate;
-			response.isFault = false;
-		}
-
+		DmlUtility.insertRecords(accountRelationsToInsert);
+		DmlUtility.updateRecords(accountRelationsToUpdate);
 		return response;
 	}
 
@@ -183,22 +156,7 @@ public with sharing class ClientZoneService {
 		return accountRelation;
 	}
 
-	private static Map<String, Id> getRelatedClientIds(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations) {
-		Map<String, Id> relatedClientGlobalIdsByIds = new Map<String, Id>();
-		List<String> globalIds = new List<String>();
-		for (SF_PersonManagementSOAPService.ClientRelationType relation : clientRelations) {
-			globalIds.add(relation.relatedClientId);
-		}
-		List<Account> clients = [SELECT Id, GlobalId__c FROM Account WHERE GlobalId__c IN :globalIds];
-		if (!clients.isEmpty()) {
-			for (Account client : clients) {
-				relatedClientGlobalIdsByIds.put(client.GlobalId__c, client.Id);
-			}
-		}
-		return relatedClientGlobalIdsByIds;
-	}
-
-	private static Map<String, AccountRelation__c> buildExistingRelationsMap(List<AccountRelation__c> existingRelations) {
+	public static Map<String, AccountRelation__c> buildExistingRelationsMap(List<AccountRelation__c> existingRelations) {
 		Map<String, AccountRelation__c> clientToRelateWithRelationMap = new Map<String, AccountRelation__c>();
 		for (AccountRelation__c relation : existingRelations) {
 			clientToRelateWithRelationMap.put(relation.ExternalId__c, relation);
@@ -206,7 +164,7 @@ public with sharing class ClientZoneService {
 		return clientToRelateWithRelationMap;
 	}
 
-	private static Set<String> buildExternalIdsSet(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations) {
+	public static Set<String> buildExternalIdsSet(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations) {
 		Set<String> externalIdsSet = new Set<String>();
 		for (SF_PersonManagementSOAPService.ClientRelationType clientRelation : clientRelations) {
 			externalIdsSet.add(clientRelation.externalId);

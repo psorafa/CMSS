@@ -45,7 +45,7 @@ public with sharing class OpportunityService {
 		o.Reason__c = data.result;
 		o.Author__c = data.author;
 		if (data.statusManagerCPU != null) {
-			o.OwnerId = ClientService.getUserIdByCommissionAccountNr(data.statusManagerCPU);
+			o.OwnerId = ReferenceUtility.getUserByCPU(data.statusManagerCPU).Id;
 		}
 		if (data.validFrom != null) {
 			o.CreatedDateTime__c = data.validFrom;

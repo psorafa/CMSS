@@ -12,7 +12,7 @@ private class Triggers_Test {
 
 	@IsTest
 	static void testAccountRelationTrigger() {
-		AccountRelation__c a = TestDataFactory.getAccountRelation(null, null);
+		AccountRelation__c a = TestDataFactory.getAccountRelation(new AccountRelation__c());
 		insert a;
 		a.RelationType__c = '0';
 		update a;
