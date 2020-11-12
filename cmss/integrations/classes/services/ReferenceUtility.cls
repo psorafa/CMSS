@@ -33,11 +33,16 @@ public with sharing class ReferenceUtility {
 	public static Map<String, Id> getAccountIdsByGlobalIds(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations) {
 		Set<String> globalIds = new Set<String>();
 		for (SF_PersonManagementSOAPService.ClientRelationType relation : clientRelations) {
-			globalIds.add(relation.relatedClientId);
+				globalIds.add(relation.relatedClientId);
 		}
 		Map<String, Id> accountIdsByGlobalIds = new Map<String, Id>();
 		for (Account client : [SELECT Id, GlobalId__c FROM Account WHERE GlobalId__c IN :globalIds]) {
 			accountIdsByGlobalIds.put(client.GlobalId__c, client.Id);
+		}
+		for (SF_PersonManagementSOAPService.ClientRelationType relation : clientRelations) {
+			if (relation.relatedClientId != null && !accountIdsByGlobalIds.containsKey(relation.relatedClientId)) {
+				throw new SOAPCommonTypes.BusinessException(201, 'Record not found: Client - Global ID: ' + relation.relatedClientId);
+			}
 		}
 		return accountIdsByGlobalIds;
 	}

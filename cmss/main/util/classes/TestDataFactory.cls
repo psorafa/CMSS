@@ -19,21 +19,25 @@ public class TestDataFactory {
 		return template;
 	}
 
-	public static AccountRelation__c getAccountRelation(Id accountId, Id relatedAccountId) {
-		if (accountId == null) {
-			Account a = getAccount();
-			insert a;
-			accountId = a.Id;
-		}
-		if (relatedAccountId == null) {
-			Account a = getAccount();
-			insert a;
-			relatedAccountId = a.Id;
-		}
-		return new AccountRelation__c(
-			Account__c = accountId,
-			RelatedAccount__c = relatedAccountId
+	public static AccountRelation__c getAccountRelation(AccountRelation__c so) {
+		AccountRelation__c template = new AccountRelation__c(
+			AccountRole__c = '1',
+			RelatedAccountRole__c = '2',
+			ValidFrom__c = Date.today().addDays(-1),
+			ValidTo__c = Date.today().addDays(1)
 		);
+		copyFields(so, template);
+		if (template.Account__c == null) {
+			Account a = getAccount();
+			insert a;
+			template.Account__c = a.Id;
+		}
+		if (template.RelatedAccount__c == null) {
+			Account a = getAccount();
+			insert a;
+			template.RelatedAccount__c = a.Id;
+		}
+		return template;
 	}
 
 	public static ClientZone__c getClientZone(ClientZone__c so) {

@@ -37,9 +37,9 @@ public with sharing class ChangeCZContractRelationsHandler {
 			AccountRelation__c relation = existingRelationsByExternalId.get(clientRelation.externalId);
 			if (relation == null) {
 				relation = new AccountRelation__c(
-					RelatedAccount__c = accountIdsByGlobalIds.get(clientRelation.relatedClientId),
+					Account__c = accountIdsByGlobalIds.get(clientRelation.relatedClientId),
 					ExternalId__c = clientRelation.externalId,
-					Account__c = existingClientZone.Account__c
+					RelatedAccount__c = existingClientZone.Account__c
 				);
 				newRelations.add(relation);
 			}
