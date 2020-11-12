@@ -91,6 +91,34 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
+	webService static ChangeCZContractRelationsResponseType changeCZContractRelations(ChangeCZContractRelationsRequestType request) {
+		Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
+		try {
+			ChangeCZContractRelationsResponseType response = (ChangeCZContractRelationsResponseType) SOAPResponseFactory.constructResponse(
+				ChangeCZContractRelationsResponseType.class,
+				request.requestHeader
+			);
+			ClientZoneService.changeCZContractRelations(request.requestBody);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			ChangeCZContractRelationsResponseType response = (ChangeCZContractRelationsResponseType) SOAPResponseFactory.constructFaultResponse(
+				ChangeCZContractRelationsResponseType.class,
+				request.requestHeader, e
+			);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
 	/*
 	 * ----------------    createClient request and response types    ----------------
 	 */
@@ -183,6 +211,27 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService SOAPCommonTypes.Fault fault;
 	}
 
+	/*
+	 * ----------------    updateCZ request & response types    ----------------
+	 */
+	global class ChangeCZContractRelationsRequestType {
+		webService SOAPCommonTypes.CommonHeader requestHeader;
+		webService ChangeCZContractRelationsRequestBody requestBody;
+	}
+
+	global class ChangeCZContractRelationsRequestBody {
+		webService String clientZoneId;
+		webService String closedByCPU;
+		webService Integer amendmentNumber;
+		webService List<ClientRelationType> relations;
+	}
+
+	global class ChangeCZContractRelationsResponseType {
+		webService SOAPCommonTypes.CommonHeader responseHeader;
+		webService Boolean isFault;
+		webService SOAPCommonTypes.Fault fault;
+	}
+
 	global class ClientType {
 		webService String personNumber;
 		webService String personalIdentityNumber;
@@ -243,5 +292,6 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService String relatedClientId;
 		webService Date validTo;
 		webService String externalId;
+		webService String role;
 	}
 }
