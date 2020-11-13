@@ -5306,6 +5306,10 @@
         <layout>CaseType__c-Case Type With Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CaseType__c-Case Type Without Asset Layout</layout>
+        <recordType>CaseType__c.CaseTypeWithoutAsset</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>ClientZone__c-Client Zone Layout</layout>
     </layoutAssignments>
     <layoutAssignments>

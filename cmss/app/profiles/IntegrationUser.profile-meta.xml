@@ -5203,10 +5203,26 @@
         <layout>CampaignMember__c-CampaignMember Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Case-ClientClaimConfirmationSent</layout>
+        <recordType>Case.ClientClaimConfirmationSent</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-ClosedClientClaim</layout>
+        <recordType>Case.ClosedClientClaim</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-NewClientClaim</layout>
+        <recordType>Case.NewClientClaim</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CaseMilestone-Case Milestone Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CaseType__c-Case Type With Asset Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseType__c-Case Type Without Asset Layout</layout>
+        <recordType>CaseType__c.CaseTypeWithoutAsset</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ClientZone__c-Client Zone Layout</layout>
