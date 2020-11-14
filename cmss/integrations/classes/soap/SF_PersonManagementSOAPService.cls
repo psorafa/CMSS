@@ -119,6 +119,34 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
+	webService static ActivateCZContractRelationsResponseType activateCZContractRelations(ActivateCZContractRelationsRequestType request) {
+		Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
+		try {
+			ActivateCZContractRelationsResponseType response = (ActivateCZContractRelationsResponseType) SOAPResponseFactory.constructResponse(
+				ActivateCZContractRelationsResponseType.class,
+				request.requestHeader
+			);
+			ClientZoneService.activateCZContractRelations(request.requestBody);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			ActivateCZContractRelationsResponseType response = (ActivateCZContractRelationsResponseType) SOAPResponseFactory.constructFaultResponse(
+				ActivateCZContractRelationsResponseType.class,
+				request.requestHeader, e
+			);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
 	/*
 	 * ----------------    createClient request and response types    ----------------
 	 */
@@ -212,7 +240,7 @@ global with sharing class SF_PersonManagementSOAPService {
 	}
 
 	/*
-	 * ----------------    updateCZ request & response types    ----------------
+	 * ----------------    changeCZContractRelations & response types    ----------------
 	 */
 	global class ChangeCZContractRelationsRequestType {
 		webService SOAPCommonTypes.CommonHeader requestHeader;
@@ -227,6 +255,25 @@ global with sharing class SF_PersonManagementSOAPService {
 	}
 
 	global class ChangeCZContractRelationsResponseType {
+		webService SOAPCommonTypes.CommonHeader responseHeader;
+		webService Boolean isFault;
+		webService SOAPCommonTypes.Fault fault;
+	}
+
+	/*
+	 * ----------------    activateCZContractRelations & response types    ----------------
+	 */
+	global class ActivateCZContractRelationsRequestType {
+		webService SOAPCommonTypes.CommonHeader requestHeader;
+		webService ActivateCZContractRelationsRequestBody requestBody;
+	}
+
+	global class ActivateCZContractRelationsRequestBody {
+		webService String clientZoneId;
+		webService Integer amendmentNumber;
+	}
+
+	global class ActivateCZContractRelationsResponseType {
 		webService SOAPCommonTypes.CommonHeader responseHeader;
 		webService Boolean isFault;
 		webService SOAPCommonTypes.Fault fault;
