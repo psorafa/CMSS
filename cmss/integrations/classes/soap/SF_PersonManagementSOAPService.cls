@@ -147,6 +147,35 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
+	webService static GetNextCZAmendmentResponseType getNextCZAmendment(GetNextCZAmendmentRequestType request) {
+		Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
+		try {
+			GetNextCZAmendmentResponseType response = (GetNextCZAmendmentResponseType) SOAPResponseFactory.constructResponse(
+				GetNextCZAmendmentResponseType.class,
+				request.requestHeader
+			);
+			Integer nextAmendmentNumber = ClientZoneService.getNextCZAmendment(request.requestBody);
+			response.responseBody = new GetNextCZAmendmentResponseBody(nextAmendmentNumber);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			GetNextCZAmendmentResponseType response = (GetNextCZAmendmentResponseType) SOAPResponseFactory.constructFaultResponse(
+				GetNextCZAmendmentResponseType.class,
+				request.requestHeader, e
+			);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
 	/*
 	 * ----------------    createClient request and response types    ----------------
 	 */
@@ -277,6 +306,33 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService SOAPCommonTypes.CommonHeader responseHeader;
 		webService Boolean isFault;
 		webService SOAPCommonTypes.Fault fault;
+	}
+
+	/*
+	 * ----------------    GetNextCZAmendment & response types    ----------------
+	 */
+	global class GetNextCZAmendmentRequestType {
+		webService SOAPCommonTypes.CommonHeader requestHeader;
+		webService GetNextCZAmendmentRequestBody requestBody;
+	}
+
+	global class GetNextCZAmendmentRequestBody {
+		webService String clientZoneId;
+	}
+
+	global class GetNextCZAmendmentResponseType {
+		webService SOAPCommonTypes.CommonHeader responseHeader;
+		webService Boolean isFault;
+		webService SOAPCommonTypes.Fault fault;
+		webService GetNextCZAmendmentResponseBody responseBody;
+	}
+
+	global class GetNextCZAmendmentResponseBody {
+		webService Integer nextAmendmentNumber;
+
+		GetNextCZAmendmentResponseBody(Integer nextAmendmentNumber) {
+			this.nextAmendmentNumber = nextAmendmentNumber;
+		}
 	}
 
 	global class ClientType {

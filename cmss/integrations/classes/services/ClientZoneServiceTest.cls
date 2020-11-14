@@ -52,8 +52,8 @@ private class ClientZoneServiceTest {
 		System.assertEquals(clientZone.Account__c, client.Id);
 
 		List<AccountRelation__c> accountRelations = [
-				SELECT Id, Account__c, AccountRole__c, RelatedAccount__c, RelatedAccountRole__c, ValidTo__c
-				FROM AccountRelation__c
+			SELECT Id, Account__c, AccountRole__c, RelatedAccount__c, RelatedAccountRole__c, ValidTo__c
+			FROM AccountRelation__c
 		];
 		System.assertEquals(3, accountRelations.size());
 		Integer correctValidToCount = 0;
@@ -175,9 +175,9 @@ private class ClientZoneServiceTest {
 		Test.stopTest();
 
 		NumericalSeriesSettings__c newIssuedContractNumber = [
-				SELECT ContractNumber__c
-				FROM NumericalSeriesSettings__c
-				LIMIT 1
+			SELECT ContractNumber__c
+			FROM NumericalSeriesSettings__c
+			LIMIT 1
 		];
 		System.assertEquals(6, lastIssuedContractNumber);
 		System.assert(newIssuedContractNumber != null);
@@ -214,8 +214,8 @@ private class ClientZoneServiceTest {
 		Date aDate = Date.today();
 		Account account = createAccount('test', 'globalId');
 		ClientZone__c clientZone = new ClientZone__c(
-				Name = 'testCZ',
-				Account__c = account.Id
+			Name = 'testCZ',
+			Account__c = account.Id
 		);
 		insert clientZone;
 
@@ -251,8 +251,8 @@ private class ClientZoneServiceTest {
 	static void updateCZTestErrors() {
 		Account account = createAccount('test', 'globalId');
 		ClientZone__c clientZone = new ClientZone__c(
-				Name = 'testCZ',
-				Account__c = account.Id
+			Name = 'testCZ',
+			Account__c = account.Id
 		);
 		insert clientZone;
 		delete clientZone;
@@ -273,6 +273,27 @@ private class ClientZoneServiceTest {
 		System.assert(res.isFault);
 		System.assertEquals(101, res.fault.errorNumber);
 		Test.stopTest();
+	}
+
+	@IsTest
+	static void testGetNextCZAmendment() {
+		ClientZone__c clientZone1 = TestDataFactory.getClientZone(new ClientZone__c(
+			NumberOfAnnexes__c = null
+		));
+		ClientZone__c clientZone2 = TestDataFactory.getClientZone(new ClientZone__c(
+			NumberOfAnnexes__c = 2
+		));
+		insert new List<ClientZone__c>{
+			clientZone1, clientZone2
+		};
+
+		SF_PersonManagementSOAPService.GetNextCZAmendmentRequestBody request = new SF_PersonManagementSOAPService.GetNextCZAmendmentRequestBody();
+		request.clientZoneId = clientZone1.Id;
+		System.assertEquals(1, ClientZoneService.getNextCZAmendment(request));
+
+		request = new SF_PersonManagementSOAPService.GetNextCZAmendmentRequestBody();
+		request.clientZoneId = clientZone2.Id;
+		System.assertEquals(3, ClientZoneService.getNextCZAmendment(request));
 	}
 
 	private static SF_PersonManagementSOAPService.CreateCZContractRequestType prepareCreateClientRequest(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelationTypes, String globalId, String chosenRole, String closedBy) {

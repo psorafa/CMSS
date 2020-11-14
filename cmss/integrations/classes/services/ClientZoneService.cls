@@ -90,6 +90,15 @@ public with sharing class ClientZoneService {
 		handler.handle();
 	}
 
+	public static Integer getNextCZAmendment(SF_PersonManagementSOAPService.GetNextCZAmendmentRequestBody request) {
+		Validation.requireAttribute(request.clientZoneId, 'clientZoneId');
+		ClientZone__c clientZone = ReferenceUtility.getClientZoneById(request.clientZoneId);
+		if (clientZone.NumberOfAnnexes__c == null) {
+			return 1;
+		}
+		return Integer.valueOf(clientZone.NumberOfAnnexes__c) + 1;
+	}
+
 	private static Id updateClientZone(ClientZone__c clientZone, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedById) {
 		clientZone.Name = clientZoneRequest.contractNumber;
 		clientZone.Username__c = clientZoneRequest.userName;
