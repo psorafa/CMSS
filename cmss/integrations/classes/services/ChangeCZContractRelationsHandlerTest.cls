@@ -22,7 +22,7 @@ private class ChangeCZContractRelationsHandlerTest {
 
 		Account anotherAccount1 = TestDataFactory.getAccount(new Account());
 		Account anotherAccount2 = TestDataFactory.getAccount(new Account());
-		insert new List<Account> {
+		insert new List<Account>{
 			anotherAccount1, anotherAccount2
 		};
 

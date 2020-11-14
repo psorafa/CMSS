@@ -26,7 +26,7 @@ private class ActivateCZContractRelationsHandlerTest {
 			AmendmentNumber__c = 6,
 			IsActive__c = false
 		));
-		insert new List<AccountRelation__c> {
+		insert new List<AccountRelation__c>{
 			accountRelation1, accountRelation2, accountRelation3
 		};
 
@@ -72,7 +72,7 @@ private class ActivateCZContractRelationsHandlerTest {
 			RelationTypeNEL__c = '5',
 			IsActive__c = false
 		));
-		insert new List<AccountRelation__c> {
+		insert new List<AccountRelation__c>{
 			accountRelation1, accountRelation2, accountRelation3
 		};
 
