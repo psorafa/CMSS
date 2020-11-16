@@ -64,31 +64,47 @@
     <layouts>
         <layout>ClientClaimConfirmationSent</layout>
         <sections>
-            <label>Klientské podání</label>
-            <section>Complain about</section>
+            <label>Informace o případu</label>
+            <section>Informace o případu</section>
+        </sections>
+        <sections>
+            <label>Nová sekce</label>
+            <section>New Section</section>
         </sections>
         <sections>
             <label>Podávající</label>
-            <section>Complainer</section>
+            <section>Podávající</section>
+        </sections>
+        <sections>
+            <label>Směřováno proti</label>
+            <section>Směřováno proti</section>
         </sections>
         <sections>
             <label>Řešení</label>
-            <section>Solution</section>
+            <section>Řešení</section>
         </sections>
     </layouts>
     <layouts>
         <layout>ClosedClientClaim</layout>
         <sections>
-            <label>Klientské podání</label>
-            <section>Complain about</section>
+            <label>Informace o případu</label>
+            <section>Informace o případu</section>
+        </sections>
+        <sections>
+            <label>Nová sekce</label>
+            <section>Nová sekce</section>
         </sections>
         <sections>
             <label>Podávající</label>
-            <section>Complainer</section>
+            <section>Podávající</section>
+        </sections>
+        <sections>
+            <label>Směřováno proti</label>
+            <section>Směřováno proti</section>
         </sections>
         <sections>
             <label>Řešení</label>
-            <section>Solution</section>
+            <section>Řešení</section>
         </sections>
     </layouts>
     <layouts>
@@ -140,16 +156,24 @@
     <layouts>
         <layout>NewClientClaim</layout>
         <sections>
-            <label>Klientské podání</label>
-            <section>Complain about</section>
+            <label>Informace o případu</label>
+            <section>Informace o případu</section>
+        </sections>
+        <sections>
+            <label>Nová sekce</label>
+            <section>New Section</section>
         </sections>
         <sections>
             <label>Podávající</label>
-            <section>Complainer</section>
+            <section>Podávající</section>
+        </sections>
+        <sections>
+            <label>Směřováno proti</label>
+            <section>Směřováno proti</section>
         </sections>
         <sections>
             <label>Řešení</label>
-            <section>Solution</section>
+            <section>Řešení</section>
         </sections>
     </layouts>
     <quickActions>
@@ -176,6 +200,10 @@
         <description><!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
         <label><!-- Client Claim Confirmation Sent --></label>
         <name>ClientClaimConfirmationSent</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Client Consolidation --></label>
+        <name>Client_Consolidation</name>
     </recordTypes>
     <recordTypes>
         <description><!-- The client claim record type with a non editable layout for closed cases --></description>

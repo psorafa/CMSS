@@ -3,64 +3,64 @@
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>false</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktní informace</value>
     </caseValues>
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>true</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktní informace</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>false</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktní informace</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>true</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktní informace</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>false</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktní informace</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>true</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktních informací</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>false</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktní informaci</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>true</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktním informacím</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>false</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktní informací</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>true</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktními informacemi</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>false</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktní informace</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>true</plural>
-        <value><!-- Contact Information --></value>
+        <value>Kontaktních informacích</value>
     </caseValues>
-    <gender><!-- Neuter --></gender>
+    <gender>Feminine</gender>
     <layouts>
         <layout>Contact Information Layout</layout>
         <sections>
@@ -68,9 +68,21 @@
             <section>Additional Information</section>
         </sections>
         <sections>
+            <label><!-- Adresa --></label>
+            <section>Adresa</section>
+        </sections>
+        <sections>
             <label>Prokliky</label>
             <section>Custom Links</section>
         </sections>
+        <sections>
+            <label><!-- Ostatní kontakty --></label>
+            <section>Ostatní kontakty</section>
+        </sections>
+        <sections>
+            <label><!-- Systémové informace --></label>
+            <section>Systémové informace</section>
+        </sections>
     </layouts>
-    <nameFieldLabel><!-- Contact Information Name --></nameFieldLabel>
+    <nameFieldLabel>Kontaktní informace</nameFieldLabel>
 </CustomObjectTranslation>

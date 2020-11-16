@@ -111,8 +111,11 @@ private class SF_PersonManagementSOAPServiceTest {
 		SF_PersonManagementSOAPService.CreateClientRequestType clientRequest = prepareCreateClientRequest(true, false);
 
 		Test.startTest();
-		SF_PersonManagementSOAPService.createClient(clientRequest);
+		SF_PersonManagementSOAPService.CreateClientResponseType response = SF_PersonManagementSOAPService.createClient(clientRequest);
 		Test.stopTest();
+
+		System.assertEquals(false, response.isFault);
+		System.assertNotEquals(null, response.responseBody.clientId);
 	}
 
 	@IsTest
@@ -126,7 +129,7 @@ private class SF_PersonManagementSOAPServiceTest {
 
 		System.assert(response.isFault);
 		System.assertEquals(201, response.fault.errorNumber);
-		System.assertEquals('Record not found: User - CAN (čpú): spsC', response.fault.message);
+		System.assertEquals('Record not found: User - CPU: spsC', response.fault.message);
 	}
 
 	@IsTest

@@ -21,8 +21,8 @@ public with sharing class ClientService {
 			GlobalId__c = clientType.clientGlobalId,
 			Birthdate__c = clientType.birthDate,
 			Gender__c = clientType.gender,
-			PortfolioMngmtA__c = getUserIdByCommissionAccountNr(clientType.spSa),
-			PortfolioMngmtC__c = getUserIdByCommissionAccountNr(clientType.spSc),
+			PortfolioMngmtA__c = ReferenceUtility.getUserByCPU(clientType.spSa).Id,
+			PortfolioMngmtC__c = ReferenceUtility.getUserByCPU(clientType.spSc).Id,
 			IsPoliticallyExposed__c = clientType.isPoliticallyExposed,
 			IsResident__c = clientType.isCrResident
 		);
@@ -36,8 +36,7 @@ public with sharing class ClientService {
 			client.Name = clientType.name;
 			client.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
 		}
-		PermissionUtility.checkForInsert(client);
-		insert client;
+		DmlUtility.insertRecord(client);
 		Logger.debug('Inserted account', JSON.serialize(client));
 		return client.Id;
 	}
@@ -49,9 +48,8 @@ public with sharing class ClientService {
 		for (SF_PersonManagementSOAPService.PersonCommunicationType commType : communicationTypes) {
 			createContactInformation(commType, accountId);
 		}
-		PermissionUtility.checkForInsert(contactInfoList);
-		insert contactInfoList;
-		Logger.info('Inserted ContactInformation__c list', JSON.serialize(contactInfoList));
+		DmlUtility.insertRecords(contactInfoList);
+		Logger.debug('Inserted ContactInformation__c list', JSON.serialize(contactInfoList));
 	}
 
 	private static void createContactInformation(SF_PersonManagementSOAPService.PersonCommunicationType commType, Id accountId) {
@@ -87,16 +85,5 @@ public with sharing class ClientService {
 			return true;
 		}
 		return false;
-	}
-
-	public static Id getUserIdByCommissionAccountNr(String commissionAccountNumber) {
-		if (commissionAccountNumber == null) {
-			return null;
-		}
-		List<User> users = [SELECT Id FROM User WHERE CommissionAccountNr__c = :commissionAccountNumber LIMIT 1];
-		if (!users.isEmpty()) {
-			return users.get(0).Id;
-		}
-		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: User - CAN (čpú): ' + commissionAccountNumber);
 	}
 }

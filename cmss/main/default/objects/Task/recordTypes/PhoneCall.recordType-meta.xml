@@ -2,7 +2,6 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PhoneCall</fullName>
     <active>true</active>
-    <description>Telefonní hovor</description>
     <label>Phone Call</label>
     <picklistValues>
         <picklist>CallDirectionCode__c</picklist>

@@ -335,10 +335,6 @@
         <relatedList>PortfolioManagementC__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>PortfolioManagementImpulse__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>TASK.WHAT_NAME</fields>
@@ -351,7 +347,6 @@
     </relatedLists>
     <relatedLists>
         <fields>ASSET.NAME</fields>
-        <fields>ProductType__c</fields>
         <fields>ASSET.PRICE</fields>
         <fields>ASSET.PURCHASE_DATE</fields>
         <relatedList>RelatedAssetList</relatedList>

@@ -33,6 +33,9 @@ sfdx force:source:push --targetusername $ALIAS
 #workaround to catch translation errors that silently fail in push
 sfdx force:source:deploy --sourcepath cmss/app/translations --targetusername $ALIAS
 
+# reset source tracking so the next push won't push everything again
+sfdx force:source:tracking:reset -p
+
 #setup data
 scripts/sh/data.sh $ALIAS
 

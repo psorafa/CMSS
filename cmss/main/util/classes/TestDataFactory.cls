@@ -19,32 +19,38 @@ public class TestDataFactory {
 		return template;
 	}
 
-	public static AccountRelation__c getAccountRelation(Id accountId, Id relatedAccountId) {
-		if (accountId == null) {
-			Account a = getAccount();
-			insert a;
-			accountId = a.Id;
-		}
-		if (relatedAccountId == null) {
-			Account a = getAccount();
-			insert a;
-			relatedAccountId = a.Id;
-		}
-		return new AccountRelation__c(
-			Account__c = accountId,
-			RelatedAccount__c = relatedAccountId
+	public static AccountRelation__c getAccountRelation(AccountRelation__c so) {
+		AccountRelation__c template = new AccountRelation__c(
+			AccountRole__c = '1',
+			RelatedAccountRole__c = '2',
+			ValidFrom__c = Date.today().addDays(-1),
+			ValidTo__c = Date.today().addDays(1)
 		);
+		copyFields(so, template);
+		if (template.Account__c == null) {
+			Account a = getAccount();
+			insert a;
+			template.Account__c = a.Id;
+		}
+		if (template.RelatedAccount__c == null) {
+			Account a = getAccount();
+			insert a;
+			template.RelatedAccount__c = a.Id;
+		}
+		return template;
 	}
 
-	public static ClientZone__c getClientZone(Id accountId) {
-		if (accountId == null) {
+	public static ClientZone__c getClientZone(ClientZone__c so) {
+		ClientZone__c template = new ClientZone__c(
+
+		);
+		copyFields(so, template);
+		if (template.Account__c == null) {
 			Account a = getAccount();
 			insert a;
-			accountId = a.Id;
+			template.Account__c = a.Id;
 		}
-		return new ClientZone__c(
-			Account__c = accountId
-		);
+		return template;
 	}
 
 	public static Opportunity getOpportunity() {
@@ -92,6 +98,19 @@ public class TestDataFactory {
 		return template;
 	}
 
+	public static Case getCase(Case so) {
+		Case template = new Case(
+			Subject = 'Case' + ++assetCounter
+		);
+		copyFields(so, template);
+		if (template.AccountId == null) {
+			Account a = getAccount();
+			insert a;
+			template.AccountId = a.Id;
+		}
+		return template;
+	}
+
 	public static User getUser(User so) {
 		Id profileId = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id;
 		String username = 'user' + ++userCounter;
@@ -118,7 +137,7 @@ public class TestDataFactory {
 		Map<String, Object> soMap = (Map<String, Object>) JSON.deserializeUntyped(JSON.serialize(source));
 		for (String fieldName : soMap.keySet()) {
 			if (fieldName != 'attributes') {
-				destination.put(fieldName, soMap.get(fieldName));
+				destination.put(fieldName, source.get(fieldName));
 			}
 		}
 	}

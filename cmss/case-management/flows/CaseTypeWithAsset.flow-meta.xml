@@ -59,13 +59,13 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -77,19 +77,19 @@
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.Asset__r.ProductType__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>6</stringValue>
+                    <stringValue>9</stringValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Product Type = 6</label>
+            <label>Product Type = 9</label>
         </rules>
     </decisions>
     <decisions>
@@ -148,13 +148,13 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -166,19 +166,19 @@
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-                        <stringValue>String</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.Asset__r.ProductType__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <stringValue>6</stringValue>
+                    <stringValue>9</stringValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>myRule_4_A1</targetReference>
             </connector>
-            <label>Product Type =! 6</label>
+            <label>Product Type =! 9</label>
         </rules>
     </decisions>
     <description>When Case Type has Asset chosen from lookup, fields (Product2 Id, Target Amount, Product Close Date, Closing Agent Id, Asset Number) are filled automatically.</description>
@@ -189,7 +189,7 @@
                 <stringValue>[CaseType__c].Asset__c.Name </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_4493169179</name>
+        <name>formula_2_myRule_1_A1_4392962454</name>
         <dataType>String</dataType>
         <expression>{!myVariable_current.Asset__r.Name}</expression>
     </formulas>
@@ -200,11 +200,11 @@
                 <stringValue>[CaseType__c].Asset__c.Name </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_3912989061</name>
+        <name>formula_5_myRule_4_A1_6731675341</name>
         <dataType>String</dataType>
         <expression>{!myVariable_current.Asset__r.Name}</expression>
     </formulas>
-    <interviewLabel>CaseTypeWithAsset-9_InterviewLabel</interviewLabel>
+    <interviewLabel>CaseTypeWithAsset-8_InterviewLabel</interviewLabel>
     <label>Case Type With Asset</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -312,7 +312,7 @@
             </processMetadataValues>
             <field>AssetNumber__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_4493169179</elementReference>
+                <elementReference>formula_2_myRule_1_A1_4392962454</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -355,42 +355,6 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Product2 Id</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Product2Id__c</field>
-            <value>
-                <elementReference>myVariable_current.Asset__r.Product2.Name</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
                     <stringValue>Date</stringValue>
                 </value>
             </processMetadataValues>
@@ -421,6 +385,42 @@
             <field>ProductCloseDate__c</field>
             <value>
                 <elementReference>myVariable_current.Asset__r.ProductCloseDate__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Product Type</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ProductType__c</field>
+            <value>
+                <elementReference>myVariable_current.Asset__r.ProductType__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -536,7 +536,7 @@
             </processMetadataValues>
             <field>AssetNumber__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_3912989061</elementReference>
+                <elementReference>formula_5_myRule_4_A1_6731675341</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -579,42 +579,6 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Product2 Id</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Product2Id__c</field>
-            <value>
-                <elementReference>myVariable_current.Asset__r.Product2.Name</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
                     <stringValue>Date</stringValue>
                 </value>
             </processMetadataValues>
@@ -645,6 +609,42 @@
             <field>ProductCloseDate__c</field>
             <value>
                 <elementReference>myVariable_current.Asset__r.ProductCloseDate__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Product Type</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ProductType__c</field>
+            <value>
+                <elementReference>myVariable_current.Asset__r.ProductType__c</elementReference>
             </value>
         </inputAssignments>
         <object>CaseType__c</object>

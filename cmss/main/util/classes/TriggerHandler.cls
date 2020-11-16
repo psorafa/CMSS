@@ -25,16 +25,16 @@ public virtual class TriggerHandler {
 			this.beforeInsert();
 		} else if (Trigger.isBefore && Trigger.isUpdate) {
 			this.beforeUpdate();
-			//		} else if (Trigger.isBefore && Trigger.isDelete) {
-			//			this.beforeDelete();
+		} else if (Trigger.isBefore && Trigger.isDelete) {
+			this.beforeDelete();
 		} else if (Trigger.isAfter && Trigger.isInsert) {
 			this.afterInsert();
 		} else if (Trigger.isAfter && Trigger.isUpdate) {
 			this.afterUpdate();
 			//		} else if (Trigger.isAfter && Trigger.isDelete) {
 			//			this.afterDelete();
-			//		} else if (Trigger.isAfter && Trigger.isUndelete) {
-			//			this.afterUndelete();
+		} else if (Trigger.isAfter && Trigger.isUndelete) {
+			this.afterUndelete();
 		}
 	}
 
@@ -55,16 +55,16 @@ public virtual class TriggerHandler {
 	}
 	protected virtual void beforeUpdate() {
 	}
-	//	protected virtual void beforeDelete() {
-	//	}
+	protected virtual void beforeDelete() {
+	}
 	protected virtual void afterInsert() {
 	}
 	protected virtual void afterUpdate() {
 	}
 	//	protected virtual void afterDelete() {
 	//	}
-	//	protected virtual void afterUndelete() {
-	//	}
+	protected virtual void afterUndelete() {
+	}
 
 	// exception class
 	public class TriggerHandlerException extends Exception {

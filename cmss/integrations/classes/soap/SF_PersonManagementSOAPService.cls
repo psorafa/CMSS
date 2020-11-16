@@ -91,6 +91,119 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
+	webService static ChangeCZContractRelationsResponseType changeCZContractRelations(ChangeCZContractRelationsRequestType request) {
+		Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
+		try {
+			ChangeCZContractRelationsResponseType response = (ChangeCZContractRelationsResponseType) SOAPResponseFactory.constructResponse(
+				ChangeCZContractRelationsResponseType.class,
+				request.requestHeader
+			);
+			ClientZoneService.changeCZContractRelations(request.requestBody);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			ChangeCZContractRelationsResponseType response = (ChangeCZContractRelationsResponseType) SOAPResponseFactory.constructFaultResponse(
+				ChangeCZContractRelationsResponseType.class,
+				request.requestHeader, e
+			);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
+	webService static ActivateCZContractRelationsResponseType activateCZContractRelations(ActivateCZContractRelationsRequestType request) {
+		Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
+		try {
+			ActivateCZContractRelationsResponseType response = (ActivateCZContractRelationsResponseType) SOAPResponseFactory.constructResponse(
+				ActivateCZContractRelationsResponseType.class,
+				request.requestHeader
+			);
+			ClientZoneService.activateCZContractRelations(request.requestBody);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			ActivateCZContractRelationsResponseType response = (ActivateCZContractRelationsResponseType) SOAPResponseFactory.constructFaultResponse(
+				ActivateCZContractRelationsResponseType.class,
+				request.requestHeader, e
+			);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
+	webService static SignCZContractRelationsResponseType signCZContractRelations(SignCZContractRelationsRequestType request) {
+		Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
+		try {
+			SignCZContractRelationsResponseType response = (SignCZContractRelationsResponseType) SOAPResponseFactory.constructResponse(
+				SignCZContractRelationsResponseType.class,
+				request.requestHeader
+			);
+			ClientZoneService.signCZContractRelations(request.requestBody);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			SignCZContractRelationsResponseType response = (SignCZContractRelationsResponseType) SOAPResponseFactory.constructFaultResponse(
+				SignCZContractRelationsResponseType.class,
+				request.requestHeader, e
+			);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
+	webService static GetNextCZAmendmentResponseType getNextCZAmendment(GetNextCZAmendmentRequestType request) {
+		Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
+		try {
+			GetNextCZAmendmentResponseType response = (GetNextCZAmendmentResponseType) SOAPResponseFactory.constructResponse(
+				GetNextCZAmendmentResponseType.class,
+				request.requestHeader
+			);
+			Integer nextAmendmentNumber = ClientZoneService.getNextCZAmendment(request.requestBody);
+			response.responseBody = new GetNextCZAmendmentResponseBody(nextAmendmentNumber);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			GetNextCZAmendmentResponseType response = (GetNextCZAmendmentResponseType) SOAPResponseFactory.constructFaultResponse(
+				GetNextCZAmendmentResponseType.class,
+				request.requestHeader, e
+			);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
 	/*
 	 * ----------------    createClient request and response types    ----------------
 	 */
@@ -183,6 +296,94 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService SOAPCommonTypes.Fault fault;
 	}
 
+	/*
+	 * ----------------    changeCZContractRelations & response types    ----------------
+	 */
+	global class ChangeCZContractRelationsRequestType {
+		webService SOAPCommonTypes.CommonHeader requestHeader;
+		webService ChangeCZContractRelationsRequestBody requestBody;
+	}
+
+	global class ChangeCZContractRelationsRequestBody {
+		webService String clientZoneId;
+		webService String closedByCPU;
+		webService Integer amendmentNumber;
+		webService List<ClientRelationType> relations;
+	}
+
+	global class ChangeCZContractRelationsResponseType {
+		webService SOAPCommonTypes.CommonHeader responseHeader;
+		webService Boolean isFault;
+		webService SOAPCommonTypes.Fault fault;
+	}
+
+	/*
+	 * ----------------    activateCZContractRelations & response types    ----------------
+	 */
+	global class ActivateCZContractRelationsRequestType {
+		webService SOAPCommonTypes.CommonHeader requestHeader;
+		webService ActivateCZContractRelationsRequestBody requestBody;
+	}
+
+	global class ActivateCZContractRelationsRequestBody {
+		webService String clientZoneId;
+		webService Integer amendmentNumber;
+	}
+
+	global class ActivateCZContractRelationsResponseType {
+		webService SOAPCommonTypes.CommonHeader responseHeader;
+		webService Boolean isFault;
+		webService SOAPCommonTypes.Fault fault;
+	}
+
+	/*
+	 * ----------------    signCZContractRelations & response types    ----------------
+	 */
+	global class SignCZContractRelationsRequestType {
+		webService SOAPCommonTypes.CommonHeader requestHeader;
+		webService SignCZContractRelationsRequestBody requestBody;
+	}
+
+	global class SignCZContractRelationsRequestBody {
+		webService String clientZoneId;
+		webService String relatedClientGlobalId;
+		webService Integer amendmentNumber;
+		webService Date signDate;
+	}
+
+	global class SignCZContractRelationsResponseType {
+		webService SOAPCommonTypes.CommonHeader responseHeader;
+		webService Boolean isFault;
+		webService SOAPCommonTypes.Fault fault;
+	}
+
+	/*
+	 * ----------------    GetNextCZAmendment & response types    ----------------
+	 */
+	global class GetNextCZAmendmentRequestType {
+		webService SOAPCommonTypes.CommonHeader requestHeader;
+		webService GetNextCZAmendmentRequestBody requestBody;
+	}
+
+	global class GetNextCZAmendmentRequestBody {
+		webService String clientZoneId;
+	}
+
+	global class GetNextCZAmendmentResponseType {
+		webService SOAPCommonTypes.CommonHeader responseHeader;
+		webService Boolean isFault;
+		webService SOAPCommonTypes.Fault fault;
+		webService GetNextCZAmendmentResponseBody responseBody;
+	}
+
+	global class GetNextCZAmendmentResponseBody {
+		webService Integer nextAmendmentNumber;
+
+		GetNextCZAmendmentResponseBody(Integer nextAmendmentNumber) {
+			this.nextAmendmentNumber = nextAmendmentNumber;
+		}
+	}
+
 	global class ClientType {
 		webService String personNumber;
 		webService String personalIdentityNumber;
@@ -243,5 +444,6 @@ global with sharing class SF_PersonManagementSOAPService {
 		webService String relatedClientId;
 		webService Date validTo;
 		webService String externalId;
+		webService String role;
 	}
 }

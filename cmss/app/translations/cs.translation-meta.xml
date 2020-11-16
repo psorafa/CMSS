@@ -102,7 +102,15 @@
     </customTabs>
     <flowDefinitions>
         <flows/>
-        <fullName>UpdateCaseRecordType</fullName>
+        <fullName>CASE_OnCreateActions</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>CASE_OnUpdateActions</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>CaseTypeWithAsset</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows>
@@ -163,15 +171,7 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
-        <fullName>CASE_OnCreateActions</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows/>
-        <fullName>CASE_OnUpdateActions</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows/>
-        <fullName>CaseTypeWithAsset</fullName>
+        <fullName>UpdateCaseRecordType</fullName>
     </flowDefinitions>
     <quickActions>
         <label><!-- LogACall --></label>
@@ -217,6 +217,15 @@
         <label><!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
+    <reportTypes>
+        <description><!-- User with Manager --></description>
+        <label><!-- User with Manager --></label>
+        <name>UserWithManager</name>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
     <reportTypes>
         <description><!-- Screen Flows --></description>
         <label><!-- Screen Flows --></label>
