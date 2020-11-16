@@ -64,11 +64,11 @@
     <layouts>
         <layout>ClientClaimConfirmationSent</layout>
         <sections>
-            <label><!-- Informace o případu --></label>
+            <label>Informace o případu</label>
             <section>Informace o případu</section>
         </sections>
         <sections>
-            <label><!-- New Section --></label>
+            <label>Nová sekce</label>
             <section>New Section</section>
         </sections>
         <sections>
@@ -76,7 +76,7 @@
             <section>Podávající</section>
         </sections>
         <sections>
-            <label>Klientské podání</label>
+            <label>Směřováno proti</label>
             <section>Směřováno proti</section>
         </sections>
         <sections>
@@ -87,7 +87,11 @@
     <layouts>
         <layout>ClosedClientClaim</layout>
         <sections>
-            <label><!-- Nová sekce --></label>
+            <label>Informace o případu</label>
+            <section>Informace o případu</section>
+        </sections>
+        <sections>
+            <label>Nová sekce</label>
             <section>Nová sekce</section>
         </sections>
         <sections>
@@ -95,7 +99,7 @@
             <section>Podávající</section>
         </sections>
         <sections>
-            <label>Klientské podání</label>
+            <label>Směřováno proti</label>
             <section>Směřováno proti</section>
         </sections>
         <sections>
@@ -152,11 +156,11 @@
     <layouts>
         <layout>NewClientClaim</layout>
         <sections>
-            <label><!-- Informace o případu --></label>
+            <label>Informace o případu</label>
             <section>Informace o případu</section>
         </sections>
         <sections>
-            <label><!-- New Section --></label>
+            <label>Nová sekce</label>
             <section>New Section</section>
         </sections>
         <sections>
@@ -164,7 +168,7 @@
             <section>Podávající</section>
         </sections>
         <sections>
-            <label>Klientské podání</label>
+            <label>Směřováno proti</label>
             <section>Směřováno proti</section>
         </sections>
         <sections>

@@ -15,10 +15,10 @@
     <excludeButtons>StartOutboundConversation</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
-        <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Case Information</label>
+        <label>Informace o případu</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>

@@ -310,6 +310,8 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>EntitlementId</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>OwnerDepartment__c</field>
             </layoutItems>
