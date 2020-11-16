@@ -3,64 +3,64 @@
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>false</plural>
-        <value><!-- Case Type --></value>
+        <value>Druh podání</value>
     </caseValues>
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>true</plural>
-        <value><!-- Case Type --></value>
+        <value>Druhy podání</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>false</plural>
-        <value><!-- Case Type --></value>
+        <value>Druh podání</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>true</plural>
-        <value><!-- Case Type --></value>
+        <value>Druhy podání</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>false</plural>
-        <value><!-- Case Type --></value>
+        <value>Druhu podání</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>true</plural>
-        <value><!-- Case Type --></value>
+        <value>Druhů podání</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>false</plural>
-        <value><!-- Case Type --></value>
+        <value>Druhu podání</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>true</plural>
-        <value><!-- Case Type --></value>
+        <value>Druhům podání</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>false</plural>
-        <value><!-- Case Type --></value>
+        <value>Druhem podání</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>true</plural>
-        <value><!-- Case Type --></value>
+        <value>Druhy podání</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>false</plural>
-        <value><!-- Case Type --></value>
+        <value>Druhu podání</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>true</plural>
-        <value><!-- Case Type --></value>
+        <value>Druzích podání</value>
     </caseValues>
-    <gender><!-- Neuter --></gender>
+    <gender>Masculine</gender>
     <layouts>
         <layout>Case Type With Asset Layout</layout>
         <sections>
@@ -75,7 +75,7 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <nameFieldLabel><!-- CaseType Name --></nameFieldLabel>
+    <nameFieldLabel>Druh podání</nameFieldLabel>
     <recordTypes>
         <label>S návazností na produkt</label>
         <name>CaseTypeWithAsset</name>
