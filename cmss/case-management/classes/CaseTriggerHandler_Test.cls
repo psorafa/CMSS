@@ -20,7 +20,7 @@ private class CaseTriggerHandler_Test {
 		Entitlement ent = new Entitlement(
 			Name = 'Default',
 			AccountId = acc.Id,
-			SlaProcessId = [SELECT Id FROM SlaProcess WHERE Name = 'claim management']
+			SlaProcessId = [SELECT Id FROM SlaProcess WHERE Name = 'claim management' LIMIT 1]
 			.Id,
 			StartDate = Date.today().addDays(-100),
 			EndDate = Date.today().addDays(20000)
