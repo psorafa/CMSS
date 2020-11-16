@@ -90,6 +90,14 @@ public with sharing class ClientZoneService {
 		handler.handle();
 	}
 
+	public static void signCZContractRelations(SF_PersonManagementSOAPService.SignCZContractRelationsRequestBody request) {
+		Validation.requireAttribute(request.clientZoneId, 'clientZoneId');
+		Validation.requireAttribute(request.relatedClientGlobalId, 'relatedClientGlobalId');
+		Validation.requireAttribute(request.signDate, 'signDate');
+		SignCZContractRelationHandler handler = new SignCZContractRelationHandler(request);
+		handler.handle();
+	}
+
 	public static Integer getNextCZAmendment(SF_PersonManagementSOAPService.GetNextCZAmendmentRequestBody request) {
 		Validation.requireAttribute(request.clientZoneId, 'clientZoneId');
 		ClientZone__c clientZone = ReferenceUtility.getClientZoneById(request.clientZoneId);
