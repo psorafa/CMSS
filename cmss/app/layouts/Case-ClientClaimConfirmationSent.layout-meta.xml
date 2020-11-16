@@ -308,6 +308,8 @@
                 <field>MultipleComplainers__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>EntitlementId</field>
                 <behavior>Readonly</behavior>
                 <field>OwnerDepartment__c</field>
             </layoutItems>
