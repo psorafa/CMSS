@@ -9,6 +9,7 @@
         <operation>equals</operation>
         <value>true</value>
     </exitCriteriaFilterItems>
+    <isVersionDefault>false</isVersionDefault>
     <milestones>
         <milestoneCriteriaFilterItems>
             <field>Case.IsClientClaim__c</field>
@@ -34,4 +35,7 @@
         <minutesToComplete>44640</minutesToComplete>
         <useCriteriaStartTime>false</useCriteriaStartTime>
     </milestones>
+    <name>claim management</name>
+    <versionMaster>5523N0000004EjQ</versionMaster>
+    <versionNumber>2</versionNumber>
 </EntitlementProcess>

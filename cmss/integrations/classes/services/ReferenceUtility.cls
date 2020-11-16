@@ -15,7 +15,7 @@ public with sharing class ReferenceUtility {
 	}
 
 	public static ClientZone__c getClientZoneById(Id clientZoneId) {
-		for (ClientZone__c cz : [SELECT Id, Account__c FROM ClientZone__c WHERE Id = :clientZoneId LIMIT 1]) {
+		for (ClientZone__c cz : [SELECT Id, Account__c, NumberOfAnnexes__c FROM ClientZone__c WHERE Id = :clientZoneId LIMIT 1]) {
 			return cz;
 		}
 		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: ClientZone - Id: ' + clientZoneId);
@@ -33,7 +33,7 @@ public with sharing class ReferenceUtility {
 	public static Map<String, Id> getAccountIdsByGlobalIds(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations) {
 		Set<String> globalIds = new Set<String>();
 		for (SF_PersonManagementSOAPService.ClientRelationType relation : clientRelations) {
-				globalIds.add(relation.relatedClientId);
+			globalIds.add(relation.relatedClientId);
 		}
 		Map<String, Id> accountIdsByGlobalIds = new Map<String, Id>();
 		for (Account client : [SELECT Id, GlobalId__c FROM Account WHERE GlobalId__c IN :globalIds]) {
