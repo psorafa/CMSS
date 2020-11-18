@@ -5377,6 +5377,18 @@
     </userPermissions>
     <userPermissions>
         <enabled>false</enabled>
+        <name>CreateCustomizeDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>CreateCustomizeFilters</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>CreateCustomizeReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
         <name>EditTask</name>
     </userPermissions>
     <userPermissions>
@@ -5388,7 +5400,7 @@
         <name>EmailSingle</name>
     </userPermissions>
     <userPermissions>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
         <name>ExportReport</name>
     </userPermissions>
     <userPermissions>
@@ -5404,8 +5416,12 @@
         <name>MassInlineEdit</name>
     </userPermissions>
     <userPermissions>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
         <name>RunReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>SubscribeToLightningReports</name>
     </userPermissions>
     <userPermissions>
         <enabled>false</enabled>
