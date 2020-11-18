@@ -5077,6 +5077,14 @@
         <recordType>Case.ClosedClientClaim</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Case-ClosedGDPR</layout>
+        <recordType>Case.ClosedGDPRClaim</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-GDPR</layout>
+        <recordType>Case.GDPR</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Case-NewClientClaim</layout>
         <recordType>Case.NewClientClaim</recordType>
     </layoutAssignments>
