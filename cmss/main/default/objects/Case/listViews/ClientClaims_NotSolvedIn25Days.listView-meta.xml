@@ -2,16 +2,20 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ClientClaims_NotSolvedIn25Days</fullName>
     <columns>CASES.CASE_NUMBER</columns>
-    <columns>CASES.TYPE</columns>
     <columns>CASES.STATUS</columns>
+    <columns>CASES.TYPE</columns>
     <columns>ReceivedDate__c</columns>
-    <columns>Source__c</columns>
-    <columns>SourceDescription__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ComplainerContractor__c</columns>
+    <columns>ComplainerFirstName__c</columns>
+    <columns>ComplainerLastName__c</columns>
     <columns>OWNER_NAME</columns>
+    <columns>OwnerDepartment__c</columns>
+    <columns>RepeatedComplaint__c</columns>
     <columns>ResponseSentDate__c</columns>
-    <columns>ReceivingConfirmationDate__c</columns>
+    <columns>ComplaintReceivingConfirmation__c</columns>
     <columns>DueDate__c</columns>
-    <columns>RemainingDays__c</columns>
+    <columns>MultipleComplainers__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>IsClientClaim__c</field>
