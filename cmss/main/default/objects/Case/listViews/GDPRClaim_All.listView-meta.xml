@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>ClientClaims_AllMine</fullName>
+    <fullName>GDPRClaim_All</fullName>
     <columns>CASES.CASE_NUMBER</columns>
     <columns>CASES.STATUS</columns>
-    <columns>CASES.TYPE</columns>
     <columns>ReceivedDate__c</columns>
     <columns>ACCOUNT.NAME</columns>
-    <columns>ComplainerContractor__c</columns>
     <columns>ComplainerFirstName__c</columns>
     <columns>ComplainerLastName__c</columns>
     <columns>OWNER_NAME</columns>
@@ -14,13 +12,11 @@
     <columns>RepeatedComplaint__c</columns>
     <columns>ResponseSentDate__c</columns>
     <columns>ComplaintReceivingConfirmation__c</columns>
-    <columns>DueDate__c</columns>
-    <columns>MultipleComplainers__c</columns>
-    <filterScope>Mine</filterScope>
+    <filterScope>Everything</filterScope>
     <filters>
         <field>IsClientClaim__c</field>
         <operation>equals</operation>
-        <value>1</value>
+        <value>0</value>
     </filters>
-    <label>Klientská podání - všechna má</label>
+    <label>GDPR podání - všechna</label>
 </ListView>
