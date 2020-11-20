@@ -6,6 +6,7 @@ public with sharing class TaskService {
 		}
         Validation.requireAttribute(data.name, 'name');
         Validation.requireAttribute(data.type, 'type');
+        Validation.requireAttribute(data.stateCode, 'stateCode');
 
         Task task = prepareTask(data);
         
@@ -14,6 +15,16 @@ public with sharing class TaskService {
 			return task.Id;
 		} catch (DmlException e) {
 			throw new SOAPCommonTypes.BusinessException(301, 'Cannot insert record: ' + e.getMessage(), e);
+		}
+    }
+    
+    public static void updateTask(SF_ActivityManagementSOAPService.ActivityType data) {
+        Validation.requireAttribute(data.id, 'id');
+		Task task = prepareTask(data);
+		try {
+			update task;
+		} catch (DmlException e) {
+			throw new SOAPCommonTypes.BusinessException(301, 'Cannot update record: ' + e.getMessage(), e);
 		}
 	}
 
@@ -47,7 +58,9 @@ public with sharing class TaskService {
         t.InternalAttendee__c = data.oz;
         t.Phone__c = data.phoneNumber;
         t.ActivityDate = data.dueDate;
-        t.Status = data.stateCode;
+        if (data.stateCode != null) {
+            t.Status = data.stateCode;
+        }
         t.StatusReason__c = data.statusCode;
         t.Subject = data.name;
         t.ValidTo__c = data.validTo;
@@ -59,7 +72,9 @@ public with sharing class TaskService {
         t.Author__c = data.authorCPU;
         t.WhatId = data.whatId;
         t.Email__c = data.email;
-        t.IsVisibleForNel__c = data.isVisibleForNEL;
+        if (data.isVisibleForNEL != null) {
+            t.IsVisibleForNel__c = data.isVisibleForNEL;
+        }
         t.Opportunity__c = data.opportunityId;
         t.Location__c = data.location; 
         t.PlannedToDate__c = data.plannedToDate;
@@ -68,8 +83,12 @@ public with sharing class TaskService {
         t.HouseNumber__c = data.letterHouseNr;
         t.PostCode__c = data.letterPostcode;
         t.Street__c = data.letterStreet;
-        t.IsKZMessage__c = data.isKZMessage;
-        t.IsRead__c = data.isRead;
+        if (data.isKZMessage != null) {
+            t.IsKZMessage__c = data.isKZMessage;
+        }
+        if (data.isRead != null) {
+            t.IsRead__c = data.isRead;
+        }
         if (data.clientGlobalId != null) {
 			t.WhoId = ReferenceUtility.getAccountByGlobalId(data.clientGlobalId).PersonContactId;
         }

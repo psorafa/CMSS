@@ -27,9 +27,31 @@ global with sharing class SF_ActivityManagementSOAPService {
 		}
 	}
 
-	/*webService static ActivityManagementResponseType updateActivity(ActivityRequestType request) {
-        
-    }*/
+	webService static ActivityManagementResponseType updateActivity(ActivityRequestType request) {
+        Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
+		try {
+			ActivityManagementResponseType response = 
+                (ActivityManagementResponseType) SOAPResponseFactory.constructResponse(
+                    ActivityManagementResponseType.class, 
+                    request.requestHeader
+            );
+			TaskService.updateTask(request.requestBody);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			ActivityManagementResponseType response = (ActivityManagementResponseType) SOAPResponseFactory.constructFaultResponse(ActivityManagementResponseType.class, request.requestHeader, e);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
+    }
     
     global class ActivityRequestType {
 		webService SOAPCommonTypes.CommonHeader requestHeader;

@@ -17,6 +17,16 @@ public class TestDataFactory {
 		);
 		copyFields(so, template);
 		return template;
+    }
+
+    public static Account getPersonAccount(Account so) {
+		Account template = new Account(
+            FirstName = 'Test firstName ' + ++accountCounter,
+			LastName = 'Test lastName ' + ++accountCounter,
+			GlobalId__c = 'G' + accountCounter
+		);
+		copyFields(so, template);
+		return template;
 	}
 
 	public static AccountRelation__c getAccountRelation(AccountRelation__c so) {
