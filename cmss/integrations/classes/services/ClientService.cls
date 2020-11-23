@@ -12,6 +12,7 @@ public with sharing class ClientService {
 	}
 
 	public static Id insertAccount(SF_PersonManagementSOAPService.ClientType clientType) {
+        Validation.requireAttribute(clientType.spSa, 'spSa');
 		if (accountAlreadyExists(clientType.clientGlobalId)) {
 			throw new SOAPCommonTypes.BusinessException(202, 'Record already exists: Client - Global ID: ' + clientType.clientGlobalId);
 		}
@@ -21,11 +22,13 @@ public with sharing class ClientService {
 			GlobalId__c = clientType.clientGlobalId,
 			Birthdate__c = clientType.birthDate,
 			Gender__c = clientType.gender,
-			PortfolioMngmtA__c = ReferenceUtility.getUserByCPU(clientType.spSa).Id,
-			PortfolioMngmtC__c = ReferenceUtility.getUserByCPU(clientType.spSc).Id,
+            PortfolioMngmtA__c = ReferenceUtility.getUserByCPU(clientType.spSa).Id,
 			IsPoliticallyExposed__c = clientType.isPoliticallyExposed,
 			IsResident__c = clientType.isCrResident
-		);
+        );
+        if (clientType.spSc != null) {
+            client.PortfolioMngmtC__c = ReferenceUtility.getUserByCPU(clientType.spSc).Id;
+        }
 		if (clientType.lastName != null) {
 			client.FirstName = clientType.firstName;
 			client.LastName = clientType.lastName;
