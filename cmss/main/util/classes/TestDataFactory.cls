@@ -20,7 +20,7 @@ public class TestDataFactory {
     }
 
     public static Account getDefaultPersonAccount(Account so) {
-		so.RecordTypeId = [SELECT Id FROM RecordType WHERE Name = 'Person Account' AND SObjectType = 'Account'].Id;
+		so.RecordTypeId = [SELECT Id FROM RecordType WHERE DeveloperName = 'PersonAccount' AND SObjectType = 'Account'].Id;
 		return getPersonAccount(so);
 	}
 
