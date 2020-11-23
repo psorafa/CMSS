@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IfInternalPrecautionType6AmountRequired</fullName>
+    <active>true</active>
+    <description>If there is picklist value 6 (Storno provizí) from field InternalPrecautionType_c (Druhy interního opatření) picked, field Amount_c (částka v Kč) becomes required.</description>
+    <errorConditionFormula>INCLUDES(InternalPrecautionType__c, &quot;6&quot;) &amp;&amp; ISBLANK(Amount__c)</errorConditionFormula>
+    <errorDisplayField>Amount__c</errorDisplayField>
+    <errorMessage>If Internal Precaution Type is &quot;6&quot;, Amount must be chosen.</errorMessage>
+</ValidationRule>
