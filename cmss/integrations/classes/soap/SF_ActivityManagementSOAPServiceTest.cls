@@ -7,8 +7,7 @@ private class SF_ActivityManagementSOAPServiceTest {
 		insert user;
 		Account account = TestDataFactory.getPersonAccount(
             new Account(
-                GlobalId__c = 'G111',
-                RecordTypeId = [SELECT Id FROM RecordType WHERE Name = 'Person Account' AND SObjectType = 'Account'].Id
+                GlobalId__c = 'G111'
         ));
         insert account;
         Opportunity opp = TestDataFactory.getOpportunity();
@@ -102,8 +101,7 @@ private class SF_ActivityManagementSOAPServiceTest {
 		insert user;
 		Account account = TestDataFactory.getPersonAccount(
             new Account(
-                GlobalId__c = 'G111',
-                RecordTypeId = [SELECT Id FROM RecordType WHERE Name = 'Person Account' AND SObjectType = 'Account'].Id
+                GlobalId__c = 'G111'
         ));
         insert account;
         Opportunity opp = TestDataFactory.getOpportunity();

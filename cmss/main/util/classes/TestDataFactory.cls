@@ -23,7 +23,8 @@ public class TestDataFactory {
 		Account template = new Account(
             FirstName = 'Test firstName ' + ++accountCounter,
 			LastName = 'Test lastName ' + ++accountCounter,
-			GlobalId__c = 'G' + accountCounter
+            GlobalId__c = 'G' + accountCounter,
+            RecordTypeId = [SELECT Id FROM RecordType WHERE Name = 'Person Account' AND SObjectType = 'Account'].Id
 		);
 		copyFields(so, template);
 		return template;

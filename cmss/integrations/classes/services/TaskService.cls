@@ -9,23 +9,15 @@ public with sharing class TaskService {
         Validation.requireAttribute(data.stateCode, 'stateCode');
 
         Task task = prepareTask(data);
-        
-		try {
-			insert task;
-			return task.Id;
-		} catch (DmlException e) {
-			throw new SOAPCommonTypes.BusinessException(301, 'Cannot insert record: ' + e.getMessage(), e);
-		}
+        DmlUtility.insertRecord(task);
+        return task.Id;
     }
     
     public static void updateTask(SF_ActivityManagementSOAPService.ActivityType data) {
         Validation.requireAttribute(data.id, 'id');
-		Task task = prepareTask(data);
-		try {
-			update task;
-		} catch (DmlException e) {
-			throw new SOAPCommonTypes.BusinessException(301, 'Cannot update record: ' + e.getMessage(), e);
-		}
+
+        Task task = prepareTask(data);
+		DmlUtility.updateRecord(task);
 	}
 
 	public static void setRecordType(List<Task> taskList) {
@@ -50,8 +42,10 @@ public with sharing class TaskService {
     }
     
     private static Task prepareTask(SF_ActivityManagementSOAPService.ActivityType data) {
-		Task t = new Task();
-        t.Id = data.id;
+        Task t = new Task();
+        if (data.id != null) {
+            t.Id = data.id;
+        }
         t.Type = data.type;
         t.Description = data.describe;
         t.CallDirectionCode__c = data.direction;
