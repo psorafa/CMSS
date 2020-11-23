@@ -5,7 +5,7 @@ private class SF_ActivityManagementSOAPServiceTest {
 	static void createActivityTest() {
 		User user = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CPU111'));
 		insert user;
-		Account account = TestDataFactory.getPersonAccount(
+		Account account = TestDataFactory.getDefaultPersonAccount(
             new Account(
                 GlobalId__c = 'G111'
         ));
@@ -99,7 +99,7 @@ private class SF_ActivityManagementSOAPServiceTest {
 	static void updateActivityTest() {
 		User user = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CPU111'));
 		insert user;
-		Account account = TestDataFactory.getPersonAccount(
+		Account account = TestDataFactory.getDefaultPersonAccount(
             new Account(
                 GlobalId__c = 'G111'
         ));

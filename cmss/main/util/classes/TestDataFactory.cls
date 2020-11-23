@@ -19,12 +19,16 @@ public class TestDataFactory {
 		return template;
     }
 
+    public static Account getDefaultPersonAccount(Account so) {
+		so.RecordTypeId = [SELECT Id FROM RecordType WHERE Name = 'Person Account' AND SObjectType = 'Account'].Id;
+		return getPersonAccount(so);
+	}
+
     public static Account getPersonAccount(Account so) {
 		Account template = new Account(
             FirstName = 'Test firstName ' + ++accountCounter,
 			LastName = 'Test lastName ' + ++accountCounter,
-            GlobalId__c = 'G' + accountCounter,
-            RecordTypeId = [SELECT Id FROM RecordType WHERE Name = 'Person Account' AND SObjectType = 'Account'].Id
+            GlobalId__c = 'G' + accountCounter
 		);
 		copyFields(so, template);
 		return template;
