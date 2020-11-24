@@ -4,7 +4,8 @@ public class TestDataFactory {
 	private static Integer accountCounter = 0;
 	private static Integer opportunityCounter = 0;
 	private static Integer assetCounter = 0;
-	private static Integer userCounter = 0;
+    private static Integer userCounter = 0;
+    private static Id personAccountRTId = [SELECT Id FROM RecordType WHERE DeveloperName = 'PersonAccount' AND SObjectType = 'Account'].Id;
 
 	public static Account getAccount() {
 		return getAccount(new Account());
@@ -14,6 +15,17 @@ public class TestDataFactory {
 		Account template = new Account(
 			Name = 'Test account ' + ++accountCounter,
 			GlobalId__c = 'G' + accountCounter
+		);
+		copyFields(so, template);
+		return template;
+    }
+
+    public static Account getPersonAccount(Account so) {
+		Account template = new Account(
+            FirstName = 'Test firstName ' + ++accountCounter,
+			LastName = 'Test lastName ' + ++accountCounter,
+            GlobalId__c = 'G' + accountCounter,
+            RecordTypeId = personAccountRTId
 		);
 		copyFields(so, template);
 		return template;
