@@ -3,11 +3,15 @@
     <label>Pohlaví</label>
     <name>Gender__c</name>
     <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>muž</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1</masterLabel>
         <translation>žena</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation>muž</translation>
+        <translation>nedefinováno</translation>
     </picklistValues>
 </CustomFieldTranslation>
