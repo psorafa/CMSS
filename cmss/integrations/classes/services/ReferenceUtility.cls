@@ -1,7 +1,7 @@
 public with sharing class ReferenceUtility {
 
 	public static Account getAccountByGlobalId(String globalId) {
-		for (Account a : [SELECT Id FROM Account WHERE GlobalId__c = :globalId LIMIT 1]) {
+		for (Account a : [SELECT PersonContactId FROM Account WHERE GlobalId__c = :globalId LIMIT 1]) {
 			return a;
 		}
 		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: Client - Global ID: ' + globalId);

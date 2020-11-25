@@ -141,8 +141,12 @@
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label>Informace k GDPR podání</label>
+            <label>Informace o případu</label>
             <section>GDPR Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
         </sections>
         <sections>
             <label>Řešení</label>
@@ -281,6 +285,10 @@
     <validationRules>
         <errorMessage>Pokud Interní opatření = Ano, vyberte hodnotu z pole Druhy interního opatření</errorMessage>
         <name>IfInternalPrecautionTrueTypeMustBePicked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pokud druh interního opatření obsahuje &quot;Storno provizí&quot;, pole &quot;Částka v Kč&quot; musí být vyplněno</errorMessage>
+        <name>IfInternalPrecautionType6AmountRequired</name>
     </validationRules>
     <validationRules>
         <errorMessage>Pole Stupeň podání - detail musí být vyplněno pro Stupeň podání II.</errorMessage>

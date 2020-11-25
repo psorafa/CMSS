@@ -7,7 +7,8 @@ private class SF_PersonManagementSOAPServiceTest {
 	private static String suffixTitle = 'suffix';
 	private static String clientGlobalId = '0123456789';
 	private static Date birthDate = Date.today().addYears(-20);
-	private static String gender = 'male';
+    private static String gender = 'male';
+    private static String citizenship = '3';
 	private static Boolean isPoliticallyExposed = false;
 	private static Boolean isResident = false;
 
@@ -39,7 +40,7 @@ private class SF_PersonManagementSOAPServiceTest {
 		Account account = [
 			SELECT
 				Id, SbId__c, PortfolioMngmtA__c, PortfolioMngmtC__c, RecordType.DeveloperName, PersonalIdentificationNr__c,
-				PersonTitle, Suffix, GlobalId__c, Birthdate__c, Gender__c, IsPoliticallyExposed__c, IsResident__c
+				PersonTitle, Suffix, GlobalId__c, Birthdate__c, Gender__c, Nationality__c, IsPoliticallyExposed__c, IsResident__c
 			FROM Account
 			WHERE Id = :response.responseBody.clientId
 		];
@@ -52,7 +53,8 @@ private class SF_PersonManagementSOAPServiceTest {
 		System.assertEquals(suffixTitle, account.Suffix);
 		System.assertEquals(clientGlobalId, account.GlobalId__c);
 		System.assertEquals(birthDate, account.Birthdate__c);
-		System.assertEquals(gender, account.Gender__c);
+        System.assertEquals(gender, account.Gender__c);
+        System.assertEquals(citizenship, account.Nationality__c);
 		System.assertEquals(isPoliticallyExposed, account.IsPoliticallyExposed__c);
 		System.assertEquals(isResident, account.IsResident__c);
 
@@ -171,7 +173,8 @@ private class SF_PersonManagementSOAPServiceTest {
 		requestBody.client.suffixTitle = suffixTitle;
 		requestBody.client.clientGlobalId = clientGlobalId;
 		requestBody.client.birthDate = birthDate;
-		requestBody.client.gender = gender;
+        requestBody.client.gender = gender;
+        requestBody.client.citizenship = citizenship;
 		requestBody.client.spSa = 'spsA';
 		requestBody.client.spSc = 'spsC';
 		requestBody.client.isPoliticallyExposed = isPoliticallyExposed;
