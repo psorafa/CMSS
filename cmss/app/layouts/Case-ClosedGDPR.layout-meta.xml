@@ -35,6 +35,10 @@
                 <behavior>Readonly</behavior>
                 <field>RequestComplete__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CaseID__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

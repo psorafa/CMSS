@@ -2016,6 +2016,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.CaseID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.CauseLegitComplaint__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2092,6 +2097,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Days10Exceeded__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

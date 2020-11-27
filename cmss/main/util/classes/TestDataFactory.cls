@@ -1,31 +1,32 @@
 @IsTest
 public class TestDataFactory {
-
 	private static Integer accountCounter = 0;
 	private static Integer opportunityCounter = 0;
 	private static Integer assetCounter = 0;
-    private static Integer userCounter = 0;
-    private static Id personAccountRTId = [SELECT Id FROM RecordType WHERE DeveloperName = 'PersonAccount' AND SObjectType = 'Account'].Id;
+	private static Integer userCounter = 0;
+	private static Id personAccountRTId = [
+		SELECT Id
+		FROM RecordType
+		WHERE DeveloperName = 'PersonAccount' AND SObjectType = 'Account'
+	]
+	.Id;
 
 	public static Account getAccount() {
 		return getAccount(new Account());
 	}
 
 	public static Account getAccount(Account so) {
-		Account template = new Account(
-			Name = 'Test account ' + ++accountCounter,
-			GlobalId__c = 'G' + accountCounter
-		);
+		Account template = new Account(Name = 'Test account ' + ++accountCounter, GlobalId__c = 'G' + accountCounter);
 		copyFields(so, template);
 		return template;
-    }
+	}
 
-    public static Account getPersonAccount(Account so) {
+	public static Account getPersonAccount(Account so) {
 		Account template = new Account(
-            FirstName = 'Test firstName ' + ++accountCounter,
+			FirstName = 'Test firstName ' + ++accountCounter,
 			LastName = 'Test lastName ' + ++accountCounter,
-            GlobalId__c = 'G' + accountCounter,
-            RecordTypeId = personAccountRTId
+			GlobalId__c = 'G' + accountCounter,
+			RecordTypeId = personAccountRTId
 		);
 		copyFields(so, template);
 		return template;
@@ -53,9 +54,7 @@ public class TestDataFactory {
 	}
 
 	public static ClientZone__c getClientZone(ClientZone__c so) {
-		ClientZone__c template = new ClientZone__c(
-
-		);
+		ClientZone__c template = new ClientZone__c();
 		copyFields(so, template);
 		if (template.Account__c == null) {
 			Account a = getAccount();
@@ -85,9 +84,7 @@ public class TestDataFactory {
 	}
 
 	public static Task getTask(Task so) {
-		Task template = new Task(
-			Subject = 'Test task'
-		);
+		Task template = new Task(Subject = 'Test task');
 		copyFields(so, template);
 		if (template.WhatId == null) {
 			Account a = getAccount();
@@ -98,22 +95,7 @@ public class TestDataFactory {
 	}
 
 	public static Asset getAsset(Asset so) {
-		Asset template = new Asset(
-			Name = 'Asset' + ++assetCounter
-		);
-		copyFields(so, template);
-		if (template.AccountId == null) {
-			Account a = getAccount();
-			insert a;
-			template.AccountId = a.Id;
-		}
-		return template;
-	}
-
-	public static Case getCase(Case so) {
-		Case template = new Case(
-			Subject = 'Case' + ++assetCounter
-		);
+		Asset template = new Asset(Name = 'Asset' + ++assetCounter);
 		copyFields(so, template);
 		if (template.AccountId == null) {
 			Account a = getAccount();
@@ -136,9 +118,41 @@ public class TestDataFactory {
 			TimeZoneSidKey = 'Europe/Prague',
 			LocaleSidKey = 'cs_CZ',
 			EmailEncodingKey = 'UTF-8',
-			LanguageLocaleKey = 'en_US'
+			LanguageLocaleKey = 'en_US',
+			AgentId__c = 'UA11111'
 		);
 		copyFields(so, template);
+		return template;
+	}
+	public static Case getCase(Case so) {
+		Case template = new Case(
+			Subject = 'Case' + ++caseCounter,
+			ReceivedDate__c = Date.today(),
+			ReceivingConfirmationDate__c = Date.today(),
+			RequestComplete__c = false,
+			InternalPrecaution__c = 'No',
+			Priority = '1',
+			Source__c = '2',
+			Origin = '2',
+			Description = 'Test Case',
+			ComplaintAgainst__c = '2',
+			CauseLegitComplaint__c = '2',
+			SubjectFound__c = true,
+			RequestType__c = '1'
+		);
+		copyFields(so, template);
+		if (template.AccountId == null) {
+			Account a = getAccount();
+			insert a;
+			template.AccountId = a.Id;
+		}
+		if (template.OwnerId == null) {
+			if (defaultCaseOwner == null) {
+				defaultCaseOwner = getUser(new User());
+				insert defaultCaseOwner;
+			}
+			template.OwnerId = defaultCaseOwner.Id;
+		}
 		return template;
 	}
 
