@@ -10,6 +10,8 @@ public class TestDataFactory {
 		WHERE DeveloperName = 'PersonAccount' AND SObjectType = 'Account'
 	]
 	.Id;
+	private static Integer caseCounter = 0;
+	private static User defaultCaseOwner;
 
 	public static Account getAccount() {
 		return getAccount(new Account());
