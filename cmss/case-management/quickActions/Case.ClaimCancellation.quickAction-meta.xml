@@ -9,7 +9,13 @@
     <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <quickActionLayout>
         <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
-        <quickActionLayoutColumns/>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>ComplaintClosingReason__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
         <quickActionLayoutColumns/>
     </quickActionLayout>
     <successMessage>The Claim was cancelled successfully.</successMessage>
