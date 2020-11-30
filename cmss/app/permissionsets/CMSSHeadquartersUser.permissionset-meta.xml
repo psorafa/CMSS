@@ -2461,6 +2461,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>ClientZone__c.ContractNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>ClientZone__c.ContractStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
