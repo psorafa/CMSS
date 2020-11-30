@@ -28,7 +28,7 @@ public class PortfolioManagementService {
         private String[] field_order_type_info = new String[]{'stateChangeRequestId','accountId_x','stateChangeReason','validFrom','portfolioManagementType','spS_A','spS_C'};
     }
     public class ChangeCPEClientStateResponseBody {
-        public PortfolioManagementService.ChangeCPEClientStateResponseBody emptyElement;
+        public String emptyElement;
         private String[] emptyElement_type_info = new String[]{'emptyElement','http://service.cmss.cz/person/PortfolioManagementService/v10',null,'1','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://service.cmss.cz/person/PortfolioManagementService/v10','true','false'};
         private String[] field_order_type_info = new String[]{'emptyElement'};

@@ -157,6 +157,22 @@ public class TestDataFactory {
 			template.OwnerId = defaultCaseOwner.Id;
 		}
 		return template;
+    }
+    
+    public static PortfolioManagementRequest__c getPortfolioManagementRequest(PortfolioManagementRequest__c so) {
+		PortfolioManagementRequest__c template = new PortfolioManagementRequest__c(
+            PortfolioManChangeReason__c = '0',
+            ValidFrom__c = Datetime.now(),
+            PortfolioManagementType__c = 'A',
+            PortfolioManagerCPU__c = 'CPU'
+		);
+		copyFields(so, template);
+		if (template.Account__c == null) {
+			Account a = getAccount();
+			insert a;
+			template.Account__c = a.Id;
+		}
+		return template;
 	}
 
 	public static CaseType__c getCaseType(CaseType__c so) {
