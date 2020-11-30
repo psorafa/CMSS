@@ -230,6 +230,14 @@
         <name>NewClientClaim</name>
     </recordTypes>
     <validationRules>
+        <errorMessage>Alespoň 1 záznam v Typu podání je podmínkou pro uzavření klientského podání</errorMessage>
+        <name>CaseTypeMustExistResponseSentDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Alespoň 1 záznam v Typu podání je podmínkou pro uzavření klientského podání</errorMessage>
+        <name>CaseTypeMustExistStatus</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>
         Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ComplaintReceivingConfirmDate</name>
