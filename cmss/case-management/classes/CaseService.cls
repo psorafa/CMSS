@@ -14,14 +14,16 @@ public with sharing class CaseService {
 
 		if (lastIssuedCaseID.GDPRClaimID__c == null) {
 			lastIssuedCaseID.GDPRClaimID__c = 0;
-		} else if (lastIssuedCaseID.ClientClaimID__c == null) {
+		}
+		if (lastIssuedCaseID.ClientClaimID__c == null) {
 			lastIssuedCaseID.ClientClaimID__c = 0;
 		}
 		for (Case caseItem : newCaseList) {
 			if (GDPRRecordTypes.contains(caseItem.RecordTypeId)) {
 				lastIssuedCaseID.GDPRClaimID__c += 1;
 				caseItem.CaseID__c = '' + Integer.valueOf(lastIssuedCaseID.GDPRClaimID__c) + Date.today().year();
-			} else if (ClientClaimRecordTypes.contains(caseItem.RecordTypeId)) {
+			}
+			if (ClientClaimRecordTypes.contains(caseItem.RecordTypeId)) {
 				lastIssuedCaseID.ClientClaimID__c += 1;
 				caseItem.CaseID__c = '' + Date.today().year() + Integer.valueOf(lastIssuedCaseID.ClientClaimID__c);
 			}
