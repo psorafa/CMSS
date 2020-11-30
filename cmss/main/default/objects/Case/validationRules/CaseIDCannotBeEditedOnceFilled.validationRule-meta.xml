@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CaseIDCannotBeEditedOnceFilled</fullName>
+    <active>true</active>
+    <description>Once the CaseID__c is filled with number, it can&apos;t be edited.</description>
+    <errorConditionFormula>PRIORVALUE(CaseID__c) &lt;&gt; null &amp;&amp;
+ISCHANGED(CaseID__c)</errorConditionFormula>
+    <errorDisplayField>CaseID__c</errorDisplayField>
+    <errorMessage>Case ID can&apos;t be edited once it has been filled with value.</errorMessage>
+</ValidationRule>
