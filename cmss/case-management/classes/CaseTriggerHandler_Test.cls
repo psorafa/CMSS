@@ -60,6 +60,10 @@ private class CaseTriggerHandler_Test {
 			EntitlementId = ent.Id
 		));
 		insert new List<Case>{ c1, c2, c3 };
+		CaseType__c ct1 = TestDataFactory.getCaseType(new CaseType__c(Case__c = c1.Id));
+		CaseType__c ct2 = TestDataFactory.getCaseType(new CaseType__c(Case__c = c2.Id));
+		CaseType__c ct3 = TestDataFactory.getCaseType(new CaseType__c(Case__c = c3.Id));
+		insert new List<CaseType__c> { ct1, ct2, ct3 };
 	}
 
 	@IsTest

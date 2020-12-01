@@ -126,6 +126,7 @@ public class TestDataFactory {
 		copyFields(so, template);
 		return template;
 	}
+
 	public static Case getCase(Case so) {
 		Case template = new Case(
 			Subject = 'Case' + ++caseCounter,
@@ -154,6 +155,18 @@ public class TestDataFactory {
 				insert defaultCaseOwner;
 			}
 			template.OwnerId = defaultCaseOwner.Id;
+		}
+		return template;
+	}
+
+	public static CaseType__c getCaseType(CaseType__c so) {
+		CaseType__c template = new CaseType__c(
+		);
+		copyFields(so, template);
+		if (template.Case__c == null) {
+			Case c = getCase(new Case());
+			insert c;
+			template.Case__c = c.Id;
 		}
 		return template;
 	}

@@ -73,6 +73,10 @@
                 <behavior>Required</behavior>
                 <field>Origin</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CaseTypeSummary__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
