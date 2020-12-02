@@ -234,6 +234,10 @@
         <name>CaseIDCannotBeEditedOnceFilled</name>
     </validationRules>
     <validationRules>
+        <errorMessage>Pokud je vyplněna hodnota v poli Druh účtovaných finančních prostředků 2 pole Částka v Kč je povinné.</errorMessage>
+        <name>CompensationAmountRequired</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>Alespoň 1 záznam v Typu podání je podmínkou pro uzavření klientského podání</errorMessage>
         <name>CaseTypeMustExistResponseSentDate</name>
     </validationRules>
