@@ -246,10 +246,6 @@
         <name>CaseTypeMustExistStatus</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Case ID can&apos;t be edited once it has been filled with value. --></errorMessage>
-        <name>CaseIDCannotBeEditedOnceFilled</name>
-    </validationRules>
-    <validationRules>
         <errorMessage>Nemáte oprávnění měnit řešitele klientského podání.</errorMessage>
         <name>ClaimChangeOwnerMustHaveClaimPerSet</name>
     </validationRules>
