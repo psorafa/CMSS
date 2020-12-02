@@ -230,6 +230,10 @@
         <name>NewClientClaim</name>
     </recordTypes>
     <validationRules>
+        <errorMessage>ID podání nelze změnit.</errorMessage>
+        <name>CaseIDCannotBeEditedOnceFilled</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>Alespoň 1 záznam v Typu podání je podmínkou pro uzavření klientského podání</errorMessage>
         <name>CaseTypeMustExistResponseSentDate</name>
     </validationRules>
