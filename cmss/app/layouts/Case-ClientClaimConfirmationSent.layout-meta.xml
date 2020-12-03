@@ -77,6 +77,10 @@
                 <behavior>Readonly</behavior>
                 <field>CaseTypeSummary__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>DaysOfComplaintSolving__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
