@@ -121,7 +121,7 @@ public class TestDataFactory {
 			LocaleSidKey = 'cs_CZ',
 			EmailEncodingKey = 'UTF-8',
 			LanguageLocaleKey = 'en_US',
-			AgentId__c = 'UA11111'
+			AgentId__c = 'UA11111' + userCounter
 		);
 		copyFields(so, template);
 		return template;
@@ -164,7 +164,7 @@ public class TestDataFactory {
             PortfolioManChangeReason__c = '0',
             ValidFrom__c = Datetime.now(),
             PortfolioManagementType__c = 'A',
-            PortfolioManagerCPU__c = 'CPU'
+            PortfolioManagerCPU__c = 'CPU0'
 		);
 		copyFields(so, template);
 		if (template.Account__c == null) {

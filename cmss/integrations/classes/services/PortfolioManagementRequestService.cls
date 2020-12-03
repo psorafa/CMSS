@@ -1,5 +1,43 @@
 public with sharing class PortfolioManagementRequestService {
 
+    public static void setPortfolioManager(PortfolioManagementRequest__c[] newPMRs, Map<Id, PortfolioManagementRequest__c> oldPMRs) {
+        Map<String, PortfolioManagementRequest__c[]> portfolioManagerCPUsToPMRs = new Map<String, PortfolioManagementRequest__c[]>();
+        Set<String> pmCPUs = new Set<String>();
+
+        if (oldPMRs == null) {
+            for (PortfolioManagementRequest__c newPMR : newPMRs) {
+                if (newPMR.PortfolioManagerCPU__c != null) {
+                    setupPortfolioManagerCPUsToPMRs(portfolioManagerCPUsToPMRs, newPMR);
+                    pmCPUs.add(newPMR.PortfolioManagerCPU__c);
+                }
+            }
+        } else {
+            for (PortfolioManagementRequest__c newPMR : newPMRs) {
+                PortfolioManagementRequest__c oldPMR = oldPMRs.get(newPMR.Id);
+                if (newPMR.PortfolioManagerCPU__c != null && newPMR.PortfolioManagerCPU__c != oldPMR.PortfolioManagerCPU__c) {
+                    setupPortfolioManagerCPUsToPMRs(portfolioManagerCPUsToPMRs, newPMR);
+                    pmCPUs.add(newPMR.PortfolioManagerCPU__c);
+                } else if (newPMR.PortfolioManagerCPU__c == null) {
+                    newPMR.PortfolioManagerCPU__c = null;
+                }
+            }
+        }
+        
+        User[] users = [SELECT CommissionAccountNr__c FROM User WHERE CommissionAccountNr__c IN: portfolioManagerCPUsToPMRs.keySet()];
+        for (User u : users) {
+            PortfolioManagementRequest__c[] pmrs = portfolioManagerCPUsToPMRs.get(u.CommissionAccountNr__c);
+            pmCPUs.remove(u.CommissionAccountNr__c);
+
+            for (PortfolioManagementRequest__c pmr : pmrs) {
+                pmr.PortfolioManager__c = u.Id;
+            }
+        }
+
+        if (pmCPUs.size() > 0) {
+            throw new NoUserWithSuchCPUException('No user exists with this CPU. Please insert a different user\'s CPU.');
+        }
+    }
+
     public static void changeCPEClientState(PortfolioManagementRequest__c[] newPMRs) {
         String batchId = newPMRs[0].BatchID__c;
 
@@ -39,13 +77,30 @@ public with sharing class PortfolioManagementRequestService {
             clientStates.listOfClientsStatesItem.add(item);
         }
 
+        PortfolioManagementService.ChangeCPEClientStateRequestHeader header = new PortfolioManagementService.ChangeCPEClientStateRequestHeader();
+        header.timestamp = System.now();
+        header.messageId = MockServicesUtil.generateUUID();
+        header.sourceSystem = 'SalesForce';
+        header.physicalSource = Url.getSalesforceBaseUrl().toExternalForm();
+        header.userId = UserInfo.getUserId();
         PortfolioManagementService.ChangeCPEClientStateRequestBody body = new PortfolioManagementService.ChangeCPEClientStateRequestBody();
         body.batchId = batchId;
         body.listOfClientStates = clientStates;
 
         PortfolioManagementService.PortfolioManagementServicePort stub = new PortfolioManagementService.PortfolioManagementServicePort();
-        PortfolioManagementService.ChangeCPEClientStateResponseBody response = stub.changeCPEClientState(body);
+        PortfolioManagementService.ChangeCPEClientStateResponseBody response = stub.changeCPEClientState(body, header);
+    }
+
+    private static void setupPortfolioManagerCPUsToPMRs(Map<String, PortfolioManagementRequest__c[]> portfolioManagerCPUsToPMRs, PortfolioManagementRequest__c pmr) {
+        PortfolioManagementRequest__c[] pmrs = portfolioManagerCPUsToPMRs.get(pmr.PortfolioManagerCPU__c);
+        if (pmrs == null) {
+            portfolioManagerCPUsToPMRs.put(pmr.PortfolioManagerCPU__c, new PortfolioManagementRequest__c[]{ pmr });
+        } else {
+            pmrs.add(pmr);
+            portfolioManagerCPUsToPMRs.put(pmr.PortfolioManagerCPU__c, pmrs);
+        }
     }
 
     public class MultipleBatchIdsException extends Exception {}
+    public class NoUserWithSuchCPUException extends Exception {}
 }
