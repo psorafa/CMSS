@@ -3,211 +3,211 @@
     <label>Podtyp kontaktu</label>
     <name>SubType__c</name>
     <picklistValues>
-        <masterLabel>10001</masterLabel>
+        <masterLabel>adr.korespondenční</masterLabel>
         <translation>adr.korespondenční</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>100010</masterLabel>
-        <translation>Daňový domicil</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>100012</masterLabel>
-        <translation>Rozvozové místo</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>100014</masterLabel>
-        <translation>Poradenské místo 1</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>100015</masterLabel>
-        <translation>Poradenské místo 2</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>100016</masterLabel>
-        <translation>CRS adresa 1</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>100017</masterLabel>
-        <translation>CRS adresa 2</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>10002</masterLabel>
+        <masterLabel>Adr.vymáhání</masterLabel>
         <translation>Adr.vymáhání</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>10003</masterLabel>
+        <masterLabel>adr.trvalá</masterLabel>
         <translation>adr.trvalá</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>10004</masterLabel>
+        <masterLabel>sídlo živnostníka</masterLabel>
         <translation>sídlo živnostníka</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>10005</masterLabel>
+        <masterLabel>adr.zaměstnání</masterLabel>
         <translation>adr.zaměstnání</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>10007</masterLabel>
+        <masterLabel>adr.ústředí</masterLabel>
         <translation>adr.ústředí</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>10008</masterLabel>
+        <masterLabel>adr.v zahraničí</masterLabel>
         <translation>adr.v zahraničí</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>10009</masterLabel>
+        <masterLabel>adr.sídlo firmy</masterLabel>
         <translation>adr.sídlo firmy</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>20001</masterLabel>
-        <translation>tel.bydliště/sídlo firmy</translation>
+        <masterLabel>Daňový domicil</masterLabel>
+        <translation>Daňový domicil</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200010</masterLabel>
-        <translation>tel.1.kontakt</translation>
+        <masterLabel>Rozvozové místo</masterLabel>
+        <translation>Rozvozové místo</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200011</masterLabel>
-        <translation>tel.2.kontakt</translation>
+        <masterLabel>Poradenské místo 1</masterLabel>
+        <translation>Poradenské místo 1</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200012</masterLabel>
-        <translation>Kontakt-rozvoz</translation>
+        <masterLabel>Poradenské místo 2</masterLabel>
+        <translation>Poradenské místo 2</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>20002</masterLabel>
-        <translation>tel.zaměstnání</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>200020</masterLabel>
-        <translation>BRKI tel.1</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>200021</masterLabel>
-        <translation>BRKI tel.2</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>200022</masterLabel>
-        <translation>BRKI tel.3</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>200023</masterLabel>
-        <translation>BRKI tel.4</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>200024</masterLabel>
-        <translation>BRKI tel.5</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>200025</masterLabel>
-        <translation>BRKI tel.6</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>200026</masterLabel>
-        <translation>BRKI tel.7</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>200027</masterLabel>
-        <translation>BRKI tel.8</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>200030</masterLabel>
-        <translation>Telefon KZ</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>20004</masterLabel>
+        <masterLabel>tel.fax</masterLabel>
         <translation>tel.fax</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200051</masterLabel>
-        <translation>S-tel.bydliště/sídlo firmy</translation>
+        <masterLabel>Kontakt-rozvoz</masterLabel>
+        <translation>Kontakt-rozvoz</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200052</masterLabel>
-        <translation>S-tel.zaměstnání</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>200054</masterLabel>
+        <masterLabel>S-tel.fax</masterLabel>
         <translation>S-tel.fax</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200057</masterLabel>
-        <translation>S-tel.kancelář</translation>
+        <masterLabel>tel.bydliště/sídlo firmy</masterLabel>
+        <translation>tel.bydliště/sídlo firmy</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200058</masterLabel>
-        <translation>S-tel.mobil</translation>
+        <masterLabel>tel.zaměstnání</masterLabel>
+        <translation>tel.zaměstnání</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200060</masterLabel>
-        <translation>S-telefon 1.kontakt</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>200061</masterLabel>
-        <translation>S-tel.2.kontakt</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>20007</masterLabel>
+        <masterLabel>tel.kancelář</masterLabel>
         <translation>tel.kancelář</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200077</masterLabel>
-        <translation>S-další spojení</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>20008</masterLabel>
+        <masterLabel>tel.mobil 1</masterLabel>
         <translation>tel.mobil 1</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200081</masterLabel>
+        <masterLabel>tel.mobil 2</masterLabel>
         <translation>tel.mobil 2</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200082</masterLabel>
+        <masterLabel>tel.mobil 3</masterLabel>
         <translation>tel.mobil 3</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>200088</masterLabel>
+        <masterLabel>Kontaktní telefon</masterLabel>
         <translation>Kontaktní telefon</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>30001</masterLabel>
+        <masterLabel>tel.1.kontakt</masterLabel>
+        <translation>tel.1.kontakt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>tel.2.kontakt</masterLabel>
+        <translation>tel.2.kontakt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BRKI tel.1</masterLabel>
+        <translation>BRKI tel.1</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BRKI tel.2</masterLabel>
+        <translation>BRKI tel.2</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BRKI tel.3</masterLabel>
+        <translation>BRKI tel.3</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BRKI tel.4</masterLabel>
+        <translation>BRKI tel.4</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BRKI tel.5</masterLabel>
+        <translation>BRKI tel.5</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BRKI tel.6</masterLabel>
+        <translation>BRKI tel.6</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BRKI tel.7</masterLabel>
+        <translation>BRKI tel.7</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BRKI tel.8</masterLabel>
+        <translation>BRKI tel.8</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>S-tel.bydliště/sídlo firmy</masterLabel>
+        <translation>S-tel.bydliště/sídlo firmy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>S-tel.zaměstnání</masterLabel>
+        <translation>S-tel.zaměstnání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>S-tel.kancelář</masterLabel>
+        <translation>S-tel.kancelář</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>S-tel.mobil</masterLabel>
+        <translation>S-tel.mobil</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>S-telefon 1.kontakt</masterLabel>
+        <translation>S-telefon 1.kontakt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>S-tel.2.kontakt</masterLabel>
+        <translation>S-tel.2.kontakt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>S-další spojení</masterLabel>
+        <translation>S-další spojení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>e-mail</masterLabel>
         <translation>e-mail</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>300010</masterLabel>
-        <translation>Datová schránka - StarBUILD</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>30002</masterLabel>
+        <masterLabel>Web adresa</masterLabel>
         <translation>Web adresa</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>300020</masterLabel>
+        <masterLabel>Datová schránka - StarBUILD</masterLabel>
+        <translation>Datová schránka - StarBUILD</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BRKI e-mail 1</masterLabel>
         <translation>BRKI e-mail 1</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>300021</masterLabel>
+        <masterLabel>BRKI e-mail 2</masterLabel>
         <translation>BRKI e-mail 2</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>300022</masterLabel>
+        <masterLabel>BRKI e-mail 3</masterLabel>
         <translation>BRKI e-mail 3</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>30003</masterLabel>
-        <translation>Pracovní e-mail</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>300030</masterLabel>
-        <translation>Email KZ</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>40001</masterLabel>
+        <masterLabel>CZ bankovní spojení</masterLabel>
         <translation>CZ bankovní spojení</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>400010</masterLabel>
+        <masterLabel>Komunikační účet pro SP - StarBUILD</masterLabel>
         <translation>Komunikační účet pro SP - StarBUILD</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CRS adresa 1</masterLabel>
+        <translation>CRS adresa 1</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CRS adresa 2</masterLabel>
+        <translation>CRS adresa 2</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pracovní e-mail</masterLabel>
+        <translation>Pracovní e-mail</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Email KZ</masterLabel>
+        <translation>Email KZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Telefon KZ</masterLabel>
+        <translation>Telefon KZ</translation>
     </picklistValues>
 </CustomFieldTranslation>
