@@ -83,7 +83,6 @@ public class PortfolioManagementService {
         public String clientCert_x;
         public String clientCertPasswd_x;
         public Integer timeout_x;
-        private String[] ns_map_type_info = new String[]{'http://service.cmss.cz/common/datamodel/basictypes/v02', 'BasicTypes', 'http://service.cmss.cz/person/PortfolioManagementService/v10', 'PortfolioManagementService', 'http://service.cmss.cz/common/CommonMessage/v01', 'CommonMessage'};
         public PortfolioManagementService.ChangeCPEClientStateResponseBody changeCPEClientState(PortfolioManagementService.ChangeCPEClientStateRequestBody requestBody, PortfolioManagementService.ChangeCPEClientStateRequestHeader requestHeader) {
             PortfolioManagementService.ChangeCPEClientStateRequest request_x = new PortfolioManagementService.ChangeCPEClientStateRequest();
             request_x.requestHeader = requestHeader;

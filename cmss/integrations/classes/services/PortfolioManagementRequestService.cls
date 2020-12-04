@@ -1,5 +1,8 @@
 public with sharing class PortfolioManagementRequestService {
 
+    public static final String NO_USER_WITH_SUCH_CPU_ERR = 'No user exists with this CPU. Please insert a different user\'s CPU.';
+    public static final String MULTIPLE_BATCH_IDS_ERR = 'All created requests must contain identical Batch ID.';
+
     public static void setPortfolioManager(PortfolioManagementRequest__c[] newPMRs, Map<Id, PortfolioManagementRequest__c> oldPMRs) {
         Map<String, PortfolioManagementRequest__c[]> portfolioManagerCPUsToPMRs = new Map<String, PortfolioManagementRequest__c[]>();
         Set<String> pmCPUs = new Set<String>();
@@ -23,8 +26,11 @@ public with sharing class PortfolioManagementRequestService {
             }
         }
         
-        User[] users = [SELECT CommissionAccountNr__c FROM User WHERE CommissionAccountNr__c IN: portfolioManagerCPUsToPMRs.keySet()];
-        for (User u : users) {
+        for (User u : [
+            SELECT CommissionAccountNr__c 
+            FROM User 
+            WHERE CommissionAccountNr__c IN :portfolioManagerCPUsToPMRs.keySet()
+        ]) {
             PortfolioManagementRequest__c[] pmrs = portfolioManagerCPUsToPMRs.get(u.CommissionAccountNr__c);
             pmCPUs.remove(u.CommissionAccountNr__c);
 
@@ -34,7 +40,7 @@ public with sharing class PortfolioManagementRequestService {
         }
 
         if (pmCPUs.size() > 0) {
-            throw new NoUserWithSuchCPUException('No user exists with this CPU. Please insert a different user\'s CPU.');
+            throw new NoUserWithSuchCPUException(NO_USER_WITH_SUCH_CPU_ERR);
         }
     }
 
@@ -43,7 +49,7 @@ public with sharing class PortfolioManagementRequestService {
 
         for (PortfolioManagementRequest__c pmr : newPMRs) {
             if (batchId != pmr.BatchID__c) {
-                throw new MultipleBatchIdsException('All created requests must contain identical Batch ID.');
+                throw new MultipleBatchIdsException(MULTIPLE_BATCH_IDS_ERR);
             }
         }
 
@@ -55,7 +61,7 @@ public with sharing class PortfolioManagementRequestService {
         PortfolioManagementRequest__c[] pmrs = [
             SELECT Account__c, PortfolioManChangeReason__c, ValidFrom__c, PortfolioManagementType__c, PortfolioManagerCPU__c
             FROM PortfolioManagementRequest__c
-            WHERE Id IN: pmrIds
+            WHERE Id IN :pmrIds
         ];
 
         PortfolioManagementService.ListOfClientsStatesType clientStates = new PortfolioManagementService.ListOfClientsStatesType();
@@ -89,6 +95,9 @@ public with sharing class PortfolioManagementRequestService {
 
         PortfolioManagementService.PortfolioManagementServicePort stub = new PortfolioManagementService.PortfolioManagementServicePort();
         PortfolioManagementService.ChangeCPEClientStateResponseBody response = stub.changeCPEClientState(body, header);
+
+        Logger.debug('ChangeCPEClientState response', JSON.serialize(response));
+        Logger.saveLogs();
     }
 
     private static void setupPortfolioManagerCPUsToPMRs(Map<String, PortfolioManagementRequest__c[]> portfolioManagerCPUsToPMRs, PortfolioManagementRequest__c pmr) {

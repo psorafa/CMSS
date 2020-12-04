@@ -27,25 +27,46 @@ private class PortfolioManagementRequestServiceTest {
         PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(
             new PortfolioManagementRequest__c(PortfolioManagerCPU__c = '43429643927')
         );
-        Boolean exceptionThrown = false;
 
         try {
             insert pmr;
+            System.assert(false, 'This assert should not be reached.');
         } catch(DmlException e) {
-            exceptionThrown = true;
+            System.assert(e.getMessage().contains(PortfolioManagementRequestService.NO_USER_WITH_SUCH_CPU_ERR));
         }
-        System.assertEquals(true, exceptionThrown);
-
-        PortfolioManagementRequest__c[] queriedPMRs = [SELECT PortfolioManager__c FROM PortfolioManagementRequest__c WHERE Id =: pmr.Id];
-        System.assertEquals(0, queriedPMRs.size());
     }
 
     @isTest
-    static void testChangeCPEClientState() {
+    static void testChangeCPEClientStateError() {
         User u = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CPU0'));
         insert new User[]{ u };
+
+        Test.setMock(WebServiceMock.class, new PortfolioManagementServiceMock());
+        PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(new PortfolioManagementRequest__c(BatchID__c = 'uweih567'));
+        PortfolioManagementRequest__c pmr2 = TestDataFactory.getPortfolioManagementRequest(new PortfolioManagementRequest__c(BatchID__c = '1kod983'));
+        
+        try {
+            insert new PortfolioManagementRequest__c[]{ pmr, pmr2 };
+            System.assert(false, 'This assert should not be reached.');
+        } catch(DmlException e) {
+            System.assert(e.getMessage().contains(PortfolioManagementRequestService.MULTIPLE_BATCH_IDS_ERR));
+        }
+    }
+
+    @isTest
+    static void testChangeCPEClientStateFuture() {
+        User u = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CPU0'));
+        insert new User[]{ u };
+
         Test.setMock(WebServiceMock.class, new PortfolioManagementServiceMock());
         PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(new PortfolioManagementRequest__c());
+        Test.startTest();
         insert pmr;
+        Test.stopTest();
+
+        Log__c[] logs = [SELECT Message__c, Payload__c FROM Log__c];
+        System.assertEquals(1, logs.size());
+        System.assertEquals('ChangeCPEClientState response', logs[0].Message__c);
+        System.assertEquals('ok', ((Map<String, Object>) JSON.deserializeUntyped(logs[0].Payload__c)).get('emptyElement'));
     }
 }

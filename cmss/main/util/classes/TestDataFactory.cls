@@ -164,7 +164,8 @@ public class TestDataFactory {
             PortfolioManChangeReason__c = '0',
             ValidFrom__c = Datetime.now(),
             PortfolioManagementType__c = 'A',
-            PortfolioManagerCPU__c = 'CPU0'
+            PortfolioManagerCPU__c = 'CPU0',
+            BatchID__c = 'batchId0'
 		);
 		copyFields(so, template);
 		if (template.Account__c == null) {
