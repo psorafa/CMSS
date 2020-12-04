@@ -41,10 +41,6 @@
         <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>ActivityManagementSOAP</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>AQMessagePublisher</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -5495,7 +5491,7 @@
         <enabled>false</enabled>
         <name>SubscribeToLightningReports</name>
     </userPermissions>
-    <userPermissions> 
+    <userPermissions>
         <enabled>false</enabled>
         <name>TransactionalEmailSend</name>
     </userPermissions>
