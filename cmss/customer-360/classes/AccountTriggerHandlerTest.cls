@@ -15,12 +15,38 @@ private class AccountTriggerHandlerTest {
 		Test.startTest();
 		a1.IsInvalid__c = true;
 		a2.IsInvalid__c = true;
-		AccountTriggerHandler.changeOwnerOfInvalidatedAccounts(new List<Account>{ a1, a2, a3 });
+		AccountTriggerHandler.setOwner(new List<Account>{ a1, a2, a3 });
 		Test.stopTest();
 
 		System.assertEquals(u.Id, a1.OwnerId);
 		System.assertEquals(u.Id, a2.OwnerId);
 		System.assertNotEquals(u.Id, a3.OwnerId);
+	}
+
+	@IsTest
+	static void setOwnerTest() {
+		User defaultOwner = TestDataFactory.getUser(new User());
+		User portfolioManager = TestDataFactory.getUser(new User());
+		insert new List<User> {
+			defaultOwner, portfolioManager
+		};
+		CommonSetting__c setting = CommonSetting__c.getOrgDefaults();
+		setting.AccountDefaultOwner__c = defaultOwner.Id;
+		insert setting;
+		Account a1 = TestDataFactory.getAccount(new Account());
+		insert a1;
+		Account a2 = TestDataFactory.getAccount(new Account());
+		Account a3 = TestDataFactory.getAccount(new Account());
+
+		Test.startTest();
+		a1.PortfolioMngmtA__c = portfolioManager.Id;
+		a2.PortfolioMngmtA__c = portfolioManager.Id;
+		AccountTriggerHandler.setOwner(new List<Account>{ a1, a2, a3 });
+		Test.stopTest();
+
+		System.assertEquals(portfolioManager.Id, a1.OwnerId);
+		System.assertEquals(portfolioManager.Id, a2.OwnerId);
+		System.assertEquals(defaultOwner.Id, a3.OwnerId);
 	}
 
 	@IsTest
