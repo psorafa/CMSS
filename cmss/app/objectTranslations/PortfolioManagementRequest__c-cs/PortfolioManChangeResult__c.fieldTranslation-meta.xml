@@ -3,23 +3,83 @@
     <label>Výsledek změny správy stavu</label>
     <name>PortfolioManChangeResult__c</name>
     <picklistValues>
-        <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <masterLabel>0</masterLabel>
+        <translation>V pořádku</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <masterLabel>900</masterLabel>
+        <translation>Obecná chyba</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>3</masterLabel>
-        <translation><!-- 3 --></translation>
+        <masterLabel>901</masterLabel>
+        <translation>Klient nenalezen</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>4</masterLabel>
-        <translation><!-- 4 --></translation>
+        <masterLabel>902</masterLabel>
+        <translation>Produkt klienta nenalezen</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>5</masterLabel>
-        <translation><!-- 5 --></translation>
+        <masterLabel>903</masterLabel>
+        <translation>Nelze určit prioritu produktu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>904</masterLabel>
+        <translation>Zprostředkovatel nenalezen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>905</masterLabel>
+        <translation>Není nastaven typ činnosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>906</masterLabel>
+        <translation>Zprostředkovatel nemá nastaven typ výpočtu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>907</masterLabel>
+        <translation>Zprostředkovatel nemá nastavený typ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>908</masterLabel>
+        <translation>Není nadřízený s oprávněním stavu A</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>909</masterLabel>
+        <translation>Záznam nemá přiřazenou hodnotu nadřízený KP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>910</masterLabel>
+        <translation>Není nadřízený s oprávněním stavu C</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>911</masterLabel>
+        <translation>OO Typu C není přiřazen žádnému A</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>912</masterLabel>
+        <translation>Nelze zjistit zletilost klienta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>914</masterLabel>
+        <translation>Nelze získat PSČ zákonného zástupce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>915</masterLabel>
+        <translation>Oblast není přiřazena žádnému odbytovému orgánu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>916</masterLabel>
+        <translation>Oblast není přiřazena žádnému odbytovému orgánu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>917</masterLabel>
+        <translation>Existuje prioritní změna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>918</masterLabel>
+        <translation>Přepočet není nutný</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>919</masterLabel>
+        <translation>Nesprávná akvizice na prioritním produktu</translation>
     </picklistValues>
 </CustomFieldTranslation>
