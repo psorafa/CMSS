@@ -3,7 +3,12 @@
  */
 public class CaseTriggerHandler extends TriggerHandler {
 	public override void beforeInsert() {
-		CaseService.assignCaseID(Trigger.new);
+        CaseService.validateOwnerPermission((List<Case>) Trigger.new, null);
+        CaseService.assignCaseID(Trigger.new);
+    }
+    
+    public override void beforeUpdate() {
+		CaseService.validateOwnerPermission((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 	}
 
 	public override void afterUpdate() {

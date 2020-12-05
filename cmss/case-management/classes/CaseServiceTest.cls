@@ -36,5 +36,34 @@ private class CaseServiceTest {
 		System.assertEquals(6, newIssuedClaimID.GDPRClaimID__c);
 		System.assertEquals('' + Date.today().year() + '3', newClientCase.CaseID__c);
 		System.assertEquals('6' + '' + Date.today().year(), newGDPRCase.CaseID__c);
-	}
+    }
+    
+    @IsTest
+	static void testValidateOwnerPermission() {
+        User user = TestDataFactory.getUser(new User(AgentId__c = 'UA18439'));
+        insert user;
+
+        PermissionSet GDPRPermSet = [SELECT Id FROM PermissionSet WHERE Name = 'GDPRCaseManager'];
+        PermissionSetAssignment psa = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = GDPRPermSet.Id);
+        insert psa;
+        
+        System.runAs(user) {
+            Case newClientCase = TestDataFactory.getCase(
+                new Case(
+                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+                        .get('NewClientClaim')
+                        .getRecordTypeId()
+                )
+            );
+            Case newGDPRCase = TestDataFactory.getCase(
+                new Case(
+                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName().get('GDPR').getRecordTypeId()
+                )
+            );
+            insert new List<Case>{ newClientCase, newGDPRCase };
+        }
+        
+        List<Case> queriedCases = [SELECT OwnerId FROM Case WHERE OwnerId = :user.Id];
+        System.assertEquals(2, queriedCases.size());
+    }
 }
