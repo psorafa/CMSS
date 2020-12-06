@@ -121,7 +121,7 @@ public class TestDataFactory {
 			LocaleSidKey = 'cs_CZ',
 			EmailEncodingKey = 'UTF-8',
 			LanguageLocaleKey = 'en_US',
-			AgentId__c = 'UA11111'
+			AgentId__c = 'UA11111' + userCounter
 		);
 		copyFields(so, template);
 		return template;
@@ -155,6 +155,23 @@ public class TestDataFactory {
 				insert defaultCaseOwner;
 			}
 			template.OwnerId = defaultCaseOwner.Id;
+		}
+		return template;
+    }
+    
+    public static PortfolioManagementRequest__c getPortfolioManagementRequest(PortfolioManagementRequest__c so) {
+		PortfolioManagementRequest__c template = new PortfolioManagementRequest__c(
+            PortfolioManChangeReason__c = '0',
+            ValidFrom__c = Datetime.now(),
+            PortfolioManagementType__c = 'A',
+            PortfolioManagerCPU__c = 'CPU0',
+            BatchID__c = 'batchId0'
+		);
+		copyFields(so, template);
+		if (template.Account__c == null) {
+			Account a = getAccount();
+			insert a;
+			template.Account__c = a.Id;
 		}
 		return template;
 	}
