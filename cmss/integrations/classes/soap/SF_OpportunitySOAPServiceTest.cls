@@ -99,7 +99,6 @@ private class SF_OpportunitySOAPServiceTest {
 		System.assertEquals(dNow, opp.CreatedDateTime__c.date());
 		System.assertEquals(dNow, opp.ValidFrom__c.date());
 		System.assertEquals(dNow.addDays(90), opp.CloseDate);
-		System.assertEquals(dNow.addDays(120), opp.ValidTo__c.date());
 		System.assertEquals(dNow.addDays(90), opp.DueDate__c);
 	}
 

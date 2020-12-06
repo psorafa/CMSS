@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CaseTypeSummary__c</fullName>
+    <description>Indicates how many Case Type records exist for a Case. Is used in Validations (CaseTypeMustExistResponseSentDate, CaseTypeMustExistStatus)</description>
+    <externalId>false</externalId>
+    <label>Case Type Summary</label>
+    <summaryForeignKey>CaseType__c.Case__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

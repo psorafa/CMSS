@@ -5,8 +5,7 @@
     <description>Informace zda se jedná o opakované podání</description>
     <externalId>false</externalId>
     <label>Repeated Complaint</label>
-    <trackFeedHistory>false</trackFeedHistory>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

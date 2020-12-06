@@ -35,31 +35,35 @@ private class CaseTriggerHandler_Test {
 		insert csEntitlement;
 
 		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
-		c1 = new Case(
+		c1 = TestDataFactory.getCase(new Case(
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Date.today().addDays(-50),
 			Origin = '1',
 			Source__c = '1',
 			AccountId = acc.Id,
 			EntitlementId = ent.Id
-		);
-		c2 = new Case(
+		));
+		c2 = TestDataFactory.getCase(new Case(
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Date.today().addDays(-10),
 			Origin = '1',
 			Source__c = '1',
 			AccountId = acc.Id,
 			EntitlementId = ent.Id
-		);
-		c3 = new Case(
+		));
+		c3 = TestDataFactory.getCase(new Case(
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Date.today().addDays(-3),
 			Origin = '1',
 			Source__c = '1',
 			AccountId = acc.Id,
 			EntitlementId = ent.Id
-		);
+		));
 		insert new List<Case>{ c1, c2, c3 };
+		CaseType__c ct1 = TestDataFactory.getCaseType(new CaseType__c(Case__c = c1.Id));
+		CaseType__c ct2 = TestDataFactory.getCaseType(new CaseType__c(Case__c = c2.Id));
+		CaseType__c ct3 = TestDataFactory.getCaseType(new CaseType__c(Case__c = c3.Id));
+		insert new List<CaseType__c> { ct1, ct2, ct3 };
 	}
 
 	@IsTest

@@ -1,6 +1,7 @@
 public without sharing class AccountConsolidationUtility {
 
 	public static final String MERGE_ACTION_TYPE = '1';
+	public static final String SPLIT_ACTION_TYPE = '2';
 	public static final Id CLIENT_CONSOLIDATION_RT = Case.SObjectType.getDescribe().getRecordTypeInfosByDeveloperName().get('Client_Consolidation').recordTypeId;
 
 	private List<ConsolidationResult__c> toBeMerged = new List<ConsolidationResult__c>();
@@ -17,6 +18,9 @@ public without sharing class AccountConsolidationUtility {
 
 	public AccountConsolidationUtility(List<ConsolidationResult__c> consolidationResults) {
 		for (ConsolidationResult__c consolidationResult : consolidationResults) {
+			if (consolidationResult.OldGlobalID__c == null) {
+				continue;
+			}
 			if (consolidationResult.ActionType__c == MERGE_ACTION_TYPE) {
 				toBeMerged.add(consolidationResult);
 			} else {

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CaseTypeMustExistStatus</fullName>
+    <active>true</active>
+    <description>Status can have value 2 only after value in CaseTypeSummary is =&gt; 1</description>
+    <errorConditionFormula>AND(CaseTypeSummary__c &lt; 1,  ISPICKVAL( Status, &apos;2&apos; ) )</errorConditionFormula>
+    <errorMessage>To set status to closed, at least one Case Type record must exist.</errorMessage>
+</ValidationRule>

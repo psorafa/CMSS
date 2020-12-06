@@ -5,8 +5,7 @@
     <description>Volba, zda je podávající shodný se subjektem údajů</description>
     <externalId>false</externalId>
     <label>Applicant Same As Subject</label>
-    <trackFeedHistory>false</trackFeedHistory>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

@@ -16,9 +16,19 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
+        <application>standard__LightningBolt</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>standard__LightningSales</application>
         <default>true</default>
         <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Marketing</application>
+        <default>false</default>
+        <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__SalesforceCMS</application>
@@ -30,10 +40,6 @@
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
-    <classAccesses>
-        <apexClass>ActivityManagementSOAP</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
     <classAccesses>
         <apexClass>AQMessagePublisher</apexClass>
         <enabled>false</enabled>
@@ -2585,6 +2591,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.CaseTypeSummary__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.CauseLegitComplaint__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -4230,11 +4241,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>NonLifeInsuranceOtherObject__c.ObjectID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>NonLifeInsuranceOtherObject__c.SerialNumber__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -4261,11 +4267,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>NonLifeInsuranceRisk__c.ExternalId__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>NonLifeInsuranceRisk__c.ObjectID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5054,7 +5055,53 @@
         <readable>false</readable>
     </fieldPermissions>
     <layoutAssignments>
+        <layout>Account-LACRLayout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-LACRLayout</layout>
+        <recordType>Account.Business_Account</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>AccountRelation__c-Account Relation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Asset Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-BuildingSavings</layout>
+        <recordType>Asset.BuildingSavings</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Credit and Intermediate Loan</layout>
+        <recordType>Asset.CreditAndIntermediateLoan</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-CreditCase</layout>
+        <recordType>Asset.CreditCases</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-CSOB Current Account</layout>
+        <recordType>Asset.CSOBCurrentAccount</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Investment Life Insurance</layout>
+        <recordType>Asset.InvestmentLifeInsurance</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Mortgages</layout>
+        <recordType>Asset.Mortgages</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Pension</layout>
+        <recordType>Asset.PensionProducts</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-PMO</layout>
+        <recordType>Asset.PMO</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-RiskLifeInsurance</layout>
+        <recordType>Asset.RiskLifeInsurance</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>AssetAccountRelation__c-Asset Account Relation Layout</layout>
@@ -5064,6 +5111,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>AssetDIMA__c-AssetDIMA Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AssetRelationship-Asset Relationship Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CampaignMember__c-CampaignMember Layout</layout>
@@ -5153,14 +5203,18 @@
         <layout>Opportunity-LACRLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Opportunity-Opportunity Layout</layout>
+        <layout>Opportunity-LACRLayout</layout>
         <recordType>Opportunity.Editable</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-LACRLayout</layout>
+        <recordType>Opportunity.NotEditable</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PensionStrategy__c-Pension Strategy Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PersonAccount-Person Account Layout</layout>
+        <layout>PersonAccount-LACRPersonLayout</layout>
         <recordType>PersonAccount.PersonAccount</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -5423,12 +5477,16 @@
         <enabled>false</enabled>
         <name>SubscribeToLightningReports</name>
     </userPermissions>
-    <userPermissions> 
+    <userPermissions>
         <enabled>false</enabled>
         <name>TransactionalEmailSend</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewHelpLink</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>ViewSetup</name>
     </userPermissions>
 </Profile>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GDPRChangeOwnerMustHaveGDPRPerSet</fullName>
+    <active>true</active>
+    <description>Valid for GDPR claims - In order to change Owner, user must have GDPR Case Manager permission set.</description>
+    <errorConditionFormula>AND ( NOT($Permission.GDPRCaseManager ) ,
+ISCHANGED(OwnerId) ,
+RecordType.DeveloperName = &apos;GDPR&apos;
+)</errorConditionFormula>
+    <errorDisplayField>OwnerId</errorDisplayField>
+    <errorMessage>You are not allowed to change owner for GDPR case type.</errorMessage>
+</ValidationRule>

@@ -2,6 +2,10 @@
  * Created by a.olexova on 5/21/2020.
  */
 public class CaseTriggerHandler extends TriggerHandler {
+	public override void beforeInsert() {
+		CaseService.assignCaseID(Trigger.new);
+	}
+
 	public override void afterUpdate() {
 		List<Case> newList = Trigger.New;
 		Map<Id, Case> oldMap = (Map<Id, Case>) Trigger.oldMap;

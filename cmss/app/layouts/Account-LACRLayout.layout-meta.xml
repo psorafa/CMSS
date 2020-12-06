@@ -433,13 +433,16 @@
     </relatedLists>
     <relatedLists>
         <fields>CASES.CASE_NUMBER</fields>
-        <fields>NAME</fields>
-        <fields>CASES.SUBJECT</fields>
-        <fields>CASES.PRIORITY</fields>
-        <fields>CASES.CREATED_DATE_DATE_ONLY</fields>
+        <fields>CaseID__c</fields>
+        <fields>CASES.TYPE</fields>
+        <fields>RequestType__c</fields>
         <fields>CASES.STATUS</fields>
+        <fields>ReceivedDate__c</fields>
         <fields>OWNER_NAME</fields>
+        <fields>CASES.CLOSED</fields>
         <relatedList>RelatedCaseList</relatedList>
+        <sortField>ReceivedDate__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

@@ -3,6 +3,7 @@
     <fullName>ClientClaimConfirmationSent</fullName>
     <active>true</active>
     <businessProcess>Client Claim</businessProcess>
+    <compactLayoutAssignment>Case</compactLayoutAssignment>
     <description>The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent.</description>
     <label>Client Claim Confirmation Sent</label>
     <picklistValues>
