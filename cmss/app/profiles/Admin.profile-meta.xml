@@ -5242,7 +5242,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-LACRLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-LACRLayout</layout>
@@ -5404,7 +5404,14 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Opportunity-LACRLayout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-LACRLayout</layout>
         <recordType>Opportunity.Editable</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-LACRLayout</layout>
+        <recordType>Opportunity.NotEditable</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PensionStrategy__c-Pension Strategy Layout</layout>

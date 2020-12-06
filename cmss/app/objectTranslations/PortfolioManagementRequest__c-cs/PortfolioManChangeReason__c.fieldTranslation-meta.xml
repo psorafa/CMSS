@@ -4,14 +4,130 @@
     <name>PortfolioManChangeReason__c</name>
     <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <translation>Stavební spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1004</masterLabel>
+        <translation>Spojení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1007</masterLabel>
+        <translation>Rozpojení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>101</masterLabel>
+        <translation>Převod od ukončeného správce stavu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>102</masterLabel>
+        <translation>Založení osoby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>110</masterLabel>
+        <translation>Změna struktury</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>120</masterLabel>
+        <translation>Klientská zóna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>130</masterLabel>
+        <translation>Žádost klienta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>131</masterLabel>
+        <translation>Oprava nekorektní správy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>133</masterLabel>
+        <translation>Dohoda OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>160</masterLabel>
+        <translation>Uzavření RŽP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>161</masterLabel>
+        <translation>Změna RŽP</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <translation>Následná</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>3</masterLabel>
-        <translation><!-- 3 --></translation>
+        <masterLabel>20</masterLabel>
+        <translation>Penzijní pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>200</masterLabel>
+        <translation>Návrh nadřízeného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30</masterLabel>
+        <translation>Běžný účet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>300</masterLabel>
+        <translation>Klient vyjmut z NP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>301</masterLabel>
+        <translation>ČSOB MOPRO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>400</masterLabel>
+        <translation>eLiška - svázání rodiny</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>401</masterLabel>
+        <translation>eLiška - ukončení činnosti OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>402</masterLabel>
+        <translation>eLiška-Nový OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>403</masterLabel>
+        <translation>eLiška - Změna dle požadavku RM</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>404</masterLabel>
+        <translation>eLiška - Změna dle požadavku MOT</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>405</masterLabel>
+        <translation>eLiška-Změna dle požadavku klienta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>406</masterLabel>
+        <translation>eLiška-Výměna klientů mezi OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>407</masterLabel>
+        <translation>eLiška-OZ z jiného okresu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>408</masterLabel>
+        <translation>eLiška-Převod ZZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>409</masterLabel>
+        <translation>Přerozdělení klienta s úkolem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>60</masterLabel>
+        <translation>ČSOBP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>600</masterLabel>
+        <translation>Regionalizace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>70</masterLabel>
+        <translation>Hypoteční banka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>800</masterLabel>
+        <translation>Úvěr/Meziúvěr</translation>
     </picklistValues>
 </CustomFieldTranslation>
