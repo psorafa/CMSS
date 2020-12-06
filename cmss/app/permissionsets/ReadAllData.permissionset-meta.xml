@@ -3844,6 +3844,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>NonLifeInsuranceOtherObject__c.Asset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>NonLifeInsuranceOtherObject__c.ClientID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3855,11 +3860,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>NonLifeInsuranceOtherObject__c.HouseholdInsuranceAmount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>NonLifeInsuranceOtherObject__c.ObjectID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -6,10 +6,6 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>ActivityManagementSOAP</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>AQMessagePublisher</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -4328,11 +4324,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>NonLifeInsuranceOtherObject__c.HouseholdInsuranceAmount__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>NonLifeInsuranceOtherObject__c.ObjectID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
