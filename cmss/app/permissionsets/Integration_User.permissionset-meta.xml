@@ -3974,11 +3974,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>NonLifeInsuranceRisk__c.ObjectID__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>NonLifeInsuranceRisk__c.PremiumWithoutDiscount__c</field>
         <readable>true</readable>
     </fieldPermissions>

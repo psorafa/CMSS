@@ -3879,6 +3879,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>NonLifeInsuranceRisk__c.Asset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>NonLifeInsuranceRisk__c.DiscountInsuranceContract__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3890,11 +3895,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>NonLifeInsuranceRisk__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>NonLifeInsuranceRisk__c.ObjectID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
