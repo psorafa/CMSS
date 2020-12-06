@@ -11,8 +11,8 @@ public with sharing class OpportunityService {
 			opportunity.ValidFrom__c = System.now();
 		}
 		if (data.validTo == null) {
-			opportunity.CloseDate = System.now().addDays(90).date();
-			opportunity.ValidTo__c = System.now().addDays(120);
+			opportunity.CloseDate = Date.today().addDays(90);
+			opportunity.ValidTo__c = Date.today().addDays(120);
 		}
 		opportunity.DueDate__c = Date.today().addDays(90);
 		DmlUtility.insertRecord(opportunity);
@@ -27,7 +27,9 @@ public with sharing class OpportunityService {
 
 	private static Opportunity prepareOpportunity(SF_OpportunitySOAPService.OpportunityType data) {
 		Opportunity o = new Opportunity();
-		o.Id = data.id;
+		if (!String.isBlank(data.id)) {
+			o.Id = data.id;
+		}
 		if (data.customerGlobalId != null) {
 			o.AccountId = ReferenceUtility.getAccountByGlobalId(data.customerGlobalId).Id;
 		}
