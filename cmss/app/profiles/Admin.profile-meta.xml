@@ -22,7 +22,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ActivityManagementSOAP</apexClass>
+        <apexClass>ActivateCZContractRelationsHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ActivateCZContractRelationsHandlerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -63,6 +67,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CaseTriggerHandler_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ChangeCZContractRelationsHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ChangeCZContractRelationsHandlerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -107,6 +119,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CustomerSearchController_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>DmlUtility</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -174,6 +190,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>SF_ActivityManagementSOAPService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SF_ActivityManagementSOAPServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SF_OpportunitySOAPService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -187,6 +211,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SF_PersonManagementSOAPServiceTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SignCZContractRelationHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SignCZContractRelationHandlerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -2667,13 +2699,13 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.CaseTypeSummary__c</field>
+        <editable>true</editable>
+        <field>Case.CaseID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.CaseID__c</field>
+        <editable>false</editable>
+        <field>Case.CaseTypeSummary__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2733,22 +2765,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.ComplaintLegitimacy__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.ConsolidationResult__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Case.ComplaintClosingReason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.ComplaintLegitimacy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.ComplaintReceivingConfirmation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.ConsolidationResult__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3013,17 +3045,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.SolutionPurpose__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.SolverDepartmentNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.SolvingType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.SolutionPurpose__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3144,6 +3176,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CaseType__c.ProductCloseDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CaseType__c.ProductType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3389,6 +3426,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ConsolidationResult__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ConsolidationResult__c.OldGlobalID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4382,6 +4424,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>NonLifeInsuranceOtherObject__c.Asset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>NonLifeInsuranceOtherObject__c.ClientID__c</field>
         <readable>true</readable>
@@ -4394,11 +4441,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>NonLifeInsuranceOtherObject__c.HouseholdInsuranceAmount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>NonLifeInsuranceOtherObject__c.ObjectID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4429,11 +4471,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>NonLifeInsuranceRisk__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>NonLifeInsuranceRisk__c.ObjectID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5074,6 +5111,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>User.CommissionAccountNr__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.CommissionAccountNrAll__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

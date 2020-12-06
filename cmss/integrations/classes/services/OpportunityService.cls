@@ -11,31 +11,25 @@ public with sharing class OpportunityService {
 			opportunity.ValidFrom__c = System.now();
 		}
 		if (data.validTo == null) {
-			opportunity.CloseDate = System.now().addDays(90).date();
-			opportunity.ValidTo__c = System.now().addDays(120);
+			opportunity.CloseDate = Date.today().addDays(90);
+			opportunity.ValidTo__c = Date.today().addDays(120);
 		}
 		opportunity.DueDate__c = Date.today().addDays(90);
-		try {
-			insert opportunity;
-			return opportunity.Id;
-		} catch (DmlException e) {
-			throw new SOAPCommonTypes.BusinessException(301, 'Cannot insert record: ' + e.getMessage(), e);
-		}
+		DmlUtility.insertRecord(opportunity);
+		return opportunity.Id;
 	}
 
 	public static void updateOpportunity(SF_OpportunitySOAPService.OpportunityType data) {
 		Validation.requireAttribute(data.id, 'id');
 		Opportunity opportunity = prepareOpportunity(data);
-		try {
-			update opportunity;
-		} catch (DmlException e) {
-			throw new SOAPCommonTypes.BusinessException(301, 'Cannot insert record: ' + e.getMessage(), e);
-		}
+		DmlUtility.updateRecord(opportunity);
 	}
 
 	private static Opportunity prepareOpportunity(SF_OpportunitySOAPService.OpportunityType data) {
 		Opportunity o = new Opportunity();
-		o.Id = data.id;
+		if (!String.isBlank(data.id)) {
+			o.Id = data.id;
+		}
 		if (data.customerGlobalId != null) {
 			o.AccountId = ReferenceUtility.getAccountByGlobalId(data.customerGlobalId).Id;
 		}

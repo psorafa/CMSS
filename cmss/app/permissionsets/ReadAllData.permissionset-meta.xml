@@ -2229,12 +2229,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.AccountingFundsType__c</field>
+        <field>Case.AccountingFundsType2__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.AccountingFundsType2__c</field>
+        <field>Case.AccountingFundsType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2980,6 +2980,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ConsolidationResult__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ConsolidationResult__c.OldGlobalID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3844,6 +3849,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>NonLifeInsuranceOtherObject__c.Asset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>NonLifeInsuranceOtherObject__c.ClientID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3855,11 +3865,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>NonLifeInsuranceOtherObject__c.HouseholdInsuranceAmount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>NonLifeInsuranceOtherObject__c.ObjectID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3879,6 +3884,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>NonLifeInsuranceRisk__c.Asset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>NonLifeInsuranceRisk__c.DiscountInsuranceContract__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3890,11 +3900,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>NonLifeInsuranceRisk__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>NonLifeInsuranceRisk__c.ObjectID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4575,6 +4580,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.CommissionAccountBase__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.CommissionAccountNrAll__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

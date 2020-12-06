@@ -2,13 +2,11 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Asset__c</fullName>
     <externalId>false</externalId>
+    <formula>ObjectID__r.Asset__r.Name</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Asset</label>
-    <referenceTo>Asset</referenceTo>
-    <relationshipLabel>Non Life Insurance Risks</relationshipLabel>
-    <relationshipName>NonLifeInsuranceRisks</relationshipName>
-    <relationshipOrder>0</relationshipOrder>
-    <reparentableMasterDetail>true</reparentableMasterDetail>
+    <required>false</required>
     <trackTrending>false</trackTrending>
-    <type>MasterDetail</type>
-    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    <type>Text</type>
+    <unique>false</unique>
 </CustomField>

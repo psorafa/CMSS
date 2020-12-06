@@ -41,10 +41,6 @@
         <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>ActivityManagementSOAP</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>AQMessagePublisher</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -4245,11 +4241,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>NonLifeInsuranceOtherObject__c.ObjectID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>NonLifeInsuranceOtherObject__c.SerialNumber__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -4276,11 +4267,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>NonLifeInsuranceRisk__c.ExternalId__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>NonLifeInsuranceRisk__c.ObjectID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5489,18 +5475,18 @@
     </userPermissions>
     <userPermissions>
         <enabled>false</enabled>
-        <name>ViewSetup</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>false</enabled>
         <name>SubscribeToLightningReports</name>
     </userPermissions>
-    <userPermissions> 
+    <userPermissions>
         <enabled>false</enabled>
         <name>TransactionalEmailSend</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewHelpLink</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>ViewSetup</name>
     </userPermissions>
 </Profile>

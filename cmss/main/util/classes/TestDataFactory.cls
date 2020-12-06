@@ -7,7 +7,7 @@ public class TestDataFactory {
 	private static Id personAccountRTId = [
 		SELECT Id
 		FROM RecordType
-		WHERE DeveloperName = 'PersonAccount' AND SObjectType = 'Account'
+		WHERE DeveloperName = 'PersonAccount' AND SobjectType = 'Account'
 	]
 	.Id;
 	private static Integer caseCounter = 0;
@@ -164,10 +164,14 @@ public class TestDataFactory {
             PortfolioManChangeReason__c = '0',
             ValidFrom__c = Datetime.now(),
             PortfolioManagementType__c = 'A',
-            PortfolioManagerCPU__c = 'CPU0',
             BatchID__c = 'batchId0'
 		);
 		copyFields(so, template);
+		if (template.PortfolioManagerCPU__c == null) {
+			User u = getUser(new User());
+			insert u;
+			template.PortfolioManagerCPU__c = u.CommissionAccountNr__c;
+		}
 		if (template.Account__c == null) {
 			Account a = getAccount();
 			insert a;
