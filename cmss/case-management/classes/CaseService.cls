@@ -37,18 +37,18 @@ public with sharing class CaseService {
     
     public static void validateOwnerPermission(List<Case> newCases, Map<Id, Case> oldCases) {
         Map<Id, List<Case>> ownerIdsToCases = new Map<Id, List<Case>>();
-        Set<Id> errorCaseIds = new Set<Id>();
+        Set<Case> errorCases = new Set<Case>();
         if (oldCases == null) {
             for (Case c : newCases) {
                 setupOwnerIdsToCases(ownerIdsToCases, c);
-                errorCaseIds.add(c.OwnerId);
+                errorCases.add(c);
             }
         } else {
             for (Case newCase : newCases) {
                 Case oldCase = oldCases.get(newCase.Id);
                 if (newCase.OwnerId != oldCase.OwnerId) {
                     setupOwnerIdsToCases(ownerIdsToCases, newCase);
-                    errorCaseIds.add(newCase.OwnerId);
+                    errorCases.add(newCase);
                 }
             }
         }
@@ -95,23 +95,24 @@ public with sharing class CaseService {
             List<Case> cases = ownerIdsToCases.get(psa.AssigneeId);
             for (Case c : cases) {
                 if (
-                    (c.RecordTypeId == GDPRRecordTypeId && 
-                    psa.PermissionSet.Name == 'GDPRCaseManager' && 
-                    GDPRCaseManagerHasCustPerm)
+                    (c.RecordTypeId == GDPRRecordTypeId && psa.PermissionSet.Name == 'GDPRCaseManager' && GDPRCaseManagerHasCustPerm)
                     ||
                     (
-                        (c.RecordTypeId == CCCSRecordTypeId && c.RecordTypeId == CCCSRecordTypeId) && 
-                        ((psa.PermissionSet.Name == 'ClientOmbudsman' && ClientOmbudsmanHasCustPerm) ||
-                        (psa.PermissionSet.Name == 'CaseManager' && CaseManagerHasCustPerm))
+                        (c.RecordTypeId == CCCSRecordTypeId || c.RecordTypeId == NCCRecordTypeId) 
+                        && 
+                        (
+                            (psa.PermissionSet.Name == 'ClientOmbudsman' && ClientOmbudsmanHasCustPerm) ||
+                            (psa.PermissionSet.Name == 'CaseManager' && CaseManagerHasCustPerm)
+                        )
                     )
                 ) {
-                    errorCaseIds.remove(c.Id);
+                    errorCases.remove(c);
                 }
             }
         }
 
-        if (errorCaseIds.size() > 0) {
-            throw new CaseOwnerPermissionMissingException(CASE_OWNER_MISSING_PERMISSION_ERR);
+        for (Case c : errorCases) {
+            c.addError(CASE_OWNER_MISSING_PERMISSION_ERR);
         }
     }
 
