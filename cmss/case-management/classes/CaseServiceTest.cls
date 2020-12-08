@@ -3,44 +3,26 @@ private class CaseServiceTest {
     
 	@IsTest
 	static void assignCaseIDTest() {
-        User user = TestDataFactory.getUser(new User(AgentId__c = 'UA18439'));
-        insert user;
+        Case newClientCase = TestDataFactory.getCase(
+            new Case(
+                RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+                    .get('NewClientClaim')
+                    .getRecordTypeId()
+            )
+        );
+        Case newGDPRCase = TestDataFactory.getCase(
+            new Case(
+                RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName().get('GDPR').getRecordTypeId()
+            )
+        );
+        NumericalSeriesSettings__c customSettingsValue = new NumericalSeriesSettings__c();
+        customSettingsValue.ClientClaimID__c = 2.0;
+        customSettingsValue.GDPRClaimID__c = 5.0;
+        insert customSettingsValue;
 
-        List<PermissionSet> permSets = [
-            SELECT Id 
-            FROM PermissionSet 
-            WHERE Name = 'GDPRCaseManager' OR Name = 'CaseManager'
-            ORDER BY Name
-        ];
-        PermissionSetAssignment psa1 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[1].Id);
-        PermissionSetAssignment psa2 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[0].Id);
-        insert new List<PermissionSetAssignment>{ psa1, psa2 };
-
-        Case newClientCase, newGDPRCase;
-        System.runAs(user) {
-            newClientCase = TestDataFactory.getCase(
-                new Case(
-                    OwnerId = user.Id,
-                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
-                        .get('NewClientClaim')
-                        .getRecordTypeId()
-                )
-            );
-            newGDPRCase = TestDataFactory.getCase(
-                new Case(
-                    OwnerId = user.Id,
-                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName().get('GDPR').getRecordTypeId()
-                )
-            );
-            NumericalSeriesSettings__c customSettingsValue = new NumericalSeriesSettings__c();
-            customSettingsValue.ClientClaimID__c = 2.0;
-            customSettingsValue.GDPRClaimID__c = 5.0;
-            insert customSettingsValue;
-
-            Test.startTest();
-            insert new List<Case>{ newClientCase, newGDPRCase };
-            Test.stopTest();
-        }
+        Test.startTest();
+        insert new List<Case>{ newClientCase, newGDPRCase };
+        Test.stopTest();
 
 		NumericalSeriesSettings__c newIssuedClaimID = [
 			SELECT ClientClaimID__c, GDPRClaimID__c

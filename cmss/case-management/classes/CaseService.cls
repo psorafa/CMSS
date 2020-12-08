@@ -36,17 +36,23 @@ public with sharing class CaseService {
     }
     
     public static void validateOwnerPermission(List<Case> newCases, Map<Id, Case> oldCases) {
+        Id GDPRRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('GDPR', 'Case');
+        Id CCCSRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('ClientClaimConfirmationSent', 'Case');
+        Id NCCRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
+
         Map<Id, List<Case>> ownerIdsToCases = new Map<Id, List<Case>>();
         Set<Case> errorCases = new Set<Case>();
         if (oldCases == null) {
             for (Case c : newCases) {
-                setupOwnerIdsToCases(ownerIdsToCases, c);
-                errorCases.add(c);
+                if (c.RecordTypeId == GDPRRecordTypeId || c.RecordTypeId == CCCSRecordTypeId || c.RecordTypeId == NCCRecordTypeId) {
+                    setupOwnerIdsToCases(ownerIdsToCases, c);
+                    errorCases.add(c);
+                }
             }
         } else {
             for (Case newCase : newCases) {
                 Case oldCase = oldCases.get(newCase.Id);
-                if (newCase.OwnerId != oldCase.OwnerId) {
+                if (newCase.OwnerId != oldCase.OwnerId && (newCase.RecordTypeId == GDPRRecordTypeId || newCase.RecordTypeId == CCCSRecordTypeId || newCase.RecordTypeId == NCCRecordTypeId)) {
                     setupOwnerIdsToCases(ownerIdsToCases, newCase);
                     errorCases.add(newCase);
                 }
@@ -82,10 +88,6 @@ public with sharing class CaseService {
 
             permissionSetIds.add(sea.ParentId);
         }
-
-        Id GDPRRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('GDPR', 'Case');
-        Id CCCSRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('ClientClaimConfirmationSent', 'Case');
-        Id NCCRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
 
         for (PermissionSetAssignment psa : [
             SELECT AssigneeId, PermissionSetId, PermissionSet.Name FROM PermissionSetAssignment
