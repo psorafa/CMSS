@@ -33,10 +33,27 @@ private class CaseMilestoneUtils_Test {
 			ReceivingConfirmationMilestoneName__c = 'Odeslání potvrzení o přijetí podání',
 			ResponseSentMilestoneName__c = 'Odeslání odpovědi na podání'
 		);
-		insert csEntitlement;
+        insert csEntitlement;
+        
+        User defaultCaseOwner = TestDataFactory.getUser(new User());
+        insert defaultCaseOwner;
+        
+        List<PermissionSet> permSets = [
+            SELECT Id 
+            FROM PermissionSet 
+            WHERE Name = 'GDPRCaseManager' OR Name = 'ClientOmbudsman' OR Name = 'CaseManager'
+            ORDER BY Name
+        ];
+        System.runAs(defaultCaseOwner) {
+            PermissionSetAssignment psa1 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[0].Id);
+            PermissionSetAssignment psa2 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[1].Id);
+            PermissionSetAssignment psa3 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[2].Id);
+            insert new List<PermissionSetAssignment>{ psa1, psa2, psa3 };
+        }
 
 		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
 		c1WithResponseSent = new Case(
+            OwnerId = defaultCaseOwner.Id,
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Date.today().addDays(-50),
 			Origin = '1',
@@ -46,6 +63,7 @@ private class CaseMilestoneUtils_Test {
 			ResponseSentDate__c = Date.today().addDays(-4)
 		);
 		c2WithResponseSent = new Case(
+            OwnerId = defaultCaseOwner.Id,
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Date.today().addDays(-10),
 			Origin = '1',
@@ -55,6 +73,7 @@ private class CaseMilestoneUtils_Test {
 			ResponseSentDate__c = Date.today()
 		);
 		c3WithConfirmationSent = new Case(
+            OwnerId = defaultCaseOwner.Id,
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Date.today().addDays(-3),
 			Origin = '1',
@@ -64,6 +83,7 @@ private class CaseMilestoneUtils_Test {
 			ReceivingConfirmationDate__c = Date.today().addDays(-2)
 		);
 		c4WithConfirmationSent = new Case(
+            OwnerId = defaultCaseOwner.Id,
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Date.today().addDays(-3),
 			Origin = '1',
