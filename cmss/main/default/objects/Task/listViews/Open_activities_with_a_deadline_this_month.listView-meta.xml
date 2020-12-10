@@ -8,7 +8,7 @@
     <columns>Result__c</columns>
     <columns>Opportunity__c</columns>
     <columns>CORE.USERS.FULL_NAME</columns>
-    <filterScope>Mine</filterScope>
+    <filterScope>Everything</filterScope>
     <filters>
         <field>IS_CLOSED</field>
         <operation>equals</operation>
