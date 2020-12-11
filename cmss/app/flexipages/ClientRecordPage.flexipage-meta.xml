@@ -61,7 +61,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>columns</name>
-                <value>Name, AccountType__c, ProductCloseDate__c, TariffCode__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c</value>
+                <value>Name, ProductType__c, ProductCloseDate__c, TariffCode__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>conditionAssets</name>
@@ -73,7 +73,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>listName</name>
-                <value>Stavební spoření</value>
+                <value>Stavební spoření a úvěry</value>
             </componentInstanceProperties>
             <componentName>assetRelatedList</componentName>
         </componentInstances>
@@ -88,7 +88,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>listName</name>
-                <value>Úvěry meziúvěry</value>
+                <value>Úvěrové případy</value>
             </componentInstanceProperties>
             <componentName>assetRelatedList</componentName>
         </componentInstances>
@@ -137,7 +137,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>conditionAssets</name>
-                <value>RecordType.DeveloperName = &apos;PMO&apos;</value>
+                <value>(RecordType.DeveloperName = &apos;PMO&apos; OR RecordType.DeveloperName = &apos;InvestmentLifeInsurance&apos;)</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>iconName</name>
@@ -145,7 +145,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>listName</name>
-                <value>Pojištění majetku a odpovědnosti</value>
+                <value>Pojistné produkty</value>
             </componentInstanceProperties>
             <componentName>assetRelatedList</componentName>
         </componentInstances>
@@ -164,7 +164,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>listName</name>
-                <value>Penzijní připojištění</value>
+                <value>Penzijní produkty</value>
             </componentInstanceProperties>
             <componentName>assetRelatedList</componentName>
         </componentInstances>
@@ -179,7 +179,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>listName</name>
-                <value>ČSOB účty</value>
+                <value>Běžné a spořící účty</value>
             </componentInstanceProperties>
             <componentName>assetRelatedList</componentName>
         </componentInstances>

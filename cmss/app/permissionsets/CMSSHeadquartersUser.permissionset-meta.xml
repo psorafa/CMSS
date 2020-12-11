@@ -4080,6 +4080,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.LoginName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.MaidenName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4506,18 +4511,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Asset.RiskLifeInsurance</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Case.ClientClaimConfirmationSent</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Case.ClosedClientClaim</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Case.ClosedGDPRClaim</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

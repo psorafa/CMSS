@@ -5175,6 +5175,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>User.LoginName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>User.MaidenName__c</field>
         <readable>true</readable>
     </fieldPermissions>

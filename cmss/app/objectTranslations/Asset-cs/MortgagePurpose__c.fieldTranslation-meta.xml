@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Účel hypotečního úvěru</label>
+    <name>MortgagePurpose__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Nákup nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Jine</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>Vypořádání SJM na nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12</masterLabel>
+        <translation>neúčelový</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13</masterLabel>
+        <translation>úhrada členského podílu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14</masterLabel>
+        <translation>úhrada za převod členských práv a povinností</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15</masterLabel>
+        <translation>Vypořádání úvěru na investice do družstevního podílu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16</masterLabel>
+        <translation>Refinancování předhypotečního úvěru</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17</masterLabel>
+        <translation>Vypořádání podílu na nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Výstavba nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Rekonstrukce nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>Vypořádání dědického podílu na nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>Vypořádání úvěru na investice do nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>Vypořádání půjčky na investice do nemovitosti</translation>
+    </picklistValues>
+</CustomFieldTranslation>
