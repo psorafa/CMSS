@@ -3,6 +3,18 @@
     <label>Role osoby 2</label>
     <name>RelatedAccountRole__c</name>
     <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>rodič</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1024</masterLabel>
+        <translation>jednatel</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>128</masterLabel>
+        <translation>poručenec</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1501</masterLabel>
         <translation>KZ zástupce k podpisu</translation>
     </picklistValues>
@@ -13,5 +25,69 @@
     <picklistValues>
         <masterLabel>1503</masterLabel>
         <translation>KZ zástupce podepsaný</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16</masterLabel>
+        <translation>druh/družka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16384</masterLabel>
+        <translation>majitel společnosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>18</masterLabel>
+        <translation>správce stavu A</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>19</masterLabel>
+        <translation>správce stavu C</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>dítě</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2048</masterLabel>
+        <translation>osoba oprávněná jednat za PO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>256</masterLabel>
+        <translation>opatrovník</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>32</masterLabel>
+        <translation>partner/partnerka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>32768</masterLabel>
+        <translation>pěstoun</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>sourozenec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4096</masterLabel>
+        <translation>organizace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>512</masterLabel>
+        <translation>zaopatřený</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>64</masterLabel>
+        <translation>poručík</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>65536</masterLabel>
+        <translation>pečující osoba</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>manžel/ka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8192</masterLabel>
+        <translation>obchodní vztah</translation>
     </picklistValues>
 </CustomFieldTranslation>

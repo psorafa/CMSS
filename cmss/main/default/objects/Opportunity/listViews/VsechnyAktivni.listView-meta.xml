@@ -15,5 +15,10 @@
         <operation>greaterOrEqual</operation>
         <value>TODAY</value>
     </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>1,2</value>
+    </filters>
     <label>Všechny aktivní</label>
 </ListView>
