@@ -3,19 +3,23 @@
     <label>Kategorie</label>
     <name>Category__c</name>
     <picklistValues>
-        <masterLabel>Campaign</masterLabel>
-        <translation>Kampaň</translation>
+        <masterLabel>1</masterLabel>
+        <translation>Zájemci</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Impuls</masterLabel>
-        <translation>Impuls</translation>
+        <masterLabel>2</masterLabel>
+        <translation>Kampaně</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Own Opportunity</masterLabel>
-        <translation>Vlastní Příležitost</translation>
+        <masterLabel>3</masterLabel>
+        <translation>Servisní</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Retention</masterLabel>
-        <translation>Retence</translation>
+        <masterLabel>4</masterLabel>
+        <translation>Klienti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>eÚvěry</translation>
     </picklistValues>
 </CustomFieldTranslation>

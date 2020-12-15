@@ -3,6 +3,10 @@
     <label>Podtyp produktu</label>
     <name>ProductSubtype__c</name>
     <picklistValues>
+        <masterLabel>1001</masterLabel>
+        <translation>Stavební úvěr</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>11000</masterLabel>
         <translation>nedefinováno</translation>
     </picklistValues>
@@ -87,23 +91,11 @@
         <translation>Poštovní účet</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>13060020</masterLabel>
-        <translation>Plus Konto</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>13060021</masterLabel>
         <translation>Premium konto (do  17.6.2020)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>13060999</masterLabel>
-        <translation>nerozlišeno</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>13061000</masterLabel>
-        <translation>Červené konto</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>13062000</masterLabel>
         <translation>nerozlišeno</translation>
     </picklistValues>
     <picklistValues>
@@ -116,10 +108,6 @@
     </picklistValues>
     <picklistValues>
         <masterLabel>13067000</masterLabel>
-        <translation>Plus Konto</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>13067020</masterLabel>
         <translation>Plus Konto</translation>
     </picklistValues>
     <picklistValues>
@@ -241,5 +229,9 @@
     <picklistValues>
         <masterLabel>16110</masterLabel>
         <translation>Domov od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2002</masterLabel>
+        <translation>Meziúvěr</translation>
     </picklistValues>
 </CustomFieldTranslation>

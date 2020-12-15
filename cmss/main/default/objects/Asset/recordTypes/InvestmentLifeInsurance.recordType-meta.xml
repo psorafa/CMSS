@@ -975,6 +975,10 @@
     <picklistValues>
         <picklist>ProductSubtype__c</picklist>
         <values>
+            <fullName>1001</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>11000</fullName>
             <default>false</default>
         </values>
@@ -1059,23 +1063,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>13060020</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>13060021</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>13060999</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>13061000</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>13062000</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1088,10 +1080,6 @@
         </values>
         <values>
             <fullName>13067000</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>13067020</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1212,6 +1200,10 @@
         </values>
         <values>
             <fullName>16110</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2002</fullName>
             <default>false</default>
         </values>
     </picklistValues>
