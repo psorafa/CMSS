@@ -152,9 +152,22 @@ public class TestDataFactory {
 		if (template.OwnerId == null) {
 			if (defaultCaseOwner == null) {
 				defaultCaseOwner = getUser(new User());
-				insert defaultCaseOwner;
+                insert defaultCaseOwner;
+                
+                List<PermissionSet> permSets = [
+                    SELECT Id 
+                    FROM PermissionSet 
+                    WHERE Name = 'GDPRCaseManager' OR Name = 'ClientOmbudsman' OR Name = 'CaseManager'
+                    ORDER BY Name
+                ];
+                System.runAs(defaultCaseOwner) {
+                    PermissionSetAssignment psa1 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[0].Id);
+                    PermissionSetAssignment psa2 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[1].Id);
+                    PermissionSetAssignment psa3 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[2].Id);
+                    insert new List<PermissionSetAssignment>{ psa1, psa2, psa3 };
+                }
 			}
-			template.OwnerId = defaultCaseOwner.Id;
+            template.OwnerId = defaultCaseOwner.Id;
 		}
 		return template;
     }

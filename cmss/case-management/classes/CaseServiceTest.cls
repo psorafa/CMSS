@@ -1,27 +1,28 @@
 @IsTest
 private class CaseServiceTest {
+    
 	@IsTest
 	static void assignCaseIDTest() {
-		Case newClientCase = TestDataFactory.getCase(
-			new Case(
-				RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
-					.get('NewClientClaim')
-					.getRecordTypeId()
-			)
-		);
-		Case newGDPRCase = TestDataFactory.getCase(
-			new Case(
-				RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName().get('GDPR').getRecordTypeId()
-			)
-		);
-		NumericalSeriesSettings__c customSettingsValue = new NumericalSeriesSettings__c();
-		customSettingsValue.ClientClaimID__c = 2.0;
-		customSettingsValue.GDPRClaimID__c = 5.0;
-		insert customSettingsValue;
+        Case newClientCase = TestDataFactory.getCase(
+            new Case(
+                RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+                    .get('NewClientClaim')
+                    .getRecordTypeId()
+            )
+        );
+        Case newGDPRCase = TestDataFactory.getCase(
+            new Case(
+                RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName().get('GDPR').getRecordTypeId()
+            )
+        );
+        NumericalSeriesSettings__c customSettingsValue = new NumericalSeriesSettings__c();
+        customSettingsValue.ClientClaimID__c = 2.0;
+        customSettingsValue.GDPRClaimID__c = 5.0;
+        insert customSettingsValue;
 
-		Test.startTest();
-		insert new List<Case>{ newClientCase, newGDPRCase };
-		Test.stopTest();
+        Test.startTest();
+        insert new List<Case>{ newClientCase, newGDPRCase };
+        Test.stopTest();
 
 		NumericalSeriesSettings__c newIssuedClaimID = [
 			SELECT ClientClaimID__c, GDPRClaimID__c
@@ -36,5 +37,97 @@ private class CaseServiceTest {
 		System.assertEquals(6, newIssuedClaimID.GDPRClaimID__c);
 		System.assertEquals('' + Date.today().year() + '3', newClientCase.CaseID__c);
 		System.assertEquals('6' + '' + Date.today().year(), newGDPRCase.CaseID__c);
-	}
+    }
+    
+    @IsTest
+	static void testValidateOwnerPermission() {
+        User user = TestDataFactory.getUser(new User(AgentId__c = 'UA18439'));
+        User user2 = TestDataFactory.getUser(new User(AgentId__c = 'UA18438'));
+        insert new List<User>{ user, user2 };
+
+        List<PermissionSet> permSets = [
+            SELECT Id 
+            FROM PermissionSet 
+            WHERE Name = 'GDPRCaseManager' OR Name = 'ClientOmbudsman' OR Name = 'CaseManager'
+            ORDER BY Name
+        ];
+        PermissionSetAssignment psa1 = new PermissionSetAssignment(AssigneeId = user2.Id, PermissionSetId = permSets[0].Id);
+        PermissionSetAssignment psa2 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[1].Id);
+        PermissionSetAssignment psa3 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[2].Id);
+        insert new List<PermissionSetAssignment>{ psa1, psa2, psa3 };
+        
+        Test.startTest();
+        Case newClientCase;
+        System.runAs(user) {
+            newClientCase = TestDataFactory.getCase(
+                new Case(
+                    Subject = 'newClientCase',
+                    OwnerId = user.Id,
+                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+                        .get('NewClientClaim')
+                        .getRecordTypeId()
+                )
+            );
+            Case newGDPRCase = TestDataFactory.getCase(
+                new Case(
+                    Subject = 'newGDPRCase',
+                    OwnerId = user.Id,
+                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName().get('GDPR').getRecordTypeId()
+                )
+            );
+            insert new List<Case>{ newClientCase, newGDPRCase };
+        }
+        Test.stopTest();
+        
+        List<Case> queriedCases = [SELECT OwnerId FROM Case WHERE OwnerId = :user.Id];
+        System.assertEquals(2, queriedCases.size());
+
+        System.runAs(user) {
+            newClientCase.OwnerId = user2.Id;
+            update newClientCase;
+        }
+
+        queriedCases = [SELECT OwnerId FROM Case ORDER BY Subject];
+        System.assertEquals(2, queriedCases.size());
+        System.assertEquals(user2.Id, queriedCases[0].OwnerId);
+        System.assertEquals(user.Id, queriedCases[1].OwnerId);
+    }
+
+    @IsTest
+	static void testValidateOwnerPermissionError() {
+        User user = TestDataFactory.getUser(new User(AgentId__c = 'UA18439'));
+        insert user;
+
+        List<PermissionSet> permSets = [
+            SELECT Id 
+            FROM PermissionSet 
+            WHERE Name = 'GDPRCaseManager'
+        ];
+        PermissionSetAssignment psa1 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[0].Id);
+        insert psa1;
+        
+        System.runAs(user) {
+            Case newClientCase = TestDataFactory.getCase(
+                new Case(
+                    OwnerId = user.Id,
+                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+                        .get('NewClientClaim')
+                        .getRecordTypeId()
+                )
+            );
+            Case newGDPRCase = TestDataFactory.getCase(
+                new Case(
+                    OwnerId = user.Id,
+                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName().get('GDPR').getRecordTypeId()
+                )
+            );
+
+            try {
+                insert new List<Case>{ newClientCase, newGDPRCase };
+                System.assert(false, 'This assert should not be reached.');
+            } catch (DMLException e) {
+                System.assert(e.getMessage().contains(CaseService.CASE_OWNER_MISSING_PERMISSION_ERR));
+            }
+        }
+    }
 }

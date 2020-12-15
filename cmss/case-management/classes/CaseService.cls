@@ -1,4 +1,8 @@
 public with sharing class CaseService {
+
+    public static final String CASE_OWNER_MISSING_PERMISSION_ERR = 
+        'Selected Owner doesn\'t have appropriate permission to handle this type of case.';
+
 	public static void assignCaseID(List<Case> newCaseList) {
 		Set<Id> ClientClaimRecordTypes = new Set<Id>{
 			SObjectType.Case.getRecordTypeInfosByDeveloperName().get('NewClientClaim').getRecordTypeId(),
@@ -29,5 +33,100 @@ public with sharing class CaseService {
 			}
 		}
 		upsert lastIssuedCaseID;
-	}
+    }
+    
+    public static void validateOwnerPermission(List<Case> newCases, Map<Id, Case> oldCases) {
+        Id GDPRRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('GDPR', 'Case');
+        Id CCCSRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('ClientClaimConfirmationSent', 'Case');
+        Id NCCRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
+
+        Map<Id, List<Case>> ownerIdsToCases = new Map<Id, List<Case>>();
+        Set<Case> errorCases = new Set<Case>();
+        if (oldCases == null) {
+            for (Case c : newCases) {
+                if (c.RecordTypeId == GDPRRecordTypeId || c.RecordTypeId == CCCSRecordTypeId || c.RecordTypeId == NCCRecordTypeId) {
+                    setupOwnerIdsToCases(ownerIdsToCases, c);
+                    errorCases.add(c);
+                }
+            }
+        } else {
+            for (Case newCase : newCases) {
+                Case oldCase = oldCases.get(newCase.Id);
+                if (newCase.OwnerId != oldCase.OwnerId && (newCase.RecordTypeId == GDPRRecordTypeId || newCase.RecordTypeId == CCCSRecordTypeId || newCase.RecordTypeId == NCCRecordTypeId)) {
+                    setupOwnerIdsToCases(ownerIdsToCases, newCase);
+                    errorCases.add(newCase);
+                }
+            }
+        }
+        
+        Map<Id, CustomPermission> idsToCustomPermissions = new Map<Id, CustomPermission>([
+            SELECT DeveloperName 
+            FROM CustomPermission 
+            WHERE DeveloperName IN ('ClaimCaseManager', 'ClientOmbudsman', 'GDPRCaseManager')
+                AND NamespacePrefix = null
+        ]);
+
+        Boolean GDPRCaseManagerHasCustPerm = false;
+        Boolean ClientOmbudsmanHasCustPerm = false;
+        Boolean CaseManagerHasCustPerm = false;
+
+        Set<Id> permissionSetIds = new Set<Id>();
+        for (SetupEntityAccess sea : [
+            SELECT ParentId, Parent.Name, SetupEntityId
+            FROM SetupEntityAccess 
+            WHERE SetupEntityId IN :idsToCustomPermissions.keySet()
+                AND Parent.Name IN ('CaseManager', 'ClientOmbudsman', 'GDPRCaseManager')
+        ]) {
+            String custPermDevName = idsToCustomPermissions.get(sea.SetupEntityId).DeveloperName;
+            if (sea.Parent.Name == 'GDPRCaseManager' && custPermDevName == 'GDPRCaseManager') {
+                GDPRCaseManagerHasCustPerm = true;
+            } else if (sea.Parent.Name == 'ClientOmbudsman' && custPermDevName == 'ClientOmbudsman') {
+                ClientOmbudsmanHasCustPerm = true;
+            } else if (sea.Parent.Name == 'CaseManager' && custPermDevName == 'ClaimCaseManager') {
+                CaseManagerHasCustPerm = true;
+            }
+
+            permissionSetIds.add(sea.ParentId);
+        }
+
+        for (PermissionSetAssignment psa : [
+            SELECT AssigneeId, PermissionSetId, PermissionSet.Name FROM PermissionSetAssignment
+            WHERE PermissionSetId IN :permissionSetIds
+                AND AssigneeId IN :ownerIdsToCases.keySet()
+        ]) {
+            List<Case> cases = ownerIdsToCases.get(psa.AssigneeId);
+            for (Case c : cases) {
+                if (
+                    (c.RecordTypeId == GDPRRecordTypeId && psa.PermissionSet.Name == 'GDPRCaseManager' && GDPRCaseManagerHasCustPerm)
+                    ||
+                    (
+                        (c.RecordTypeId == CCCSRecordTypeId || c.RecordTypeId == NCCRecordTypeId) 
+                        && 
+                        (
+                            (psa.PermissionSet.Name == 'ClientOmbudsman' && ClientOmbudsmanHasCustPerm) ||
+                            (psa.PermissionSet.Name == 'CaseManager' && CaseManagerHasCustPerm)
+                        )
+                    )
+                ) {
+                    errorCases.remove(c);
+                }
+            }
+        }
+
+        for (Case c : errorCases) {
+            c.addError(CASE_OWNER_MISSING_PERMISSION_ERR);
+        }
+    }
+
+    private static void setupOwnerIdsToCases(Map<Id, List<Case>> ownerIdsToCases, Case c) {
+        List<Case> cases = ownerIdsToCases.get(c.OwnerId);
+        if (cases == null) {
+            ownerIdsToCases.put(c.OwnerId, new List<Case>{ c });
+        } else {
+            cases.add(c);
+            ownerIdsToCases.put(c.OwnerId, cases);
+        }
+    }
+
+    public class CaseOwnerPermissionMissingException extends Exception {}
 }
