@@ -115,6 +115,10 @@
                 <behavior>Edit</behavior>
                 <field>ActualInsuranceAmount__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PaymentFrequency__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
