@@ -215,6 +215,37 @@ public class TestDataFactory {
 			template.Case__c = c.Id;
 		}
 		return template;
+    }
+
+    public static Consent__c getConsent(Consent__c so) {
+        Consent__c template = new Consent__c(
+            EntityConsent__c = '8', 
+            GeneralConsentVersion__c = '1', 
+            AgentCPU__c = 'agentCPU',
+            SubstituteRole__c = '1'
+        );
+        copyFields(so, template);
+        if (template.Account__c == null) {
+			Account a = getAccount();
+			insert a;
+            template.Account__c = a.Id;
+            so.Account__c = a.Id;
+		}
+		if (template.SubstitutePerson__c == null) {
+			Account sp = getAccount();
+			insert sp;
+            template.SubstitutePerson__c = sp.Id;
+            so.SubstitutePerson__c = sp.Id;
+		}
+		return template;
+	}
+    
+    public static List<Consent__c> getConsents(Integer amount, Consent__c so) {
+        List<Consent__c> consents = new List<Consent__c>();
+        for (Integer i = 0; i < amount; i++) {
+            consents.add(getConsent(so));
+        }
+		return consents;
 	}
 
 	private static void copyFields(SObject source, SObject destination) {
