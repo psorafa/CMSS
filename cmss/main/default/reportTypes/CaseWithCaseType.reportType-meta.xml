@@ -277,11 +277,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IsVisibleInSelfService</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>ExtensionInfoSent__c</field>
             <table>Case</table>
         </columns>
@@ -308,11 +303,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>HouseNumber__c</field>
-            <table>Case</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IsSelfServiceClosed</field>
             <table>Case</table>
         </columns>
         <columns>
