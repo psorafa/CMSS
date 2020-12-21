@@ -21,17 +21,27 @@ public with sharing class ConsentService {
             new List<ConsentWebServiceDataTypes.DisableChannelConsentRequestBodyType>(),
             new List<ConsentWebServiceDataTypes.DisableChannelConsentRequestBodyType>()
         };
+
+        Map<String, String> fieldNamesToConsentChannelIds = new Map<String, String>();
+        ConsentChannelIdsMapping__mdt[] consentChannelIdsMapping = [
+            SELECT FieldName__c, ConsentChannelId__c 
+            FROM ConsentChannelIdsMapping__mdt
+            WHERE ForTestingOnly__c = :Test.isRunningTest()
+        ];
+        for (ConsentChannelIdsMapping__mdt ccim : consentChannelIdsMapping) {
+            fieldNamesToConsentChannelIds.put(ccim.FieldName__c, ccim.ConsentChannelId__c);
+        }
+
         for (Integer i = 0; i < newConsents.size(); i++) {
             SObject oldConsent = oldIdsToConsents.get((Id) newConsents[i].get('Id'));
 
             if (newConsents[i].get('EntityConsent__c') != null) {
                 for (String fieldName : CHANNEL_FIELD_NAMES) {
+                    String consentChannelId = fieldNamesToConsentChannelIds.get(fieldName);
                     if (newConsents[i].get(fieldName) != oldConsent.get(fieldName) && newConsents[i].get(fieldName) == '1') {
-                        // ADD METADATA!
-                        listOfEnableChannelRequestLists[i/50].add(getEnableChannelWSDefinition((Consent__c) newConsents[i], 'myEmailConsentId'));
+                        listOfEnableChannelRequestLists[i/50].add(getEnableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId));
                     } else if (newConsents[i].get(fieldName) != oldConsent.get(fieldName) && newConsents[i].get(fieldName) == '2') {
-                        // ADD METADATA!
-                        listOfDisableChannelRequestLists[i/50].add(getDisableChannelWSDefinition((Consent__c) newConsents[i], 'mySMSConsentId'));
+                        listOfDisableChannelRequestLists[i/50].add(getDisableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId));
                     }
                 }
             }
@@ -58,25 +68,15 @@ public with sharing class ConsentService {
                 disableConsentRequestsJSON, List<ConsentWebServiceDataTypes.DisableChannelConsentRequestBodyType>.class
         );
 
-        ConsentWebServiceDataTypes.RequestHeader header = new ConsentWebServiceDataTypes.RequestHeader();
-        header.timestamp = System.now();
-        header.messageId = MockServicesUtil.generateUUID();
-        header.sourceSystem = 'SalesForce';
-        header.physicalSource = Url.getSalesforceBaseUrl().toExternalForm();
-        header.userId = UserInfo.getUserId();
-
+        SOAPCommonTypes.OutboundRequestHeader header = new SOAPCommonTypes.OutboundRequestHeader();
         ConsentWebService.ConsentServicePort stub = new ConsentWebService.ConsentServicePort();
         for (ConsentWebServiceDataTypes.EnableChannelConsentRequestBodyType body : enableConsentRequests) {
             ConsentWebServiceDataTypes.EnableChannelConsentResponseBodyType response = stub.enableChannelConsent(body, header);
-            if (response != null) {
-                Logger.debug('EnableChannelConsent response', JSON.serialize(response));
-            }
+            Logger.debug('EnableChannelConsent response', JSON.serialize(response));
         }
         for (ConsentWebServiceDataTypes.DisableChannelConsentRequestBodyType body : disableConsentRequests) {
             ConsentWebServiceDataTypes.DisableChannelConsentResponseBodyType response = stub.disableChannelConsent(body, header);
-            if (response != null) {
-                Logger.debug('DisableChannelConsent response', JSON.serialize(response));
-            }
+            Logger.debug('DisableChannelConsent response', JSON.serialize(response));
         }
 
         Logger.saveLogs();
@@ -102,58 +102,5 @@ public with sharing class ConsentService {
         body.validFrom = String.valueOfGmt(Datetime.now());
         body.agentCPU = c.AgentCPU__c;
         return body;
-    }
-
-    public static void processGeneralConsent(List<Consent__c> newConsents) {
-        List<List<Id>> listOfconsentIdLists = new List<List<Id>>{
-            new List<Id>(), new List<Id>(), new List<Id>(), new List<Id>()
-        };
-        for (Integer i = 0; i < newConsents.size(); i++) {
-            if (newConsents[i].EntityConsent__c != null && newConsents[i].GeneralConsentVersion__c != null && newConsents[i].Account__c != null) {
-                listOfconsentIdLists[i/50].add(newConsents[i].Id);
-            }
-        }
-
-        for (List<Id> consentIds : listOfconsentIdLists) {
-            if (consentIds.size() > 0) {
-                makeGeneralConsentCallout(consentIds);
-            }
-        }
-    }
-
-    @future(callout=true)
-    private static void makeGeneralConsentCallout(List<Id> consentIds) {
-        List<Consent__c> consents = [
-            SELECT EntityConsent__c, GeneralConsentVersion__c, Account__r.GlobalId__c, AgentCPU__c, SubstitutePerson__r.GlobalId__c, SubstituteRole__c 
-            FROM Consent__c 
-            WHERE Id IN :consentIds
-        ];
-
-        ConsentWebServiceDataTypes.RequestHeader header = new ConsentWebServiceDataTypes.RequestHeader();
-        header.timestamp = System.now();
-        header.messageId = MockServicesUtil.generateUUID();
-        header.sourceSystem = 'SalesForce';
-        header.physicalSource = Url.getSalesforceBaseUrl().toExternalForm();
-        header.userId = UserInfo.getUserId();
-
-        List<Consent__c> consentsToUpdate = new List<Consent__c>();
-        ConsentWebService.ConsentServicePort stub = new ConsentWebService.ConsentServicePort();
-        for (Consent__c c : consents) {
-            ConsentWebServiceDataTypes.EnableGeneralConsentRequestBodyType body = new ConsentWebServiceDataTypes.EnableGeneralConsentRequestBodyType();
-            body.consentEntityId = c.EntityConsent__c;
-            body.consentVersionId = c.GeneralConsentVersion__c;
-            body.globalId = c.Account__r.GlobalId__c;
-            body.consentSourceId = 'SalesForce';
-            body.validFrom = String.valueOfGmt(Datetime.now());
-            body.agentCPU = c.AgentCPU__c;
-            body.substitutePersonId = c.SubstitutePerson__r.GlobalId__c;
-            body.substituteRoleId = c.SubstituteRole__c;
-            ConsentWebServiceDataTypes.EnableGeneralConsentResponseBodyType response = stub.enableGeneralConsent(body, header);
-            if (response != null) {
-                consentsToUpdate.add(new Consent__c(Id = c.Id, ExternalId__c = response.consentGuid));
-            }
-        }
-
-        update consentsToUpdate;
     }
 }

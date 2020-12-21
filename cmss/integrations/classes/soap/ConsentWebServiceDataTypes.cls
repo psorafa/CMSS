@@ -8,7 +8,7 @@ public class ConsentWebServiceDataTypes {
         private String[] field_order_type_info = new String[]{'consentGuid'};
     }
     public class DisableChannelConsentRequestType {
-        public ConsentWebServiceDataTypes.RequestHeader requestHeader;
+        public SOAPCommonTypes.OutboundRequestHeader requestHeader;
         public ConsentWebServiceDataTypes.DisableChannelConsentRequestBodyType requestBody;
         private String[] requestBody_type_info = new String[]{'requestBody','http://service.cmss.cz/person/ConsentService/v01/datatypes',null,'1','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://service.cmss.cz/person/ConsentService/v01/datatypes','true','false'};
@@ -31,6 +31,7 @@ public class ConsentWebServiceDataTypes {
         private String[] field_order_type_info = new String[]{'consentEntityId','consentChannelId','globalId','consentSourceId','validFrom','agentCPU'};
     }
     public class EnableInternalConsentRequestType {
+        public SOAPCommonTypes.OutboundRequestHeader requestHeader;
         public ConsentWebServiceDataTypes.EnableInternalConsentRequestBodyType requestBody;
         private String[] requestBody_type_info = new String[]{'requestBody','http://service.cmss.cz/person/ConsentService/v01/datatypes',null,'1','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://service.cmss.cz/person/ConsentService/v01/datatypes','true','false'};
@@ -93,7 +94,7 @@ public class ConsentWebServiceDataTypes {
         private String[] field_order_type_info = new String[]{'consentEntityId','consentChannelId','globalId','consentSourceId','validFrom','agentCPU'};
     }
     public class EnableChannelConsentRequestType {
-        public ConsentWebServiceDataTypes.RequestHeader requestHeader;
+        public SOAPCommonTypes.OutboundRequestHeader requestHeader;
         public ConsentWebServiceDataTypes.EnableChannelConsentRequestBodyType requestBody;
         private String[] requestBody_type_info = new String[]{'requestBody','http://service.cmss.cz/person/ConsentService/v01/datatypes',null,'1','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://service.cmss.cz/person/ConsentService/v01/datatypes','true','false'};
@@ -250,7 +251,7 @@ public class ConsentWebServiceDataTypes {
         private String[] field_order_type_info = new String[]{'responseBody'};
     }
     public class EnableGeneralConsentRequestType {
-        public ConsentWebServiceDataTypes.RequestHeader requestHeader;
+        public SOAPCommonTypes.OutboundRequestHeader requestHeader;
         public ConsentWebServiceDataTypes.EnableGeneralConsentRequestBodyType requestBody;
         private String[] requestBody_type_info = new String[]{'requestBody','http://service.cmss.cz/person/ConsentService/v01/datatypes',null,'1','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://service.cmss.cz/person/ConsentService/v01/datatypes','true','false'};

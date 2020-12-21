@@ -246,7 +246,30 @@ public class TestDataFactory {
             consents.add(getConsent(so));
         }
 		return consents;
-	}
+    }
+    
+    public static InternalConsent__c getInternalConsent(InternalConsent__c so) {
+        InternalConsent__c template = new InternalConsent__c(
+            InternalConsentType__c = '1',
+            InternalConsentValue__c = '1'
+        );
+        copyFields(so, template);
+        if (template.Account__c == null) {
+			Account a = getAccount();
+			insert a;
+            template.Account__c = a.Id;
+            so.Account__c = a.Id;
+		}
+		return template;
+    }
+    
+    public static List<InternalConsent__c> getInternalConsents(Integer amount, InternalConsent__c so) {
+        List<InternalConsent__c> internalConsents = new List<InternalConsent__c>();
+        for (Integer i = 0; i < amount; i++) {
+            internalConsents.add(getInternalConsent(so));
+        }
+		return internalConsents;
+    }
 
 	private static void copyFields(SObject source, SObject destination) {
 		if (source == null) {

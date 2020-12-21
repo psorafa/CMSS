@@ -31,7 +31,7 @@ public class ConsentWebService {
             response_x = response_map_x.get('response_x');
             return response_x.responseBody;
         }
-        public ConsentWebServiceDataTypes.EnableGeneralConsentResponseBodyType enableGeneralConsent(ConsentWebServiceDataTypes.EnableGeneralConsentRequestBodyType requestBody, ConsentWebServiceDataTypes.RequestHeader requestHeader) {
+        public ConsentWebServiceDataTypes.EnableGeneralConsentResponseBodyType enableGeneralConsent(ConsentWebServiceDataTypes.EnableGeneralConsentRequestBodyType requestBody, SOAPCommonTypes.OutboundRequestHeader requestHeader) {
             ConsentWebServiceDataTypes.EnableGeneralConsentRequestType request_x = new ConsentWebServiceDataTypes.EnableGeneralConsentRequestType();
             request_x.requestHeader = requestHeader;
             request_x.requestBody = requestBody;
@@ -74,8 +74,9 @@ public class ConsentWebService {
             response_x = response_map_x.get('response_x');
             return response_x.responseBody;
         }
-        public ConsentWebServiceDataTypes.EnableInternalConsentResponseBodyType enableInternalConsent(ConsentWebServiceDataTypes.EnableInternalConsentRequestBodyType requestBody) {
+        public ConsentWebServiceDataTypes.EnableInternalConsentResponseBodyType enableInternalConsent(ConsentWebServiceDataTypes.EnableInternalConsentRequestBodyType requestBody, SOAPCommonTypes.OutboundRequestHeader requestHeader) {
             ConsentWebServiceDataTypes.EnableInternalConsentRequestType request_x = new ConsentWebServiceDataTypes.EnableInternalConsentRequestType();
+            request_x.requestHeader = requestHeader;
             request_x.requestBody = requestBody;
             ConsentWebServiceDataTypes.EnableInternalConsentResponseType response_x;
             Map<String, ConsentWebServiceDataTypes.EnableInternalConsentResponseType> response_map_x = new Map<String, ConsentWebServiceDataTypes.EnableInternalConsentResponseType>();
@@ -137,7 +138,7 @@ public class ConsentWebService {
             response_x = response_map_x.get('response_x');
             return response_x.responseBody;
         }
-        public ConsentWebServiceDataTypes.EnableChannelConsentResponseBodyType enableChannelConsent(ConsentWebServiceDataTypes.EnableChannelConsentRequestBodyType requestBody, ConsentWebServiceDataTypes.RequestHeader requestHeader) {
+        public ConsentWebServiceDataTypes.EnableChannelConsentResponseBodyType enableChannelConsent(ConsentWebServiceDataTypes.EnableChannelConsentRequestBodyType requestBody, SOAPCommonTypes.OutboundRequestHeader requestHeader) {
             ConsentWebServiceDataTypes.EnableChannelConsentRequestType request_x = new ConsentWebServiceDataTypes.EnableChannelConsentRequestType();
             request_x.requestHeader = requestHeader;
             request_x.requestBody = requestBody;
@@ -159,7 +160,7 @@ public class ConsentWebService {
             response_x = response_map_x.get('response_x');
             return response_x.responseBody;
         }
-        public ConsentWebServiceDataTypes.DisableChannelConsentResponseBodyType disableChannelConsent(ConsentWebServiceDataTypes.DisableChannelConsentRequestBodyType requestBody, ConsentWebServiceDataTypes.RequestHeader requestHeader) {
+        public ConsentWebServiceDataTypes.DisableChannelConsentResponseBodyType disableChannelConsent(ConsentWebServiceDataTypes.DisableChannelConsentRequestBodyType requestBody, SOAPCommonTypes.OutboundRequestHeader requestHeader) {
             ConsentWebServiceDataTypes.DisableChannelConsentRequestType request_x = new ConsentWebServiceDataTypes.DisableChannelConsentRequestType();
             request_x.requestHeader = requestHeader;
             request_x.requestBody = requestBody;
