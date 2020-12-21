@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <valueTranslation>
-        <masterLabel>Completed</masterLabel>
-        <translation>Dokončeno</translation>
+        <masterLabel>1</masterLabel>
+        <translation>Nová</translation>
     </valueTranslation>
     <valueTranslation>
-        <masterLabel>Deferred</masterLabel>
-        <translation>Odloženo</translation>
+        <masterLabel>2</masterLabel>
+        <translation>Naplánovaná</translation>
     </valueTranslation>
     <valueTranslation>
-        <masterLabel>In Progress</masterLabel>
-        <translation>Zpracovává se</translation>
+        <masterLabel>3</masterLabel>
+        <translation>Pozitivně uzavřená</translation>
     </valueTranslation>
     <valueTranslation>
-        <masterLabel>Not Started</masterLabel>
-        <translation>Nepřevzato</translation>
-    </valueTranslation>
-    <valueTranslation>
-        <masterLabel>Waiting on someone else</masterLabel>
-        <translation>Čeká na zpracování od někoho jiného</translation>
+        <masterLabel>4</masterLabel>
+        <translation>Negativně uzavřená</translation>
     </valueTranslation>
 </StandardValueSetTranslation>

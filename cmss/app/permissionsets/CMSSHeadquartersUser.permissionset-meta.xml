@@ -4025,6 +4025,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.CommissionAccountNrAll__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.CommissionAccountNr__c</field>
         <readable>true</readable>
     </fieldPermissions>

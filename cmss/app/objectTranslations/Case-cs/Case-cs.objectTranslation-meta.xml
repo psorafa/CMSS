@@ -202,7 +202,7 @@
     </quickActions>
     <recordTypes>
         <description><!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
-        <label><!-- Client Claim Confirmation Sent --></label>
+        <label>Klientské podání potvrzení odesláno</label>
         <name>ClientClaimConfirmationSent</name>
     </recordTypes>
     <recordTypes>
@@ -211,22 +211,22 @@
     </recordTypes>
     <recordTypes>
         <description><!-- The client claim record type with a non editable layout for closed cases --></description>
-        <label><!-- Closed Client Claim --></label>
+        <label>Zavřené klientské podání</label>
         <name>ClosedClientClaim</name>
     </recordTypes>
     <recordTypes>
         <description><!-- Record type with read-only fields for closed GDPR claims --></description>
-        <label><!-- Closed GDPR Claim --></label>
+        <label>Zavřené GDPR podání</label>
         <name>ClosedGDPRClaim</name>
     </recordTypes>
     <recordTypes>
         <description><!-- GDPR claim --></description>
-        <label><!-- GDPR --></label>
+        <label>Nové GDPR podání</label>
         <name>GDPR</name>
     </recordTypes>
     <recordTypes>
         <description><!-- Record type for Client Claims (complaints, incidents, requests) --></description>
-        <label><!-- New Client Claim --></label>
+        <label>Nové klientské podání</label>
         <name>NewClientClaim</name>
     </recordTypes>
     <validationRules>

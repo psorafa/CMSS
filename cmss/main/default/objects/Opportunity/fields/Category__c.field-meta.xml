@@ -11,24 +11,29 @@
         <valueSetDefinition>
             <sorted>true</sorted>
             <value>
-                <fullName>Campaign</fullName>
+                <fullName>1</fullName>
                 <default>false</default>
-                <label>Campaign</label>
+                <label>1</label>
             </value>
             <value>
-                <fullName>Impuls</fullName>
+                <fullName>2</fullName>
                 <default>false</default>
-                <label>Impuls</label>
+                <label>2</label>
             </value>
             <value>
-                <fullName>Own Opportunity</fullName>
+                <fullName>3</fullName>
                 <default>false</default>
-                <label>Own Opportunity</label>
+                <label>3</label>
             </value>
             <value>
-                <fullName>Retention</fullName>
+                <fullName>4</fullName>
                 <default>false</default>
-                <label>Retention</label>
+                <label>4</label>
+            </value>
+            <value>
+                <fullName>5</fullName>
+                <default>false</default>
+                <label>5</label>
             </value>
         </valueSetDefinition>
     </valueSet>
