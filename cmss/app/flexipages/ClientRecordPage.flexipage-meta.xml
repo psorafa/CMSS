@@ -27,7 +27,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>columns</name>
-                <value>Name, ProductType__c, ProductCloseDate__c, TariffCode__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c</value>
+                <value>Name, AccountType__c, ProductCloseDate__c, Tariff__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>conditionAssets</name>
@@ -485,6 +485,10 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>active</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>body</name>
                 <value>Facet-b9c9b05f-ffa8-4b69-88b2-89e4e045f33d</value>
             </componentInstanceProperties>
@@ -552,7 +556,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>active</name>
-                <value>true</value>
+                <value>false</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>body</name>

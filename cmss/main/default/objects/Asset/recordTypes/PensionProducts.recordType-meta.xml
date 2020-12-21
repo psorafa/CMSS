@@ -635,23 +635,23 @@
     <picklistValues>
         <picklist>GeneralInsuranceConditions__c</picklist>
         <values>
-            <fullName>1</fullName>
+            <fullName>113</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>2</fullName>
+            <fullName>117</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>3</fullName>
+            <fullName>120</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>4</fullName>
+            <fullName>506</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>5</fullName>
+            <fullName>518</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -975,6 +975,10 @@
     <picklistValues>
         <picklist>ProductSubtype__c</picklist>
         <values>
+            <fullName>1001</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>11000</fullName>
             <default>false</default>
         </values>
@@ -1059,23 +1063,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>13060020</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>13060021</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>13060999</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>13061000</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>13062000</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1088,10 +1080,6 @@
         </values>
         <values>
             <fullName>13067000</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>13067020</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1212,6 +1200,10 @@
         </values>
         <values>
             <fullName>16110</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2002</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1972,15 +1964,443 @@
     <picklistValues>
         <picklist>Status__c</picklist>
         <values>
-            <fullName>1</fullName>
+            <fullName>10001</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>2</fullName>
+            <fullName>10002</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>3</fullName>
+            <fullName>10003</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10004</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10005</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10006</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10007</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10008</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10009</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10010</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10011</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10012</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10013</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11001</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11002</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11003</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11004</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11005</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11006</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11007</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11008</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11009</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11010</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11011</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11012</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11013</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11014</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11015</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11016</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11017</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11018</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11019</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11020</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11021</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2009</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2010</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2011</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2013</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2015</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2099</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2990</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4001</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4002</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4003</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4004</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4005</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4006</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4007</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4008</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4009</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4010</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4011</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4012</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4020</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4021</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4080</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4081</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4082</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4083</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4084</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7003</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7060</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7061</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7062</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7082</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7092</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7094</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7095</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7096</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7097</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7098</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7100</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7111</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7112</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7113</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7114</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7125</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7127</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8001</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8002</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8003</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8004</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8005</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8006</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8007</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8008</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8009</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8010</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8011</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8012</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8013</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8014</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8022</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8023</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8024</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8025</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8026</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8027</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8028</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8029</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8030</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8031</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8032</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8033</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8034</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8036</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8037</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8110</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8126</fullName>
             <default>false</default>
         </values>
     </picklistValues>

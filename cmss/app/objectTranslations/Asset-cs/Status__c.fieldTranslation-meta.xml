@@ -3,15 +3,443 @@
     <label>Detailní stav</label>
     <name>Status__c</name>
     <picklistValues>
-        <masterLabel>1</masterLabel>
-        <translation>CNP</translation>
+        <masterLabel>10001</masterLabel>
+        <translation>Pořízeno</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>2</masterLabel>
-        <translation>IPC</translation>
+        <masterLabel>10002</masterLabel>
+        <translation>Ve zpracování</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>3</masterLabel>
-        <translation>PM I</translation>
+        <masterLabel>10003</masterLabel>
+        <translation>Schváleno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10004</masterLabel>
+        <translation>Uzavřeno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10005</masterLabel>
+        <translation>V čerpání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10006</masterLabel>
+        <translation>Dočerpáno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10007</masterLabel>
+        <translation>Ukončeno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10008</masterLabel>
+        <translation>Pozastaveno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10009</masterLabel>
+        <translation>Odmítnuto ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10010</masterLabel>
+        <translation>Odmítnuto klientem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10011</masterLabel>
+        <translation>Odmítnuto bez rozhodnutí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10012</masterLabel>
+        <translation>Odmítnuto po schválení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10013</masterLabel>
+        <translation>Vypovězeno (ve vymáhání)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11001</masterLabel>
+        <translation>Uzavřená smlouva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11002</masterLabel>
+        <translation>Uzavřená smlouva - stornováno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11003</masterLabel>
+        <translation>Uzavřená smlouva - vypořadaná</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11004</masterLabel>
+        <translation>Uzavřená smlouva - upomínáno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11005</masterLabel>
+        <translation>Uzavřená smlouva - zadaná výpověď</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11006</masterLabel>
+        <translation>Uzavřená smlouva - odstoupená</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11007</masterLabel>
+        <translation>Uzavřená smlouva - odstoupená</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11008</masterLabel>
+        <translation>Zaplacená smlouva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11009</masterLabel>
+        <translation>Zaplacená smlouva - přespořená</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11010</masterLabel>
+        <translation>Zaplacená smlouva - stornována</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11011</masterLabel>
+        <translation>Zaplacená smlouva - zadaná výpověď</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11012</masterLabel>
+        <translation>Zaplacená smlouva - odstoupená</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11013</masterLabel>
+        <translation>Zaplacená smlouva - odstoupená</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11014</masterLabel>
+        <translation>Zaplacená smlouva - vypořádaná</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11015</masterLabel>
+        <translation>Zaplacená smlouva - vypořádaná z důvou přespoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11016</masterLabel>
+        <translation>Zaplacená smlouva - zaslána nabídka přidělení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11017</masterLabel>
+        <translation>Přijetí přidělení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11018</masterLabel>
+        <translation>Přidělená smlouva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11019</masterLabel>
+        <translation>Vypořádaní po přidělení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11020</masterLabel>
+        <translation>Vyplacení vkladu po přidělení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11021</masterLabel>
+        <translation>Zaplacená smlouva - upomínáno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2009</masterLabel>
+        <translation>návrh připravený k validaci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2010</masterLabel>
+        <translation>platná smlouva (po verifikaci)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2011</masterLabel>
+        <translation>platná smlouva (po tisku)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2013</masterLabel>
+        <translation>chybová</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2015</masterLabel>
+        <translation>duplicitní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2099</masterLabel>
+        <translation>Ukončená smlouva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2990</masterLabel>
+        <translation>zrušena</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4001</masterLabel>
+        <translation>Podklady na pojišťovnu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4002</masterLabel>
+        <translation>Neúplné podklady - OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4003</masterLabel>
+        <translation>Podklady o zdrav. stavu - DP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4004</masterLabel>
+        <translation>Potvrzení zablokováno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4005</masterLabel>
+        <translation>Posuzuje ČSOBP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4006</masterLabel>
+        <translation>Čeká na schvál. MÚ/Ú, klad. saldo</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4007</masterLabel>
+        <translation>Záporné saldo na ved. účtu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4008</masterLabel>
+        <translation>Zamítnutí ze strany ČMSS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4009</masterLabel>
+        <translation>Odmítnutí ze strany klienta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4010</masterLabel>
+        <translation>Potvrzení žádosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4011</masterLabel>
+        <translation>Zamítnutí ze strany pojišťovny</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4012</masterLabel>
+        <translation>Úmrtí v době zpracování žádosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4020</masterLabel>
+        <translation>Počátek RLV následující měsíc (aktivace bez účtování)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4021</masterLabel>
+        <translation>Kompletní aktivace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4080</masterLabel>
+        <translation>Zrušení RLV k posl. zapl. měs.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4081</masterLabel>
+        <translation>Zrušení RLV ke konci roku</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4082</masterLabel>
+        <translation>Zrušení RLV -konec minul. roku</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4083</masterLabel>
+        <translation>Zrušení RLV od počátku</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4084</masterLabel>
+        <translation>Zrušení RLV ne-aktivací</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7003</masterLabel>
+        <translation>Úvěr rozpracován na ústředí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7060</masterLabel>
+        <translation>Úvěr zamítnut na ústředí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7061</masterLabel>
+        <translation>Úvěr schválen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7062</masterLabel>
+        <translation>Úvěr ukončen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7082</masterLabel>
+        <translation>Příslib schválen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7092</masterLabel>
+        <translation>Úvěr předán na ústředí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7094</masterLabel>
+        <translation>Úvěr - odstoupeno před schválením</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7095</masterLabel>
+        <translation>Příslib ukončen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7096</masterLabel>
+        <translation>Úvěr ukončen - převzetí dluhu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7097</masterLabel>
+        <translation>Úvěr - odstoupeno před SD</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7098</masterLabel>
+        <translation>Úvěr ukončen před čerpáním</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7100</masterLabel>
+        <translation>Úvěr zamítnut na pobočce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7111</masterLabel>
+        <translation>Úvěr připravován v síti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7112</masterLabel>
+        <translation>Úvěr pozastaven</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7113</masterLabel>
+        <translation>Úvěr ukončen - vymáhání pohledávky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7114</masterLabel>
+        <translation>Úvěr s garancí úrokové sazby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7125</masterLabel>
+        <translation>Úvěr ukončen - aktivní účty</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7127</masterLabel>
+        <translation>Úvěr připravován v externí síti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8000</masterLabel>
+        <translation>pojistka nebyla ještě verifikována</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8001</masterLabel>
+        <translation>pojistka je verifikována, živá a má vytisknutou výbavu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8002</masterLabel>
+        <translation>storno pojistky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8003</masterLabel>
+        <translation>pojistka je chybná a nebyla ještě verifikována</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8004</masterLabel>
+        <translation>pojistka je verifikována, ale nemá dosud vytisknutou výbavu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8005</masterLabel>
+        <translation>pojistka je vrácena z verifikace k opravě</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8006</masterLabel>
+        <translation>pojistka je chybná a čeká na pořízení vinkulace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8007</masterLabel>
+        <translation>pojistka je bez chyb a  čeká na pořízení vinkulace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8008</masterLabel>
+        <translation>pojistka černého klienta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8009</masterLabel>
+        <translation>pojistka je chybná a čeká na verifikaci vinkulace (historický záznam)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8010</masterLabel>
+        <translation>pojistka je bez chyb a čeká na verifikaci vinkulace (historický záznam)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8011</masterLabel>
+        <translation>pojistka černého klienta s chybou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8012</masterLabel>
+        <translation>u pojistky se tiskne výbava</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8013</masterLabel>
+        <translation>chyby na pojistce i při verifikaci vinkulace (historický záznam)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8014</masterLabel>
+        <translation>pojistka je bez chyb a chyby z verifikace vinkulace (historický záznam)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8022</masterLabel>
+        <translation>smlouva čeká na doplatek pro změnu  (historický záznam)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8023</masterLabel>
+        <translation>smlouva čeká na provedení změny</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8024</masterLabel>
+        <translation>redukce pojistky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8025</masterLabel>
+        <translation>přerušení placení pojistky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8026</masterLabel>
+        <translation>pojistka zproštěná placení (&apos;Zproštěná&apos;)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8027</masterLabel>
+        <translation>mrtvá pojistná smlouva (úplné zrušení)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8028</masterLabel>
+        <translation>pojistka je natypovaná celá, po ukončení typování, před verifikací</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8029</masterLabel>
+        <translation>pojistka PPR obsahuje nezajištěné záznamy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8030</masterLabel>
+        <translation>smlouva PPR je verifikovaná - lze ji vytisknout</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8031</masterLabel>
+        <translation>smlouva PPR je určená k podepsaná - lze provést konečný tisk a převést do TIS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8032</masterLabel>
+        <translation>smlouva PPR podepsaná IPBP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8033</masterLabel>
+        <translation>PPR - leasingová smlouva - nemá vytvořený aktuální splátkový kalendář</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8034</masterLabel>
+        <translation>PPR - ověřěná, neživá neformulářová smlouva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8036</masterLabel>
+        <translation>pojistka s neplaceným pojištěním (&apos;Neplacená&apos;)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8037</masterLabel>
+        <translation>pojistka s neplaceným pojištěním a zproštěným připojištěním (&apos;Neplacená se zproštěním&apos;)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8110</masterLabel>
+        <translation>pojistka převedena z RDPIS, neoživená</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8126</masterLabel>
+        <translation>pojistka zproštěná placení v opravě</translation>
     </picklistValues>
 </CustomFieldTranslation>
