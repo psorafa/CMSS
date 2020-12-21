@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>DaysOfComplaintSolving__c</fullName>
+    <fullName>reportComplaintUnspecifiedFormula__c</fullName>
+    <description>Complaint Legitimacy is 3 (Unspecified)</description>
     <externalId>false</externalId>
-    <formula>ClosedDate - ReceivedDatetime__c</formula>
+    <formula>IF(ISPICKVAL(ComplaintLegitimacy__c, &apos;3&apos;), 1, 0)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Days Of Complaint Solving</label>
+    <label>Complaint Unspecified Formula</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>
