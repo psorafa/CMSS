@@ -65,6 +65,18 @@ public class TestDataFactory {
 		}
 		return template;
 	}
+	public static ContactInformation__c getContactInformation(ContactInformation__c so) {
+		ContactInformation__c template = new ContactInformation__c(
+			Type__c = '1',
+			Country__c = '16',
+			Street__c = 'Street',
+			HouseNumber__c = '52',
+			City__c = 'City',
+			PostalCode__c = '100 00'
+		);
+		copyFields(so, template);
+		return template;
+	}
 
 	public static Opportunity getOpportunity() {
 		return getOpportunity(new Opportunity());
