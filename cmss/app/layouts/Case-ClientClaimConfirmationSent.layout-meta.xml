@@ -212,6 +212,10 @@
                 <field>CauseLegitComplaint__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ComplaintLegitimacy__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>SolvingType__c</field>
             </layoutItems>

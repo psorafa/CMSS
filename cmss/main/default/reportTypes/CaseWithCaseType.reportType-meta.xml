@@ -107,12 +107,22 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Days10Exceeded__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Amount__c</field>
             <table>Case</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>IsClosedOnCreate</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AccountingFundsType2__c</field>
             <table>Case</table>
         </columns>
         <columns>
@@ -168,6 +178,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>ConsolidationResult__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CaseID__c</field>
             <table>Case</table>
         </columns>
         <columns>
@@ -247,6 +262,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>CaseTypeSummary__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>SlaStartDate</field>
             <table>Case</table>
         </columns>
@@ -293,6 +313,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>InternalPrecautionType__c</field>
+            <table>Case</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>DaysOfComplaintSolving__c</field>
             <table>Case</table>
         </columns>
         <columns>
