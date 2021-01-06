@@ -22,16 +22,12 @@
                 <field>ActivityDate</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Author__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Type</field>
+                <field>PlannedToDate__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -40,20 +36,12 @@
                 <field>WhatId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Priority</field>
+                <behavior>Edit</behavior>
+                <field>ValidFrom__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>WhoId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Phone__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Result__c</field>
+                <field>ValidTo__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -87,15 +75,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>PlannedToDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Email__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ValidFrom__c</field>
+                <field>Phone__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Result__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -114,10 +102,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>PostCode__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ValidTo__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -157,6 +141,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>UpdatedBy__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>WhoId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Priority</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

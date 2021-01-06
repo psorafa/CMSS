@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Stav podání</value>
+    </caseValues>
+    <caseValues>
         <caseType>Nominative</caseType>
         <plural>false</plural>
-        <value>ID</value>
+        <value>Stav podání</value>
     </caseValues>
-    <gender>Neuter</gender>
-    <name>case_number</name>
+    <gender>Masculine</gender>
+    <name>status_case</name>
 </CustomFieldTranslation>
