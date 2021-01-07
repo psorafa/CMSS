@@ -4,6 +4,7 @@ public with sharing class InternalConsentEnablement {
     public static List<String> enableInternalConsents(List<SObject> consents) {
         Set<Id> accountIds = new Set<Id>();
         for (InternalConsent__c c : (List<InternalConsent__c>) consents) {
+            Validation.requireAttribute(c.InternalConsentType__c, 'InternalConsentType__c');
             accountIds.add(c.Account__c);
         }
 
@@ -14,8 +15,8 @@ public with sharing class InternalConsentEnablement {
         ]);
 
         List<String> externalIds = new List<String>();
-        SOAPCommonTypes.OutboundRequestHeader header = new SOAPCommonTypes.OutboundRequestHeader();
-        ConsentWebService.ConsentServicePort stub = new ConsentWebService.ConsentServicePort();
+        CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
+        ConsentCalloutService.ConsentServicePort stub = new ConsentCalloutService.ConsentServicePort();
         Integer index = 0;
         for (InternalConsent__c c : (List<InternalConsent__c>) consents) {
             if (index == 100) {
@@ -24,23 +25,14 @@ public with sharing class InternalConsentEnablement {
                 continue;
             }
 
-            Account client = idsToAccounts.get(c.Account__c);
-
-            ConsentWebServiceDataTypes.EnableInternalConsentRequestBodyType body = new ConsentWebServiceDataTypes.EnableInternalConsentRequestBodyType();
-            body.globalId = client == null ? null : client.GlobalId__c;
-            body.consentKind = c.InternalConsentType__c;
-            body.consentValidFrom = String.valueOfGmt(Datetime.now());
-            body.consentSourceId = 'SalesForce';
-            ConsentWebServiceDataTypes.EnableInternalConsentResponseBodyType response = stub.enableInternalConsent(body, header);
-            Logger.debug('EnableInternalConsent response', JSON.serialize(response));
+            ConsentDataTypesService.EnableInternalConsentRequestBodyType body = ConsentService.getEnableInternalConsentWSDefinition(c, idsToAccounts.get(c.Account__c));
+            ConsentDataTypesService.EnableInternalConsentResponseBodyType response = stub.enableInternalConsent_Http(header, body);
             if (response != null) {
                 externalIds.add(response.consentGuid);
             }
 
             index++;
         }
-
-        Logger.saveLogs();
 
         return externalIds;
     }

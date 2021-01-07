@@ -8,7 +8,9 @@ trigger ConsentTrigger on Consent__c (
 	after undelete
 ) {
     if (Trigger.isAfter) {
-		if (Trigger.isUpdate) {
+        if (Trigger.isInsert) {
+            ConsentService.processChannelConsent(Trigger.new, null);
+		} else if (Trigger.isUpdate) {
             ConsentService.processChannelConsent(Trigger.new, Trigger.oldMap);
 		}
 	}
