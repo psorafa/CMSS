@@ -6,12 +6,6 @@ public class ConsentCalloutService {
     
 	public class ConsentServicePort {
 		public String endpoint_x = 'https://ivdr.cmss.cz:443/ConsentServiceWeb_v01/ConsentService'; //'http://wasdevesb.cmss.local/ConsentServiceWeb_v01/ConsentService';
-		public Map<String,String> inputHttpHeaders_x;
-		public Map<String,String> outputHttpHeaders_x;
-		public String clientCertName_x;
-		public String clientCert_x;
-		public String clientCertPasswd_x;
-		public Integer timeout_x;
 		
 		private DOM.XmlNode populateDoc(DOM.Document doc){
 			String env = 'http://schemas.xmlsoap.org/soap/envelope/';
@@ -29,27 +23,7 @@ public class ConsentCalloutService {
 		}
 
 		private void AddHeader(DOM.XmlNode header){
-            String wsse = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd';
-            String pwdType = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText';
-            String encodingType = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary';
-            DOM.XmlNode security = header.addChildElement('Security', wsse, 'wsse');
-            security.setAttribute('mustUnderstand', '1');
-            security.setAttribute('xmlns:wsu', 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd');
-            DOM.XmlNode usernameToken = security.addChildElement('UsernameToken', wsse, 'wsse');
-            usernameToken.setAttribute('wsu:Id', 'UsernameToken-266927B69C471CFC5E16082843487846');
-            usernameToken.addChildElement('Username', wsse, 'wsse').addTextNode('T3WssSfoEsb');
-            DOM.XmlNode pwd = usernameToken.addChildElement('Password', wsse, 'wsse');
-            pwd.setAttribute('Type', pwdType);
-            pwd.addTextNode('nrZaXElbh8KXrXwjVAwF');
-            DOM.XmlNode nonce = usernameToken.addChildElement('Nonce', wsse, 'wsse');
-            nonce.setAttribute('EncodingType', encodingType);
-            nonce.addTextNode(generateNonce());
-            usernameToken.addChildElement('Created', wsse, 'wsu').addTextNode(Datetime.now().formatGmt('yyyy-MM-dd\'T\'hh:mm:ss\'Z\''));
-        }
-
-        private String generateNonce() {
-            Long randomLong = Crypto.getRandomLong();
-            return EncodingUtil.base64Encode(Blob.valueOf(String.valueOf(randomLong)));
+            new SOAPCommonTypes.OutboundHttpHeader().addHeader(header);
         }
         
 		public ConsentDataTypesService.DisableGeneralConsentResponseBodyType disableGeneralConsent_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.DisableGeneralConsentRequestBodyType requestBody) {
@@ -71,7 +45,7 @@ public class ConsentCalloutService {
 			HTTPResponse res = http.send(req);
             //System.debug(res.getBody());
             Logger.debug('disableGeneralConsent_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-			Logger.saveLogs(); 
+			 
             Dom.Document responseDoc = res.getBodyDocument(); 
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body','http://schemas.xmlsoap.org/soap/envelope/');
@@ -102,7 +76,7 @@ public class ConsentCalloutService {
 			HTTPResponse res = http.send(req);
             System.debug(res.getBody());
             Logger.debug('disableChannelConsent_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-			Logger.saveLogs(); 
+			 
             Dom.Document responseDoc = res.getBodyDocument();   
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body','http://schemas.xmlsoap.org/soap/envelope/');
@@ -133,7 +107,7 @@ public class ConsentCalloutService {
 			HTTPResponse res = http.send(req);
             System.debug(res.getBody());
             Logger.debug('disableInternalConsent_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-			Logger.saveLogs(); 
+			 
             Dom.Document responseDoc = res.getBodyDocument(); 
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body','http://schemas.xmlsoap.org/soap/envelope/');
@@ -164,7 +138,7 @@ public class ConsentCalloutService {
 			HTTPResponse res = http.send(req);
             //System.debug(res.getBody());
             Logger.debug('disableInternalConsentForPerson_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-			Logger.saveLogs(); 
+			 
             Dom.Document responseDoc = res.getBodyDocument(); 
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body','http://schemas.xmlsoap.org/soap/envelope/');
@@ -194,7 +168,7 @@ public class ConsentCalloutService {
 			HTTPResponse res = http.send(req);
             System.debug(res.getBody());
             Logger.debug('enableGeneralConsent_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-			Logger.saveLogs(); 
+			 
             Dom.Document responseDoc = res.getBodyDocument(); 
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body','http://schemas.xmlsoap.org/soap/envelope/');
@@ -225,7 +199,7 @@ public class ConsentCalloutService {
 			HTTPResponse res = http.send(req);
             System.debug(res.getBody());
             Logger.debug('enableChannelConsent_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-			Logger.saveLogs(); 
+			 
             Dom.Document responseDoc = res.getBodyDocument(); 
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body','http://schemas.xmlsoap.org/soap/envelope/');
@@ -256,7 +230,7 @@ public class ConsentCalloutService {
 			HTTPResponse res = http.send(req);
             System.debug(res.getBody());
             Logger.debug('enableInternalConsent_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-			Logger.saveLogs(); 
+			 
             Dom.Document responseDoc = res.getBodyDocument(); 
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body','http://schemas.xmlsoap.org/soap/envelope/');
@@ -287,7 +261,7 @@ public class ConsentCalloutService {
 			HTTPResponse res = http.send(req);
             //System.debug(res.getBody());
             Logger.debug('getGeneralConsentByIdNumber_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-			Logger.saveLogs(); 
+			 
             Dom.Document responseDoc = res.getBodyDocument(); 
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body','http://schemas.xmlsoap.org/soap/envelope/');

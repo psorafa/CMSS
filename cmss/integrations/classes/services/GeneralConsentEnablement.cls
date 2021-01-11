@@ -48,6 +48,8 @@ public with sharing class GeneralConsentEnablement {
             index++;
         }
 
+        Logger.saveLogs();
+
         return externalIds;
     }
 }

@@ -3,14 +3,466 @@
 public class CommonMessageService {
 	private static final String s_ns0 = 'http://service.cmss.cz/common/CommonMessage/v01';
 	public static DateTime parseDateTime(String nodeText){
-			String iso8601 = nodeText;
-			JSONParser parser = JSON.createParser( '{"t":"' + iso8601 + '"}');
-			parser.nextToken();
-			parser.nextValue();
-			DateTime dt = parser.getDateTimeValue();
-			//System.debug('dt: ' + dt);
-			return dt;
+        String iso8601 = nodeText;
+        JSONParser parser = JSON.createParser( '{"t":"' + iso8601 + '"}');
+        parser.nextToken();
+        parser.nextValue();
+        DateTime dt = parser.getDateTimeValue();
+        //System.debug('dt: ' + dt);
+        return dt;
+    }
+    //Extends http://service.cmss.cz/common/CommonMessage/v01:CMSSFaultInfo
+	public class CMSSBusinessLogicFaultInfo {
+		public CommonMessageService.CMSSFaultInfo[] cause;
+		public String errorDetail;
+		public String errorNumber;
+		public CommonMessageService.FaultHeader faultHeader;
+		public String message;
+		public String system_x;
+		private transient String[] cause_type_info = new String[]{'cause',s_ns0,'CMSSFaultInfo','0','-1','false'};
+		private transient String[] errorDetail_type_info = new String[]{'errorDetail',s_ns0,'string','0','1','false'};
+		private transient String[] errorNumber_type_info = new String[]{'errorNumber',s_ns0,'string','1','1','false'};
+		private transient String[] faultHeader_type_info = new String[]{'faultHeader',s_ns0,'FaultHeader','1','1','false'};
+		private transient String[] message_type_info = new String[]{'message',s_ns0,'string','0','1','false'};
+		private transient String[] system_x_type_info = new String[]{'system',s_ns0,'string','1','1','false'};
+		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
+		private transient String[] field_order_type_info = new String[]{'cause','errorDetail','errorNumber','faultHeader','message','system_x'};
+		public CMSSBusinessLogicFaultInfo(){
 		}
+		public CMSSBusinessLogicFaultInfo(DOM.XmlNode responseNode){
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			Dom.XmlNode[] causeChildren = responseNode.getChildElements();
+			CommonMessageService.CMSSFaultInfo[] causeList = new List<CommonMessageService.CMSSFaultInfo>();
+			if(causeChildren == null || causeChildren.size() == 0){
+				this.cause = null;
+			} else{
+				for(DOM.XmlNode childNode : causeChildren){
+					if(childNode.GetName() == 'cause'){
+						CommonMessageService.CMSSFaultInfo Obj = new CommonMessageService.CMSSFaultInfo(childNode);
+						causeList.Add(Obj);
+						nodesParsed.add(childNode);
+					}
+				}
+				this.cause = causeList;
+			}
+			//System.debug(this.cause);			
+			DOM.XmlNode errorDetailNode = responseNode.getChildElement('errorDetail', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.errorDetail = (errorDetailNode == null) ? null : errorDetailNode.getText();
+			nodesParsed.add(errorDetailNode);
+			//System.debug(this.errorDetail);			
+			DOM.XmlNode errorNumberNode = responseNode.getChildElement('errorNumber', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.errorNumber = (errorNumberNode == null) ? null : errorNumberNode.getText();
+			nodesParsed.add(errorNumberNode);
+			//System.debug(this.errorNumber);			
+			DOM.XmlNode faultHeaderNode = responseNode.getChildElement('faultHeader', 'http://service.cmss.cz/common/CommonMessage/v01');
+			if(faultHeaderNode == null){
+				this.faultHeader = null;
+			} else{
+				CommonMessageService.FaultHeader faultHeaderObj = new CommonMessageService.FaultHeader(faultHeaderNode);
+				nodesParsed.add(faultHeaderNode);
+				this.faultHeader = faultHeaderObj;
+			}
+			//System.debug(this.faultHeader);			
+			DOM.XmlNode messageNode = responseNode.getChildElement('message', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.message = (messageNode == null) ? null : messageNode.getText();
+			nodesParsed.add(messageNode);
+			//System.debug(this.message);			
+			DOM.XmlNode system_xNode = responseNode.getChildElement('system', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.system_x = (system_xNode == null) ? null : system_xNode.getText();
+			nodesParsed.add(system_xNode);
+			//System.debug(this.system_x);			
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode){
+			
+			CommonMessageService.CMSSFaultInfo[] causeObj = this.cause;
+			if(causeObj != null){
+				for(CommonMessageService.CMSSFaultInfo element: causeObj){
+					Dom.XmlNode causeNode = outerNode.addChildElement('cause', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+					element.populateXmlNode(causeNode);
+				}
+			}			
+			Dom.XmlNode errorDetailNode = outerNode.addChildElement('errorDetail', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			errorDetailNode.addTextNode((this.errorDetail == null) ? '' : this.errorDetail);
+			Dom.XmlNode errorNumberNode = outerNode.addChildElement('errorNumber', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(this.errorNumber != null){
+				errorNumberNode.addTextNode(this.errorNumber);
+			}
+			
+			CommonMessageService.FaultHeader faultHeaderObj = this.faultHeader;
+			Dom.XmlNode faultHeaderNode = outerNode.addChildElement('faultHeader', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(faultHeaderObj != null){
+				faultHeaderObj.populateXmlNode(faultHeaderNode);
+			}
+			Dom.XmlNode messageNode = outerNode.addChildElement('message', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			messageNode.addTextNode((this.message == null) ? '' : this.message);
+			Dom.XmlNode system_xNode = outerNode.addChildElement('system', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(this.system_x != null){
+				system_xNode.addTextNode(this.system_x);
+			}
+		}
+	}
+	public class CMSSFaultInfo {
+		public CommonMessageService.CMSSFaultInfo[] cause;
+		public String errorDetail;
+		public String errorNumber;
+		public CommonMessageService.FaultHeader faultHeader;
+		public String message;
+		public String system_x;
+		private transient String[] cause_type_info = new String[]{'cause',s_ns0,'CMSSFaultInfo','0','-1','false'};
+		private transient String[] errorDetail_type_info = new String[]{'errorDetail',s_ns0,'string','0','1','false'};
+		private transient String[] errorNumber_type_info = new String[]{'errorNumber',s_ns0,'string','1','1','false'};
+		private transient String[] faultHeader_type_info = new String[]{'faultHeader',s_ns0,'FaultHeader','1','1','false'};
+		private transient String[] message_type_info = new String[]{'message',s_ns0,'string','0','1','false'};
+		private transient String[] system_x_type_info = new String[]{'system',s_ns0,'string','1','1','false'};
+		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
+		private transient String[] field_order_type_info = new String[]{'cause','errorDetail','errorNumber','faultHeader','message','system_x'};
+		public CMSSFaultInfo(){
+		}
+		public CMSSFaultInfo(DOM.XmlNode responseNode){
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			Dom.XmlNode[] causeChildren = responseNode.getChildElements();
+			CommonMessageService.CMSSFaultInfo[] causeList = new List<CommonMessageService.CMSSFaultInfo>();
+			if(causeChildren == null || causeChildren.size() == 0){
+				this.cause = null;
+			} else{
+				for(DOM.XmlNode childNode : causeChildren){
+					if(childNode.GetName() == 'cause'){
+						CommonMessageService.CMSSFaultInfo Obj = new CommonMessageService.CMSSFaultInfo(childNode);
+						causeList.Add(Obj);
+						nodesParsed.add(childNode);
+					}
+				}
+				this.cause = causeList;
+			}
+			//System.debug(this.cause);			
+			DOM.XmlNode errorDetailNode = responseNode.getChildElement('errorDetail', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.errorDetail = (errorDetailNode == null) ? null : errorDetailNode.getText();
+			nodesParsed.add(errorDetailNode);
+			//System.debug(this.errorDetail);			
+			DOM.XmlNode errorNumberNode = responseNode.getChildElement('errorNumber', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.errorNumber = (errorNumberNode == null) ? null : errorNumberNode.getText();
+			nodesParsed.add(errorNumberNode);
+			//System.debug(this.errorNumber);			
+			DOM.XmlNode faultHeaderNode = responseNode.getChildElement('faultHeader', 'http://service.cmss.cz/common/CommonMessage/v01');
+			if(faultHeaderNode == null){
+				this.faultHeader = null;
+			} else{
+				CommonMessageService.FaultHeader faultHeaderObj = new CommonMessageService.FaultHeader(faultHeaderNode);
+				nodesParsed.add(faultHeaderNode);
+				this.faultHeader = faultHeaderObj;
+			}
+			//System.debug(this.faultHeader);			
+			DOM.XmlNode messageNode = responseNode.getChildElement('message', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.message = (messageNode == null) ? null : messageNode.getText();
+			nodesParsed.add(messageNode);
+			//System.debug(this.message);			
+			DOM.XmlNode system_xNode = responseNode.getChildElement('system', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.system_x = (system_xNode == null) ? null : system_xNode.getText();
+			nodesParsed.add(system_xNode);
+			//System.debug(this.system_x);			
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode){
+			
+			CommonMessageService.CMSSFaultInfo[] causeObj = this.cause;
+			if(causeObj != null){
+				for(CommonMessageService.CMSSFaultInfo element: causeObj){
+					Dom.XmlNode causeNode = outerNode.addChildElement('cause', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+					element.populateXmlNode(causeNode);
+				}
+			}			
+			Dom.XmlNode errorDetailNode = outerNode.addChildElement('errorDetail', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			errorDetailNode.addTextNode((this.errorDetail == null) ? '' : this.errorDetail);
+			Dom.XmlNode errorNumberNode = outerNode.addChildElement('errorNumber', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(this.errorNumber != null){
+				errorNumberNode.addTextNode(this.errorNumber);
+			}
+			
+			CommonMessageService.FaultHeader faultHeaderObj = this.faultHeader;
+			Dom.XmlNode faultHeaderNode = outerNode.addChildElement('faultHeader', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(faultHeaderObj != null){
+				faultHeaderObj.populateXmlNode(faultHeaderNode);
+			}
+			Dom.XmlNode messageNode = outerNode.addChildElement('message', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			messageNode.addTextNode((this.message == null) ? '' : this.message);
+			Dom.XmlNode system_xNode = outerNode.addChildElement('system', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(this.system_x != null){
+				system_xNode.addTextNode(this.system_x);
+			}
+		}
+	}
+	
+	//Extends http://service.cmss.cz/common/CommonMessage/v01:CMSSFaultInfo
+	public class CMSSSecurityFaultInfo {
+		public CommonMessageService.CMSSFaultInfo[] cause;
+		public String errorDetail;
+		public String errorNumber;
+		public CommonMessageService.FaultHeader faultHeader;
+		public String message;
+		public String system_x;
+		private transient String[] cause_type_info = new String[]{'cause',s_ns0,'CMSSFaultInfo','0','-1','false'};
+		private transient String[] errorDetail_type_info = new String[]{'errorDetail',s_ns0,'string','0','1','false'};
+		private transient String[] errorNumber_type_info = new String[]{'errorNumber',s_ns0,'string','1','1','false'};
+		private transient String[] faultHeader_type_info = new String[]{'faultHeader',s_ns0,'FaultHeader','1','1','false'};
+		private transient String[] message_type_info = new String[]{'message',s_ns0,'string','0','1','false'};
+		private transient String[] system_x_type_info = new String[]{'system',s_ns0,'string','1','1','false'};
+		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
+		private transient String[] field_order_type_info = new String[]{'cause','errorDetail','errorNumber','faultHeader','message','system_x'};
+		public CMSSSecurityFaultInfo(){
+		}
+		public CMSSSecurityFaultInfo(DOM.XmlNode responseNode){
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			Dom.XmlNode[] causeChildren = responseNode.getChildElements();
+			CommonMessageService.CMSSFaultInfo[] causeList = new List<CommonMessageService.CMSSFaultInfo>();
+			if(causeChildren == null || causeChildren.size() == 0){
+				this.cause = null;
+			} else{
+				for(DOM.XmlNode childNode : causeChildren){
+					if(childNode.GetName() == 'cause'){
+						CommonMessageService.CMSSFaultInfo Obj = new CommonMessageService.CMSSFaultInfo(childNode);
+						causeList.Add(Obj);
+						nodesParsed.add(childNode);
+					}
+				}
+				this.cause = causeList;
+			}
+			//System.debug(this.cause);			
+			DOM.XmlNode errorDetailNode = responseNode.getChildElement('errorDetail', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.errorDetail = (errorDetailNode == null) ? null : errorDetailNode.getText();
+			nodesParsed.add(errorDetailNode);
+			//System.debug(this.errorDetail);			
+			DOM.XmlNode errorNumberNode = responseNode.getChildElement('errorNumber', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.errorNumber = (errorNumberNode == null) ? null : errorNumberNode.getText();
+			nodesParsed.add(errorNumberNode);
+			//System.debug(this.errorNumber);			
+			DOM.XmlNode faultHeaderNode = responseNode.getChildElement('faultHeader', 'http://service.cmss.cz/common/CommonMessage/v01');
+			if(faultHeaderNode == null){
+				this.faultHeader = null;
+			} else{
+				CommonMessageService.FaultHeader faultHeaderObj = new CommonMessageService.FaultHeader(faultHeaderNode);
+				nodesParsed.add(faultHeaderNode);
+				this.faultHeader = faultHeaderObj;
+			}
+			//System.debug(this.faultHeader);			
+			DOM.XmlNode messageNode = responseNode.getChildElement('message', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.message = (messageNode == null) ? null : messageNode.getText();
+			nodesParsed.add(messageNode);
+			//System.debug(this.message);			
+			DOM.XmlNode system_xNode = responseNode.getChildElement('system', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.system_x = (system_xNode == null) ? null : system_xNode.getText();
+			nodesParsed.add(system_xNode);
+			//System.debug(this.system_x);			
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode){
+			
+			CommonMessageService.CMSSFaultInfo[] causeObj = this.cause;
+			if(causeObj != null){
+				for(CommonMessageService.CMSSFaultInfo element: causeObj){
+					Dom.XmlNode causeNode = outerNode.addChildElement('cause', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+					element.populateXmlNode(causeNode);
+				}
+			}			
+			Dom.XmlNode errorDetailNode = outerNode.addChildElement('errorDetail', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			errorDetailNode.addTextNode((this.errorDetail == null) ? '' : this.errorDetail);
+			Dom.XmlNode errorNumberNode = outerNode.addChildElement('errorNumber', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(this.errorNumber != null){
+				errorNumberNode.addTextNode(this.errorNumber);
+			}
+			
+			CommonMessageService.FaultHeader faultHeaderObj = this.faultHeader;
+			Dom.XmlNode faultHeaderNode = outerNode.addChildElement('faultHeader', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(faultHeaderObj != null){
+				faultHeaderObj.populateXmlNode(faultHeaderNode);
+			}
+			Dom.XmlNode messageNode = outerNode.addChildElement('message', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			messageNode.addTextNode((this.message == null) ? '' : this.message);
+			Dom.XmlNode system_xNode = outerNode.addChildElement('system', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(this.system_x != null){
+				system_xNode.addTextNode(this.system_x);
+			}
+		}
+	}
+	
+	//Extends http://service.cmss.cz/common/CommonMessage/v01:CMSSFaultInfo
+	public class CMSSServiceFaultInfo {
+		public CommonMessageService.CMSSFaultInfo[] cause;
+		public String errorDetail;
+		public String errorNumber;
+		public CommonMessageService.FaultHeader faultHeader;
+		public String message;
+		public String system_x;
+		private transient String[] cause_type_info = new String[]{'cause',s_ns0,'CMSSFaultInfo','0','-1','false'};
+		private transient String[] errorDetail_type_info = new String[]{'errorDetail',s_ns0,'string','0','1','false'};
+		private transient String[] errorNumber_type_info = new String[]{'errorNumber',s_ns0,'string','1','1','false'};
+		private transient String[] faultHeader_type_info = new String[]{'faultHeader',s_ns0,'FaultHeader','1','1','false'};
+		private transient String[] message_type_info = new String[]{'message',s_ns0,'string','0','1','false'};
+		private transient String[] system_x_type_info = new String[]{'system',s_ns0,'string','1','1','false'};
+		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
+		private transient String[] field_order_type_info = new String[]{'cause','errorDetail','errorNumber','faultHeader','message','system_x'};
+		public CMSSServiceFaultInfo(){
+		}
+		public CMSSServiceFaultInfo(DOM.XmlNode responseNode){
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			Dom.XmlNode[] causeChildren = responseNode.getChildElements();
+			CommonMessageService.CMSSFaultInfo[] causeList = new List<CommonMessageService.CMSSFaultInfo>();
+			if(causeChildren == null || causeChildren.size() == 0){
+				this.cause = null;
+			} else{
+				for(DOM.XmlNode childNode : causeChildren){
+					if(childNode.GetName() == 'cause'){
+						CommonMessageService.CMSSFaultInfo Obj = new CommonMessageService.CMSSFaultInfo(childNode);
+						causeList.Add(Obj);
+						nodesParsed.add(childNode);
+					}
+				}
+				this.cause = causeList;
+			}
+			//System.debug(this.cause);			
+			DOM.XmlNode errorDetailNode = responseNode.getChildElement('errorDetail', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.errorDetail = (errorDetailNode == null) ? null : errorDetailNode.getText();
+			nodesParsed.add(errorDetailNode);
+			//System.debug(this.errorDetail);			
+			DOM.XmlNode errorNumberNode = responseNode.getChildElement('errorNumber', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.errorNumber = (errorNumberNode == null) ? null : errorNumberNode.getText();
+			nodesParsed.add(errorNumberNode);
+			//System.debug(this.errorNumber);			
+			DOM.XmlNode faultHeaderNode = responseNode.getChildElement('faultHeader', 'http://service.cmss.cz/common/CommonMessage/v01');
+			if(faultHeaderNode == null){
+				this.faultHeader = null;
+			} else{
+				CommonMessageService.FaultHeader faultHeaderObj = new CommonMessageService.FaultHeader(faultHeaderNode);
+				nodesParsed.add(faultHeaderNode);
+				this.faultHeader = faultHeaderObj;
+			}
+			//System.debug(this.faultHeader);			
+			DOM.XmlNode messageNode = responseNode.getChildElement('message', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.message = (messageNode == null) ? null : messageNode.getText();
+			nodesParsed.add(messageNode);
+			//System.debug(this.message);			
+			DOM.XmlNode system_xNode = responseNode.getChildElement('system', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.system_x = (system_xNode == null) ? null : system_xNode.getText();
+			nodesParsed.add(system_xNode);
+			//System.debug(this.system_x);			
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode){
+			
+			CommonMessageService.CMSSFaultInfo[] causeObj = this.cause;
+			if(causeObj != null){
+				for(CommonMessageService.CMSSFaultInfo element: causeObj){
+					Dom.XmlNode causeNode = outerNode.addChildElement('cause', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+					element.populateXmlNode(causeNode);
+				}
+			}			
+			Dom.XmlNode errorDetailNode = outerNode.addChildElement('errorDetail', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			errorDetailNode.addTextNode((this.errorDetail == null) ? '' : this.errorDetail);
+			Dom.XmlNode errorNumberNode = outerNode.addChildElement('errorNumber', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(this.errorNumber != null){
+				errorNumberNode.addTextNode(this.errorNumber);
+			}
+			
+			CommonMessageService.FaultHeader faultHeaderObj = this.faultHeader;
+			Dom.XmlNode faultHeaderNode = outerNode.addChildElement('faultHeader', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(faultHeaderObj != null){
+				faultHeaderObj.populateXmlNode(faultHeaderNode);
+			}
+			Dom.XmlNode messageNode = outerNode.addChildElement('message', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			messageNode.addTextNode((this.message == null) ? '' : this.message);
+			Dom.XmlNode system_xNode = outerNode.addChildElement('system', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(this.system_x != null){
+				system_xNode.addTextNode(this.system_x);
+			}
+		}
+	}
+	
+	//Extends http://service.cmss.cz/common/CommonMessage/v01:Header
+	public class FaultHeader {
+		public String conversationIdName;
+		public String conversationIdValue;
+		public String correlationId;
+		public String messageId;
+		public String physicalSource;
+		public String sourceSystem;
+		public String targetSystem;
+		public DateTime timestamp;
+		public String userId;
+		private transient String[] conversationIdName_type_info = new String[]{'conversationIdName',s_ns0,'string','0','1','false'};
+		private transient String[] conversationIdValue_type_info = new String[]{'conversationIdValue',s_ns0,'string','0','1','false'};
+		private transient String[] correlationId_type_info = new String[]{'correlationId',s_ns0,'string','0','1','false'};
+		private transient String[] messageId_type_info = new String[]{'messageId',s_ns0,'string','1','1','false'};
+		private transient String[] physicalSource_type_info = new String[]{'physicalSource',s_ns0,'string','0','1','false'};
+		private transient String[] sourceSystem_type_info = new String[]{'sourceSystem',s_ns0,'string','1','1','false'};
+		private transient String[] targetSystem_type_info = new String[]{'targetSystem',s_ns0,'string','0','1','false'};
+		private transient String[] timestamp_type_info = new String[]{'timestamp',s_ns0,'dateTime','1','1','false'};
+		private transient String[] userId_type_info = new String[]{'userId',s_ns0,'string','0','1','false'};
+		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
+		private transient String[] field_order_type_info = new String[]{'conversationIdName','conversationIdValue','correlationId','messageId','physicalSource','sourceSystem','targetSystem','timestamp','userId'};
+		public FaultHeader(){
+		}
+		public FaultHeader(DOM.XmlNode responseNode){
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			DOM.XmlNode conversationIdNameNode = responseNode.getChildElement('conversationIdName', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.conversationIdName = (conversationIdNameNode == null) ? null : conversationIdNameNode.getText();
+			nodesParsed.add(conversationIdNameNode);
+			//System.debug(this.conversationIdName);			
+			DOM.XmlNode conversationIdValueNode = responseNode.getChildElement('conversationIdValue', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.conversationIdValue = (conversationIdValueNode == null) ? null : conversationIdValueNode.getText();
+			nodesParsed.add(conversationIdValueNode);
+			//System.debug(this.conversationIdValue);			
+			DOM.XmlNode correlationIdNode = responseNode.getChildElement('correlationId', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.correlationId = (correlationIdNode == null) ? null : correlationIdNode.getText();
+			nodesParsed.add(correlationIdNode);
+			//System.debug(this.correlationId);			
+			DOM.XmlNode messageIdNode = responseNode.getChildElement('messageId', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.messageId = (messageIdNode == null) ? null : messageIdNode.getText();
+			nodesParsed.add(messageIdNode);
+			//System.debug(this.messageId);			
+			DOM.XmlNode physicalSourceNode = responseNode.getChildElement('physicalSource', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.physicalSource = (physicalSourceNode == null) ? null : physicalSourceNode.getText();
+			nodesParsed.add(physicalSourceNode);
+			//System.debug(this.physicalSource);			
+			DOM.XmlNode sourceSystemNode = responseNode.getChildElement('sourceSystem', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.sourceSystem = (sourceSystemNode == null) ? null : sourceSystemNode.getText();
+			nodesParsed.add(sourceSystemNode);
+			//System.debug(this.sourceSystem);			
+			DOM.XmlNode targetSystemNode = responseNode.getChildElement('targetSystem', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.targetSystem = (targetSystemNode == null) ? null : targetSystemNode.getText();
+			nodesParsed.add(targetSystemNode);
+			//System.debug(this.targetSystem);			
+			DOM.XmlNode timestampNode = responseNode.getChildElement('timestamp', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.timestamp = (timestampNode == null) ? null :  CommonMessageService.parseDateTime(timestampNode.getText());
+			nodesParsed.add(timestampNode);
+			//System.debug(this.timestamp);			
+			DOM.XmlNode userIdNode = responseNode.getChildElement('userId', 'http://service.cmss.cz/common/CommonMessage/v01');
+			this.userId = (userIdNode == null) ? null : userIdNode.getText();
+			nodesParsed.add(userIdNode);
+			//System.debug(this.userId);			
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode){
+			Dom.XmlNode conversationIdNameNode = outerNode.addChildElement('conversationIdName', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			conversationIdNameNode.addTextNode((this.conversationIdName == null) ? '' : this.conversationIdName);
+			Dom.XmlNode conversationIdValueNode = outerNode.addChildElement('conversationIdValue', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			conversationIdValueNode.addTextNode((this.conversationIdValue == null) ? '' : this.conversationIdValue);
+			Dom.XmlNode correlationIdNode = outerNode.addChildElement('correlationId', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			correlationIdNode.addTextNode((this.correlationId == null) ? '' : this.correlationId);
+			Dom.XmlNode messageIdNode = outerNode.addChildElement('messageId', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(this.messageId != null){
+				messageIdNode.addTextNode(this.messageId);
+			}
+			Dom.XmlNode physicalSourceNode = outerNode.addChildElement('physicalSource', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			physicalSourceNode.addTextNode((this.physicalSource == null) ? '' : this.physicalSource);
+			Dom.XmlNode sourceSystemNode = outerNode.addChildElement('sourceSystem', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(this.sourceSystem != null){
+				sourceSystemNode.addTextNode(this.sourceSystem);
+			}
+			Dom.XmlNode targetSystemNode = outerNode.addChildElement('targetSystem', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			targetSystemNode.addTextNode((this.targetSystem == null) ? '' : this.targetSystem);
+			Dom.XmlNode timestampNode = outerNode.addChildElement('timestamp', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			if(this.timestamp != null){
+				timestampNode.addTextNode(String.valueOf(this.timestamp));
+			}
+			Dom.XmlNode userIdNode = outerNode.addChildElement('userId', 'http://service.cmss.cz/common/CommonMessage/v01', '');
+			userIdNode.addTextNode((this.userId == null) ? '' : this.userId);
+		}
+	}
 	public class Header {
 		public String conversationIdName;
 		public String conversationIdValue;

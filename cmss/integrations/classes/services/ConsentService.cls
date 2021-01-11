@@ -160,6 +160,8 @@ public with sharing class ConsentService {
         for (ConsentDataTypesService.DisableChannelConsentRequestBodyType body : disableConsentRequests) {
             ConsentDataTypesService.DisableChannelConsentResponseBodyType response = stub.disableChannelConsent_Http(header, body);
         }
+
+        Logger.saveLogs();
     }
 
     @future(callout=true)
@@ -182,6 +184,8 @@ public with sharing class ConsentService {
         for (ConsentDataTypesService.DisableInternalConsentRequestBodyType body : disableConsentRequests) {
             ConsentDataTypesService.DisableInternalConsentResponseBodyType response = stub.disableInternalConsent_Http(header, body);
         }
+
+        Logger.saveLogs();
     }
 
     private static ConsentDataTypesService.EnableChannelConsentRequestBodyType getEnableChannelWSDefinition(Consent__c c, String consentChannelId, String clientId) {

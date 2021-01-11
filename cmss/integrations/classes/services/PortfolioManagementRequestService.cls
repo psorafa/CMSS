@@ -20,8 +20,6 @@ public with sharing class PortfolioManagementRequestService {
                 if (newPMR.PortfolioManagerCPU__c != null && newPMR.PortfolioManagerCPU__c != oldPMR.PortfolioManagerCPU__c) {
                     setupPortfolioManagerCPUsToPMRs(portfolioManagerCPUsToPMRs, newPMR);
                     pmCPUs.add(newPMR.PortfolioManagerCPU__c);
-                } else if (newPMR.PortfolioManagerCPU__c == null) {
-                    newPMR.PortfolioManagerCPU__c = null;
                 }
             }
         }
@@ -64,40 +62,43 @@ public with sharing class PortfolioManagementRequestService {
             WHERE Id IN :pmrIds
         ];
 
-        PortfolioManagementService.ListOfClientsStatesType clientStates = new PortfolioManagementService.ListOfClientsStatesType();
-        clientStates.listOfClientsStatesItem = new PortfolioManagementService.ListOfClientsStatesItemType[]{};
+        PortfolioManagementCalloutService.ListOfClientsStatesType clientStates = new PortfolioManagementCalloutService.ListOfClientsStatesType();
+        clientStates.listOfClientsStatesItem = new PortfolioManagementCalloutService.ListOfClientsStatesItemType[]{};
 
         for (PortfolioManagementRequest__c pmr : pmrs) {
-            PortfolioManagementService.ListOfClientsStatesItemType item = new PortfolioManagementService.ListOfClientsStatesItemType();
-            item.stateChangeRequestId = pmr.Id;
-            item.accountId_x = pmr.Account__c;
-            item.stateChangeReason = pmr.PortfolioManChangeReason__c;
-            item.validFrom = String.valueOfGmt(pmr.ValidFrom__c);
-            item.portfolioManagementType = pmr.PortfolioManagementType__c;
-            if (pmr.PortfolioManagementType__c == 'A') {
-                item.spS_A = pmr.PortfolioManagerCPU__c;
-            } else if (pmr.PortfolioManagementType__c == 'C') {
-                item.spS_C = pmr.PortfolioManagerCPU__c;
-            }
+            if (pmr.PortfolioManagerCPU__c != null &&
+                pmr.Account__c != null &&
+                pmr.PortfolioManChangeReason__c != null &&
+                pmr.ValidFrom__c != null &&
+                pmr.PortfolioManagementType__c != null) {
 
-            clientStates.listOfClientsStatesItem.add(item);
+                PortfolioManagementCalloutService.ListOfClientsStatesItemType item = new PortfolioManagementCalloutService.ListOfClientsStatesItemType();
+                item.stateChangeRequestId = pmr.Id;
+                item.accountId = pmr.Account__c;
+                item.stateChangeReason = pmr.PortfolioManChangeReason__c;
+                item.validFrom = pmr.ValidFrom__c;
+                item.portfolioManagementType = pmr.PortfolioManagementType__c;
+                if (pmr.PortfolioManagementType__c == 'A') {
+                    item.spS_A = pmr.PortfolioManagerCPU__c;
+                } else if (pmr.PortfolioManagementType__c == 'C') {
+                    item.spS_C = pmr.PortfolioManagerCPU__c;
+                }
+
+                clientStates.listOfClientsStatesItem.add(item);
+            }
         }
 
-        PortfolioManagementService.ChangeCPEClientStateRequestHeader header = new PortfolioManagementService.ChangeCPEClientStateRequestHeader();
-        header.timestamp = System.now();
-        header.messageId = MockServicesUtil.generateUUID();
-        header.sourceSystem = 'SalesForce';
-        header.physicalSource = Url.getSalesforceBaseUrl().toExternalForm();
-        header.userId = UserInfo.getUserId();
-        PortfolioManagementService.ChangeCPEClientStateRequestBody body = new PortfolioManagementService.ChangeCPEClientStateRequestBody();
-        body.batchId = batchId;
-        body.listOfClientStates = clientStates;
+        if (clientStates.listOfClientsStatesItem.size() > 0) {
+            CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
+            PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody body = new PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody();
+            body.batchId = batchId;
+            body.listOfClientStates = clientStates;
 
-        PortfolioManagementService.PortfolioManagementServicePort stub = new PortfolioManagementService.PortfolioManagementServicePort();
-        PortfolioManagementService.ChangeCPEClientStateResponseBody response = stub.changeCPEClientState(body, header);
+            PortfolioManagementCalloutService.PortfolioManagementServicePort stub = new PortfolioManagementCalloutService.PortfolioManagementServicePort();
+            PortfolioManagementCalloutService.ChangeCPEClientStateResponseBody response = stub.changeCPEClientState_Http(header, body);
 
-        Logger.debug('ChangeCPEClientState response', JSON.serialize(response));
-        Logger.saveLogs();
+            Logger.saveLogs();
+        }
     }
 
     private static void setupPortfolioManagerCPUsToPMRs(Map<String, PortfolioManagementRequest__c[]> portfolioManagerCPUsToPMRs, PortfolioManagementRequest__c pmr) {

@@ -34,6 +34,8 @@ public with sharing class InternalConsentEnablement {
             index++;
         }
 
+        Logger.saveLogs();
+
         return externalIds;
     }
 }
