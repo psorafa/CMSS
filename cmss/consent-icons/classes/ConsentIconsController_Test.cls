@@ -10,19 +10,20 @@ private class ConsentIconsController_Test {
 	static Consent__c consent2;
 
 	static void testSetup() {
-		accWithConsent = new Account(
+		accWithConsent = TestDataFactory.getPersonAccount(new Account(
 			FirstName = 'Filip',
 			LastName = 'Fiala',
 			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('PersonAccount', 'Account'),
 			AccountStatus__c = '1'
-		);
-		accNoConsent = new Account(
+		));
+		accNoConsent = TestDataFactory.getAccount(new Account(
 			Name = 'Testujem s.r.o.',
 			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('Business_Account', 'Account'),
 			AccountStatus__c = '1'
-		);
-		insert new List<Account>{ accNoConsent, accWithConsent };
-		consent1 = new Consent__c(
+		));
+        insert new List<Account>{ accNoConsent, accWithConsent };
+        
+		consent1 = TestDataFactory.getConsent(new Consent__c(
 			GeneralConsent__c = '1',
 			GeneralConsentVersion__c = '3',
 			Account__c = accWithConsent.Id,
@@ -32,8 +33,8 @@ private class ConsentIconsController_Test {
 			PortalConsent__c = '2',
 			PhoneConsent__c = '2',
 			PostConsent__c = '2'
-		);
-		consent2 = new Consent__c(
+		));
+		consent2 = TestDataFactory.getConsent(new Consent__c(
 			GeneralConsent__c = '1',
 			GeneralConsentVersion__c = '3',
 			Account__c = accWithConsent.Id,
@@ -43,7 +44,7 @@ private class ConsentIconsController_Test {
 			PortalConsent__c = '1',
 			PhoneConsent__c = '1',
 			PostConsent__c = '1'
-		);
+		));
 		insert new List<Consent__c>{ consent1, consent2 };
 	}
 
