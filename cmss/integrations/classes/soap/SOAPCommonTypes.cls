@@ -1,6 +1,6 @@
 global with sharing class SOAPCommonTypes {
 
-    public class OutboundHttpHeader {
+    public class OutboundHttpHeader { 
         public void addHeader(DOM.XmlNode header) {
             String wsse = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd';
             String pwdType = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText';
