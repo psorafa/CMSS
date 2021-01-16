@@ -2,7 +2,7 @@
 private class PortfolioManagementRequestTrigHanTest {
 
 	@IsTest
-	static void testSetBatchId_single() {
+	static void testSetBatchId_single() { 
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
             200,
             'OK',
