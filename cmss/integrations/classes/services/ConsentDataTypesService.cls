@@ -2,21 +2,12 @@
 	
 public class ConsentDataTypesService {
 	private static final String s_ns0 = 'http://service.cmss.cz/person/ConsentService/v01/datatypes';
-	public static DateTime parseDateTime(String nodeText){
-			String iso8601 = nodeText;
-			JSONParser parser = JSON.createParser( '{"t":"' + iso8601 + '"}');
-			parser.nextToken();
-			parser.nextValue();
-			DateTime dt = parser.getDateTimeValue();
-			//System.debug('dt: ' + dt);
-			return dt;
-		}
 	public class DisableChannelConsentRequestBodyType {
 		public String consentEntityId;
 		public String consentChannelId;
 		public String globalId;
 		public String consentSourceId;
-		public DateTime validFrom;
+		public String validFrom;
 		public String agentCPU;
 		private transient String[] consentEntityId_type_info = new String[]{'consentEntityId',s_ns0,'AlphanumericIdType','1','1','false'};
 		private transient String[] consentChannelId_type_info = new String[]{'consentChannelId',s_ns0,'AlphanumericIdType','1','1','false'};
@@ -47,7 +38,7 @@ public class ConsentDataTypesService {
 			nodesParsed.add(consentSourceIdNode);
 			//System.debug(this.consentSourceId);			
 			DOM.XmlNode validFromNode = responseNode.getChildElement('validFrom', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
-			this.validFrom = (validFromNode == null) ? null :  ConsentDataTypesService.parseDateTime(validFromNode.getText());
+			this.validFrom = (validFromNode == null) ? null :  validFromNode.getText();
 			nodesParsed.add(validFromNode);
 			//System.debug(this.validFrom);			
 			DOM.XmlNode agentCPUNode = responseNode.getChildElement('agentCPU', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
@@ -172,11 +163,11 @@ public class ConsentDataTypesService {
 			//System.debug(this.responseBody);			
 		}
 	}
-	public class DisableGeneralConsentRequestBodyType {
+	/*public class DisableGeneralConsentRequestBodyType {
 		public String consentCrmGuid;
-		public DateTime validFrom;
+		public String validFrom;
 		public String consentSourceId;
-		public DateTime validTo;
+		public String validTo;
 		public String agentCPU;
 		public String substitutePersonId;
 		public String substituteRoleId;
@@ -200,7 +191,7 @@ public class ConsentDataTypesService {
 			nodesParsed.add(consentCrmGuidNode);
 			//System.debug(this.consentCrmGuid);			
 			DOM.XmlNode validFromNode = responseNode.getChildElement('validFrom', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
-			this.validFrom = (validFromNode == null) ? null :  ConsentDataTypesService.parseDateTime(validFromNode.getText());
+			this.validFrom = (validFromNode == null) ? null :  validFromNode.getText();
 			nodesParsed.add(validFromNode);
 			//System.debug(this.validFrom);			
 			DOM.XmlNode consentSourceIdNode = responseNode.getChildElement('consentSourceId', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
@@ -208,7 +199,7 @@ public class ConsentDataTypesService {
 			nodesParsed.add(consentSourceIdNode);
 			//System.debug(this.consentSourceId);			
 			DOM.XmlNode validToNode = responseNode.getChildElement('validTo', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
-			this.validTo = (validToNode == null) ? null :  ConsentDataTypesService.parseDateTime(validToNode.getText());
+			this.validTo = (validToNode == null) ? null :  validToNode.getText();
 			nodesParsed.add(validToNode);
 			//System.debug(this.validTo);			
 			DOM.XmlNode agentCPUNode = responseNode.getChildElement('agentCPU', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
@@ -342,8 +333,8 @@ public class ConsentDataTypesService {
 			}
 			//System.debug(this.responseBody);			
 		}
-	}
-	public class DisableInternalConsentForPersonRequestBodyType {
+	}*/
+	/*public class DisableInternalConsentForPersonRequestBodyType {
 		public String globalId;
 		public String emailAddress;
 		public String consentKindId;
@@ -491,7 +482,7 @@ public class ConsentDataTypesService {
 			}
 			//System.debug(this.responseBody);			
 		}
-	}
+	}*/
 	public class DisableInternalConsentRequestBodyType {
 		public String consentCrmGuid;
 		public String consentSourceId;
@@ -630,7 +621,7 @@ public class ConsentDataTypesService {
 		public String consentChannelId;
 		public String globalId;
 		public String consentSourceId;
-		public DateTime validFrom;
+		public String validFrom;
 		public String agentCPU;
 		private transient String[] consentEntityId_type_info = new String[]{'consentEntityId',s_ns0,'CodeListItemIdType','1','1','false'};
 		private transient String[] consentChannelId_type_info = new String[]{'consentChannelId',s_ns0,'CodeListItemIdType','1','1','false'};
@@ -661,7 +652,7 @@ public class ConsentDataTypesService {
 			nodesParsed.add(consentSourceIdNode);
 			//System.debug(this.consentSourceId);			
 			DOM.XmlNode validFromNode = responseNode.getChildElement('validFrom', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
-			this.validFrom = (validFromNode == null) ? null :  ConsentDataTypesService.parseDateTime(validFromNode.getText());
+			this.validFrom = (validFromNode == null) ? null :  validFromNode.getText();
 			nodesParsed.add(validFromNode);
 			//System.debug(this.validFrom);			
 			DOM.XmlNode agentCPUNode = responseNode.getChildElement('agentCPU', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
@@ -780,8 +771,8 @@ public class ConsentDataTypesService {
 		public String consentVersionId;
 		public String globalId;
 		public String consentSourceId;
-		public DateTime validFrom;
-		public DateTime validTo;
+		public String validFrom;
+		public String validTo;
 		public String agentCPU;
 		public String substitutePersonId;
 		public String substituteRoleId;
@@ -817,11 +808,11 @@ public class ConsentDataTypesService {
 			nodesParsed.add(consentSourceIdNode);
 			//System.debug(this.consentSourceId);			
 			DOM.XmlNode validFromNode = responseNode.getChildElement('validFrom', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
-			this.validFrom = (validFromNode == null) ? null : ConsentDataTypesService.parseDateTime(validFromNode.getText());
+			this.validFrom = (validFromNode == null) ? null : validFromNode.getText();
 			nodesParsed.add(validFromNode);
 			//System.debug(this.validFrom);			
 			DOM.XmlNode validToNode = responseNode.getChildElement('validTo', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
-			this.validTo = (validToNode == null) ? null : ConsentDataTypesService.parseDateTime(validToNode.getText());
+			this.validTo = (validToNode == null) ? null : validToNode.getText();
 			nodesParsed.add(validToNode);
 			//System.debug(this.validTo);			
 			DOM.XmlNode agentCPUNode = responseNode.getChildElement('agentCPU', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
@@ -952,8 +943,8 @@ public class ConsentDataTypesService {
 		public String globalId;
 		public String emailAddress;
 		public String consentKind;
-		public DateTime consentValidFrom;
-		public DateTime consentValidTo;
+		public String consentValidFrom;
+		public String consentValidTo;
 		public String consentSourceId;
 		public String consentProvidedBy;
 		private transient String[] globalId_type_info = new String[]{'globalId',s_ns0,'ClientGlobalIdType','0','1','false'};
@@ -982,11 +973,11 @@ public class ConsentDataTypesService {
 			nodesParsed.add(consentKindNode);
 			//System.debug(this.consentKind);			
 			DOM.XmlNode consentValidFromNode = responseNode.getChildElement('consentValidFrom', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
-			this.consentValidFrom = (consentValidFromNode == null) ? null :  ConsentDataTypesService.parseDateTime(consentValidFromNode.getText());
+			this.consentValidFrom = (consentValidFromNode == null) ? null :  consentValidFromNode.getText();
 			nodesParsed.add(consentValidFromNode);
 			//System.debug(this.consentValidFrom);			
 			DOM.XmlNode consentValidToNode = responseNode.getChildElement('consentValidTo', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
-			this.consentValidTo = (consentValidToNode == null) ? null :  ConsentDataTypesService.parseDateTime(consentValidToNode.getText());
+			this.consentValidTo = (consentValidToNode == null) ? null :  consentValidToNode.getText();
 			nodesParsed.add(consentValidToNode);
 			//System.debug(this.consentValidTo);			
 			DOM.XmlNode consentSourceIdNode = responseNode.getChildElement('consentSourceId', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
@@ -1104,7 +1095,7 @@ public class ConsentDataTypesService {
 			//System.debug(this.responseBody);			
 		}
 	}
-	public class GetGeneralConsentByIdNumberRequestBodyType {
+	/*public class GetGeneralConsentByIdNumberRequestBodyType {
 		public String consentEntity;
 		public String personalIdentityNumber;
 		private transient String[] consentEntity_type_info = new String[]{'consentEntity',s_ns0,'AlphanumericIdType','1','1','false'};
@@ -1171,8 +1162,8 @@ public class ConsentDataTypesService {
 		public String globalId;
 		public String generalConsentId;
 		public String consentValue;
-		public DateTime consentValidFrom;
-		public DateTime consentValidTo;
+		public String consentValidFrom;
+		public String consentValidTo;
 		public String consentAgreedBy;
 		public String consentVersionId;
 		public String entityId;
@@ -1211,11 +1202,11 @@ public class ConsentDataTypesService {
 			nodesParsed.add(consentValueNode);
 			//System.debug(this.consentValue);			
 			DOM.XmlNode consentValidFromNode = responseNode.getChildElement('consentValidFrom', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
-			this.consentValidFrom = (consentValidFromNode == null) ? null :  ConsentDataTypesService.parseDateTime(consentValidFromNode.getText());
+			this.consentValidFrom = (consentValidFromNode == null) ? null :  consentValidFromNode.getText();
 			nodesParsed.add(consentValidFromNode);
 			//System.debug(this.consentValidFrom);			
 			DOM.XmlNode consentValidToNode = responseNode.getChildElement('consentValidTo', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
-			this.consentValidTo = (consentValidToNode == null) ? null :  ConsentDataTypesService.parseDateTime(consentValidToNode.getText());
+			this.consentValidTo = (consentValidToNode == null) ? null :  consentValidToNode.getText();
 			nodesParsed.add(consentValidToNode);
 			//System.debug(this.consentValidTo);			
 			DOM.XmlNode consentAgreedByNode = responseNode.getChildElement('consentAgreedBy', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
@@ -1307,5 +1298,5 @@ public class ConsentDataTypesService {
 			}
 			//System.debug(this.responseBody);			
 		}
-	}
+	}*/
 }

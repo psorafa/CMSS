@@ -26,7 +26,7 @@ public class ConsentCalloutService {
             new SOAPCommonTypes.OutboundHttpHeader().addHeader(header);
         }
         
-		public ConsentDataTypesService.DisableGeneralConsentResponseBodyType disableGeneralConsent_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.DisableGeneralConsentRequestBodyType requestBody) {
+		/*public ConsentDataTypesService.DisableGeneralConsentResponseBodyType disableGeneralConsent_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.DisableGeneralConsentRequestBodyType requestBody) {
 			DOM.Document doc = new DOM.Document();
 			DOM.XmlNode body = populateDoc(doc);
 			DOM.XmlNode methodNode = body.addChildElement('DisableGeneralConsentRequest', DT_NS, 'dat');			
@@ -55,7 +55,7 @@ public class ConsentCalloutService {
                 return response_x.responseBody;
             }
 			return null;
-		}
+		}*/
  
 		public ConsentDataTypesService.DisableChannelConsentResponseBodyType disableChannelConsent_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.DisableChannelConsentRequestBodyType requestBody) {
 			DOM.Document doc = new DOM.Document();
@@ -119,7 +119,7 @@ public class ConsentCalloutService {
 			return null;
 		}
  
-		public ConsentDataTypesService.DisableInternalConsentForPersonResponseBodyType disableInternalConsentForPerson_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.DisableInternalConsentForPersonRequestBodyType requestBody) {
+		/*public ConsentDataTypesService.DisableInternalConsentForPersonResponseBodyType disableInternalConsentForPerson_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.DisableInternalConsentForPersonRequestBodyType requestBody) {
 			DOM.Document doc = new DOM.Document();
 			DOM.XmlNode body = populateDoc(doc);
 			DOM.XmlNode methodNode = body.addChildElement('DisableInternalConsentForPersonRequest', DT_NS, 'dat');			
@@ -148,7 +148,7 @@ public class ConsentCalloutService {
 			    return response_x.responseBody;
             }
 			return null;
-		}
+		}*/
  
 		public ConsentDataTypesService.EnableGeneralConsentResponseBodyType enableGeneralConsent_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.EnableGeneralConsentRequestBodyType requestBody) {
 			DOM.Document doc = new DOM.Document();
@@ -242,7 +242,7 @@ public class ConsentCalloutService {
 			return null;
 		}
  
-		public ConsentDataTypesService.GetGeneralConsentByIdNumberResponseBodyType getGeneralConsentByIdNumber_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.GetGeneralConsentByIdNumberRequestBodyType requestBody) {
+		/*public ConsentDataTypesService.GetGeneralConsentByIdNumberResponseBodyType getGeneralConsentByIdNumber_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.GetGeneralConsentByIdNumberRequestBodyType requestBody) {
 			DOM.Document doc = new DOM.Document();
 			DOM.XmlNode body = populateDoc(doc);
 			DOM.XmlNode methodNode = body.addChildElement('GetGeneralConsentByIdNumberRequest', DT_NS, 'dat');			
@@ -271,6 +271,6 @@ public class ConsentCalloutService {
                 return response_x.responseBody;
             }
 			return null;
-		}
+		}*/
      }
 }

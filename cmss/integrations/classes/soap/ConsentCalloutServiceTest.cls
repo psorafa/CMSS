@@ -119,4 +119,153 @@ private class ConsentCalloutServiceTest {
             }
         }
     }
+
+    @isTest static void coverGeneratedCodeTypes() {
+        //Test.setMock(WebServiceMock.class, new serviceCmssCzPersonConsentservicMockImpl());
+		ConsentDataTypesService parentObject = new ConsentDataTypesService();
+		DOM.Document doc = new DOM.Document();
+		DOM.XmlNode mockNode = doc.createRootElement('Envelope', 'http://schemas.xmlsoap.org/soap/envelope/', 'soapenv');
+		new CommonMessageService.CMSSBusinessLogicFaultInfo(mockNode);				
+		new CommonMessageService.CMSSFaultInfo(mockNode);				
+		new CommonMessageService.CMSSSecurityFaultInfo(mockNode);				
+		new CommonMessageService.CMSSServiceFaultInfo(mockNode);				
+		new CommonMessageService.FaultHeader(mockNode);				
+		new CommonMessageService.Header(mockNode);				
+		new CommonMessageService.RequestHeader(mockNode);				
+		new CommonMessageService.RequestMessage(mockNode);				
+		new CommonMessageService.ResponseHeader(mockNode);				
+		new CommonMessageService.ResponseMessage(mockNode);				
+		new BasicTypesService.AccountNumberType(mockNode);				
+		new BasicTypesService.OperationSuccessType(mockNode);				
+		new ConsentDataTypesService.DisableChannelConsentRequestBodyType(mockNode);				
+		new ConsentDataTypesService.DisableChannelConsentResponseBodyType(mockNode);				
+		new ConsentDataTypesService.DisableChannelConsentResponseType(mockNode);				
+		/*new ConsentDataTypesService.DisableGeneralConsentRequestBodyType(mockNode);				
+		new ConsentDataTypesService.DisableGeneralConsentResponseBodyType(mockNode);				
+		new ConsentDataTypesService.DisableGeneralConsentResponseType(mockNode);				
+		new ConsentDataTypesService.DisableInternalConsentForPersonRequestBodyType(mockNode);				
+		new ConsentDataTypesService.DisableInternalConsentForPersonResponseBodyType(mockNode);				
+		new ConsentDataTypesService.DisableInternalConsentForPersonResponseType(mockNode);*/			
+		new ConsentDataTypesService.DisableInternalConsentRequestBodyType(mockNode);				
+		new ConsentDataTypesService.DisableInternalConsentResponseBodyType(mockNode);				
+		new ConsentDataTypesService.DisableInternalConsentResponseType(mockNode);				
+		new ConsentDataTypesService.EnableChannelConsentRequestBodyType(mockNode);				
+		new ConsentDataTypesService.EnableChannelConsentResponseBodyType(mockNode);				
+		new ConsentDataTypesService.EnableChannelConsentResponseType(mockNode);				
+		new ConsentDataTypesService.EnableGeneralConsentRequestBodyType(mockNode);				
+		new ConsentDataTypesService.EnableGeneralConsentResponseBodyType(mockNode);				
+		new ConsentDataTypesService.EnableGeneralConsentResponseType(mockNode);				
+		new ConsentDataTypesService.EnableInternalConsentRequestBodyType(mockNode);				
+		new ConsentDataTypesService.EnableInternalConsentResponseBodyType(mockNode);				
+		new ConsentDataTypesService.EnableInternalConsentResponseType(mockNode);				
+		/*new ConsentDataTypesService.GetGeneralConsentByIdNumberRequestBodyType(mockNode);				
+		new ConsentDataTypesService.GetGeneralConsentByIdNumberResponseBodyType(mockNode);				
+		new ConsentDataTypesService.GetGeneralConsentByIdNumberResponseType(mockNode);*/	
+		CommonMessageService.CMSSBusinessLogicFaultInfo Obj1 = new CommonMessageService.CMSSBusinessLogicFaultInfo();
+		Obj1.populateXmlNode(mockNode);
+		CommonMessageService.ParseDateTime('2014-11-05T13:15:30Z');
+		CommonMessageService.CMSSFaultInfo Obj2 = new CommonMessageService.CMSSFaultInfo();
+		Obj2.populateXmlNode(mockNode);
+		CommonMessageService.CMSSSecurityFaultInfo Obj3 = new CommonMessageService.CMSSSecurityFaultInfo();
+		Obj3.populateXmlNode(mockNode);
+		CommonMessageService.CMSSServiceFaultInfo Obj4 = new CommonMessageService.CMSSServiceFaultInfo();
+		Obj4.populateXmlNode(mockNode);
+		CommonMessageService.FaultHeader Obj5 = new CommonMessageService.FaultHeader();
+		Obj5.populateXmlNode(mockNode);
+		CommonMessageService.Header Obj6 = new CommonMessageService.Header();
+		Obj6.populateXmlNode(mockNode);
+		CommonMessageService.RequestHeader Obj7 = new CommonMessageService.RequestHeader();
+		Obj7.populateXmlNode(mockNode);
+		CommonMessageService.RequestMessage Obj8 = new CommonMessageService.RequestMessage();
+		Obj8.populateXmlNode(mockNode);
+		CommonMessageService.ResponseHeader Obj9 = new CommonMessageService.ResponseHeader();
+		Obj9.populateXmlNode(mockNode);
+		CommonMessageService.ResponseMessage Obj10 = new CommonMessageService.ResponseMessage();
+		Obj10.populateXmlNode(mockNode);
+		BasicTypesService.AccountNumberType Obj11 = new BasicTypesService.AccountNumberType();
+		Obj11.populateXmlNode(mockNode);
+		BasicTypesService.OperationSuccessType Obj12 = new BasicTypesService.OperationSuccessType();
+		Obj12.populateXmlNode(mockNode);
+		ConsentDataTypesService.DisableChannelConsentRequestBodyType Obj13 = new ConsentDataTypesService.DisableChannelConsentRequestBodyType();
+		Obj13.populateXmlNode(mockNode);
+		ConsentDataTypesService.DisableChannelConsentRequestType Obj14 = new ConsentDataTypesService.DisableChannelConsentRequestType();
+		Obj14.populateXmlNode(mockNode);
+		ConsentDataTypesService.DisableChannelConsentResponseBodyType Obj15 = new ConsentDataTypesService.DisableChannelConsentResponseBodyType();
+		Obj15.populateXmlNode(mockNode);
+		new ConsentDataTypesService.DisableChannelConsentResponseType();
+		/*ConsentDataTypesService.DisableGeneralConsentRequestBodyType Obj17 = new ConsentDataTypesService.DisableGeneralConsentRequestBodyType();
+		Obj17.populateXmlNode(mockNode);
+		ConsentDataTypesService.DisableGeneralConsentRequestType Obj18 = new ConsentDataTypesService.DisableGeneralConsentRequestType();
+		Obj18.populateXmlNode(mockNode);
+		ConsentDataTypesService.DisableGeneralConsentResponseBodyType Obj19 = new ConsentDataTypesService.DisableGeneralConsentResponseBodyType();
+		Obj19.populateXmlNode(mockNode);
+		new ConsentDataTypesService.DisableGeneralConsentResponseType();
+		ConsentDataTypesService.DisableInternalConsentForPersonRequestBodyType Obj21 = new ConsentDataTypesService.DisableInternalConsentForPersonRequestBodyType();
+		Obj21.populateXmlNode(mockNode);
+		ConsentDataTypesService.DisableInternalConsentForPersonRequestType Obj22 = new ConsentDataTypesService.DisableInternalConsentForPersonRequestType();
+		Obj22.populateXmlNode(mockNode);
+		ConsentDataTypesService.DisableInternalConsentForPersonResponseBodyType Obj23 = new ConsentDataTypesService.DisableInternalConsentForPersonResponseBodyType();
+		Obj23.populateXmlNode(mockNode);
+		new ConsentDataTypesService.DisableInternalConsentForPersonResponseType();*/
+		ConsentDataTypesService.DisableInternalConsentRequestBodyType Obj25 = new ConsentDataTypesService.DisableInternalConsentRequestBodyType();
+		Obj25.populateXmlNode(mockNode);
+		ConsentDataTypesService.DisableInternalConsentRequestType Obj26 = new ConsentDataTypesService.DisableInternalConsentRequestType();
+		Obj26.populateXmlNode(mockNode);
+		ConsentDataTypesService.DisableInternalConsentResponseBodyType Obj27 = new ConsentDataTypesService.DisableInternalConsentResponseBodyType();
+		Obj27.populateXmlNode(mockNode);
+		new ConsentDataTypesService.DisableInternalConsentResponseType();
+		ConsentDataTypesService.EnableChannelConsentRequestBodyType Obj29 = new ConsentDataTypesService.EnableChannelConsentRequestBodyType();
+		Obj29.populateXmlNode(mockNode);
+		ConsentDataTypesService.EnableChannelConsentRequestType Obj30 = new ConsentDataTypesService.EnableChannelConsentRequestType();
+		Obj30.populateXmlNode(mockNode);
+		ConsentDataTypesService.EnableChannelConsentResponseBodyType Obj31 = new ConsentDataTypesService.EnableChannelConsentResponseBodyType();
+		Obj31.populateXmlNode(mockNode);
+		new ConsentDataTypesService.EnableChannelConsentResponseType();
+		ConsentDataTypesService.EnableGeneralConsentRequestBodyType Obj33 = new ConsentDataTypesService.EnableGeneralConsentRequestBodyType();
+		Obj33.populateXmlNode(mockNode);
+		ConsentDataTypesService.EnableGeneralConsentRequestType Obj34 = new ConsentDataTypesService.EnableGeneralConsentRequestType();
+		Obj34.populateXmlNode(mockNode);
+		ConsentDataTypesService.EnableGeneralConsentResponseBodyType Obj35 = new ConsentDataTypesService.EnableGeneralConsentResponseBodyType();
+		Obj35.populateXmlNode(mockNode);
+		new ConsentDataTypesService.EnableGeneralConsentResponseType();
+		ConsentDataTypesService.EnableInternalConsentRequestBodyType Obj37 = new ConsentDataTypesService.EnableInternalConsentRequestBodyType();
+		Obj37.populateXmlNode(mockNode);
+		ConsentDataTypesService.EnableInternalConsentRequestType Obj38 = new ConsentDataTypesService.EnableInternalConsentRequestType();
+		Obj38.populateXmlNode(mockNode);
+		ConsentDataTypesService.EnableInternalConsentResponseBodyType Obj39 = new ConsentDataTypesService.EnableInternalConsentResponseBodyType();
+		Obj39.populateXmlNode(mockNode);
+		new ConsentDataTypesService.EnableInternalConsentResponseType();
+		/*ConsentDataTypesService.GetGeneralConsentByIdNumberRequestBodyType Obj41 = new ConsentDataTypesService.GetGeneralConsentByIdNumberRequestBodyType();
+		Obj41.populateXmlNode(mockNode);
+		ConsentDataTypesService.GetGeneralConsentByIdNumberRequestType Obj42 = new ConsentDataTypesService.GetGeneralConsentByIdNumberRequestType();
+		Obj42.populateXmlNode(mockNode);
+		ConsentDataTypesService.GetGeneralConsentByIdNumberResponseBodyType Obj43 = new ConsentDataTypesService.GetGeneralConsentByIdNumberResponseBodyType();
+		Obj43.populateXmlNode(mockNode);
+		new ConsentDataTypesService.GetGeneralConsentByIdNumberResponseType();*/
+	}
+	/*@isTest static void coverCodeFordisableChannelConsent_Http(){
+		Test.setMock(HttpCalloutMock.class, new ConsentDataTypesServiceHttpMock());
+		ConsentDataTypesService.ConsentServicePort testObject = new ConsentDataTypesService.ConsentServicePort();
+		System.assertEquals(null, testObject.disableChannelConsent_Http(null));		
+	}
+	@isTest static void coverCodeFordisableInternalConsent_Http(){
+		Test.setMock(HttpCalloutMock.class, new ConsentDataTypesServiceHttpMock());
+		ConsentDataTypesService.ConsentServicePort testObject = new ConsentDataTypesService.ConsentServicePort();
+		System.assertEquals(null, testObject.disableInternalConsent_Http(null));		
+	}
+	@isTest static void coverCodeForenableGeneralConsent_Http(){
+		Test.setMock(HttpCalloutMock.class, new ConsentDataTypesServiceHttpMock());
+		ConsentDataTypesService.ConsentServicePort testObject = new ConsentDataTypesService.ConsentServicePort();
+		System.assertEquals(null, testObject.enableGeneralConsent_Http(null));		
+	}
+	@isTest static void coverCodeForenableChannelConsent_Http(){
+		Test.setMock(HttpCalloutMock.class, new ConsentDataTypesServiceHttpMock());
+		ConsentDataTypesService.ConsentServicePort testObject = new ConsentDataTypesService.ConsentServicePort();
+		System.assertEquals(null, testObject.enableChannelConsent_Http(null));		
+	}
+	@isTest static void coverCodeForenableInternalConsent_Http(){
+		Test.setMock(HttpCalloutMock.class, new ConsentDataTypesServiceHttpMock());
+		ConsentDataTypesService.ConsentServicePort testObject = new ConsentDataTypesService.ConsentServicePort();
+		System.assertEquals(null, testObject.enableInternalConsent_Http(null));		
+	}*/
 }

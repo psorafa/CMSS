@@ -17,7 +17,8 @@ global with sharing class SOAPCommonTypes {
             DOM.XmlNode nonce = usernameToken.addChildElement('Nonce', wsse, 'wsse');
             nonce.setAttribute('EncodingType', encodingType);
             nonce.addTextNode(generateNonce());
-            usernameToken.addChildElement('Created', wsse, 'wsu').addTextNode(Datetime.now().formatGmt('yyyy-MM-dd\'T\'hh:mm:ss\'Z\''));
+            String now = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
+            usernameToken.addChildElement('Created', wsse, 'wsu').addTextNode(now.substring(0, now.length() - 2) + ':00');
         }
 
         private String generateNonce() {

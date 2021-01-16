@@ -36,7 +36,8 @@ public with sharing class GeneralConsentEnablement {
             body.consentVersionId = c.GeneralConsentVersion__c;
             body.globalId = client.GlobalId__c;
             body.consentSourceId = '20';
-            body.validFrom = Datetime.now();
+            body.validFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
+            body.validFrom = body.validFrom.substring(0, body.validFrom.length() - 2) + ':00'; 
             body.agentCPU = c.AgentCPU__c;
             body.substitutePersonId = substitutePerson == null ? null : substitutePerson.GlobalId__c;
             body.substituteRoleId = c.SubstituteRole__c;

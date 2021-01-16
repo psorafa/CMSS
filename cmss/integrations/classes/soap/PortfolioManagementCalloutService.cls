@@ -140,7 +140,7 @@ public class PortfolioManagementCalloutService {
 		public String accountId;
 		public String stateChangeReason;
 		// Restriction enumeration: 
-		public Datetime validFrom;
+		public String validFrom;
 		public String portfolioManagementType;
 		public String spS_A;
 		public String spS_C;
@@ -170,7 +170,7 @@ public class PortfolioManagementCalloutService {
 			nodesParsed.add(stateChangeReasonNode);
 			//System.debug(this.stateChangeReason);			
 			DOM.XmlNode validFromNode = responseNode.getChildElement('validFrom', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
-			this.validFrom = (validFromNode == null) ? null : ConsentDataTypesService.parseDateTime(validFromNode.getText());
+			this.validFrom = (validFromNode == null) ? null : validFromNode.getText();
 			nodesParsed.add(validFromNode);
 			//System.debug(this.validFrom);			
 			DOM.XmlNode portfolioManagementTypeNode = responseNode.getChildElement('portfolioManagementType', 'http://service.cmss.cz/person/PortfolioManagementService/v10');

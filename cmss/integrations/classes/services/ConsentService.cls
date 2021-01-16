@@ -194,7 +194,8 @@ public with sharing class ConsentService {
         body.consentChannelId = consentChannelId;
         body.globalId = clientId;
         body.consentSourceId = '20';
-        body.validFrom = Datetime.now();
+        body.validFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
+        body.validFrom = body.validFrom.substring(0, body.validFrom.length() - 2) + ':00'; 
         body.agentCPU = c.AgentCPU__c;
         return body;
     }
@@ -205,7 +206,8 @@ public with sharing class ConsentService {
         body.consentChannelId = consentChannelId;
         body.globalId = clientId;
         body.consentSourceId = '20';
-        body.validFrom = Datetime.now();
+        body.validFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
+        body.validFrom = body.validFrom.substring(0, body.validFrom.length() - 2) + ':00'; 
         body.agentCPU = c.AgentCPU__c;
         return body;
     }
@@ -216,7 +218,8 @@ public with sharing class ConsentService {
             body.globalId = client.GlobalId__c;
         }
         body.consentKind = c.InternalConsentType__c;
-        body.consentValidFrom = Datetime.now();
+        body.consentValidFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
+        body.consentValidFrom = body.consentValidFrom.substring(0, body.consentValidFrom.length() - 2) + ':00'; 
         body.consentSourceId = '20';
         return body;
     }

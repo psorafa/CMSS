@@ -562,7 +562,7 @@ public class CommonMessageService {
 		public String physicalSource;
 		public String sourceSystem;
 		public String targetSystem;
-		public DateTime timestamp;
+		public String timestamp;
 		public String userId;
 		private transient String[] conversationIdName_type_info = new String[]{'conversationIdName',s_ns0,'string','0','1','false'};
 		private transient String[] conversationIdValue_type_info = new String[]{'conversationIdValue',s_ns0,'string','0','1','false'};
@@ -576,7 +576,8 @@ public class CommonMessageService {
 		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
 		private transient String[] field_order_type_info = new String[]{'conversationIdName','conversationIdValue','correlationId','messageId','physicalSource','sourceSystem','targetSystem','timestamp','userId'};
         public RequestHeader() {
-            this.timestamp = Datetime.now();
+            this.timestamp = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
+            this.timestamp = this.timestamp.substring(0, this.timestamp.length() - 2) + ':00';
             this.messageId = MockServicesUtil.generateUUID();
             this.sourceSystem = '20';
             this.targetSystem = 'ESB';
@@ -614,7 +615,7 @@ public class CommonMessageService {
 			nodesParsed.add(targetSystemNode);
 			//System.debug(this.targetSystem);			
 			DOM.XmlNode timestampNode = responseNode.getChildElement('timestamp', 'http://service.cmss.cz/common/CommonMessage/v01');
-			this.timestamp = (timestampNode == null) ? null :  CommonMessageService.parseDateTime(timestampNode.getText());
+			this.timestamp = (timestampNode == null) ? null :  timestampNode.getText();
 			nodesParsed.add(timestampNode);
 			//System.debug(this.timestamp);			
 			DOM.XmlNode userIdNode = responseNode.getChildElement('userId', 'http://service.cmss.cz/common/CommonMessage/v01');

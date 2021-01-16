@@ -76,7 +76,8 @@ public with sharing class PortfolioManagementRequestService {
                 item.stateChangeRequestId = pmr.Id;
                 item.accountId = pmr.Account__c;
                 item.stateChangeReason = pmr.PortfolioManChangeReason__c;
-                item.validFrom = pmr.ValidFrom__c;
+                item.validFrom = pmr.ValidFrom__c.formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
+                item.validFrom = item.validFrom.substring(0, item.validFrom.length() - 2) + ':00'; 
                 item.portfolioManagementType = pmr.PortfolioManagementType__c;
                 if (pmr.PortfolioManagementType__c == 'A') {
                     item.spS_A = pmr.PortfolioManagerCPU__c;
