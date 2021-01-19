@@ -121,6 +121,10 @@
                 <behavior>Edit</behavior>
                 <field>ComplainerContractor__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PersonalIdentificationNumber__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -167,10 +171,6 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>PersonalIdentificationNumber__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>ContractorSortingCode__c</field>
             </layoutItems>
@@ -205,7 +205,7 @@
         <label>Řešení</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>CauseLegitComplaint__c</field>
             </layoutItems>
             <layoutItems>
@@ -251,7 +251,7 @@
                 <field>SolverDepartmentNumber__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>InternalPrecaution__c</field>
             </layoutItems>
             <layoutItems>
