@@ -134,6 +134,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>SF_ActivityManagementSOAPService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SF_OpportunitySOAPService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
