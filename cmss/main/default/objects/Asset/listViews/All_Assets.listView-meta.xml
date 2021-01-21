@@ -4,9 +4,10 @@
     <columns>ASSET.NAME</columns>
     <columns>ACCOUNT.NAME</columns>
     <columns>ProductType__c</columns>
+    <columns>ProductSubtype__c</columns>
+    <columns>ProductCloseDate__c</columns>
+    <columns>ClosingAgentId__c</columns>
     <columns>StateCode__c</columns>
-    <columns>ClosureMethod__c</columns>
-    <columns>TipsterId__c</columns>
     <filterScope>Everything</filterScope>
     <label>Všechny smlouvy klientů</label>
 </ListView>

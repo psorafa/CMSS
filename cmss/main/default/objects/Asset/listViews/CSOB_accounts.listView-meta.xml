@@ -2,6 +2,7 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CSOB_accounts</fullName>
     <columns>ASSET.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
     <columns>AccountType__c</columns>
     <columns>ProductSubtype__c</columns>
     <columns>ProductCloseDate__c</columns>
