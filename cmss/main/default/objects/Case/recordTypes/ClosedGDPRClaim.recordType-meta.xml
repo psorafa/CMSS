@@ -4,7 +4,6 @@
     <active>true</active>
     <businessProcess>Client Claim</businessProcess>
     <compactLayoutAssignment>GDPR</compactLayoutAssignment>
-    <description>Record type with read-only fields for closed GDPR claims</description>
     <label>Closed GDPR Claim</label>
     <picklistValues>
         <picklist>AccountingFundsType__c</picklist>

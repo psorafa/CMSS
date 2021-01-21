@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Is sent when Client Claim Institution Type is changed</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Client Claim Institution Type</name>
+    <style>none</style>
+    <subject>Klientské podání č. {!Case.CaseID__c} - Dopis dán na vědomí instituci</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

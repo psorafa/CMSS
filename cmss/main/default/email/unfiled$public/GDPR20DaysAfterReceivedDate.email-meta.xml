@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Is sent 20 days after GDPR Received Date</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>GDPR 20 Days after Received Date</name>
+    <style>none</style>
+    <subject>Zpráva aplikace GDPR podání: GDPR podání ID {!Case.CaseID__c} je ve stavu řešení 20 dnů</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

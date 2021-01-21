@@ -3,6 +3,10 @@
     <label>Souhlas k typu mkt. obsahu</label>
     <name>InternalConsentValue__c</name>
     <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>Nevyjádřil se</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1</masterLabel>
         <translation>Ano</translation>
     </picklistValues>

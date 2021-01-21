@@ -3,16 +3,52 @@
     <label>Důvod změny správy stavu</label>
     <name>PortfolioManChangeReason__c</name>
     <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>Neznámý</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1</masterLabel>
         <translation>Stavební spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Podílový fond</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100</masterLabel>
+        <translation>Změna stupně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1000</masterLabel>
+        <translation>Zájemce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1002</masterLabel>
+        <translation>Zadání PSČ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1003</masterLabel>
+        <translation>Změna zdroje zájemce</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>1004</masterLabel>
         <translation>Spojení</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>1005</masterLabel>
+        <translation>Přiřazení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1006</masterLabel>
+        <translation>Přepočet</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1007</masterLabel>
         <translation>Rozpojení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1008</masterLabel>
+        <translation>Hromadná</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>101</masterLabel>
@@ -27,8 +63,28 @@
         <translation>Změna struktury</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>111</masterLabel>
+        <translation>Změna regionu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>112</masterLabel>
+        <translation>Změna adresy klienta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>113</masterLabel>
+        <translation>Změna adresy zákon. zástupce</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>120</masterLabel>
         <translation>Klientská zóna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>121</masterLabel>
+        <translation>Historie BL</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>122</masterLabel>
+        <translation>Historie makléřských společnosti</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>130</masterLabel>
@@ -39,8 +95,24 @@
         <translation>Oprava nekorektní správy</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>132</masterLabel>
+        <translation>Storno smlouvy</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>133</masterLabel>
         <translation>Dohoda OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>134</masterLabel>
+        <translation>Oprava z AZ 999</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>140</masterLabel>
+        <translation>Změna odbytové struktury</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>150</masterLabel>
+        <translation>Převod od cross-sellingového nesprávce</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>160</masterLabel>
@@ -49,6 +121,18 @@
     <picklistValues>
         <masterLabel>161</masterLabel>
         <translation>Změna RŽP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>162</masterLabel>
+        <translation>Změna zákonného zástupce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>163</masterLabel>
+        <translation>Dosažení plnoletosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>170</masterLabel>
+        <translation>Převod na dědice</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
@@ -63,6 +147,18 @@
         <translation>Návrh nadřízeného</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>298</masterLabel>
+        <translation>Porovnání s Foxly</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>299</masterLabel>
+        <translation>Rozděl. správy OVB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Zvýšení</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>30</masterLabel>
         <translation>Běžný účet</translation>
     </picklistValues>
@@ -73,6 +169,10 @@
     <picklistValues>
         <masterLabel>301</masterLabel>
         <translation>ČSOB MOPRO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>40</masterLabel>
+        <translation>Volksbank</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>400</masterLabel>
@@ -115,6 +215,14 @@
         <translation>Přerozdělení klienta s úkolem</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>50</masterLabel>
+        <translation>SberBank</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>500</masterLabel>
+        <translation>W105A</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>60</masterLabel>
         <translation>ČSOBP</translation>
     </picklistValues>
@@ -123,11 +231,43 @@
         <translation>Regionalizace</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>650</masterLabel>
+        <translation>Restrukturalizace BL</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>699</masterLabel>
+        <translation>Migrace 11/2002</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>Obnovená smlouva</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>70</masterLabel>
         <translation>Hypoteční banka</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>800</masterLabel>
         <translation>Úvěr/Meziúvěr</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>801</masterLabel>
+        <translation>Meziúvěr</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>802</masterLabel>
+        <translation>Kombinace MÚ/Ú</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>810</masterLabel>
+        <translation>Neznámá žádost MÚ/Ú</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>900</masterLabel>
+        <translation>Regionalizace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>990</masterLabel>
+        <translation>Přiřazení klienta s aktivitou (úkol-RM)</translation>
     </picklistValues>
 </CustomFieldTranslation>
