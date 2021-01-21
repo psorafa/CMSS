@@ -357,6 +357,8 @@
         <fields>ValidFrom__c</fields>
         <fields>ValidTo__c</fields>
         <relatedList>PortfolioManagementA__c.Account__c</relatedList>
+        <sortField>ValidFrom__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
@@ -366,6 +368,8 @@
         <fields>ValidFrom__c</fields>
         <fields>ValidTo__c</fields>
         <relatedList>PortfolioManagementC__c.Account__c</relatedList>
+        <sortField>ValidFrom__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
