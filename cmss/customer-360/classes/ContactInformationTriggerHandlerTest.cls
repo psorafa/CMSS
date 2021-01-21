@@ -31,4 +31,25 @@ private class ContactInformationTriggerHandlerTest {
 			System.assertEquals('777556541', cItemPhoneValue);
 		}
 	}
+	@IsTest
+	static void createContactInformationNullValueTest() {
+		ContactInformation__c contactInfo = TestDataFactory.getContactInformation(new ContactInformation__c());
+		ContactInformation__c contactInfo2 = TestDataFactory.getContactInformation(
+			new ContactInformation__c(City__c = null)
+		);
+		ContactInformation__c contactInfo3 = TestDataFactory.getContactInformation(
+			new ContactInformation__c(Type__c = '3', Email__c = 'test@test.com', DataBoxNumber__c = null)
+		);
+
+		Test.startTest();
+		insert new List<ContactInformation__c>{ contactInfo, contactInfo2 };
+		Test.stopTest();
+
+		List<ContactInformation__c> contactInfoValues = [SELECT Value__c FROM ContactInformation__c];
+
+		for (ContactInformation__c cItem : contactInfoValues) {
+			String cItemValue = cItem.Value__c;
+			System.assert(!cItemValue.contains('null'));
+		}
+	}
 }
