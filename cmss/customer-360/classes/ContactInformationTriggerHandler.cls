@@ -10,25 +10,32 @@ public with sharing class ContactInformationTriggerHandler extends TriggerHandle
 		for (ContactInformation__c contactInfoItem : contactInfoList) {
 			contactInfoItem.Value__c = 'neuvedeno';
 			if (contactInfoItem.Type__c == '1') {
-				contactInfoItem.Value__c =
-					contactInfoItem.Street__c +
-					' ' +
-					contactInfoItem.HouseNumber__c +
-					' ' +
-					contactInfoItem.City__c +
-					' ' +
-					contactInfoItem.PostalCode__c +
-					' ' +
-					countryValueLabelMap.get(contactInfoItem.Country__c);
+				String street = contactInfoItem.Street__c == null ? ' ' : contactInfoItem.Street__c;
+				String houseNumber = contactInfoItem.HouseNumber__c == null ? ' ' : contactInfoItem.HouseNumber__c;
+				String city = contactInfoItem.City__c == null ? ' ' : contactInfoItem.City__c;
+				String postalCode = contactInfoItem.PostalCode__c == null ? ' ' : contactInfoItem.PostalCode__c;
+				String country = countryValueLabelMap.get(contactInfoItem.Country__c) == null
+					? ''
+					: contactInfoItem.Country__c;
+
+				contactInfoItem.Value__c = street + ' ' + houseNumber + ' ' + city + ' ' + postalCode + ' ' + country;
 			}
 			if (contactInfoItem.Type__c == '2') {
-				contactInfoItem.Value__c = contactInfoItem.PhoneNumber__c;
+				String phoneNumber = contactInfoItem.PhoneNumber__c == null ? ' ' : contactInfoItem.PhoneNumber__c;
+				contactInfoItem.Value__c = phoneNumber;
 			}
 			if (contactInfoItem.Type__c == '3') {
-				contactInfoItem.Value__c = contactInfoItem.Email__c + ' ' + contactInfoItem.DataBoxNumber__c;
+				String email = contactInfoItem.Email__c == null ? ' ' : contactInfoItem.Email__c;
+				String dataBoxNumber = contactInfoItem.DataBoxNumber__c == null
+					? ' '
+					: contactInfoItem.DataBoxNumber__c;
+				contactInfoItem.Value__c = email + ' ' + dataBoxNumber;
 			}
 			if (contactInfoItem.Type__c == '4') {
-				contactInfoItem.Value__c = contactInfoItem.DataBoxNumber__c;
+				String dataBoxNumber = contactInfoItem.DataBoxNumber__c == null
+					? ' '
+					: contactInfoItem.DataBoxNumber__c;
+				contactInfoItem.Value__c = dataBoxNumber;
 			}
 		}
 	}
