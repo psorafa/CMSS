@@ -16,7 +16,7 @@ public with sharing class ContactInformationTriggerHandler extends TriggerHandle
 				String postalCode = contactInfoItem.PostalCode__c == null ? ' ' : contactInfoItem.PostalCode__c;
 				String country = countryValueLabelMap.get(contactInfoItem.Country__c) == null
 					? ''
-					: contactInfoItem.Country__c;
+					: countryValueLabelMap.get(contactInfoItem.Country__c);
 
 				contactInfoItem.Value__c = street + ' ' + houseNumber + ' ' + city + ' ' + postalCode + ' ' + country;
 			}
