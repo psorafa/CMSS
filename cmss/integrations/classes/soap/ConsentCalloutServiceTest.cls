@@ -32,15 +32,21 @@ private class ConsentCalloutServiceTest {
             null);
         Test.setMock(HttpCalloutMock.class, fakeResponse);
         
-		List<InternalConsent__c> internalConsents = TestDataFactory.getInternalConsents(200, new InternalConsent__c());
+        InternalConsent__c internalConsent = TestDataFactory.getInternalConsent(new InternalConsent__c());
+        InternalConsentEnablement.Request r = new InternalConsentEnablement.Request();
+        r.consentType = internalConsent.InternalConsentType__c;
+        r.consentValue = internalConsent.InternalConsentValue__c;
+        r.validFrom = internalConsent.ValidFrom__c;
+        r.validTo = internalConsent.ValidTo__c;
+        r.source = internalConsent.Source__c;
+        r.accountId = internalConsent.Account__c;
+
 		Test.startTest();
-		List<String> externalIds = InternalConsentEnablement.enableInternalConsents(internalConsents);
+		InternalConsentEnablement.Result[] response = InternalConsentEnablement.enableInternalConsents(new InternalConsentEnablement.Request[]{ r });
         Test.stopTest();
         
-        System.assertEquals(100, externalIds.size());
-        for (String externalId : externalIds) {
-            System.assert(externalId.contains('E8FF097A-B0D4-4A19-BC37-3509B762FE3A'));
-        }
+        System.assert(response != null && response[0] != null);
+        System.assert(response[0].externalId.contains('E8FF097A-B0D4-4A19-BC37-3509B762FE3A'));
     }
 
     @isTest

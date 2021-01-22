@@ -228,6 +228,7 @@ public with sharing class ConsentService {
         ConsentDataTypesService.DisableInternalConsentRequestBodyType body = new ConsentDataTypesService.DisableInternalConsentRequestBodyType();
         body.consentCrmGuid = c.ExternalId__c;
         body.consentSourceId = '20';
+        body.consentProvidedById = '1';
         return body;
     }
 }
