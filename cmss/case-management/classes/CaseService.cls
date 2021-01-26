@@ -118,6 +118,31 @@ public with sharing class CaseService {
         }
     }
 
+	public static void populateUserLookupsFromCPU(List<Case> newList, Map<Id, Case> oldMap) {
+		Set<Id> complainerContractorCPUs = new Set<String>();
+		Set<Id> contractorCPUs = new Set<String>();
+		for (Case c : newList) {
+			if (oldMap == null || oldMap.get(c.Id).ComplainerContractorCPU__c != c.ComplainerContractorCPU__c) {
+				complainerContractorCPUs.add(c.ComplainerContractorCPU__c);
+			}
+			if (oldMap == null || oldMap.get(c.Id).ContractorCPU__c != c.ContractorCPU__c) {
+				contractorCPUs.add(c.ContractorCPU__c);
+			}
+		}
+		Map<String, Id> usersByCPU = new Map<String, Id>();
+		for (User u : [SELECT Id, CommissionAccountNr__c FROM User WHERE CommissionAccountNr__c IN :complainerContractorCPUs OR CommissionAccountNr__c IN :contractorCPUs]) {
+			usersByCPU.put(u.CommissionAccountNr__c, u.Id);
+		}
+		for (Case c : newList) {
+			if (oldMap == null || oldMap.get(c.Id).ComplainerContractorCPU__c != c.ComplainerContractorCPU__c) {
+				c.ComplainerContractor__c = usersByCPU.get(c.ComplainerContractorCPU__c);
+			}
+			if (oldMap == null || oldMap.get(c.Id).ContractorCPU__c != c.ContractorCPU__c) {
+				c.Contractor__c = usersByCPU.get(c.ContractorCPU__c);
+			}
+		}
+	}
+
     private static void setupOwnerIdsToCases(Map<Id, List<Case>> ownerIdsToCases, Case c) {
         List<Case> cases = ownerIdsToCases.get(c.OwnerId);
         if (cases == null) {
