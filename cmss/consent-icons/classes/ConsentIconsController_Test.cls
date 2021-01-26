@@ -1,7 +1,6 @@
 /**
  * Created by a.olexova on 4/8/2020.
  */
-
 @IsTest
 private class ConsentIconsController_Test {
 	static Account accWithConsent;
