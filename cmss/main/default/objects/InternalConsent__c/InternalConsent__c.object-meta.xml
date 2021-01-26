@@ -155,8 +155,9 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Internal Consent</label>
     <nameField>
+        <displayFormat>MS-{000000}</displayFormat>
         <label>Internal Consent Name</label>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Internal Consents</pluralLabel>
     <searchLayouts/>

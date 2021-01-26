@@ -99,7 +99,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>columns</name>
-                <value>Name, ProductCloseDate__c, DateUpdated__c, AmountRepayment__c</value>
+                <value>ProductType__c, Name, ProductCloseDate__c, CancellationDate__c, CancellationReason__c, DateUpdated__c, AmountRepayment__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>conditionAssets</name>

@@ -121,9 +121,10 @@
         <lookupPhoneDialogsAdditionalFields>CONTACT.NAME</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>ASSET.NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>ClosingAgentId__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>ProductCloseDate__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ProductType__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ProductSubtype__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ProductCloseDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ClosingAgentId__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>StateCode__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>

@@ -43,6 +43,10 @@
                 <behavior>Edit</behavior>
                 <field>ValidTo__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Type</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -102,6 +106,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>PostCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Author__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
