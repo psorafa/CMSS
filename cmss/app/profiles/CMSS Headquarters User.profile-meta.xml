@@ -5058,10 +5058,6 @@
         <layout>Account-LACRLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-LACRLayout</layout>
-        <recordType>Account.Business_Account</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>AccountRelation__c-Account Relation Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -5201,14 +5197,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Opportunity-LACRLayout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Opportunity-LACRLayout</layout>
-        <recordType>Opportunity.Editable</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Opportunity-LACRLayout</layout>
-        <recordType>Opportunity.NotEditable</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PensionStrategy__c-Pension Strategy Layout</layout>
