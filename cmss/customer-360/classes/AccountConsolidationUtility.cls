@@ -37,6 +37,8 @@ public without sharing class AccountConsolidationUtility {
 			oldGlobalIds.add(result.OldGlobalID__c);
 			newGlobalIds.add(result.NewGlobalID__c);
 		}
+		oldGlobalIds.remove(null);
+		newGlobalIds.remove(null);
 		oldAccountsByGlobalIdsMap = mapAccountsByGlobalId([
 			SELECT
 				Id, GlobalId__c, (SELECT Id, AccountId FROM Cases), (SELECT Id, AccountId FROM Opportunities), (SELECT Id, WhatId FROM Tasks), (SELECT Id, Account__c FROM ClientZones__r)
