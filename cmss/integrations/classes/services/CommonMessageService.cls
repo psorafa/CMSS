@@ -578,7 +578,7 @@ public class CommonMessageService {
         public RequestHeader() {
             this.timestamp = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
             this.timestamp = this.timestamp.substring(0, this.timestamp.length() - 2) + ':00';
-            this.messageId = MockServicesUtil.generateUUID();
+            this.messageId = UUIDUtil.generateUUID();
             this.sourceSystem = '20';
             this.targetSystem = 'ESB';
             this.physicalSource = Url.getSalesforceBaseUrl().toExternalForm();

@@ -252,7 +252,7 @@ public class TestDataFactory {
         InternalConsent__c template = new InternalConsent__c(
             InternalConsentType__c = '1',
             InternalConsentValue__c = '1',
-            ExternalId__c = 'kdslfn450'
+            ExternalId__c = 'kdslfn450' + UUIDUtil.generateUUID().substring(20)
         );
         copyFields(so, template);
         if (template.Account__c == null) {
