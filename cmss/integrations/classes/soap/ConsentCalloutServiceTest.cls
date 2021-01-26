@@ -11,15 +11,21 @@ private class ConsentCalloutServiceTest {
             null);
         Test.setMock(HttpCalloutMock.class, fakeResponse);
 
-		List<Consent__c> consents = TestDataFactory.getConsents(200, new Consent__c());
+        Consent__c c = TestDataFactory.getConsent(new Consent__c());
+        GeneralConsentEnablement.Request r = new GeneralConsentEnablement.Request();
+        r.consentEntityId = c.EntityConsent__c;
+        r.consentVersionId = c.GeneralConsentVersion__c;
+        r.agentCPU = c.AgentCPU__c;
+        r.accountId = c.Account__c;
+        r.substitutePersonId = c.SubstitutePerson__c;
+        r.substituteRoleId = c.SubstituteRole__c;
+
 		Test.startTest();
-		List<String> externalIds = GeneralConsentEnablement.enableGeneralConsents(consents);
+		GeneralConsentEnablement.Result[] response = GeneralConsentEnablement.enableGeneralConsents(new GeneralConsentEnablement.Request[]{ r });
         Test.stopTest();
         
-        System.assertEquals(100, externalIds.size());
-        for (String externalId : externalIds) {
-            System.assert(externalId.contains('E8FF097A-B0D4-4A19-BC37-3509B762FE3A'));
-        }
+        System.assert(response != null && response[0] != null);
+        System.assert(response[0].externalId.contains('E8FF097A-B0D4-4A19-BC37-3509B762FE3A'));
     }
 
     @isTest

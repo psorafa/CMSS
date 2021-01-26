@@ -221,6 +221,7 @@ public with sharing class ConsentService {
         body.consentValidFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
         body.consentValidFrom = body.consentValidFrom.substring(0, body.consentValidFrom.length() - 2) + ':00'; 
         body.consentSourceId = '20';
+        body.consentProvidedBy = '1';
         return body;
     }
     
