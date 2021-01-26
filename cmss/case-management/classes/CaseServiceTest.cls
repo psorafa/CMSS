@@ -130,4 +130,39 @@ private class CaseServiceTest {
             }
         }
     }
+
+    @IsTest
+    static void testPopulateUserLookupsFromCPU() {
+        User user1 = TestDataFactory.getUser(new User(
+            CommissionAccountNr__c = 'CPU001'
+        ));
+        User user2 = TestDataFactory.getUser(new User(
+            CommissionAccountNr__c = 'CPU002'
+        ));
+        User user3 = TestDataFactory.getUser(new User(
+            CommissionAccountNr__c = 'CPU003'
+        ));
+        insert new List<User>{
+            user1, user2, user3
+        };
+
+        Case cas = TestDataFactory.getCase(new Case(
+            ContractorCPU__c = 'CPU001',
+            ComplainerContractorCPU__c = 'CPU002'
+        ));
+        insert cas;
+
+        cas = [SELECT Id, ComplainerContractor__c, Contractor__c FROM Case WHERE Id = :cas.Id];
+        System.assertEquals(user1.Id, cas.Contractor__c);
+        System.assertEquals(user2.Id, cas.ComplainerContractor__c);
+
+        cas.ContractorCPU__c = null;
+        cas.ComplainerContractorCPU__c = 'CPU003';
+
+        update cas;
+
+        cas = [SELECT Id, ComplainerContractor__c, Contractor__c FROM Case WHERE Id = :cas.Id];
+        System.assertEquals(null, cas.Contractor__c);
+        System.assertEquals(user3.Id, cas.ComplainerContractor__c);
+    }
 }

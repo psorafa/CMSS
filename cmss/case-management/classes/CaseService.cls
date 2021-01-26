@@ -119,8 +119,8 @@ public with sharing class CaseService {
     }
 
 	public static void populateUserLookupsFromCPU(List<Case> newList, Map<Id, Case> oldMap) {
-		Set<Id> complainerContractorCPUs = new Set<String>();
-		Set<Id> contractorCPUs = new Set<String>();
+		Set<String> complainerContractorCPUs = new Set<String>();
+		Set<String> contractorCPUs = new Set<String>();
 		for (Case c : newList) {
 			if (oldMap == null || oldMap.get(c.Id).ComplainerContractorCPU__c != c.ComplainerContractorCPU__c) {
 				complainerContractorCPUs.add(c.ComplainerContractorCPU__c);
@@ -129,6 +129,8 @@ public with sharing class CaseService {
 				contractorCPUs.add(c.ContractorCPU__c);
 			}
 		}
+		complainerContractorCPUs.remove(null);
+		contractorCPUs.remove(null);
 		Map<String, Id> usersByCPU = new Map<String, Id>();
 		for (User u : [SELECT Id, CommissionAccountNr__c FROM User WHERE CommissionAccountNr__c IN :complainerContractorCPUs OR CommissionAccountNr__c IN :contractorCPUs]) {
 			usersByCPU.put(u.CommissionAccountNr__c, u.Id);

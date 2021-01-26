@@ -5,14 +5,16 @@ public class CaseTriggerHandler extends TriggerHandler {
 	public override void beforeInsert() {
         CaseService.validateOwnerPermission((List<Case>) Trigger.new, null);
         CaseService.assignCaseID(Trigger.new);
+		CaseService.populateUserLookupsFromCPU(Trigger.new, null);
     }
     
     public override void beforeUpdate() {
 		CaseService.validateOwnerPermission((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
+		CaseService.populateUserLookupsFromCPU(Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 	}
 
 	public override void afterUpdate() {
-		List<Case> newList = Trigger.New;
+		List<Case> newList = Trigger.new;
 		Map<Id, Case> oldMap = (Map<Id, Case>) Trigger.oldMap;
 
 		handleMilestoneCompletion(newList, oldMap);
