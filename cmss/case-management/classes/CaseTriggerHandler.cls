@@ -3,12 +3,12 @@
  */
 public class CaseTriggerHandler extends TriggerHandler {
 	public override void beforeInsert() {
-        CaseService.validateOwnerPermission((List<Case>) Trigger.new, null);
-        CaseService.assignCaseID(Trigger.new);
+		CaseService.validateOwnerPermission((List<Case>) Trigger.new, null);
+		CaseService.assignCaseID(Trigger.new);
 		CaseService.populateUserLookupsFromCPU(Trigger.new, null);
-    }
-    
-    public override void beforeUpdate() {
+	}
+
+	public override void beforeUpdate() {
 		CaseService.validateOwnerPermission((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 		CaseService.populateUserLookupsFromCPU(Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 	}
@@ -59,19 +59,19 @@ public class CaseTriggerHandler extends TriggerHandler {
 		Case oldCase = oldMap != null ? oldMap.get(newCase.Id) : null;
 		if (
 			ACTION_COMPLETE_RESPONSE_MILESTONE == actionName && newCase.IsClientClaim__c &&
-			String.isNotBlank(newCase.EntitlementId) &&
-			newCase.ResponseSentDate__c != null &&
-			oldCase != null &&
-			oldCase.ResponseSentDate__c != newCase.ResponseSentDate__c
-		) {
+				String.isNotBlank(newCase.EntitlementId) &&
+				newCase.ResponseSentDate__c != null &&
+				oldCase != null &&
+				oldCase.ResponseSentDate__c != newCase.ResponseSentDate__c
+			) {
 			return true;
 		} else if (
 			ACTION_COMPLETE_CONFIRMATION_MILESTONE == actionName && newCase.IsClientClaim__c &&
-			String.isNotBlank(newCase.EntitlementId) &&
-			newCase.ReceivingConfirmationDate__c != null &&
-			oldCase != null &&
-			oldCase.ReceivingConfirmationDate__c != newCase.ReceivingConfirmationDate__c
-		) {
+				String.isNotBlank(newCase.EntitlementId) &&
+				newCase.ReceivingConfirmationDate__c != null &&
+				oldCase != null &&
+				oldCase.ReceivingConfirmationDate__c != newCase.ReceivingConfirmationDate__c
+			) {
 			return true;
 		}
 		return false;
