@@ -119,6 +119,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>ComplainerContractorCPU__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>ComplainerContractor__c</field>
             </layoutItems>
             <layoutItems>
@@ -176,6 +180,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>ContractorCPU__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Contractor__c</field>
             </layoutItems>
             <layoutItems>
@@ -358,11 +366,6 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>Case.ReceivingConfirmationSent</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>0</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>Case.ClaimCancellation</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>1</sortOrder>
@@ -411,6 +414,11 @@
             <actionName>Delete</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>10</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Case.ReceivingConfirmationSent</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>0</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
@@ -461,7 +469,7 @@
     <showRunAssignmentRulesCheckbox>true</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>true</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3E000000zMcD</masterLabel>
+        <masterLabel>00h1X000001sPH5</masterLabel>
         <sizeX>3</sizeX>
         <sizeY>2</sizeY>
         <summaryLayoutItems>
