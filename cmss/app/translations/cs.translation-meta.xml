@@ -153,42 +153,6 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <label>Založení marketingového souhlasu</label>
-            <screens>
-                <fields>
-                    <name>SuccessMessage_0</name>
-                </fields>
-                <name>ErrorScreen</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>ConsentSource</name>
-                </fields>
-                <fields>
-                    <name>ConsentType</name>
-                </fields>
-                <fields>
-                    <name>InternalConsentTypeValue</name>
-                </fields>
-                <fields>
-                    <name>ValidFrom</name>
-                </fields>
-                <fields>
-                    <name>ValidTo</name>
-                </fields>
-                <name>SelectionConsentType</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>SuccessMessage</name>
-                </fields>
-                <name>SuccessScreen</name>
-            </screens>
-        </flows>
-        <fullName>InternalConsentCreation</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows>
             <screens>
                 <fields>
                     <name>ProductUrlListScreen</name>
