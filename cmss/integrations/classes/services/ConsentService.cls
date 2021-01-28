@@ -22,64 +22,21 @@ public with sharing class ConsentService {
             new List<ConsentDataTypesService.DisableChannelConsentRequestBodyType>()
         };
 
-        Map<String, String> fieldNamesToConsentChannelIds = new Map<String, String>();
-        ConsentChannelIdsMapping__mdt[] consentChannelIdsMapping = [
-            SELECT FieldName__c, ConsentChannelId__c 
-            FROM ConsentChannelIdsMapping__mdt
-            WHERE ForTestingOnly__c = :Test.isRunningTest()
-        ];
-        for (ConsentChannelIdsMapping__mdt ccim : consentChannelIdsMapping) {
-            fieldNamesToConsentChannelIds.put(ccim.FieldName__c, ccim.ConsentChannelId__c);
-        }
-
+        Map<String, String> fieldNamesToConsentChannelIds = setUpFieldNamesToConsentChannelIds(newConsents);
         Set<Id> accountIds = new Set<Id>();
         for (Consent__c c : (List<Consent__c>) newConsents) {
             Validation.requireAttribute(c.Account__c, 'Account__c');
             accountIds.add(c.Account__c);
         }
-        Map<Id, Account> idsToAccounts = new Map<Id, Account>([
-            SELECT GlobalId__c
-            FROM Account 
-            WHERE Id IN :accountIds
-        ]);
-
-        if (oldIdsToConsents != null) {
-            for (Integer i = 0; i < newConsents.size(); i++) {
-                SObject oldConsent = oldIdsToConsents.get((Id) newConsents[i].get('Id'));
-
-                Validation.requireAttribute(newConsents[i].get('EntityConsent__c'), 'EntityConsent__c');
-                Account acc = idsToAccounts.get((Id) newConsents[i].get('Account__c'));
-                Validation.requireAttribute(acc, 'Account');
-                Validation.requireAttribute(acc.GlobalId__c, 'GlobalId__c');
-
-                for (String fieldName : CHANNEL_FIELD_NAMES) {
-                    String consentChannelId = fieldNamesToConsentChannelIds.get(fieldName);
-                    
-                    if (newConsents[i].get(fieldName) != oldConsent.get(fieldName) && newConsents[i].get(fieldName) == '1') {
-                        listOfEnableChannelRequestLists[i/50].add(getEnableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
-                    } else if (newConsents[i].get(fieldName) != oldConsent.get(fieldName) && newConsents[i].get(fieldName) == '2') {
-                        listOfDisableChannelRequestLists[i/50].add(getDisableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
-                    }
-                }
-            }
-        } else {
-            for (Integer i = 0; i < newConsents.size(); i++) {
-                Validation.requireAttribute(newConsents[i].get('EntityConsent__c'), 'EntityConsent__c');
-                Account acc = idsToAccounts.get((Id) newConsents[i].get('Account__c'));
-                Validation.requireAttribute(acc, 'Account');
-                Validation.requireAttribute(acc.GlobalId__c, 'GlobalId__c');
-
-                for (String fieldName : CHANNEL_FIELD_NAMES) {
-                    String consentChannelId = fieldNamesToConsentChannelIds.get(fieldName);
-                    
-                    if (newConsents[i].get(fieldName) == '1') {
-                        listOfEnableChannelRequestLists[i/50].add(getEnableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
-                    } else if (newConsents[i].get(fieldName) == '2') {
-                        listOfDisableChannelRequestLists[i/50].add(getDisableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
-                    }
-                }
-            }
-        }
+        Map<Id, Account> idsToAccounts = setUpIdsToAccounts(accountIds);
+        categorizeConsentsToLists(
+            newConsents, 
+            oldIdsToConsents, 
+            fieldNamesToConsentChannelIds, 
+            idsToAccounts, 
+            listOfEnableChannelRequestLists,
+            listOfDisableChannelRequestLists
+        );
 
         for (Integer i = 0; i < 4; i++) {
             if (listOfEnableChannelRequestLists[i].size() > 0 || listOfDisableChannelRequestLists[i].size() > 0) {
@@ -112,12 +69,7 @@ public with sharing class ConsentService {
         for (InternalConsent__c c : newConsents) {
             accountIds.add(c.Account__c);
         }
-
-        Map<Id, Account> idsToAccounts = new Map<Id, Account>([
-            SELECT GlobalId__c
-            FROM Account 
-            WHERE Id IN :accountIds
-        ]);
+        Map<Id, Account> idsToAccounts = setUpIdsToAccounts(accountIds);
 
         for (Integer i = 0; i < newConsents.size(); i++) {
             InternalConsent__c oldConsent = oldIdsToConsents.get(newConsents[i].Id);
@@ -138,6 +90,78 @@ public with sharing class ConsentService {
                 );
             }
         }
+    }
+
+    private static Map<String, String> setUpFieldNamesToConsentChannelIds(List<SObject> newConsents) {
+        Map<String, String> fieldNamesToConsentChannelIds = new Map<String, String>();
+        ConsentChannelIdsMapping__mdt[] consentChannelIdsMapping = [
+            SELECT FieldName__c, ConsentChannelId__c 
+            FROM ConsentChannelIdsMapping__mdt
+            WHERE ForTestingOnly__c = :Test.isRunningTest()
+        ];
+        for (ConsentChannelIdsMapping__mdt ccim : consentChannelIdsMapping) {
+            fieldNamesToConsentChannelIds.put(ccim.FieldName__c, ccim.ConsentChannelId__c);
+        }
+
+        return fieldNamesToConsentChannelIds;
+    }
+
+    private static Map<Id, Account> setUpIdsToAccounts(Set<Id> accountIds) {
+        Map<Id, Account> idsToAccounts = new Map<Id, Account>([
+            SELECT GlobalId__c
+            FROM Account 
+            WHERE Id IN :accountIds
+        ]);
+
+        return idsToAccounts;
+    }
+
+    private static void categorizeConsentsToLists(
+        List<SObject> newConsents, 
+        Map<Id, SObject> oldIdsToConsents, 
+        Map<String, String> fieldNamesToConsentChannelIds,
+        Map<Id, Account> idsToAccounts,
+        List<List<ConsentDataTypesService.EnableChannelConsentRequestBodyType>> listOfEnableChannelRequestLists,
+        List<List<ConsentDataTypesService.DisableChannelConsentRequestBodyType>> listOfDisableChannelRequestLists) {
+
+        if (oldIdsToConsents != null) {
+            for (Integer i = 0; i < newConsents.size(); i++) {
+                SObject oldConsent = oldIdsToConsents.get((Id) newConsents[i].get('Id'));
+                Account acc = validateConsents(i, newConsents, idsToAccounts);
+
+                for (String fieldName : CHANNEL_FIELD_NAMES) {
+                    String consentChannelId = fieldNamesToConsentChannelIds.get(fieldName);
+                    
+                    if (newConsents[i].get(fieldName) != oldConsent.get(fieldName) && newConsents[i].get(fieldName) == '1') {
+                        listOfEnableChannelRequestLists[i/50].add(getEnableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
+                    } else if (newConsents[i].get(fieldName) != oldConsent.get(fieldName) && newConsents[i].get(fieldName) == '2') {
+                        listOfDisableChannelRequestLists[i/50].add(getDisableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
+                    }
+                }
+            }
+        } else {
+            for (Integer i = 0; i < newConsents.size(); i++) {
+                Account acc = validateConsents(i, newConsents, idsToAccounts);
+
+                for (String fieldName : CHANNEL_FIELD_NAMES) {
+                    String consentChannelId = fieldNamesToConsentChannelIds.get(fieldName);
+                    
+                    if (newConsents[i].get(fieldName) == '1') {
+                        listOfEnableChannelRequestLists[i/50].add(getEnableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
+                    } else if (newConsents[i].get(fieldName) == '2') {
+                        listOfDisableChannelRequestLists[i/50].add(getDisableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
+                    }
+                }
+            }
+        }
+    }
+
+    private static Account validateConsents(Integer i, List<SObject> newConsents, Map<Id, Account> idsToAccounts) {
+        Validation.requireAttribute(newConsents[i].get('EntityConsent__c'), 'EntityConsent__c');
+        Account acc = idsToAccounts.get((Id) newConsents[i].get('Account__c'));
+        Validation.requireAttribute(acc, 'Account');
+        Validation.requireAttribute(acc.GlobalId__c, 'GlobalId__c');
+        return acc;
     }
 
     @future(callout=true)
