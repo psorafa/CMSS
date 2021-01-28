@@ -9,6 +9,11 @@ private class ConsentIconsController_Test {
 	static Consent__c consent1;
 	static Consent__c consent2;
 
+	@TestSetup
+	static void insertCustomSettings() {
+		insert TestDataFactory.getIntegrationSettings();
+	}
+
 	static void testSetup() {
         CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
             200,

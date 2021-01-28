@@ -1,6 +1,11 @@
 @IsTest
 private class PortfolioManagementCalloutServiceTest {
 
+	@TestSetup
+	static void insertCustomSettings() {
+		insert TestDataFactory.getIntegrationSettings();
+	}
+
 	@IsTest
 	static void testSetPortfolioManager() {
 		User u = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CPU0'));

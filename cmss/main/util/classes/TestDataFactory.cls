@@ -272,6 +272,17 @@ public class TestDataFactory {
 		return internalConsents;
     }
 
+	public static IntegrationSettings__c getIntegrationSettings() {
+		return new IntegrationSettings__c(
+			ConsentServiceEndpoint__c = 'https://test.test',
+			ConsentServiceUsername__c = 'testusername',
+			ConsentServicePassword__c = 'testpass',
+			PortfolioManagementServiceEndpoint__c = 'https://test.test',
+			PortfolioManagementServiceUsername__c = 'testusername',
+			PortfolioManagementServicePassword__c = 'testpass'
+		);
+	}
+
 	private static void copyFields(SObject source, SObject destination) {
 		if (source == null) {
 			return;
