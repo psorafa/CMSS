@@ -9,20 +9,34 @@ private class ConsentIconsController_Test {
 	static Consent__c consent1;
 	static Consent__c consent2;
 
+	@TestSetup
+	static void insertCustomSettings() {
+		insert TestDataFactory.getIntegrationSettings();
+	}
+
 	static void testSetup() {
-		accWithConsent = new Account(
+        CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+            200,
+            'OK',
+            '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableGeneralConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableGeneralConsentResponse></soapenv:Body></soapenv:Envelope>',
+            null,
+            null);
+        Test.setMock(HttpCalloutMock.class, fakeResponse);
+
+		accWithConsent = TestDataFactory.getPersonAccount(new Account(
 			FirstName = 'Filip',
 			LastName = 'Fiala',
 			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('PersonAccount', 'Account'),
 			AccountStatus__c = '1'
-		);
-		accNoConsent = new Account(
+		));
+		accNoConsent = TestDataFactory.getAccount(new Account(
 			Name = 'Testujem s.r.o.',
 			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('Business_Account', 'Account'),
 			AccountStatus__c = '1'
-		);
-		insert new List<Account>{ accNoConsent, accWithConsent };
-		consent1 = new Consent__c(
+		));
+        insert new List<Account>{ accNoConsent, accWithConsent };
+        
+		consent1 = TestDataFactory.getConsent(new Consent__c(
 			GeneralConsent__c = '1',
 			GeneralConsentVersion__c = '3',
 			Account__c = accWithConsent.Id,
@@ -32,8 +46,8 @@ private class ConsentIconsController_Test {
 			PortalConsent__c = '2',
 			PhoneConsent__c = '2',
 			PostConsent__c = '2'
-		);
-		consent2 = new Consent__c(
+		));
+		consent2 = TestDataFactory.getConsent(new Consent__c(
 			GeneralConsent__c = '1',
 			GeneralConsentVersion__c = '3',
 			Account__c = accWithConsent.Id,
@@ -43,7 +57,7 @@ private class ConsentIconsController_Test {
 			PortalConsent__c = '1',
 			PhoneConsent__c = '1',
 			PostConsent__c = '1'
-		);
+		));
 		insert new List<Consent__c>{ consent1, consent2 };
 	}
 

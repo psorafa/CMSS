@@ -118,7 +118,8 @@ public with sharing class Logger {
 	}
 
 	public static void saveLogs() {
-		List<Database.SaveResult> results = EventBus.publish(logEventsToPublish);
+        List<Database.SaveResult> results = EventBus.publish(logEventsToPublish);
+        logEventsToPublish.clear();
 		for (Database.SaveResult sr : results) {
 			if (!sr.isSuccess()) {
 				for (Database.Error err : sr.getErrors()) {

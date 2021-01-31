@@ -349,6 +349,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>ObjectID__c</fields>
+        <fields>Priority__c</fields>
+        <fields>ProductType__c</fields>
+        <fields>RelationType__c</fields>
         <relatedList>AssetAccountRelation__c.Asset__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -370,6 +374,10 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>ChangeAuthor__c</fields>
+        <fields>ChangeType__c</fields>
+        <fields>ChangeCreationDate__c</fields>
+        <fields>ChangeClosureDate__c</fields>
         <relatedList>AssetChange__c.Asset__c</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>

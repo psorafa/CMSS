@@ -182,14 +182,25 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>CreditContractNumber__c</fields>
+        <fields>HouseholdRestrictedInBenefits__c</fields>
+        <fields>HouseholdRestrictedAmount__c</fields>
         <relatedList>NonLifeInsuranceBinding__c.Asset__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>OBJECT_ID</fields>
+        <fields>AddressCity__c</fields>
+        <fields>EstateType__c</fields>
+        <fields>HouseholdLocation__c</fields>
         <relatedList>NonLifeInsuranceObject__c.Asset__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Agent__c</fields>
+        <fields>EstateHeading__c</fields>
+        <fields>OBJECT_ID</fields>
+        <fields>Indexing__c</fields>
         <relatedList>NonLifeInsurance__c.Asset__c</relatedList>
     </relatedLists>
     <relatedLists>

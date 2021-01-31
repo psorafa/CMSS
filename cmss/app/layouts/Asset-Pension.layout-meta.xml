@@ -300,6 +300,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>ObjectID__c</fields>
+        <fields>Priority__c</fields>
+        <fields>ProductType__c</fields>
+        <fields>RelationType__c</fields>
         <relatedList>AssetAccountRelation__c.Asset__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -312,10 +316,18 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>ClosingAgentId__c</fields>
+        <fields>Arranged__c</fields>
+        <fields>ContractAttendanceStamp__c</fields>
+        <fields>ValidFrom__c</fields>
         <relatedList>CrossSellingClosure__c.Asset__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Amount__c</fields>
+        <fields>PensionUnitValue__c</fields>
+        <fields>OBJECT_ID</fields>
+        <fields>Strategy__c</fields>
         <relatedList>PensionStrategy__c.Asset__c</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>

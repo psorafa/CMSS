@@ -1,6 +1,6 @@
-global with sharing class MockServicesUtil {
+public with sharing class UUIDUtil {
 
-	global static String generateRandomString(Integer len) {
+	public static String generateRandomString(Integer len) {
 		final String chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
 		String randStr = '';
 		while (randStr.length() < len) {
@@ -10,10 +10,9 @@ global with sharing class MockServicesUtil {
 		return randStr;
 	}
 
-	global static String generateUUID() {
+	public static String generateUUID() {
 		Blob b = Crypto.GenerateAesKey(128);
 		String h = EncodingUtil.ConvertToHex(b);
 		return h.substring(0, 8) + '-' + h.substring(8, 12) + '-' + h.substring(12, 16) + '-' + h.substring(16, 20) + '-' + h.substring(20);
 	}
-
 }
