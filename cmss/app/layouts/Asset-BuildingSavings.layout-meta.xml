@@ -364,6 +364,14 @@
         <relatedList>Related Assets</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>Name</fields>
+        <fields>Asset</fields>
+        <fields>RelationshipType</fields>
+        <fields>FromDate</fields>
+        <fields>ToDate</fields>
+        <relatedList>Primary Assets</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>NAME</fields>
         <fields>DimaName__c</fields>
         <fields>DimaCode__c</fields>
@@ -386,7 +394,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1j000001Lzi0</masterLabel>
+        <masterLabel>00h1X000001l6cP</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
