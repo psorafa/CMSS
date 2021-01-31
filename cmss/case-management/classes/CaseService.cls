@@ -139,9 +139,15 @@ public with sharing class CaseService {
 		for (Case c : newList) {
 			if (oldMap == null || oldMap.get(c.Id).ComplainerContractorCPU__c != c.ComplainerContractorCPU__c) {
 				c.ComplainerContractor__c = usersByCPU.get(c.ComplainerContractorCPU__c);
+				if (c.ComplainerContractorCPU__c !=null && c.ComplainerContractor__c == null) {
+					c.ComplainerContractorCPU__c.addError(Label.NoUserWithThisCPUFound);
+				}
 			}
 			if (oldMap == null || oldMap.get(c.Id).ContractorCPU__c != c.ContractorCPU__c) {
 				c.Contractor__c = usersByCPU.get(c.ContractorCPU__c);
+				if (c.ContractorCPU__c !=null && c.Contractor__c == null) {
+					c.ContractorCPU__c.addError(Label.NoUserWithThisCPUFound);
+				}
 			}
 		}
 	}
