@@ -46,22 +46,22 @@ public with sharing class InternalConsentEnablement {
 	}
 
 	public class Request {
-		@InvocableVariable(label='Consent Type' required=true)
+		@InvocableVariable(Label='Consent Type' Required=true)
 		public String consentType;
 
-		@InvocableVariable(label='Consent Value' required=true)
+		@InvocableVariable(Label='Consent Value' Required=true)
 		public String consentValue;
 
-		@InvocableVariable(label='Valid From' required=true)
+		@InvocableVariable(Label='Valid From' Required=true)
 		public Datetime validFrom;
 
-		@InvocableVariable(label='Valid To' required=false)
+		@InvocableVariable(Label='Valid To' Required=false)
 		public Datetime validTo;
 
-		@InvocableVariable(label='Source' required=true)
+		@InvocableVariable(Label='Source' Required=true)
 		public String source;
 
-		@InvocableVariable(label='Account Id' required=true)
+		@InvocableVariable(Label='Account Id' Required=true)
 		public String accountId;
 	}
 
@@ -70,7 +70,7 @@ public with sharing class InternalConsentEnablement {
 			this.externalId = externalId;
 		}
 
-		@InvocableVariable(label='External Id' required=true)
+		@InvocableVariable(Label='External Id' Required=true)
 		public String externalId;
 	}
 }

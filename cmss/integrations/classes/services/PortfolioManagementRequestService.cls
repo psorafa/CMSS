@@ -54,7 +54,7 @@ public with sharing class PortfolioManagementRequestService {
 		changeCPEClientStateFuture(new Map<Id, PortfolioManagementRequest__c>(newPMRs).keySet(), batchId);
 	}
 
-	@future(callout=true)
+	@Future(Callout=true)
 	private static void changeCPEClientStateFuture(Set<Id> pmrIds, String batchId) {
 		try {
 			PortfolioManagementRequest__c[] pmrs = [
@@ -98,7 +98,7 @@ public with sharing class PortfolioManagementRequestService {
 				body.listOfClientStates = clientStates;
 
 				PortfolioManagementCalloutService.PortfolioManagementServicePort stub = new PortfolioManagementCalloutService.PortfolioManagementServicePort();
-				PortfolioManagementCalloutService.ChangeCPEClientStateResponseBody response = stub.changeCPEClientState_Http(header, body);
+				stub.changeCPEClientState_Http(header, body);
 			}
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);

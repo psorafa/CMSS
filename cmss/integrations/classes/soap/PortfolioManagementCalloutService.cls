@@ -20,8 +20,6 @@ public class PortfolioManagementCalloutService {
 		private transient String[] field_order_type_info = new String[]{
 			'requestHeader', 'requestBody'
 		};
-		public ChangeCPEClientStateRequest() {
-		}
 		public ChangeCPEClientStateRequest(CommonMessageService.RequestHeader requestHeader, PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody requestBody) {
 			this.requestHeader = requestHeader;
 			this.requestBody = requestBody;
@@ -58,21 +56,6 @@ public class PortfolioManagementCalloutService {
 		};
 		public ChangeCPEClientStateRequestBody() {
 		}
-		public ChangeCPEClientStateRequestBody(DOM.XmlNode responseNode) {
-			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			DOM.XmlNode batchIdNode = responseNode.getChildElement('batchId', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
-			this.batchId = (batchIdNode == null) ? null : batchIdNode.getText();
-			nodesParsed.add(batchIdNode);
-			//System.debug(this.batchId);			
-			DOM.XmlNode listOfClientStatesNode = responseNode.getChildElement('listOfClientStates', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
-			if (listOfClientStatesNode == null) {
-				this.listOfClientStates = null;
-			} else {
-				PortfolioManagementCalloutService.ListOfClientsStatesType listOfClientStatesObj = new PortfolioManagementCalloutService.ListOfClientsStatesType(listOfClientStatesNode);
-				nodesParsed.add(listOfClientStatesNode);
-				this.listOfClientStates = listOfClientStatesObj;
-			}
-		}
 		public void populateXmlNode(Dom.XmlNode outerNode) {
 			Dom.XmlNode batchIdNode = outerNode.addChildElement('batchId', 'http://service.cmss.cz/person/PortfolioManagementService/v10', 'v10');
 			if (this.batchId != null) {
@@ -103,8 +86,6 @@ public class PortfolioManagementCalloutService {
 		private transient String[] field_order_type_info = new String[]{
 			'responseHeader', 'responseBody'
 		};
-		public ChangeCPEClientStateResponse() {
-		}
 		public ChangeCPEClientStateResponse(DOM.XmlNode responseNode) {
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
 			DOM.XmlNode responseHeaderNode = responseNode.getChildElement('responseHeader', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
@@ -136,8 +117,6 @@ public class PortfolioManagementCalloutService {
 		private transient String[] field_order_type_info = new String[]{
 			'emptyElement'
 		};
-		public ChangeCPEClientStateResponseBody() {
-		}
 		public ChangeCPEClientStateResponseBody(DOM.XmlNode responseNode) {
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
 			DOM.XmlNode emptyElementNode = responseNode.getChildElement('emptyElement', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
@@ -196,37 +175,6 @@ public class PortfolioManagementCalloutService {
 		};
 		public ListOfClientsStatesItemType() {
 		}
-		public ListOfClientsStatesItemType(DOM.XmlNode responseNode) {
-			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			DOM.XmlNode stateChangeRequestIdNode = responseNode.getChildElement('stateChangeRequestId', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
-			this.stateChangeRequestId = (stateChangeRequestIdNode == null) ? null : stateChangeRequestIdNode.getText();
-			nodesParsed.add(stateChangeRequestIdNode);
-			//System.debug(this.stateChangeRequestId);			
-			DOM.XmlNode accountIdNode = responseNode.getChildElement('accountId', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
-			this.accountId = (accountIdNode == null) ? null : accountIdNode.getText();
-			nodesParsed.add(accountIdNode);
-			//System.debug(this.accountId);			
-			DOM.XmlNode stateChangeReasonNode = responseNode.getChildElement('stateChangeReason', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
-			this.stateChangeReason = (stateChangeReasonNode == null) ? null : stateChangeReasonNode.getText();
-			nodesParsed.add(stateChangeReasonNode);
-			//System.debug(this.stateChangeReason);			
-			DOM.XmlNode validFromNode = responseNode.getChildElement('validFrom', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
-			this.validFrom = (validFromNode == null) ? null : validFromNode.getText();
-			nodesParsed.add(validFromNode);
-			//System.debug(this.validFrom);			
-			DOM.XmlNode portfolioManagementTypeNode = responseNode.getChildElement('portfolioManagementType', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
-			this.portfolioManagementType = (portfolioManagementTypeNode == null) ? null : portfolioManagementTypeNode.getText();
-			nodesParsed.add(portfolioManagementTypeNode);
-			//System.debug(this.portfolioManagementType);			
-			DOM.XmlNode spS_ANode = responseNode.getChildElement('spS_A', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
-			this.spS_A = (spS_ANode == null) ? null : spS_ANode.getText();
-			nodesParsed.add(spS_ANode);
-			//System.debug(this.spS_A);			
-			DOM.XmlNode spS_CNode = responseNode.getChildElement('spS_C', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
-			this.spS_C = (spS_CNode == null) ? null : spS_CNode.getText();
-			nodesParsed.add(spS_CNode);
-			//System.debug(this.spS_C);			
-		}
 		public void populateXmlNode(Dom.XmlNode outerNode) {
 			Dom.XmlNode stateChangeRequestIdNode = outerNode.addChildElement('stateChangeRequestId', 'http://service.cmss.cz/person/PortfolioManagementService/v10', 'v10');
 			if (this.stateChangeRequestId != null) {
@@ -266,23 +214,6 @@ public class PortfolioManagementCalloutService {
 			'listOfClientsStatesItem'
 		};
 		public ListOfClientsStatesType() {
-		}
-		public ListOfClientsStatesType(DOM.XmlNode responseNode) {
-			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			Dom.XmlNode[] listOfClientsStatesItemChildren = responseNode.getChildElements();
-			PortfolioManagementCalloutService.ListOfClientsStatesItemType[] listOfClientsStatesItemList = new List<PortfolioManagementCalloutService.ListOfClientsStatesItemType>();
-			if (listOfClientsStatesItemChildren == null || listOfClientsStatesItemChildren.size() == 0) {
-				this.listOfClientsStatesItem = null;
-			} else {
-				for (DOM.XmlNode childNode : listOfClientsStatesItemChildren) {
-					if (childNode.getName() == 'listOfClientsStatesItem') {
-						PortfolioManagementCalloutService.ListOfClientsStatesItemType Obj = new PortfolioManagementCalloutService.ListOfClientsStatesItemType(childNode);
-						listOfClientsStatesItemList.add(Obj);
-						nodesParsed.add(childNode);
-					}
-				}
-				this.listOfClientsStatesItem = listOfClientsStatesItemList;
-			}
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode) {
 

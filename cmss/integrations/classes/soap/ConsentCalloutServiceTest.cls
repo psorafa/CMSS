@@ -143,7 +143,7 @@ private class ConsentCalloutServiceTest {
 
 	@IsTest static void coverGeneratedCodeTypes() {
 		//Test.setMock(WebServiceMock.class, new serviceCmssCzPersonConsentservicMockImpl());
-		ConsentDataTypesService parentObject = new ConsentDataTypesService();
+		new ConsentDataTypesService();
 		DOM.Document doc = new DOM.Document();
 		DOM.XmlNode mockNode = doc.createRootElement('Envelope', 'http://schemas.xmlsoap.org/soap/envelope/', 'soapenv');
 		new CommonMessageService.CMSSBusinessLogicFaultInfo(mockNode);

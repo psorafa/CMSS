@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 public class CalloutServiceMockImpl implements HttpCalloutMock {
 
     protected Integer code;
@@ -15,7 +15,7 @@ public class CalloutServiceMockImpl implements HttpCalloutMock {
         this.responseHeaders = responseHeaders;
     }
 
-    public HTTPResponse respond(HTTPRequest req) {
+    public HttpResponse respond(HttpRequest req) {
         HttpResponse resp = new HttpResponse();
         resp.setStatusCode(code);
         resp.setStatus(status);

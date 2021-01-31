@@ -53,9 +53,9 @@ public class CommonMessageService {
 				this.cause = null;
 			} else {
 				for (DOM.XmlNode childNode : causeChildren) {
-					if (childNode.GetName() == 'cause') {
+					if (childNode.getName() == 'cause') {
 						CommonMessageService.CMSSFaultInfo Obj = new CommonMessageService.CMSSFaultInfo(childNode);
-						causeList.Add(Obj);
+						causeList.add(Obj);
 						nodesParsed.add(childNode);
 					}
 				}
@@ -158,9 +158,9 @@ public class CommonMessageService {
 				this.cause = null;
 			} else {
 				for (DOM.XmlNode childNode : causeChildren) {
-					if (childNode.GetName() == 'cause') {
+					if (childNode.getName() == 'cause') {
 						CommonMessageService.CMSSFaultInfo Obj = new CommonMessageService.CMSSFaultInfo(childNode);
-						causeList.Add(Obj);
+						causeList.add(Obj);
 						nodesParsed.add(childNode);
 					}
 				}
@@ -265,9 +265,9 @@ public class CommonMessageService {
 				this.cause = null;
 			} else {
 				for (DOM.XmlNode childNode : causeChildren) {
-					if (childNode.GetName() == 'cause') {
+					if (childNode.getName() == 'cause') {
 						CommonMessageService.CMSSFaultInfo Obj = new CommonMessageService.CMSSFaultInfo(childNode);
-						causeList.Add(Obj);
+						causeList.add(Obj);
 						nodesParsed.add(childNode);
 					}
 				}
@@ -372,9 +372,9 @@ public class CommonMessageService {
 				this.cause = null;
 			} else {
 				for (DOM.XmlNode childNode : causeChildren) {
-					if (childNode.GetName() == 'cause') {
+					if (childNode.getName() == 'cause') {
 						CommonMessageService.CMSSFaultInfo Obj = new CommonMessageService.CMSSFaultInfo(childNode);
-						causeList.Add(Obj);
+						causeList.add(Obj);
 						nodesParsed.add(childNode);
 					}
 				}
@@ -446,7 +446,7 @@ public class CommonMessageService {
 		public String physicalSource;
 		public String sourceSystem;
 		public String targetSystem;
-		public DateTime timestamp;
+		public Datetime timestamp;
 		public String userId;
 		private transient String[] conversationIdName_type_info = new String[]{
 			'conversationIdName', s_ns0, 'string', '0', '1', 'false'
@@ -557,7 +557,7 @@ public class CommonMessageService {
 		public String physicalSource;
 		public String sourceSystem;
 		public String targetSystem;
-		public DateTime timestamp;
+		public Datetime timestamp;
 		public String userId;
 		private transient String[] conversationIdName_type_info = new String[]{
 			'conversationIdName', s_ns0, 'string', '0', '1', 'false'
@@ -824,7 +824,7 @@ public class CommonMessageService {
 		public String physicalSource;
 		public String sourceSystem;
 		public String targetSystem;
-		public DateTime timestamp;
+		public Datetime timestamp;
 		public String userId;
 		private transient String[] conversationIdName_type_info = new String[]{
 			'conversationIdName', s_ns0, 'string', '0', '1', 'false'

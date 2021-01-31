@@ -50,22 +50,22 @@ public with sharing class GeneralConsentEnablement {
 	}
 
 	public class Request {
-		@InvocableVariable(label='Consent Entity Id' required=true)
+		@InvocableVariable(Label='Consent Entity Id' Required=true)
 		public String consentEntityId;
 
-		@InvocableVariable(label='Consent Version Id' required=true)
+		@InvocableVariable(Label='Consent Version Id' Required=true)
 		public String consentVersionId;
 
-		@InvocableVariable(label='Agent CPU' required=false)
+		@InvocableVariable(Label='Agent CPU' Required=false)
 		public String agentCPU;
 
-		@InvocableVariable(label='Account Id' required=true)
+		@InvocableVariable(Label='Account Id' Required=true)
 		public String accountId;
 
-		@InvocableVariable(label='Substitute Person Id' required=false)
+		@InvocableVariable(Label='Substitute Person Id' Required=false)
 		public String substitutePersonId;
 
-		@InvocableVariable(label='Substitute Role Id' required=false)
+		@InvocableVariable(Label='Substitute Role Id' Required=false)
 		public String substituteRoleId;
 	}
 
@@ -74,7 +74,7 @@ public with sharing class GeneralConsentEnablement {
 			this.externalId = externalId;
 		}
 
-		@InvocableVariable(label='External Id' required=true)
+		@InvocableVariable(Label='External Id' Required=true)
 		public String externalId;
 	}
 }
