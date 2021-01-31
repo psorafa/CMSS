@@ -4,8 +4,9 @@
     <caseSensitive>true</caseSensitive>
     <externalId>true</externalId>
     <label>External Id</label>
-    <length>25</length>
+    <length>50</length>
     <required>false</required>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>true</unique>

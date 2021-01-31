@@ -425,6 +425,7 @@
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
+        <fields>InternalConsentType__c</fields>
         <fields>InternalConsentValue__c</fields>
         <fields>ValidFrom__c</fields>
         <fields>ValidTo__c</fields>
