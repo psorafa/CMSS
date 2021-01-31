@@ -42,7 +42,7 @@ public with sharing class GeneralConsentEnablement {
 
 			return results;
 		} catch (Exception e) {
-			Logger.error('Error in "enableGeneralConsents" method', e);
+			Logger.error('An unhandled exception thrown', e);
 			throw e;
 		} finally {
 			Logger.saveLogs();

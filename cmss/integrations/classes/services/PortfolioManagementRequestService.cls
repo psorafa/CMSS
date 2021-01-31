@@ -101,7 +101,7 @@ public with sharing class PortfolioManagementRequestService {
 				PortfolioManagementCalloutService.ChangeCPEClientStateResponseBody response = stub.changeCPEClientState_Http(header, body);
 			}
 		} catch (Exception e) {
-			Logger.error('Error in "changeCPEClientStateFuture" method', e);
+			Logger.error('An unhandled exception thrown', e);
 			throw e;
 		} finally {
 			Logger.saveLogs();

@@ -93,7 +93,6 @@ public with sharing class ConsentService {
 		ConsentChannelIdsMapping__mdt[] consentChannelIdsMapping = [
 			SELECT FieldName__c, ConsentChannelId__c
 			FROM ConsentChannelIdsMapping__mdt
-			WHERE ForTestingOnly__c = :Test.isRunningTest()
 		];
 		for (ConsentChannelIdsMapping__mdt ccim : consentChannelIdsMapping) {
 			fieldNamesToConsentChannelIds.put(ccim.FieldName__c, ccim.ConsentChannelId__c);
@@ -162,26 +161,30 @@ public with sharing class ConsentService {
 
 	@future(callout=true)
 	private static void makeChannelConsentCallout(String enableConsentRequestsJSON, String disableConsentRequestsJSON) {
+		try {
+			List<ConsentDataTypesService.EnableChannelConsentRequestBodyType> enableConsentRequests =
+				(List<ConsentDataTypesService.EnableChannelConsentRequestBodyType>) JSON.deserialize(
+					enableConsentRequestsJSON, List<ConsentDataTypesService.EnableChannelConsentRequestBodyType>.class
+				);
+			List<ConsentDataTypesService.DisableChannelConsentRequestBodyType> disableConsentRequests =
+				(List<ConsentDataTypesService.DisableChannelConsentRequestBodyType>) JSON.deserialize(
+					disableConsentRequestsJSON, List<ConsentDataTypesService.DisableChannelConsentRequestBodyType>.class
+				);
 
-		List<ConsentDataTypesService.EnableChannelConsentRequestBodyType> enableConsentRequests =
-			(List<ConsentDataTypesService.EnableChannelConsentRequestBodyType>) JSON.deserialize(
-				enableConsentRequestsJSON, List<ConsentDataTypesService.EnableChannelConsentRequestBodyType>.class
-			);
-		List<ConsentDataTypesService.DisableChannelConsentRequestBodyType> disableConsentRequests =
-			(List<ConsentDataTypesService.DisableChannelConsentRequestBodyType>) JSON.deserialize(
-				disableConsentRequestsJSON, List<ConsentDataTypesService.DisableChannelConsentRequestBodyType>.class
-			);
-
-		CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
-		ConsentCalloutService.ConsentServicePort stub = new ConsentCalloutService.ConsentServicePort();
-		for (ConsentDataTypesService.EnableChannelConsentRequestBodyType body : enableConsentRequests) {
-			ConsentDataTypesService.EnableChannelConsentResponseBodyType response = stub.enableChannelConsent_Http(header, body);
+			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
+			ConsentCalloutService.ConsentServicePort stub = new ConsentCalloutService.ConsentServicePort();
+			for (ConsentDataTypesService.EnableChannelConsentRequestBodyType body : enableConsentRequests) {
+				ConsentDataTypesService.EnableChannelConsentResponseBodyType response = stub.enableChannelConsent_Http(header, body);
+			}
+			for (ConsentDataTypesService.DisableChannelConsentRequestBodyType body : disableConsentRequests) {
+				ConsentDataTypesService.DisableChannelConsentResponseBodyType response = stub.disableChannelConsent_Http(header, body);
+			}
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
 		}
-		for (ConsentDataTypesService.DisableChannelConsentRequestBodyType body : disableConsentRequests) {
-			ConsentDataTypesService.DisableChannelConsentResponseBodyType response = stub.disableChannelConsent_Http(header, body);
-		}
-
-		Logger.saveLogs();
 	}
 
 	@future(callout=true)
@@ -205,7 +208,7 @@ public with sharing class ConsentService {
 				ConsentDataTypesService.DisableInternalConsentResponseBodyType response = stub.disableInternalConsent_Http(header, body);
 			}
 		} catch (Exception e) {
-			Logger.error('Error in "makeInternalConsentCallout" method', e);
+			Logger.error('An unhandled exception thrown', e);
 			throw e;
 		} finally {
 			Logger.saveLogs();
