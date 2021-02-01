@@ -1,6 +1,5 @@
 public with sharing class PortfolioManagementRequestService {
 
-	public static final String NO_USER_WITH_SUCH_CPU_ERR = 'No user exists with this CPU. Please insert a different user\'s CPU.';
 	public static final String MULTIPLE_BATCH_IDS_ERR = 'All created requests must contain identical Batch ID.';
 
 	public static void setPortfolioManager(PortfolioManagementRequest__c[] newPMRs, Map<Id, PortfolioManagementRequest__c> oldPMRs) {
@@ -38,7 +37,7 @@ public with sharing class PortfolioManagementRequestService {
 		}
 
 		if (pmCPUs.size() > 0) {
-			throw new NoUserWithSuchCPUException(NO_USER_WITH_SUCH_CPU_ERR);
+			throw new NoUserWithSuchCPUException(Label.NoUserWithThisCPUFound);
 		}
 	}
 

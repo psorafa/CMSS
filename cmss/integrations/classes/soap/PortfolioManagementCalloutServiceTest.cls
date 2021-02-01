@@ -55,7 +55,7 @@ private class PortfolioManagementCalloutServiceTest {
 			insert pmr;
 			System.assert(false, 'This assert should not be reached.');
 		} catch (DmlException e) {
-			System.assert(e.getMessage().contains(PortfolioManagementRequestService.NO_USER_WITH_SUCH_CPU_ERR));
+			System.assert(e.getMessage().contains(Label.NoUserWithThisCPUFound));
 		}
 	}
 
