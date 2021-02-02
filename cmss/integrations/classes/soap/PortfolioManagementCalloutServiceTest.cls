@@ -113,7 +113,7 @@ private class PortfolioManagementCalloutServiceTest {
 		insert pmr;
 		Test.stopTest();
 
-		Log__c[] logs = [SELECT Payload__c FROM Log__c WHERE Message__c = 'changeCPEClientState response'];
+		Log__c[] logs = [SELECT Payload__c FROM Log__c WHERE Message__c = 'Incoming response'];
 		System.assertEquals(1, logs.size());
 		System.assert(logs[0].Payload__c.contains('<ns3:emptyElement>ok</ns3:emptyElement>'));
 	}

@@ -88,17 +88,8 @@ private class ConsentCalloutServiceTest {
 		update consents;
 		Test.stopTest();
 
-		List<Log__c> logs = [SELECT Message__c, Payload__c FROM Log__c WHERE Message__c = 'enableChannelConsent_Http response' OR Message__c = 'disableChannelConsent_Http response'];
+		List<Log__c> logs = [SELECT Message__c, Payload__c FROM Log__c WHERE Message__c = 'Outgoing request' OR Message__c = 'Incoming response'];
 		System.assertEquals(400, logs.size());
-		for (Log__c l : logs) {
-			if (l.Message__c == 'EnableChannelConsent response') {
-				System.assert(((String) ((Map<String, Object>) JSON.deserializeUntyped(l.Payload__c)).get('consentGuid')).contains('3267wergjs'));
-			} else if (l.Message__c == 'DisableChannelConsent response') {
-				ConsentDataTypesService.DisableChannelConsentResponseBodyType resp =
-					(ConsentDataTypesService.DisableChannelConsentResponseBodyType) JSON.deserialize(l.Payload__c, ConsentDataTypesService.DisableChannelConsentResponseBodyType.class);
-				System.assert(resp.success.Successful);
-			}
-		}
 	}
 
 	@IsTest
@@ -125,20 +116,10 @@ private class ConsentCalloutServiceTest {
 		update consents;
 		Test.stopTest();
 
-		List<Log__c> logs1 = [SELECT Message__c, Payload__c FROM Log__c WHERE Message__c = 'disableInternalConsent_Http response'];
-		System.assertEquals(100, logs1.size());
-		List<Log__c> logs2 = [SELECT Message__c, Payload__c FROM Log__c WHERE Message__c = 'enableInternalConsent_Http response'];
-		System.assertEquals(100, logs2.size());
-		logs1.addAll(logs2);
-		for (Log__c l : logs1) {
-			if (l.Message__c == 'EnableInternalConsent response') {
-				System.assert(((String) ((Map<String, Object>) JSON.deserializeUntyped(l.Payload__c)).get('consentGuid')).contains('kdslfn450'));
-			} else if (l.Message__c == 'DisableInternalConsent response') {
-				ConsentDataTypesService.DisableInternalConsentResponseBodyType resp =
-					(ConsentDataTypesService.DisableInternalConsentResponseBodyType) JSON.deserialize(l.Payload__c, ConsentDataTypesService.DisableInternalConsentResponseBodyType.class);
-				System.assert(resp.success.Successful);
-			}
-		}
+		List<Log__c> logs1 = [SELECT Message__c, Payload__c FROM Log__c WHERE Message__c = 'Outgoing request'];
+		System.assertEquals(200, logs1.size());
+		List<Log__c> logs2 = [SELECT Message__c, Payload__c FROM Log__c WHERE Message__c = 'Incoming response'];
+		System.assertEquals(200, logs2.size());
 	}
 
 	@IsTest static void coverGeneratedCodeTypes() {
