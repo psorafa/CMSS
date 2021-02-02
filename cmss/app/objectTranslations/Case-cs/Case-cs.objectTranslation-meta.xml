@@ -62,6 +62,29 @@
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
+        <layout>Case Feed Layout</layout>
+        <layoutType>CaseInteraction</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Client Consolidation</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Other Information --></label>
+            <section>Other Information</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>ClientClaimConfirmationSent</layout>
         <sections>
             <label>Informace o případu</label>
@@ -120,6 +143,10 @@
         <sections>
             <label>Informace k GDPR podání</label>
             <section>GDPR Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
         </sections>
         <sections>
             <label>Řešení</label>
@@ -201,7 +228,6 @@
         <name>SendEmail</name>
     </quickActions>
     <recordTypes>
-        <description><!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
         <label>Klientské podání potvrzení odesláno</label>
         <name>ClientClaimConfirmationSent</name>
     </recordTypes>
@@ -210,12 +236,10 @@
         <name>Client_Consolidation</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- The client claim record type with a non editable layout for closed cases --></description>
         <label>Zavřené klientské podání</label>
         <name>ClosedClientClaim</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Record type with read-only fields for closed GDPR claims --></description>
         <label>Zavřené GDPR podání</label>
         <name>ClosedGDPRClaim</name>
     </recordTypes>
@@ -225,17 +249,12 @@
         <name>GDPR</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Record type for Client Claims (complaints, incidents, requests) --></description>
         <label>Nové klientské podání</label>
         <name>NewClientClaim</name>
     </recordTypes>
     <validationRules>
         <errorMessage>ID podání nelze změnit.</errorMessage>
         <name>CaseIDCannotBeEditedOnceFilled</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>Pokud je vyplněna hodnota v poli Druh účtovaných finančních prostředků 2 pole Částka v Kč je povinné.</errorMessage>
-        <name>CompensationAmountRequired</name>
     </validationRules>
     <validationRules>
         <errorMessage>Alespoň 1 záznam v Typu podání je podmínkou pro uzavření klientského podání</errorMessage>
@@ -248,6 +267,10 @@
     <validationRules>
         <errorMessage>Nemáte oprávnění měnit řešitele klientského podání.</errorMessage>
         <name>ClaimChangeOwnerMustHaveClaimPerSet</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pokud je vyplněna hodnota v poli Druh účtovaných finančních prostředků 2 pole Částka v Kč je povinné.</errorMessage>
+        <name>CompensationAmountRequired</name>
     </validationRules>
     <validationRules>
         <errorMessage>
