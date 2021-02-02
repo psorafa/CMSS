@@ -133,9 +133,35 @@ public with sharing class Logger {
     }
     
     public static String getUUID()  {
-        Blob b = Crypto.GenerateAESKey(128);
-        String h = EncodingUtil.ConvertTohex(b);
-        String guid = h.SubString(0,8)+ '-' + h.SubString(8,12) + '-' + h.SubString(12,16) + '-' + h.SubString(16,20) + '-' + h.substring(20);
+        Blob b = Crypto.generateAesKey(128);
+        String h = EncodingUtil.convertToHex(b);
+        String guid = h.substring(0,8)+ '-' + h.substring(8,12) + '-' + h.substring(12,16) + '-' + h.substring(16,20) + '-' + h.substring(20);
         return guid;
     }
+
+	public static String serializeHttpRequest(HttpRequest request) {
+		Map<String, Object> dataMap = new Map<String, Object>();
+		dataMap.put('Endpoint', request.getEndpoint());
+		dataMap.put('Method', request.getMethod());
+		if (request.getBody() != null) {
+			dataMap.put('Body', request.getBody());
+		}
+		if (request.getBodyDocument() != null) {
+			dataMap.put('Body Document', request.getBodyDocument().toXmlString());
+		}
+		return JSON.serializePretty(dataMap);
+	}
+
+	public static String serializeHttpResponse(HttpResponse response) {
+		Map<String, Object> dataMap = new Map<String, Object>();
+		dataMap.put('Status', response.getStatus());
+		dataMap.put('Status code', response.getStatusCode());
+		dataMap.put('Body', response.getBody());
+		Map<String, String> headers = new Map<String, String>();
+		for (String headerKey : response.getHeaderKeys()) {
+			headers.put(headerKey, response.getHeader(headerKey));
+		}
+		dataMap.put('Headers', headers);
+		return JSON.serializePretty(dataMap);
+	}
 }

@@ -39,11 +39,11 @@ public class ConsentCalloutService {
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/ConsentService/v01/disableChannelConsent');
 			System.debug(doc.toXmlString());
 			req.setBodyDocument(doc);
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			Http http = new Http();
 			HttpResponse res = http.send(req);
 			System.debug(res.getBody());
-			Logger.debug('disableChannelConsent_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
 			Dom.Document responseDoc = res.getBodyDocument();
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
@@ -69,11 +69,11 @@ public class ConsentCalloutService {
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/ConsentService/v01/disableInternalConsent');
 			System.debug(doc.toXmlString());
 			req.setBodyDocument(doc);
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			Http http = new Http();
 			HttpResponse res = http.send(req);
 			System.debug(res.getBody());
-			Logger.debug('disableInternalConsent_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
 			Dom.Document responseDoc = res.getBodyDocument();
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
@@ -98,12 +98,12 @@ public class ConsentCalloutService {
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/ConsentService/v01/enableGeneralConsent');
 			System.debug(doc.toXmlString());
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			req.setBodyDocument(doc);
 			Http http = new Http();
 			HttpResponse res = http.send(req);
 			System.debug(res.getBody());
-			Logger.debug('enableGeneralConsent_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
 			Dom.Document responseDoc = res.getBodyDocument();
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
@@ -129,11 +129,11 @@ public class ConsentCalloutService {
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/ConsentService/v01/enableChannelConsent');
 			System.debug(doc.toXmlString());
 			req.setBodyDocument(doc);
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			Http http = new Http();
 			HttpResponse res = http.send(req);
 			System.debug(res.getBody());
-			Logger.debug('enableChannelConsent_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
 			Dom.Document responseDoc = res.getBodyDocument();
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
@@ -159,11 +159,11 @@ public class ConsentCalloutService {
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/ConsentService/v01/enableInternalConsent');
 			System.debug(doc.toXmlString());
 			req.setBodyDocument(doc);
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			Http http = new Http();
 			HttpResponse res = http.send(req);
 			System.debug(res.getBody());
-			Logger.debug('enableInternalConsent_Http response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
-
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
 			Dom.Document responseDoc = res.getBodyDocument();
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
