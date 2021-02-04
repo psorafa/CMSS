@@ -4780,11 +4780,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementRequest__c.PortfolioManagementType__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>PortfolioManagementRequest__c.PortfolioManager__c</field>
         <readable>false</readable>
     </fieldPermissions>

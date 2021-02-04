@@ -73,4 +73,8 @@
         </sections>
     </layouts>
     <nameFieldLabel>Požadavek změny správy stavu</nameFieldLabel>
+    <validationRules>
+        <errorMessage>Vyplňte nového Portfolio Managera</errorMessage>
+        <name>NewPortfolioManagerRequired</name>
+    </validationRules>
 </CustomObjectTranslation>

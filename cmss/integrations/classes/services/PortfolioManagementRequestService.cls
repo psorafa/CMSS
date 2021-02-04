@@ -2,42 +2,25 @@ public with sharing class PortfolioManagementRequestService {
 
 	public static final String MULTIPLE_BATCH_IDS_ERR = 'All created requests must contain identical Batch ID.';
 
-	public static void setPortfolioManager(PortfolioManagementRequest__c[] newPMRs, Map<Id, PortfolioManagementRequest__c> oldPMRs) {
-		Map<String, PortfolioManagementRequest__c[]> portfolioManagerCPUsToPMRs = new Map<String, PortfolioManagementRequest__c[]>();
-		Set<String> pmCPUs = new Set<String>();
-
-		if (oldPMRs == null) {
-			for (PortfolioManagementRequest__c newPMR : newPMRs) {
-				if (newPMR.PortfolioManagerCPU__c != null) {
-					setupPortfolioManagerCPUsToPMRs(portfolioManagerCPUsToPMRs, newPMR);
-					pmCPUs.add(newPMR.PortfolioManagerCPU__c);
-				}
-			}
-		} else {
-			for (PortfolioManagementRequest__c newPMR : newPMRs) {
-				PortfolioManagementRequest__c oldPMR = oldPMRs.get(newPMR.Id);
-				if (newPMR.PortfolioManagerCPU__c != null && newPMR.PortfolioManagerCPU__c != oldPMR.PortfolioManagerCPU__c) {
-					setupPortfolioManagerCPUsToPMRs(portfolioManagerCPUsToPMRs, newPMR);
-					pmCPUs.add(newPMR.PortfolioManagerCPU__c);
-				}
+	public static void setPortfolioManager(List<PortfolioManagementRequest__c> newList, Map<Id, PortfolioManagementRequest__c> oldMap) {
+		Set<String> userCPUs = new Set<String>();
+		for (PortfolioManagementRequest__c pmr : newList) {
+			if (oldMap == null || oldMap.get(pmr.Id).PortfolioManagerCPU__c != pmr.PortfolioManagerCPU__c) {
+				userCPUs.add(pmr.PortfolioManagerCPU__c);
 			}
 		}
-
-		for (User u : [
-			SELECT CommissionAccountNr__c
-			FROM User
-			WHERE CommissionAccountNr__c IN :portfolioManagerCPUsToPMRs.keySet()
-		]) {
-			PortfolioManagementRequest__c[] pmrs = portfolioManagerCPUsToPMRs.get(u.CommissionAccountNr__c);
-			pmCPUs.remove(u.CommissionAccountNr__c);
-
-			for (PortfolioManagementRequest__c pmr : pmrs) {
-				pmr.PortfolioManager__c = u.Id;
-			}
+		userCPUs.remove(null);
+		Map<String, Id> usersByCPU = new Map<String, Id>();
+		for (User u : [SELECT Id, CommissionAccountNr__c FROM User WHERE CommissionAccountNr__c IN :userCPUs]) {
+			usersByCPU.put(u.CommissionAccountNr__c, u.Id);
 		}
-
-		if (pmCPUs.size() > 0) {
-			throw new NoUserWithSuchCPUException(Label.NoUserWithThisCPUFound);
+		for (PortfolioManagementRequest__c pmr : newList) {
+			if (oldMap == null || oldMap.get(pmr.Id).PortfolioManagerCPU__c != pmr.PortfolioManagerCPU__c) {
+				pmr.PortfolioManager__c = usersByCPU.get(pmr.PortfolioManagerCPU__c);
+				if (pmr.PortfolioManagerCPU__c != null && pmr.PortfolioManager__c == null) {
+					pmr.PortfolioManagerCPU__c.addError(Label.NoUserWithThisCPUFound);
+				}
+			}
 		}
 	}
 
@@ -57,7 +40,7 @@ public with sharing class PortfolioManagementRequestService {
 	private static void changeCPEClientStateFuture(Set<Id> pmrIds, String batchId) {
 		try {
 			PortfolioManagementRequest__c[] pmrs = [
-				SELECT Account__c, PortfolioManChangeReason__c, ValidFrom__c, PortfolioManagementType__c, PortfolioManagerCPU__c
+				SELECT Account__c, PortfolioManChangeReason__c, ValidFrom__c, PortfolioManagementType__c, PortfolioManager__r.CommissionAccountNr__c
 				FROM PortfolioManagementRequest__c
 				WHERE Id IN :pmrIds
 			];
@@ -67,11 +50,12 @@ public with sharing class PortfolioManagementRequestService {
 			};
 
 			for (PortfolioManagementRequest__c pmr : pmrs) {
-				if (pmr.PortfolioManagerCPU__c != null &&
+				if (pmr.PortfolioManager__r.CommissionAccountNr__c != null &&
 					pmr.Account__c != null &&
 					pmr.PortfolioManChangeReason__c != null &&
 					pmr.ValidFrom__c != null &&
-					pmr.PortfolioManagementType__c != null) {
+					pmr.PortfolioManagementType__c != null
+					) {
 
 					PortfolioManagementCalloutService.ListOfClientsStatesItemType item = new PortfolioManagementCalloutService.ListOfClientsStatesItemType();
 					item.stateChangeRequestId = pmr.Id;
@@ -81,24 +65,24 @@ public with sharing class PortfolioManagementRequestService {
 					item.validFrom = item.validFrom.substring(0, item.validFrom.length() - 2) + ':00';
 					item.portfolioManagementType = pmr.PortfolioManagementType__c;
 					if (pmr.PortfolioManagementType__c == 'A') {
-						item.spS_A = pmr.PortfolioManagerCPU__c;
-					} else if (pmr.PortfolioManagementType__c == 'C') {
-						item.spS_C = pmr.PortfolioManagerCPU__c;
+						item.spS_A = pmr.PortfolioManager__r.CommissionAccountNr__c;
+					} else {
+						item.spS_C = pmr.PortfolioManager__r.CommissionAccountNr__c;
 					}
 
 					clientStates.listOfClientsStatesItem.add(item);
+				} else {
+					Logger.error('Request cannot be processed as it does not meet criteria', JSON.serializePretty(pmr));
 				}
 			}
 
-			if (clientStates.listOfClientsStatesItem.size() > 0) {
-				CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
-				PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody body = new PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody();
-				body.batchId = batchId;
-				body.listOfClientStates = clientStates;
+			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
+			PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody body = new PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody();
+			body.batchId = batchId;
+			body.listOfClientStates = clientStates;
 
-				PortfolioManagementCalloutService.PortfolioManagementServicePort stub = new PortfolioManagementCalloutService.PortfolioManagementServicePort();
-				stub.changeCPEClientState_Http(header, body);
-			}
+			PortfolioManagementCalloutService.PortfolioManagementServicePort stub = new PortfolioManagementCalloutService.PortfolioManagementServicePort();
+			stub.changeCPEClientState_Http(header, body);
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
 			throw e;
@@ -107,20 +91,6 @@ public with sharing class PortfolioManagementRequestService {
 		}
 	}
 
-	private static void setupPortfolioManagerCPUsToPMRs(Map<String, PortfolioManagementRequest__c[]> portfolioManagerCPUsToPMRs, PortfolioManagementRequest__c pmr) {
-		PortfolioManagementRequest__c[] pmrs = portfolioManagerCPUsToPMRs.get(pmr.PortfolioManagerCPU__c);
-		if (pmrs == null) {
-			portfolioManagerCPUsToPMRs.put(pmr.PortfolioManagerCPU__c, new PortfolioManagementRequest__c[]{
-				pmr
-			});
-		} else {
-			pmrs.add(pmr);
-			portfolioManagerCPUsToPMRs.put(pmr.PortfolioManagerCPU__c, pmrs);
-		}
-	}
-
 	public class MultipleBatchIdsException extends Exception {
-	}
-	public class NoUserWithSuchCPUException extends Exception {
 	}
 }
