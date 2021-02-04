@@ -120,6 +120,22 @@
         <value>Navigate to Record</value>
     </labels>
     <labels>
+        <fullName>NewConsent</fullName>
+        <categories>NewConsentButtons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NewConsent</shortDescription>
+        <value>New Consent</value>
+    </labels>
+    <labels>
+        <fullName>NewInternalConsent</fullName>
+        <categories>NewConsentButtons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NewInternalConsent</shortDescription>
+        <value>New Internal Consent</value>
+    </labels>
+    <labels>
         <fullName>NoRecordsFound</fullName>
         <language>en_US</language>
         <protected>false</protected>
