@@ -17,7 +17,7 @@ public with sharing class PortfolioManagementRequestTriggerHandler extends Trigg
 
 	private static void setBatchIds(List<PortfolioManagementRequest__c> requests) {
 		for (PortfolioManagementRequest__c request : requests) {
-			String base = UserInfo.getUserId() + Date.today();
+			String base = UserInfo.getUserId() + Date.today() + UserInfo.getSessionId();
 			if (requests.size() == 1) {
 				base += Math.random();
 			} else if (request.BatchID__c == null) {
