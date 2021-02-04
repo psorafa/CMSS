@@ -4,9 +4,9 @@
     <description>Hodnotící číslo - k datu, k počátku roku, k měsíční uzávěrce</description>
     <externalId>false</externalId>
     <label>Evaluation Number</label>
-    <precision>10</precision>
+    <precision>8</precision>
     <required>false</required>
-    <scale>0</scale>
+    <scale>2</scale>
     <trackHistory>false</trackHistory>
     <type>Number</type>
     <unique>false</unique>

@@ -324,6 +324,8 @@
         <relatedList>PortfolioManagementRequest__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <relatedList>InternalConsent__c.Account__c</relatedList>
     </relatedLists>
@@ -357,6 +359,7 @@
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>GeneralConsentVersion__c</fields>
         <fields>GeneralConsent__c</fields>
@@ -446,7 +449,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3N000000yDQD</masterLabel>
+        <masterLabel>00h1X000001uHE7</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

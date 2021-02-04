@@ -261,9 +261,10 @@ public class PortfolioManagementCalloutService {
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/PortfolioManagementService/v10/changeCPEClientState');
 			System.debug(doc.toXmlString());
 			req.setBodyDocument(doc);
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			Http http = new Http();
 			HttpResponse res = http.send(req);
-			Logger.debug('changeCPEClientState response', 'Status: ' + res.getStatus() + ', StatusCode: ' + res.getStatusCode() + ', Body: ' + JSON.serialize(res.getBody()));
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
 			System.debug(res.getBody());
 			Dom.Document responseDoc = res.getBodyDocument();
 			Dom.XmlNode rootNode = responseDoc.getRootElement();

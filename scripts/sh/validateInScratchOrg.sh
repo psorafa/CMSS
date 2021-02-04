@@ -46,6 +46,7 @@ sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/integrations/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/customer-360/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/customer-search/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/consent-icons/
+sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/consent-management/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/activity-management/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/product-contract/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/case-management/

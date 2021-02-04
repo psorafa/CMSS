@@ -18,7 +18,10 @@ public class TestDataFactory {
 	}
 
 	public static Account getAccount(Account so) {
-		Account template = new Account(Name = 'Test account ' + ++accountCounter, GlobalId__c = 'G' + accountCounter);
+		Account template = new Account(
+			Name = 'Test account ' + ++accountCounter,
+			GlobalId__c = 'G' + accountCounter
+		);
 		copyFields(so, template);
 		return template;
 	}

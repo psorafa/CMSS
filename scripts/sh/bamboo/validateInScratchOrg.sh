@@ -76,6 +76,7 @@ pushWithTimeout $ALIAS cmss/integrations/
 pushWithTimeout $ALIAS cmss/customer-360/
 pushWithTimeout $ALIAS cmss/customer-search/
 pushWithTimeout $ALIAS cmss/consent-icons/
+pushWithTimeout $ALIAS cmss/consent-management/
 pushWithTimeout $ALIAS cmss/activity-management/
 pushWithTimeout $ALIAS cmss/product-contract/
 pushWithTimeout $ALIAS cmss/case-management/

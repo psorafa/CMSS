@@ -13,7 +13,7 @@
         <inputParameters>
             <name>accountId</name>
             <value>
-                <elementReference>Account.recordId</elementReference>
+                <elementReference>accountId</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -60,7 +60,7 @@
             <assignToReference>consent.Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Account.recordId</elementReference>
+                <elementReference>accountId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -302,37 +302,6 @@
             <targetReference>Enable_General_Consent</targetReference>
         </connector>
         <fields>
-            <name>Account</name>
-            <extensionName>flowruntime:lookup</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>fieldApiName</name>
-                <value>
-                    <elementReference>AccountFieldAPIName</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>objectApiName</name>
-                <value>
-                    <elementReference>ConsentObjectAPIName</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>label</name>
-                <value>
-                    <elementReference>AccountLabel</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>required</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <fields>
             <name>AgentCPU</name>
             <dataType>String</dataType>
             <fieldText>Souhlas sjednal</fieldText>
@@ -437,6 +406,13 @@
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <name>accountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>consent</name>
         <dataType>SObject</dataType>

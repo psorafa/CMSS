@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForRecordHome,lightning:actionOverride,force:hasRecordId">
+    <div class="slds-text-align_right">
+        <lightning:button label="{!$Label.c.NewConsent}" onclick="{!c.gotoNewGeneralConsentFlow}" />
+        <lightning:button label="{!$Label.c.NewInternalConsent}" onclick="{!c.gotoNewGeneralConsentFlow}" />
+    </div>
+</aura:component>

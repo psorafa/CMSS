@@ -13,7 +13,7 @@
         <inputParameters>
             <name>accountId</name>
             <value>
-                <elementReference>Account.recordId</elementReference>
+                <elementReference>accountId</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -95,7 +95,7 @@
             <assignToReference>internalConsent.Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Account.recordId</elementReference>
+                <elementReference>accountId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -251,37 +251,6 @@
             <targetReference>Enable_Internal_Consents</targetReference>
         </connector>
         <fields>
-            <name>Account</name>
-            <extensionName>flowruntime:lookup</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>fieldApiName</name>
-                <value>
-                    <elementReference>AccountFieldAPIName</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>label</name>
-                <value>
-                    <elementReference>AccountFieldLabel</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>objectApiName</name>
-                <value>
-                    <elementReference>InternalConsentObjectAPIName</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>required</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <fields>
             <name>ConsentType</name>
             <choiceReferences>InternalConsentTypePicklist</choiceReferences>
             <dataType>String</dataType>
@@ -348,7 +317,14 @@
             <targetReference>SelectionConsentType</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
+    <variables>
+        <name>accountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>ErrorMessage</name>
         <dataType>String</dataType>
