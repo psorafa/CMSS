@@ -61,6 +61,14 @@
         <name>NavigateToRecordButton</name>
     </customLabels>
     <customLabels>
+        <label>Nový souhlas</label>
+        <name>NewConsent</name>
+    </customLabels>
+    <customLabels>
+        <label>Nový marketingový souhlas</label>
+        <name>NewInternalConsent</name>
+    </customLabels>
+    <customLabels>
         <label>Žádné hodnoty nevyhovují zadaným kritériím.</label>
         <name>NoRecordsFound</name>
     </customLabels>
@@ -119,10 +127,10 @@
     <flowDefinitions>
         <flows>
             <choices>
-                <name>phoneDefaultChoice</name>
+                <name>eventTypeDefaultChoice</name>
             </choices>
             <choices>
-                <name>eventTypeDefaultChoice</name>
+                <name>phoneDefaultChoice</name>
             </choices>
             <screens>
                 <fields>
@@ -152,8 +160,85 @@
         <fullName>EventWithObjUpdate</fullName>
     </flowDefinitions>
     <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>SuccessMessage_0</name>
+                </fields>
+                <name>ErrorScreen</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>AgentCPU</name>
+                </fields>
+                <fields>
+                    <name>ConsentType</name>
+                </fields>
+                <fields>
+                    <name>EntityConsent</name>
+                </fields>
+                <fields>
+                    <name>GeneralConsent</name>
+                </fields>
+                <fields>
+                    <name>GeneralConsentVersion</name>
+                </fields>
+                <fields>
+                    <name>SubstitutePerson</name>
+                </fields>
+                <fields>
+                    <name>SubstituteRole</name>
+                </fields>
+
+                <name>SelectionConsentType</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>SuccessMessage</name>
+                </fields>
+                <name>SuccessScreen</name>
+            </screens>
+        </flows>
+        <fullName>GeneralConsentCreation</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
         <flows/>
         <fullName>GetRecordTypeIdByNameAndSObjectType</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>SuccessMessage_0</name>
+                </fields>
+                <name>ErrorScreen</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>ConsentSource</name>
+                </fields>
+                <fields>
+                    <name>ConsentType</name>
+                </fields>
+                <fields>
+                    <name>InternalConsentTypeValue</name>
+                </fields>
+                <fields>
+                    <name>ValidFrom</name>
+                </fields>
+                <fields>
+                    <name>ValidTo</name>
+                </fields>
+                <name>SelectionConsentType</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>SuccessMessage</name>
+                </fields>
+                <name>SuccessScreen</name>
+            </screens>
+        </flows>
+        <fullName>InternalConsentCreation</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows>
@@ -210,13 +295,78 @@
         <name>NewOpportunity</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewTask --></label>
+        <label><!-- New Task --></label>
         <name>NewTask</name>
     </quickActions>
     <quickActions>
         <label><!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
+    <reportTypes>
+        <description><!-- Assets with Non Life Insurance Objects with Non Life Insurance Other Objects --></description>
+        <label><!-- Assets with Non Life Insurance Objects with Non Life Insurance Other Objects --></label>
+        <name>Assets_with_Non_Life_Insurance_Objects_with_Non_Life_Insurance_Other_Objects</name>
+        <sections>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+        <sections>
+            <label><!-- Non Life Insurance Objects --></label>
+            <name>Non Life Insurance Objects</name>
+        </sections>
+        <sections>
+            <label><!-- Non Life Insurance Other Objects --></label>
+            <name>Non Life Insurance Other Objects</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Assets with Non Life Insurance Objects with Non Life Insurance Risks --></description>
+        <label><!-- Assets with Non Life Insurance Objects with Non Life Insurance Risks --></label>
+        <name>Assets_with_Non_Life_Insurance_Objects_with_Non_Life_Insurance_Risks</name>
+        <sections>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+        <sections>
+            <label><!-- Non Life Insurance Objects --></label>
+            <name>Non Life Insurance Objects</name>
+        </sections>
+        <sections>
+            <label><!-- Non Life Insurance Risks --></label>
+            <name>Non Life Insurance Risks</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Case with Case Type --></description>
+        <label><!-- Case with Case Type --></label>
+        <name>CaseWithCaseType</name>
+        <sections>
+            <label><!-- Case Types --></label>
+            <name>Case Types</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Opportunities and Activities --></description>
+        <label><!-- Opportunities and Activities --></label>
+        <name>OpportunitiesAndActivities</name>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Portfolio Management Compare --></description>
+        <label><!-- Portfolio Management Compare --></label>
+        <name>Portfolio_Management_Compare</name>
+        <sections>
+            <label><!-- Účty --></label>
+            <name>Účty</name>
+        </sections>
+    </reportTypes>
     <reportTypes>
         <description><!-- User with Manager --></description>
         <label><!-- User with Manager --></label>
