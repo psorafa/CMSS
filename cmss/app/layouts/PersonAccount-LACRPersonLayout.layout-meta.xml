@@ -413,6 +413,7 @@
     </quickActionList>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>AllConsent__c</fields>
         <fields>PhoneConsent__c</fields>
@@ -424,6 +425,7 @@
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>InternalConsentType__c</fields>
         <fields>InternalConsentValue__c</fields>
@@ -592,7 +594,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1X000001KAgV</masterLabel>
+        <masterLabel>00h1X000001wFjm</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>2</sizeY>
         <summaryLayoutItems>
