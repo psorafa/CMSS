@@ -537,6 +537,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>RelatedAccount__c</fields>
+        <fields>RelatedAccountRole__c</fields>
         <fields>RelationType__c</fields>
         <fields>ValidFrom__c</fields>
         <fields>ValidTo__c</fields>
@@ -544,6 +545,11 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>AccountRole__c</fields>
+        <fields>RelationType__c</fields>
+        <fields>ValidFrom__c</fields>
+        <fields>ValidTo__c</fields>
         <relatedList>AccountRelation__c.RelatedAccount__c</relatedList>
     </relatedLists>
     <relatedLists>
