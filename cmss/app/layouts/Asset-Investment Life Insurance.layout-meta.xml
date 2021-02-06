@@ -246,8 +246,8 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>InsuranceType__c</fields>
         <fields>Fond__c</fields>
+        <fields>InsuranceType__c</fields>
         <fields>AllocationProcent__c</fields>
         <fields>AssignmentDateBeginning__c</fields>
         <fields>AssignmentDateEnd__c</fields>
@@ -256,9 +256,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Risk__c</fields>
         <fields>Account__c</fields>
         <fields>InsuranceAmount__c</fields>
-        <fields>Risk__c</fields>
         <fields>ValidFrom__c</fields>
         <fields>ValidTo__c</fields>
         <relatedList>LifeInsuranceRisk__c.Asset__c</relatedList>
