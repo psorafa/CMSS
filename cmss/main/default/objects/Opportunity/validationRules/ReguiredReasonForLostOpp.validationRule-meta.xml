@@ -3,6 +3,6 @@
     <fullName>ReguiredReasonForLostOpp</fullName>
     <active>true</active>
     <description>If opportunity = 5 (uzavřená negativně), value for Reason__c must be chosen.</description>
-    <errorConditionFormula>ISPICKVAL( StageName , &#39;5&#39;)  &amp;&amp;  ISPICKVAL(Reason__c, &quot;&quot;)</errorConditionFormula>
+    <errorConditionFormula>ISPICKVAL( StageName , &apos;5&apos;)  &amp;&amp;  ISPICKVAL(Reason__c, &quot;&quot;)</errorConditionFormula>
     <errorMessage>To close lost the opportunity, field reason must be filled.</errorMessage>
 </ValidationRule>
