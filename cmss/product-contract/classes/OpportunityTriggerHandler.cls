@@ -7,6 +7,22 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 		setStateCodeField(Trigger.new);
 	}
 
+	public override void beforeDelete() {
+		AQMessageService.handleDelete(Trigger.old, Opportunity.SObjectType);
+	}
+
+	public override void afterInsert() {
+		AQMessageService.handleInsert(Trigger.new, Opportunity.SObjectType);
+	}
+
+	public override void afterUpdate() {
+		AQMessageService.handleUpdate(Trigger.new, Trigger.oldMap, Opportunity.SObjectType);
+	}
+
+	public override void afterUndelete() {
+		AQMessageService.handleInsert(Trigger.new, Opportunity.SObjectType);
+	}
+
 	// ***************************** handlers and helping methods***************************************** //
 
 	@TestVisible
