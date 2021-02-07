@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ClientClaimEdit</fullName>
+    <active>true</active>
+    <description>Only user with permission set Client Ombudsman or Case Manager can edit Client Claim record type</description>
+    <errorConditionFormula>AND(
+
+OR( $RecordType.DeveloperName  = &quot;NewClientClaim&quot;,
+   $RecordType.DeveloperName  = &quot;ClientClaimConfirmationSent&quot;,
+			$RecordType.DeveloperName  = &quot;ClosedClientClaim&quot;
+),
+   NOT($Permission.ClaimCaseManager),
+			NOT($Permission.ClientOmbudsman),
+ 
+   NOT(ISNEW())
+   )</errorConditionFormula>
+    <errorMessage>You don&apos;t have the permissions to edit this record.</errorMessage>
+</ValidationRule>
