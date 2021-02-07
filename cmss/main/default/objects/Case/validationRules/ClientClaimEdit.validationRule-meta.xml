@@ -11,8 +11,10 @@ OR( $RecordType.DeveloperName  = &quot;NewClientClaim&quot;,
 ),
    NOT($Permission.ClaimCaseManager),
 			NOT($Permission.ClientOmbudsman),
+			NOT($Profile.Name = &quot;IntegrationUser&quot;),
  
    NOT(ISNEW())
+			
    )</errorConditionFormula>
     <errorMessage>You don&apos;t have the permissions to edit this record.</errorMessage>
 </ValidationRule>
