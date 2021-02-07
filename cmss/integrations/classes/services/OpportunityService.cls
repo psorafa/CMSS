@@ -15,6 +15,7 @@ public with sharing class OpportunityService {
 			opportunity.ValidTo__c = Date.today().addDays(120);
 		}
 		opportunity.DueDate__c = Date.today().addDays(90);
+		opportunity.UpdateDate__c = System.now();
 		DmlUtility.insertRecord(opportunity);
 		return opportunity.Id;
 	}
@@ -22,6 +23,7 @@ public with sharing class OpportunityService {
 	public static void updateOpportunity(SF_OpportunitySOAPService.OpportunityType data) {
 		Validation.requireAttribute(data.id, 'id');
 		Opportunity opportunity = prepareOpportunity(data);
+		opportunity.UpdateDate__c = System.now();
 		DmlUtility.updateRecord(opportunity);
 	}
 
