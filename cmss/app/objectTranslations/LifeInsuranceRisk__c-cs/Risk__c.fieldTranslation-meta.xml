@@ -2,4 +2,396 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>Riziko</label>
     <name>Risk__c</name>
+    <picklistValues>
+        <masterLabel>AS</masterLabel>
+        <translation>Asistenční služby (základní pojistná částka 5000 Kč)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DO V</masterLabel>
+        <translation>Léčení úrazu (denní odškodné) ve variantě větší úrazy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DO V d</masterLabel>
+        <translation>Léčení úrazu (denní odškodné) ve variantě větší úrazy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DO VM</masterLabel>
+        <translation>Léčení úrazu (denní odškodné) ve variantě větší i menší úrazy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DO VM d</masterLabel>
+        <translation>Léčení úrazu (denní odškodné) ve variantě větší i menší úrazy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DO8Z-11</masterLabel>
+        <translation>Pojištění pro případ léčení úrazu (denní odškodné) od 8.dne zpětně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DO8Z-G11</masterLabel>
+        <translation>Pojištění pro případ léčení úrazu (denní odškodné) od 8.dne zpětně - děti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DO8Z-G12</masterLabel>
+        <translation>Léčení úrazu (denní odškodné) od 8. dne zpětně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DO8Z-d-11</masterLabel>
+        <translation>Pojištění pro případ léčení úrazu (denní odškodné) od 8.dne zpětně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DO8Zd-G11</masterLabel>
+        <translation>Pojištění pro případ léčení úrazu (denní odškodné) od 8.dne zpětně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DO8Zd-G12</masterLabel>
+        <translation>Léčení úrazu (denní odškodné) od 8. dne zpětně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HO-b</masterLabel>
+        <translation>Hospitalizace - nemoc nebo úraz (AKČNÍ NABÍDKA)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HO1-11</masterLabel>
+        <translation>Pojištění pro případ hospitalizace následkem nemoci nebo úrazu od 1.noci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HO1-G11</masterLabel>
+        <translation>Pojištění pro případ hospitalizace následkem nemoci nebo úrazu od 1.noci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HO1-G12</masterLabel>
+        <translation>Hospitalizace - nemoc nebo úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HO1-d-11</masterLabel>
+        <translation>Pojištění pro případ hospitalizace následkem nemoci nebo úrazu od 1.noci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HO1d-G11</masterLabel>
+        <translation>Pojištění pro případ hospitalizace následkem nemoci nebo úrazu - děti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HO1d-G12</masterLabel>
+        <translation>Hospitalizace - nemoc nebo úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HU1-11</masterLabel>
+        <translation>Pojištění pro případ hospitalizace následkem úrazu od 1.noci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HU1-G11</masterLabel>
+        <translation>Pojištění pro případ hospitalizace následkem úrazu od 1.noci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HU1-G12</masterLabel>
+        <translation>Hospitalizace - úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO KA</masterLabel>
+        <translation>Invalidita 3. stupně s anuitně klesající PČ - nemoc nebo úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO KL</masterLabel>
+        <translation>Invalidita 3. stupně s lineárně klesající PČ - nemoc nebo úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO RD-T13</masterLabel>
+        <translation>Invalidita 3. stupně s výplatou důchodu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO+</masterLabel>
+        <translation>Invalidita PLUS s konstantní PČ - nemoc nebo úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO+ KA</masterLabel>
+        <translation>Invalidita PLUS s anuitně klesající PČ - nemoc nebo úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO+ KL</masterLabel>
+        <translation>Invalidita PLUS s lineárně klesající PČ - nemoc nebo úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO-11</masterLabel>
+        <translation>Invalidita 3.stupně s konstantní PČ - nemoc nebo úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO-G11</masterLabel>
+        <translation>Invalidita 3.stupně s konstantní PČ - nemoc nebo úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO-G12</masterLabel>
+        <translation>Invalidita 3. stupně s konstantní PČ - nemoc nebo úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO-RD-11</masterLabel>
+        <translation>Pojištění pro případ plné invalidity s výplatou důchodu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO-RD-G12</masterLabel>
+        <translation>Pojištění pro případ plné invalidity s výplatou důchodu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO-RD-TUM</masterLabel>
+        <translation>Pojištění pro případ plné invalidity s výplatou důchodu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IU KA</masterLabel>
+        <translation>Invalidita 3. stupně s anuitně klesající PČ - úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IU KL</masterLabel>
+        <translation>Invalidita 3. stupně s lineárně klesající PČ - úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IU NOZ</masterLabel>
+        <translation>Invalidita 3. stupně s konstantní PČ - úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IU+</masterLabel>
+        <translation>Invalidita PLUS s konstantní PČ - úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IU+ KA</masterLabel>
+        <translation>Invalidita PLUS s anuitně klesající PČ - úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IU+ KL</masterLabel>
+        <translation>Invalidita PLUS s lineárně klesající PČ - úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IU-11</masterLabel>
+        <translation>Invalidita 3.stupně s konstantní PČ - úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IU-G11</masterLabel>
+        <translation>Invalidita 3.stupně s konstantní PČ - úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IU-G12</masterLabel>
+        <translation>Invalidita 3.stupně s konstantní PČ - úraz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MAM A</masterLabel>
+        <translation>Maminka - Asistovaná reprodukce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MAM K</masterLabel>
+        <translation>Maminka - Komplikace v těhotenství</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Narozeni-M</masterLabel>
+        <translation>Maminka - Narození vícerčat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Narozeni-T</masterLabel>
+        <translation>Tatínek - Narození vícerčat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PN15-11</masterLabel>
+        <translation>Pojištění pro případ pracovní neschopnosti od 15. dne</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PN15-G11</masterLabel>
+        <translation>Pojištění pro případ pracovní neschopnosti od 15. dne</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PN15-G12</masterLabel>
+        <translation>Pojištění pro případ pracovní neschopnosti od 15. dne</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PN29-11</masterLabel>
+        <translation>Pojištění pro případ pracovní neschopnosti od 29. dne</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PN29-G11</masterLabel>
+        <translation>Pojištění pro případ pracovní neschopnosti od 29. dne</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PN29-G12</masterLabel>
+        <translation>Pojištění pro případ pracovní neschopnosti od 29. dne</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PNO15</masterLabel>
+        <translation>Pracovní neschopnosti od 15. dne</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PNO29</masterLabel>
+        <translation>Pracovní neschopnosti od 29. dne</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PNO57</masterLabel>
+        <translation>Pracovní neschopnosti od 57. dne</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Prevence</masterLabel>
+        <translation>Prevence</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>S-D-11</masterLabel>
+        <translation>Pojištění pro případ smrti ve variantě doplňkové</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>S-N-11</masterLabel>
+        <translation>Pojištění pro případ smrti (další pojištěný)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>S-P-11</masterLabel>
+        <translation>Pojištění pro případ smrti ve variantě plné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SD-17</masterLabel>
+        <translation>Smrt ve variantě doplňkové</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SD-G11</masterLabel>
+        <translation>Pojištění pro případ smrti ve variantě doplňkové</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SD-G12</masterLabel>
+        <translation>Pojištění pro případ smrti ve variantě doplňkové</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKA</masterLabel>
+        <translation>Smrt s klesající pojistnou částkou anuitně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKA-17</masterLabel>
+        <translation>Smrt s klesající pojistnou částkou anuitně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKL</masterLabel>
+        <translation>Smrt s klesající pojistnou částkou lineárně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKL-17</masterLabel>
+        <translation>Smrt s klesající pojistnou částkou lineárně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SN-17</masterLabel>
+        <translation>Smrt (další pojištěný)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SN-G11</masterLabel>
+        <translation>Pojištění pro případ smrti (další pojištěný)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SN-G12</masterLabel>
+        <translation>Pojištění pro případ smrti (další pojištěný)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SP-17</masterLabel>
+        <translation>Smrt ve variantě plné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SP-G11</masterLabel>
+        <translation>Pojištění pro případ smrti ve variantě plné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SP-G12</masterLabel>
+        <translation>Pojištění pro případ smrti ve variantě plné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TAT Z</masterLabel>
+        <translation>Tatínek - Komplikace při narození dítěte</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TN1PP-11</masterLabel>
+        <translation>Pojištění pro případ trvalých následků úrazu od 1% s progresivním plněním</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TN1PP-G11</masterLabel>
+        <translation>Pojištění pro případ trvalých následků úrazu od 1% s progresivním plněním</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TN1PP-G12</masterLabel>
+        <translation>Pojištění pro případ trvalých následků úrazu od 1% s progresivním plněním</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TN1PP-d-11</masterLabel>
+        <translation>Pojištění trvalých následků úrazu od 1% s progresivním plněním - děti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TN1PPd-G11</masterLabel>
+        <translation>Pojištění trvalých následků úrazu od 1% s progresivním plněním - děti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TN1PPd-G12</masterLabel>
+        <translation>Pojištění trvalých následků úrazu od 1% s progresivním plněním - děti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TN6</masterLabel>
+        <translation>Trvalé následky úrazu od 1 % s progresivním plněním</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TN6d</masterLabel>
+        <translation>Trvalé následky úrazu od 1 % s progresivním plněním</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>US2N-11</masterLabel>
+        <translation>Pojištění smrti následkem úrazu s dvojnásobným plněním při dopravní nehodě</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>US2N-G11</masterLabel>
+        <translation>Pojištění smrti následkem úrazu s dvojnásobným plněním při dopravní nehodě</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>US2N-G12</masterLabel>
+        <translation>Smrt následkem úrazu s dvojnásobným plněním při dopravní nehodě</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VCH M</masterLabel>
+        <translation>Vážné choroby mužů</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VCH Z</masterLabel>
+        <translation>Vážné choroby žen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VCH-N-11</masterLabel>
+        <translation>Pojištění pro případ vážné choroby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VCH-d-11</masterLabel>
+        <translation>Pojištění pro případ vážné choroby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VCHN-17</masterLabel>
+        <translation>Vážné choroby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VCHN-G11</masterLabel>
+        <translation>Pojištění pro případ vážné choroby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VCHN-G12</masterLabel>
+        <translation>Pojištění pro případ vážné choroby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VCHd-G11</masterLabel>
+        <translation>Pojištění pro případ vážné choroby - děti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VCHd-G12</masterLabel>
+        <translation>Vážné choroby</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ZPR-11</masterLabel>
+        <translation>Pojištění zproštění od placení pojistného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ZPR-G11</masterLabel>
+        <translation>Pojištění zproštění od placení pojistného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ZPR-G12</masterLabel>
+        <translation>Pojištění zproštění od placení pojistného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ZPR-T13</masterLabel>
+        <translation>Invalidita 3. stupně - zproštění od placení pojistného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ZPR-TUM</masterLabel>
+        <translation>Pojištění zproštění od placení pojistného</translation>
+    </picklistValues>
 </CustomFieldTranslation>

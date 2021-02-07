@@ -27,7 +27,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>columns</name>
-                <value>Name, AccountType__c, ProductCloseDate__c, Tariff__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c</value>
+                <value>Name, ProductType__c, ProductCloseDate__c, Tariff__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>conditionAssets</name>
@@ -137,7 +137,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>columns</name>
-                <value>Name, AccountType__c, ProductSubtype__c, ProductCloseDate__c, DateUpdated__c</value>
+                <value>Name, ProductType__c, ProductSubtype__c, ProductCloseDate__c, DateUpdated__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>conditionAssets</name>
