@@ -413,6 +413,7 @@
     </quickActionList>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>AllConsent__c</fields>
         <fields>PhoneConsent__c</fields>
@@ -424,6 +425,7 @@
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>InternalConsentType__c</fields>
         <fields>InternalConsentValue__c</fields>
@@ -535,6 +537,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>RelatedAccount__c</fields>
+        <fields>RelatedAccountRole__c</fields>
         <fields>RelationType__c</fields>
         <fields>ValidFrom__c</fields>
         <fields>ValidTo__c</fields>
@@ -542,6 +545,11 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Account__c</fields>
+        <fields>AccountRole__c</fields>
+        <fields>RelationType__c</fields>
+        <fields>ValidFrom__c</fields>
+        <fields>ValidTo__c</fields>
         <relatedList>AccountRelation__c.RelatedAccount__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -592,7 +600,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1X000001KAgV</masterLabel>
+        <masterLabel>00h1X000001wFjm</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>2</sizeY>
         <summaryLayoutItems>

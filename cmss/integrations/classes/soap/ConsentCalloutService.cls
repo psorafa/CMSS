@@ -98,8 +98,8 @@ public class ConsentCalloutService {
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/ConsentService/v01/enableGeneralConsent');
 			System.debug(doc.toXmlString());
-			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			req.setBodyDocument(doc);
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			Http http = new Http();
 			HttpResponse res = http.send(req);
 			System.debug(res.getBody());
