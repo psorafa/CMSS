@@ -3,42 +3,48 @@ private class CaseServiceTest {
 
 	@IsTest
 	static void assignCaseIDTest() {
-		Case newClientCase = TestDataFactory.getCase(
-			new Case(
-				RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
-					.get('NewClientClaim')
-					.getRecordTypeId()
-			)
-		);
-		Case newGDPRCase = TestDataFactory.getCase(
-			new Case(
-				RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName().get('GDPR').getRecordTypeId()
-			)
-		);
-		NumericalSeriesSettings__c customSettingsValue = new NumericalSeriesSettings__c();
-		customSettingsValue.ClientClaimID__c = 2.0;
-		customSettingsValue.GDPRClaimID__c = 5.0;
-		insert customSettingsValue;
+		User user = TestDataFactory.getUser(new User());
+		insert user;
+		insert TestDataFactory.getPermissionSetAssignments(user.Id);
+		TestDataFactory.defaultCaseOwner = user;
+		System.runAs(user) {
+			Case newClientCase = TestDataFactory.getCase(
+				new Case(
+					RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+						.get('NewClientClaim')
+						.getRecordTypeId()
+				)
+			);
+			Case newGDPRCase = TestDataFactory.getCase(
+				new Case(
+					RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName().get('GDPR').getRecordTypeId()
+				)
+			);
+			NumericalSeriesSettings__c customSettingsValue = new NumericalSeriesSettings__c();
+			customSettingsValue.ClientClaimID__c = 2.0;
+			customSettingsValue.GDPRClaimID__c = 5.0;
+			insert customSettingsValue;
 
-		Test.startTest();
-		insert new List<Case>{
-			newClientCase, newGDPRCase
-		};
-		Test.stopTest();
+			Test.startTest();
+			insert new List<Case>{
+				newClientCase, newGDPRCase
+			};
+			Test.stopTest();
 
-		NumericalSeriesSettings__c newIssuedClaimID = [
-			SELECT ClientClaimID__c, GDPRClaimID__c
-			FROM NumericalSeriesSettings__c
-			LIMIT 1
-		];
+			NumericalSeriesSettings__c newIssuedClaimID = [
+				SELECT ClientClaimID__c, GDPRClaimID__c
+				FROM NumericalSeriesSettings__c
+				LIMIT 1
+			];
 
-		newClientCase = [SELECT CaseID__c FROM Case WHERE Id = :newClientCase.Id LIMIT 1];
-		newGDPRCase = [SELECT CaseID__c FROM Case WHERE Id = :newGDPRCase.Id LIMIT 1];
+			newClientCase = [SELECT CaseID__c FROM Case WHERE Id = :newClientCase.Id LIMIT 1];
+			newGDPRCase = [SELECT CaseID__c FROM Case WHERE Id = :newGDPRCase.Id LIMIT 1];
 
-		System.assertEquals(3, newIssuedClaimID.ClientClaimID__c);
-		System.assertEquals(6, newIssuedClaimID.GDPRClaimID__c);
-		System.assertEquals('' + Date.today().year() + '3', newClientCase.CaseID__c);
-		System.assertEquals('6' + '' + Date.today().year(), newGDPRCase.CaseID__c);
+			System.assertEquals(3, newIssuedClaimID.ClientClaimID__c);
+			System.assertEquals(6, newIssuedClaimID.GDPRClaimID__c);
+			System.assertEquals('' + Date.today().year() + '3', newClientCase.CaseID__c);
+			System.assertEquals('6' + '' + Date.today().year(), newGDPRCase.CaseID__c);
+		}
 	}
 
 	@IsTest
@@ -155,24 +161,30 @@ private class CaseServiceTest {
 		insert new List<User>{
 			user1, user2, user3
 		};
+		User caseManager = TestDataFactory.getUser(new User());
+		insert caseManager;
+		insert TestDataFactory.getPermissionSetAssignments(caseManager.Id);
+		TestDataFactory.defaultCaseOwner = caseManager;
+		System.runAs(caseManager) {
 
-		Case cas = TestDataFactory.getCase(new Case(
-			ContractorCPU__c = 'CPU001',
-			ComplainerContractorCPU__c = 'CPU002'
-		));
-		insert cas;
+			Case cas = TestDataFactory.getCase(new Case(
+				ContractorCPU__c = 'CPU001',
+				ComplainerContractorCPU__c = 'CPU002'
+			));
+			insert cas;
 
-		cas = [SELECT Id, ComplainerContractor__c, Contractor__c FROM Case WHERE Id = :cas.Id];
-		System.assertEquals(user1.Id, cas.Contractor__c);
-		System.assertEquals(user2.Id, cas.ComplainerContractor__c);
+			cas = [SELECT Id, ComplainerContractor__c, Contractor__c FROM Case WHERE Id = :cas.Id];
+			System.assertEquals(user1.Id, cas.Contractor__c);
+			System.assertEquals(user2.Id, cas.ComplainerContractor__c);
 
-		cas.ContractorCPU__c = null;
-		cas.ComplainerContractorCPU__c = 'CPU003';
+			cas.ContractorCPU__c = null;
+			cas.ComplainerContractorCPU__c = 'CPU003';
 
-		update cas;
+			update cas;
 
-		cas = [SELECT Id, ComplainerContractor__c, Contractor__c FROM Case WHERE Id = :cas.Id];
-		System.assertEquals(null, cas.Contractor__c);
-		System.assertEquals(user3.Id, cas.ComplainerContractor__c);
+			cas = [SELECT Id, ComplainerContractor__c, Contractor__c FROM Case WHERE Id = :cas.Id];
+			System.assertEquals(null, cas.Contractor__c);
+			System.assertEquals(user3.Id, cas.ComplainerContractor__c);
+		}
 	}
 }

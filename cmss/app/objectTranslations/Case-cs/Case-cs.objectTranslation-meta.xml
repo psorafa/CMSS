@@ -234,10 +234,6 @@
         <name>CaseIDCannotBeEditedOnceFilled</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Pokud je vyplněna hodnota v poli Druh účtovaných finančních prostředků 2 pole Částka v Kč je povinné.</errorMessage>
-        <name>CompensationAmountRequired</name>
-    </validationRules>
-    <validationRules>
         <errorMessage>Alespoň 1 záznam v Typu podání je podmínkou pro uzavření klientského podání</errorMessage>
         <name>CaseTypeMustExistResponseSentDate</name>
     </validationRules>
@@ -250,6 +246,14 @@
         <name>ClaimChangeOwnerMustHaveClaimPerSet</name>
     </validationRules>
     <validationRules>
+        <errorMessage>Nemáte oprávnění upravovat klientská podání.</errorMessage>
+        <name>ClientClaimEdit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pokud je vyplněna hodnota v poli Druh účtovaných finančních prostředků 2 pole Částka v Kč je povinné.</errorMessage>
+        <name>CompensationAmountRequired</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>
         Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ComplaintReceivingConfirmDate</name>
@@ -257,6 +261,10 @@
     <validationRules>
         <errorMessage>Nemáte oprávnění měnit řešitele GDPR podání.</errorMessage>
         <name>GDPRChangeOwnerMustHaveGDPRPerSet</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Nemáte oprávnění upravovat GDPR podání.</errorMessage>
+        <name>GDPRClaimEdit</name>
     </validationRules>
     <validationRules>
         <errorMessage>Povinné pole</errorMessage>

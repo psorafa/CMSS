@@ -20,6 +20,10 @@ public class CaseTriggerHandler extends TriggerHandler {
 		handleMilestoneCompletion(newList, oldMap);
 	}
 
+	public override void beforeDelete() {
+		preventDeletion(Trigger.old);
+	}
+
 	// ***************************** handlers and helping methods***************************************** //
 
 	/**
@@ -93,6 +97,15 @@ public class CaseTriggerHandler extends TriggerHandler {
 			}
 			if (!caseIdsConfirmation.isEmpty() && String.isNotBlank(confirmMilestoneName)) {
 				CaseMilestoneUtils.completeMilestones(caseIdsConfirmation, confirmMilestoneName, null);
+			}
+		}
+	}
+
+	@TestVisible
+	private static void preventDeletion(List<Case> cases) {
+		if (!FeatureManagement.checkPermission('DeleteCases')) {
+			for (Case c : cases) {
+				c.addError(Label.YouDoNotHavePermissionToDeleteCases);
 			}
 		}
 	}
