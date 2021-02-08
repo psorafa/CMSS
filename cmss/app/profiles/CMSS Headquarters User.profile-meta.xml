@@ -5616,6 +5616,10 @@
         <name>MassInlineEdit</name>
     </userPermissions>
     <userPermissions>
+        <enabled>true</enabled>
+        <name>RunFlow</name>
+    </userPermissions>
+    <userPermissions>
         <enabled>false</enabled>
         <name>RunReports</name>
     </userPermissions>
