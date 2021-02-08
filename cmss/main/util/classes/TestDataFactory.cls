@@ -11,7 +11,10 @@ public class TestDataFactory {
 	]
 	.Id;
 	private static Integer caseCounter = 0;
-	private static User defaultCaseOwner;
+	public static User defaultCaseOwner;
+	private static List<PermissionSet> permissionSets = [
+		SELECT Id FROM PermissionSet WHERE Name IN ('GDPRCaseManager', 'ClientOmbudsman', 'CaseManager')
+	];
 
 	public static Account getAccount() {
 		return getAccount(new Account());
@@ -186,6 +189,22 @@ public class TestDataFactory {
 		}
 		return template;
     }
+
+	/**
+	 * will return list of permission set assigments to permission sets defined in TestDataFactory.permissionSets list
+	 * @param userId id of a user to assign permissions
+	 * @return list of permission set assigments, records are not inserted yet
+	 */
+	public static List<PermissionSetAssignment> getPermissionSetAssignments(Id userId) {
+		List<PermissionSetAssignment> assignments = new List<PermissionSetAssignment>();
+		for (PermissionSet permissionSet : permissionSets) {
+			assignments.add(new PermissionSetAssignment(
+				AssigneeId = userId,
+				PermissionSetId = permissionSet.Id
+			));
+		}
+		return assignments;
+	}
     
     public static PortfolioManagementRequest__c getPortfolioManagementRequest(PortfolioManagementRequest__c so) {
 		PortfolioManagementRequest__c template = new PortfolioManagementRequest__c(
