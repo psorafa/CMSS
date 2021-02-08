@@ -16,6 +16,10 @@
         <enabled>true</enabled>
         <name>ClientOmbudsman</name>
     </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>DeleteCases</name>
+    </customPermissions>
     <description>Klientský ombudsman</description>
     <fieldPermissions>
         <editable>true</editable>

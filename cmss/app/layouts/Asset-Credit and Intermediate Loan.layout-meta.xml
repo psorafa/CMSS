@@ -236,8 +236,11 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>DimaName__c</fields>
         <fields>DimaCode__c</fields>
+        <fields>DimaName__c</fields>
+        <fields>Description__c</fields>
+        <fields>BenefitValue__c</fields>
+        <fields>ContractLimitations__c</fields>
         <fields>Status__c</fields>
         <fields>ValidFrom__c</fields>
         <fields>ValidTo__c</fields>
@@ -245,24 +248,31 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>ObjectID__c</fields>
-        <fields>Priority__c</fields>
-        <fields>ProductType__c</fields>
+        <fields>Account.NAME</fields>
+        <fields>DateUpdated__c</fields>
+        <fields>IsReleased__c</fields>
         <fields>RelationType__c</fields>
+        <fields>ValidFrom__c</fields>
+        <fields>ValidTo__c</fields>
         <relatedList>AssetAccountRelation__c.Asset__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>ChangeAuthor__c</fields>
         <fields>ChangeType__c</fields>
-        <fields>ChangeCreationDate__c</fields>
+        <fields>NewContractConditions__c</fields>
+        <fields>ChangeAuthor__c</fields>
         <fields>ChangeClosureDate__c</fields>
+        <fields>ChangeCreationDate__c</fields>
         <relatedList>AssetChange__c.Asset__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>Name</fields>
+        <fields>Asset</fields>
+        <fields>ProductTypeAssetId__c</fields>
         <fields>RelatedAsset</fields>
+        <fields>ProductTypeRelatedAsset__c</fields>
         <fields>RelationshipType</fields>
+        <fields>IsReleased__c</fields>
         <fields>FromDate</fields>
         <fields>ToDate</fields>
         <relatedList>Related Assets</relatedList>
