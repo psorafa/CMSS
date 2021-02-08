@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GDPRClaimEdit</fullName>
+    <active>true</active>
+    <description>Only user with permission set GDPR Case Manager can edit GDPR Claim record type</description>
+    <errorConditionFormula>AND(
+
+OR( $RecordType.DeveloperName = &quot;GDPR&quot;,
+   $RecordType.DeveloperName = &quot;ClosedGDPRClaim	&quot;
+)
+   ,NOT($Permission.GDPRCaseManager),
+				NOT($Profile.Name = &quot;IntegrationUser&quot;),
+   NOT(ISNEW())
+   )</errorConditionFormula>
+    <errorMessage>You don&apos;t have the permissions to edit this record.</errorMessage>
+</ValidationRule>

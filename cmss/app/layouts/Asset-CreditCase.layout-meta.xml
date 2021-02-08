@@ -75,6 +75,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>RecreditAmount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>RecreditIncreasedAmount__c</field>
             </layoutItems>
             <layoutItems>

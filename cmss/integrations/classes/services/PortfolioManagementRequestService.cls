@@ -1,4 +1,4 @@
-public with sharing class PortfolioManagementRequestService {
+public without sharing class PortfolioManagementRequestService {
 
 	public static final String MULTIPLE_BATCH_IDS_ERR = 'All created requests must contain identical Batch ID.';
 
