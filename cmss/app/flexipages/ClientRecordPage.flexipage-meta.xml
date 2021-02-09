@@ -61,7 +61,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>columns</name>
-                <value>Name, RequestSignDate__c, ConfirmationDate__c, InsuranceType__c, InsuranceStatus__c, DateUpdated__c</value>
+                <value>Name, RequestSignDate__c, ConfirmationDate__c, InsuranceType__c, Status__c, DateUpdated__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>conditionAssets</name>
@@ -80,7 +80,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>columns</name>
-                <value>Name, MortgageStatus__c, RequestSignDate__c, LoanAmount__c, DateUpdated__c</value>
+                <value>Name, Status__c, RequestSignDate__c, LoanAmount__c, DateUpdated__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>conditionAssets</name>

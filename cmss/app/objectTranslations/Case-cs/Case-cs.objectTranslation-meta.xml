@@ -3,62 +3,62 @@
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>false</plural>
-        <value>Klientské podání</value>
+        <value>Podání</value>
     </caseValues>
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>true</plural>
-        <value>Klientská podání</value>
+        <value>Podání</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>false</plural>
-        <value>Klientské podání</value>
+        <value>Podání</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>true</plural>
-        <value>Klientská podání</value>
+        <value>Podání</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>false</plural>
-        <value>Klientské podání</value>
+        <value>Podání</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>true</plural>
-        <value>Klientská podání</value>
+        <value>Podání</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>false</plural>
-        <value>Klientskému podání</value>
+        <value>Podání</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>true</plural>
-        <value>Klientským podáním</value>
+        <value>Podáním</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>false</plural>
-        <value>Klientským podáním</value>
+        <value>Podáním</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>true</plural>
-        <value>Klientskými podáními</value>
+        <value>Podáními</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>false</plural>
-        <value>Klientském podání</value>
+        <value>Podání</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>true</plural>
-        <value>Klientských podáních</value>
+        <value>Podáních</value>
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
@@ -230,6 +230,10 @@
         <name>NewClientClaim</name>
     </recordTypes>
     <validationRules>
+        <errorMessage>Pokud je vyplněna hodnota v poli Druh účtovaných finančních prostředků pole Částka v Kč je povinné.</errorMessage>
+        <name>AmountRequired</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>ID podání nelze změnit.</errorMessage>
         <name>CaseIDCannotBeEditedOnceFilled</name>
     </validationRules>
@@ -250,7 +254,7 @@
         <name>ClientClaimEdit</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Pokud je vyplněna hodnota v poli Druh účtovaných finančních prostředků 2 pole Částka v Kč je povinné.</errorMessage>
+        <errorMessage>Pokud je vyplněna hodnota v poli Druh účtovaných finančních prostředků 2 pole Částka kompenzace je povinné.</errorMessage>
         <name>CompensationAmountRequired</name>
     </validationRules>
     <validationRules>

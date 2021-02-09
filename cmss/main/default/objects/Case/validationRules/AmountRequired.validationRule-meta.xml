@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AmountRequired</fullName>
+    <active>true</active>
+    <description>If there is value picked in Accounting Funds Type, Amount field becomes required.</description>
+    <errorConditionFormula>NOT (ISBLANK(TEXT(AccountingFundsType__c))) &amp;&amp;
+ISBLANK(Amount__c)</errorConditionFormula>
+    <errorDisplayField>Amount__c</errorDisplayField>
+    <errorMessage>Amount is required if Accounting Funds Type is filled.</errorMessage>
+</ValidationRule>

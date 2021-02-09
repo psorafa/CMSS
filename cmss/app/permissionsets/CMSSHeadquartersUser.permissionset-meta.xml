@@ -4160,6 +4160,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.ManagerKP__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.MobilePhone__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4629,6 +4634,10 @@
     </tabSettings>
     <tabSettings>
         <tab>standard-Opportunity</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-OtherUserProfile</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <userPermissions>
