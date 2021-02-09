@@ -3,10 +3,11 @@
     <fullName>GDPRIfRequestCompleteBirthDateRequired</fullName>
     <active>true</active>
     <description>Valid for GDPR - if request is checked as complete, birth date or personal identification number required</description>
-    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;  &amp;&amp;   
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(RecordType.Name = &quot;GDPR&quot;  &amp;&amp;   
 ISBLANK( AccountId )  &amp;&amp; 
 RequestComplete__c  = true  &amp;&amp;    
-(ISBLANK( PersonalIdentificationNumber__c )  &amp;&amp;  ISBLANK( BirthDate__c ) )</errorConditionFormula>
+(ISBLANK( PersonalIdentificationNumber__c )  &amp;&amp;  ISBLANK( BirthDate__c ) ))</errorConditionFormula>
     <errorDisplayField>PersonalIdentificationNumber__c</errorDisplayField>
     <errorMessage>Personal Identification number od birth date is required</errorMessage>
 </ValidationRule>

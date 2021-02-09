@@ -3,12 +3,13 @@
     <fullName>ClaimChangeOwnerMustHaveClaimPerSet</fullName>
     <active>true</active>
     <description>Valid for Client claims - In order to change case owner, user must have Case Manager or Client Ombudsman permission set.</description>
-    <errorConditionFormula>AND ( 
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(AND ( 
 ( NOT($Permission.ClaimCaseManager  )  &amp;&amp;
   NOT($Permission.ClientOmbudsman    )  ),
 ISCHANGED(OwnerId) ,
 CONTAINS (&apos;|NewClientClaim|ClientClaimConfirmationSent|&apos;, &apos;|&apos; + RecordType.DeveloperName + &apos;|&apos;)
-	)</errorConditionFormula>
+	))</errorConditionFormula>
     <errorDisplayField>OwnerId</errorDisplayField>
     <errorMessage>You are not allowed to change owner for client claims.</errorMessage>
 </ValidationRule>

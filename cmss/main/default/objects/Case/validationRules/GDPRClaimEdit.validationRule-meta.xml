@@ -3,7 +3,8 @@
     <fullName>GDPRClaimEdit</fullName>
     <active>true</active>
     <description>Only user with permission set GDPR Case Manager can edit GDPR Claim record type</description>
-    <errorConditionFormula>AND(
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(AND(
 
 OR( $RecordType.DeveloperName = &quot;GDPR&quot;,
    $RecordType.DeveloperName = &quot;ClosedGDPRClaim	&quot;
@@ -11,6 +12,6 @@ OR( $RecordType.DeveloperName = &quot;GDPR&quot;,
    ,NOT($Permission.GDPRCaseManager),
 				NOT($Profile.Name = &quot;IntegrationUser&quot;),
    NOT(ISNEW())
-   )</errorConditionFormula>
+   ))</errorConditionFormula>
     <errorMessage>You don&apos;t have the permissions to edit this record.</errorMessage>
 </ValidationRule>

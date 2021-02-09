@@ -2,9 +2,10 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ComplaintReceivingConfirmDate</fullName>
     <active>true</active>
-    <description>Complaint Receiving Confirmation date can&#39;t be later than today and can&#39;t be older than Received Date.</description>
-    <errorConditionFormula>ReceivingConfirmationDate__c &gt; TODAY() ||  
-	ReceivingConfirmationDate__c &lt; ReceivedDate__c</errorConditionFormula>
+    <description>Complaint Receiving Confirmation date can&apos;t be later than today and can&apos;t be older than Received Date.</description>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(ReceivingConfirmationDate__c &gt; TODAY() ||  
+	ReceivingConfirmationDate__c &lt; ReceivedDate__c)</errorConditionFormula>
     <errorDisplayField>ReceivingConfirmationDate__c</errorDisplayField>
-    <errorMessage>Complaint Receiving Confirm date can&#39;t be later than today and can&#39;t be older than Received Date.</errorMessage>
+    <errorMessage>Complaint Receiving Confirm date can&apos;t be later than today and can&apos;t be older than Received Date.</errorMessage>
 </ValidationRule>
