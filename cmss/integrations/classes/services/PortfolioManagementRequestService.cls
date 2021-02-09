@@ -40,7 +40,7 @@ public without sharing class PortfolioManagementRequestService {
 	private static void changeCPEClientStateFuture(Set<Id> pmrIds, String batchId) {
 		try {
 			PortfolioManagementRequest__c[] pmrs = [
-				SELECT Account__c, PortfolioManChangeReason__c, ValidFrom__c, PortfolioManagementType__c, PortfolioManager__r.CommissionAccountNr__c
+				SELECT Account__c, Account__r.GlobalId__c, PortfolioManChangeReason__c, ValidFrom__c, PortfolioManagementType__c, PortfolioManager__r.CommissionAccountNr__c
 				FROM PortfolioManagementRequest__c
 				WHERE Id IN :pmrIds
 			];
@@ -59,7 +59,7 @@ public without sharing class PortfolioManagementRequestService {
 
 					PortfolioManagementCalloutService.ListOfClientsStatesItemType item = new PortfolioManagementCalloutService.ListOfClientsStatesItemType();
 					item.stateChangeRequestId = pmr.Id;
-					item.accountId = pmr.Account__c;
+					item.accountId = pmr.Account__r.GlobalId__c;
 					item.stateChangeReason = pmr.PortfolioManChangeReason__c;
 					item.validFrom = pmr.ValidFrom__c.formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
 					item.validFrom = item.validFrom.substring(0, item.validFrom.length() - 2) + ':00';

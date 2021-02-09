@@ -3,7 +3,8 @@
     <fullName>GDPRIfRequestCompleteSubjectSameRequired</fullName>
     <active>true</active>
     <description>Valid for GDPR - if request is checked as complete, the field Applicant Same as Subject  is required</description>
-    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;  &amp;&amp;  RequestComplete__c  = true  &amp;&amp;  ApplicantSameAsSubject__c = false</errorConditionFormula>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(RecordType.Name = &quot;GDPR&quot;  &amp;&amp;  RequestComplete__c  = true  &amp;&amp;  ApplicantSameAsSubject__c = false)</errorConditionFormula>
     <errorDisplayField>ApplicantSameAsSubject__c</errorDisplayField>
     <errorMessage>Required field</errorMessage>
 </ValidationRule>

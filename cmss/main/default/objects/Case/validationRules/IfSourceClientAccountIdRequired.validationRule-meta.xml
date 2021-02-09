@@ -2,8 +2,9 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IfSourceClientAccountIdRequired</fullName>
     <active>true</active>
-    <description>If Source__c is &#39;Klient&#39;, api name &#39;1&#39; , than AccountId is required field.</description>
-    <errorConditionFormula>AND( ISBLANK( AccountId ),  ISPICKVAL( Source__c, &#39;1&#39; ) )</errorConditionFormula>
+    <description>If Source__c is &apos;Klient&apos;, api name &apos;1&apos; , than AccountId is required field.</description>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(AND( ISBLANK( AccountId ),  ISPICKVAL( Source__c, &apos;1&apos; ) ))</errorConditionFormula>
     <errorDisplayField>AccountId</errorDisplayField>
-    <errorMessage>Account Name is required for client claims with Source &#39;Client&#39;.</errorMessage>
+    <errorMessage>Account Name is required for client claims with Source &apos;Client&apos;.</errorMessage>
 </ValidationRule>

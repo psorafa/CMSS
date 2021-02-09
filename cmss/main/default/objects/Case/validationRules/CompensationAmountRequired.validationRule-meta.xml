@@ -3,8 +3,9 @@
     <fullName>CompensationAmountRequired</fullName>
     <active>true</active>
     <description>If there is value picked in Accounting Funds Type 2, Compensation Amount field becomes required.</description>
-    <errorConditionFormula>NOT (ISBLANK(TEXT(AccountingFundsType2__c))) &amp;&amp;
-ISBLANK(CompensationAmount__c)</errorConditionFormula>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(NOT (ISBLANK(TEXT(AccountingFundsType2__c))) &amp;&amp;
+ISBLANK(CompensationAmount__c))</errorConditionFormula>
     <errorDisplayField>CompensationAmount__c</errorDisplayField>
     <errorMessage>Compensation Amount is required if Accounting Funds Type 2 is filled.</errorMessage>
 </ValidationRule>

@@ -3,10 +3,11 @@
     <fullName>GDPRChangeOwnerMustHaveGDPRPerSet</fullName>
     <active>true</active>
     <description>Valid for GDPR claims - In order to change Owner, user must have GDPR Case Manager permission set.</description>
-    <errorConditionFormula>AND ( NOT($Permission.GDPRCaseManager ) ,
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(AND ( NOT($Permission.GDPRCaseManager ) ,
 ISCHANGED(OwnerId) ,
 RecordType.DeveloperName = &apos;GDPR&apos;
-)</errorConditionFormula>
+))</errorConditionFormula>
     <errorDisplayField>OwnerId</errorDisplayField>
     <errorMessage>You are not allowed to change owner for GDPR case type.</errorMessage>
 </ValidationRule>

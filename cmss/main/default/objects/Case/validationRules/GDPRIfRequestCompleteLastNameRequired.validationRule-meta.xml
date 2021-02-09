@@ -3,7 +3,8 @@
     <fullName>GDPRIfRequestCompleteLastNameRequired</fullName>
     <active>true</active>
     <description>Valid for GDPR - if request completed, last name is required</description>
-    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;  &amp;&amp;  ISBLANK( AccountId ) &amp;&amp; RequestComplete__c  = true  &amp;&amp;  ISBLANK(  ComplainerLastName__c )</errorConditionFormula>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(RecordType.Name = &quot;GDPR&quot;  &amp;&amp;  ISBLANK( AccountId ) &amp;&amp; RequestComplete__c  = true  &amp;&amp;  ISBLANK(  ComplainerLastName__c ))</errorConditionFormula>
     <errorDisplayField>ComplainerLastName__c</errorDisplayField>
     <errorMessage>Required field</errorMessage>
 </ValidationRule>
