@@ -56,10 +56,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>RepeatedComplaint__c</field>
             </layoutItems>
             <layoutItems>
@@ -248,6 +244,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>InternalPrecautionType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Amount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
