@@ -3,7 +3,8 @@
     <fullName>IfPriority2DetailPriorityMustBeFilled</fullName>
     <active>true</active>
     <description>If Priority = &apos;2&apos; then the DetailComplaintPriority__c must be filled</description>
-    <errorConditionFormula>AND( ISPICKVAL( Priority , &apos;2&apos; ) , ISBLANK( TEXT( DetailComplaintPriority__c ) ) )</errorConditionFormula>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(AND( ISPICKVAL( Priority , &apos;2&apos; ) , ISBLANK( TEXT( DetailComplaintPriority__c ) ) ))</errorConditionFormula>
     <errorDisplayField>DetailComplaintPriority__c</errorDisplayField>
     <errorMessage>Detail Complaint Priority must be filled if Priority is 2.</errorMessage>
 </ValidationRule>

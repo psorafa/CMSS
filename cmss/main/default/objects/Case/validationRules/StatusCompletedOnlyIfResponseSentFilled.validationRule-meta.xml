@@ -3,7 +3,8 @@
     <fullName>StatusCompletedOnlyIfResponseSentFilled</fullName>
     <active>true</active>
     <description>If ResponsSent__c is blank, Status cannot be Completed (picklist value 2)</description>
-    <errorConditionFormula>AND( ISBLANK(  ResponseSentDate__c ),  ISPICKVAL( Status, &#39;2&#39; ) )</errorConditionFormula>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(AND( ISBLANK(  ResponseSentDate__c ),  ISPICKVAL( Status, &apos;2&apos; ) ))</errorConditionFormula>
     <errorDisplayField>ResponseSentDate__c</errorDisplayField>
     <errorMessage>Response Sent must be filled before Status is changed to Completed.</errorMessage>
 </ValidationRule>

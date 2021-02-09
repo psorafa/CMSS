@@ -3,8 +3,9 @@
     <fullName>ResponseSentDate</fullName>
     <active>true</active>
     <description>Response Sent date/time must be equal or older than now and must be later then Received Date.</description>
-    <errorConditionFormula>ResponseSentDate__c &gt; TODAY()  || 
-	 ResponseSentDate__c &lt; ReceivedDate__c</errorConditionFormula>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(ResponseSentDate__c &gt; TODAY()  || 
+	 ResponseSentDate__c &lt; ReceivedDate__c)</errorConditionFormula>
     <errorDisplayField>ResponseSentDate__c</errorDisplayField>
     <errorMessage>Response Sent must be older than now and must be later then Received Date.</errorMessage>
 </ValidationRule>

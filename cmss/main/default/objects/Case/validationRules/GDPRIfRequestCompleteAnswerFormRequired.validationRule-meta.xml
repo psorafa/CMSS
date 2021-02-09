@@ -3,7 +3,8 @@
     <fullName>GDPRIfRequestCompleteAnswerFormRequired</fullName>
     <active>true</active>
     <description>Valid for GDPR - if request is checked as complete, answer form is required</description>
-    <errorConditionFormula>RecordType.Name = &quot;GDPR&quot;   &amp;&amp;  RequestComplete__c  = true  &amp;&amp;    ISBLANK( TEXT (AnswerForm__c) )</errorConditionFormula>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(RecordType.Name = &quot;GDPR&quot;   &amp;&amp;  RequestComplete__c  = true  &amp;&amp;    ISBLANK( TEXT (AnswerForm__c) ))</errorConditionFormula>
     <errorDisplayField>AnswerForm__c</errorDisplayField>
     <errorMessage>Required field</errorMessage>
 </ValidationRule>

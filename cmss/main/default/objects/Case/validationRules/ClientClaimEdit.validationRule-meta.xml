@@ -3,7 +3,8 @@
     <fullName>ClientClaimEdit</fullName>
     <active>true</active>
     <description>Only user with permission set Client Ombudsman or Case Manager can edit Client Claim record type</description>
-    <errorConditionFormula>AND(
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(AND(
 
 OR( $RecordType.DeveloperName  = &quot;NewClientClaim&quot;,
    $RecordType.DeveloperName  = &quot;ClientClaimConfirmationSent&quot;,
@@ -15,6 +16,6 @@ OR( $RecordType.DeveloperName  = &quot;NewClientClaim&quot;,
  
    NOT(ISNEW())
 			
-   )</errorConditionFormula>
+   ))</errorConditionFormula>
     <errorMessage>You don&apos;t have the permissions to edit this record.</errorMessage>
 </ValidationRule>

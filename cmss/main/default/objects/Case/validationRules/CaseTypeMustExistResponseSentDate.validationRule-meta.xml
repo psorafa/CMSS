@@ -3,9 +3,10 @@
     <fullName>CaseTypeMustExistResponseSentDate</fullName>
     <active>true</active>
     <description>Response Sent Date can be filled only after value in CaseTypeSummary is =&gt; 1</description>
-    <errorConditionFormula>IsClientClaim__c = true &amp;&amp;
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+(IsClientClaim__c = true &amp;&amp;
 ISCHANGED(ResponseSentDate__c) &amp;&amp; 
 isblank(ResponseSentDate__c) &amp;&amp; 
- CaseTypeSummary__c &lt; 1</errorConditionFormula>
+ CaseTypeSummary__c &lt; 1)</errorConditionFormula>
     <errorMessage>At least one Case type must exist before the Client Claim can be closed.</errorMessage>
 </ValidationRule>
