@@ -1,8 +1,11 @@
 @IsTest
 public class AssetRelatedListControllerTest {
+
+	private static Account acc;
+
 	@TestSetup
 	static void makeData() {
-		Account acc = new Account();
+		acc = new Account();
 		acc.Name = 'testAcc';
 		insert acc;
 
@@ -46,7 +49,7 @@ public class AssetRelatedListControllerTest {
 
 	@IsTest
 	static void testGetDataForDataTable() {
-		Account testAcc = [SELECT Id FROM Account WHERE Name = 'testAcc'];
+		Account testAcc = acc;
 
 		List<String> listOfFields = new List<String>{
 			'AccountId', 'Price', 'Name'

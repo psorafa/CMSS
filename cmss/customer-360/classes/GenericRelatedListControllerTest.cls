@@ -1,8 +1,11 @@
 @IsTest
 public class GenericRelatedListControllerTest {
+
+	private static Account acc;
+
 	@TestSetup
 	static void makeData() {
-		Account acc = new Account();
+		acc = new Account();
 		acc.name = 'testAcc';
 		insert acc;
 
@@ -35,7 +38,7 @@ public class GenericRelatedListControllerTest {
 
 	@IsTest
 	public static void testGetDataForDataTable() {
-		Account testAcc = [SELECT Id FROM Account WHERE Name = 'testAcc'];
+		Account testAcc = acc;
 		List<string> listOfFields = new List<string>{
 			'Street__c', 'Email__c', 'PhoneNumber__c'
 		};
