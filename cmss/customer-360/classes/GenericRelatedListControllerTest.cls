@@ -3,7 +3,6 @@ public class GenericRelatedListControllerTest {
 
 	private static Account acc;
 
-	@TestSetup
 	static void makeData() {
 		acc = new Account();
 		acc.name = 'testAcc';
@@ -38,6 +37,7 @@ public class GenericRelatedListControllerTest {
 
 	@IsTest
 	public static void testGetDataForDataTable() {
+		makeData();
 		Account testAcc = acc;
 		List<string> listOfFields = new List<string>{
 			'Street__c', 'Email__c', 'PhoneNumber__c'
@@ -63,6 +63,7 @@ public class GenericRelatedListControllerTest {
 
 	@isTest
 	public static void testGetFieldsDetails() {
+		makeData();
 		List<String> listOfFields = new List<String>{
 			'Id', 'Email__c', 'Street__c'
 		};
