@@ -6,6 +6,10 @@
         <formula>Opportunity.Id</formula>
     </fieldOverrides>
     <fieldOverrides>
+        <field>Type</field>
+        <literalValue>5</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>WhatId</field>
         <formula>Opportunity.Account.Id</formula>
     </fieldOverrides>
@@ -43,6 +47,11 @@
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>true</emptySpace>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Type</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
