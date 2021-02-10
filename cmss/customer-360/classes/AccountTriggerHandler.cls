@@ -31,7 +31,7 @@ public class AccountTriggerHandler extends TriggerHandler {
 	private static void setOwner(List<Account> accounts) {
 		CommonSetting__c commonSetting = CommonSetting__c.getOrgDefaults();
 		for (Account a : accounts) {
-			if (commonSetting.OwnerForHiddenRecords__c != null && a.IsInvalid__c && a.OwnerId != commonSetting.OwnerForHiddenRecords__c) {
+			if (commonSetting.OwnerForHiddenRecords__c != null && a.IsInvalid__c) {
 				a.OwnerId = commonSetting.OwnerForHiddenRecords__c;
 			} else if (a.PortfolioMngmtA__c != null) {
 				a.OwnerId = a.PortfolioMngmtA__c;
