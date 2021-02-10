@@ -273,14 +273,14 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FirstPaymentDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>FirstPaymentAmount__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FirstPaymentDateAfterLastDraw__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
