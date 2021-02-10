@@ -4,7 +4,7 @@
         <enabled>true</enabled>
         <name>Bypass_AQ_Messaging</name>
     </customPermissions>
-    <description>Users with this permission will not fire any AQ messages</description>
+    <description>Users with this permission will not fire any AQ messages. Also, any changes to Consent, InternalConsent or PortfolioManagementRequest records will not fire callouts.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Bypass AQ Messaging</label>
 </PermissionSet>

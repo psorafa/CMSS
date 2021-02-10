@@ -25,6 +25,9 @@ public without sharing class PortfolioManagementRequestService {
 	}
 
 	public static void changeCPEClientState(PortfolioManagementRequest__c[] newPMRs) {
+		if (FeatureManagement.checkPermission('Bypass_AQ_Messaging')) {
+			return;
+		}
 		String batchId = newPMRs[0].BatchID__c;
 
 		for (PortfolioManagementRequest__c pmr : newPMRs) {

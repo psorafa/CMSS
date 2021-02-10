@@ -5,6 +5,9 @@ public with sharing class ConsentService {
 	};
 
 	public static void processChannelConsent(List<SObject> newConsents, Map<Id, SObject> oldIdsToConsents) {
+		if (FeatureManagement.checkPermission('Bypass_AQ_Messaging')) {
+			return;
+		}
 		List<List<ConsentDataTypesService.EnableChannelConsentRequestBodyType>> listOfEnableChannelRequestLists =
 			new List<List<ConsentDataTypesService.EnableChannelConsentRequestBodyType>>{
 				new List<ConsentDataTypesService.EnableChannelConsentRequestBodyType>(),
@@ -46,6 +49,9 @@ public with sharing class ConsentService {
 	}
 
 	public static void processInternalConsent(List<InternalConsent__c> newConsents, Map<Id, InternalConsent__c> oldIdsToConsents) {
+		if (FeatureManagement.checkPermission('Bypass_AQ_Messaging')) {
+			return;
+		}
 		List<List<ConsentDataTypesService.EnableInternalConsentRequestBodyType>> listOfEnableConsentRequestLists =
 			new List<List<ConsentDataTypesService.EnableInternalConsentRequestBodyType>>{
 				new List<ConsentDataTypesService.EnableInternalConsentRequestBodyType>(),
