@@ -41,6 +41,7 @@ public with sharing class ClientService {
 			client.Name = clientType.name;
 			client.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
 		}
+		SObjectUtil.stripNullFields(client);
 		DmlUtility.insertRecord(client);
 		Logger.debug('Inserted account', JSON.serialize(client));
 		return client.Id;
@@ -53,6 +54,7 @@ public with sharing class ClientService {
 		for (SF_PersonManagementSOAPService.PersonCommunicationType commType : communicationTypes) {
 			createContactInformation(commType, accountId);
 		}
+		SObjectUtil.stripNullFields(contactInfoList);
 		DmlUtility.insertRecords(contactInfoList);
 		Logger.debug('Inserted ContactInformation__c list', JSON.serialize(contactInfoList));
 	}

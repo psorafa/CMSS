@@ -14,6 +14,12 @@ public class SObjectUtil {
 		}
 	}
 
+	public static void stripNullFields(List<SObject> soList) {
+		for (SObject so : soList) {
+			stripNullFields(so);
+		}
+	}
+
 	public static void copyFields(SObject source, SObject destination) {
 		if (source == null) {
 			return;
