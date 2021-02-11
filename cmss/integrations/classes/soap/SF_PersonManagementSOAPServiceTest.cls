@@ -39,8 +39,9 @@ private class SF_PersonManagementSOAPServiceTest {
 
 		Account account = [
 			SELECT
-				Id, SbId__c, PortfolioMngmtA__c, PortfolioMngmtC__c, RecordType.DeveloperName, PersonalIdentificationNr__c,
-				PersonTitle, Suffix, GlobalId__c, Birthdate__c, Gender__c, Nationality__c, IsPoliticallyExposed__c, IsResident__c
+				Id, SbId__c, PortfolioMngmtA__c, PortfolioMngmtC__c, RecordType.DeveloperName,
+				PersonalIdentificationNr__c, PersonTitle, Suffix, GlobalId__c, Birthdate__c, Gender__c, Nationality__c,
+				IsPoliticallyExposed__c, IsResident__c, ExternalId__c
 			FROM Account
 			WHERE Id = :response.responseBody.clientId
 		];
@@ -52,6 +53,7 @@ private class SF_PersonManagementSOAPServiceTest {
 		System.assertEquals(prefixTitle, account.PersonTitle);
 		System.assertEquals(suffixTitle, account.Suffix);
 		System.assertEquals(clientGlobalId, account.GlobalId__c);
+		System.assertEquals(clientGlobalId, account.ExternalId__c);
 		System.assertEquals(birthDate, account.Birthdate__c);
         System.assertEquals(gender, account.Gender__c);
         System.assertEquals(citizenship, account.Nationality__c);
@@ -172,6 +174,7 @@ private class SF_PersonManagementSOAPServiceTest {
 		requestBody.client.prefixTitle = prefixTitle;
 		requestBody.client.suffixTitle = suffixTitle;
 		requestBody.client.clientGlobalId = clientGlobalId;
+		requestBody.client.externalId = clientGlobalId;
 		requestBody.client.birthDate = birthDate;
         requestBody.client.gender = gender;
         requestBody.client.citizenship = citizenship;

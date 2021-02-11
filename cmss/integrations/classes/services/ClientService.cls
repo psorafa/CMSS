@@ -20,6 +20,7 @@ public with sharing class ClientService {
 			SbId__c = clientType.personNumber,
 			PersonalIdentificationNr__c = clientType.personalIdentityNumber,
 			GlobalId__c = clientType.clientGlobalId,
+			ExternalId__c = clientType.externalId,
             Birthdate__c = clientType.birthDate,
             Nationality__c = clientType.citizenship,
 			Gender__c = clientType.gender,
