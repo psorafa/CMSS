@@ -216,12 +216,12 @@
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CASES.STATUS</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>CASES.CASE_NUMBER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CaseID__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CASES.STATUS</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CASES.TYPE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ReceivedDate__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ComplainerContractor__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>ComplainerLastName__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>OWNER_NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ResponseSentDate__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>DueDate__c</searchResultsAdditionalFields>
