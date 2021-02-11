@@ -47,6 +47,7 @@ public with sharing class ClientZoneService {
 		clientZone.ContractStatus__c = '1';
 		clientZone.CreatedDate__c = Datetime.now();
 		clientZone.ModifiedDate__c = Datetime.now();
+		SObjectUtil.stripNullFields(clientZone);
 		DmlUtility.insertRecord(clientZone);
 		return clientZone;
 	}
@@ -74,6 +75,7 @@ public with sharing class ClientZoneService {
 		existingClientZone.SignatureDate__c = clientZoneUpdate.signatureDate;
 		existingClientZone.AgreementDate__c = clientZoneUpdate.agreementDate;
 		existingClientZone.Status__c = clientZoneUpdate.status;
+		SObjectUtil.stripNullFields(existingClientZone);
 		DmlUtility.updateRecord(existingClientZone);
 	}
 
@@ -118,6 +120,7 @@ public with sharing class ClientZoneService {
 		clientZone.ContractStatus__c = '1';
 		clientZone.ModifiedDate__c = Datetime.now();
 		clientZone.ClosedBy__c = closedById;
+		SObjectUtil.stripNullFields(clientZone);
 		DmlUtility.updateRecord(clientZone);
 		return clientZone.Id;
 	}
@@ -142,8 +145,9 @@ public with sharing class ClientZoneService {
 				accountRelationsToInsert.add(insertAccountRelation(requestRelation, accountIdsByGlobalIds.get(requestRelation.relatedClientId), clZone, clientSfId));
 			}
 		}
-
+		SObjectUtil.stripNullFields(accountRelationsToInsert);
 		DmlUtility.insertRecords(accountRelationsToInsert);
+		SObjectUtil.stripNullFields(accountRelationsToUpdate);
 		DmlUtility.updateRecords(accountRelationsToUpdate);
 		return response;
 	}

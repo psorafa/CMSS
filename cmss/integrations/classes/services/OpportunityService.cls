@@ -16,6 +16,7 @@ public with sharing class OpportunityService {
 		}
 		opportunity.DueDate__c = Date.today().addDays(90);
 		opportunity.UpdateDate__c = System.now();
+		SObjectUtil.stripNullFields(opportunity);
 		DmlUtility.insertRecord(opportunity);
 		return opportunity.Id;
 	}
@@ -24,6 +25,7 @@ public with sharing class OpportunityService {
 		Validation.requireAttribute(data.id, 'id');
 		Opportunity opportunity = prepareOpportunity(data);
 		opportunity.UpdateDate__c = System.now();
+		SObjectUtil.stripNullFields(opportunity);
 		DmlUtility.updateRecord(opportunity);
 	}
 

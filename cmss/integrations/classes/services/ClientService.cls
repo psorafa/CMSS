@@ -20,6 +20,7 @@ public with sharing class ClientService {
 			SbId__c = clientType.personNumber,
 			PersonalIdentificationNr__c = clientType.personalIdentityNumber,
 			GlobalId__c = clientType.clientGlobalId,
+			ExternalId__c = clientType.externalId,
             Birthdate__c = clientType.birthDate,
             Nationality__c = clientType.citizenship,
 			Gender__c = clientType.gender,
@@ -40,6 +41,7 @@ public with sharing class ClientService {
 			client.Name = clientType.name;
 			client.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
 		}
+		SObjectUtil.stripNullFields(client);
 		DmlUtility.insertRecord(client);
 		Logger.debug('Inserted account', JSON.serialize(client));
 		return client.Id;
@@ -52,6 +54,7 @@ public with sharing class ClientService {
 		for (SF_PersonManagementSOAPService.PersonCommunicationType commType : communicationTypes) {
 			createContactInformation(commType, accountId);
 		}
+		SObjectUtil.stripNullFields(contactInfoList);
 		DmlUtility.insertRecords(contactInfoList);
 		Logger.debug('Inserted ContactInformation__c list', JSON.serialize(contactInfoList));
 	}

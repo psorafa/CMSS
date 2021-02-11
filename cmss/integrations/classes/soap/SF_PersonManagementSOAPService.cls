@@ -394,6 +394,7 @@ global with sharing class SF_PersonManagementSOAPService {
         webService String suffixTitle;
         webService String citizenship;
 		webService String clientGlobalId;
+		webService String externalId;
 		webService Date birthDate;
 		webService String gender;
 		webService String spSa;
