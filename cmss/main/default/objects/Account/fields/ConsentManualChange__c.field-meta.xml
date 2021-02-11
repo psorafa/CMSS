@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ConsentManualChange__c</fullName>
+    <description>Date in this fields indicates that any consent or internal consent was manually edited and thus displayed data can be out-of-date</description>
+    <externalId>false</externalId>
+    <label>Consent Manual Change</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Date</type>
+</CustomField>

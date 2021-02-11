@@ -4,7 +4,7 @@ public with sharing class ConsentService {
 		'EmailConsent__c', 'PhoneConsent__c', 'PortalConsent__c', 'PostConsent__c', 'SMSConsent__c'
 	};
 
-	public static void processChannelConsent(List<SObject> newConsents, Map<Id, SObject> oldIdsToConsents) {
+	public static void processChannelConsent(List<Consent__c> newConsents, Map<Id, Consent__c> oldIdsToConsents) {
 		if (FeatureManagement.checkPermission('Bypass_AQ_Messaging')) {
 			return;
 		}
@@ -25,7 +25,7 @@ public with sharing class ConsentService {
 
 		Map<String, String> fieldNamesToConsentChannelIds = setUpFieldNamesToConsentChannelIds();
 		Set<Id> accountIds = new Set<Id>();
-		for (Consent__c c : (List<Consent__c>) newConsents) {
+		for (Consent__c c : newConsents) {
 			Validation.requireAttribute(c.Account__c, 'Account__c');
 			accountIds.add(c.Account__c);
 		}
@@ -46,6 +46,14 @@ public with sharing class ConsentService {
 				);
 			}
 		}
+		Set<Account> accountsToUpdate = new Set<Account>();
+		for (Consent__c consent : newConsents) {
+			accountsToUpdate.add(new Account(
+				Id = consent.Account__c,
+				ConsentManualChange__c = Date.today()
+			));
+		}
+		update new List<Account>(accountsToUpdate);
 	}
 
 	public static void processInternalConsent(List<InternalConsent__c> newConsents, Map<Id, InternalConsent__c> oldIdsToConsents) {
@@ -92,6 +100,14 @@ public with sharing class ConsentService {
 				);
 			}
 		}
+		Set<Account> accountsToUpdate = new Set<Account>();
+		for (InternalConsent__c consent : newConsents) {
+			accountsToUpdate.add(new Account(
+				Id = consent.Account__c,
+				ConsentManualChange__c = Date.today()
+			));
+		}
+		update new List<Account>(accountsToUpdate);
 	}
 
 	private static Map<String, String> setUpFieldNamesToConsentChannelIds() {

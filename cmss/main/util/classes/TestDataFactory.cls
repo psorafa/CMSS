@@ -25,7 +25,7 @@ public class TestDataFactory {
 			Name = 'Test account ' + ++accountCounter,
 			GlobalId__c = 'G' + accountCounter
 		);
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		return template;
 	}
 
@@ -36,7 +36,7 @@ public class TestDataFactory {
 			GlobalId__c = 'G' + accountCounter,
 			RecordTypeId = personAccountRTId
 		);
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		return template;
 	}
 
@@ -47,7 +47,7 @@ public class TestDataFactory {
 			ValidFrom__c = Date.today().addDays(-1),
 			ValidTo__c = Date.today().addDays(1)
 		);
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		if (template.Account__c == null) {
 			Account a = getAccount();
 			insert a;
@@ -63,7 +63,7 @@ public class TestDataFactory {
 
 	public static ClientZone__c getClientZone(ClientZone__c so) {
 		ClientZone__c template = new ClientZone__c();
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		if (template.Account__c == null) {
 			Account a = getAccount();
 			insert a;
@@ -80,7 +80,7 @@ public class TestDataFactory {
 			City__c = 'City',
 			PostalCode__c = '100 00'
 		);
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		return template;
 	}
 
@@ -94,7 +94,7 @@ public class TestDataFactory {
 			StageName = '1',
 			CloseDate = Date.today()
 		);
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		if (template.AccountId == null) {
 			Account a = getAccount();
 			insert a;
@@ -105,7 +105,7 @@ public class TestDataFactory {
 
 	public static Task getTask(Task so) {
 		Task template = new Task(Subject = 'Test task');
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		if (template.WhatId == null) {
 			Account a = getAccount();
 			insert a;
@@ -116,7 +116,7 @@ public class TestDataFactory {
 
 	public static Asset getAsset(Asset so) {
 		Asset template = new Asset(Name = 'Asset' + ++assetCounter);
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		if (template.AccountId == null) {
 			Account a = getAccount();
 			insert a;
@@ -141,7 +141,7 @@ public class TestDataFactory {
 			LanguageLocaleKey = 'en_US',
 			AgentId__c = 'UA11111' + userCounter
 		);
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		return template;
 	}
 
@@ -161,7 +161,7 @@ public class TestDataFactory {
 			SubjectFound__c = true,
 			RequestType__c = '1'
 		);
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		if (template.AccountId == null) {
 			Account a = getAccount();
 			insert a;
@@ -213,7 +213,7 @@ public class TestDataFactory {
             PortfolioManagementType__c = 'A',
             BatchID__c = 'batchId0'
 		);
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		if (template.PortfolioManagerCPU__c == null) {
 			User u = getUser(new User());
 			insert u;
@@ -230,7 +230,7 @@ public class TestDataFactory {
 	public static CaseType__c getCaseType(CaseType__c so) {
 		CaseType__c template = new CaseType__c(
 		);
-		copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
 		if (template.Case__c == null) {
 			Case c = getCase(new Case());
 			insert c;
@@ -246,7 +246,7 @@ public class TestDataFactory {
             AgentCPU__c = 'agentCPU',
             SubstituteRole__c = '1'
         );
-        copyFields(so, template);
+		SObjectUtil.copyFields(so, template);
         if (template.Account__c == null) {
 			Account a = getAccount();
 			insert a;
@@ -276,7 +276,7 @@ public class TestDataFactory {
             InternalConsentValue__c = '1',
             ExternalId__c = 'kdslfn450' + UUIDUtil.generateUUID().substring(20)
         );
-        copyFields(so, template);
+        SObjectUtil.copyFields(so, template);
         if (template.Account__c == null) {
 			Account a = getAccount();
 			insert a;
@@ -303,17 +303,5 @@ public class TestDataFactory {
 			PortfolioManagementServiceUsername__c = 'testusername',
 			PortfolioManagementServicePassword__c = 'testpass'
 		);
-	}
-
-	private static void copyFields(SObject source, SObject destination) {
-		if (source == null) {
-			return;
-		}
-		Map<String, Object> soMap = (Map<String, Object>) JSON.deserializeUntyped(JSON.serialize(source));
-		for (String fieldName : soMap.keySet()) {
-			if (fieldName != 'attributes') {
-				destination.put(fieldName, source.get(fieldName));
-			}
-		}
 	}
 }
