@@ -46,14 +46,14 @@ public with sharing class ConsentService {
 				);
 			}
 		}
-		List<Account> accountsToUpdate = new List<Account>();
+		Set<Account> accountsToUpdate = new Set<Account>();
 		for (Consent__c consent : newConsents) {
 			accountsToUpdate.add(new Account(
 				Id = consent.Account__c,
 				ConsentManualChange__c = Date.today()
 			));
 		}
-		update accountsToUpdate;
+		update new List<Account>(accountsToUpdate);
 	}
 
 	public static void processInternalConsent(List<InternalConsent__c> newConsents, Map<Id, InternalConsent__c> oldIdsToConsents) {
@@ -100,14 +100,14 @@ public with sharing class ConsentService {
 				);
 			}
 		}
-		List<Account> accountsToUpdate = new List<Account>();
+		Set<Account> accountsToUpdate = new Set<Account>();
 		for (InternalConsent__c consent : newConsents) {
 			accountsToUpdate.add(new Account(
 				Id = consent.Account__c,
 				ConsentManualChange__c = Date.today()
 			));
 		}
-		update accountsToUpdate;
+		update new List<Account>(accountsToUpdate);
 	}
 
 	private static Map<String, String> setUpFieldNamesToConsentChannelIds() {
