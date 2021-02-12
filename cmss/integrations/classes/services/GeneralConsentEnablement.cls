@@ -8,7 +8,9 @@ public with sharing class GeneralConsentEnablement {
 
 			Set<Id> accountIds = new Set<Id>();
 			accountIds.add(requests[0].accountId);
-			accountIds.add(requests[0].substitutePersonId);
+            if (String.isNotBlank(requests[0].substitutePersonId)) {
+                accountIds.add(requests[0].substitutePersonId);
+            }
 
 			Map<Id, Account> idsToAccounts = new Map<Id, Account>([
 				SELECT GlobalId__c
@@ -19,7 +21,10 @@ public with sharing class GeneralConsentEnablement {
 			Account client = idsToAccounts.get(requests[0].accountId);
 			Validation.requireAttribute(client, 'Account');
 			Validation.requireAttribute(client.GlobalId__c, 'GlobalId__c');
-			Account substitutePerson = idsToAccounts.get(requests[0].substitutePersonId);
+			Account substitutePerson;
+            if (String.isNotBlank(requests[0].substitutePersonId)) {
+                substitutePerson = idsToAccounts.get(requests[0].substitutePersonId);
+            }
 
 			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
 			ConsentCalloutService.ConsentServicePort stub = new ConsentCalloutService.ConsentServicePort();

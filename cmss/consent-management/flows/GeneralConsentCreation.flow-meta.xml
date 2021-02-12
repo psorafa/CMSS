@@ -19,31 +19,31 @@
         <inputParameters>
             <name>agentCPU</name>
             <value>
-                <elementReference>AgentCPU</elementReference>
+                <elementReference>consentCreationInput.generalConsent.AgentCPU__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>consentEntityId</name>
             <value>
-                <elementReference>EntityConsent</elementReference>
+                <elementReference>consentCreationInput.generalConsent.EntityConsent__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>consentVersionId</name>
             <value>
-                <elementReference>GeneralConsentVersion</elementReference>
+                <elementReference>consentCreationInput.generalConsent.GeneralConsentVersion__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>substitutePersonId</name>
             <value>
-                <elementReference>SubstitutePerson.recordId</elementReference>
+                <elementReference>consentCreationInput.generalConsent.SubstitutePerson__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>substituteRoleId</name>
             <value>
-                <elementReference>SubstituteRole</elementReference>
+                <elementReference>consentCreationInput.generalConsent.SubstituteRole__c</elementReference>
             </value>
         </inputParameters>
         <outputParameters>
@@ -57,70 +57,14 @@
         <locationX>50</locationX>
         <locationY>518</locationY>
         <assignmentItems>
-            <assignToReference>consent.Account__c</assignToReference>
+            <assignToReference>consentCreationInput.generalConsent.Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>accountId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>consent.AgentCPU__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>AgentCPU</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>consent.ConsentValidFrom__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Flow.CurrentDateTime</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>consent.ConsentType__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>ConsentType</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>consent.GeneralConsent__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>GeneralConsent</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>consent.GeneralConsentVersion__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>GeneralConsentVersion</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>consent.EntityConsent__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>EntityConsent</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>consent.SubstitutePerson__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>SubstitutePerson.recordId</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>consent.SubstituteRole__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>SubstituteRole</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>consent.ExternalId__c</assignToReference>
+            <assignToReference>consentCreationInput.generalConsent.ExternalId__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>externalId</elementReference>
@@ -272,7 +216,7 @@
         <connector>
             <targetReference>SuccessScreen</targetReference>
         </connector>
-        <inputReference>consent</inputReference>
+        <inputReference>consentCreationInput.generalConsent</inputReference>
     </recordCreates>
     <screens>
         <name>ErrorScreen</name>
@@ -302,84 +246,23 @@
             <targetReference>Enable_General_Consent</targetReference>
         </connector>
         <fields>
-            <name>AgentCPU</name>
-            <dataType>String</dataType>
-            <fieldText>Souhlas sjednal</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
-        <fields>
-            <name>ConsentType</name>
-            <choiceReferences>Consent_ConsentType</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Druh souhlasu</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>EntityConsent</name>
-            <choiceReferences>Consent_EntityConsent</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Entita souhlasu</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>GeneralConsent</name>
-            <choiceReferences>Consent_GeneralConsent</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Skupinový souhlas</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>GeneralConsentVersion</name>
-            <choiceReferences>Consent_GeneralConsentVersion</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Skupinový souhlas verze</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>SubstitutePerson</name>
-            <extensionName>flowruntime:lookup</extensionName>
+            <name>consentCreationInput</name>
+            <dataTypeMappings>
+                <typeName>T</typeName>
+                <typeValue>Consent__c</typeValue>
+            </dataTypeMappings>
+            <extensionName>c:consentCreationInput</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
-                <name>required</name>
+                <name>accountId</name>
                 <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>fieldApiName</name>
-                <value>
-                    <elementReference>SubstituePersonFieldAPIName</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>label</name>
-                <value>
-                    <elementReference>SubstitutePersonLabel</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>objectApiName</name>
-                <value>
-                    <elementReference>ConsentObjectAPIName</elementReference>
+                    <elementReference>accountId</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
-        <fields>
-            <name>SubstituteRole</name>
-            <choiceReferences>Consent_SubstituteRole</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Role zástupné osoby</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <showFooter>true</showFooter>
+        <showFooter>false</showFooter>
         <showHeader>true</showHeader>
     </screens>
     <screens>
