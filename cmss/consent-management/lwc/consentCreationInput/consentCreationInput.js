@@ -15,7 +15,6 @@ export default class ConsentCreationInput extends LightningElement {
     @wire(getRecord, { recordId: '$accountId', fields: [AGE] })
     account({ error, data }) {
         if (data) {
-            console.log(JSON.stringify(data))
             let substitutePerson = this.template.querySelector('[data-id="SubstitutePerson__c"]')
             let substituteRole = this.template.querySelector('[data-id="SubstituteRole__c"]')
             substitutePerson.required = data.fields.Age__c.value && data.fields.Age__c.value < 18;
