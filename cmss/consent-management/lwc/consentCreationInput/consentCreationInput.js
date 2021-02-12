@@ -1,6 +1,6 @@
-import { LightningElement, api, wire, track } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import { FlowNavigationNextEvent } from 'lightning/flowSupport';
-import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
+import { getRecord } from 'lightning/uiRecordApi';
 import save from '@salesforce/label/c.Save';
 import AGE from '@salesforce/schema/Account.Age__c';
 
