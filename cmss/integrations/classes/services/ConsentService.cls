@@ -267,7 +267,7 @@ public with sharing class ConsentService {
 		body.consentKind = c.InternalConsentType__c;
 		body.consentValidFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
 		body.consentValidFrom = body.consentValidFrom.substring(0, body.consentValidFrom.length() - 2) + ':00';
-		body.consentSourceId = '20';
+		body.consentSourceId = c.Source__c;
 		body.consentProvidedBy = '1';
 		return body;
 	}
@@ -275,7 +275,7 @@ public with sharing class ConsentService {
 	private static ConsentDataTypesService.DisableInternalConsentRequestBodyType getDisableInternalConsentWSDefinition(InternalConsent__c c) {
 		ConsentDataTypesService.DisableInternalConsentRequestBodyType body = new ConsentDataTypesService.DisableInternalConsentRequestBodyType();
 		body.consentCrmGuid = c.ExternalId__c;
-		body.consentSourceId = '20';
+		body.consentSourceId = c.Source__c;
 		body.consentProvidedById = '1';
 		return body;
 	}

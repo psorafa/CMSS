@@ -48,7 +48,7 @@ public with sharing class GeneralConsentEnablement {
 			return results;
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
-			throw e;
+			return null;
 		} finally {
 			Logger.saveLogs();
 		}
