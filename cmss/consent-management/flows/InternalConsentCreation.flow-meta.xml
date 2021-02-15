@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Enable_Internal_Consents</name>
         <label>Enable Internal Consents</label>
-        <locationX>314</locationX>
+        <locationX>446</locationX>
         <locationY>278</locationY>
         <actionName>InternalConsentEnablement</actionName>
         <actionType>apex</actionType>
@@ -133,7 +133,7 @@
     <decisions>
         <name>IsExternalIDReturned</name>
         <label>Is External ID Returned</label>
-        <locationX>314</locationX>
+        <locationX>446</locationX>
         <locationY>398</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -221,12 +221,15 @@
         <connector>
             <targetReference>SuccessScreen</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Record_creation_error</targetReference>
+        </faultConnector>
         <inputReference>internalConsent</inputReference>
     </recordCreates>
     <screens>
         <name>ErrorScreen</name>
         <label>Error Screen</label>
-        <locationX>314</locationX>
+        <locationX>578</locationX>
         <locationY>518</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -240,9 +243,25 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <name>Record_creation_error</name>
+        <label>Record creation error</label>
+        <locationX>314</locationX>
+        <locationY>758</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Error</name>
+            <fieldText>&lt;p&gt;Došlo k chybě při založení souhlasu:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>SelectionConsentType</name>
         <label>Vyberte nový souhlas</label>
-        <locationX>314</locationX>
+        <locationX>446</locationX>
         <locationY>158</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -311,7 +330,7 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>188</locationX>
+        <locationX>320</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>SelectionConsentType</targetReference>
