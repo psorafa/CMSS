@@ -163,9 +163,7 @@ public with sharing class ConsentService {
 				for (String fieldName : CHANNEL_FIELD_NAMES) {
 					String consentChannelId = fieldNamesToConsentChannelIds.get(fieldName);
 
-					if (newConsents[i].get(fieldName) == '1') {
-						listOfEnableChannelRequestLists[i / 50].add(getEnableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
-					} else if (newConsents[i].get(fieldName) == '2') {
+					if (newConsents[i].get(fieldName) == '2') {
 						listOfDisableChannelRequestLists[i / 50].add(getDisableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
 					}
 				}
@@ -269,7 +267,7 @@ public with sharing class ConsentService {
 		body.consentKind = c.InternalConsentType__c;
 		body.consentValidFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
 		body.consentValidFrom = body.consentValidFrom.substring(0, body.consentValidFrom.length() - 2) + ':00';
-		body.consentSourceId = '20';
+		body.consentSourceId = c.Source__c;
 		body.consentProvidedBy = '1';
 		return body;
 	}
@@ -277,7 +275,7 @@ public with sharing class ConsentService {
 	private static ConsentDataTypesService.DisableInternalConsentRequestBodyType getDisableInternalConsentWSDefinition(InternalConsent__c c) {
 		ConsentDataTypesService.DisableInternalConsentRequestBodyType body = new ConsentDataTypesService.DisableInternalConsentRequestBodyType();
 		body.consentCrmGuid = c.ExternalId__c;
-		body.consentSourceId = '20';
+		body.consentSourceId = c.Source__c;
 		body.consentProvidedById = '1';
 		return body;
 	}

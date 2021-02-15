@@ -3,75 +3,55 @@
     <label>Výsledek</label>
     <name>Reason__c</name>
     <picklistValues>
-        <masterLabel>0</masterLabel>
-        <translation>Nezadaný</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation>Schůzka realizovaná - uzavřen obchod</translation>
+        <translation>Nabídka předložena</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>10</masterLabel>
-        <translation>Zájem o schůzku po termínu kampaně</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>11</masterLabel>
-        <translation>Schůzka domluvená</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>12</masterLabel>
-        <translation>Požadované podklady odeslány na centrálu</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>13</masterLabel>
         <translation>Klienta kontaktoval jiný FP</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>14</masterLabel>
-        <translation>S klientem nechci v této věci jednat</translation>
+        <masterLabel>11</masterLabel>
+        <translation>Klient neměl zájem o produkt</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>15</masterLabel>
-        <translation>Souhlas klienta získán</translation>
+        <masterLabel>12</masterLabel>
+        <translation>Nechci s klientem v této věci jednat</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>16</masterLabel>
-        <translation>Klient nechce s námi o udělení souhlasu jednat</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>17</masterLabel>
-        <translation>Klientská zóna založena</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>2</masterLabel>
-        <translation>Schůzka realizovaná - neuzavřen obchod</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>3</masterLabel>
-        <translation>Domluvená schůzka neproběhla</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>4</masterLabel>
-        <translation>Schůzka odmítnuta</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>5</masterLabel>
-        <translation>Klient nezastižen - telefonicky</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>6</masterLabel>
-        <translation>Klient nezastižen – na adrese</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>7</masterLabel>
-        <translation>Klient nebydlí na adrese</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>8</masterLabel>
+        <masterLabel>13</masterLabel>
         <translation>Klient zemřel</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Nabídka akceptována</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Uzavřen obchod</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>Událost proběhla</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Úkol splněn</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>Klient nezastižen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>Storno / Úkol nesplněn</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>Chyba dat</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>9</masterLabel>
-        <translation>Chybná data</translation>
+        <translation>Nesplněno / Uzavřít aktivitu</translation>
     </picklistValues>
 </CustomFieldTranslation>

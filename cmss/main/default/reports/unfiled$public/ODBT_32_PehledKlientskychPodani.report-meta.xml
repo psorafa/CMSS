@@ -6,6 +6,9 @@
             <joinTable>Case</joinTable>
         </blockInfo>
         <columns>
+            <field>Case$CaseNumber</field>
+        </columns>
+        <columns>
             <field>Case$ReceivedDate__c</field>
         </columns>
         <columns>
@@ -100,9 +103,16 @@
             <criteriaItems>
                 <column>Case$RecordType</column>
                 <columnToColumn>false</columnToColumn>
-                <isUnlocked>true</isUnlocked>
+                <isUnlocked>false</isUnlocked>
                 <operator>equals</operator>
                 <value>Case.ClientClaimConfirmationSent,Case.Client_Consolidation,Case.ClosedClientClaim,Case.NewClientClaim</value>
+            </criteriaItems>
+            <criteriaItems>
+                <column>Case.CaseTypes__r$CreatedDate</column>
+                <columnToColumn>false</columnToColumn>
+                <isUnlocked>true</isUnlocked>
+                <operator>equals</operator>
+                <value/>
             </criteriaItems>
         </filter>
         <format>Summary</format>
@@ -116,7 +126,7 @@
         <showGrandTotal>true</showGrandTotal>
         <showSubTotals>true</showSubTotals>
         <timeFrameFilter>
-            <dateColumn>Case$BirthDate__c</dateColumn>
+            <dateColumn>Case.CaseTypes__r$CreatedDate</dateColumn>
             <interval>INTERVAL_CUSTOM</interval>
         </timeFrameFilter>
     </block>
@@ -169,7 +179,7 @@
     <format>MultiBlock</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Case$CaseNumber</field>
+        <field>Case$CaseID__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>ODBT 32 - Přehled klientských podání</name>

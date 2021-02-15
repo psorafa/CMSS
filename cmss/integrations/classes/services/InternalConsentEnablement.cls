@@ -36,10 +36,18 @@ public with sharing class InternalConsentEnablement {
 			if (response != null) {
 				results.add(new Result(response.consentGuid));
 			}
+			Set<Account> accountsToUpdate = new Set<Account>();
+			for (Request request : requests) {
+				accountsToUpdate.add(new Account(
+					Id = request.accountId,
+					ConsentManualChange__c = Date.today()
+				));
+			}
+			update new List<Account>(accountsToUpdate);
 			return results;
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
-			throw e;
+			return null;
 		} finally {
 			Logger.saveLogs();
 		}
