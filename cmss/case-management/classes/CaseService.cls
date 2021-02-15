@@ -25,11 +25,21 @@ public with sharing class CaseService {
 		for (Case caseItem : newCaseList) {
 			if (GDPRRecordTypes.contains(caseItem.RecordTypeId)) {
 				lastIssuedCaseID.GDPRClaimID__c += 1;
-				caseItem.CaseID__c = '' + Integer.valueOf(lastIssuedCaseID.GDPRClaimID__c) + Date.today().year();
+				caseItem.CaseID__c = String.valueOf(
+						'' +
+						Integer.valueOf(lastIssuedCaseID.GDPRClaimID__c) +
+						Date.today().year()
+					)
+					.leftPad(10, '0');
 			}
 			if (ClientClaimRecordTypes.contains(caseItem.RecordTypeId)) {
 				lastIssuedCaseID.ClientClaimID__c += 1;
-				caseItem.CaseID__c = '' + Date.today().year() + Integer.valueOf(lastIssuedCaseID.ClientClaimID__c);
+				caseItem.CaseID__c = String.valueOf(
+						'' +
+						Date.today().year() +
+						Integer.valueOf(lastIssuedCaseID.ClientClaimID__c)
+					)
+					.rightPad(9, '0');
 			}
 		}
 		upsert lastIssuedCaseID;
