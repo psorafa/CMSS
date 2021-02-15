@@ -1,0 +1,37 @@
+<template>
+    <lightning-record-edit-form object-api-name="Consent__c">
+        <lightning-messages>
+        </lightning-messages>
+        <lightning-input-field field-name="AllConsent__c" onchange={handleValueChange} required="true">
+        </lightning-input-field>
+        <lightning-input-field field-name="PhoneConsent__c" data-isconsenttype="true" required="true">
+        </lightning-input-field>
+        <lightning-input-field field-name="SMSConsent__c" data-isconsenttype="true" required="true">
+        </lightning-input-field>
+        <lightning-input-field field-name="EmailConsent__c" data-isconsenttype="true" required="true">
+        </lightning-input-field>
+        <lightning-input-field field-name="PostConsent__c" data-isconsenttype="true" required="true">
+        </lightning-input-field>
+        <lightning-input-field field-name="PortalConsent__c" data-isconsenttype="true" required="true">
+        </lightning-input-field>
+        <lightning-input-field field-name="ValidFrom__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="AgentCPU__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="SubstitutePerson__c" data-id="SubstitutePerson__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="SubstituteRole__c" data-id="SubstituteRole__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="EntityConsent__c" required="true">
+        </lightning-input-field>
+        <lightning-input-field field-name="GeneralConsentVersion__c" required="true">
+        </lightning-input-field>
+        <lightning-button
+            class="slds-m-top_small"
+            variant="brand"
+            name="update"
+            label={label.save}
+            onclick={handleGoNext}>
+        </lightning-button>
+    </lightning-record-edit-form>
+</template>

@@ -163,9 +163,7 @@ public with sharing class ConsentService {
 				for (String fieldName : CHANNEL_FIELD_NAMES) {
 					String consentChannelId = fieldNamesToConsentChannelIds.get(fieldName);
 
-					if (newConsents[i].get(fieldName) == '1') {
-						listOfEnableChannelRequestLists[i / 50].add(getEnableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
-					} else if (newConsents[i].get(fieldName) == '2') {
+					if (newConsents[i].get(fieldName) == '2') {
 						listOfDisableChannelRequestLists[i / 50].add(getDisableChannelWSDefinition((Consent__c) newConsents[i], consentChannelId, acc.GlobalId__c));
 					}
 				}
