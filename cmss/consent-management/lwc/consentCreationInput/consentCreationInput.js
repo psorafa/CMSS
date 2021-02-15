@@ -46,9 +46,8 @@ export default class ConsentCreationInput extends LightningElement {
             if (inputFields) {
                 inputFields.forEach(field => {
                     if (field.required && !field.value) {
-                        this.generalConsent = {};
                         isValid = false;
-                        return;
+                        field.reportValidity();
                     }
                     this.generalConsent[field.fieldName] = field.value;
                 });
@@ -58,6 +57,8 @@ export default class ConsentCreationInput extends LightningElement {
 
             if (isValid) {
                 this.dispatchEvent(new FlowNavigationNextEvent());
+            } else {
+                this.generalConsent = {};
             }
         }
     }
