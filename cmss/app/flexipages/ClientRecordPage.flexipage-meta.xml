@@ -210,33 +210,6 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>childObjectName</name>
-                <value>AccountRelation__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>columns</name>
-                <value>Name, Account__c, AccountRole__c, ValidFrom__c, ValidTo__c, SystemId__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>condition</name>
-                <value>IsActive__c = true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>iconName</name>
-                <value>standard:person_account</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>listName</name>
-                <value>Osobní vztahy (ostatní)</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>parentFieldName</name>
-                <value>RelatedAccount__c</value>
-            </componentInstanceProperties>
-            <componentName>filterableRelatedList</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>childObjectName</name>
                 <value>AssetAccountRelation__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
