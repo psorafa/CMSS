@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>DaysOfComplaintSolving__c</fullName>
     <externalId>false</externalId>
-    <formula>ClosedDate - ReceivedDatetime__c</formula>
+    <formula>ResponseSentDate__c - ReceivedDate__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Days Of Complaint Solving</label>
     <precision>18</precision>

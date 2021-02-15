@@ -3,15 +3,23 @@
     <label>Typ produktu - navázaný produkt</label>
     <name>ProductTypeRelatedAsset__c</name>
     <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>Úvěrový případ</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <translation>Úvěr</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <translation>Meziúvěr</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>3</masterLabel>
-        <translation><!-- 3 --></translation>
+        <masterLabel>7</masterLabel>
+        <translation>RŽP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>Spořící účet</translation>
     </picklistValues>
 </CustomFieldTranslation>
