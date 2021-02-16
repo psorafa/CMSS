@@ -12,13 +12,16 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Edit</behavior>
+                <field>YearPremiumWithoutDiscount__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ProductCloseDate__c</field>
+            </layoutItems>
+        </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -104,10 +107,6 @@
                 <behavior>Edit</behavior>
                 <field>FormPayment__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>YearPremiumWithoutDiscount__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -171,12 +170,7 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Uzavření</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ProductCloseDate__c</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
