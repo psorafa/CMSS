@@ -8,8 +8,8 @@ private class PortfolioManagementCalloutServiceTest {
 
 	@IsTest
 	static void testSetPortfolioManager() {
-		User u = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CPU0'));
-		User u2 = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CPU1'));
+		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0'));
+		User u2 = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU1'));
 		insert new User[]{
 			u, u2
 		};
@@ -30,7 +30,7 @@ private class PortfolioManagementCalloutServiceTest {
 		PortfolioManagementRequest__c queriedPMR = [SELECT PortfolioManager__c FROM PortfolioManagementRequest__c WHERE Id = :pmr.Id];
 		System.assertEquals(u.Id, queriedPMR.PortfolioManager__c);
 
-		pmr.PortfolioManagerCPU__c = u2.CommissionAccountNr__c;
+		pmr.PortfolioManagerCPU__c = u2.CommissionAccountBase__c;
 		update pmr;
         Test.stopTest();
 
@@ -62,7 +62,7 @@ private class PortfolioManagementCalloutServiceTest {
 	@IsTest
 	static void testChangeCPEClientStateError() {
         Test.startTest();
-        User u = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CPU0'));
+        User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0'));
 		insert new User[]{ u };
         Test.stopTest();
 
@@ -94,7 +94,7 @@ private class PortfolioManagementCalloutServiceTest {
 
 	@IsTest
 	static void testChangeCPEClientStateFuture() {
-		User u = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CPU0'));
+		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0'));
 		insert new User[]{
 			u
 		};

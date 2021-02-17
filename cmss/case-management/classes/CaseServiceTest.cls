@@ -150,13 +150,13 @@ private class CaseServiceTest {
 	@IsTest
 	static void testPopulateUserLookupsFromCPU() {
 		User user1 = TestDataFactory.getUser(new User(
-			CommissionAccountNr__c = 'CPU001'
+			CommissionAccountBase__c = 'CPU001'
 		));
 		User user2 = TestDataFactory.getUser(new User(
-			CommissionAccountNr__c = 'CPU002'
+			CommissionAccountBase__c = 'CPU002'
 		));
 		User user3 = TestDataFactory.getUser(new User(
-			CommissionAccountNr__c = 'CPU003'
+			CommissionAccountBase__c = 'CPU003'
 		));
 		insert new List<User>{
 			user1, user2, user3
