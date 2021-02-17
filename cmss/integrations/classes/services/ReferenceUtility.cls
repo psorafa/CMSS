@@ -23,7 +23,7 @@ public with sharing class ReferenceUtility {
 
 	public static User getUserByCPU(String cpu) {
 		if (!String.isEmpty(cpu)) {
-			for (User user : [SELECT Id FROM User WHERE CommissionAccountNr__c = :cpu LIMIT 1]) {
+			for (User user : [SELECT Id FROM User WHERE CommissionAccountBase__c = :cpu LIMIT 1]) {
 				return user;
 			}
 		}

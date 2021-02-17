@@ -133,6 +133,7 @@ public class TestDataFactory {
 			Username = username + '@mail.invalid',
 			Email = username + '@mail.invalid',
 			CommissionAccountNr__c = 'CPU' + userCounter,
+			CommissionAccountBase__c = 'B' + userCounter,
 			ProfileId = profileId,
 			Alias = 'tstU',
 			TimeZoneSidKey = 'Europe/Prague',
@@ -217,7 +218,7 @@ public class TestDataFactory {
 		if (template.PortfolioManagerCPU__c == null) {
 			User u = getUser(new User());
 			insert u;
-			template.PortfolioManagerCPU__c = u.CommissionAccountNr__c;
+			template.PortfolioManagerCPU__c = u.CommissionAccountBase__c;
 		}
 		if (template.Account__c == null) {
 			Account a = getAccount();
