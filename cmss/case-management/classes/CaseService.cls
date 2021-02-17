@@ -143,8 +143,8 @@ public with sharing class CaseService {
 		complainerContractorCPUs.remove(null);
 		contractorCPUs.remove(null);
 		Map<String, Id> usersByCPU = new Map<String, Id>();
-		for (User u : [SELECT Id, CommissionAccountNr__c FROM User WHERE CommissionAccountNr__c IN :complainerContractorCPUs OR CommissionAccountNr__c IN :contractorCPUs]) {
-			usersByCPU.put(u.CommissionAccountNr__c, u.Id);
+		for (User u : [SELECT Id, CommissionAccountBase__c FROM User WHERE CommissionAccountBase__c IN :complainerContractorCPUs OR CommissionAccountBase__c IN :contractorCPUs]) {
+			usersByCPU.put(u.CommissionAccountBase__c, u.Id);
 		}
 		for (Case c : newList) {
 			if (oldMap == null || oldMap.get(c.Id).ComplainerContractorCPU__c != c.ComplainerContractorCPU__c) {

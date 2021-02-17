@@ -11,8 +11,8 @@ public without sharing class PortfolioManagementRequestService {
 		}
 		userCPUs.remove(null);
 		Map<String, Id> usersByCPU = new Map<String, Id>();
-		for (User u : [SELECT Id, CommissionAccountNr__c FROM User WHERE CommissionAccountNr__c IN :userCPUs]) {
-			usersByCPU.put(u.CommissionAccountNr__c, u.Id);
+		for (User u : [SELECT Id, CommissionAccountBase__c FROM User WHERE CommissionAccountBase__c IN :userCPUs]) {
+			usersByCPU.put(u.CommissionAccountBase__c, u.Id);
 		}
 		for (PortfolioManagementRequest__c pmr : newList) {
 			if (oldMap == null || oldMap.get(pmr.Id).PortfolioManagerCPU__c != pmr.PortfolioManagerCPU__c) {
@@ -43,7 +43,7 @@ public without sharing class PortfolioManagementRequestService {
 	private static void changeCPEClientStateFuture(Set<Id> pmrIds, String batchId) {
 		try {
 			PortfolioManagementRequest__c[] pmrs = [
-				SELECT Account__c, Account__r.GlobalId__c, PortfolioManChangeReason__c, ValidFrom__c, PortfolioManagementType__c, PortfolioManager__r.CommissionAccountNr__c
+				SELECT Account__c, Account__r.GlobalId__c, PortfolioManChangeReason__c, ValidFrom__c, PortfolioManagementType__c, PortfolioManager__r.CommissionAccountBase__c
 				FROM PortfolioManagementRequest__c
 				WHERE Id IN :pmrIds
 			];
@@ -53,7 +53,7 @@ public without sharing class PortfolioManagementRequestService {
 			};
 
 			for (PortfolioManagementRequest__c pmr : pmrs) {
-				if (pmr.PortfolioManager__r.CommissionAccountNr__c != null &&
+				if (pmr.PortfolioManager__r.CommissionAccountBase__c != null &&
 					pmr.Account__c != null &&
 					pmr.PortfolioManChangeReason__c != null &&
 					pmr.ValidFrom__c != null &&
@@ -68,9 +68,9 @@ public without sharing class PortfolioManagementRequestService {
 					item.validFrom = item.validFrom.substring(0, item.validFrom.length() - 2) + ':00';
 					item.portfolioManagementType = pmr.PortfolioManagementType__c;
 					if (pmr.PortfolioManagementType__c == 'A') {
-						item.spS_A = pmr.PortfolioManager__r.CommissionAccountNr__c;
+						item.spS_A = pmr.PortfolioManager__r.CommissionAccountBase__c;
 					} else {
-						item.spS_C = pmr.PortfolioManager__r.CommissionAccountNr__c;
+						item.spS_C = pmr.PortfolioManager__r.CommissionAccountBase__c;
 					}
 
 					clientStates.listOfClientsStatesItem.add(item);
