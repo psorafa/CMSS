@@ -112,6 +112,14 @@ public class ConsentCalloutService {
 				ConsentDataTypesService.EnableGeneralConsentResponseType response_x = new ConsentDataTypesService.EnableGeneralConsentResponseType(EnableGeneralConsentResponseNode);
 				return response_x.responseBody;
 			}
+            Dom.XmlNode faultNode = bodyNode.getChildElement('Fault', 'http://schemas.xmlsoap.org/soap/envelope/');
+            if (faultNode != null) {
+                Dom.XmlNode faultstringNode = faultNode.getChildElement('faultstring', null);
+                ConsentDataTypesService.EnableGeneralConsentResponseType response_x = new ConsentDataTypesService.EnableGeneralConsentResponseType();
+                response_x.responseBody = new ConsentDataTypesService.EnableGeneralConsentResponseBodyType();
+                response_x.responseBody.responseMessage = (faultstringNode == null) ? null : faultstringNode.getText();
+                return response_x.responseBody;
+            }
 			return null;
 		}
 

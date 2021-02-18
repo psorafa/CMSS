@@ -115,6 +115,7 @@
     <enableFeeds>false</enableFeeds>
     <searchLayouts>
         <searchResultsAdditionalFields>TASK.SUBJECT</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TASK.TYPE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>TASK.WHO_NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>TASK.WHAT_NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>TASK.DUE_DATE</searchResultsAdditionalFields>

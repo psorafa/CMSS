@@ -888,6 +888,7 @@ public class ConsentDataTypesService {
 	}
 	public class EnableGeneralConsentResponseBodyType {
 		public String consentGuid;
+        public String responseMessage;
 		private transient String[] consentGuid_type_info = new String[]{'consentGuid',s_ns0,'AlphanumericIdType','0','1','false'};
 		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
 		private transient String[] field_order_type_info = new String[]{'consentGuid'};

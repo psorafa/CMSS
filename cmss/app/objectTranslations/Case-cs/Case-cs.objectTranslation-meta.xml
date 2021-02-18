@@ -348,4 +348,8 @@
         Pole Odeslání odpovědi na podání musí být vyplněno před nastavením Statusu na Vyřešeno.</errorMessage>
         <name>StatusCompletedOnlyIfResponseSentFilled</name>
     </validationRules>
+    <validationRules>
+        <errorMessage>Nelze změnit stav již uzavřeného podání</errorMessage>
+        <name>StatusOnceClosedCantBeChanged</name>
+    </validationRules>
 </CustomObjectTranslation>

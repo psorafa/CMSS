@@ -12,9 +12,6 @@
     </aggregates>
     <block>
         <blockInfo>
-            <aggregateReferences>
-                <aggregate>FORMULA1</aggregate>
-            </aggregateReferences>
             <blockId>B0</blockId>
             <joinTable>s</joinTable>
         </blockInfo>
@@ -30,6 +27,29 @@
             <aggregateTypes>Sum</aggregateTypes>
             <field>Case.reportComplaintsFinancialImpactFormula__c</field>
         </columns>
+        <filter>
+            <criteriaItems>
+                <column>RECORDTYPE</column>
+                <columnToColumn>false</columnToColumn>
+                <isUnlocked>false</isUnlocked>
+                <operator>equals</operator>
+                <value>Case.ClientClaimConfirmationSent,Case.ClosedClientClaim,Case.NewClientClaim</value>
+            </criteriaItems>
+            <criteriaItems>
+                <column>Case.ReceivedDate__c</column>
+                <columnToColumn>false</columnToColumn>
+                <isUnlocked>true</isUnlocked>
+                <operator>equals</operator>
+                <value>TODAY</value>
+            </criteriaItems>
+            <criteriaItems>
+                <column>Case.ReceivedDate__c</column>
+                <columnToColumn>false</columnToColumn>
+                <isUnlocked>true</isUnlocked>
+                <operator>equals</operator>
+                <value/>
+            </criteriaItems>
+        </filter>
         <format>Summary</format>
         <name>Celkové počty</name>
         <params>
@@ -69,6 +89,43 @@
         </filter>
         <format>Summary</format>
         <name>Průměrná doba vyřízení</name>
+        <params>
+            <name>units</name>
+            <value>h</value>
+        </params>
+        <params>
+            <name>co</name>
+            <value>1</value>
+        </params>
+        <reportType>CaseList</reportType>
+        <scope>organization</scope>
+        <showGrandTotal>true</showGrandTotal>
+        <showSubTotals>true</showSubTotals>
+        <timeFrameFilter>
+            <dateColumn>CREATED_DATEONLY</dateColumn>
+            <interval>INTERVAL_CUSTOM</interval>
+        </timeFrameFilter>
+    </block>
+    <block>
+        <blockInfo>
+            <blockId>B2</blockId>
+            <joinTable>s</joinTable>
+        </blockInfo>
+        <columns>
+            <aggregateTypes>Sum</aggregateTypes>
+            <field>Case.CompensationAmount__c</field>
+        </columns>
+        <filter>
+            <criteriaItems>
+                <column>Case.reportComplaintsFinancialImpactFormula__c</column>
+                <columnToColumn>false</columnToColumn>
+                <isUnlocked>false</isUnlocked>
+                <operator>equals</operator>
+                <value>1</value>
+            </criteriaItems>
+        </filter>
+        <format>Summary</format>
+        <name>Celková částka finančních prostředků</name>
         <params>
             <name>units</name>
             <value>h</value>

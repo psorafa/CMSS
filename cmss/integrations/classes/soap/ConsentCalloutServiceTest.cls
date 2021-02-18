@@ -17,22 +17,33 @@ private class ConsentCalloutServiceTest {
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		Consent__c c = TestDataFactory.getConsent(new Consent__c());
-		GeneralConsentEnablement.Request r = new GeneralConsentEnablement.Request();
-		r.consentEntityId = c.EntityConsent__c;
-		r.consentVersionId = c.GeneralConsentVersion__c;
-		r.agentCPU = c.AgentCPU__c;
-		r.accountId = c.Account__c;
-		r.substitutePersonId = c.SubstitutePerson__c;
-		r.substituteRoleId = c.SubstituteRole__c;
 
 		Test.startTest();
-		GeneralConsentEnablement.Result[] response = GeneralConsentEnablement.enableGeneralConsents(new GeneralConsentEnablement.Request[]{
-			r
-		});
+		String response = GeneralConsentEnablement.enableGeneralConsents(c);
 		Test.stopTest();
 
-		System.assert(response != null && response[0] != null);
-		System.assert(response[0].externalId.contains('E8FF097A-B0D4-4A19-BC37-3509B762FE3A'));
+		System.assert(response == 'OK');
+        System.assert([SELECT Id FROM Consent__c].size() == 1);
+	}
+
+    @IsTest
+	static void testEnableGeneralConsentError() {
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+			500,
+			'Internal Server Error',
+			'<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><soapenv:Fault><faultcode>soapenv:Server</faultcode><faultstring>Připojení k CPE DB se nezdařilo</faultstring><detail><ns2:CMSSServiceFaultInfo xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01" xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes"><ns2:errorNumber>57101</ns2:errorNumber><ns2:faultHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>56bb5218-3421-4080-b42c-99ff9532d0c1</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-02-17T11:06:19.956+01:00</ns2:timestamp><ns2:userId>0051j000006IxpjAAC</ns2:userId></ns2:faultHeader><ns2:message>Připojení k CPE DB se nezdařilo</ns2:message><ns2:system>ESB</ns2:system></ns2:CMSSServiceFaultInfo></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>',
+			null,
+			null);
+		Test.setMock(HttpCalloutMock.class, fakeResponse);
+
+		Consent__c c = TestDataFactory.getConsent(new Consent__c());
+
+		Test.startTest();
+		String response = GeneralConsentEnablement.enableGeneralConsents(c);
+		Test.stopTest();
+
+		System.assert(response == 'Připojení k CPE DB se nezdařilo');
+        System.assert([SELECT Id FROM Consent__c].size() == 0);
 	}
 
 	@IsTest

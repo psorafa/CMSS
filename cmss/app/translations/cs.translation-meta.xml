@@ -89,6 +89,10 @@
         <name>PostCommunication</name>
     </customLabels>
     <customLabels>
+        <label>Záznamy byly úspěšně vytvořeny.</label>
+        <name>RecordsCreated</name>
+    </customLabels>
+    <customLabels>
         <label>Vztah</label>
         <name>Relation</name>
     </customLabels>
@@ -162,23 +166,6 @@
             </screens>
         </flows>
         <fullName>EventWithObjUpdate</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows>
-            <screens>
-                <fields>
-                    <name>SuccessMessage_0</name>
-                </fields>
-                <name>ErrorScreen</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>SuccessMessage</name>
-                </fields>
-                <name>SuccessScreen</name>
-            </screens>
-        </flows>
-        <fullName>GeneralConsentCreation</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
