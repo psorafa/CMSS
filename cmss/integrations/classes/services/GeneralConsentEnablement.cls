@@ -1,15 +1,12 @@
 public with sharing class GeneralConsentEnablement {
 
-	@InvocableMethod
-	public static Result[] enableGeneralConsents(Request[] requests) {
+	@AuraEnabled
+	public static String enableGeneralConsents(Consent__c c) {
 		try {
-			Result[] results = new Result[]{
-			};
-
 			Set<Id> accountIds = new Set<Id>();
-			accountIds.add(requests[0].accountId);
-            if (String.isNotBlank(requests[0].substitutePersonId)) {
-                accountIds.add(requests[0].substitutePersonId);
+			accountIds.add(c.Account__c);
+            if (String.isNotBlank(c.SubstitutePerson__c)) {
+                accountIds.add(c.SubstitutePerson__c);
             }
 
 			Map<Id, Account> idsToAccounts = new Map<Id, Account>([
@@ -18,68 +15,44 @@ public with sharing class GeneralConsentEnablement {
 				WHERE Id IN :accountIds
 			]);
 
-			Account client = idsToAccounts.get(requests[0].accountId);
+			Account client = idsToAccounts.get(c.Account__c);
 			Validation.requireAttribute(client, 'Account');
 			Validation.requireAttribute(client.GlobalId__c, 'GlobalId__c');
 			Account substitutePerson;
-            if (String.isNotBlank(requests[0].substitutePersonId)) {
-                substitutePerson = idsToAccounts.get(requests[0].substitutePersonId);
+            if (String.isNotBlank(c.SubstitutePerson__c)) {
+                substitutePerson = idsToAccounts.get(c.SubstitutePerson__c);
             }
 
 			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
 			ConsentCalloutService.ConsentServicePort stub = new ConsentCalloutService.ConsentServicePort();
 			ConsentDataTypesService.EnableGeneralConsentRequestBodyType body = new ConsentDataTypesService.EnableGeneralConsentRequestBodyType();
-			body.consentEntityId = requests[0].consentEntityId;
-			body.consentVersionId = requests[0].consentVersionId;
+			body.consentEntityId = c.EntityConsent__c;
+			body.consentVersionId = c.GeneralConsentVersion__c;
 			body.globalId = client.GlobalId__c;
 			body.consentSourceId = '20';
 			body.validFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
 			body.validFrom = body.validFrom.substring(0, body.validFrom.length() - 2) + ':00';
-			body.agentCPU = requests[0].agentCPU;
+			body.agentCPU = c.AgentCPU__c;
 			if (substitutePerson != null) {
 				body.substitutePersonId = substitutePerson.GlobalId__c;
 			}
-			body.substituteRoleId = requests[0].substituteRoleId;
+			body.substituteRoleId = c.SubstituteRole__c;
 			ConsentDataTypesService.EnableGeneralConsentResponseBodyType response = stub.enableGeneralConsent_Http(header, body);
 			if (response != null) {
-				results.add(new Result(response.consentGuid));
+                if (response.consentGuid != null) {
+                    c.ExternalId__c = response.consentGuid;
+                    insert c;
+                    return 'OK';
+                } else {
+                    return response.responseMessage;
+                }
 			}
-
-			return results;
+            return null;
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
-			return null;
+			return e.getMessage();
 		} finally {
 			Logger.saveLogs();
 		}
-	}
-
-	public class Request {
-		@InvocableVariable(Label='Consent Entity Id' Required=true)
-		public String consentEntityId;
-
-		@InvocableVariable(Label='Consent Version Id' Required=true)
-		public String consentVersionId;
-
-		@InvocableVariable(Label='Agent CPU' Required=false)
-		public String agentCPU;
-
-		@InvocableVariable(Label='Account Id' Required=true)
-		public String accountId;
-
-		@InvocableVariable(Label='Substitute Person Id' Required=false)
-		public String substitutePersonId;
-
-		@InvocableVariable(Label='Substitute Role Id' Required=false)
-		public String substituteRoleId;
-	}
-
-	public class Result {
-		public Result(String externalId) {
-			this.externalId = externalId;
-		}
-
-		@InvocableVariable(Label='External Id' Required=true)
-		public String externalId;
 	}
 }

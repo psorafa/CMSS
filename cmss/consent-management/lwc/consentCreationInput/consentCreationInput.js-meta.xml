@@ -3,13 +3,8 @@
     <apiVersion>50.0</apiVersion>
     <isExposed>true</isExposed>
     <targets>
-        <target>lightning__FlowScreen</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
     </targets>
-    <targetConfigs>
-        <targetConfig targets="lightning__FlowScreen">
-            <propertyType name="T" extends="SObject" label="Object API Name" />
-            <property name="generalConsent" type="{T}" label="General Consent" role="outputOnly" />
-            <property name="accountId" type="String" label="Account ID" role="inputOnly" />
-        </targetConfig>
-    </targetConfigs>
 </LightningComponentBundle>
