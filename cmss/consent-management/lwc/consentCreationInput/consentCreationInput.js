@@ -1,32 +1,35 @@
-import { LightningElement, api, wire } from 'lwc';
-import { FlowNavigationNextEvent } from 'lightning/flowSupport';
+import { LightningElement, api, wire, track } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
-import save from '@salesforce/label/c.Save';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import enableGeneralConsents from '@salesforce/apex/GeneralConsentEnablement.enableGeneralConsents';
 import AGE from '@salesforce/schema/Account.Age__c';
+import save from '@salesforce/label/c.Save';
+import cancel from '@salesforce/label/c.Cancel';
+import errorMessage from '@salesforce/label/c.Error';
+import recordsCreated from '@salesforce/label/c.RecordsCreated';
+import newConsent from '@salesforce/label/c.NewConsent';
 
 export default class ConsentCreationInput extends LightningElement {
-    @api availableActions = [];
-    @api generalConsent = {};
+    @track generalConsent = {};
     @api accountId;
-    label = {
-        save
+    isSaving = false;
+    labels = {
+        save,
+        cancel,
+        newConsent
     };
 
     @wire(getRecord, { recordId: '$accountId', fields: [AGE] })
     account({ error, data }) {
         if (data) {
-            let substitutePerson = this.template.querySelector('[data-id="SubstitutePerson__c"]')
-            let substituteRole = this.template.querySelector('[data-id="SubstituteRole__c"]')
-            substitutePerson.required = data.fields.Age__c.value && data.fields.Age__c.value < 18;
-            substituteRole.required = data.fields.Age__c.value && data.fields.Age__c.value < 18;
-        } else if (error) {
-            let message = 'Unknown error';
-            if (Array.isArray(error.body)) {
-                message = error.body.map(e => e.message).join(', ');
-            } else if (typeof error.body.message === 'string') {
-                message = error.body.message;
+            if (data.fields.Age__c.value) {
+                let substitutePerson = this.template.querySelector('[data-id="SubstitutePerson__c"]')
+                let substituteRole = this.template.querySelector('[data-id="SubstituteRole__c"]')
+                substitutePerson.required = data.fields.Age__c.value < 18;
+                substituteRole.required = data.fields.Age__c.value < 18;
             }
-            console.log(message)
+        } else if (error) {
+            this.handleErrors(error);
         }
     }
 
@@ -39,27 +42,68 @@ export default class ConsentCreationInput extends LightningElement {
         }
     }
 
-    handleGoNext() {
-        if (this.availableActions.find(action => action === 'NEXT')) {
-            let isValid = true;
-            const inputFields = this.template.querySelectorAll('lightning-input-field');
-            if (inputFields) {
-                inputFields.forEach(field => {
-                    if (field.required && !field.value) {
-                        isValid = false;
-                        field.reportValidity();
-                    }
-                    this.generalConsent[field.fieldName] = field.value;
-                });
-            } else {
-                return;
-            }
+    handleClose() {
+        const valueChangeEvent = new CustomEvent("valuechange", {
+            isClosed: true
+        });
+        this.dispatchEvent(valueChangeEvent);
+    }
 
-            if (isValid) {
-                this.dispatchEvent(new FlowNavigationNextEvent());
-            } else {
-                this.generalConsent = {};
-            }
+    handleSave() {
+        this.toggleSpinner();
+        let isValid = true;
+        const inputFields = this.template.querySelectorAll('lightning-input-field');
+        if (inputFields) {
+            inputFields.forEach(field => {
+                if (field.required && !field.value) {
+                    isValid = false;
+                    field.reportValidity();
+                }
+                this.generalConsent[field.fieldName] = field.value;
+            });
+        } else {
+            return;
         }
+
+        if (isValid) {
+            this.generalConsent.Account__c = this.accountId;
+            enableGeneralConsents({ c: this.generalConsent })
+                .then(data => {
+                    if (data === 'OK') {
+                        this.fireToast('success', recordsCreated);
+                        this.handleClose();
+                    } else if (data) {
+                        this.fireToast('error', errorMessage, data);
+                    } else {
+                        this.fireToast('error', errorMessage);
+                    }
+                    this.toggleSpinner();
+                })
+                .catch(error => {
+                    this.handleErrors(error);
+                    this.toggleSpinner();
+                });
+        } else {
+            this.generalConsent = {};
+            this.toggleSpinner();
+        }
+    }
+
+    handleErrors(error) {
+        console.log(JSON.stringify(error))
+        this.fireToast('error', errorMessage);
+    }
+
+    toggleSpinner() {
+        this.isSaving = !this.isSaving;
+    }
+
+    fireToast(variant, title, message) {
+        const evt = new ShowToastEvent({
+            variant: variant,
+            title: title,
+            message: message,
+        });
+        this.dispatchEvent(evt);
     }
 }
