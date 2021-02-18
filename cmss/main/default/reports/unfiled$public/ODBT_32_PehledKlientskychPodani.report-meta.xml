@@ -12,9 +12,6 @@
             <field>Case$ReceivedDate__c</field>
         </columns>
         <columns>
-            <field>Case$PostCodeID__c</field>
-        </columns>
-        <columns>
             <field>Case$SourceDescription__c</field>
         </columns>
         <columns>
@@ -75,6 +72,10 @@
             <field>Case$AccountingFundsType__c</field>
         </columns>
         <columns>
+            <aggregateTypes>Sum</aggregateTypes>
+            <field>Case$CompensationAmount__c</field>
+        </columns>
+        <columns>
             <field>Case$CorrectionAccountingType__c</field>
         </columns>
         <columns>
@@ -82,6 +83,10 @@
         </columns>
         <columns>
             <field>Case$InternalPrecautionType__c</field>
+        </columns>
+        <columns>
+            <aggregateTypes>Sum</aggregateTypes>
+            <field>Case$Amount__c</field>
         </columns>
         <columns>
             <field>Case$PrecautionNote__c</field>
