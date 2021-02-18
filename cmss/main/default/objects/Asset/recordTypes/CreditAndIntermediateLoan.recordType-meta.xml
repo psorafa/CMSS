@@ -1820,19 +1820,11 @@
     <picklistValues>
         <picklist>StateCode__c</picklist>
         <values>
+            <fullName>0</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>1</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>2</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>3</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>4</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1983,6 +1975,14 @@
     </picklistValues>
     <picklistValues>
         <picklist>Status__c</picklist>
+        <values>
+            <fullName>0000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>0001</fullName>
+            <default>false</default>
+        </values>
         <values>
             <fullName>10001</fullName>
             <default>false</default>

@@ -3,6 +3,14 @@
     <label>Detailní stav</label>
     <name>Status__c</name>
     <picklistValues>
+        <masterLabel>0000</masterLabel>
+        <translation>Aktivní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>0001</masterLabel>
+        <translation>Neaktivní</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>10001</masterLabel>
         <translation>Pořízeno</translation>
     </picklistValues>
