@@ -141,26 +141,10 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>childObjectName</name>
-                <value>Account</value>
+                <name>portManType</name>
+                <value>A</value>
             </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>columns</name>
-                <value>Name,CombinedName__c,BillingStreet,BillingCity,BillingPostalCode,Phone,CompanyEmail__c,PersonEmail,PersonType__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>iconName</name>
-                <value>standard:person_account</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>listName</name>
-                <value>Portfolio Management A</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>parentFieldName</name>
-                <value>PortfolioMngmtA__c</value>
-            </componentInstanceProperties>
-            <componentName>filterableRelatedList</componentName>
+            <componentName>accountRelatedList</componentName>
         </componentInstances>
         <name>Facet-2d81126e-7220-4c59-a41a-78855e9133e7</name>
         <type>Facet</type>
@@ -168,26 +152,10 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>childObjectName</name>
-                <value>Account</value>
+                <name>portManType</name>
+                <value>C</value>
             </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>columns</name>
-                <value>Name,CombinedName__c,BillingStreet,BillingCity,BillingPostalCode,Phone,CompanyEmail__c,PersonEmail,PersonType__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>iconName</name>
-                <value>standard:person_account</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>listName</name>
-                <value>Portfolio Management C</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>parentFieldName</name>
-                <value>PortfolioMngmtC__c</value>
-            </componentInstanceProperties>
-            <componentName>filterableRelatedList</componentName>
+            <componentName>accountRelatedList</componentName>
         </componentInstances>
         <name>Facet-e02399a5-334d-4ced-8d44-aa284e5deeaf</name>
         <type>Facet</type>

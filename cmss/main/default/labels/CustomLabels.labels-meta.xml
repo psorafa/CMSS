@@ -17,6 +17,14 @@
         <value>Assets</value>
     </labels>
     <labels>
+        <fullName>BulkOwnershipStateChange</fullName>
+        <categories>Portfolio Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Bulk Ownership State Change</shortDescription>
+        <value>Bulk Ownership State Change</value>
+    </labels>
+    <labels>
         <fullName>Cancel</fullName>
         <categories>FlowFooterHelper</categories>
         <language>en_US</language>
@@ -190,6 +198,14 @@
         <value>Relation</value>
     </labels>
     <labels>
+        <fullName>RequiredFields</fullName>
+        <categories>Portfolio Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required Fields</shortDescription>
+        <value>Please, fill in all required fields.</value>
+    </labels>
+    <labels>
         <fullName>RequiredFieldsMessage</fullName>
         <categories>CustomerSearch</categories>
         <language>en_US</language>
@@ -214,6 +230,14 @@
         <value>Search</value>
     </labels>
     <labels>
+        <fullName>SelectAll</fullName>
+        <categories>Portfolio Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select All</shortDescription>
+        <value>Select All</value>
+    </labels>
+    <labels>
         <fullName>SmsCommunication</fullName>
         <categories>Consents</categories>
         <language>en_US</language>
@@ -228,5 +252,13 @@
         <protected>false</protected>
         <shortDescription>YouDoNotHavePermissionToDeleteCases</shortDescription>
         <value>You do not have permissions to delete cases</value>
+    </labels>
+    <labels>
+        <fullName>TransferAllClients</fullName>
+        <categories>Portfolio Management</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Transfer All Clients</shortDescription>
+        <value>Transfer All Clients</value>
     </labels>
 </CustomLabels>

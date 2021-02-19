@@ -15,8 +15,14 @@ public with sharing class AccountRelatedListController {
         return ai;
     }
 
+    @AuraEnabled(cacheable=true)
+    public static Id getUserId(String commAccountNr) {
+        User[] users = [SELECT Id FROM User WHERE CommissionAccountNr__c = :commAccountNr];
+        return users.size() > 0 ? users[0].Id : null;
+    }
+
     @AuraEnabled
-    public static void createPortManRequests(PortfolioManagementRequest__c pmr, Id userId, String portManType) {
+    public static void createPortManRequestsForUsersClients(PortfolioManagementRequest__c pmr, Id userId, String portManType) {
         PortfolioManagementRequest__c[] pmrs = new PortfolioManagementRequest__c[]{};
         for (Account a : queryAccounts(userId, portManType, null, null, 50000, 0)) {
             clonePMR(pmrs, pmr, a.Id);

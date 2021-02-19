@@ -3,7 +3,18 @@ import ACCOUNT_OBJ from '@salesforce/schema/Account';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getAccounts from '@salesforce/apex/AccountRelatedListController.getAccounts';
+import getUserId from '@salesforce/apex/AccountRelatedListController.getUserId';
 import createPortManRequests from '@salesforce/apex/AccountRelatedListController.createPortManRequests';
+import createPortManRequestsForUsersClients from '@salesforce/apex/AccountRelatedListController.createPortManRequestsForUsersClients';
+import save from '@salesforce/label/c.Save';
+import cancel from '@salesforce/label/c.Cancel';
+import selectAll from '@salesforce/label/c.SelectAll';
+import bulkOwnershipStateChange from '@salesforce/label/c.BulkOwnershipStateChange';
+import transferAllClients from '@salesforce/label/c.TransferAllClients';
+import errorMessage from '@salesforce/label/c.Error';
+import requiredFields from '@salesforce/label/c.RequiredFields';
+import recordsCreated from '@salesforce/label/c.RecordsCreated';
+import noRecordsFound from '@salesforce/label/c.NoRecordsFound';
 
 const recordsToShow = 50;
 
@@ -22,6 +33,14 @@ export default class AccountRelatedList extends LightningElement {
     billingCity;
     billingPostalCode;
     isModalOpen = false;
+    isSaving = false;
+    labels = {
+        save,
+        cancel,
+        selectAll,
+        bulkOwnershipStateChange,
+        transferAllClients
+    };
 
     get cityLabel() {
         return ( this.accountFieldLabels && this.accountFieldLabels.BillingCity && this.accountFieldLabels.BillingCity.label ) || '';
@@ -53,7 +72,7 @@ export default class AccountRelatedList extends LightningElement {
             ];
             this.accountFieldLabels = data.fields;
         } else if (error) {
-            this.fireToast('error', 'Error', 'Unfortunately, there was an error.');
+            this.fireToast('error', errorMessage);
         }
     }
 
@@ -70,7 +89,6 @@ export default class AccountRelatedList extends LightningElement {
                 recordsToShow, 
                 this.offset, 
                 data => {
-                    console.log(JSON.stringify(data))
                     this.accountCount = data.accountCount;
                     this.data = this.data.concat(data.accounts);
                     this.setInfiniteLoading();
@@ -92,15 +110,30 @@ export default class AccountRelatedList extends LightningElement {
             50000, 
             0, 
             data => {
-                console.log(JSON.stringify(data))
                 this.accountCount = data.accountCount;
                 this.selectedData = data.accounts.map(row => row.Id);
         })
-        this.openModal();
+        this.changeModalVisibility();
     }
 
-    handleValueChange(event) {
+    handleSelectedRows() {
+        if (this.selectedData && this.selectedData.length > 0) {
+            this.changeModalVisibility();
+        } else {
+            this.fireToast('error', noRecordsFound);
+        }
+    }
+
+    handlePMRValueChange(event) {
         this.portManRequest[event.target.fieldName] = event.target.value;
+        if (event.target.fieldName === 'PortfolioManagerCPU__c') {
+            getUserId({ commAccountNr: event.target.value })
+                .then(data => {
+                    this.template.querySelector('[data-element="PortfolioManager__c"]').value = data;
+                    this.portManRequest['PortfolioManager__c'] = data;
+                })
+                .catch(error => { this.handleErrors(error, errorMessage, false) });
+        }
     }
 
     handleCheckboxChange() {
@@ -122,7 +155,6 @@ export default class AccountRelatedList extends LightningElement {
             recordsToShow, 
             this.offset, 
             data => {
-                console.log(JSON.stringify(data))
                 this.accountCount = data.accountCount;
                 this.data = data.accounts;
                 this.setInfiniteLoading();
@@ -139,42 +171,58 @@ export default class AccountRelatedList extends LightningElement {
             offset: offset
         })
         .then(thenFunction)
-        .catch(error => {
-            console.log(JSON.stringify(error))
-            this.fireToast('error', 'Error', 'Unfortunately, there was an error.');
-        });
+        .catch(error => { this.handleErrors(error, errorMessage, false) });
     }
 
     getSelectedRows(event) {
         this.selectedData = event.detail.selectedRows.map(row => row.Id);
     }
 
-    openModal() {
-        this.isModalOpen = true
+    changeModalVisibility() {
+        this.portManRequest = {};
+        this.isModalOpen = !this.isModalOpen;
     }
 
-    closeModal() {
-        this.isModalOpen = false
-    } 
-
     saveModal() {
+        if (!this.portManRequest.PortfolioManager__c || !this.portManRequest.PortfolioManagerCPU__c) {
+            this.fireToast('error', errorMessage, requiredFields);
+            return;
+        }
+
+        this.toggleSpinner();
+
+        this.portManRequest.PortfolioManagementType__c = this.portManType;
         const parameters = { pmr: this.portManRequest }
         if (this.transferAllClients) {
             parameters.userId = this.recordId;
             parameters.portManType = this.portManType;
+            createPortManRequestsForUsersClients(parameters)
+                .then(data => { this.handleCreatePMRSuccess(recordsCreated) })
+                .catch(error => { this.handleErrors(error, errorMessage, true) });
         } else {
             parameters.accountIds = this.selectedData;
+            createPortManRequests(parameters)
+                .then(data => { this.handleCreatePMRSuccess(recordsCreated) })
+                .catch(error => { this.handleErrors(error, errorMessage, true) });
         }
-        createPortManRequests(parameters)
-            .then(data => {
-                console.log(JSON.stringify(data))
-                this.fireToast('success', 'Success', 'The records have been successfully created.');
-                this.closeModal();
-            })
-            .catch(error => {
-                console.log(JSON.stringify(error))
-                this.fireToast('error', 'Error', 'Unfortunately, there was an error.');
-            });
+    }
+
+    handleCreatePMRSuccess(toastMessage) {
+        this.fireToast('success', toastMessage);
+        this.changeModalVisibility();
+        this.toggleSpinner();
+    }
+
+    handleErrors(error, toastMessage, disableSpinner) {
+        console.log(JSON.stringify(error))
+        this.fireToast('error', toastMessage);
+        if (disableSpinner) {
+            this.toggleSpinner();
+        }
+    }
+
+    toggleSpinner() {
+        this.isSaving = !this.isSaving;
     }
 
     fireToast(variant, title, message) {
