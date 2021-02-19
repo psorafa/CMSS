@@ -25,17 +25,17 @@ private class AccountRelatedListControllerTest {
 
     @IsTest
     static void testGetUserId() {
-        User u = TestDataFactory.getUser(new User());
+        User u = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CommAccNr1'));
         insert u;
 
-        System.assertEquals(u.Id, AccountRelatedListController.getUserId('CPU1'));
+        System.assertEquals(u.Id, AccountRelatedListController.getUserId('CommAccNr1'));
         System.assertNotEquals(u.Id, AccountRelatedListController.getUserId(null));
     }
 
     @IsTest
     static void testCreatePortManRequests() {
-        User u = TestDataFactory.getUser(new User());
-        User u2 = TestDataFactory.getUser(new User());
+        User u = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CommAccNr1'));
+        User u2 = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CommAccNr2'));
         insert new User[]{ u, u2 };
 
         Account[] accs = new Account[]{ 
@@ -54,7 +54,7 @@ private class AccountRelatedListControllerTest {
 
         Test.startTest();
         PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(new PortfolioManagementRequest__c(
-            PortfolioManagerCPU__c = 'CPU1',
+            PortfolioManagerCPU__c = 'CommAccNr1',
             PortfolioManager__c = u.Id
         ));
         AccountRelatedListController.createPortManRequestsForUsersClients(pmr, u2.Id, 'A');
@@ -64,12 +64,12 @@ private class AccountRelatedListControllerTest {
         System.assertEquals(u.Id, pmrs[0].PortfolioManager__c);
 
         PortfolioManagementRequest__c pmr2 = TestDataFactory.getPortfolioManagementRequest(new PortfolioManagementRequest__c(
-            PortfolioManagerCPU__c = 'CPU2',
+            PortfolioManagerCPU__c = 'CommAccNr2',
             PortfolioManager__c = u2.Id
         ));
         AccountRelatedListController.createPortManRequests(pmr2, new String[]{ accs[0].Id, accs[1].Id });
 
-        pmrs = [SELECT PortfolioManager__c FROM PortfolioManagementRequest__c WHERE PortfolioManagerCPU__c = 'CPU2'];
+        pmrs = [SELECT PortfolioManager__c FROM PortfolioManagementRequest__c WHERE PortfolioManagerCPU__c = 'CommAccNr2'];
         System.assertEquals(2, pmrs.size());
         System.assertEquals(u2.Id, pmrs[0].PortfolioManager__c);
         System.assertEquals(u2.Id, pmrs[1].PortfolioManager__c);
