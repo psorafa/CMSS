@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>SolverDepartmentNumber__c</fullName>
+    <defaultValue>$User.Department</defaultValue>
     <description>Číslo útvaru řešitele, automaticky se doplní dle zvoleného řešitele</description>
     <externalId>false</externalId>
     <label>Solver Department Number</label>
-    <precision>18</precision>
+    <length>255</length>
     <required>false</required>
-    <scale>0</scale>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Number</type>
+    <type>Text</type>
     <unique>false</unique>
 </CustomField>
