@@ -121,6 +121,46 @@
             <field>PortfolioManager__c.CommissionAccountBase__c</field>
             <table>PortfolioManagementC__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PortfolioManager__c.AgentActivityType__c</field>
+            <table>PortfolioManagementC__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PortfolioManager__c.FirstName</field>
+            <table>PortfolioManagementC__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PortfolioManager__c.LastName</field>
+            <table>PortfolioManagementC__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PortfolioManager__c.Manager.CommissionAccountBase__c</field>
+            <table>PortfolioManagementC__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PortfolioManager__c.ManagerKP__c.CommissionAccountBase__c</field>
+            <table>PortfolioManagementC__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PortfolioManager__c.Status__c</field>
+            <table>PortfolioManagementC__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PortfolioManager__c.CooperationEndDate__c</field>
+            <table>PortfolioManagementC__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PortfolioManager__c.AgentActivityEndDate__c</field>
+            <table>PortfolioManagementC__c</table>
+        </columns>
         <masterLabel>Portfolio Management C</masterLabel>
     </sections>
 </ReportType>

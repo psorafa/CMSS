@@ -13,5 +13,10 @@
         <operation>equals</operation>
         <value>Asset.CreditAndIntermediateLoan</value>
     </filters>
+    <filters>
+        <field>ProductCloseDate__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>LAST_MONTH</value>
+    </filters>
     <label>Úvěry a meziúvěry</label>
 </ListView>
