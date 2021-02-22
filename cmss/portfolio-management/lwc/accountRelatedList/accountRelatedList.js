@@ -127,7 +127,7 @@ export default class AccountRelatedList extends LightningElement {
     handlePMRValueChange(event) {
         this.portManRequest[event.target.fieldName] = event.target.value;
         if (event.target.fieldName === 'PortfolioManagerCPU__c') {
-            getUserId({ commAccountNr: event.target.value })
+            getUserId({ commAccountBase: event.target.value })
                 .then(data => {
                     this.template.querySelector('[data-element="PortfolioManager__c"]').value = data;
                     this.portManRequest['PortfolioManager__c'] = data;

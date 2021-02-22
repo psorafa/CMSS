@@ -25,7 +25,7 @@ private class AccountRelatedListControllerTest {
 
     @IsTest
     static void testGetUserId() {
-        User u = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CommAccNr1'));
+        User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CommAccNr1'));
         insert u;
 
         System.assertEquals(u.Id, AccountRelatedListController.getUserId('CommAccNr1'));
@@ -34,8 +34,8 @@ private class AccountRelatedListControllerTest {
 
     @IsTest
     static void testCreatePortManRequests() {
-        User u = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CommAccNr1'));
-        User u2 = TestDataFactory.getUser(new User(CommissionAccountNr__c = 'CommAccNr2'));
+        User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CommAccNr1'));
+        User u2 = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CommAccNr2'));
         insert new User[]{ u, u2 };
 
         Account[] accs = new Account[]{ 

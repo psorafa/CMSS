@@ -16,8 +16,8 @@ public with sharing class AccountRelatedListController {
     }
 
     @AuraEnabled(cacheable=true)
-    public static Id getUserId(String commAccountNr) {
-        User[] users = [SELECT Id FROM User WHERE CommissionAccountNr__c = :commAccountNr];
+    public static Id getUserId(String commAccountBase) {
+        User[] users = [SELECT Id FROM User WHERE CommissionAccountBase__c = :commAccountBase];
         return users.size() > 0 ? users[0].Id : null;
     }
 
