@@ -13,5 +13,10 @@
         <operation>equals</operation>
         <value>Asset.CreditCases</value>
     </filters>
+    <filters>
+        <field>ProductCloseDate__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>LAST_MONTH</value>
+    </filters>
     <label>Úvěrové případy</label>
 </ListView>

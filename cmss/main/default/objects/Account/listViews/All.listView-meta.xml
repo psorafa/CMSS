@@ -11,5 +11,10 @@
     <columns>CompanyRegistrationNumber__c</columns>
     <columns>PortfolioMngmtA__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>FirstProductStartDate__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>LAST_MONTH</value>
+    </filters>
     <label>Všichni klienti</label>
 </ListView>

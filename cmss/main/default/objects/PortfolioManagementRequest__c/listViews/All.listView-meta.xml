@@ -13,5 +13,10 @@
     <columns>CREATED_DATE</columns>
     <columns>CREATEDBY_USER</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>ValidFrom__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>LAST_MONTH</value>
+    </filters>
     <label>Všechny požadavky</label>
 </ListView>
