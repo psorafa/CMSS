@@ -9,6 +9,10 @@
         <name>Assets</name>
     </customLabels>
     <customLabels>
+        <label>Hromadná změna správy stavu</label>
+        <name>BulkOwnershipStateChange</name>
+    </customLabels>
+    <customLabels>
         <label>Zrušit</label>
         <name>Cancel</name>
     </customLabels>
@@ -97,6 +101,10 @@
         <name>Relation</name>
     </customLabels>
     <customLabels>
+        <label>Prosím, vyplňte všechna povinná pole.</label>
+        <name>RequiredFields</name>
+    </customLabels>
+    <customLabels>
         <label>Vyplňte jedno z následujících polí: Rodné číslo, IČO, Číslo smlouvy</label>
         <name>RequiredFieldsMessage</name>
     </customLabels>
@@ -109,12 +117,20 @@
         <name>SearchButton</name>
     </customLabels>
     <customLabels>
+        <label>Vybrat vše</label>
+        <name>SelectAll</name>
+    </customLabels>
+    <customLabels>
         <label>SMS</label>
         <name>SmsCommunication</name>
     </customLabels>
     <customLabels>
         <label>Nemáte oprávnění mazat podání</label>
         <name>YouDoNotHavePermissionToDeleteCases</name>
+    </customLabels>
+    <customLabels>
+        <label>Převést všechny klienty čpú</label>
+        <name>TransferAllClients</name>
     </customLabels>
     <customTabs>
         <label>Identifikace klienta</label>
