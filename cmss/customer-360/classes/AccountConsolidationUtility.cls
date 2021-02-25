@@ -23,7 +23,7 @@ public without sharing class AccountConsolidationUtility {
 			}
 			if (consolidationResult.ActionType__c == MERGE_ACTION_TYPE) {
 				toBeMerged.add(consolidationResult);
-			} else {
+			} else if (consolidationResult.ActionType__c == SPLIT_ACTION_TYPE) {
 				toCreateCases.add(consolidationResult);
 			}
 		}
