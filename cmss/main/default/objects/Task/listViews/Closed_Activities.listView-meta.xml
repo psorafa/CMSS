@@ -15,5 +15,10 @@
         <operation>equals</operation>
         <value>1</value>
     </filters>
+    <filters>
+        <field>DUE_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>LAST_MONTH</value>
+    </filters>
     <label>Uzavřené aktivity</label>
 </ListView>
