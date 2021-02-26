@@ -27,8 +27,13 @@
                     </lightning-input-field>
                     <lightning-input-field field-name="ValidFrom__c">
                     </lightning-input-field>
-                    <lightning-input-field field-name="AgentCPU__c">
-                    </lightning-input-field>
+                    <span data-id="agentCPUSpan">
+                        <lightning-input-field field-name="AgentCPU__c" data-id="AgentCPU__c" onfocusout={handleAgentCPUChange}>
+                        </lightning-input-field>
+                        <template if:true={agentCPUError}>
+                            <div class="slds-form-element__help slds-m-left_xx-small" id="error-message-unique-id">{labels.errorMessageNoUser}</div>
+                        </template>
+                    </span>
                     <div if:true={isSaving} class="slds-is-relative">
                         <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
                     </div>
