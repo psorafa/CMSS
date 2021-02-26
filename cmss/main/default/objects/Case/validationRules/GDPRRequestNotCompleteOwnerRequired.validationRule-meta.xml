@@ -7,6 +7,5 @@
 (RecordType.Name = &quot;GDPR&quot;  &amp;&amp;  
 RequestComplete__c  = false &amp;&amp;  
 ISBLANK( Owner:User.AgentId__c ))</errorConditionFormula>
-    <errorDisplayField>OwnerId</errorDisplayField>
-    <errorMessage>Required field</errorMessage>
+    <errorMessage>If Request is not Complete, Owners` Agent Id must be filled.</errorMessage>
 </ValidationRule>

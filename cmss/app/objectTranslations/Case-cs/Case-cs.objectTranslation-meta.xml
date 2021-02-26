@@ -234,6 +234,10 @@
         <name>AmountRequired</name>
     </validationRules>
     <validationRules>
+        <errorMessage>Pouze řešitel může zrušit podání.</errorMessage>
+        <name>CancelCanOnlyOwner</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>ID podání nelze změnit.</errorMessage>
         <name>CaseIDCannotBeEditedOnceFilled</name>
     </validationRules>
@@ -258,8 +262,7 @@
         <name>CompensationAmountRequired</name>
     </validationRules>
     <validationRules>
-        <errorMessage>
-        Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <errorMessage>Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ComplaintReceivingConfirmDate</name>
     </validationRules>
     <validationRules>
@@ -269,6 +272,10 @@
     <validationRules>
         <errorMessage>Nemáte oprávnění upravovat GDPR podání.</errorMessage>
         <name>GDPRClaimEdit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <name>GDPRComplaintReceivingConfirmDate</name>
     </validationRules>
     <validationRules>
         <errorMessage>Povinné pole</errorMessage>
@@ -311,7 +318,7 @@
         <name>GDPRReceivedDateLessThan2018</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Povinné pole</errorMessage>
+        <errorMessage>Pokud žádost není kompletní, řešitel musí mít Id Agenta</errorMessage>
         <name>GDPRRequestNotCompleteOwnerRequired</name>
     </validationRules>
     <validationRules>

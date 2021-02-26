@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CancelCanOnlyOwner</fullName>
+    <active>true</active>
+    <description>Valid for GDPR claims - In order to change Owner, user must have GDPR Case Manager permission set.
+In order to cancel the Case, the user must be record Owner.</description>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+ ISPICKVAL(Status, &quot;3&quot;) &amp;&amp;
+ $User.Id &lt;&gt;  Owner:User.Id</errorConditionFormula>
+    <errorDisplayField>OwnerId</errorDisplayField>
+    <errorMessage>Only Case Owner is allowed to Cancel.</errorMessage>
+</ValidationRule>

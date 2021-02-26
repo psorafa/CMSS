@@ -21,7 +21,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>GDPRCaseNumber__c</field>
+                <field>CaseNumber</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -282,11 +282,6 @@
         <masterLabel>00h1X000001B87R</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>2</sizeY>
-        <summaryLayoutItems>
-            <field>GDPRCaseNumber__c</field>
-            <posX>0</posX>
-            <posY>0</posY>
-        </summaryLayoutItems>
         <summaryLayoutItems>
             <field>AccountId</field>
             <posX>0</posX>
