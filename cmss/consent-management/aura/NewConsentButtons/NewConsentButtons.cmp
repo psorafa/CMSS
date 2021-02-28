@@ -1,4 +1,7 @@
-<aura:component implements="flexipage:availableForRecordHome,lightning:actionOverride,force:hasRecordId">
+<aura:component implements="flexipage:availableForRecordHome,lightning:actionOverride,force:hasRecordId" controller="PermissionUtility">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="hasCreateConsentPermission" type="Boolean" default="false"/>
+    <aura:attribute name="hasCreateInternalConsentPermission" type="Boolean" default="false"/>
     <aura:attribute name="showGeneralConsentModal" type="Boolean" default="false"/>
     <aura:attribute name="recordId" type="String"/>
 
@@ -7,7 +10,11 @@
     </aura:if>
 
     <div class="slds-text-align_right">
-        <lightning:button label="{!$Label.c.NewConsent}" onclick="{!c.gotoNewGeneralConsentFlow}" />
-        <lightning:button label="{!$Label.c.NewInternalConsent}" onclick="{!c.gotoNewInternalConsentFlow}" />
+        <aura:if isTrue="{!v.hasCreateConsentPermission}">
+            <lightning:button label="{!$Label.c.NewConsent}" onclick="{!c.gotoNewGeneralConsentFlow}" />
+        </aura:if>
+        <aura:if isTrue="{!v.hasCreateInternalConsentPermission}">
+            <lightning:button label="{!$Label.c.NewInternalConsent}" onclick="{!c.gotoNewInternalConsentFlow}" />
+        </aura:if>
     </div>
 </aura:component>
