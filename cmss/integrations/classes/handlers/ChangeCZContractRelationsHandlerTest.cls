@@ -27,7 +27,7 @@ private class ChangeCZContractRelationsHandlerTest {
 		};
 
 		SF_PersonManagementSOAPService.ChangeCZContractRelationsRequestBody request = new SF_PersonManagementSOAPService.ChangeCZContractRelationsRequestBody();
-		request.clientZoneId = clientZone.Id;
+		request.clientZoneId = clientZone.ExternalId__c;
 		request.closedByCPU = user.CommissionAccountNr__c;
 		request.amendmentNumber = 6;
 		SF_PersonManagementSOAPService.ClientRelationType relation1 = new SF_PersonManagementSOAPService.ClientRelationType();

@@ -7,20 +7,5 @@ trigger TaskTrigger on Task(
 	after delete,
 	after undelete
 ) {
-	if (Trigger.isAfter) {
-		if (Trigger.isInsert || Trigger.isUndelete) {
-			AQMessageService.handleInsert(Trigger.new, Task.SObjectType);
-		}
-		if (Trigger.isUpdate) {
-			AQMessageService.handleUpdate(Trigger.new, Trigger.oldMap, Task.SObjectType);
-		}
-	}
-	if (Trigger.isBefore) {
-		if (Trigger.isDelete) {
-			AQMessageService.handleDelete(Trigger.old, Task.SObjectType);
-		}
-		if (Trigger.isInsert || Trigger.isUpdate) {
-			TaskService.setRecordType(Trigger.new);
-		}
-	}
+	new TaskTriggerHandler().run();
 }

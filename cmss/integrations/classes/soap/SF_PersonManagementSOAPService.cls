@@ -432,7 +432,7 @@ global with sharing class SF_PersonManagementSOAPService {
 	}
 
 	global class ClientZoneUpdateType {
-		webService Id id;
+		webService String id;
 		webService String userName;
 		webService String verificationPhone;
 		webService String email;

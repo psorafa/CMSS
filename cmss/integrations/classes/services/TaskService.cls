@@ -44,7 +44,7 @@ public with sharing class TaskService {
     private static Task prepareTask(SF_ActivityManagementSOAPService.ActivityType data) {
         Task t = new Task();
         if (data.id != null) {
-            t.Id = data.id;
+            t.Id = findTaskByExternalId(data.id).Id;
         }
         t.Type = data.type;
         t.Description = data.describe;
@@ -89,5 +89,12 @@ public with sharing class TaskService {
         t.ValidFrom__c = data.validFrom == null ? Date.today() : data.validFrom;
 
 		return t;
+	}
+
+	private static Task findTaskByExternalId(String externalId) {
+		for (Task t : [SELECT Id FROM Task WHERE ExternalId__c = :externalId LIMIT 1]) {
+			return t;
+		}
+		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: Task - External ID: ' + externalId);
 	}
 }

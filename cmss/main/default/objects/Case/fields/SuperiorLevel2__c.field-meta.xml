@@ -3,7 +3,7 @@
     <fullName>SuperiorLevel2__c</fullName>
     <description>Manažer obchodní sítě - Jedinečný identifikátor pro entitu Odbytový orgán přidruženou k entitě Odbytový orgán.  Dotahuje se z Usera.</description>
     <externalId>false</externalId>
-    <formula>Contractor__r.SuperiorLevel2__c</formula>
+    <formula>Contractor__r.SuperiorLevel2__r.FirstName + &apos; &apos; + Contractor__r.SuperiorLevel2__r.LastName</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Superior Level 2</label>
     <required>false</required>

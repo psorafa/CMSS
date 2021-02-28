@@ -47,5 +47,23 @@ public with sharing class PermissionUtility {
 		return fieldDescribes;
 	}
 
+	@AuraEnabled(Cacheable=false)
+	public static Boolean checkUserCRUD(String objectName, String operation) {
+		DescribeSObjectResult result = Schema.describeSObjects(new List<String>{ objectName }).get(0);
+		if (operation == 'insert') {
+			return result.isCreateable();
+		}
+		if (operation == 'update') {
+			return result.isUpdateable();
+		}
+		if (operation == 'delete') {
+			return result.isDeletable();
+		}
+		if (operation == 'read') {
+			return result.isAccessible();
+		}
+		return null;
+	}
+
 	public class InsufficientAccessException extends Exception {}
 }

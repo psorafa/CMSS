@@ -31,7 +31,7 @@ private class ActivateCZContractRelationsHandlerTest {
 		};
 
 		SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody request = new SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody();
-		request.clientZoneId = clientZone.Id;
+		request.clientZoneId = clientZone.ExternalId__c;
 		request.amendmentNumber = 6;
 
 		Test.startTest();
@@ -77,7 +77,7 @@ private class ActivateCZContractRelationsHandlerTest {
 		};
 
 		SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody request = new SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody();
-		request.clientZoneId = clientZone.Id;
+		request.clientZoneId = clientZone.ExternalId__c;
 		request.amendmentNumber = null;
 
 		Test.startTest();
@@ -102,7 +102,7 @@ private class ActivateCZContractRelationsHandlerTest {
 		insert clientZone;
 
 		SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody request = new SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody();
-		request.clientZoneId = clientZone.Id;
+		request.clientZoneId = clientZone.ExternalId__c;
 		request.amendmentNumber = 1;
 
 		Test.startTest();

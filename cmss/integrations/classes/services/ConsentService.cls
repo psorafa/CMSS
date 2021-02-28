@@ -241,8 +241,7 @@ public with sharing class ConsentService {
 		body.consentChannelId = consentChannelId;
 		body.globalId = clientId;
 		body.consentSourceId = '20';
-		body.validFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
-		body.validFrom = body.validFrom.substring(0, body.validFrom.length() - 2) + ':00';
+		body.validFrom = formatDatetime(Datetime.now());
 		body.agentCPU = c.AgentCPU__c;
 		return body;
 	}
@@ -253,8 +252,7 @@ public with sharing class ConsentService {
 		body.consentChannelId = consentChannelId;
 		body.globalId = clientId;
 		body.consentSourceId = '20';
-		body.validFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
-		body.validFrom = body.validFrom.substring(0, body.validFrom.length() - 2) + ':00';
+		body.validFrom = formatDatetime(Datetime.now());
 		body.agentCPU = c.AgentCPU__c;
 		return body;
 	}
@@ -265,8 +263,8 @@ public with sharing class ConsentService {
 			body.globalId = client.GlobalId__c;
 		}
 		body.consentKind = c.InternalConsentType__c;
-		body.consentValidFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
-		body.consentValidFrom = body.consentValidFrom.substring(0, body.consentValidFrom.length() - 2) + ':00';
+		body.consentValidFrom = formatDatetime(c.ValidFrom__c);
+		body.consentValidTo = formatDatetime(c.ValidTo__c);
 		body.consentSourceId = c.Source__c;
 		body.consentProvidedBy = '1';
 		return body;
@@ -278,5 +276,14 @@ public with sharing class ConsentService {
 		body.consentSourceId = c.Source__c;
 		body.consentProvidedById = '1';
 		return body;
+	}
+
+	private static String formatDatetime(Datetime dt) {
+		if (dt == null) {
+			return null;
+		}
+		String formatted = dt.formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
+		formatted = formatted.substring(0, formatted.length() - 2) + ':00';
+		return formatted;
 	}
 }

@@ -14,11 +14,11 @@ public with sharing class ReferenceUtility {
 		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: Asset - contractNumber: ' + assetNumber);
 	}
 
-	public static ClientZone__c getClientZoneById(Id clientZoneId) {
-		for (ClientZone__c cz : [SELECT Id, Account__c, NumberOfAnnexes__c FROM ClientZone__c WHERE Id = :clientZoneId LIMIT 1]) {
+	public static ClientZone__c getClientZoneByExternalId(String clientZoneExternalId) {
+		for (ClientZone__c cz : [SELECT Id, Account__c, NumberOfAnnexes__c FROM ClientZone__c WHERE ExternalId__c = :clientZoneExternalId LIMIT 1]) {
 			return cz;
 		}
-		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: ClientZone - Id: ' + clientZoneId);
+		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: ClientZone - External ID: ' + clientZoneExternalId);
 	}
 
 	public static User getUserByCPU(String cpu) {
