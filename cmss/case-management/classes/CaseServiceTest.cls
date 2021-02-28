@@ -42,7 +42,7 @@ private class CaseServiceTest {
 
 			System.assertEquals(3, newIssuedClaimID.ClientClaimID__c);
 			System.assertEquals(6, newIssuedClaimID.GDPRClaimID__c);
-			System.assertEquals('' + Date.today().year() + '3' + '0000', newClientCase.CaseID__c);
+			System.assertEquals('' + Date.today().year() + '0000' + '3', newClientCase.CaseID__c);
 			System.assertEquals('00000' + '6' + '' + Date.today().year(), newGDPRCase.CaseID__c);
 		}
 	}
