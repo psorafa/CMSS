@@ -3,7 +3,7 @@
     <fullName>SuperiorLevel1__c</fullName>
     <description>Jedinečný identifikátor pro entitu Odbytový orgán přidruženou k entitě Odbytový orgán, nejvyšší úroveň hierarchie pro daného usera. Dotahuje se z Usera.</description>
     <externalId>false</externalId>
-    <formula>Contractor__r.SuperiorLevel1__c</formula>
+    <formula>Contractor__r.SuperiorLevel1__r.FirstName + &apos; &apos; + Contractor__r.SuperiorLevel1__r.LastName</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Superior Level 1</label>
     <required>false</required>
