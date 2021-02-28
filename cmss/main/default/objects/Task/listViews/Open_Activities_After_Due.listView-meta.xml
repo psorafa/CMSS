@@ -20,5 +20,10 @@
         <operation>lessThan</operation>
         <value>TODAY</value>
     </filters>
+    <filters>
+        <field>ValidFrom__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>LAST_MONTH</value>
+    </filters>
     <label>Otevřené aktivity po termínu</label>
 </ListView>

@@ -34,12 +34,9 @@ public with sharing class CaseService {
 			}
 			if (ClientClaimRecordTypes.contains(caseItem.RecordTypeId)) {
 				lastIssuedCaseID.ClientClaimID__c += 1;
-				caseItem.CaseID__c = String.valueOf(
-						'' +
-						Date.today().year() +
-						Integer.valueOf(lastIssuedCaseID.ClientClaimID__c)
-					)
-					.rightPad(9, '0');
+				caseItem.CaseID__c =
+					String.valueOf('' + Date.today().year()).rightPad(8, '0') +
+					String.valueOf(Integer.valueOf(lastIssuedCaseID.ClientClaimID__c));
 			}
 		}
 		upsert lastIssuedCaseID;
