@@ -213,14 +213,14 @@ private class ClientZoneServiceTest {
 	static void updateCZTest() {
 		Date aDate = Date.today();
 		Account account = createAccount('test', 'globalId');
-		ClientZone__c clientZone = new ClientZone__c(
+		ClientZone__c clientZone = TestDataFactory.getClientZone(new ClientZone__c(
 			Name = 'testCZ',
 			Account__c = account.Id
-		);
+		));
 		insert clientZone;
 
 		SF_PersonManagementSOAPService.ClientZoneUpdateType cz = new SF_PersonManagementSOAPService.ClientZoneUpdateType();
-		cz.id = clientZone.Id;
+		cz.id = clientZone.ExternalId__c;
 		cz.userName = 'usrnm';
 		cz.verificationPhone = '123123123';
 		cz.email = 'test@test.test';
@@ -236,7 +236,7 @@ private class ClientZoneServiceTest {
 		SF_PersonManagementSOAPService.UpdateCZResponseType res = SF_PersonManagementSOAPService.updateCZ(req);
 		Test.stopTest();
 
-		System.assert(!res.isFault);
+		System.assert(!res.isFault, '' + res.fault);
 		clientZone = [SELECT Username__c, VerificationPhone__c, Email__c, Role__c, SignatureDate__c, AgreementDate__c, Status__c FROM ClientZone__c WHERE Id = :clientZone.Id];
 		System.assertEquals(cz.userName, clientZone.Username__c);
 		System.assertEquals(cz.verificationPhone, clientZone.VerificationPhone__c);
@@ -288,11 +288,11 @@ private class ClientZoneServiceTest {
 		};
 
 		SF_PersonManagementSOAPService.GetNextCZAmendmentRequestBody request = new SF_PersonManagementSOAPService.GetNextCZAmendmentRequestBody();
-		request.clientZoneId = clientZone1.Id;
+		request.clientZoneId = clientZone1.ExternalId__c;
 		System.assertEquals(1, ClientZoneService.getNextCZAmendment(request));
 
 		request = new SF_PersonManagementSOAPService.GetNextCZAmendmentRequestBody();
-		request.clientZoneId = clientZone2.Id;
+		request.clientZoneId = clientZone2.ExternalId__c;
 		System.assertEquals(3, ClientZoneService.getNextCZAmendment(request));
 	}
 

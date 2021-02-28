@@ -105,7 +105,7 @@ private class SF_ActivityManagementSOAPServiceTest {
 
 		SF_ActivityManagementSOAPService.ActivityRequestType request = new SF_ActivityManagementSOAPService.ActivityRequestType();
         SF_ActivityManagementSOAPService.ActivityType actType = new SF_ActivityManagementSOAPService.ActivityType();
-        actType.id = task.Id;
+        actType.id = task.ExternalId__c;
         actType.type = '1';
         actType.describe = getDummyLongText();
         actType.direction = '0';

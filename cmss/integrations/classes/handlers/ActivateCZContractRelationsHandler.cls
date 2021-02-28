@@ -5,8 +5,8 @@ public with sharing class ActivateCZContractRelationsHandler {
 	private List<AccountRelation__c> relationsToDeactivate = new List<AccountRelation__c>();
 	private List<AccountRelation__c> relationsToActivate = new List<AccountRelation__c>();
 
-	public ActivateCZContractRelationsHandler(Id clientZoneId, Integer amendmentNumber) {
-		this.clientZone = ReferenceUtility.getClientZoneById(clientZoneId);
+	public ActivateCZContractRelationsHandler(String clientZoneId, Integer amendmentNumber) {
+		this.clientZone = ReferenceUtility.getClientZoneByExternalId(clientZoneId);
 		this.amendmentNumber = amendmentNumber;
 	}
 

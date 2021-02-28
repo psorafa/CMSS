@@ -62,7 +62,9 @@ public class TestDataFactory {
 	}
 
 	public static ClientZone__c getClientZone(ClientZone__c so) {
-		ClientZone__c template = new ClientZone__c();
+		ClientZone__c template = new ClientZone__c(
+			ExternalId__c = UUIDUtil.generateUUID()
+		);
 		SObjectUtil.copyFields(so, template);
 		if (template.Account__c == null) {
 			Account a = getAccount();
@@ -104,7 +106,10 @@ public class TestDataFactory {
 	}
 
 	public static Task getTask(Task so) {
-		Task template = new Task(Subject = 'Test task');
+		Task template = new Task(
+			Subject = 'Test task',
+			ExternalId__c = UUIDUtil.generateUUID()
+		);
 		SObjectUtil.copyFields(so, template);
 		if (template.WhatId == null) {
 			Account a = getAccount();

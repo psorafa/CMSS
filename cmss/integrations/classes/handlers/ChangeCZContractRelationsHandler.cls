@@ -7,7 +7,7 @@ public with sharing class ChangeCZContractRelationsHandler {
 
 	public ChangeCZContractRelationsHandler(SF_PersonManagementSOAPService.ChangeCZContractRelationsRequestBody request) {
 		this.request = request;
-		existingClientZone = ReferenceUtility.getClientZoneById(request.clientZoneId);
+		existingClientZone = ReferenceUtility.getClientZoneByExternalId(request.clientZoneId);
 		Set<String> relationsExternalIds = ClientZoneService.buildExternalIdsSet(request.relations);
 		existingRelationsByExternalId = ClientZoneService.buildExistingRelationsMap([
 			SELECT Id, ExternalId__c
