@@ -11,5 +11,9 @@
           "url": "/flow/InternalConsentCreation?accountId=" + component.get("v.recordId") + "&retURL=%2F" + component.get("v.recordId")
         });
         urlEvent.fire();
+    },
+    refreshView : function (component, event, helper) {
+        $A.get('e.force:refreshView').fire();
+        console.log('refresh');
     }
 });

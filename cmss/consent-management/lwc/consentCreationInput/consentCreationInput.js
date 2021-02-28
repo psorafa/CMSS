@@ -113,6 +113,7 @@ export default class ConsentCreationInput extends LightningElement {
               this.fireToast("error", errorMessage);
             }
             this.toggleSpinner();
+            this.dispatchEvent(new CustomEvent('consentcreated'));
           })
           .catch((error) => {
             this.handleErrors(error);
