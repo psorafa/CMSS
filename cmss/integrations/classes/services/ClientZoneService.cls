@@ -67,7 +67,7 @@ public with sharing class ClientZoneService {
 
 	public static void updateClientZone(SF_PersonManagementSOAPService.ClientZoneUpdateType clientZoneUpdate) {
 		Validation.requireAttribute(clientZoneUpdate.id, 'id');
-		ClientZone__c existingClientZone = ReferenceUtility.getClientZoneById(clientZoneUpdate.id);
+		ClientZone__c existingClientZone = ReferenceUtility.getClientZoneByExternalId(clientZoneUpdate.id);
 		existingClientZone.Username__c = clientZoneUpdate.userName;
 		existingClientZone.VerificationPhone__c = clientZoneUpdate.verificationPhone;
 		existingClientZone.Email__c = clientZoneUpdate.email;
@@ -102,7 +102,7 @@ public with sharing class ClientZoneService {
 
 	public static Integer getNextCZAmendment(SF_PersonManagementSOAPService.GetNextCZAmendmentRequestBody request) {
 		Validation.requireAttribute(request.clientZoneId, 'clientZoneId');
-		ClientZone__c clientZone = ReferenceUtility.getClientZoneById(request.clientZoneId);
+		ClientZone__c clientZone = ReferenceUtility.getClientZoneByExternalId(request.clientZoneId);
 		if (clientZone.NumberOfAnnexes__c == null) {
 			return 1;
 		}

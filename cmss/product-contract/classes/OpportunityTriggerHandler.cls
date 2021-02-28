@@ -1,10 +1,12 @@
 public class OpportunityTriggerHandler extends TriggerHandler {
 	public override void beforeInsert() {
 		setStateCodeField(Trigger.new);
+		IntegrationUtility.populateDefaultExternalId(Trigger.new);
 	}
 
 	public override void beforeUpdate() {
 		setStateCodeField(Trigger.new);
+		IntegrationUtility.populateDefaultExternalId(Trigger.new);
 	}
 
 	public override void beforeDelete() {

@@ -2,7 +2,7 @@ public with sharing class OpportunityService {
 
 	public static Id createOpportunity(SF_OpportunitySOAPService.OpportunityType data) {
 		if (data.id != null) {
-			throw new SOAPCommonTypes.BusinessException(102, 'Invalid attribute specified: cannot specifiy "id" in createOpporunity');
+			throw new SOAPCommonTypes.BusinessException(102, 'Invalid attribute specified: cannot specify "id" in createOpportunity');
 		}
 		Validation.requireAttribute(data.customerGlobalId, 'customerGlobalId');
 		Opportunity opportunity = prepareOpportunity(data);
@@ -32,7 +32,7 @@ public with sharing class OpportunityService {
 	private static Opportunity prepareOpportunity(SF_OpportunitySOAPService.OpportunityType data) {
 		Opportunity o = new Opportunity();
 		if (!String.isBlank(data.id)) {
-			o.Id = data.id;
+			o.Id = findOpportunityByExternalId(data.id).Id;
 		}
 		if (data.customerGlobalId != null) {
 			o.AccountId = ReferenceUtility.getAccountByGlobalId(data.customerGlobalId).Id;
@@ -59,5 +59,12 @@ public with sharing class OpportunityService {
 		}
 		o.DelegatedDate__c = data.delegatedDate;
 		return o;
+	}
+
+	private static Opportunity findOpportunityByExternalId(String externalId) {
+		for (Opportunity o : [SELECT Id FROM Opportunity WHERE ExternalId__c = :externalId LIMIT 1]) {
+			return o;
+		}
+		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: Opportunity - External ID: ' + externalId);
 	}
 }

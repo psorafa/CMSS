@@ -6,7 +6,7 @@ public with sharing class SignCZContractRelationHandler {
 	private Date signDate;
 
 	public SignCZContractRelationHandler(SF_PersonManagementSOAPService.SignCZContractRelationsRequestBody request) {
-		clientZone = ReferenceUtility.getClientZoneById(request.clientZoneId);
+		clientZone = ReferenceUtility.getClientZoneByExternalId(request.clientZoneId);
 		relatedClientGlobalId = request.relatedClientGlobalId;
 		amendmentNumber = request.amendmentNumber;
 		signDate = request.signDate;

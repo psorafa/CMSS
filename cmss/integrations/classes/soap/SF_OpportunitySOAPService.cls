@@ -51,7 +51,7 @@ global with sharing class SF_OpportunitySOAPService {
 	}
 
 	global class OpportunityType {
-		webService Id id;
+		webService String id;
 		webService String customerGlobalId;
 		webService String description;
 		webService String subject;

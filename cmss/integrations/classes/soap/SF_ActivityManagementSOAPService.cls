@@ -59,7 +59,7 @@ global with sharing class SF_ActivityManagementSOAPService {
 	}
 
 	global class ActivityType {
-        webService Id id;
+        webService String id;
 		webService String personNumber;
 		webService String type;
 		webService String describe;

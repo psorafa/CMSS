@@ -30,7 +30,7 @@ private class SignCZContractRelationHandlerTest {
 		};
 
 		SF_PersonManagementSOAPService.SignCZContractRelationsRequestBody request = new SF_PersonManagementSOAPService.SignCZContractRelationsRequestBody();
-		request.clientZoneId = clientZone.Id;
+		request.clientZoneId = clientZone.ExternalId__c;
 		request.amendmentNumber = 6;
 		request.signDate = Date.today().addDays(-10);
 		request.relatedClientGlobalId = otherAccount.GlobalId__c;
@@ -59,7 +59,7 @@ private class SignCZContractRelationHandlerTest {
 		insert clientZone;
 
 		SF_PersonManagementSOAPService.SignCZContractRelationsRequestBody request = new SF_PersonManagementSOAPService.SignCZContractRelationsRequestBody();
-		request.clientZoneId = clientZone.Id;
+		request.clientZoneId = clientZone.ExternalId__c;
 		request.amendmentNumber = 6;
 		request.signDate = Date.today().addDays(-10);
 		request.relatedClientGlobalId = otherAccount.GlobalId__c;
