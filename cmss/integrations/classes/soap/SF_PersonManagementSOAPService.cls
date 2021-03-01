@@ -23,12 +23,35 @@ global with sharing class SF_PersonManagementSOAPService {
 		}
 	}
 
+	webService static CreateCZResponseType createCZ(CreateCZRequestType request) {
+		Savepoint sp = Database.setSavepoint();
+		Logger.debug('Incoming request', JSON.serialize(request));
+		try {
+			CreateCZResponseType response = (CreateCZResponseType) SOAPResponseFactory.constructResponse(CreateCZResponseType.class, request.requestHeader);
+			String createdClientZoneId = ClientZoneService.createClientZone(request.requestBody.clientZone);
+			response.responseBody = new CreateCZResponseBody(createdClientZoneId);
+			Logger.debug('Returning success response', JSON.serialize(response));
+			return response;
+		} catch (SOAPCommonTypes.BusinessException e) {
+			Database.rollback(sp);
+			Logger.warn('Business error occurred', e);
+			CreateCZResponseType response = (CreateCZResponseType) SOAPResponseFactory.constructFaultResponse(CreateCZResponseType.class, request.requestHeader, e);
+			Logger.debug('Returning error response', JSON.serialize(response));
+			return response;
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
 	webService static CreateCZContractResponseType createCZContract(CreateCZContractRequestType request) {
 		Savepoint sp = Database.setSavepoint();
 		Logger.debug('Incoming request', JSON.serialize(request));
 		try {
 			CreateCZContractResponseType response = (CreateCZContractResponseType) SOAPResponseFactory.constructResponse(CreateCZContractResponseType.class, request.requestHeader);
-			Id createdClientZoneId = ClientZoneService.createClientZone(request.requestBody.clientZone, request.requestBody.clientRelations);
+			String createdClientZoneId = ClientZoneService.createClientZoneContract(request.requestBody.clientZone, request.requestBody.clientRelations);
 			response.responseBody = new CreateCZContractResponseBody(createdClientZoneId);
 			Logger.debug('Returning success response', JSON.serialize(response));
 			return response;
@@ -255,7 +278,34 @@ global with sharing class SF_PersonManagementSOAPService {
 	global class CreateCZContractResponseBody {
 		webService String clientZoneId;
 
-		CreateCZContractResponseBody(Id clientZoneId) {
+		CreateCZContractResponseBody(String clientZoneId) {
+			this.clientZoneId = clientZoneId;
+		}
+	}
+
+	/*
+	 * ----------------    createCZ request and response types    ----------------
+	 */
+	global class CreateCZRequestType {
+		webService SOAPCommonTypes.CommonHeader requestHeader;
+		webService CreateCZRequestBody requestBody;
+	}
+
+	global class CreateCZRequestBody {
+		webService ClientZoneType clientZone;
+	}
+
+	global class CreateCZResponseType {
+		webService SOAPCommonTypes.CommonHeader responseHeader;
+		webService Boolean isFault;
+		webService SOAPCommonTypes.Fault fault;
+		webService CreateCZResponseBody responseBody;
+	}
+
+	global class CreateCZResponseBody {
+		webService String clientZoneId;
+
+		CreateCZResponseBody(String clientZoneId) {
 			this.clientZoneId = clientZoneId;
 		}
 	}
@@ -422,6 +472,7 @@ global with sharing class SF_PersonManagementSOAPService {
 	}
 
 	global class ClientZoneType {
+		webService String id;
 		webService String contractNumber;
 		webService String userName;
 		webService String verificationPhone;
