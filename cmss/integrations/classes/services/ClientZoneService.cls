@@ -1,25 +1,35 @@
 public with sharing class ClientZoneService {
 
-	public static Id createClientZone(
+	public static String createClientZone(SF_PersonManagementSOAPService.ClientZoneType clientZoneData) {
+		Validation.requireAttribute(clientZoneData.globalId, 'GlobalId');
+		Validation.requireAttribute(clientZoneData.closedBy, 'closedBy');
+		Id clientSfId = ReferenceUtility.getAccountByGlobalId(clientZoneData.globalId).Id;
+		Id closedById = ReferenceUtility.getUserByCPU(clientZoneData.closedBy).Id;
+		ClientZone__c createdClientZone = insertClientZone(clientSfId, clientZoneData, closedById);
+		return createdClientZone.ExternalId__c;
+	}
+
+	public static String createClientZoneContract(
 		SF_PersonManagementSOAPService.ClientZoneType clientZone,
 		List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations
 	) {
-		Id clientZoneId;
+		String clientZoneId;
 		Validation.requireAttribute(clientZone.globalId, 'GlobalId');
 		Id clientSfId = ReferenceUtility.getAccountByGlobalId(clientZone.globalId).Id;
-		List<ClientZone__c> clientZones = [SELECT Id, Role__c FROM ClientZone__c WHERE Account__c = :clientSfId AND Status__c = '1'];
+		List<ClientZone__c> clientZones = [SELECT Id, ExternalId__c, Role__c FROM ClientZone__c WHERE Account__c = :clientSfId AND Status__c = '1'];
 		ClientZone__c clZone;
 		Validation.requireAttribute(clientZone.closedBy, 'closedBy');
 		Id closedById = ReferenceUtility.getUserByCPU(clientZone.closedBy).Id;
 		if (clientZones.isEmpty()) {
 			clZone = insertClientZone(clientSfId, clientZone, closedById);
-			clientZoneId = clZone.Id;
+			clientZoneId = clZone.ExternalId__c;
 		} else if (clientZones.size() > 1) {
 			throw new SOAPCommonTypes.BusinessException(203, 'More than 1 ClientZone exist for Client GlobalId: ' + clientZone.globalId);
 		} else {
 			clZone = clientZones.get(0);
 			if (Integer.valueOf(clientZone.role) >= Integer.valueOf(clZone.Role__c) || clZone.Role__c == '8') {
-				clientZoneId = updateClientZone(clZone, clientZone, closedById);
+				updateClientZone(clZone, clientZone, closedById);
+				clientZoneId = clZone.ExternalId__c;
 			} else {
 				throw new SOAPCommonTypes.BusinessException(202, 'Record already exists: ClientZone - SF ID: ' + clZone.Id);
 			}
@@ -41,7 +51,7 @@ public with sharing class ClientZoneService {
 		clientZone.Email__c = clientZoneRequest.email;
 		clientZone.Role__c = clientZoneRequest.role;
 		clientZone.Account__c = accountId;
-		clientZone.ExternalId__c = clientZoneRequest.globalId;
+		clientZone.ExternalId__c = UUIDUtil.generateUUID();
 		clientZone.NumberOfAnnexes__c = 0;
 		clientZone.Status__c = '1';
 		clientZone.ContractStatus__c = '1';
@@ -109,7 +119,7 @@ public with sharing class ClientZoneService {
 		return Integer.valueOf(clientZone.NumberOfAnnexes__c) + 1;
 	}
 
-	private static Id updateClientZone(ClientZone__c clientZone, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedById) {
+	private static void updateClientZone(ClientZone__c clientZone, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedById) {
 		clientZone.Name = clientZoneRequest.contractNumber;
 		clientZone.Username__c = clientZoneRequest.userName;
 		clientZone.VerificationPhone__c = clientZoneRequest.verificationPhone;
@@ -122,7 +132,6 @@ public with sharing class ClientZoneService {
 		clientZone.ClosedBy__c = closedById;
 		SObjectUtil.stripNullFields(clientZone);
 		DmlUtility.updateRecord(clientZone);
-		return clientZone.Id;
 	}
 
 	private static SF_PersonManagementSOAPService.CreateCZContractResponseType upsertAccountRelations(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations, ClientZone__c clZone, Id clientSfId) {

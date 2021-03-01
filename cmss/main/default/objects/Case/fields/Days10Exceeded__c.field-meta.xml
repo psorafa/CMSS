@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Days10Exceeded__c</fullName>
     <externalId>false</externalId>
-    <formula>ReceivedDate__c  &gt;= (TODAY() + 10)</formula>
+    <formula>TODAY()  &gt;=  (ReceivedDate__c + 10)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>10 Days Exceeded</label>
     <trackHistory>false</trackHistory>
