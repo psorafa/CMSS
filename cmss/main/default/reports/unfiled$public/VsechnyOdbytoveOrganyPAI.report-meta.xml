@@ -30,26 +30,12 @@
     </columns>
     <description>Aktivní i neaktivní uživatelé typu odbytový orgán</description>
     <filter>
-        <booleanFilter>1 OR (2 AND 3)</booleanFilter>
+        <booleanFilter>1</booleanFilter>
         <criteriaItems>
             <column>User*User$CommissionAccountNr__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
-            <value/>
-        </criteriaItems>
-        <criteriaItems>
-            <column>User$EmployeeNumber</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value/>
-        </criteriaItems>
-        <criteriaItems>
-            <column>User*User$CommissionAccountNr__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
             <value/>
         </criteriaItems>
         <language>en_US</language>
