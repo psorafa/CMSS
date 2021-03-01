@@ -158,6 +158,10 @@
                 <behavior>Edit</behavior>
                 <field>RepeatedComplaint__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SolvingType__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -215,11 +219,19 @@
                 <behavior>Required</behavior>
                 <field>Status</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>HistoricCaseNumber__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Subject</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CreatedDate</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

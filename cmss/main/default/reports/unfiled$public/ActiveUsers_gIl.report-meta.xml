@@ -4,9 +4,6 @@
         <field>User*User$CommissionAccountBase__c</field>
     </columns>
     <columns>
-        <field>User$EmployeeNumber</field>
-    </columns>
-    <columns>
         <field>User$Name</field>
     </columns>
     <columns>
@@ -25,22 +22,42 @@
         <field>User*User$MobilePhone__c</field>
     </columns>
     <columns>
-        <field>User$Manager</field>
+        <field>User*User$ManagerKP__c.LastName</field>
     </columns>
-    <description>Aktivní uživatelé typu odbytový orgán a zaměstnanec</description>
     <filter>
-        <booleanFilter>1</booleanFilter>
+        <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
         <criteriaItems>
             <column>User$IsActive</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
+            <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
             <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User*User$CommissionAccountNr__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value/>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User$EmployeeNumber</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value/>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User*User$CommissionAccountNr__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value/>
         </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
-    <name>Aktivní odbytové orgány a zaměstnanci</name>
+    <name>Všichni aktivní uživatelé - OO</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -51,7 +68,7 @@
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
-        <dateColumn>User*User$AgentActivityEndDate__c</dateColumn>
+        <dateColumn>User$LastLoginDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>
