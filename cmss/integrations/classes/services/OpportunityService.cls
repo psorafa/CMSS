@@ -1,5 +1,15 @@
 public with sharing class OpportunityService {
 
+	private static Map<String, String> stateReasonToStageMapping = new Map<String, String>{
+		'1' => '2',
+		'2' => '2',
+		'3' => '3',
+		'4' => '4',
+		'5' => '5',
+		'6' => '1',
+		'7' => '7'
+	};
+
 	public static Id createOpportunity(SF_OpportunitySOAPService.OpportunityType data) {
 		if (data.id != null) {
 			throw new SOAPCommonTypes.BusinessException(102, 'Invalid attribute specified: cannot specify "id" in createOpportunity');
@@ -39,7 +49,7 @@ public with sharing class OpportunityService {
 		}
 		o.Description = data.description;
 		o.Name = data.subject;
-		o.StageName = data.stateReason == null ? '1' : data.stateReason;
+		o.StageName = data.stateReason == null ? '1' : stateReasonToStageMapping.get(data.stateReason);
 		o.Reason__c = data.result;
 		o.Author__c = data.author;
 		if (data.statusManagerCPU != null) {
