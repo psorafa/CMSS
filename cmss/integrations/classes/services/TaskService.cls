@@ -6,7 +6,6 @@ public with sharing class TaskService {
 		}
         Validation.requireAttribute(data.name, 'name');
         Validation.requireAttribute(data.type, 'type');
-        Validation.requireAttribute(data.stateCode, 'stateCode');
         Task task = prepareTask(data);
 		SObjectUtil.stripNullFields(task);
         DmlUtility.insertRecord(task);
