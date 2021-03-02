@@ -12,6 +12,9 @@
             <field>Case$ReceivedDate__c</field>
         </columns>
         <columns>
+            <field>Case$Source__c</field>
+        </columns>
+        <columns>
             <field>Case$SourceDescription__c</field>
         </columns>
         <columns>
@@ -20,9 +23,6 @@
         </columns>
         <columns>
             <field>Case$Origin</field>
-        </columns>
-        <columns>
-            <field>Case$ReceivedDatetime__c</field>
         </columns>
         <columns>
             <field>Case$Owner</field>
