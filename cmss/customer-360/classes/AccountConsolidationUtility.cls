@@ -74,7 +74,10 @@ public without sharing class AccountConsolidationUtility {
 		for (ConsolidationResult__c result : toBeMerged) {
 			Account oldAccount = oldAccountsByGlobalIdsMap.get(result.OldGlobalID__c);
 			Account newAccount = newAccountsByGlobalIdsMap.get(result.NewGlobalID__c);
-			if (!oldAccount.ClientZones__r.isEmpty() && !newAccount.ClientZones__r.isEmpty()) {
+
+			if (oldAccount == null || newAccount == null) {
+				return;
+			} else if (!oldAccount.ClientZones__r.isEmpty() && !newAccount.ClientZones__r.isEmpty()) {
 				toCreateCases.add(result);
 				continue;
 			}

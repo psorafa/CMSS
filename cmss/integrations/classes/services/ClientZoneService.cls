@@ -2,10 +2,8 @@ public with sharing class ClientZoneService {
 
 	public static String createClientZone(SF_PersonManagementSOAPService.ClientZoneType clientZoneData) {
 		Validation.requireAttribute(clientZoneData.globalId, 'GlobalId');
-		Validation.requireAttribute(clientZoneData.closedBy, 'closedBy');
 		Id clientSfId = ReferenceUtility.getAccountByGlobalId(clientZoneData.globalId).Id;
-		Id closedById = ReferenceUtility.getUserByCPU(clientZoneData.closedBy).Id;
-		ClientZone__c createdClientZone = insertClientZone(clientSfId, clientZoneData, closedById);
+		ClientZone__c createdClientZone = insertClientZone(clientSfId, clientZoneData, null);
 		return createdClientZone.ExternalId__c;
 	}
 
@@ -45,6 +43,7 @@ public with sharing class ClientZoneService {
 	private static ClientZone__c insertClientZone(Id accountId, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedBySfId) {
 		ClientZone__c clientZone = new ClientZone__c();
 		clientZone.Name = clientZoneRequest.contractNumber;
+		clientZone.ContractNumber__c = clientZoneRequest.contractNumber;
 		clientZone.VerificationPhone__c = clientZoneRequest.verificationPhone;
 		clientZone.Username__c = clientZoneRequest.userName;
 		clientZone.ClosedBy__c = closedBySfId;
@@ -121,6 +120,7 @@ public with sharing class ClientZoneService {
 
 	private static void updateClientZone(ClientZone__c clientZone, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedById) {
 		clientZone.Name = clientZoneRequest.contractNumber;
+		clientZone.ContractNumber__c = clientZoneRequest.contractNumber;
 		clientZone.Username__c = clientZoneRequest.userName;
 		clientZone.VerificationPhone__c = clientZoneRequest.verificationPhone;
 		clientZone.Email__c = clientZoneRequest.email;
