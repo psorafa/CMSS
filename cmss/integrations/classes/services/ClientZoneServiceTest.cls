@@ -22,9 +22,6 @@ private class ClientZoneServiceTest {
 
 	@IsTest
 	static void createCZTest() {
-		User user = TestDataFactory.getUser(new User());
-		insert user;
-
 		SF_PersonManagementSOAPService.CreateCZRequestType request = new SF_PersonManagementSOAPService.CreateCZRequestType();
 		SF_PersonManagementSOAPService.CreateCZRequestBody requestBody = new SF_PersonManagementSOAPService.CreateCZRequestBody();
 		SF_PersonManagementSOAPService.ClientZoneType clientZoneType = new SF_PersonManagementSOAPService.ClientZoneType();
@@ -34,7 +31,6 @@ private class ClientZoneServiceTest {
 		requestBody.clientZone.verificationPhone = verPhone;
 		requestBody.clientZone.email = mail;
 		requestBody.clientZone.role = clientRole8NoAccess;
-		requestBody.clientZone.closedBy = user.CommissionAccountNr__c;
 		requestBody.clientZone.globalId = globalId;
 		request.requestBody = requestBody;
 
@@ -45,15 +41,15 @@ private class ClientZoneServiceTest {
 		System.assertEquals(false, createCZResponse.isFault, JSON.serializePretty(createCZResponse.fault));
 		System.assertNotEquals(null, createCZResponse.responseBody.clientZoneId);
 
-		List<ClientZone__c> clientZones = [SELECT Id, Name, Username__c, VerificationPhone__c, Email__c, Role__c, ClosedBy__c, ExternalId__c, Account__c FROM ClientZone__c WHERE ExternalId__c = :createCZResponse.responseBody.clientZoneId];
+		List<ClientZone__c> clientZones = [SELECT Id, Name, ContractNumber__c, Username__c, VerificationPhone__c, Email__c, Role__c, ClosedBy__c, ExternalId__c, Account__c FROM ClientZone__c WHERE ExternalId__c = :createCZResponse.responseBody.clientZoneId];
 		System.assertEquals(1, clientZones.size());
 		ClientZone__c clientZone = clientZones.get(0);
 		System.assertEquals(clientZone.Name, contractNumber);
+		System.assertEquals(clientZone.ContractNumber__c, contractNumber);
 		System.assertEquals(clientZone.Username__c, userName);
 		System.assertEquals(clientZone.VerificationPhone__c, verPhone);
 		System.assertEquals(clientZone.Email__c, mail);
 		System.assertEquals(clientZone.Role__c, clientRole8NoAccess);
-		System.assertEquals(clientZone.ClosedBy__c, user.Id);
 		System.assertEquals(clientZone.Account__c, client.Id);
 	}
 
@@ -76,10 +72,11 @@ private class ClientZoneServiceTest {
 		System.assertEquals(false, czContractResponseType.isFault);
 		System.assertNotEquals(null, czContractResponseType.responseBody.clientZoneId);
 
-		List<ClientZone__c> clientZones = [SELECT Id, Name, Username__c, VerificationPhone__c, Email__c, Role__c, ClosedBy__c, ExternalId__c, Account__c FROM ClientZone__c WHERE ExternalId__c = :czContractResponseType.responseBody.clientZoneId];
+		List<ClientZone__c> clientZones = [SELECT Id, Name, ContractNumber__c, Username__c, VerificationPhone__c, Email__c, Role__c, ClosedBy__c, ExternalId__c, Account__c FROM ClientZone__c WHERE ExternalId__c = :czContractResponseType.responseBody.clientZoneId];
 		System.assertEquals(1, clientZones.size());
 		ClientZone__c clientZone = clientZones.get(0);
 		System.assertEquals(clientZone.Name, contractNumber);
+		System.assertEquals(clientZone.ContractNumber__c, contractNumber);
 		System.assertEquals(clientZone.Username__c, userName);
 		System.assertEquals(clientZone.VerificationPhone__c, verPhone);
 		System.assertEquals(clientZone.Email__c, mail);
