@@ -60,6 +60,7 @@ public with sharing class ClientZoneService {
 		clientZone.ContractStatus__c = '1';
 		clientZone.CreatedDate__c = Datetime.now();
 		clientZone.ModifiedDate__c = Datetime.now();
+		clientZone.AgreementDate__c = Date.today();
 		SObjectUtil.stripNullFields(clientZone);
 		DmlUtility.insertRecord(clientZone);
 		return clientZone;
