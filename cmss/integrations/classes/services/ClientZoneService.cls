@@ -3,7 +3,11 @@ public with sharing class ClientZoneService {
 	public static String createClientZone(SF_PersonManagementSOAPService.ClientZoneType clientZoneData) {
 		Validation.requireAttribute(clientZoneData.globalId, 'GlobalId');
 		Id clientSfId = ReferenceUtility.getAccountByGlobalId(clientZoneData.globalId).Id;
-		ClientZone__c createdClientZone = insertClientZone(clientSfId, clientZoneData, null);
+		Id closedById = null;
+		if (clientZoneData.closedBy != null) {
+			closedById = ReferenceUtility.getUserByCPU(clientZoneData.closedBy).Id;
+		}
+		ClientZone__c createdClientZone = insertClientZone(clientSfId, clientZoneData, closedById);
 		return createdClientZone.ExternalId__c;
 	}
 
