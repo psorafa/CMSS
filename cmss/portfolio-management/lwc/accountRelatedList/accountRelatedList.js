@@ -15,6 +15,7 @@ import errorMessage from '@salesforce/label/c.Error';
 import requiredFields from '@salesforce/label/c.RequiredFields';
 import recordsCreated from '@salesforce/label/c.RecordsCreated';
 import noRecordsFound from '@salesforce/label/c.NoRecordsFound';
+import hasUserPortfolioManagementAccess from '@salesforce/customPermission/UserPortfolioManagementAccess';
 
 const recordsToShow = 50;
 
@@ -41,6 +42,10 @@ export default class AccountRelatedList extends LightningElement {
         bulkOwnershipStateChange,
         transferAllClients
     };
+
+    get isAccessEnabled() {
+        return hasUserPortfolioManagementAccess;
+    }
 
     get cityLabel() {
         return ( this.accountFieldLabels && this.accountFieldLabels.BillingCity && this.accountFieldLabels.BillingCity.label ) || '';
