@@ -162,7 +162,17 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Portfolio Management Requests</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PortfolioManagementType__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PortfolioManager__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PortfolioManChangeReason__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ValidFrom__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RequestStatus__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PortfolioManChangeResult__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ErrorMessage__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

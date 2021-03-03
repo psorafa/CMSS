@@ -17,7 +17,7 @@
     <filters>
         <field>FirstProductStartDate__c</field>
         <operation>greaterOrEqual</operation>
-        <value>LAST_MONTH</value>
+        <value>LAST_WEEK</value>
     </filters>
     <label>Fyzické osoby</label>
 </ListView>
