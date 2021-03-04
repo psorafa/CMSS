@@ -83,7 +83,6 @@ export default class AccountRelatedList extends LightningElement {
         if (data) {
             this.isAccessEnabled = data;
         } else if (error) {
-            console.log(JSON.stringify(error))
             this.fireToast('error', errorMessage);
         }
     }
