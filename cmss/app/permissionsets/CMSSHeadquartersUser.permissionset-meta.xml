@@ -16,6 +16,10 @@
         <apexClass>GenericRelatedListController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>PermissionUtility</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>CMSS uživatel centrály</description>
     <fieldPermissions>
         <editable>false</editable>

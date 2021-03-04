@@ -16,10 +16,10 @@
         <apexClass>GenericRelatedListController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <customPermissions>
+    <classAccesses>
+        <apexClass>PermissionUtility</apexClass>
         <enabled>true</enabled>
-        <name>UserPortfolioManagementAccess</name>
-    </customPermissions>
+    </classAccesses>
     <description>Správce portfolio managementu</description>
     <fieldPermissions>
         <editable>false</editable>

@@ -15,7 +15,7 @@ import errorMessage from '@salesforce/label/c.Error';
 import requiredFields from '@salesforce/label/c.RequiredFields';
 import recordsCreated from '@salesforce/label/c.RecordsCreated';
 import noRecordsFound from '@salesforce/label/c.NoRecordsFound';
-import hasUserPortfolioManagementAccess from '@salesforce/customPermission/UserPortfolioManagementAccess';
+import checkUserCRUD from '@salesforce/apex/PermissionUtility.checkUserCRUD';
 
 const recordsToShow = 50;
 
@@ -35,6 +35,7 @@ export default class AccountRelatedList extends LightningElement {
     billingPostalCode;
     isModalOpen = false;
     isSaving = false;
+    isAccessEnabled = false;
     labels = {
         save,
         cancel,
@@ -42,10 +43,6 @@ export default class AccountRelatedList extends LightningElement {
         bulkOwnershipStateChange,
         transferAllClients
     };
-
-    get isAccessEnabled() {
-        return hasUserPortfolioManagementAccess;
-    }
 
     get cityLabel() {
         return ( this.accountFieldLabels && this.accountFieldLabels.BillingCity && this.accountFieldLabels.BillingCity.label ) || '';
@@ -77,6 +74,16 @@ export default class AccountRelatedList extends LightningElement {
             ];
             this.accountFieldLabels = data.fields;
         } else if (error) {
+            this.fireToast('error', errorMessage);
+        }
+    }
+
+    @wire(checkUserCRUD, { objectName: 'PortfolioManagementRequest__c', operation: 'insert' })
+    handleCheckUserCRUD({ data, error }) {
+        if (data) {
+            this.isAccessEnabled = data;
+        } else if (error) {
+            console.log(JSON.stringify(error))
             this.fireToast('error', errorMessage);
         }
     }
