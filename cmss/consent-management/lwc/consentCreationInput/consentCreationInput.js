@@ -75,8 +75,15 @@ export default class ConsentCreationInput extends LightningElement {
   }
 
   handleClose() {
+    this.handleDispatchEvent(true, false);
+  }
+
+  handleDispatchEvent(isClosed, isCreated) {
     const valueChangeEvent = new CustomEvent("valuechange", {
-      isClosed: true,
+        detail: {
+            isClosed: isClosed,
+            isCreated: isCreated
+        }
     });
     this.dispatchEvent(valueChangeEvent);
   }
@@ -106,14 +113,13 @@ export default class ConsentCreationInput extends LightningElement {
           .then((data) => {
             if (data === "OK") {
               this.fireToast("success", recordsCreated);
-              this.handleClose();
+              this.handleDispatchEvent(true, true);
             } else if (data) {
               this.fireToast("error", errorMessage, data);
             } else {
               this.fireToast("error", errorMessage);
             }
             this.toggleSpinner();
-            this.dispatchEvent(new CustomEvent('consentcreated'));
           })
           .catch((error) => {
             this.handleErrors(error);

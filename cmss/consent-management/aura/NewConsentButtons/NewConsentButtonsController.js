@@ -11,7 +11,14 @@
     },
 
     getValueFromLwc : function(component, event, helper) {
-		component.set("v.showGeneralConsentModal", false);
+        var isClosed = event.getParam('isClosed');
+        if (isClosed) {
+            component.set("v.showGeneralConsentModal", false);
+        }
+        var isCreated = event.getParam('isCreated');
+        if (isCreated) {
+            $A.get('e.force:refreshView').fire();
+        }
 	},
 
     gotoNewGeneralConsentFlow : function (component, event, helper) {
@@ -25,9 +32,4 @@
         });
         urlEvent.fire();
     },
-
-    refreshView : function (component, event, helper) {
-        $A.get('e.force:refreshView').fire();
-        console.log('refresh');
-    }
 });
