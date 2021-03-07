@@ -3379,6 +3379,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.OpportunityExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.Opportunity__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4470,6 +4475,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.MainAccountPhone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.OpportunityExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

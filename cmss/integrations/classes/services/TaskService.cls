@@ -1,15 +1,16 @@
 public with sharing class TaskService {
 
-    public static Id createTask(SF_ActivityManagementSOAPService.ActivityType data) {
+    public static String createTask(SF_ActivityManagementSOAPService.ActivityType data) {
 		if (data.id != null) {
 			throw new SOAPCommonTypes.BusinessException(102, 'Invalid attribute specified: cannot specifiy "id" in createTask');
 		}
         Validation.requireAttribute(data.name, 'name');
         Validation.requireAttribute(data.type, 'type');
         Task task = prepareTask(data);
+		task.ExternalId__c = UUIDUtil.generateUUID();
 		SObjectUtil.stripNullFields(task);
         DmlUtility.insertRecord(task);
-        return task.Id;
+        return task.ExternalId__c;
     }
     
     public static void updateTask(SF_ActivityManagementSOAPService.ActivityType data) {
@@ -68,7 +69,9 @@ public with sharing class TaskService {
         if (data.isVisibleForNEL != null) {
             t.IsVisibleForNel__c = data.isVisibleForNEL;
         }
-        t.Opportunity__c = data.opportunityId;
+		if (data.opportunityId != null) {
+			t.Opportunity__c = ReferenceUtility.getOpportunityByExternalId(data.opportunityId).Id;
+		}
         t.Location__c = data.location; 
         t.PlannedToDate__c = data.plannedToDate;
         t.WebLink__c = data.webLink;

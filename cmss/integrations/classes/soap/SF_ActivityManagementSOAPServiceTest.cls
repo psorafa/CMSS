@@ -29,7 +29,7 @@ private class SF_ActivityManagementSOAPServiceTest {
         actType.whatId = (String) account.Id;
         actType.email = 'testemail@test.com';
         actType.isVisibleForNEL = true;
-        actType.opportunityId = (String) opp.Id;
+        actType.opportunityId = (String) opp.ExternalId__c;
         actType.location = 'location'; 
         actType.plannedToDate = Datetime.now();
         actType.webLink = 'webLink';
@@ -53,10 +53,10 @@ private class SF_ActivityManagementSOAPServiceTest {
 			SELECT
 				Id, Type, Description, CallDirectionCode__c, InternalAttendee__c, Phone__c, ActivityDate, Status, 
                 StatusReason__c, Subject, ValidTo__c, Result__c, OwnerId, UpdatedBy__c, Author__c, WhatId,
-                Email__c, IsVisibleForNel__c, Opportunity__c, Location__c, PlannedToDate__c, WebLink__c, City__c, 
+                Email__c, IsVisibleForNel__c, OpportunityExternalId__c, Location__c, PlannedToDate__c, WebLink__c, City__c,
                 HouseNumber__c, PostCode__c, Street__c, IsKZMessage__c, IsRead__c, WhoId, ValidFrom__c
 			FROM Task
-			WHERE Id = :response.responseBody.activityId
+			WHERE ExternalId__c = :response.responseBody.activityId
         ];
         
         Account queriedAccount = [SELECT PersonContactId FROM Account WHERE Id =: account.Id];
@@ -78,7 +78,7 @@ private class SF_ActivityManagementSOAPServiceTest {
         System.assertEquals(queriedTask.WhatId, actType.whatId);
         System.assertEquals(queriedTask.Email__c, actType.email);
         System.assertEquals(queriedTask.IsVisibleForNel__c, actType.isVisibleForNEL);
-        System.assertEquals(queriedTask.Opportunity__c, actType.opportunityId);
+        System.assertEquals(queriedTask.OpportunityExternalId__c, actType.opportunityId);
         System.assertEquals(queriedTask.Location__c, actType.location); 
         System.assertEquals(queriedTask.PlannedToDate__c, actType.plannedToDate);
         System.assertEquals(queriedTask.WebLink__c, actType.webLink);
@@ -120,10 +120,10 @@ private class SF_ActivityManagementSOAPServiceTest {
         actType.statusManagerCPU = 'CPU111';
         actType.modifyByOzCPU = 'updated by';
         actType.authorCPU = 'author';
-        actType.whatId = (String) account.Id;
+        actType.whatId = account.Id;
         actType.email = 'testemail@test.com';
         actType.isVisibleForNEL = true;
-        actType.opportunityId = (String) opp.Id;
+        actType.opportunityId = opp.ExternalId__c;
         actType.location = 'location'; 
         actType.plannedToDate = Datetime.now();
         actType.webLink = 'webLink';
@@ -147,7 +147,7 @@ private class SF_ActivityManagementSOAPServiceTest {
 			SELECT
 				Id, Type, Description, CallDirectionCode__c, InternalAttendee__c, Phone__c, ActivityDate, Status, 
                 StatusReason__c, Subject, ValidTo__c, Result__c, OwnerId, UpdatedBy__c, Author__c, WhatId,
-                Email__c, IsVisibleForNel__c, Opportunity__c, Location__c, PlannedToDate__c, WebLink__c, City__c, 
+                Email__c, IsVisibleForNel__c, OpportunityExternalId__c, Location__c, PlannedToDate__c, WebLink__c, City__c,
                 HouseNumber__c, PostCode__c, Street__c, IsKZMessage__c, IsRead__c, WhoId, ValidFrom__c
 			FROM Task
 			WHERE Id = :task.Id
@@ -172,7 +172,7 @@ private class SF_ActivityManagementSOAPServiceTest {
         System.assertEquals(queriedTask.WhatId, actType.whatId);
         System.assertEquals(queriedTask.Email__c, actType.email);
         System.assertEquals(queriedTask.IsVisibleForNel__c, actType.isVisibleForNEL);
-        System.assertEquals(queriedTask.Opportunity__c, actType.opportunityId);
+        System.assertEquals(queriedTask.OpportunityExternalId__c, actType.opportunityId);
         System.assertEquals(queriedTask.Location__c, actType.location); 
         System.assertEquals(queriedTask.PlannedToDate__c, actType.plannedToDate);
         System.assertEquals(queriedTask.WebLink__c, actType.webLink);

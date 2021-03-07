@@ -10,12 +10,13 @@ public with sharing class OpportunityService {
 		'7' => '7'
 	};
 
-	public static Id createOpportunity(SF_OpportunitySOAPService.OpportunityType data) {
+	public static String createOpportunity(SF_OpportunitySOAPService.OpportunityType data) {
 		if (data.id != null) {
 			throw new SOAPCommonTypes.BusinessException(102, 'Invalid attribute specified: cannot specify "id" in createOpportunity');
 		}
 		Validation.requireAttribute(data.customerGlobalId, 'customerGlobalId');
 		Opportunity opportunity = prepareOpportunity(data);
+		opportunity.ExternalId__c = UUIDUtil.generateUUID();
 		if (data.validFrom == null) {
 			opportunity.CreatedDateTime__c = System.now();
 			opportunity.ValidFrom__c = System.now();
@@ -28,7 +29,7 @@ public with sharing class OpportunityService {
 		opportunity.UpdateDate__c = System.now();
 		SObjectUtil.stripNullFields(opportunity);
 		DmlUtility.insertRecord(opportunity);
-		return opportunity.Id;
+		return opportunity.ExternalId__c;
 	}
 
 	public static void updateOpportunity(SF_OpportunitySOAPService.OpportunityType data) {
@@ -42,7 +43,7 @@ public with sharing class OpportunityService {
 	private static Opportunity prepareOpportunity(SF_OpportunitySOAPService.OpportunityType data) {
 		Opportunity o = new Opportunity();
 		if (!String.isBlank(data.id)) {
-			o.Id = findOpportunityByExternalId(data.id).Id;
+			o.Id = ReferenceUtility.getOpportunityByExternalId(data.id).Id;
 		}
 		if (data.customerGlobalId != null) {
 			o.AccountId = ReferenceUtility.getAccountByGlobalId(data.customerGlobalId).Id;
@@ -69,12 +70,5 @@ public with sharing class OpportunityService {
 		}
 		o.DelegatedDate__c = data.delegatedDate;
 		return o;
-	}
-
-	private static Opportunity findOpportunityByExternalId(String externalId) {
-		for (Opportunity o : [SELECT Id FROM Opportunity WHERE ExternalId__c = :externalId LIMIT 1]) {
-			return o;
-		}
-		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: Opportunity - External ID: ' + externalId);
 	}
 }
