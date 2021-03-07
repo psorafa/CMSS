@@ -9,7 +9,7 @@ global with sharing class SF_ActivityManagementSOAPService {
                     ActivityManagementResponseType.class, 
                     request.requestHeader
             );
-			Id result = TaskService.createTask(request.requestBody);
+			String result = TaskService.createTask(request.requestBody);
 			response.responseBody = new ActivityManagementResponseBody(result);
 			Logger.debug('Returning success response', JSON.serialize(response));
 			return response;
@@ -100,9 +100,9 @@ global with sharing class SF_ActivityManagementSOAPService {
 	}
 
 	global class ActivityManagementResponseBody {
-		webService Id activityId;
+		webService String activityId;
 
-		ActivityManagementResponseBody(Id activityId) {
+		ActivityManagementResponseBody(String activityId) {
 			this.activityId = activityId;
 		}
 	}

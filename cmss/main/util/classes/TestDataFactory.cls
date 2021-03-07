@@ -94,7 +94,8 @@ public class TestDataFactory {
 		Opportunity template = new Opportunity(
 			Name = 'Opportunity ' + ++opportunityCounter,
 			StageName = '1',
-			CloseDate = Date.today()
+			CloseDate = Date.today(),
+			ExternalId__c = UUIDUtil.generateUUID()
 		);
 		SObjectUtil.copyFields(so, template);
 		if (template.AccountId == null) {
