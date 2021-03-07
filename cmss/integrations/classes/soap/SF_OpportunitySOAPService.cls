@@ -5,7 +5,7 @@ global with sharing class SF_OpportunitySOAPService {
 		Logger.debug('Incoming request', JSON.serialize(request));
 		try {
 			OpportunityResponseType response = (OpportunityResponseType) SOAPResponseFactory.constructResponse(OpportunityResponseType.class, request.requestHeader);
-			Id result = OpportunityService.createOpportunity(request.requestBody);
+			String result = OpportunityService.createOpportunity(request.requestBody);
 			response.responseBody = new OpportunityResponseBody(result);
 			Logger.debug('Returning success response', JSON.serialize(response));
 			return response;
@@ -74,9 +74,9 @@ global with sharing class SF_OpportunitySOAPService {
 	}
 
 	global class OpportunityResponseBody {
-		webService Id opportunityId;
+		webService String opportunityId;
 
-		OpportunityResponseBody(Id opportunityId) {
+		OpportunityResponseBody(String opportunityId) {
 			this.opportunityId = opportunityId;
 		}
 	}

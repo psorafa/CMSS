@@ -40,12 +40,11 @@ private class SF_OpportunitySOAPServiceTest {
 				Id, AccountId, Description, Name, StageName, Reason__c, Author__c, OwnerId, CreatedDateTime__c,
 				ValidFrom__c, CloseDate, ValidTo__c, Category__c, OriginalAsset__c, DelegatedDate__c, DueDate__c
 			FROM Opportunity
-			WHERE Id = :response.responseBody.opportunityId
+			WHERE ExternalId__c = :response.responseBody.opportunityId
 		];
 
 		System.assertEquals(account.Id, opp.AccountId);
 		System.assertEquals(oppType.description, opp.Description);
-		//System.assertEquals(oppType.subject, opp.Name); // TODO There is a process builder that replaces Name...
 		System.assertEquals(oppType.stateReason, opp.StageName);
 		System.assertEquals(oppType.result, opp.Reason__c);
 		System.assertEquals(oppType.author, opp.Author__c);
@@ -92,7 +91,7 @@ private class SF_OpportunitySOAPServiceTest {
 				Id, AccountId, Description, Name, StageName, Reason__c, Author__c, OwnerId, CreatedDateTime__c,
 				ValidFrom__c, CloseDate, ValidTo__c, Category__c, OriginalAsset__c, DelegatedDate__c, DueDate__c
 			FROM Opportunity
-			WHERE Id = :response.responseBody.opportunityId
+			WHERE ExternalId__c = :response.responseBody.opportunityId
 		];
 
 		System.assertEquals('1', opp.StageName);
@@ -100,10 +99,5 @@ private class SF_OpportunitySOAPServiceTest {
 		System.assertEquals(dNow, opp.ValidFrom__c.date());
 		System.assertEquals(dNow.addDays(90), opp.CloseDate);
 		System.assertEquals(dNow.addDays(90), opp.DueDate__c);
-	}
-
-	@IsTest
-	static void createOpportunity_ErrorsTest() {
-
 	}
 }

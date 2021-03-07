@@ -46,4 +46,11 @@ public with sharing class ReferenceUtility {
 		}
 		return accountIdsByGlobalIds;
 	}
+
+	public static Opportunity getOpportunityByExternalId(String externalId) {
+		for (Opportunity opportunity : [SELECT Id FROM Opportunity WHERE ExternalId__c = :externalId LIMIT 1]) {
+			return opportunity;
+		}
+		throw new SOAPCommonTypes.BusinessException(201, 'Record not found: Opportunity - External Id: ' + externalId);
+	}
 }
