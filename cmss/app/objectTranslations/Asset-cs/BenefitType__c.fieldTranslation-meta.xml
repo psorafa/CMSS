@@ -4,18 +4,242 @@
     <name>BenefitType__c</name>
     <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation>Standardní</translation>
+        <translation>ČSOBS-zaměstnanec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>ČSOB Leasing poj. makléř-zaměstnanec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>ČSOB Leasing poj. makléř-manžel/ka zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12</masterLabel>
+        <translation>ČSOB Leasing poj. makléř-nevýdělečné činné dítě do 26 let zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13</masterLabel>
+        <translation>ČSOB Pojišťovna-zaměstnanec, OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14</masterLabel>
+        <translation>ČSOB Pojišťovna-manžel/ka zaměstnance, OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15</masterLabel>
+        <translation>ČSOB Pojišťovna-nevýdělečně činné děti do 26 let zaměstnance, OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16</masterLabel>
+        <translation>Hypoteční banka-zaměstnanec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17</masterLabel>
+        <translation>Hypoteční banka-manžel/ka zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>18</masterLabel>
+        <translation>Hypoteční banka-nevýdělečně činné dítě do 26 let zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>19</masterLabel>
+        <translation>ČSOB Penzijní společnost-zaměstnanec</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation>MÚ/Ú zaměstnance</translation>
+        <translation>ČSOBS-obchodní zástupce (OZ)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20</masterLabel>
+        <translation>ČSOB Penzijní společnost-manžel/ka zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21</masterLabel>
+        <translation>ČSOB Penzijní společnost-nevýdělečně činné dítě do 26 let zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22</masterLabel>
+        <translation>ČSOB spol (Factoring, Asset Man, BIT, KBC, Advisory, Poj.servis, Property)-zaměstnanec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>23</masterLabel>
+        <translation>ČSOB spol (Factoring, Asset Man, BIT, KBC, Advisory, Poj.servis, Property)-manžel/ka zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24</masterLabel>
+        <translation>ČSOB spol (Factoring, Asset Man, BIT, KBC, Advisory, Poj.servis, Property)-nevýdělečně činné dítě do 26 let zam.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>25</masterLabel>
+        <translation>ASSECO-zaměstnanec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>26</masterLabel>
+        <translation>ASSECO-manžel/ka zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>27</masterLabel>
+        <translation>ASSECO-nevýdělečně činné dítě do 26 let zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>28</masterLabel>
+        <translation>Reiffeisenbank-zaměstnanec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>29</masterLabel>
+        <translation>Reiffeisenbank-manžel/ka zaměstnance</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>3</masterLabel>
-        <translation>Kooperační partner</translation>
+        <translation>ČSOBS-CITP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30</masterLabel>
+        <translation>Reiffeisenbank-nevýdělečně činné dítě do 26 let zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>31</masterLabel>
+        <translation>SOS vesničky (děti, matky a ostatní personál podílející se na výchově dětí)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>32</masterLabel>
+        <translation>MAKLÉŘI-zaměstnanci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>33</masterLabel>
+        <translation>MAKLÉŘI-manžel/manželka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>34</masterLabel>
+        <translation>MAKLÉŘI-děti do 26 let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>35</masterLabel>
+        <translation>NESS-zaměstnanec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>36</masterLabel>
+        <translation>NESS-manžel/ka zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>37</masterLabel>
+        <translation>NESS-nevýdělečně činné dítě do 26 let zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>38</masterLabel>
+        <translation>ČSOBS-rodinný příslušník zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>39</masterLabel>
+        <translation>ČSOBS-rodinný příslušník OZ</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>4</masterLabel>
-        <translation>MÚ externího spolupracovníka</translation>
+        <translation>ČSOB-zaměstnanec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>40</masterLabel>
+        <translation>ČSOBS-rodinný příslušník CITP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>41</masterLabel>
+        <translation>ČSOBS-asistent/ka OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>42</masterLabel>
+        <translation>ČSOBS-rodinný příslušník asistenta/ky OZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>43</masterLabel>
+        <translation>Hypoteční banka-obchodní zástupce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>44</masterLabel>
+        <translation>Hypoteční banka-manžel/ka obchodního zástupce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>45</masterLabel>
+        <translation>Hypoteční banka-nevýdělečně činné dítě do 26 let obchodního zástupce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>46</masterLabel>
+        <translation>ČSOB Poštovní spořitelna-zaměstnanec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>47</masterLabel>
+        <translation>ČSOB Poštovní spořitelna-manžel/ka zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>48</masterLabel>
+        <translation>ČSOB Poštovní spořitelna-nevýdělečně činné dítě do 26 let zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>49</masterLabel>
+        <translation>MAKLÉŘI-zprostředkovatelé</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>ČSOB-manžel/ka zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50</masterLabel>
+        <translation>Poplatkové prázdniny</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>51</masterLabel>
+        <translation>VIP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>52</masterLabel>
+        <translation>Rodinní příslušníci zaměstnanců ČMSS  a OZ ČMSS (MIGR.)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>53</masterLabel>
+        <translation>Rodinní příslušníci zaměstnanců ČSOB (Asset Man, Factoring), BIT, s.r.o., KBC (MIGR.)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>54</masterLabel>
+        <translation>Asseco CR a Raiffeisenbank (MIGR).</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>55</masterLabel>
+        <translation>ČSOB (Asset Man, Factoring), BIT, s.r.o., KBC (MIGR.)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>56</masterLabel>
+        <translation>Rodinní příslušníci zaměstnanců Asseco CR a Raiffeisenbank (MIGR).</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>57</masterLabel>
+        <translation>Patria (Finance, Online, Corporate Finance) - zaměstnanec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>58</masterLabel>
+        <translation>Patria (Finance, Online, Corporate Finance) - manžel/ka zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>59</masterLabel>
+        <translation>Patria (Finance, Online, Corporate Finance) - nevýdělečně činné dítě do 26 let zam.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>ČSOB-nevýdělečně činné děti do 26 let zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>60</masterLabel>
+        <translation>Zaměstnanec MOPRO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>ČSOB Leasing-zaměstnanec</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>ČSOB Leasing-manžel/ka zaměstnance</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>ČSOB Leasing-nevýdělečně činné dítě do 26 let zaměstnance</translation>
     </picklistValues>
 </CustomFieldTranslation>
