@@ -445,7 +445,7 @@
         <fields>CASES.STATUS</fields>
         <fields>ReceivedDate__c</fields>
         <fields>OWNER_NAME</fields>
-        <fields>CASES.CLOSED</fields>
+        <fields>CASES.CLOSED_DATE</fields>
         <relatedList>RelatedCaseList</relatedList>
         <sortField>ReceivedDate__c</sortField>
         <sortOrder>Desc</sortOrder>
