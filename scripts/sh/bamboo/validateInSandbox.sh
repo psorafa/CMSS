@@ -27,6 +27,8 @@ PACKAGE=${3-"cmss"}
 
 set -o xtrace
 
+#temp workaround for "session expired" bug
+sfdx force:org:list
 #validate deployment
 if [ -z  "$TEST" ];
 then
