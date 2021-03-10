@@ -47,7 +47,7 @@ public with sharing class PermissionUtility {
 		return fieldDescribes;
 	}
 
-	@AuraEnabled(Cacheable=false)
+	@AuraEnabled(Cacheable=true)
 	public static Boolean checkUserCRUD(String objectName, String operation) {
 		DescribeSObjectResult result = Schema.describeSObjects(new List<String>{ objectName }).get(0);
 		if (operation == 'insert') {
