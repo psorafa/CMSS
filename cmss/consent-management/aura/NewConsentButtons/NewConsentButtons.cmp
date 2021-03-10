@@ -6,7 +6,7 @@
     <aura:attribute name="recordId" type="String"/>
 
     <aura:if isTrue="{!v.showGeneralConsentModal}">
-        <c:consentCreationInput accountId="{!v.recordId}" onvaluechange="{!c.getValueFromLwc}" onconsentcreated="{!c.refreshView}"/>
+        <c:consentCreationInput accountId="{!v.recordId}" onvaluechange="{!c.getValueFromLwc}"/>
     </aura:if>
 
     <div class="slds-text-align_right">
