@@ -1,46 +1,22 @@
-import { LightningElement, api, wire, track } from 'lwc';
-import { getRecord } from 'lightning/uiRecordApi';
+import { LightningElement, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import enableGeneralConsents from '@salesforce/apex/GeneralConsentEnablement.enableGeneralConsents';
 import checkAgentCPU from "@salesforce/apex/AgentCPUCheck.checkAgentCPU";
-import AGE from '@salesforce/schema/Account.Age__c';
 import save from '@salesforce/label/c.Save';
 import cancel from '@salesforce/label/c.Cancel';
 import errorMessage from '@salesforce/label/c.Error';
-import recordsCreated from '@salesforce/label/c.RecordsCreated';
-import newConsent from '@salesforce/label/c.NewConsent';
+import recordUpdated from '@salesforce/label/c.RecordUpdated';
 import errorMessageNoUser from '@salesforce/label/c.NoUserWithThisCPUFound';
 
-export default class ConsentCreationInput extends LightningElement {
-  @track generalConsent = {};
-  @api accountId;
+export default class ConsentEditInput extends LightningElement {
+  @api recordId;
   isSaving = false;
   labels = {
     save,
     cancel,
-    newConsent,
     errorMessageNoUser,
   };
   agentCPU = "";
   agentCPUError = false;
-
-  @wire(getRecord, { recordId: "$accountId", fields: [AGE] })
-  account({ error, data }) {
-    if (data) {
-      if (data.fields.Age__c.value) {
-        let substitutePerson = this.template.querySelector(
-          '[data-id="SubstitutePerson__c"]'
-        );
-        let substituteRole = this.template.querySelector(
-          '[data-id="SubstituteRole__c"]'
-        );
-        substitutePerson.required = data.fields.Age__c.value < 18;
-        substituteRole.required = data.fields.Age__c.value < 18;
-      }
-    } else if (error) {
-      this.handleErrors(error);
-    }
-  }
 
   handleValueChange(event) {
     const inputFields = this.template.querySelectorAll(
@@ -74,23 +50,18 @@ export default class ConsentCreationInput extends LightningElement {
     }
   }
 
-  handleClose() {
-    this.handleDispatchEvent(true, false);
+  handleSuccess(event) {
+    this.fireToast("success", recordUpdated);
+    this.toggleSpinner();
+    this.handleClose();
   }
 
-  handleDispatchEvent(isClosed, isCreated) {
-    const valueChangeEvent = new CustomEvent("valuechange", {
-        detail: {
-            isClosed: isClosed,
-            isCreated: isCreated
-        }
-    });
-    this.dispatchEvent(valueChangeEvent);
-  }
+  handleSubmit(event) {
+    event.preventDefault();
 
-  handleSave() {
     if (!this.agentCPUError) {
       this.toggleSpinner();
+
       let isValid = true;
       const inputFields = this.template.querySelectorAll(
         "lightning-input-field"
@@ -101,35 +72,21 @@ export default class ConsentCreationInput extends LightningElement {
             isValid = false;
             field.reportValidity();
           }
-          this.generalConsent[field.fieldName] = field.value;
         });
       } else {
         return;
       }
 
       if (isValid) {
-        this.generalConsent.Account__c = this.accountId;
-        enableGeneralConsents({ c: this.generalConsent })
-          .then((data) => {
-            if (data === "OK") {
-              this.fireToast("success", recordsCreated);
-              this.handleDispatchEvent(true, true);
-            } else if (data) {
-              this.fireToast("error", errorMessage, data);
-            } else {
-              this.fireToast("error", errorMessage);
-            }
-            this.toggleSpinner();
-          })
-          .catch((error) => {
-            this.handleErrors(error);
-            this.toggleSpinner();
-          });
+        this.template.querySelector('lightning-record-edit-form').submit(event.detail.fields);
       } else {
-        this.generalConsent = {};
         this.toggleSpinner();
       }
     }
+  }
+
+  handleClose(event) {
+    window.history.back();
   }
 
   handleErrors(error) {
