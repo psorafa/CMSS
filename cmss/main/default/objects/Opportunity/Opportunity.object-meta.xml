@@ -142,9 +142,9 @@
     </actionOverrides>
     <compactLayoutAssignment>LACRCompactLayout</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
-    <enableHistory>false</enableHistory>
+    <enableHistory>true</enableHistory>
     <externalSharingModel>Private</externalSharingModel>
-    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackFeedHistory>true</recordTypeTrackFeedHistory>
     <searchLayouts>
         <customTabListAdditionalFields>OPPORTUNITY.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
