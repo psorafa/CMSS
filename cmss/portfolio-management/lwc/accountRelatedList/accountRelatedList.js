@@ -35,6 +35,8 @@ export default class AccountRelatedList extends LightningElement {
     billingPostalCode;
     isModalOpen = false;
     isSaving = false;
+    isLoading = false;
+    isAllSelected = false;
     isAccessEnabled = false;
     labels = {
         save,
@@ -53,6 +55,7 @@ export default class AccountRelatedList extends LightningElement {
     }
 
     connectedCallback() {
+        this.isLoading = true;
         this.handleGetAccounts(
             null, 
             null, 
@@ -60,7 +63,8 @@ export default class AccountRelatedList extends LightningElement {
             this.offset, 
             data => {
                 this.accountCount = data.accountCount;
-                this.data = data.accounts;
+                this.data = data.accounts.map(item => ({...item, NameUrl: '/' + item.Id}));
+                this.isLoading = false;
         })
     }
 
@@ -68,7 +72,8 @@ export default class AccountRelatedList extends LightningElement {
     handleAccountInfo({ data, error }) {
         if (data) {
             this.columns = [
-                { label: data.fields.Name.label, fieldName: 'Name' },
+                { label: data.fields.Name.label, fieldName: 'NameUrl', type: 'url', typeAttributes: {label: { fieldName: 'Name' } } },
+                { label: data.fields.PersonalIdentificationNr__c.label, fieldName: 'PersonalIdentificationNr__c' },
                 { label: data.fields.BillingCity.label, fieldName: 'BillingCity' },
                 { label: data.fields.BillingPostalCode.label, fieldName: 'BillingPostalCode' },
             ];
@@ -101,7 +106,8 @@ export default class AccountRelatedList extends LightningElement {
                 this.offset, 
                 data => {
                     this.accountCount = data.accountCount;
-                    this.data = this.data.concat(data.accounts);
+                    const mappedData = data.accounts.map(item => ({...item, NameUrl: '/' + item.Id}))
+                    this.data = this.data.concat(mappedData);
                     this.setInfiniteLoading();
                     this.tableElement.isLoading = false;
             })
@@ -115,6 +121,7 @@ export default class AccountRelatedList extends LightningElement {
     }
 
     handleSelectAll() {
+        this.isLoading = true;
         this.handleGetAccounts(
             this.billingCity, 
             this.billingPostalCode, 
@@ -123,8 +130,10 @@ export default class AccountRelatedList extends LightningElement {
             data => {
                 this.accountCount = data.accountCount;
                 this.selectedData = data.accounts.map(row => row.Id);
+                this.isAllSelected = true;
+                this.isLoading = false;
+                this.changeModalVisibility();
         })
-        this.changeModalVisibility();
     }
 
     handleSelectedRows() {
@@ -152,6 +161,7 @@ export default class AccountRelatedList extends LightningElement {
     }
 
     handleFilterChange(event) {
+        this.isLoading = true;
         this.offset = 0;
         
         if (event.target.name === 'billingCity') {
@@ -167,8 +177,9 @@ export default class AccountRelatedList extends LightningElement {
             this.offset, 
             data => {
                 this.accountCount = data.accountCount;
-                this.data = data.accounts;
+                this.data = data.accounts.map(item => ({...item, NameUrl: '/' + item.Id}));
                 this.setInfiniteLoading();
+                this.isLoading = false;
         })
     }
 
@@ -192,6 +203,11 @@ export default class AccountRelatedList extends LightningElement {
     changeModalVisibility() {
         this.portManRequest = {};
         this.isModalOpen = !this.isModalOpen;
+        if (!this.isModalOpen && this.isAllSelected) {
+            this.template.querySelector('lightning-datatable').selectedRows = [];
+            this.selectedData = [];
+            this.isAllSelected = false;
+        }
     }
 
     saveModal() {
@@ -229,6 +245,9 @@ export default class AccountRelatedList extends LightningElement {
         this.fireToast('error', toastMessage);
         if (disableSpinner) {
             this.toggleSpinner();
+        }
+        if (this.isLoading) {
+            this.isLoading = false;
         }
     }
 
