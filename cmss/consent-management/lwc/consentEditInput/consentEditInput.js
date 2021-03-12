@@ -1,6 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import checkAgentCPU from "@salesforce/apex/GeneralConsentEnablement.checkAgentCPU";
+import checkAgentCPU from "@salesforce/apex/AgentCPUCheck.checkAgentCPU";
 import save from '@salesforce/label/c.Save';
 import cancel from '@salesforce/label/c.Cancel';
 import errorMessage from '@salesforce/label/c.Error';
