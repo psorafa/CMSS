@@ -158,7 +158,7 @@ public class TestDataFactory {
 			ReceivedDate__c = Date.today(),
 			ReceivingConfirmationDate__c = Date.today(),
 			RequestComplete__c = false,
-			InternalPrecaution__c = 'No',
+			InternalPrecaution__c = '1',
 			Priority = '1',
 			Source__c = '2',
 			Origin = '2',
