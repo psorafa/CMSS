@@ -41,7 +41,7 @@ public with sharing class GeneralConsentEnablement {
 			if (response != null) {
                 if (response.consentGuid != null) {
                     c.ExternalId__c = response.consentGuid;
-                    insert c;
+                    upsert c ExternalId__c;
                     return 'OK';
                 } else {
                     return response.responseMessage;

@@ -51,6 +51,28 @@
             <name>externalId</name>
         </outputParameters>
     </actionCalls>
+    <actionCalls>
+        <name>Upsert_Internal_Consent</name>
+        <label>Upsert Internal Consent</label>
+        <locationX>50</locationX>
+        <locationY>638</locationY>
+        <actionName>InternalConsentUpsertInvocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>SuccessScreen</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Record_creation_error_0</targetReference>
+        </faultConnector>
+        <inputParameters>
+            <name>inputRecord</name>
+            <value>
+                <elementReference>internalConsent</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
     <assignments>
         <name>Internal_Consent_Assignment</name>
         <label>Internal Consent Assignment</label>
@@ -106,7 +128,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Internal_Consent</targetReference>
+            <targetReference>Upsert_Internal_Consent</targetReference>
         </connector>
     </assignments>
     <constants>
@@ -213,19 +235,6 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
-    <recordCreates>
-        <name>Create_Internal_Consent</name>
-        <label>Create Internal Consent</label>
-        <locationX>50</locationX>
-        <locationY>638</locationY>
-        <connector>
-            <targetReference>SuccessScreen</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Record_creation_error</targetReference>
-        </faultConnector>
-        <inputReference>internalConsent</inputReference>
-    </recordCreates>
     <screens>
         <name>ErrorScreen</name>
         <label>Error Screen</label>
@@ -243,7 +252,7 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
-        <name>Record_creation_error</name>
+        <name>Record_creation_error_0</name>
         <label>Record creation error</label>
         <locationX>314</locationX>
         <locationY>758</locationY>
@@ -251,8 +260,8 @@
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
-            <name>Error</name>
-            <fieldText>&lt;p&gt;Došlo k chybě při založení souhlasu:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <name>Error_0</name>
+            <fieldText>&lt;p&gt;Došlo k chybě při založení/úpravě souhlasu:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -323,7 +332,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>SuccessMessage</name>
-            <fieldText>&lt;p&gt;Souhlas byl úspěšně vytvořen. &lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Souhlas byl úspěšně vytvořen/upraven.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
