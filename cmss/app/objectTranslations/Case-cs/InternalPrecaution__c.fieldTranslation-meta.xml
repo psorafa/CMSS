@@ -3,11 +3,15 @@
     <label>Interní opatření</label>
     <name>InternalPrecaution__c</name>
     <picklistValues>
-        <masterLabel>No</masterLabel>
-        <translation>Ne</translation>
+        <masterLabel>1</masterLabel>
+        <translation>NE</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Yes</masterLabel>
-        <translation>Ano</translation>
+        <masterLabel>2</masterLabel>
+        <translation>ANO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>ANO - realizace následně</translation>
     </picklistValues>
 </CustomFieldTranslation>

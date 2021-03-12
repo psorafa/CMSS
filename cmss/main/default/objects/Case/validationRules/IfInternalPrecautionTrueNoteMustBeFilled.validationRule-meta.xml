@@ -4,7 +4,7 @@
     <active>true</active>
     <description>If Internal Precaution is &quot;Yes&quot;, Precaution Note must be filled.</description>
     <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
-(ISPICKVAL(InternalPrecaution__c, &quot;Yes&quot;) &amp;&amp; ISBLANK(PrecautionNote__c))</errorConditionFormula>
+(ISPICKVAL(InternalPrecaution__c, &quot;2&quot;) &amp;&amp; ISBLANK(PrecautionNote__c))</errorConditionFormula>
     <errorDisplayField>PrecautionNote__c</errorDisplayField>
     <errorMessage>If Internal Precaution is &quot;Yes&quot;, Precaution Note must be filled.</errorMessage>
 </ValidationRule>

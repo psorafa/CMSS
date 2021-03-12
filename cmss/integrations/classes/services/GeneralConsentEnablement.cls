@@ -1,15 +1,6 @@
 public with sharing class GeneralConsentEnablement {
 
 	@AuraEnabled
-	public static Boolean checkAgentCPU(String agentCPU) {
-		List<User> u = [
-			SELECT Id 
-			FROM User 
-			WHERE CommissionAccountBase__c =: agentCPU];
-		return true ? u.size() > 0 : false;
-	}
-
-	@AuraEnabled
 	public static String enableGeneralConsents(Consent__c c) {
 		try {
 			Set<Id> accountIds = new Set<Id>();
@@ -50,7 +41,7 @@ public with sharing class GeneralConsentEnablement {
 			if (response != null) {
                 if (response.consentGuid != null) {
                     c.ExternalId__c = response.consentGuid;
-                    insert c;
+                    upsert c ExternalId__c;
                     return 'OK';
                 } else {
                     return response.responseMessage;
