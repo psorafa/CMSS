@@ -16,8 +16,8 @@ private class AgentCPUCheckTest {
 
 	@isTest
 	private static void testCheckAgentCPU() {
-        Boolean hasAgentCPUEmpty = GeneralConsentEnablement.checkAgentCPU(NON_EXIST_AGENT_CPU);
-        Boolean hasAgentCPUrandom = GeneralConsentEnablement.checkAgentCPU(INSERTED_AGENT_CPU);
+        Boolean hasAgentCPUEmpty = AgentCPUCheck.checkAgentCPU(NON_EXIST_AGENT_CPU);
+        Boolean hasAgentCPUrandom = AgentCPUCheck.checkAgentCPU(INSERTED_AGENT_CPU);
         System.assertEquals(false, hasAgentCPUEmpty, 'Agent CPU doesnt exist, it must be false.');
         System.assertEquals(true, hasAgentCPUrandom, 'Agent CPU exist, it must be equal to assigned one.');
     }
