@@ -2,7 +2,7 @@ import { LightningElement, api, wire, track } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import enableGeneralConsents from '@salesforce/apex/GeneralConsentEnablement.enableGeneralConsents';
-import checkAgentCPU from "@salesforce/apex/GeneralConsentEnablement.checkAgentCPU";
+import checkAgentCPU from "@salesforce/apex/AgentCPUCheck.checkAgentCPU";
 import AGE from '@salesforce/schema/Account.Age__c';
 import save from '@salesforce/label/c.Save';
 import cancel from '@salesforce/label/c.Cancel';

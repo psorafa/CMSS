@@ -1,5 +1,5 @@
 @isTest
-private class GeneralConsentEnablementTest {
+private class AgentCPUCheckTest {
     PRIVATE STATIC FINAL STRING INSERTED_AGENT_CPU = '3244223csadv4';
     PRIVATE STATIC FINAL STRING NON_EXIST_AGENT_CPU = '32442igiiyg';
     
