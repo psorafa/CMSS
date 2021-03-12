@@ -1,19 +1,16 @@
 @isTest
 public with sharing class InternalConsentUpsertInvocableTest {
 
-    static void testSetup() {
-		Account acc = new Account(
+    @isTest
+    private static void testExecute() {
+		Account acc = TestDataFactory.getPersonAccount(new Account(
 			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('PersonAccount', 'Account'),
 			FirstName = 'Test',
 			LastName = 'Test',
 			Phone = '000000000',
 			GlobalId__c = 'Test000001'
-		);
-        insert acc;
-    }
-
-    @isTest
-    private static void testExecute() {
+		));
+		insert acc;
         List<InternalConsentUpsertInvocable.Request> requestWrapper = new List<InternalConsentUpsertInvocable.Request>();
         InternalConsentUpsertInvocable.Request request = new InternalConsentUpsertInvocable.Request();
         Id accId = [SELECT Id FROM Account LIMIT 1].Id;
