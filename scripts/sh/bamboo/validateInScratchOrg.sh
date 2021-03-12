@@ -72,8 +72,7 @@ sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wai
 
 #push source
 echo "Pushing source..."
-pushWithTimeout $ALIAS cmss/main/default/
-pushWithTimeout $ALIAS cmss/main/util/
+pushWithTimeout $ALIAS cmss/main/
 pushWithTimeout $ALIAS cmss/integrations/
 pushWithTimeout $ALIAS cmss/customer-360/
 pushWithTimeout $ALIAS cmss/customer-search/
