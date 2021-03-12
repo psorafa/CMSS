@@ -90,6 +90,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>6</fullName>
             <default>false</default>
         </values>
@@ -295,11 +299,15 @@
     <picklistValues>
         <picklist>InternalPrecaution__c</picklist>
         <values>
-            <fullName>No</fullName>
+            <fullName>1</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Yes</fullName>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
             <default>false</default>
         </values>
     </picklistValues>

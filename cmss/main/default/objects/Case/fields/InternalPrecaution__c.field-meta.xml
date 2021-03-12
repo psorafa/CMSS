@@ -12,14 +12,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Yes</fullName>
+                <fullName>1</fullName>
                 <default>false</default>
-                <label>Yes</label>
+                <label>1</label>
             </value>
             <value>
-                <fullName>No</fullName>
+                <fullName>2</fullName>
                 <default>false</default>
-                <label>No</label>
+                <label>2</label>
+            </value>
+            <value>
+                <fullName>3</fullName>
+                <default>false</default>
+                <label>3</label>
             </value>
         </valueSetDefinition>
     </valueSet>
