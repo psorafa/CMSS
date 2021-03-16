@@ -48,7 +48,7 @@ public with sharing class AccountRelatedListController {
 
     private static Account[] queryAccounts(Id userId, String portManType, String billingCity, String billingPostalCode, Integer recordsToShow, Integer offset) {
         return Database.query(
-            'SELECT Name, PersonalIdentificationNr__c, BillingCity, BillingPostalCode ' +
+            'SELECT CombinedName__c, BillingStreet, BillingCity, BillingPostalCode, Phone, PersonEmail, PersonType__c ' +
             'FROM Account ' +
             'WHERE PortfolioMngmt' + portManType + '__c = :userId ' +
             (String.isNotBlank(billingCity) ? 'AND BillingCity LIKE :billingCity ' : '') +
