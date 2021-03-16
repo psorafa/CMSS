@@ -72,10 +72,13 @@ export default class AccountRelatedList extends LightningElement {
     handleAccountInfo({ data, error }) {
         if (data) {
             this.columns = [
-                { label: data.fields.Name.label, fieldName: 'NameUrl', type: 'url', typeAttributes: {label: { fieldName: 'Name' } } },
-                { label: data.fields.PersonalIdentificationNr__c.label, fieldName: 'PersonalIdentificationNr__c' },
+                { label: data.fields.CombinedName__c.label, fieldName: 'NameUrl', type: 'url', typeAttributes: {label: { fieldName: 'CombinedName__c' } } },
+                { label: data.fields.BillingStreet.label, fieldName: 'BillingStreet' },
                 { label: data.fields.BillingCity.label, fieldName: 'BillingCity' },
                 { label: data.fields.BillingPostalCode.label, fieldName: 'BillingPostalCode' },
+                { label: data.fields.Phone.label, fieldName: 'Phone' },
+                { label: data.fields.PersonEmail.label, fieldName: 'PersonEmail' },
+                { label: data.fields.PersonType__c.label, fieldName: 'PersonType__c' },
             ];
             this.accountFieldLabels = data.fields;
         } else if (error) {
