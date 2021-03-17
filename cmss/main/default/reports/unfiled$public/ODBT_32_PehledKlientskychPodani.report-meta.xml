@@ -31,7 +31,7 @@
             <field>Case$OwnerDepartment__c</field>
         </columns>
         <columns>
-            <field>Case$ComplaintReceivingConfirmation__c</field>
+            <field>Case$ReceivingConfirmationDate__c</field>
         </columns>
         <columns>
             <aggregateTypes>Sum</aggregateTypes>
@@ -96,9 +96,6 @@
         </columns>
         <columns>
             <field>Case$ThirtyDayPeriodOverReason__c</field>
-        </columns>
-        <columns>
-            <field>Case$ReceivingConfirmationDate__c</field>
         </columns>
         <columns>
             <aggregateTypes>Sum</aggregateTypes>
