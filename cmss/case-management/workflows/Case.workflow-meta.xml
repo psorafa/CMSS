@@ -423,7 +423,7 @@ OwnerId &lt;&gt; LastModifiedById</formula>
             <operation>equals</operation>
         </criteriaItems>
         <criteriaItems>
-            <field>Case.ComplaintReceivingConfirmation__c</field>
+            <field>Case.ReceivingConfirmationDate__c</field>
             <operation>equals</operation>
         </criteriaItems>
         <description>6 days after Received Date sends email alert to Client Claim case owner if the conditions are met.</description>
