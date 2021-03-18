@@ -450,7 +450,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>RECORDTYPE</fields>
-        <fields>AssetNumber__c</fields>
+        <fields>Asset__c</fields>
         <fields>CaseType1__c</fields>
         <relatedList>CaseType__c.Case__c</relatedList>
     </relatedLists>
