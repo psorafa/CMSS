@@ -141,14 +141,17 @@ public with sharing class ClientZoneService {
 
 	private static SF_PersonManagementSOAPService.CreateCZContractResponseType upsertAccountRelations(List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations, ClientZone__c clZone, Id clientSfId) {
 		SF_PersonManagementSOAPService.CreateCZContractResponseType response = new SF_PersonManagementSOAPService.CreateCZContractResponseType();
+		for (SF_PersonManagementSOAPService.ClientRelationType clientRelation : clientRelations) {
+			Validation.requireAttribute(clientRelation.relatedClientId, 'relatedClientId');
+		}
 
 		List<AccountRelation__c> accountRelationsToInsert = new List<AccountRelation__c>();
 		List<AccountRelation__c> accountRelationsToUpdate = new List<AccountRelation__c>();
 
-		Map<String, Id> accountIdsByGlobalIds = ReferenceUtility.getAccountIdsByGlobalIds(clientRelations);
+		Map<String, Id> accountIdsByGlobalIds = ReferenceUtility.getAccountIdsByGlobalIds(clientRelations); // hypoteza: neleze nam sem null?
 
 		Set<String> externalIdsSet = buildExternalIdsSet(clientRelations);
-		List<AccountRelation__c> relations = [SELECT Id, ExternalId__c FROM AccountRelation__c WHERE ExternalId__c IN :externalIdsSet];
+		List<AccountRelation__c> relations = [SELECT Id, ExternalId__c FROM AccountRelation__c WHERE ExternalId__c IN :externalIdsSet]; // nebo sem null? je to pole indexovane?
 		Map<String, AccountRelation__c> clientToRelateWithRelationMap = buildExistingRelationsMap(relations);
 
 		for (SF_PersonManagementSOAPService.ClientRelationType requestRelation : clientRelations) {
@@ -182,6 +185,9 @@ public with sharing class ClientZoneService {
 	private static AccountRelation__c insertAccountRelation(SF_PersonManagementSOAPService.ClientRelationType requestRelation, Id relatedAccountId, ClientZone__c clZone, Id clientSfId) {
 		AccountRelation__c accountRelation = new AccountRelation__c();
 		accountRelation.ExternalId__c = requestRelation.externalId;
+		if (accountRelation.ExternalId__c == null) {
+			accountRelation.ExternalId__c = UUIDUtil.generateUUID();
+		}
 		accountRelation.RelationTypeNEL__c = '5';
 		accountRelation.AccountRole__c = '1502';
 		accountRelation.RelatedAccountRole__c = '1501';
@@ -210,6 +216,7 @@ public with sharing class ClientZoneService {
 		for (SF_PersonManagementSOAPService.ClientRelationType clientRelation : clientRelations) {
 			externalIdsSet.add(clientRelation.externalId);
 		}
+		externalIdsSet.remove(null);
 		return externalIdsSet;
 	}
 }
