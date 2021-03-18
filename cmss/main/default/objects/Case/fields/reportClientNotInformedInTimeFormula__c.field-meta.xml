@@ -6,8 +6,8 @@
     <formula>IF(
 				ISPICKVAL(Type, &apos;1&apos;) 
 				&amp;&amp; 
-				((ComplaintReceivingConfirmation__c - ReceivedDatetime__c) &gt; 7  
-				|| (ISBLANK(ComplaintReceivingConfirmation__c) &amp;&amp; (NOW()- ReceivedDatetime__c)&gt;7)) 
+				((ReceivingConfirmationDate__c - ReceivedDate__c) &gt; 7  
+				|| (ISBLANK(ReceivingConfirmationDate__c) &amp;&amp; (TODAY()- ReceivedDate__c)&gt;7)) 
 				, 1  , 0)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Client Not Informed In Time Formula</label>

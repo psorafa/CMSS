@@ -12,7 +12,7 @@
     <columns>OwnerDepartment__c</columns>
     <columns>RepeatedComplaint__c</columns>
     <columns>ResponseSentDate__c</columns>
-    <columns>ComplaintReceivingConfirmation__c</columns>
+    <columns>ReceivingConfirmationDate__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>IsClientClaim__c</field>
