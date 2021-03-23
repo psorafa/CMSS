@@ -803,6 +803,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>AccountRelation__c.ClientZoneExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>AccountRelation__c.ClientZoneID__c</field>
         <readable>true</readable>
@@ -818,6 +823,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>AccountRelation__c.GlobalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>AccountRelation__c.IsActive__c</field>
         <readable>true</readable>
@@ -825,6 +835,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>AccountRelation__c.RelatedAccountRole__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AccountRelation__c.RelatedGlobalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
