@@ -148,10 +148,10 @@ public with sharing class ClientZoneService {
 		List<AccountRelation__c> accountRelationsToInsert = new List<AccountRelation__c>();
 		List<AccountRelation__c> accountRelationsToUpdate = new List<AccountRelation__c>();
 
-		Map<String, Id> accountIdsByGlobalIds = ReferenceUtility.getAccountIdsByGlobalIds(clientRelations); // hypoteza: neleze nam sem null?
+		Map<String, Id> accountIdsByGlobalIds = ReferenceUtility.getAccountIdsByGlobalIds(clientRelations);
 
 		Set<String> externalIdsSet = buildExternalIdsSet(clientRelations);
-		List<AccountRelation__c> relations = [SELECT Id, ExternalId__c FROM AccountRelation__c WHERE ExternalId__c IN :externalIdsSet]; // nebo sem null? je to pole indexovane?
+		List<AccountRelation__c> relations = [SELECT Id, ExternalId__c FROM AccountRelation__c WHERE ExternalId__c IN :externalIdsSet];
 		Map<String, AccountRelation__c> clientToRelateWithRelationMap = buildExistingRelationsMap(relations);
 
 		for (SF_PersonManagementSOAPService.ClientRelationType requestRelation : clientRelations) {
@@ -172,8 +172,8 @@ public with sharing class ClientZoneService {
 	private static AccountRelation__c updateAccountRelation(AccountRelation__c toUpdate, SF_PersonManagementSOAPService.ClientRelationType requestRelation, ClientZone__c clZone, Id clientSfId) {
 		toUpdate.ExternalId__c = requestRelation.externalId;
 		toUpdate.RelationTypeNEL__c = '5';
-		toUpdate.AccountRole__c = '1502';
-		toUpdate.RelatedAccountRole__c = '1501';
+		toUpdate.AccountRole__c = '1501';
+		toUpdate.RelatedAccountRole__c = '1502';
 		toUpdate.ClientZoneID__c = clZone.Id;
 		toUpdate.ValidTo__c = requestRelation.validTo;
 		toUpdate.ValidFrom__c = Date.today();
@@ -189,8 +189,8 @@ public with sharing class ClientZoneService {
 			accountRelation.ExternalId__c = UUIDUtil.generateUUID();
 		}
 		accountRelation.RelationTypeNEL__c = '5';
-		accountRelation.AccountRole__c = '1502';
-		accountRelation.RelatedAccountRole__c = '1501';
+		accountRelation.AccountRole__c = '1501';
+		accountRelation.RelatedAccountRole__c = '1502';
 		accountRelation.ClientZoneID__c = clZone.Id;
 		accountRelation.ValidTo__c = requestRelation.validTo;
 		accountRelation.ValidFrom__c = Date.today();
