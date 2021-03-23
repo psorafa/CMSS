@@ -3,6 +3,18 @@
     <label>Druh změny</label>
     <name>ChangeType__c</name>
     <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>Přírůstky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Nové přírůstky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Zvýšení</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>10001</masterLabel>
         <translation>Pojistná smlouva - změna smlouvy v limitu</translation>
     </picklistValues>
@@ -55,8 +67,40 @@
         <translation>Změna zajištění - jiná změna</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>Zvýšení při opravě</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>11001</masterLabel>
         <translation>Ukončení smluvního vztahu - ukončení sml.vztahu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>111</masterLabel>
+        <translation>Zrušení - splacení úvěru</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>112</masterLabel>
+        <translation>Zrušení - převzetí dluhu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>113</masterLabel>
+        <translation>Zrušení – pojistná částka &lt; minimální částka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>114</masterLabel>
+        <translation>Zrušení - vzdání se nároku na úvěr</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>116</masterLabel>
+        <translation>Zrušení - výpověď vkladového účtu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>118</masterLabel>
+        <translation>Zrušení – překročení maximální věkové hranice/délky pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12</masterLabel>
+        <translation>Zvýšení přiřazením nových smluv</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>12001</masterLabel>
@@ -103,6 +147,26 @@
         <translation>Potvrzení - Potvrzení</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>131</masterLabel>
+        <translation>Zrušení - vzdání se nároku na pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1328</masterLabel>
+        <translation>Změna tarifu z XX na YY</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>133</masterLabel>
+        <translation>Zrušení - oprava</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1331</masterLabel>
+        <translation>Oprava tarifu z XX na YY</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>134</masterLabel>
+        <translation>Nezaplacení pojistného klientem</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>14001</masterLabel>
         <translation>Změna zajištění_PO - vyvázání nemovitosti</translation>
     </picklistValues>
@@ -135,12 +199,36 @@
         <translation>Změna zajištění_PO - jiná změna</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>141</masterLabel>
+        <translation>Snížení – částečné vzdání se nároku na pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>145</masterLabel>
+        <translation>Nezaplacení pojistného klientem</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>15001</masterLabel>
         <translation>Změna účastníků_PO - role právo podpisu PO</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>151</masterLabel>
+        <translation>Zrušení – vzdání se nároku na pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>159</masterLabel>
+        <translation>Zrušení – oprava</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>16001</masterLabel>
         <translation>Vyvázání účtu_PO - vkladového účtu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>161</masterLabel>
+        <translation>Snížení – vzdání se nároku na pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>163</masterLabel>
+        <translation>Snížení – vzdání se nároku na pojištění</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>17001</masterLabel>
@@ -167,6 +255,14 @@
         <translation>Souhlas_PO - jiný souhlas</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>1705</masterLabel>
+        <translation>Neúčetní - změna cílové částky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1706</masterLabel>
+        <translation>Neúčetní - oprava cílové částky</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>18001</masterLabel>
         <translation>Pojistná událost_PO - výše plnění limitu</translation>
     </picklistValues>
@@ -181,6 +277,30 @@
     <picklistValues>
         <masterLabel>19002</masterLabel>
         <translation>Změna účelu_PO - doplnění účelu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>191</masterLabel>
+        <translation>Zrušení 1 - úmrtí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>192</masterLabel>
+        <translation>Zrušení 2 - úmrtí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>193</masterLabel>
+        <translation>Zrušení 3 - úmrtí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>194</masterLabel>
+        <translation>Zrušení 4 - úmrtí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>199</masterLabel>
+        <translation>Snížení - úmrtí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Znovuoživení zrušeného účtu</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>20001</masterLabel>
@@ -223,12 +343,28 @@
         <translation>Změna účastníků - role právo podpisu PO</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>202</masterLabel>
+        <translation>Dobropis pojistného – oprava</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>204</masterLabel>
+        <translation>Dobropis pojistného – změna z důvodu úmrtí v loňském roce/přechozích letech</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>207</masterLabel>
+        <translation>Dobropis pojistného - oprava</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>21001</masterLabel>
         <translation>Pojistná smlouva_PO - změny smlouvy v limitu</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>21002</masterLabel>
         <translation>Pojistná smlouva_PO - devinkulace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22</masterLabel>
+        <translation>Zvýšení při úmrtí v loňském roce</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>22001</masterLabel>
@@ -275,12 +411,96 @@
         <translation>Potvrzení_PO - potvrzení</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>24</masterLabel>
+        <translation>Zvýšení přiřazením při změně druhu pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24001</masterLabel>
+        <translation>Restrukturalizace - Nezaměstnanost</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24002</masterLabel>
+        <translation>Restrukturalizace - Mateřská dovolená</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24003</masterLabel>
+        <translation>Restrukturalizace - Nemoc</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24004</masterLabel>
+        <translation>Restrukturalizace - Rozvod/Rozchod</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24005</masterLabel>
+        <translation>Restrukturalizace - Prodej nemovitosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24006</masterLabel>
+        <translation>Restrukturalizace - Snížený příjem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24007</masterLabel>
+        <translation>Restrukturalizace - Úmrtí</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24008</masterLabel>
+        <translation>Restrukturalizace - Předlužení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24009</masterLabel>
+        <translation>Restrukturalizace - Jiné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24010</masterLabel>
+        <translation>Restrukturalizace - Covid 19 – standard</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24011</masterLabel>
+        <translation>Restrukturalizace - Covid 19 - odklad</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>252</masterLabel>
+        <translation>Zatížení pojistného – oprava</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30</masterLabel>
+        <translation>Přiřazení</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>3001</masterLabel>
         <translation>Vyvázání účtu - vkladového účtu</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>302</masterLabel>
+        <translation>Odřazení – předčasné splacení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>305</masterLabel>
+        <translation>Odřazení – mylná informace/zpracování</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>307</masterLabel>
+        <translation>Odřazení – vzdání se pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>311</masterLabel>
+        <translation>Odřazení – výpověď vkladového účtu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>312</masterLabel>
+        <translation>Odřazení - zůstatek účtu &lt; 4 měsíční splátky</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>4001</masterLabel>
         <translation>Převod úvěru - převodu úvěru</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>404</masterLabel>
+        <translation>Změna způsobu placení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>405</masterLabel>
+        <translation>Změna pojištění vkladů na pojištění úvěru - bez přepočítání stavu</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>5001</masterLabel>
@@ -319,6 +539,10 @@
         <translation>Pojistná událost - výše plnění nad limit</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>701</masterLabel>
+        <translation>Přiřazení pojištěného vkladového účtu do úvěrového případu</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>8001</masterLabel>
         <translation>Změna účelu - výměny účelu</translation>
     </picklistValues>
@@ -327,7 +551,19 @@
         <translation>Změna účelu - doplnění účelu</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>8131</masterLabel>
+        <translation>Rozdělení smlouvy</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>9001</masterLabel>
         <translation>Změna v kompetenci úvěrů - změny podmínek</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>901</masterLabel>
+        <translation>Výpočet pojistného</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>902</masterLabel>
+        <translation>Pojistné při úmrtí v loňském roce</translation>
     </picklistValues>
 </CustomFieldTranslation>
