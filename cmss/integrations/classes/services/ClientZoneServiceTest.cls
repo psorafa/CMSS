@@ -92,8 +92,8 @@ private class ClientZoneServiceTest {
 		Integer correctValidToCount = 0;
 		for (AccountRelation__c accountRelation : accountRelations) {
 			System.assertEquals(client.Id, accountRelation.RelatedAccount__c);
-			System.assertEquals('1501', accountRelation.RelatedAccountRole__c);
-			System.assertEquals('1502', accountRelation.AccountRole__c);
+			System.assertEquals('1502', accountRelation.RelatedAccountRole__c);
+			System.assertEquals('1501', accountRelation.AccountRole__c);
 			if (validTo1 == accountRelation.ValidTo__c || validTo2 == accountRelation.ValidTo__c || validTo3 == accountRelation.ValidTo__c) {
 				correctValidToCount++;
 			}
