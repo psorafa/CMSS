@@ -221,9 +221,9 @@
                 <stringValue>Update Case Record Type</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_18_A1</name>
+        <name>myRule_17_A1</name>
         <label>Update Record Type to ClosedClientClaim</label>
-        <locationX>1800</locationX>
+        <locationX>1700</locationX>
         <locationY>200</locationY>
         <actionName>UpdateCaseRecordType</actionName>
         <actionType>flow</actionType>
@@ -457,7 +457,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision16_myRule_15_ReceivingConfirmationDate_c</targetReference>
+            <targetReference>isChangedDecision18_myRule_17_Status</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -478,46 +478,14 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision16_myRule_15_ReceivingConfirmationDate_c</targetReference>
+                <targetReference>isChangedDecision18_myRule_17_Status</targetReference>
             </connector>
             <label>isChangedRule_13_myRule_12_ResponseSentDate_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision16_myRule_15_ReceivingConfirmationDate_c</name>
-        <label>isChangedDecision16_myRule_15_ReceivingConfirmationDate_c</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>isChangedDecision19_myRule_18_Status</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>isChangedRule_16_myRule_15_ReceivingConfirmationDate_c</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>myVariable_old</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>myVariable_old.ReceivingConfirmationDate__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>myVariable_current.ReceivingConfirmationDate__c</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>isChangedDecision19_myRule_18_Status</targetReference>
-            </connector>
-            <label>isChangedRule_16_myRule_15_ReceivingConfirmationDate_c</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>isChangedDecision19_myRule_18_Status</name>
-        <label>isChangedDecision19_myRule_18_Status</label>
+        <name>isChangedDecision18_myRule_17_Status</name>
+        <label>isChangedDecision18_myRule_17_Status</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
@@ -525,7 +493,7 @@
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_19_myRule_18_Status</name>
+            <name>isChangedRule_18_myRule_17_Status</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -544,7 +512,7 @@
             <connector>
                 <targetReference>myDecision</targetReference>
             </connector>
-            <label>isChangedRule_19_myRule_18_Status</label>
+            <label>isChangedRule_18_myRule_17_Status</label>
         </rules>
     </decisions>
     <decisions>
@@ -925,7 +893,7 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision17</targetReference>
+            <targetReference>myDecision16</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -1003,13 +971,13 @@
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>DateTime</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>operatorDataType</name>
                     <value>
-                        <stringValue>DateTime</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -1018,41 +986,10 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_16_myRule_15_ReceivingConfirmationDate_c</leftValueReference>
+                <leftValueReference>myVariable_current.ReceivingConfirmationNotSent__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>DateTime</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>DateTime</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.ReceivingConfirmationDate__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1136,13 +1073,13 @@
                 <numberValue>6.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision17</name>
-        <label>myDecision17</label>
+        <name>myDecision16</name>
+        <label>myDecision16</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_18</name>
+            <name>myRule_17</name>
             <conditionLogic>1 AND 2 AND (3 OR 4)</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -1200,7 +1137,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_19_myRule_18_Status</leftValueReference>
+                <leftValueReference>isChangedRule_18_myRule_17_Status</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -1269,7 +1206,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_18_A1</targetReference>
+                <targetReference>myRule_17_A1</targetReference>
             </connector>
             <label>Client Claim and Closed or Cancelled Status</label>
         </rules>
@@ -1694,7 +1631,7 @@
         </rules>
     </decisions>
     <description>All the actions that should take action after case update.</description>
-    <interviewLabel>CASE_OnUpdateActions-10_InterviewLabel</interviewLabel>
+    <interviewLabel>CASE_OnUpdateActions-2_InterviewLabel</interviewLabel>
     <label>CASE_OnUpdateActions</label>
     <processMetadataValues>
         <name>ObjectType</name>
