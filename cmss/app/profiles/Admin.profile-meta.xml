@@ -38,6 +38,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AssetAccountRelationTriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AssetAccountRelationTriggerHandlerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AssetRelatedListController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2294,6 +2302,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>AssetAccountRelation__c.AssetsProductType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>AssetAccountRelation__c.DateUpdated__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2320,11 +2333,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>AssetAccountRelation__c.ProductId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>AssetAccountRelation__c.ProductType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

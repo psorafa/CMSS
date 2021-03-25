@@ -119,9 +119,11 @@ public class TestDataFactory {
 		}
 		return template;
 	}
-
+	public static Asset getAsset() {
+		return getAsset(new Asset());
+	}
 	public static Asset getAsset(Asset so) {
-		Asset template = new Asset(Name = 'Asset' + ++assetCounter);
+		Asset template = new Asset(Name = 'Asset' + ++assetCounter, ProductType__c = '11');
 		SObjectUtil.copyFields(so, template);
 		if (template.AccountId == null) {
 			Account a = getAccount();
@@ -310,5 +312,21 @@ public class TestDataFactory {
 			PortfolioManagementServiceUsername__c = 'testusername',
 			PortfolioManagementServicePassword__c = 'testpass'
 		);
+	}
+
+	public static AssetAccountRelation__c getAssetAccountRelation(AssetAccountRelation__c so) {
+		AssetAccountRelation__c template = new AssetAccountRelation__c(Name = 'Test Asset Account Relation');
+		SObjectUtil.copyFields(so, template);
+		if (template.Account__c == null) {
+			Account a = getAccount();
+			insert a;
+			template.Account__c = a.Id;
+		}
+		if (template.Asset__c == null) {
+			Asset a = getAsset();
+			insert a;
+			template.Asset__c = a.Id;
+		}
+		return template;
 	}
 }
