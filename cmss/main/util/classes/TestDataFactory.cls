@@ -119,9 +119,7 @@ public class TestDataFactory {
 		}
 		return template;
 	}
-	public static Asset getAsset() {
-		return getAsset(new Asset());
-	}
+
 	public static Asset getAsset(Asset so) {
 		Asset template = new Asset(Name = 'Asset' + ++assetCounter, ProductType__c = '11');
 		SObjectUtil.copyFields(so, template);
@@ -323,7 +321,7 @@ public class TestDataFactory {
 			template.Account__c = a.Id;
 		}
 		if (template.Asset__c == null) {
-			Asset a = getAsset();
+			Asset a = getAsset(new Asset);
 			insert a;
 			template.Asset__c = a.Id;
 		}
