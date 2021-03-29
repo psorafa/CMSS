@@ -21,6 +21,25 @@ public with sharing class CaseMilestoneUtils {
 		}
 	}
 
+    public static void closeMilestones(Set<Id> caseIds, List<String> milestoneNames) {
+        List<CaseMilestone> caseMilestones = [
+			SELECT
+				Id,
+				CompletionDate,
+				IsCompleted,
+				MilestoneType.Name
+			FROM CaseMilestone
+			WHERE CaseId IN :caseIds AND MilestoneType.Name IN :milestoneNames AND CompletionDate = null
+		];
+
+		if (!caseMilestones.isEmpty()) {
+            for (CaseMilestone cm : caseMilestones) {
+                cm.CompletionDate = Date.Today();
+            }
+            update caseMilestones;
+		}
+    }
+    
 	private static void updateMilestones(List<CaseMilestone> caseMilestones, Datetime completionDate) {
 		List<CaseMilestone> cmsToUpdate = new List<CaseMilestone>();
 		ClientClaimEntitlement__c csEntitlementInfo = ClientClaimEntitlement__c.getOrgDefaults();
