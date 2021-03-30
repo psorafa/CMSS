@@ -144,19 +144,12 @@ private class CaseTriggerHandler_Test {
 			System.assert(!caseMilestones.isEmpty(), 'Case Milestones not found.');
 			ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getOrgDefaults();
 			for (CaseMilestone cm : caseMilestones) {
-				if (c3.Id == cm.CaseId || csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name) {
+				if (c3.Id == cm.CaseId && csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name) {
 					System.assertEquals(false, cm.IsCompleted, 'Case Milestone should NOT be completed yet.');
 					System.assertEquals(
 						null,
 						cm.CompletionDate,
 						'Case Milestone Completion Date should be not filled for for c3'
-					);
-				} else if (csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name) {
-					System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed.');
-					System.assertEquals(
-						cm.Case.ResponseSentDate__c,
-						Date.newInstance(cm.CompletionDate.year(), cm.CompletionDate.month(), cm.CompletionDate.day()),
-						'Case Milestone Completion Date not as expected.'
 					);
 				}
 			}
