@@ -18,6 +18,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 		Map<Id, Case> oldMap = (Map<Id, Case>) Trigger.oldMap;
 
 		handleMilestoneCompletion(newList, oldMap);
+        handleMilestoneForCloseCases(newList);
 	}
 
 	public override void beforeDelete() {
@@ -26,6 +27,29 @@ public class CaseTriggerHandler extends TriggerHandler {
 
 	// ***************************** handlers and helping methods***************************************** //
 
+    /**
+	 * @author petr bartonicek
+	 * @description check if the any case is closed, if yes close the milestones
+	 * @param newList is Trigger.New reference
+	 */
+    private void handleMilestoneForCloseCases(List<Case> newList) {
+        ClientClaimEntitlement__c csEntitlementInfo = ClientClaimEntitlement__c.getOrgDefaults();
+        Set<Id> relevantCaseIdsToCloseMilestone = new Set<Id>();
+        
+        for (Case newCase : newList) {
+            if(newCase.IsClosed == true) {
+                relevantCaseIdsToCloseMilestone.add(newCase.Id);
+            }
+        }
+        
+        if(!relevantCaseIdsToCloseMilestone.isEmpty() && csEntitlementInfo != null) {
+            //String responseMilestoneName = csEntitlementInfo.ResponseSentMilestoneName__c;
+            String confirmMilestoneName = csEntitlementInfo.ReceivingConfirmationMilestoneName__c;
+            List<String> milestonesNames = new List<String>{confirmMilestoneName};
+           	CaseMilestoneUtils.closeMilestones(relevantCaseIdsToCloseMilestone, milestonesNames);    
+        }
+    }
+    
 	/**
 	 * @author andrea olexova
 	 * @description method to handle completion of relevant case milestones when particulat updates to cases occur

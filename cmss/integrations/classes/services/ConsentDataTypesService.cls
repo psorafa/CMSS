@@ -86,8 +86,6 @@ public class ConsentDataTypesService {
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode){
 			
-			//System.assertEquals('disableChannelConsent', outerNode.getName());
-			
 			CommonMessageService.RequestHeader requestHeaderObj = this.requestHeader;
 			Dom.XmlNode requestHeaderNode = outerNode.addChildElement('requestHeader', 'http://service.cmss.cz/common/CommonMessage/v01', 'v01');
 			if(requestHeaderObj != null){
@@ -142,7 +140,6 @@ public class ConsentDataTypesService {
 		}
 		public DisableChannelConsentResponseType(DOM.XmlNode responseNode){
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			//System.assertEquals('disableChannelConsentResponse', responseNode.getName());
 			DOM.XmlNode responseHeaderNode = responseNode.getChildElement('responseHeader', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
 			if(responseHeaderNode == null){
 				this.responseHeader = null;
@@ -163,7 +160,7 @@ public class ConsentDataTypesService {
 			//System.debug(this.responseBody);			
 		}
 	}
-	/*public class DisableGeneralConsentRequestBodyType {
+	public class DisableGeneralConsentRequestBodyType {
 		public String consentCrmGuid;
 		public String validFrom;
 		public String consentSourceId;
@@ -257,8 +254,6 @@ public class ConsentDataTypesService {
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode){
 			
-			//System.assertEquals('disableGeneralConsent', outerNode.getName());
-			
 			CommonMessageService.RequestHeader requestHeaderObj = this.requestHeader;
 			Dom.XmlNode requestHeaderNode = outerNode.addChildElement('requestHeader', 'http://service.cmss.cz/common/CommonMessage/v01', 'v01');
 			if(requestHeaderObj != null){
@@ -274,6 +269,7 @@ public class ConsentDataTypesService {
 	}
 	public class DisableGeneralConsentResponseBodyType {
 		public BasicTypesService.OperationSuccessType success;
+        public String responseMessage;
 		private transient String[] success_type_info = new String[]{'success',s_ns0,'OperationSuccessType','0','1','false'};
 		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
 		private transient String[] field_order_type_info = new String[]{'success'};
@@ -313,7 +309,6 @@ public class ConsentDataTypesService {
 		}
 		public DisableGeneralConsentResponseType(DOM.XmlNode responseNode){
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			//System.assertEquals('disableGeneralConsentResponse', responseNode.getName());
 			DOM.XmlNode responseHeaderNode = responseNode.getChildElement('responseHeader', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
 			if(responseHeaderNode == null){
 				this.responseHeader = null;
@@ -333,7 +328,7 @@ public class ConsentDataTypesService {
 			}
 			//System.debug(this.responseBody);			
 		}
-	}*/
+	}
 	/*public class DisableInternalConsentForPersonRequestBodyType {
 		public String globalId;
 		public String emailAddress;
@@ -406,8 +401,6 @@ public class ConsentDataTypesService {
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode){
 			
-			//System.assertEquals('disableInternalConsentForPerson', outerNode.getName());
-			
 			CommonMessageService.RequestHeader requestHeaderObj = this.requestHeader;
 			Dom.XmlNode requestHeaderNode = outerNode.addChildElement('requestHeader', 'http://service.cmss.cz/common/CommonMessage/v01', 'v01');
 			if(requestHeaderObj != null){
@@ -462,7 +455,6 @@ public class ConsentDataTypesService {
 		}
 		public DisableInternalConsentForPersonResponseType(DOM.XmlNode responseNode){
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			//System.assertEquals('disableInternalConsentForPersonResponse', responseNode.getName());
 			DOM.XmlNode responseHeaderNode = responseNode.getChildElement('responseHeader', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
 			if(responseHeaderNode == null){
 				this.responseHeader = null;
@@ -539,8 +531,6 @@ public class ConsentDataTypesService {
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode){
 			
-			//System.assertEquals('disableInternalConsent', outerNode.getName());
-			
 			CommonMessageService.RequestHeader requestHeaderObj = this.requestHeader;
 			Dom.XmlNode requestHeaderNode = outerNode.addChildElement('requestHeader', 'http://service.cmss.cz/common/CommonMessage/v01', 'v01');
 			if(requestHeaderObj != null){
@@ -595,7 +585,6 @@ public class ConsentDataTypesService {
 		}
 		public DisableInternalConsentResponseType(DOM.XmlNode responseNode){
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			//System.assertEquals('disableInternalConsentResponse', responseNode.getName());
 			DOM.XmlNode responseHeaderNode = responseNode.getChildElement('responseHeader', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
 			if(responseHeaderNode == null){
 				this.responseHeader = null;
@@ -698,8 +687,6 @@ public class ConsentDataTypesService {
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode){
 			
-			//System.assertEquals('enableChannelConsent', outerNode.getName());
-			
 			CommonMessageService.RequestHeader requestHeaderObj = this.requestHeader;
 			Dom.XmlNode requestHeaderNode = outerNode.addChildElement('requestHeader', 'http://service.cmss.cz/common/CommonMessage/v01', 'v01');
 			if(requestHeaderObj != null){
@@ -745,7 +732,6 @@ public class ConsentDataTypesService {
 		}
 		public EnableChannelConsentResponseType(DOM.XmlNode responseNode){
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			//System.assertEquals('enableChannelConsentResponse', responseNode.getName());
 			DOM.XmlNode responseHeaderNode = responseNode.getChildElement('responseHeader', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
 			if(responseHeaderNode == null){
 				this.responseHeader = null;
@@ -871,8 +857,6 @@ public class ConsentDataTypesService {
 			this.requestBody = requestBody;
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode){
-			//System.assertEquals('enableGeneralConsent', outerNode.getName());
-			
 			CommonMessageService.RequestHeader requestHeaderObj = this.requestHeader;
 			Dom.XmlNode requestHeaderNode = outerNode.addChildElement('requestHeader', 'http://service.cmss.cz/common/CommonMessage/v01', 'v01');
 			if(requestHeaderObj != null){
@@ -919,7 +903,6 @@ public class ConsentDataTypesService {
 		}
 		public EnableGeneralConsentResponseType(DOM.XmlNode responseNode){
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			//System.assertEquals('enableGeneralConsentResponse', responseNode.getName());
 			DOM.XmlNode responseHeaderNode = responseNode.getChildElement('responseHeader', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
 			if(responseHeaderNode == null){
 				this.responseHeader = null;
@@ -1028,8 +1011,6 @@ public class ConsentDataTypesService {
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode){
 			
-			//System.assertEquals('enableInternalConsent', outerNode.getName());
-			
 			CommonMessageService.RequestHeader requestHeaderObj = this.requestHeader;
 			Dom.XmlNode requestHeaderNode = outerNode.addChildElement('requestHeader', 'http://service.cmss.cz/common/CommonMessage/v01', 'v01');
 			if(requestHeaderObj != null){
@@ -1075,7 +1056,6 @@ public class ConsentDataTypesService {
 		}
 		public EnableInternalConsentResponseType(DOM.XmlNode responseNode){
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			//System.assertEquals('enableInternalConsentResponse', responseNode.getName());
 			DOM.XmlNode responseHeaderNode = responseNode.getChildElement('responseHeader', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
 			if(responseHeaderNode == null){
 				this.responseHeader = null;
@@ -1143,8 +1123,6 @@ public class ConsentDataTypesService {
 			this.requestBody = requestBody;
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode){
-			
-			//System.assertEquals('getGeneralConsentByIdNumber', outerNode.getName());
 			
 			CommonMessageService.RequestHeader requestHeaderObj = this.requestHeader;
 			Dom.XmlNode requestHeaderNode = outerNode.addChildElement('requestHeader', 'http://service.cmss.cz/common/CommonMessage/v01', 'v01');
@@ -1279,7 +1257,6 @@ public class ConsentDataTypesService {
 		}
 		public GetGeneralConsentByIdNumberResponseType(DOM.XmlNode responseNode){
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			//System.assertEquals('getGeneralConsentByIdNumberResponse', responseNode.getName());
 			DOM.XmlNode responseHeaderNode = responseNode.getChildElement('responseHeader', 'http://service.cmss.cz/person/ConsentService/v01/datatypes');
 			if(responseHeaderNode == null){
 				this.responseHeader = null;

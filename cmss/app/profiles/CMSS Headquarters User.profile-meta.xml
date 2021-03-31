@@ -2270,6 +2270,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AssetAccountRelation__c.AssetsProductType__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AssetAccountRelation__c.DateUpdated__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2296,11 +2301,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AssetAccountRelation__c.ProductId__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>AssetAccountRelation__c.ProductType__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5046,6 +5046,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.BankCode__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.CombinedName__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

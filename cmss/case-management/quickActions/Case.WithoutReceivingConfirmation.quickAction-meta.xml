@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>The action indicates that the confirmation about receiving the claim has been sent to the complainer. May be extended to also send the confirmation email.</description>
-    <fieldOverrides>
-        <field>ReceivingConfirmationDate__c</field>
-        <formula>TODAY()</formula>
-    </fieldOverrides>
+    <description>Moves Case to Record type ClientClaimConfirmationSent</description>
     <fieldOverrides>
         <field>ReceivingConfirmationNotSent__c</field>
         <formula>IF(Case.ReceivingConfirmationDate__c = null,
@@ -15,16 +11,11 @@ Case.ReceivingConfirmationNotSent__c = false)</formula>
         <field>Status</field>
         <literalValue>1</literalValue>
     </fieldOverrides>
-    <label>Receiving Confirmation Sent</label>
+    <label>Without Receiving Confirmation</label>
     <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <quickActionLayout>
         <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
         <quickActionLayoutColumns>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>ReceivingConfirmationDate__c</field>
-                <uiBehavior>Required</uiBehavior>
-            </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
                 <field>Description</field>
@@ -44,6 +35,5 @@ Case.ReceivingConfirmationNotSent__c = false)</formula>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
     </quickActionLayout>
-    <successMessage>Complaint Receiving Confirmation field updated successfully.</successMessage>
     <type>Update</type>
 </QuickAction>

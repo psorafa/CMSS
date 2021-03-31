@@ -1,5 +1,8 @@
 public with sharing class GeneralConsentEnablement {
 
+    private static CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
+	private static ConsentCalloutService.ConsentServicePort stub = new ConsentCalloutService.ConsentServicePort();
+
 	@AuraEnabled
 	public static String enableGeneralConsents(Consent__c c) {
 		try {
@@ -15,34 +18,19 @@ public with sharing class GeneralConsentEnablement {
 				WHERE Id IN :accountIds
 			]);
 
-			Account client = idsToAccounts.get(c.Account__c);
-			Validation.requireAttribute(client, 'Account');
-			Validation.requireAttribute(client.GlobalId__c, 'GlobalId__c');
-			Account substitutePerson;
-            if (String.isNotBlank(c.SubstitutePerson__c)) {
-                substitutePerson = idsToAccounts.get(c.SubstitutePerson__c);
-            }
-
-			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
-			ConsentCalloutService.ConsentServicePort stub = new ConsentCalloutService.ConsentServicePort();
-			ConsentDataTypesService.EnableGeneralConsentRequestBodyType body = new ConsentDataTypesService.EnableGeneralConsentRequestBodyType();
-			body.consentEntityId = c.EntityConsent__c;
-			body.consentVersionId = c.GeneralConsentVersion__c;
-			body.globalId = client.GlobalId__c;
-			body.consentSourceId = '73';
-			body.validFrom = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
-			body.validFrom = body.validFrom.substring(0, body.validFrom.length() - 2) + ':00';
-			body.agentCPU = c.AgentCPU__c;
-			if (substitutePerson != null) {
-				body.substitutePersonId = substitutePerson.GlobalId__c;
-			}
-			body.substituteRoleId = c.SubstituteRole__c;
+            ConsentDataTypesService.EnableGeneralConsentRequestBodyType body = ConsentService.getEnableGeneralWSDefinition(c, idsToAccounts);
 			ConsentDataTypesService.EnableGeneralConsentResponseBodyType response = stub.enableGeneralConsent_Http(header, body);
 			if (response != null) {
                 if (response.consentGuid != null) {
+                    String finalResponse = 'OK';
+                    if (c.AllConsent__c == '2') {
+                        finalResponse = disableGeneralConsents(c, idsToAccounts, response.consentGuid);
+                    }
+
                     c.ExternalId__c = response.consentGuid;
                     upsert c ExternalId__c;
-                    return 'OK';
+
+                    return finalResponse;
                 } else {
                     return response.responseMessage;
                 }
@@ -54,5 +42,18 @@ public with sharing class GeneralConsentEnablement {
 		} finally {
 			Logger.saveLogs();
 		}
+	}
+
+	private static String disableGeneralConsents(Consent__c c, Map<Id, Account> idsToAccounts, String externalId) {
+        ConsentDataTypesService.DisableGeneralConsentRequestBodyType body = ConsentService.getDisableGeneralWSDefinition(c, idsToAccounts, externalId);
+        ConsentDataTypesService.DisableGeneralConsentResponseBodyType response = stub.disableGeneralConsent_Http(header, body);
+        if (response != null) {
+            if (response.success != null && response.success.Successful == true) {
+                return 'OK';
+            } else {
+                return response.responseMessage;
+            }
+        }
+        return null;
 	}
 }

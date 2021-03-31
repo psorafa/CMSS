@@ -39,15 +39,15 @@
                 <column>Case.ReceivedDate__c</column>
                 <columnToColumn>false</columnToColumn>
                 <isUnlocked>true</isUnlocked>
-                <operator>equals</operator>
-                <value>TODAY</value>
+                <operator>greaterThan</operator>
+                <value>1/1/2021</value>
             </criteriaItems>
             <criteriaItems>
                 <column>Case.ReceivedDate__c</column>
                 <columnToColumn>false</columnToColumn>
                 <isUnlocked>true</isUnlocked>
-                <operator>equals</operator>
-                <value/>
+                <operator>lessThan</operator>
+                <value>3/22/2021</value>
             </criteriaItems>
         </filter>
         <format>Summary</format>
@@ -86,6 +86,20 @@
                 <operator>equals</operator>
                 <value>1</value>
             </criteriaItems>
+            <criteriaItems>
+                <column>Case.ReceivedDate__c</column>
+                <columnToColumn>false</columnToColumn>
+                <isUnlocked>true</isUnlocked>
+                <operator>greaterThan</operator>
+                <value>1/1/2021</value>
+            </criteriaItems>
+            <criteriaItems>
+                <column>Case.ReceivedDate__c</column>
+                <columnToColumn>false</columnToColumn>
+                <isUnlocked>true</isUnlocked>
+                <operator>lessThan</operator>
+                <value>3/22/2021</value>
+            </criteriaItems>
         </filter>
         <format>Summary</format>
         <name>Průměrná doba vyřízení</name>
@@ -122,6 +136,20 @@
                 <isUnlocked>false</isUnlocked>
                 <operator>equals</operator>
                 <value>1</value>
+            </criteriaItems>
+            <criteriaItems>
+                <column>Case.ReceivedDate__c</column>
+                <columnToColumn>false</columnToColumn>
+                <isUnlocked>true</isUnlocked>
+                <operator>greaterThan</operator>
+                <value>1/1/2021</value>
+            </criteriaItems>
+            <criteriaItems>
+                <column>Case.ReceivedDate__c</column>
+                <columnToColumn>false</columnToColumn>
+                <isUnlocked>true</isUnlocked>
+                <operator>lessThan</operator>
+                <value>3/22/2021</value>
             </criteriaItems>
         </filter>
         <format>Summary</format>

@@ -6,9 +6,15 @@
     <formula>IF(
 				ISPICKVAL(Type, &apos;1&apos;) 
 				&amp;&amp; 
-				((ReceivingConfirmationDate__c - ReceivedDate__c) &gt; 7  
-				|| (ISBLANK(ReceivingConfirmationDate__c) &amp;&amp; (TODAY()- ReceivedDate__c)&gt;7)) 
-				, 1  , 0)</formula>
+				(ISPICKVAL(Status, &apos;1&apos;) || ISPICKVAL(Status, &apos;2&apos;))
+				&amp;&amp;
+				(
+								(NOT(ISBLANK(ReceivingConfirmationDate__c)) &amp;&amp; (ReceivingConfirmationDate__c - ReceivedDate__c) &gt; 7)  
+				    ||
+								(ISBLANK(ReceivingConfirmationDate__c) &amp;&amp; NOT(ISBLANK(ResponseSentDate__c)) &amp;&amp; (ResponseSentDate__c - ReceivedDate__c) &gt; 7)
+								||
+								(ISBLANK(ReceivingConfirmationDate__c) &amp;&amp; (ISBLANK(ResponseSentDate__c)) &amp;&amp; (TODAY()- ReceivedDate__c)&gt;7))
+				 ,1  , 0)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Client Not Informed In Time Formula</label>
     <precision>18</precision>
