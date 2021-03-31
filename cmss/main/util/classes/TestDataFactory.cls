@@ -321,7 +321,7 @@ public class TestDataFactory {
 			template.Account__c = a.Id;
 		}
 		if (template.Asset__c == null) {
-			Asset a = getAsset(new Asset);
+			Asset a = getAsset(new Asset());
 			insert a;
 			template.Asset__c = a.Id;
 		}
