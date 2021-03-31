@@ -48,7 +48,7 @@ public class BasicTypesService {
 		}
 		public OperationSuccessType(DOM.XmlNode responseNode){
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			DOM.XmlNode SuccessfulNode = responseNode.getChildElement('Successful', 'http://service.cmss.cz/common/datamodel/basictypes/v02');
+			DOM.XmlNode SuccessfulNode = responseNode.getChildElement('Successful', null);
 			this.Successful = (SuccessfulNode == null) ? null : Boolean.valueOf(SuccessfulNode.getText());
 			nodesParsed.add(SuccessfulNode);
 			//System.debug(this.Successful);			
