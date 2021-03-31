@@ -5130,6 +5130,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.CombinedName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.CommissionAccountBase__c</field>
         <readable>false</readable>
     </fieldPermissions>
