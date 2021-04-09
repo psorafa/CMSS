@@ -11,9 +11,8 @@ import cancel from '@salesforce/label/c.Cancel';
 import selectAll from '@salesforce/label/c.SelectAll';
 import bulkOwnershipStateChange from '@salesforce/label/c.BulkOwnershipStateChange';
 import transferAllClients from '@salesforce/label/c.TransferAllClients';
-import errorMessage from '@salesforce/label/c.Error';
+import errorTitle from '@salesforce/label/c.Error';
 import requiredFields from '@salesforce/label/c.RequiredFields';
-import recordsCreated from '@salesforce/label/c.RecordsCreated';
 import noRecordsFound from '@salesforce/label/c.NoRecordsFound';
 import checkUserCRUD from '@salesforce/apex/PermissionUtility.checkUserCRUD';
 
@@ -82,7 +81,7 @@ export default class AccountRelatedList extends LightningElement {
             ];
             this.accountFieldLabels = data.fields;
         } else if (error) {
-            this.fireToast('error', errorMessage);
+            this.fireToast('error', errorTitle);
         }
     }
 
@@ -91,7 +90,7 @@ export default class AccountRelatedList extends LightningElement {
         if (data) {
             this.isAccessEnabled = data;
         } else if (error) {
-            this.fireToast('error', errorMessage);
+            this.fireToast('error', errorTitle);
         }
     }
 
@@ -155,7 +154,7 @@ export default class AccountRelatedList extends LightningElement {
                     this.template.querySelector('[data-element="PortfolioManager__c"]').value = data;
                     this.portManRequest['PortfolioManager__c'] = data;
                 })
-                .catch(error => { this.handleErrors(error, errorMessage, false) });
+                .catch(error => { this.handleErrors(error, false) });
         }
     }
 
@@ -196,7 +195,7 @@ export default class AccountRelatedList extends LightningElement {
             offset: offset
         })
         .then(thenFunction)
-        .catch(error => { this.handleErrors(error, errorMessage, false) });
+        .catch(error => { this.handleErrors(error, false) });
     }
 
     getSelectedRows(event) {
@@ -215,7 +214,7 @@ export default class AccountRelatedList extends LightningElement {
 
     saveModal() {
         if (!this.portManRequest.PortfolioManager__c || !this.portManRequest.PortfolioManagerCPU__c) {
-            this.fireToast('error', errorMessage, requiredFields);
+            this.fireToast('error', errorTitle, requiredFields);
             return;
         }
 
@@ -227,25 +226,25 @@ export default class AccountRelatedList extends LightningElement {
             parameters.userId = this.recordId;
             parameters.portManType = this.portManType;
             createPortManRequestsForUsersClients(parameters)
-                .then(data => { this.handleCreatePMRSuccess(recordsCreated) })
-                .catch(error => { this.handleErrors(error, errorMessage, true) });
+                .then(data => { this.handleCreatePMRSuccess(data) })
+                .catch(error => { this.handleErrors(error, true) });
         } else {
             parameters.accountIds = this.selectedData;
             createPortManRequests(parameters)
-                .then(data => { this.handleCreatePMRSuccess(recordsCreated) })
-                .catch(error => { this.handleErrors(error, errorMessage, true) });
+                .then(data => { this.handleCreatePMRSuccess(data) })
+                .catch(error => { this.handleErrors(error, true) });
         }
     }
 
-    handleCreatePMRSuccess(toastMessage) {
-        this.fireToast('success', toastMessage);
+    handleCreatePMRSuccess(response) {
+        this.fireToast('success', response);
         this.changeModalVisibility();
         this.toggleSpinner();
     }
 
-    handleErrors(error, toastMessage, disableSpinner) {
+    handleErrors(error, disableSpinner) {
         console.log(JSON.stringify(error))
-        this.fireToast('error', toastMessage);
+        this.fireToast('error', errorTitle, (error && error.body && error.body.message) ? error.body.message : '');
         if (disableSpinner) {
             this.toggleSpinner();
         }
