@@ -7,6 +7,7 @@ public with sharing class ActivateCZContractRelationsHandler {
 
 	public ActivateCZContractRelationsHandler(String clientZoneId, Integer amendmentNumber) {
 		this.clientZone = ReferenceUtility.getClientZoneByExternalId(clientZoneId);
+        Validation.requireAttribute(this.clientZone.Account__c, 'Account__c');
 		this.amendmentNumber = amendmentNumber;
 	}
 
@@ -22,9 +23,9 @@ public with sharing class ActivateCZContractRelationsHandler {
 	private void queryRelations() {
 		List<AccountRelation__c> relations;
 		if (amendmentNumber == null) {
-			relations = [SELECT Id, AmendmentNumber__c FROM AccountRelation__c WHERE RelationTypeNEL__c = '5' AND AmendmentNumber__c = NULL];
+			relations = [SELECT Id, AmendmentNumber__c FROM AccountRelation__c WHERE RelationTypeNEL__c = '5' AND AmendmentNumber__c = NULL AND (ClientZoneID__c = :clientZone.Id OR RelatedAccount__c = :clientZone.Account__c)];
 		} else {
-			relations = [SELECT Id, AmendmentNumber__c FROM AccountRelation__c WHERE RelationTypeNEL__c = '5' AND AmendmentNumber__c <= :amendmentNumber];
+			relations = [SELECT Id, AmendmentNumber__c FROM AccountRelation__c WHERE RelationTypeNEL__c = '5' AND AmendmentNumber__c <= :amendmentNumber AND (ClientZoneID__c = :clientZone.Id OR RelatedAccount__c = :clientZone.Account__c)];
 		}
 		for (AccountRelation__c relation : relations) {
 			if (amendmentNumber == null || relation.AmendmentNumber__c == amendmentNumber) {
