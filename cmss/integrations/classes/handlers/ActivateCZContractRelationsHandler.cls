@@ -7,7 +7,6 @@ public with sharing class ActivateCZContractRelationsHandler {
 
 	public ActivateCZContractRelationsHandler(String clientZoneId, Integer amendmentNumber) {
 		this.clientZone = ReferenceUtility.getClientZoneByExternalId(clientZoneId);
-        Validation.requireAttribute(this.clientZone.Account__c, 'Account__c');
 		this.amendmentNumber = amendmentNumber;
 	}
 
