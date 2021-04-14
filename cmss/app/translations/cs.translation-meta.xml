@@ -9,6 +9,10 @@
         <name>Assets</name>
     </customLabels>
     <customLabels>
+        <label>Pod tímto uživatelem je příliš mnoho klientů. Změna správy stavu byla provedena pouze pro 5 000 záznamů.</label>
+        <name>TooManyClients</name>
+    </customLabels>
+    <customLabels>
         <label>Hromadná změna správy stavu</label>
         <name>BulkOwnershipStateChange</name>
     </customLabels>
