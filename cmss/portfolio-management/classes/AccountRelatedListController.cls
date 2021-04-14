@@ -22,21 +22,51 @@ public with sharing class AccountRelatedListController {
     }
 
     @AuraEnabled
-    public static void createPortManRequestsForUsersClients(PortfolioManagementRequest__c pmr, Id userId, String portManType) {
-        PortfolioManagementRequest__c[] pmrs = new PortfolioManagementRequest__c[]{};
-        for (Account a : queryAccounts(userId, portManType, null, null, 50000, 0)) {
-            clonePMR(pmrs, pmr, a.Id);
-        }
-        insert pmrs;
+    public static String createPortManRequestsForUsersClients(PortfolioManagementRequest__c pmr, Id userId, String portManType) {
+        try {
+            PortfolioManagementRequest__c[] pmrs = new PortfolioManagementRequest__c[]{};
+            Integer index = 0;
+            String message = Label.RecordsCreated;
+            for (Account a : queryAccounts(userId, portManType, null, null, 50000, 0)) {
+                if (index == 5000) {
+                    message = Label.TooManyClients;
+                    break;
+                }
+                clonePMR(pmrs, pmr, a.Id);
+                index++;
+            }
+            insert pmrs;
+            return message;
+        } catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
     }
 
     @AuraEnabled
-    public static void createPortManRequests(PortfolioManagementRequest__c pmr, String[] accountIds) {
-        PortfolioManagementRequest__c[] pmrs = new PortfolioManagementRequest__c[]{};
-        for (Id accId : accountIds) {
-            clonePMR(pmrs, pmr, accId);
-        }
-        insert pmrs;
+    public static String createPortManRequests(PortfolioManagementRequest__c pmr, String[] accountIds) {
+        try {
+            PortfolioManagementRequest__c[] pmrs = new PortfolioManagementRequest__c[]{};
+            Integer index = 0;
+            String message = Label.RecordsCreated;
+            for (Id accId : accountIds) {
+                if (index == 5000) {
+                    message = Label.TooManyClients;
+                    break;
+                }
+                clonePMR(pmrs, pmr, accId);
+                index++;
+            }
+            insert pmrs;
+            return message;
+        } catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
+		}
     }
 
     private static void clonePMR(PortfolioManagementRequest__c[] pmrs, PortfolioManagementRequest__c pmr, Id accId) {
