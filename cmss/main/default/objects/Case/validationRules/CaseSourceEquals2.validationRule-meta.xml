@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CaseSourceEquals2</fullName>
+    <active>true</active>
+    <description>If Source = 2, Complainer First and Last name is required</description>
+    <errorConditionFormula>ISPICKVAL(Source__c, &quot;2&quot;) &amp;&amp; 
+(ISBLANK(ComplainerFirstName__c) || 
+ ISBLANK(ComplainerLastName__c))</errorConditionFormula>
+    <errorDisplayField>ComplainerFirstName__c</errorDisplayField>
+    <errorMessage>If Source equals 2, Complainer First and Last Name are required.</errorMessage>
+</ValidationRule>

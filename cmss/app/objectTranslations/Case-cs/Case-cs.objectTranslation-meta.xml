@@ -246,6 +246,18 @@
         <name>CaseIDCannotBeEditedOnceFilled</name>
     </validationRules>
     <validationRules>
+        <errorMessage>Pokud Zdroj případu je 3.osoba, Jméno a Příjmení podávajícího musí být vyplněno.</errorMessage>
+        <name>CaseSourceEquals2</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pokud Zdroj případu je Instituce, Typ instituce musí být vyplněno.</errorMessage>
+        <name>CaseSourceEquals3</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pokud Zdroj případu je Smluvní partner, Podávající smluvní partner musí být vyplněn</errorMessage>
+        <name>CaseSourceEquals4</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>Alespoň 1 záznam v Druhu podání je podmínkou pro uzavření klientského podání</errorMessage>
         <name>CaseTypeMustExistResponseSentDate</name>
     </validationRules>
