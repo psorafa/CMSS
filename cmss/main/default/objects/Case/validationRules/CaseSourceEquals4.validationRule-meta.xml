@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CaseSourceEquals4</fullName>
+    <active>true</active>
+    <description>If Source = 4, Contractor is required</description>
+    <errorConditionFormula>ISPICKVAL(Source__c, &quot;4&quot;) &amp;&amp; 
+ISBLANK(Contractor__c)</errorConditionFormula>
+    <errorDisplayField>Contractor__c</errorDisplayField>
+    <errorMessage>If Source equals 4, Contractor is required.</errorMessage>
+</ValidationRule>

@@ -86,7 +86,7 @@ private class CaseTriggerHandler_Test {
 			c1.ReceivedDate__c = completionDate;
 			c1.ComplainerFirstName__c = 'testFirstName';
 			c1.ComplainerFirstName__c = 'testLastName';
-			c2.Source__c = '2';
+			c2.Source__c = '5';
 			c2.Description = 'descrioption 123';
 			c3.Origin = '2';
 
