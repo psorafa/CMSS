@@ -484,6 +484,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CaseType__c.AccountName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CaseType__c.AssetNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
