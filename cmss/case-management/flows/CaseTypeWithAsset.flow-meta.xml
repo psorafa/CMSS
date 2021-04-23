@@ -310,7 +310,7 @@
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>AccountName__c</field>
+            <field>Account__c</field>
             <value>
                 <elementReference>myVariable_current.Asset__r.Account.Id</elementReference>
             </value>
@@ -570,7 +570,7 @@
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>AccountName__c</field>
+            <field>Account__c</field>
             <value>
                 <elementReference>myVariable_current.Asset__r.Account.Id</elementReference>
             </value>

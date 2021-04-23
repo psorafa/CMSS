@@ -456,7 +456,7 @@
         <fields>NAME</fields>
         <fields>RECORDTYPE</fields>
         <fields>Asset__c</fields>
-        <fields>AccountName__c</fields>
+        <fields>Account__c</fields>
         <fields>CaseType1__c</fields>
         <relatedList>CaseType__c.Case__c</relatedList>
     </relatedLists>
