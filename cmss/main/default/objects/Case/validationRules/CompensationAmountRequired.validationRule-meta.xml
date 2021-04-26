@@ -2,10 +2,15 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CompensationAmountRequired</fullName>
     <active>true</active>
-    <description>If there is value picked in Accounting Funds Type 2, Compensation Amount field becomes required.</description>
+    <description>Amount is required based on Accounting Funds Type picklist values.</description>
     <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
-(NOT (ISBLANK(TEXT(AccountingFundsType2__c))) &amp;&amp;
-ISBLANK(CompensationAmount__c))</errorConditionFormula>
+(ISPICKVAL(AccountingFundsType__c, &apos;6&apos;) ||
+ISPICKVAL(AccountingFundsType__c, &apos;7&apos;) ||
+ISPICKVAL(AccountingFundsType__c, &apos;8&apos;))
+&amp;&amp;
+ISBLANK(CompensationAmount__c)
+&amp;&amp;
+NOT(ISBLANK(ResponseSentDate__c))</errorConditionFormula>
     <errorDisplayField>CompensationAmount__c</errorDisplayField>
-    <errorMessage>Compensation Amount is required if Accounting Funds Type 2 is filled.</errorMessage>
+    <errorMessage>Required field</errorMessage>
 </ValidationRule>

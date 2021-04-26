@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ComplaintLegitimacyRequiredForClosing</fullName>
+    <active>true</active>
+    <description>Response Sent can&apos;t be filled if Complaint Legitimacy is empty.</description>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+ISBLANK (TEXT(ComplaintLegitimacy__c)) &amp;&amp;
+NOT (ISBLANK (ResponseSentDate__c))</errorConditionFormula>
+    <errorDisplayField>ComplaintLegitimacy__c</errorDisplayField>
+    <errorMessage>Field is required</errorMessage>
+</ValidationRule>

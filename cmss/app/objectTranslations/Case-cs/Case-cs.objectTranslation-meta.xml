@@ -234,8 +234,8 @@
         <name>NewClientClaim</name>
     </recordTypes>
     <validationRules>
-        <errorMessage>Pokud je vyplněna hodnota v poli Druh účtovaných finančních prostředků pole Částka v Kč je povinné.</errorMessage>
-        <name>AmountRequired</name>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>AmountRequiredBasedOnAccountingFundsType</name>
     </validationRules>
     <validationRules>
         <errorMessage>Pouze řešitel může zrušit podání.</errorMessage>
@@ -274,8 +274,16 @@
         <name>ClientClaimEdit</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Pokud je vyplněna hodnota v poli Druh účtovaných finančních prostředků 2 pole Částka kompenzace je povinné.</errorMessage>
+        <errorMessage>Povinné pole</errorMessage>
         <name>CompensationAmountRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>ComplaintLegitimacyIs1</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>ComplaintLegitimacyRequiredForClosing</name>
     </validationRules>
     <validationRules>
         <errorMessage>Odeslání potvrzení o přijetí podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
@@ -374,5 +382,9 @@
     <validationRules>
         <errorMessage>Nelze změnit stav již uzavřeného podání</errorMessage>
         <name>StatusOnceClosedCantBeChanged</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>ThirtyDayPeriodOverTimeRequired</name>
     </validationRules>
 </CustomObjectTranslation>
