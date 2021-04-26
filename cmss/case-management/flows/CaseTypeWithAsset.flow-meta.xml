@@ -181,7 +181,7 @@
             <label>Product Type =! 9</label>
         </rules>
     </decisions>
-    <description>When Case Type has Asset chosen from lookup, fields (Product2 Id, Target Amount, Product Close Date, Closing Agent Id, Asset Number) are filled automatically.</description>
+    <description>When Case Type has Asset chosen from lookup, fields (Product2 Id, Target Amount, Product Close Date, Closing Agent Id, Asset Number, Account Name) are filled automatically.</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -189,7 +189,7 @@
                 <stringValue>[CaseType__c].Asset__c.Name </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_4392962454</name>
+        <name>formula_2_myRule_1_A1_1279483282</name>
         <dataType>String</dataType>
         <expression>{!myVariable_current.Asset__r.Name}</expression>
     </formulas>
@@ -200,11 +200,11 @@
                 <stringValue>[CaseType__c].Asset__c.Name </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_6731675341</name>
+        <name>formula_5_myRule_4_A1_8999199939</name>
         <dataType>String</dataType>
         <expression>{!myVariable_current.Asset__r.Name}</expression>
     </formulas>
-    <interviewLabel>CaseTypeWithAsset-8_InterviewLabel</interviewLabel>
+    <interviewLabel>CaseTypeWithAsset-6_InterviewLabel</interviewLabel>
     <label>Case Type With Asset</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -283,6 +283,42 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Account Name</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Account</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Account__c</field>
+            <value>
+                <elementReference>myVariable_current.Asset__r.Account.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
                     <stringValue>String</stringValue>
                 </value>
             </processMetadataValues>
@@ -312,7 +348,7 @@
             </processMetadataValues>
             <field>AssetNumber__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_4392962454</elementReference>
+                <elementReference>formula_2_myRule_1_A1_1279483282</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -507,6 +543,42 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Account Name</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Account</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Account__c</field>
+            <value>
+                <elementReference>myVariable_current.Asset__r.Account.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
                     <stringValue>String</stringValue>
                 </value>
             </processMetadataValues>
@@ -536,7 +608,7 @@
             </processMetadataValues>
             <field>AssetNumber__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_6731675341</elementReference>
+                <elementReference>formula_5_myRule_4_A1_8999199939</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
