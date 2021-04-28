@@ -1,0 +1,13 @@
+<template>
+     <div class="slds-p-bottom_small">
+        <c-filterable-related-list 
+            record-id={recordId}
+            child-object-name="ContactInformation__c"
+            parent-field-name="Account__c"
+            columns="Name,Type__c,SubType__c,Value__c,ValidFrom__c"
+            list-name="Kontaktní informace"
+            condition="(ValidTo__c = null OR ValidTo__c > TODAY)"
+            icon-name="custom:custom28">
+        </c-filterable-related-list>
+    </div>   
+</template>
