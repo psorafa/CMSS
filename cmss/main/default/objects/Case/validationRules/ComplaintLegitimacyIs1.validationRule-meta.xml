@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ComplaintLegitimacyIs1</fullName>
+    <active>true</active>
+    <description>If Complaint Legitimacy is 1, Cause Legit Complaint is required.</description>
+    <errorConditionFormula>ISPICKVAL (ComplaintLegitimacy__c, &apos;1&apos;) &amp;&amp;
+ ISBLANK(TEXT(CauseLegitComplaint__c)) &amp;&amp;
+	NOT (ISBLANK(ResponseSentDate__c))</errorConditionFormula>
+    <errorDisplayField>CauseLegitComplaint__c</errorDisplayField>
+    <errorMessage>Field is required</errorMessage>
+</ValidationRule>

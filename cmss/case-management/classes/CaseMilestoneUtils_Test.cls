@@ -60,7 +60,9 @@ private class CaseMilestoneUtils_Test {
 			Source__c = '1',
 			AccountId = acc.Id,
 			EntitlementId = ent.Id,
-			ResponseSentDate__c = Date.today().addDays(-4)
+			ResponseSentDate__c = Date.today().addDays(-4),
+			ComplaintLegitimacy__c = '4',
+			ThirtyDayPeriodOverReason__c = 'Reason'
 		);
 		c2WithResponseSent = new Case(
             OwnerId = defaultCaseOwner.Id,
@@ -70,7 +72,9 @@ private class CaseMilestoneUtils_Test {
 			Source__c = '1',
 			AccountId = acc.Id,
 			EntitlementId = ent.Id,
-			ResponseSentDate__c = Date.today()
+			ResponseSentDate__c = Date.today(),
+			ComplaintLegitimacy__c = '4',
+			ThirtyDayPeriodOverReason__c = 'Reason'
 		);
 		c3WithConfirmationSent = new Case(
             OwnerId = defaultCaseOwner.Id,
@@ -80,7 +84,9 @@ private class CaseMilestoneUtils_Test {
 			Source__c = '1',
 			AccountId = acc.Id,
 			EntitlementId = ent.Id,
-			ReceivingConfirmationDate__c = Date.today().addDays(-2)
+			ReceivingConfirmationDate__c = Date.today().addDays(-2),
+			ComplaintLegitimacy__c = '4',
+			ThirtyDayPeriodOverReason__c = 'Reason'
 		);
 		c4WithConfirmationSent = new Case(
             OwnerId = defaultCaseOwner.Id,
@@ -90,7 +96,9 @@ private class CaseMilestoneUtils_Test {
 			Source__c = '1',
 			AccountId = acc.Id,
 			EntitlementId = ent.Id,
-			ReceivingConfirmationDate__c = Date.today()
+			ReceivingConfirmationDate__c = Date.today(),
+			ComplaintLegitimacy__c = '4',
+			ThirtyDayPeriodOverReason__c = 'Reason'
 		);
 		insert new List<Case>{ c1WithResponseSent, c2WithResponseSent, c3WithConfirmationSent, c4WithConfirmationSent };
 	}

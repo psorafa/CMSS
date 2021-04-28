@@ -166,7 +166,9 @@ public class TestDataFactory {
 			ComplaintAgainst__c = '2',
 			CauseLegitComplaint__c = '2',
 			SubjectFound__c = true,
-			RequestType__c = '1'
+			RequestType__c = '1',
+			ComplaintLegitimacy__c = '4',
+			ThirtyDayPeriodOverReason__c = 'Reason'
 		);
 		SObjectUtil.copyFields(so, template);
 		if (template.AccountId == null) {
