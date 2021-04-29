@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ThirtyDayPeriodOverTimeRequired</fullName>
+    <active>true</active>
+    <description>ThirtyDayPeriodOverTime__c is required when reportNotProcessedInTimeFormula_c = 1</description>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
+NOT ISBLANK(ResponseSentDate__c) &amp;&amp;
+(reportNotProcessedInTimeFormula__c = 1)  &amp;&amp; 
+ISBLANK(ThirtyDayPeriodOverReason__c)</errorConditionFormula>
+    <errorDisplayField>ThirtyDayPeriodOverReason__c</errorDisplayField>
+    <errorMessage>30 Day Period Over Reason is required</errorMessage>
+</ValidationRule>
