@@ -4,17 +4,17 @@
     <description>Case source detail description</description>
     <externalId>false</externalId>
     <formula>CASE( TEXT( Source__c) ,
-      &#39;1&#39;, IF(Account.IsPersonAccount, Account.FirstName + &#39; &#39; + Account.LastName, Account.Name),
-      &#39;2&#39;, ComplainerFirstName__c + &#39; &#39; + ComplainerLastName__c,
-      &#39;3&#39;, CASE( TEXT( InstitutionType__c),
-               &#39;1&#39;, &#39;FA&#39;,
-               &#39;2&#39;, &#39;ČNB&#39;,
-               &#39;3&#39;, &#39;MF ČR&#39;,
-               &#39;4&#39;, &#39;ČSOB&#39;,
-               &#39;&#39;),
-      &#39;4&#39;, ComplainerContractor__r.FirstName + &#39; &#39; + ComplainerContractor__r.LastName,
-      &#39;&#39;)</formula>
-    <inlineHelpText>Detailed description of the claim source</inlineHelpText>
+      &apos;1&apos;, IF(Account.IsPersonAccount, Account.FirstName + &apos; &apos; + Account.LastName, Account.Name),
+      &apos;2&apos;, ComplainerFirstName__c + &apos; &apos; + ComplainerLastName__c,
+      &apos;3&apos;, CASE( TEXT( InstitutionType__c),
+               &apos;1&apos;, &apos;ČNB&apos;,
+               &apos;2&apos;, &apos;MFČR&apos;,
+               &apos;3&apos;, &apos;Jiné&apos;,
+               &apos;4&apos;, &apos;Finanční arbitr&apos;,
+               &apos;&apos;),
+      &apos;4&apos;, ComplainerContractor__r.FirstName + &apos; &apos; + ComplainerContractor__r.LastName,
+      &apos;&apos;)</formula>
+    <inlineHelpText>Detailní popis zdroje podání</inlineHelpText>
     <label>Source Description</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
