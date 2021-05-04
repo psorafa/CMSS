@@ -2,9 +2,10 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CaseSourceEquals4</fullName>
     <active>true</active>
-    <description>If Source = 4, Contractor is required</description>
-    <errorConditionFormula>ISPICKVAL(Source__c, &quot;4&quot;) &amp;&amp; 
-ISBLANK(Contractor__c)</errorConditionFormula>
-    <errorDisplayField>Contractor__c</errorDisplayField>
-    <errorMessage>If Source equals 4, Contractor is required.</errorMessage>
+    <description>If Source = 4, Complainer Contractor is required</description>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp;
+ISPICKVAL(Source__c, &quot;4&quot;) &amp;&amp; 
+ISBLANK(ComplainerContractor__c)</errorConditionFormula>
+    <errorDisplayField>ComplainerContractor__c</errorDisplayField>
+    <errorMessage>If Source equals 4, Complainer Contractor is required.</errorMessage>
 </ValidationRule>
