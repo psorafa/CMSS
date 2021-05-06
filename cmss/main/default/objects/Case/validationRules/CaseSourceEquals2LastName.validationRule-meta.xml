@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CaseSourceEquals2LastName</fullName>
+    <active>true</active>
+    <description>If Source = 2, Complainer Last name is required</description>
+    <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp;
+ISPICKVAL(Source__c, &quot;2&quot;) &amp;&amp; 
+ISBLANK(ComplainerLastName__c)</errorConditionFormula>
+    <errorDisplayField>ComplainerLastName__c</errorDisplayField>
+    <errorMessage>Required field</errorMessage>
+</ValidationRule>
