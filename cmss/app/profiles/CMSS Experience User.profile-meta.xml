@@ -3087,11 +3087,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.IsSelfServiceClosed</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.IsSetInvalidationBan__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -4073,11 +4068,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.IsVisibleForNel__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Event.IsVisibleInSelfService</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
