@@ -5,8 +5,9 @@
     <description>ThirtyDayPeriodOverTime__c is required when reportNotProcessedInTimeFormula_c = 1</description>
     <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
 NOT ISBLANK(ResponseSentDate__c) &amp;&amp;
-(reportNotProcessedInTimeFormula__c = 1)  &amp;&amp; 
-ISBLANK(ThirtyDayPeriodOverReason__c)</errorConditionFormula>
+ISBLANK(ThirtyDayPeriodOverReason__c) &amp;&amp;
+ISPICKVAL(Type, &apos;1&apos;) &amp;&amp;
+TODAY()- ReceivedDate__c &gt;30</errorConditionFormula>
     <errorDisplayField>ThirtyDayPeriodOverReason__c</errorDisplayField>
     <errorMessage>30 Day Period Over Reason is required</errorMessage>
 </ValidationRule>

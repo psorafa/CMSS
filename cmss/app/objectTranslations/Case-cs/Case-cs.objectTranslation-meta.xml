@@ -246,8 +246,12 @@
         <name>CaseIDCannotBeEditedOnceFilled</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Pokud Zdroj případu je 3.osoba, Jméno a Příjmení podávajícího musí být vyplněno.</errorMessage>
-        <name>CaseSourceEquals2</name>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>CaseSourceEquals2FirstName</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Povinné pole</errorMessage>
+        <name>CaseSourceEquals2LastName</name>
     </validationRules>
     <validationRules>
         <errorMessage>Pokud Zdroj případu je Instituce, Typ instituce musí být vyplněno.</errorMessage>
