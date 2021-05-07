@@ -64,6 +64,10 @@
     <layouts>
         <layout>Account Layout</layout>
         <sections>
+            <label><!-- AML Data --></label>
+            <section>AML Data</section>
+        </sections>
+        <sections>
             <label>Informace o firmě</label>
             <section>Company Information</section>
         </sections>
@@ -74,6 +78,10 @@
     </layouts>
     <layouts>
         <layout>LACRLayout</layout>
+        <sections>
+            <label><!-- AML Data --></label>
+            <section>AML Data</section>
+        </sections>
         <sections>
             <label>Firemní informace</label>
             <section>Company Information</section>
@@ -87,8 +95,8 @@
         <layout>LACRPersonLayout</layout>
         <layoutType>PersonAccount</layoutType>
         <sections>
-            <label>Osobní informace</label>
-            <section>Personal Information</section>
+            <label>AML údaje</label>
+            <section>AML Data</section>
         </sections>
         <sections>
             <label>Informace o produktu</label>
