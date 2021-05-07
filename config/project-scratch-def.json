@@ -2,7 +2,7 @@
 	"orgName": "CMSS",
 	"adminEmail": "nonsense@uinwertu.nroko",
 	"edition": "Enterprise",
-	"features": ["PersonAccounts", "FieldAuditTrail"],
+	"features": ["PersonAccounts", "FieldAuditTrail", "Communities", "PartnerCommunity"],
 	"settings": {
 		"languageSettings": {
 			"enableEndUserLanguages": true,
@@ -16,6 +16,10 @@
 		},
 		"entitlementSettings": {
 			"enableEntitlements": true
-		}
+		},
+        "communitiesSettings": {
+          "enableNetworksEnabled": true
+      }
+
 	}
 }
