@@ -6,6 +6,7 @@
     <masterLabel>Filterable Related List</masterLabel>
     <targets>
         <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
@@ -15,6 +16,22 @@
             <property name="listName" type="String" label="List Title" description="Title of related list" required="true"/>
             <property name="condition" type="String" label="Condition" description="SOQL condition (without WHERE word). Eg.: RecordType.DeveloperName = 'My_Type'" required="false"/>
             <property name="iconName" type="String" label="Icon" description="Icon to be displayed next to title. Eg.: standard:contact" required="true" />
+            <supportedFormFactors>
+                <supportedFormFactor type="Small" />
+                <supportedFormFactor type="Large" />
+            </supportedFormFactors>        
+        </targetConfig>
+        <targetConfig targets="lightning__AppPage">
+            <property name="childObjectName" type="String" label="Child Object" description="API name of an object that will be shown in related list" required="false" />
+            <property name="parentFieldName" type="String" label="Parent Field" description="API name of lookup or M-D relationship field to parent. Eg.: AccountId, CustomAccount__c" required="false" />
+            <property name="columns" type="String" label="Columns" description="Columns to be displayed. Comma-separated API names" required="false"/>
+            <property name="listName" type="String" label="List Title" description="Title of related list" required="false"/>
+            <property name="condition" type="String" label="Condition" description="SOQL condition (without WHERE word). Eg.: RecordType.DeveloperName = 'My_Type'" required="false"/>
+            <property name="iconName" type="String" label="Icon" description="Icon to be displayed next to title. Eg.: standard:contact" required="false" />
+            <supportedFormFactors>
+                <supportedFormFactor type="Small" />
+                <supportedFormFactor type="Large" />
+            </supportedFormFactors>    
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

@@ -6,6 +6,7 @@
     <masterLabel>Assets List</masterLabel>
     <targets>
         <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
     </targets>
     <!-- Configuring the design attributes -->
     <targetConfigs>
@@ -15,6 +16,21 @@
             <property name="conditionRelations" type="String" label="Relation Condition" description="SOQL condition for AssetAccountRelation__c (without WHERE word). Eg.: RelationType__C = '1' = 'My_Type'" required="false"/>
             <property name="listName" type="String" label="List Title" description="Title of this related list"/>
             <property name="iconName" type="String" label="Icon" description="Icon to be displayed next to title. Eg.: standard:contact" />
+            <supportedFormFactors>
+                <supportedFormFactor type="Small" />
+                <supportedFormFactor type="Large" />
+            </supportedFormFactors>            
+        </targetConfig>
+        <targetConfig targets="lightning__AppPage">
+            <property name="columns" type="String" label="Columns" description="Columns to be displayed. Comma-separated API names" required="false"/>
+            <property name="conditionAssets" type="String" label="Asset Condition" description="SOQL condition for Asset (without WHERE word). Eg.: ProductType__c = '1'" required="false"/>
+            <property name="conditionRelations" type="String" label="Relation Condition" description="SOQL condition for AssetAccountRelation__c (without WHERE word). Eg.: RelationType__C = '1' = 'My_Type'" required="false"/>
+            <property name="listName" type="String" label="List Title" description="Title of this related list"/>
+            <property name="iconName" type="String" label="Icon" description="Icon to be displayed next to title. Eg.: standard:contact" />
+            <supportedFormFactors>
+                <supportedFormFactor type="Small" />
+                <supportedFormFactor type="Large" />
+            </supportedFormFactors>            
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
