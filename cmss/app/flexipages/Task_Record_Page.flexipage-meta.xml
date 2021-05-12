@@ -11,6 +11,10 @@
                 <value>false</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
+                <name>enableActionsInNative</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>hideChatterActions</name>
                 <value>false</value>
             </componentInstanceProperties>
@@ -20,6 +24,7 @@
             </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
         </componentInstances>
+        <mode>Replace</mode>
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -27,6 +32,7 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
+        <mode>Replace</mode>
         <name>detailTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -34,7 +40,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>
-                <value>ADVGRID</value>
+                <value>NONE</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>rowsToDisplay</name>
@@ -46,7 +52,16 @@
             </componentInstanceProperties>
             <componentName>force:relatedListContainer</componentName>
         </componentInstances>
+        <mode>Replace</mode>
         <name>relatedTabContent</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>forceChatter:recordFeedContainer</componentName>
+        </componentInstances>
+        <mode>Replace</mode>
+        <name>feedTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -76,19 +91,20 @@
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <name>maintabs</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>tabs</name>
-                <value>maintabs</value>
+                <name>body</name>
+                <value>feedTabContent</value>
             </componentInstanceProperties>
-            <componentName>flexipage:tabset</componentName>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Standard.Tab.collaborate</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <name>main</name>
-        <type>Region</type>
+        <mode>Replace</mode>
+        <name>tabs</name>
+        <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
@@ -103,15 +119,21 @@
             <componentName>flexipage:richText</componentName>
         </componentInstances>
         <componentInstances>
-            <componentName>forceChatter:recordFeedContainer</componentName>
+            <componentInstanceProperties>
+                <name>tabs</name>
+                <value>tabs</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tabset</componentName>
         </componentInstances>
-        <name>sidebar</name>
+        <mode>Replace</mode>
+        <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Asset Record Page</masterLabel>
-    <sobjectType>Asset</sobjectType>
+    <masterLabel>Task Record Page</masterLabel>
+    <parentFlexiPage>sfa__Task_rec_L</parentFlexiPage>
+    <sobjectType>Task</sobjectType>
     <template>
-        <name>flexipage:recordHomeTemplateDesktop</name>
+        <name>flexipage:recordHomeSingleColTemplateDesktop</name>
     </template>
     <type>RecordPage</type>
 </FlexiPage>

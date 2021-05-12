@@ -162,6 +162,35 @@
             <componentName>force:relatedListSingleContainer</componentName>
         </componentInstances>
         <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;p&gt;&lt;b&gt;Pravidla používání chatu&lt;/b&gt;:&lt;/p&gt;&lt;p&gt;1. Příjemce zadávejte pomocí znaku&amp;nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví&lt;/p&gt;&lt;p&gt;2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu&lt;/p&gt;&lt;p&gt;3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob&lt;/p&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+            <visibilityRule>
+                <booleanFilter>1 OR 2 OR 3</booleanFilter>
+                <criteria>
+                    <leftValue>{!$Permission.CustomPermission.ClaimCaseManager}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>true</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!$Permission.CustomPermission.ClientOmbudsman}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>true</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!$Permission.CustomPermission.GDPRCaseManager}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>true</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
             <componentName>forceChatter:recordFeedContainer</componentName>
             <visibilityRule>
                 <booleanFilter>1 OR 2 OR 3</booleanFilter>
