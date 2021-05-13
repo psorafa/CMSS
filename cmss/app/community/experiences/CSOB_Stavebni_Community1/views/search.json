@@ -1,0 +1,62 @@
+{
+  "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "id" : "f72f0dcc-3493-4d8e-ad52-70760dfedd44",
+  "label" : "Search",
+  "regions" : [ {
+    "id" : "4ee9530f-4f61-4d3d-b197-8ac7ab84bdda",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "scopes" : [ {
+          "isPublic" : true,
+          "name" : "User"
+        }, {
+          "isPublic" : true,
+          "name" : "Account"
+        }, {
+          "isPublic" : true,
+          "name" : "Asset"
+        }, {
+          "isPublic" : true,
+          "name" : "Case"
+        }, {
+          "isPublic" : true,
+          "name" : "Opportunity"
+        }, {
+          "isPublic" : true,
+          "name" : "Task"
+        }, {
+          "isPublic" : true,
+          "name" : "ClientZone__c"
+        }, {
+          "isPublic" : true,
+          "name" : "Campaign"
+        }, {
+          "isPublic" : true,
+          "name" : "Report"
+        } ],
+        "searchResultFiltering" : true,
+        "searchTerm" : "{!term}",
+        "showTopResults" : true
+      },
+      "componentName" : "forceCommunity:search",
+      "id" : "1816035e-17e2-4082-88a2-8102bb2be591",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "8ddd56ec-fbb1-42ad-bc42-a81a62312b08",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "9a7ce052-3800-49b7-8732-6d783ca6ef3a",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "global-search"
+}

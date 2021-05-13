@@ -1,0 +1,70 @@
+{
+  "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
+  "componentName" : "siteforce:dynamicLayout",
+  "id" : "38d0f8e8-7a5c-49c7-8de4-d2ca557f1d50",
+  "label" : "PeopleList",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "f3889364-fe29-4bd9-9d01-d8c24ae42ef5",
+          "columns" : [ {
+            "UUID" : "6eb8f1e2-f3bd-4a4d-88fb-a689e61a1005",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "f3889364-fe29-4bd9-9d01-d8c24ae42ef5",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "height" : "485",
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "forceCommunity:dashboard",
+          "id" : "03dd728b-eb9d-46f5-a65d-ccb47312cfd9",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "6eb8f1e2-f3bd-4a4d-88fb-a689e61a1005",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "d504a581-b36d-458e-ad62-aab9c1b69098",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "description" : "",
+        "metaTags" : "",
+        "title" : "PeopleList"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "0c827b14-cfda-4d3b-8d33-f8da911eebdc",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "ac5a02d0-1f88-4c99-8d88-3be070bd750b",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-peoplelist"
+}

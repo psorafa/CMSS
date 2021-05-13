@@ -1,0 +1,385 @@
+{
+  "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "id" : "e5f18ce0-58cf-44c6-8d53-2b0023ae57d0",
+  "label" : "Account Detail",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "forceCommunity:recordHeadline",
+      "id" : "71fa607e-6ec8-47e4-9390-6267ca7814e4",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "tabsetConfig" : {
+          "UUID" : "1b67da58-c922-4b2b-a716-9a31d62e0355",
+          "activeTab" : "",
+          "tabs" : [ {
+            "UUID" : "a1eaea07-e363-47f4-b925-67e871c0c7b5",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "1",
+            "tabName" : "Produkty"
+          }, {
+            "UUID" : "61d3c654-770f-4661-b2c8-9d2abc23bfd6",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "2",
+            "tabName" : "Obchodní Příležitosti"
+          }, {
+            "UUID" : "b10b6be0-9722-43e2-acee-92a4f0deee2e",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "3",
+            "tabName" : "Vztahy"
+          }, {
+            "UUID" : "b4a58c77-7750-4a55-89e8-f4360d33b692",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "e855b",
+            "tabName" : "Detail Klienta"
+          }, {
+            "UUID" : "cf8fc2f2-f915-4bc9-bf0f-9ee166963c59",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "549bf",
+            "tabName" : "Kontaktní Informace"
+          }, {
+            "UUID" : "69d67b1b-c2b4-4579-a090-8ec63a9b8e53",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "0f45b",
+            "tabName" : "Kontaktní Historie"
+          }, {
+            "UUID" : "c32da80f-266d-46c9-9c17-de659f2567ce",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "36dbc",
+            "tabName" : "Podání"
+          }, {
+            "UUID" : "50f9350d-102b-47c4-80b3-8c7f684eecdf",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "14cdb",
+            "tabName" : "Klientská Zóna"
+          }, {
+            "UUID" : "cb4b7cc5-347b-4544-a4cc-d892db6c43cf",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "d80e1",
+            "tabName" : "Souhlasy"
+          }, {
+            "UUID" : "0eadb5da-a9d4-4527-8996-4536b4855e97",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "21521",
+            "tabName" : "Chatter"
+          }, {
+            "UUID" : "101af486-798f-4027-9d38-ea3610bfbda8",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "78b34",
+            "tabName" : "Správa Stavu"
+          }, {
+            "UUID" : "891e7a9f-6b1a-436c-aa67-dbf06791f4bf",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "a2a28",
+            "tabName" : "Konsolidace"
+          } ],
+          "useOverflowMenu" : false
+        }
+      },
+      "componentName" : "forceCommunity:tabset",
+      "id" : "1b67da58-c922-4b2b-a716-9a31d62e0355",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "c:productRelatedListContainer",
+          "id" : "0a0f2e05-26f8-490f-9dfe-39f67bd1c7e7",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "a1eaea07-e363-47f4-b925-67e871c0c7b5",
+        "regionLabel" : "Produkty",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "relatedListApiName" : "Opportunities",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "72d3ca78-d3d9-4cbb-a86e-a052a9b8acaf",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "61d3c654-770f-4661-b2c8-9d2abc23bfd6",
+        "regionLabel" : "Obchodní Příležitosti",
+        "regionName" : "2",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "c:relationsRelatedListContainer",
+          "id" : "1934fb46-47ee-4cb7-884c-218eb6634f09",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "b10b6be0-9722-43e2-acee-92a4f0deee2e",
+        "regionLabel" : "Vztahy",
+        "regionName" : "3",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "forceCommunity:recordDetail",
+          "id" : "b3bf6283-2e99-4e74-a587-aecaa3e90418",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "b4a58c77-7750-4a55-89e8-f4360d33b692",
+        "regionLabel" : "Detail Klienta",
+        "regionName" : "e855b",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "c:contactInfoRelatedListContainer",
+          "id" : "b36004ea-cdd3-4168-83a6-d0b36d12cf55",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "cf8fc2f2-f915-4bc9-bf0f-9ee166963c59",
+        "regionLabel" : "Kontaktní Informace",
+        "regionName" : "549bf",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "forceCommunity:activityPanel",
+          "id" : "216ee429-628b-4138-a91d-45e0bbd6781d",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "69d67b1b-c2b4-4579-a090-8ec63a9b8e53",
+        "regionLabel" : "Kontaktní Historie",
+        "regionName" : "0f45b",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "relatedListApiName" : "Cases",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "a428a5cd-bd5d-4f42-8d54-da156402d76a",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "c32da80f-266d-46c9-9c17-de659f2567ce",
+        "regionLabel" : "Podání",
+        "regionName" : "36dbc",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "relatedListApiName" : "ClientZones__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "7faf33e4-45ed-4f9f-aae8-3a2f8a968ba4",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "50f9350d-102b-47c4-80b3-8c7f684eecdf",
+        "regionLabel" : "Klientská Zóna",
+        "regionName" : "14cdb",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "relatedListApiName" : "Consents__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "3c7fab2e-287a-4861-a18a-8cd7f4e28d75",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "InternalConsents__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "b8ad79f4-482b-4a0a-8424-aaf0179d1c0c",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "cb4b7cc5-347b-4544-a4cc-d892db6c43cf",
+        "regionLabel" : "Souhlasy",
+        "regionName" : "d80e1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "context" : "RECORD",
+            "recordId" : "{!recordId}",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:feedPublisher",
+          "id" : "501e584e-4cb0-463f-a0fc-d3451e26fb37",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "canChangeSorting" : true,
+            "defaultFilter" : "",
+            "defaultSortOrderHomeFeed" : "Relevance",
+            "defaultSortOrderTopicsFeed" : "Relevance",
+            "feedDesign" : "DEFAULT",
+            "hasFeedSearch" : true,
+            "subjectId" : "{!recordId}",
+            "type" : "Record"
+          },
+          "componentName" : "forceCommunity:forceCommunityFeed",
+          "id" : "2c29846e-bbae-4152-898e-fc4695206a06",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "0eadb5da-a9d4-4527-8996-4536b4855e97",
+        "regionLabel" : "Chatter",
+        "regionName" : "21521",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "relatedListApiName" : "PortfolioManagementA__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "6685e9fb-1331-48d7-984c-c72f3105102e",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "PortfolioManagementC__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "66763a2d-bc2f-4638-8434-ea88496747a9",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "PortfolioManagementRequests__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "8a2e6207-d7b7-406c-812c-dceb4706ef23",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "101af486-798f-4027-9d38-ea3610bfbda8",
+        "regionLabel" : "Správa Stavu",
+        "regionName" : "78b34",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "relatedListApiName" : "ConsolidationResults__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "2f2cfc17-7574-4327-a5f3-5d007031eb0d",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "891e7a9f-6b1a-436c-aa67-dbf06791f4bf",
+        "regionLabel" : "Konsolidace",
+        "regionName" : "a2a28",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "65e2640a-9e42-4ecd-8e2d-521a924f37df",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "id" : "d46cd35c-f1e1-401b-9705-c39713cd8460",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "8e41d821-89f6-4a54-b15b-fba8e02eea11",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "description" : "",
+        "metaTags" : "",
+        "title" : "{!Record._Object}: {!Record._Title}"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "9deee588-c42d-495a-a63d-253d4b99b53c",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "493e077e-2a7d-4f6a-a58d-8311bdb43f3c",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "detail-001"
+}
