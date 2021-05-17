@@ -70,7 +70,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
             } else if (String.isNotEmpty(acc.PortfolioMngmtA__c)){
                 opp.OwnerId = acc.PortfolioMngmtA__c;
             } else {
-                asset.addError('Cannot create related opportunity, "Asset - Closing Agent" needed or "Account - Portfolio Management A" needed.');
+                opp.OwnerId = asset.OwnerId;
             }
         }
 
