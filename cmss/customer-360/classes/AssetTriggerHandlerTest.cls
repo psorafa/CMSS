@@ -1,5 +1,6 @@
 @IsTest
 public class AssetTriggerHandlerTest {
+    
 	@IsTest
 	static void pairWithExistingOppTest() {
         Account acc = TestDataFactory.getAccount();
@@ -139,7 +140,7 @@ public class AssetTriggerHandlerTest {
         List<Opportunity> oppsWithAccountId = [SELECT Id, StageName, Reason__c, Category__c, Probability from Opportunity WHERE AccountId = : asset.AccountId];
         System.assertEquals(2, oppsWithAccountId.size());
 
-        Opportunity pairedOpp = [SELECT Id, StageName, Reason__c, Category__c, Probability from Opportunity WHERE AccountId = : asset.AccountId and Probability = 100];
+        Opportunity pairedOpp = [SELECT Id, StageName, Reason__c, Category__c, Probability from Opportunity WHERE AccountId = : asset.AccountId and Probability = 100 LIMIT 1];
 
         System.assertEquals('7', pairedOpp.StageName);
         System.assertEquals('3', pairedOpp.Reason__c);
