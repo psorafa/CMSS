@@ -114,6 +114,10 @@
                 <behavior>Edit</behavior>
                 <field>DataBoxNumber__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BankAccountNumber__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
