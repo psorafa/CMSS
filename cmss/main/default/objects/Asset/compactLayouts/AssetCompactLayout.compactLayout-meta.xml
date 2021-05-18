@@ -4,6 +4,8 @@
     <fields>Name</fields>
     <fields>AccountId</fields>
     <fields>ProductType__c</fields>
-    <fields>ProductSubtype__c</fields>
+    <fields>EvaluationNumber__c</fields>
+    <fields>TargetAmount__c</fields>
+    <fields>Status</fields>
     <label>Asset Compact Layout</label>
 </CompactLayout>
