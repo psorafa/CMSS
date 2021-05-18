@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>BuildingSavings</fullName>
     <active>true</active>
+    <compactLayoutAssignment>AssetCompactLayout</compactLayoutAssignment>
     <description>Stavební spoření</description>
     <label>Building Savings</label>
     <picklistValues>

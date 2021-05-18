@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CreditAndIntermediateLoan</fullName>
     <active>true</active>
+    <compactLayoutAssignment>CreditAndIntermediateLoanCompactLayout</compactLayoutAssignment>
     <description>Úvěry a meziúvěry</description>
     <label>Credit and Intermediate Loan</label>
     <picklistValues>
