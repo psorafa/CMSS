@@ -1,5 +1,12 @@
 public with sharing class AssetTriggerHandler extends TriggerHandler {
-	public static void pairOpportunity(List<Asset> assetsList) {
+
+	public override void afterInsert() {
+        pairOpportunity(Trigger.new);	
+}
+
+// ***************************** handlers and helping methods***************************************** //
+
+	private static void pairOpportunity(List<Asset> assetsList) {
        Set<Id> clientIds = new Set<Id>();
 
        for (Asset asset: assetsList){

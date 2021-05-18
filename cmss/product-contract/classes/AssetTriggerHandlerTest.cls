@@ -21,6 +21,7 @@ public class AssetTriggerHandlerTest {
         opp.StageName = '1';
         opp.ValidFrom__c = System.today().addDays(-10);
         opp.ValidTo__c = System.today().addDays(10);
+        opp = TestDataFactory.getOpportunity(opp);
         insert opp;
 
         Asset asset = new Asset();
@@ -29,6 +30,7 @@ public class AssetTriggerHandlerTest {
         asset.ClosingAgentId__c = owner.Id;
         asset.ProductType__c = '1';
         asset.ProductCloseDate__c = System.today();
+        asset = TestDataFactory.getAsset(asset);
 
         Test.startTest();
         insert asset;
@@ -59,6 +61,7 @@ public class AssetTriggerHandlerTest {
         asset.ClosingAgentId__c = owner.Id;
         asset.ProductType__c = '1';
         asset.ProductCloseDate__c = System.today();
+        asset = TestDataFactory.getAsset(asset);
 
         Test.startTest();
         insert asset;
@@ -80,8 +83,9 @@ public class AssetTriggerHandlerTest {
         owner = TestDataFactory.getUser(owner);
         insert owner;
 
-        Account acc = TestDataFactory.getAccount();
+        Account acc = new Account();
         acc.PortfolioMngmtA__c = owner.Id;
+        acc = TestDataFactory.getAccount(acc);
         insert acc;
 
         Asset asset = new Asset();
@@ -89,6 +93,7 @@ public class AssetTriggerHandlerTest {
         asset.AccountID = acc.Id;
         asset.ProductType__c = '1';
         asset.ProductCloseDate__c = System.today();
+        asset = TestDataFactory.getAsset(asset);
 
         Test.startTest();
         insert asset;
@@ -124,6 +129,7 @@ public class AssetTriggerHandlerTest {
         opp.Category__c = '6'; //category which should cause this opp will not be paired
         opp.ValidFrom__c = System.today().addDays(-10);
         opp.ValidTo__c = System.today().addDays(10);
+        opp = TestDataFactory.getOpportunity(opp);
         insert opp;
 
         Asset asset = new Asset();
@@ -132,6 +138,7 @@ public class AssetTriggerHandlerTest {
         asset.ClosingAgentId__c = owner.Id;
         asset.ProductType__c = '1';
         asset.ProductCloseDate__c = System.today();
+        asset = TestDataFactory.getAsset(asset);
 
         Test.startTest();
         insert asset;
@@ -146,7 +153,5 @@ public class AssetTriggerHandlerTest {
         System.assertEquals('3', pairedOpp.Reason__c);
         System.assertEquals('2', pairedOpp.Category__c);
 	}
-
-
 
 }
