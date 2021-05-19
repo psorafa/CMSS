@@ -229,4 +229,74 @@ private class CaseServiceTest {
 			System.assertEquals(user3.Id, cas.ComplainerContractor__c);
 		}
 	}
+
+    @IsTest
+	static void testSetGDPRAndClientCaseOnAccount() {
+        User user = TestDataFactory.getUser(new User(AgentId__c = 'UA18439'));
+		insert user;
+
+		List<PermissionSet> permSets = [
+			SELECT Id
+			FROM PermissionSet
+			WHERE Name = 'GDPRCaseManager' OR Name = 'ClientOmbudsman' OR Name = 'CaseManager'
+			ORDER BY Name
+		];
+		PermissionSetAssignment psa1 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[0].Id);
+		PermissionSetAssignment psa2 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[1].Id);
+		PermissionSetAssignment psa3 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[2].Id);
+		insert new List<PermissionSetAssignment>{
+			psa1, psa2, psa3
+		};
+
+		Test.startTest();
+		System.runAs(user) {
+            Account a = TestDataFactory.getAccount();
+            insert a;
+            Case cas = TestDataFactory.getCase(
+                new Case(
+                    AccountId = a.Id,
+                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+                        .get('NewClientClaim')
+                        .getRecordTypeId(),
+                    Status = '1'
+            ));
+            Case cas2 = TestDataFactory.getCase(
+                new Case(
+                    AccountId = a.Id,
+                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+                        .get('GDPR')
+                        .getRecordTypeId(),
+                    Status = '1'
+            ));
+            insert new List<Case>{ cas, cas2 };
+
+            Account acc = [SELECT GDPRCase__c, ClientCase__c FROM Account LIMIT 1];
+            System.assert(acc.ClientCase__c == '1');
+            System.assert(acc.GDPRCase__c == '1');
+
+            Account a2 = TestDataFactory.getAccount();
+            insert a2;
+
+            cas.AccountId = a2.Id;
+            update cas;
+
+            Account[] accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY Name ASC];
+            System.assert(accs.size() == 2);
+            System.assert(accs[0].ClientCase__c == '0');
+            System.assert(accs[0].GDPRCase__c == '1');
+            System.assert(accs[1].ClientCase__c == '1');
+            System.assert(accs[1].GDPRCase__c == '0');
+
+            cas.Status = '2';
+            update cas;
+
+            accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY Name ASC];
+            System.assert(accs.size() == 2);
+            System.assert(accs[0].ClientCase__c == '0');
+            System.assert(accs[0].GDPRCase__c == '1');
+            System.assert(accs[1].ClientCase__c == '0');
+            System.assert(accs[1].GDPRCase__c == '0');
+        }
+        Test.stopTest();
+    }
 }

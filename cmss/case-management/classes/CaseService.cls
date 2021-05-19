@@ -3,6 +3,87 @@ public with sharing class CaseService {
 	public static final String CASE_OWNER_MISSING_PERMISSION_ERR =
 		'Selected Owner doesn\'t have appropriate permission to handle this type of case.';
 
+    public static void setGDPRAndClientCaseOnAccount(List<Case> newCaseList, Map<Id, Case> oldCases) {
+        Set<Id> allCaseAccIds = new Set<Id>();
+
+        if (oldCases == null) {
+            for (Case c : newCaseList) {
+                allCaseAccIds.add(c.AccountId);
+            }
+        } else {
+            for (Case newCase : newCaseList) {
+                Case oldCase = oldCases.get(newCase.Id);
+                if (newCase.AccountId != oldCase.AccountId) {
+                    allCaseAccIds.add(newCase.AccountId);
+                    allCaseAccIds.add(oldCase.AccountId);
+                }
+                if (newCase.Status != oldCase.Status) {
+                    allCaseAccIds.add(newCase.AccountId);
+                }
+            }
+        }
+        
+        List<AggregateResult> activeClientCaseCounts = [
+            SELECT AccountId, Count(Id) amount 
+            FROM Case 
+            WHERE AccountId IN :allCaseAccIds 
+                AND (RecordType.DeveloperName = 'NewClientClaim' OR RecordType.DeveloperName = 'ClientClaimConfirmationSent')
+                AND Status = '1' 
+                AND AccountId != null
+            GROUP BY AccountId
+        ];
+        //Map<Id, Account> accIdsToAccounts = new Map<Id, Account>();
+        Map<Id, AggregateResult> idsToActiveClientCaseCounts = new Map<Id, AggregateResult>();
+        for (AggregateResult ag : activeClientCaseCounts) {
+            idsToActiveClientCaseCounts.put((Id) ag.get('AccountId'), ag);
+            /*Id accId = (Id) ag.get('AccountId');
+            accIdsToAccounts.put(accId, new Account(Id = accId, ClientCase__c = (Integer) ag.get('amount') > 0 ? '1' : '0'));*/
+        }
+
+        List<AggregateResult> activeGDPRCaseCounts = [
+            SELECT AccountId, Count(Id) amount 
+            FROM Case 
+            WHERE AccountId IN :allCaseAccIds 
+                AND RecordType.DeveloperName = 'GDPR'
+                AND Status = '1' 
+                AND AccountId != null
+            GROUP BY AccountId
+        ];
+        Map<Id, AggregateResult> idsToActiveGDPRCaseCounts = new Map<Id, AggregateResult>();
+        for (AggregateResult ag : activeGDPRCaseCounts) {
+            idsToActiveGDPRCaseCounts.put((Id) ag.get('AccountId'), ag);
+            /*Id accId = (Id) ag.get('AccountId');
+            Integer GDPRCaseAmount = (Integer) ag.get('amount');
+            Account a = accIdsToAccounts.get(accId);
+            if (a == null) {
+                accIdsToAccounts.put(accId, new Account(Id = accId, GDPRCase__c = GDPRCaseAmount > 0 ? '1' : '0'));
+            } else {
+                a.GDPRCase__c = GDPRCaseAmount > 0 ? '1' : '0';
+                accIdsToAccounts.put(accId, a);
+            }*/
+        }
+
+        List<Account> accountsToUpdate = new List<Account>();
+        for (Id accId : allCaseAccIds) {
+            Account a = new Account(Id = accId);
+            AggregateResult clientAG = idsToActiveClientCaseCounts.get(accId);
+            if (clientAG != null) {
+                a.ClientCase__c = (Integer) clientAG.get('amount') > 0 ? '1' : '0';
+            } else {
+                a.ClientCase__c = '0';
+            }
+            AggregateResult gdprAG = idsToActiveGDPRCaseCounts.get(accId);
+            if (gdprAG != null) {
+                a.GDPRCase__c = (Integer) gdprAG.get('amount') > 0 ? '1' : '0';
+            } else {
+                a.GDPRCase__c = '0';
+            }
+            accountsToUpdate.add(a);
+        }
+
+        update accountsToUpdate;
+    }
+
 	public static void assignCaseID(List<Case> newCaseList) {
 		Set<Id> ClientClaimRecordTypes = new Set<Id>{
 			SObjectType.Case.getRecordTypeInfosByDeveloperName().get('NewClientClaim').getRecordTypeId(),
