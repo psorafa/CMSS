@@ -1,6 +1,7 @@
 # List files or directories below to ignore them when running force:source:push, force:source:pull, and force:source:status
 # More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
 #
+# .forceignore v2
 
 package.xml
 
@@ -11,8 +12,8 @@ package.xml
 # LWC Jest
 **/__tests__/**
 
-cmss\main\default\profiles\Trial Customer Portal User.profile-meta.xml
-cmss\app\community\appMenus\AppSwitcher.appMenu-meta.xml
+cmss/main/default/profiles/Trial Customer Portal User.profile-meta.xml
+cmss/app/community/appMenus/AppSwitcher.appMenu-meta.xml
 
 # Workaround until the Entitlement Process Versioning is turned on
 # or until another solution for deploying used entitlement processes found

@@ -709,8 +709,8 @@ public class CommonMessageService {
 			this.timestamp = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
 			this.timestamp = this.timestamp.substring(0, this.timestamp.length() - 2) + ':00';
 			this.messageId = UUIDUtil.generateUUID();
-			this.sourceSystem = '20';
-			this.targetSystem = 'ESB';
+			this.sourceSystem = IntegrationSettings__c.getOrgDefaults().SourceSystem__c;
+			this.targetSystem = IntegrationSettings__c.getOrgDefaults().TargetSystem__c;
 			this.physicalSource = Url.getSalesforceBaseUrl().toExternalForm();
 			this.userId = UserInfo.getUserId();
 		}
