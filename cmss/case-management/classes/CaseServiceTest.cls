@@ -238,14 +238,15 @@ private class CaseServiceTest {
 		List<PermissionSet> permSets = [
 			SELECT Id
 			FROM PermissionSet
-			WHERE Name = 'GDPRCaseManager' OR Name = 'ClientOmbudsman' OR Name = 'CaseManager'
+			WHERE Name = 'GDPRCaseManager' OR Name = 'ClientOmbudsman' OR Name = 'CaseManager' OR Name = 'EditAllData'
 			ORDER BY Name
 		];
 		PermissionSetAssignment psa1 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[0].Id);
 		PermissionSetAssignment psa2 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[1].Id);
 		PermissionSetAssignment psa3 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[2].Id);
+        PermissionSetAssignment psa4 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[3].Id);
 		insert new List<PermissionSetAssignment>{
-			psa1, psa2, psa3
+			psa1, psa2, psa3, psa4
 		};
 
 		Test.startTest();
@@ -287,6 +288,12 @@ private class CaseServiceTest {
             System.assert(accs[1].ClientCase__c == '1');
             System.assert(accs[1].GDPRCase__c == '0');
 
+            CaseType__c caseType = TestDataFactory.getCaseType(
+                new CaseType__c(
+                    Case__c = cas.Id
+            ));
+            insert caseType;
+            cas.ResponseSentDate__c = Date.today();
             cas.Status = '2';
             update cas;
 
@@ -294,6 +301,14 @@ private class CaseServiceTest {
             System.assert(accs.size() == 2);
             System.assert(accs[0].ClientCase__c == '0');
             System.assert(accs[0].GDPRCase__c == '1');
+            System.assert(accs[1].ClientCase__c == '0');
+            System.assert(accs[1].GDPRCase__c == '0');
+
+            delete cas2;
+            accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY Name ASC];
+            System.assert(accs.size() == 2);
+            System.assert(accs[0].ClientCase__c == '0');
+            System.assert(accs[0].GDPRCase__c == '0');
             System.assert(accs[1].ClientCase__c == '0');
             System.assert(accs[1].GDPRCase__c == '0');
         }

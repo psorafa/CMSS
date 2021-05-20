@@ -32,12 +32,9 @@ public with sharing class CaseService {
                 AND AccountId != null
             GROUP BY AccountId
         ];
-        //Map<Id, Account> accIdsToAccounts = new Map<Id, Account>();
         Map<Id, AggregateResult> idsToActiveClientCaseCounts = new Map<Id, AggregateResult>();
         for (AggregateResult ag : activeClientCaseCounts) {
             idsToActiveClientCaseCounts.put((Id) ag.get('AccountId'), ag);
-            /*Id accId = (Id) ag.get('AccountId');
-            accIdsToAccounts.put(accId, new Account(Id = accId, ClientCase__c = (Integer) ag.get('amount') > 0 ? '1' : '0'));*/
         }
 
         List<AggregateResult> activeGDPRCaseCounts = [
@@ -52,15 +49,6 @@ public with sharing class CaseService {
         Map<Id, AggregateResult> idsToActiveGDPRCaseCounts = new Map<Id, AggregateResult>();
         for (AggregateResult ag : activeGDPRCaseCounts) {
             idsToActiveGDPRCaseCounts.put((Id) ag.get('AccountId'), ag);
-            /*Id accId = (Id) ag.get('AccountId');
-            Integer GDPRCaseAmount = (Integer) ag.get('amount');
-            Account a = accIdsToAccounts.get(accId);
-            if (a == null) {
-                accIdsToAccounts.put(accId, new Account(Id = accId, GDPRCase__c = GDPRCaseAmount > 0 ? '1' : '0'));
-            } else {
-                a.GDPRCase__c = GDPRCaseAmount > 0 ? '1' : '0';
-                accIdsToAccounts.put(accId, a);
-            }*/
         }
 
         List<Account> accountsToUpdate = new List<Account>();
