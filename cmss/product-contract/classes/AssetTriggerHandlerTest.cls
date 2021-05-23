@@ -76,17 +76,33 @@ public class AssetTriggerHandlerTest {
 	}
 
 	@IsTest
-	static void pairWithNewOppUseAccountIfo() {
-		User owner = new User();
-		owner.FirstName = 'Joe';
-		owner.LastName = 'Tester';
-		owner = TestDataFactory.getUser(owner);
-		insert owner;
-
-		Account acc = new Account();
-		acc.PortfolioMngmtA__c = owner.Id;
-		acc = TestDataFactory.getAccount(acc);
+	static void pairWithNewOppUseHqUser() {
+        System.debug('### starting pairWithNewOppUseHqUser');
+        Account acc = TestDataFactory.getAccount();
 		insert acc;
+
+        List<User> cmssHeadQuarterUsers = [
+            SELECT Id, CommissionAccountNr__c
+            FROM User 
+            WHERE CommissionAccountNr__c = '18002'
+        ];
+
+        User hqUser = new User();
+
+        if (cmssHeadQuarterUsers.size() > 0){ //there can be one already in database, but doesn't have to be, so we will create it only if not there 
+            hqUser = cmssHeadQuarterUsers[0];
+        } else {
+            hqUser.CommissionAccountNr__c = '18002';
+            hqUser = TestDataFactory.getUser(hqUser);
+            insert hqUser;
+        }
+        // User cmmsHeadQuartersUser = cmssHeadQuarterUsers.size() > 0 ? cmssHeadQuarterUsers[0] : null;
+
+        // User hqUser = new User();
+        // hqUser.CommissionAccountNr__c = '18002';
+        // hqUser = TestDataFactory.getUser(hqUser);
+        // insert hqUser;
+        System.debug('### hqUser.Id' + hqUser.Id);
 
 		Asset asset = new Asset();
 		asset.Name = 'Test asset';
@@ -99,13 +115,17 @@ public class AssetTriggerHandlerTest {
 		insert asset;
 		Test.stopTest();
 
-		Opportunity opp = [SELECT Id, OwnerId, StageName, Reason__c, Category__c, Probability, Account.Id from Opportunity LIMIT 1];
+		Opportunity opp = [SELECT Id, OwnerId, StageName, Reason__c, Category__c, Probability from Opportunity LIMIT 1];
+
+        System.debug('### pairWithNewOppUseHqUser asserts start');
 
 		System.assertEquals('7', opp.StageName);
 		System.assertEquals('3', opp.Reason__c);
 		System.assertEquals('2', opp.Category__c);
-		System.assertEquals(acc.PortfolioMngmtA__c, opp.OwnerId);
+		System.assertEquals(hqUser.Id, opp.OwnerId);
 		System.assertEquals(100, opp.Probability);
+        System.debug('### finishing pairWithNewOppUseHqUser');
+
 	}
 
 	@IsTest
