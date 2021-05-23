@@ -77,7 +77,6 @@ public class AssetTriggerHandlerTest {
 
 	@IsTest
 	static void pairWithNewOppUseHqUser() {
-        System.debug('### starting pairWithNewOppUseHqUser');
         Account acc = TestDataFactory.getAccount();
 		insert acc;
 
@@ -89,20 +88,13 @@ public class AssetTriggerHandlerTest {
 
         User hqUser = new User();
 
-        if (cmssHeadQuarterUsers.size() > 0){ //there can be one already in database, but doesn't have to be, so we will create it only if not there 
+        if (cmssHeadQuarterUsers.size() > 0){ //we can't be sure if there is already that user in database, so we will create it only if not there 
             hqUser = cmssHeadQuarterUsers[0];
         } else {
             hqUser.CommissionAccountNr__c = '18002';
             hqUser = TestDataFactory.getUser(hqUser);
             insert hqUser;
         }
-        // User cmmsHeadQuartersUser = cmssHeadQuarterUsers.size() > 0 ? cmssHeadQuarterUsers[0] : null;
-
-        // User hqUser = new User();
-        // hqUser.CommissionAccountNr__c = '18002';
-        // hqUser = TestDataFactory.getUser(hqUser);
-        // insert hqUser;
-        System.debug('### hqUser.Id' + hqUser.Id);
 
 		Asset asset = new Asset();
 		asset.Name = 'Test asset';
@@ -117,14 +109,11 @@ public class AssetTriggerHandlerTest {
 
 		Opportunity opp = [SELECT Id, OwnerId, StageName, Reason__c, Category__c, Probability from Opportunity LIMIT 1];
 
-        System.debug('### pairWithNewOppUseHqUser asserts start');
-
 		System.assertEquals('7', opp.StageName);
 		System.assertEquals('3', opp.Reason__c);
 		System.assertEquals('2', opp.Category__c);
 		System.assertEquals(hqUser.Id, opp.OwnerId);
 		System.assertEquals(100, opp.Probability);
-        System.debug('### finishing pairWithNewOppUseHqUser');
 
 	}
 
