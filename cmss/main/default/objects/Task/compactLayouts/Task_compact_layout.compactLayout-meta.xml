@@ -2,10 +2,11 @@
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Task_compact_layout</fullName>
     <fields>Subject</fields>
-    <fields>WhatId</fields>
-    <fields>Status</fields>
+    <fields>ActivityTypeColor__c</fields>
+    <fields>WhoId</fields>
     <fields>ActivityDate</fields>
+    <fields>OwnerId</fields>
     <fields>Result__c</fields>
-    <fields>Priority</fields>
+    <fields>Status</fields>
     <label>Task compact layout</label>
 </CompactLayout>
