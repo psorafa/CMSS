@@ -1,5 +1,7 @@
 public with sharing class AssetTriggerHandler extends TriggerHandler {
 
+    private static final String HQ_USER_CPU = '18002';
+
 	public override void afterInsert() {
 		pairOpportunity(Trigger.new);
 	}
@@ -37,7 +39,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
         List<User> cmssHeadQuarterUsers = [
             SELECT Id, CommissionAccountNr__c
             FROM User 
-            WHERE CommissionAccountNr__c = '18002'
+            WHERE CommissionAccountNr__c =: HQ_USER_CPU
         ];
 
         User cmmsHeadQuartersUser = cmssHeadQuarterUsers.size() > 0 ? cmssHeadQuarterUsers[0] : null;
@@ -102,7 +104,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
             if (String.isNotEmpty(assetRelatedInfo.ClosingAgentId__r.CommissionAccountNr__c)){
                 opp.Author__c = assetRelatedInfo.ClosingAgentId__r.CommissionAccountNr__c;
             } else {
-                opp.Author__c = '18002';
+                opp.Author__c = HQ_USER_CPU;
             }
         }
 
