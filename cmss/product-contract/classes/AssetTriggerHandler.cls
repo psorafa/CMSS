@@ -1,5 +1,7 @@
 public with sharing class AssetTriggerHandler extends TriggerHandler {
 
+    private static final String HQ_USER_CPU = '18002';
+
 	public override void afterInsert() {
 		pairOpportunity(Trigger.new);
 	}
@@ -18,20 +20,29 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 		Set<String> irrelevantCategories = new Set<String>{
 			'5', '6', '7'
 		};
+
 		List<Opportunity> oppsToCheck = [
 			SELECT
 				Id, AccountId, Amount, Author__c, Category__c, CloseDate, CreatedDateTime__c, Description, DueDate__c, ExternalId__c,
-				Name, OriginalAsset__c, OwnerId, Probability, ProductType__c, Reason__c, StageName, UpdateDate__c,
+				Name, OriginalAsset__c, OwnerId, Owner.CommissionAccountNr__c, Probability, ProductType__c, Reason__c, StageName, UpdateDate__c,
 				ValidFrom__c, ValidTo__c, StateCode__c
 			FROM Opportunity
 			WHERE AccountId IN :clientIds AND Category__c NOT IN :irrelevantCategories
 		];
 
-		Map<Id, Asset> assetRelatedInfoById = new Map<Id, Asset>([
-			SELECT Id, Asset.Account.Id, Asset.Account.PortfolioMngmtA__c
-			FROM Asset
-			WHERE Id in:assetsList
-		]);
+        Map<Id, Asset> assetRelatedInfoById = new Map<Id, Asset>([
+            SELECT Id, ClosingAgentId__r.CommissionAccountNr__c
+            FROM Asset
+            WHERE Id in:assetsList
+        ]);
+
+        List<User> cmssHeadQuarterUsers = [
+            SELECT Id, CommissionAccountNr__c
+            FROM User 
+            WHERE CommissionAccountNr__c =: HQ_USER_CPU
+        ];
+
+        User cmmsHeadQuartersUser = cmssHeadQuarterUsers.size() > 0 ? cmssHeadQuarterUsers[0] : null;
 
 		for (Asset asset : assetsList) {
 			List<Opportunity> currentOppsToUpdate = new List<Opportunity>();
@@ -42,21 +53,21 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 					asset.ProductCloseDate__c >= opp.ValidFrom__c &&
 					asset.ProductCloseDate__c <= opp.ValidTo__c.addDays(30)
 					) {
-					currentOppsToUpdate.add(addOpportunityInfo(opp, asset, assetRelatedInfoById.get(asset.Id).Account));
+					currentOppsToUpdate.add(addOpportunityInfo(opp, asset, assetRelatedInfoById.get(asset.Id), cmmsHeadQuartersUser));
 				}
 			}
 			if (currentOppsToUpdate.size() > 0) { //if opp was found (or more opps were found), add it to the upsert list
 				oppsToUpsert.addAll(currentOppsToUpdate);
 			} else { //if no opp was paired, we will create a new one
 				Opportunity newOpp = new Opportunity();
-				oppsToUpsert.add(addOpportunityInfo(newOpp, asset, assetRelatedInfoById.get(asset.Id).Account));
+				oppsToUpsert.add(addOpportunityInfo(newOpp, asset, assetRelatedInfoById.get(asset.Id), cmmsHeadQuartersUser));
 			}
 		}
 
 		upsert oppsToUpsert;
 	}
 
-	private static Opportunity addOpportunityInfo(Opportunity opp, Asset asset, Account acc) {
+	private static Opportunity addOpportunityInfo(Opportunity opp, Asset asset, Asset assetRelatedInfo, User hqUser) {
 		opp.Reason__c = '3';
 		opp.StageName = '7';
 		opp.Probability = 100;
@@ -64,7 +75,6 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 		// all other fields in this function are changed only if they don't have any value already
 		opp.AccountId = String.isEmpty(opp.AccountId) ? asset.AccountId : opp.AccountId;
 		opp.Amount = opp.Amount == null ? getOppAmount(asset) : opp.Amount;
-		opp.Author__c = 'Automat - vznik smlouvy';
 		opp.Category__c = String.isEmpty(opp.Category__c) ? '2' : opp.Category__c;
 		opp.CreatedDateTime__c = opp.CreatedDateTime__c == null ? System.now() : opp.CreatedDateTime__c ;
 		opp.Description = String.isEmpty(opp.Description) ? 'Příležitost automaticky založena při vzniku smlouvy' : opp.Description;
@@ -83,12 +93,20 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 		if (String.isEmpty(opp.OwnerId)) {
 			if (String.isNotEmpty(asset.ClosingAgentId__c)) {
 				opp.OwnerId = asset.ClosingAgentId__c;
-			} else if (String.isNotEmpty(acc.PortfolioMngmtA__c)) {
-				opp.OwnerId = acc.PortfolioMngmtA__c;
-			} else {
+            } else if (hqUser != null){
+                opp.OwnerId = hqUser.Id;
+            } else {
 				opp.OwnerId = asset.OwnerId;
 			}
-		}
+		} 
+
+        if (String.isEmpty(opp.Author__c)){
+            if (String.isNotEmpty(assetRelatedInfo.ClosingAgentId__r.CommissionAccountNr__c)){
+                opp.Author__c = assetRelatedInfo.ClosingAgentId__r.CommissionAccountNr__c;
+            } else {
+                opp.Author__c = HQ_USER_CPU;
+            }
+        }
 
 		if (opp.CloseDate == null) {
 			if (asset.ProductCloseDate__c != null) {
