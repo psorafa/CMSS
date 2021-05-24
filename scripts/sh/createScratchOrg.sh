@@ -31,7 +31,7 @@ sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wai
 sfdx force:source:push --targetusername $ALIAS
 
 #workaround to catch translation errors that silently fail in push
-sfdx force:source:deploy --sourcepath cmss/app/translations --targetusername $ALIAS
+sfdx force:source:deploy --sourcepath cmss/app/default/translations --targetusername $ALIAS
 
 # reset source tracking so the next push won't push everything again
 sfdx force:source:tracking:reset -p
