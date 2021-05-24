@@ -346,7 +346,7 @@
         <name>GDPRReceivedDateLessThan2018</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Pokud žádost není kompletní, řešitel musí mít Id Agenta</errorMessage>
+        <errorMessage>Pokud žádost není kompletní, řešitel musí mít vyplněno pole Číslo obchodníka</errorMessage>
         <name>GDPRRequestNotCompleteOwnerRequired</name>
     </validationRules>
     <validationRules>
