@@ -354,7 +354,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.LastAMLReviewDate__c</field>
+        <field>Account.LastAmlReviewDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4180,6 +4180,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.OriginalAsset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.OwnerEmail__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.OwnerPhone1__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

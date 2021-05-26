@@ -13,16 +13,25 @@ public class CaseTriggerHandler extends TriggerHandler {
 		CaseService.populateUserLookupsFromCPU(Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 	}
 
+    public override void afterInsert() {
+		CaseService.setGDPRAndClientCaseOnAccount((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
+	}
+
 	public override void afterUpdate() {
 		List<Case> newList = Trigger.new;
 		Map<Id, Case> oldMap = (Map<Id, Case>) Trigger.oldMap;
 
 		handleMilestoneCompletion(newList, oldMap);
         handleMilestoneForCloseCases(newList);
+        CaseService.setGDPRAndClientCaseOnAccount((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 	}
 
 	public override void beforeDelete() {
 		preventDeletion(Trigger.old);
+	}
+
+    public override void afterDelete() {
+		CaseService.setGDPRAndClientCaseOnAccount((List<Case>) Trigger.old, null);
 	}
 
 	// ***************************** handlers and helping methods***************************************** //

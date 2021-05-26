@@ -17,8 +17,7 @@ public class AQMessageService {
 			);
 			for (SObject record : records) {
 				publisher.addMessage(
-					record.Id,
-					(String) record.get('ExternalId__c'),
+					record,
 					getDataMapForInsertedRecord(record, sObjectType)
 				);
 			}
@@ -36,8 +35,7 @@ public class AQMessageService {
 			);
 			for (SObject newRecord : newRecords) {
 				publisher.addMessage(
-					newRecord.Id,
-					(String) newRecord.get('ExternalId__c'),
+					newRecord,
 					getDataMapForUpdatedRecord(newRecord, oldRecordsMap.get(newRecord.Id), sObjectType)
 				);
 			}
@@ -54,7 +52,7 @@ public class AQMessageService {
 				aqMessageTypes.get(sObjectType)
 			);
 			for (SObject record : records) {
-				publisher.addMessage(record.Id, (String) record.get('ExternalId__c'));
+				publisher.addMessage(record);
 			}
 			publisher.publish();
 		}
