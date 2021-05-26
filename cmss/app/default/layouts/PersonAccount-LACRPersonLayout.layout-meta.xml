@@ -227,7 +227,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>LastAMLReviewDate__c</field>
+                <field>LastAmlReviewDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -696,7 +696,7 @@
             <posY>0</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
-            <field>LastAMLReviewDate__c</field>
+            <field>LastAmlReviewDate__c</field>
             <posX>3</posX>
             <posY>1</posY>
         </summaryLayoutItems>
