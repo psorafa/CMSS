@@ -31,8 +31,8 @@ public virtual class TriggerHandler {
 			this.afterInsert();
 		} else if (Trigger.isAfter && Trigger.isUpdate) {
 			this.afterUpdate();
-			//		} else if (Trigger.isAfter && Trigger.isDelete) {
-			//			this.afterDelete();
+		} else if (Trigger.isAfter && Trigger.isDelete) {
+			this.afterDelete();
 		} else if (Trigger.isAfter && Trigger.isUndelete) {
 			this.afterUndelete();
 		}
@@ -61,8 +61,8 @@ public virtual class TriggerHandler {
 	}
 	protected virtual void afterUpdate() {
 	}
-	//	protected virtual void afterDelete() {
-	//	}
+	protected virtual void afterDelete() {
+	}
 	protected virtual void afterUndelete() {
 	}
 
