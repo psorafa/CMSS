@@ -8,19 +8,31 @@ public with sharing class CaseService {
 
         if (oldCases == null) {
             for (Case c : newCaseList) {
-                allCaseAccIds.add(c.AccountId);
+                if (c.AccountId != null) {
+                    allCaseAccIds.add(c.AccountId);
+                }
             }
         } else {
             for (Case newCase : newCaseList) {
                 Case oldCase = oldCases.get(newCase.Id);
                 if (newCase.AccountId != oldCase.AccountId) {
-                    allCaseAccIds.add(newCase.AccountId);
-                    allCaseAccIds.add(oldCase.AccountId);
+                    if (newCase.AccountId != null) {
+                        allCaseAccIds.add(newCase.AccountId);
+                    }
+                    if (oldCase.AccountId != null) {
+                        allCaseAccIds.add(oldCase.AccountId);
+                    }
                 }
                 if (newCase.Status != oldCase.Status) {
-                    allCaseAccIds.add(newCase.AccountId);
+                    if (newCase.AccountId != null) {
+                        allCaseAccIds.add(newCase.AccountId);
+                    }
                 }
             }
+        }
+
+        if (allCaseAccIds.size() == 0) {
+            return;
         }
         
         List<AggregateResult> activeClientCaseCounts = [
@@ -29,7 +41,6 @@ public with sharing class CaseService {
             WHERE AccountId IN :allCaseAccIds 
                 AND (RecordType.DeveloperName = 'NewClientClaim' OR RecordType.DeveloperName = 'ClientClaimConfirmationSent')
                 AND Status = '1' 
-                AND AccountId != null
             GROUP BY AccountId
         ];
         Map<Id, AggregateResult> idsToActiveClientCaseCounts = new Map<Id, AggregateResult>();
@@ -43,7 +54,6 @@ public with sharing class CaseService {
             WHERE AccountId IN :allCaseAccIds 
                 AND RecordType.DeveloperName = 'GDPR'
                 AND Status = '1' 
-                AND AccountId != null
             GROUP BY AccountId
         ];
         Map<Id, AggregateResult> idsToActiveGDPRCaseCounts = new Map<Id, AggregateResult>();
