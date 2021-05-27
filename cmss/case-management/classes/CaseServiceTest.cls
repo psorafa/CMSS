@@ -281,7 +281,7 @@ private class CaseServiceTest {
             cas.AccountId = a2.Id;
             update cas;
 
-            Account[] accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY Name ASC];
+            Account[] accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY GlobalId__c ASC];
             System.assert(accs.size() == 2);
             System.assert(accs[0].ClientCase__c == '0');
             System.assert(accs[0].GDPRCase__c == '1');
@@ -297,7 +297,7 @@ private class CaseServiceTest {
             cas.Status = '2';
             update cas;
 
-            accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY Name ASC];
+            accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY GlobalId__c ASC];
             System.assert(accs.size() == 2);
             System.assert(accs[0].ClientCase__c == '0');
             System.assert(accs[0].GDPRCase__c == '1');
@@ -305,7 +305,7 @@ private class CaseServiceTest {
             System.assert(accs[1].GDPRCase__c == '0');
 
             delete cas2;
-            accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY Name ASC];
+            accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY GlobalId__c ASC];
             System.assert(accs.size() == 2);
             System.assert(accs[0].ClientCase__c == '0');
             System.assert(accs[0].GDPRCase__c == '0');
