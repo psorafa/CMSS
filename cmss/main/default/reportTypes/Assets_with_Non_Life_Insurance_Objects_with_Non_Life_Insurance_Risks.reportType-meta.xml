@@ -531,6 +531,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>DisabilityPension__c</field>
+            <table>Asset</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>DocumentationCompletedDate__c</field>
             <table>Asset</table>
         </columns>

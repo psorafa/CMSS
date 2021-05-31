@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DisabilityPension__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Určuje, že se jedná o invalidní penzi</description>
+    <externalId>false</externalId>
+    <label>Disability Pension</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>
