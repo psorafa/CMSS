@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>creates new activity</description>
+    <description>Creates new Task from Account</description>
     <fieldOverrides>
         <field>ActivityDate</field>
         <formula>TODAY() + 14</formula>
@@ -19,28 +19,28 @@
     </fieldOverrides>
     <fieldOverrides>
         <field>Email__c</field>
-        <formula>Opportunity.Account.CompanyEmail__c</formula>
+        <formula>Account.PersonContact.Email</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Location__c</field>
-        <formula>IF(NOT(ISBLANK(Opportunity.Account.BillingAddress)),
-  Opportunity.Account.BillingStreet 	+ &apos;, &apos; +
-	 Opportunity.Account.BillingCity + &apos;, &apos; +
-  Opportunity.Account.BillingPostalCode + &apos;, &apos; +
-  Opportunity.Account.BillingCountry,
-		&apos; &apos;)</formula>
-    </fieldOverrides>
-    <fieldOverrides>
-        <field>Opportunity__c</field>
-        <formula>Opportunity.Id</formula>
+        <formula>IF( NOT(ISBLANK(Account.BillingAddress)),
+			Account.BillingStreet + &apos;, &apos; +
+	  Account.BillingCity + &apos;, &apos; +
+	  Account.BillingPostalCode  + &apos;, &apos; +
+	  Account.BillingCountry, 
+			&apos; &apos;)</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>OwnerId</field>
         <formula>$User.Id</formula>
     </fieldOverrides>
     <fieldOverrides>
+        <field>PersonalIdentificationNr__c</field>
+        <formula>Account.PersonalIdentificationNr__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>Phone__c</field>
-        <formula>Opportunity.Account.Phone</formula>
+        <formula>Account.Phone</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Priority</field>
@@ -72,11 +72,11 @@
     </fieldOverrides>
     <fieldOverrides>
         <field>WhatId</field>
-        <formula>Opportunity.CampaignId</formula>
+        <formula>Account.Id</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>WhoId</field>
-        <formula>Opportunity.Account.PersonContactId</formula>
+        <formula>Account.PersonContactId</formula>
     </fieldOverrides>
     <label>New Activity</label>
     <optionsCreateFeedItem>true</optionsCreateFeedItem>
@@ -118,6 +118,8 @@
                 <field>Category__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
                 <field>Result__c</field>
@@ -154,7 +156,6 @@
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
-        <quickActionLayoutColumns/>
     </quickActionLayout>
     <successMessage>New Activity was created</successMessage>
     <targetObject>Task</targetObject>
