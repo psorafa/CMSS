@@ -17,9 +17,12 @@
 		"entitlementSettings": {
 			"enableEntitlements": true
 		},
+        "experienceBundleSettings": {
+            "enableExperienceBundleMetadata": true
+        },
         "communitiesSettings": {
           "enableNetworksEnabled": true
-      }
+        }
 
 	}
 }

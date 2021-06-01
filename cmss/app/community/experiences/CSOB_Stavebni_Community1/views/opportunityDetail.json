@@ -114,10 +114,85 @@
   }, {
     "components" : [ {
       "componentAttributes" : {
-        "recordId" : "{!recordId}"
+        "tabsetConfig" : {
+          "UUID" : "d8bc0888-ac3f-41ca-9749-82cab881edaa",
+          "activeTab" : "",
+          "tabs" : [ {
+            "UUID" : "667def07-2983-4447-bf12-ba8c32d0c6cb",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "1",
+            "tabName" : "Aktivity"
+          }, {
+            "UUID" : "67eb1f30-1437-4641-bd15-57d6bf2949ec",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "2",
+            "tabName" : "Chatter"
+          } ],
+          "useOverflowMenu" : false
+        }
       },
-      "componentName" : "forceCommunity:activityPanel",
-      "id" : "a9758d5e-1841-488f-9d57-99d18744da73",
+      "componentName" : "forceCommunity:tabset",
+      "id" : "d8bc0888-ac3f-41ca-9749-82cab881edaa",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "forceCommunity:activityPanel",
+          "id" : "a9758d5e-1841-488f-9d57-99d18744da73",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "667def07-2983-4447-bf12-ba8c32d0c6cb",
+        "regionLabel" : "Aktivity",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<p><b>Pravidla používání chatu</b>:</p><p>1. Příjemce zadávejte pomocí znaku&nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví</p><p>2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu</p><p>3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "f4edf0a9-b550-4b9c-9295-adc63dcde810",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "context" : "RECORD",
+            "recordId" : "{!recordId}",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:feedPublisher",
+          "id" : "c0f762d5-324b-4ce9-9d71-c83772d782e3",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "canChangeSorting" : true,
+            "defaultFilter" : "",
+            "defaultSortOrderHomeFeed" : "Relevance",
+            "defaultSortOrderTopicsFeed" : "Relevance",
+            "feedDesign" : "DEFAULT",
+            "hasFeedSearch" : true,
+            "subjectId" : "{!recordId}",
+            "type" : "Record"
+          },
+          "componentName" : "forceCommunity:forceCommunityFeed",
+          "id" : "4e508b40-e81f-404c-9e74-0788e3fbbb66",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "67eb1f30-1437-4641-bd15-57d6bf2949ec",
+        "regionLabel" : "Chatter",
+        "regionName" : "2",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
@@ -126,34 +201,6 @@
     "regionName" : "featured",
     "type" : "region"
   }, {
-    "components" : [ {
-      "componentAttributes" : {
-        "context" : "RECORD",
-        "recordId" : "{!recordId}",
-        "width" : "MEDIUM"
-      },
-      "componentName" : "forceCommunity:feedPublisher",
-      "id" : "c0f762d5-324b-4ce9-9d71-c83772d782e3",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
-      "componentAttributes" : {
-        "canChangeSorting" : true,
-        "defaultFilter" : "",
-        "defaultSortOrderHomeFeed" : "Relevance",
-        "defaultSortOrderTopicsFeed" : "Relevance",
-        "feedDesign" : "DEFAULT",
-        "hasFeedSearch" : true,
-        "subjectId" : "{!recordId}",
-        "type" : "Record"
-      },
-      "componentName" : "forceCommunity:forceCommunityFeed",
-      "id" : "4e508b40-e81f-404c-9e74-0788e3fbbb66",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    } ],
     "id" : "afa0bf3d-c331-4db0-8c5c-873120da1d11",
     "regionName" : "sidebar",
     "type" : "region"

@@ -1,13 +1,9 @@
 {
   "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
-  "componentName" : "siteforce:sldsOneColLayout",
+  "componentName" : "siteforce:sldsTwoCol84Layout",
   "id" : "6471b01f-d092-490e-a689-ab4fbc3b5aef",
   "label" : "Asset Detail",
   "regions" : [ {
-    "id" : "fa8d7cc2-c2b9-4ffe-82be-cd83ee1634b6",
-    "regionName" : "header",
-    "type" : "region"
-  }, {
     "components" : [ {
       "componentAttributes" : {
         "recordId" : "{!recordId}"
@@ -17,20 +13,68 @@
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
-    }, {
+    } ],
+    "id" : "fa8d7cc2-c2b9-4ffe-82be-cd83ee1634b6",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
       "componentAttributes" : {
-        "detailsTabLabel" : "Podrobnosti",
-        "discussionsTabLabel" : "Feed",
-        "recordId" : "{!recordId}",
-        "relatedTabLabel" : "Související",
-        "tab1Type" : "details",
-        "tab2Type" : "related",
-        "tab3Type" : "chatter",
-        "tab4Type" : "none",
-        "timelineTabLabel" : "Activity"
+        "tabsetConfig" : {
+          "UUID" : "f598f332-dad3-435d-a72e-61d42dba6bd1",
+          "activeTab" : "",
+          "tabs" : [ {
+            "UUID" : "7dd0fbdf-fcaa-4ad5-93df-1da30ce07831",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "1",
+            "tabName" : "Podrobnosti"
+          }, {
+            "UUID" : "ac019434-3293-46b1-a5e7-68fde67e60ab",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "2",
+            "tabName" : "Související"
+          } ],
+          "useOverflowMenu" : false
+        }
       },
-      "componentName" : "forceCommunity:recordHomeTabs",
-      "id" : "794eaa86-559d-4dc5-b366-73c2ae962453",
+      "componentName" : "forceCommunity:tabset",
+      "id" : "f598f332-dad3-435d-a72e-61d42dba6bd1",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "forceCommunity:recordDetail",
+          "id" : "fc14cdac-0ecc-4229-91d2-2e993fe386f2",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "7dd0fbdf-fcaa-4ad5-93df-1da30ce07831",
+        "regionLabel" : "Podrobnosti",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:relatedRecords",
+          "id" : "d6cfedf0-43ea-4f46-94cc-d0f112a78359",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "ac019434-3293-46b1-a5e7-68fde67e60ab",
+        "regionLabel" : "Související",
+        "regionName" : "2",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
@@ -56,6 +100,47 @@
     } ],
     "id" : "54a7499e-8860-4960-9cdf-9ac0a52347e4",
     "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "richTextValue" : "<p><b>Pravidla používání chatu</b>:</p><p>1. Příjemce zadávejte pomocí znaku&nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví</p><p>2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu</p><p>3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob</p>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "7aad0834-fb18-4a65-b6e6-09680c05d452",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "context" : "RECORD",
+        "recordId" : "{!recordId}",
+        "width" : "MEDIUM"
+      },
+      "componentName" : "forceCommunity:feedPublisher",
+      "id" : "51a792a2-7ddf-42f8-9472-5d469ed358ef",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "canChangeSorting" : true,
+        "defaultFilter" : "",
+        "defaultSortOrderHomeFeed" : "Relevance",
+        "defaultSortOrderTopicsFeed" : "Relevance",
+        "feedDesign" : "DEFAULT",
+        "hasFeedSearch" : true,
+        "subjectId" : "{!recordId}",
+        "type" : "Record"
+      },
+      "componentName" : "forceCommunity:forceCommunityFeed",
+      "id" : "67bf8b3c-87e6-40a6-83ef-ca96027d0c22",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "6f03b653-1436-4af5-80a5-96b6fcab7703",
+    "regionName" : "sidebar",
     "type" : "region"
   } ],
   "themeLayoutType" : "Inner",
