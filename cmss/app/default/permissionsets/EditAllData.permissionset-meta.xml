@@ -1028,6 +1028,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.DisabilityPension__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.DocumentationCompletedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
