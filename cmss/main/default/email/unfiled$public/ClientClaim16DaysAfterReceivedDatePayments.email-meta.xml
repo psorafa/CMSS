@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Is sent 16 days after Client Claim Received Date with Payments</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Client Claim 16 Days after Received Date Payments</name>
+    <style>none</style>
+    <subject>Klientské podání č. {!Case.CaseID__c} druhu platební styk - 16 dní po doručení</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

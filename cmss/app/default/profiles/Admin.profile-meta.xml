@@ -3008,6 +3008,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.CaseTypeNotificationHelper__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.CaseTypeSummary__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3569,6 +3574,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CaseType__c.CaseType2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CaseType__c.CaseTypeNotificationHelper__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
