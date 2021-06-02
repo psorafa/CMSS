@@ -214,9 +214,7 @@ public with sharing class ConsentService {
         Account acc = validateConsents(i, newConsents, idsToAccounts);
 
         if (newConsents[i].get('AllConsent__c') == '1') {
-            if (oldConsent != null && newConsents[i].get('AllConsent__c') != oldConsent.get('AllConsent__c')) {
-                listOfEnableGeneralRequestLists[i / 50].add(getEnableGeneralWSDefinition((Consent__c) newConsents[i], idsToAccounts));
-            }
+            listOfEnableGeneralRequestLists[i / 50].add(getEnableGeneralWSDefinition((Consent__c) newConsents[i], idsToAccounts));
 
             for (String fieldName : CHANNEL_FIELD_NAMES) {
                 String consentChannelId = fieldNamesToConsentChannelIds.get(fieldName);
@@ -226,10 +224,7 @@ public with sharing class ConsentService {
                 }
             }
         } else if (newConsents[i].get('AllConsent__c') == '2') {
-            if (oldConsent != null && newConsents[i].get('AllConsent__c') != oldConsent.get('AllConsent__c')) {
-                listOfEnableGeneralRequestLists[i / 50].add(getEnableGeneralWSDefinition((Consent__c) newConsents[i], idsToAccounts));
-                listOfDisableGeneralRequestLists[i / 50].add(getDisableGeneralWSDefinition((Consent__c) newConsents[i], idsToAccounts, (String) newConsents[i].get('ExternalId__c')));
-            }
+            listOfDisableGeneralRequestLists[i / 50].add(getDisableGeneralWSDefinition((Consent__c) newConsents[i], idsToAccounts, (String) newConsents[i].get('ExternalId__c')));
 
             for (String fieldName : CHANNEL_FIELD_NAMES) {
                 String consentChannelId = fieldNamesToConsentChannelIds.get(fieldName);
@@ -242,12 +237,7 @@ public with sharing class ConsentService {
     }
 
     private static Boolean shouldMakeChannelChange(List<SObject> newConsents, SObject oldConsent, Integer i, String allConsentValue, String fieldName) {
-        return (
-            newConsents[i].get(fieldName) == allConsentValue && 
-                (oldConsent == null || 
-                newConsents[i].get('AllConsent__c') != oldConsent.get('AllConsent__c') ||
-                newConsents[i].get(fieldName) != oldConsent.get(fieldName))
-        );
+        return  newConsents[i].get(fieldName) == allConsentValue;
     }
 
 	private static Account validateConsents(Integer i, List<SObject> newConsents, Map<Id, Account> idsToAccounts) {

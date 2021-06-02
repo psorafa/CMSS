@@ -2,16 +2,81 @@
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>creates new activity</description>
     <fieldOverrides>
+        <field>ActivityDate</field>
+        <formula>TODAY() + 14</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Author__c</field>
+        <formula>$User.FirstName + &apos; &apos; +  $User.LastName</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Category__c</field>
+        <literalValue>3</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>CreatedDate__c</field>
+        <formula>NOW()</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Email__c</field>
+        <formula>Opportunity.Account.CompanyEmail__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Location__c</field>
+        <formula>IF(NOT(ISBLANK(Opportunity.Account.BillingAddress)),
+  Opportunity.Account.BillingStreet 	+ &apos;, &apos; +
+	 Opportunity.Account.BillingCity + &apos;, &apos; +
+  Opportunity.Account.BillingPostalCode + &apos;, &apos; +
+  Opportunity.Account.BillingCountry,
+		&apos; &apos;)</formula>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>Opportunity__c</field>
         <formula>Opportunity.Id</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>OwnerId</field>
+        <formula>$User.Id</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Phone__c</field>
+        <formula>Opportunity.Account.Phone</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Priority</field>
+        <literalValue>Normal</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Source__c</field>
+        <literalValue>73</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Status</field>
+        <literalValue>0</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>StatusReason__c</field>
+        <literalValue>1</literalValue>
     </fieldOverrides>
     <fieldOverrides>
         <field>Type</field>
         <literalValue>5</literalValue>
     </fieldOverrides>
     <fieldOverrides>
+        <field>ValidFrom__c</field>
+        <formula>NOW()</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>ValidTo__c</field>
+        <formula>TODAY() + 104</formula>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>WhatId</field>
-        <formula>Opportunity.Account.Id</formula>
+        <formula>Opportunity.CampaignId</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>WhoId</field>
+        <formula>Opportunity.Account.PersonContactId</formula>
     </fieldOverrides>
     <label>New Activity</label>
     <optionsCreateFeedItem>true</optionsCreateFeedItem>
@@ -25,33 +90,37 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>ActivityDate</field>
-                <uiBehavior>Edit</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>WhoId</field>
-                <uiBehavior>Edit</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>Status</field>
-                <uiBehavior>Required</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>Priority</field>
-                <uiBehavior>Required</uiBehavior>
-            </quickActionLayoutItems>
-        </quickActionLayoutColumns>
-        <quickActionLayoutColumns>
-            <quickActionLayoutItems>
-                <emptySpace>true</emptySpace>
-                <uiBehavior>Edit</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
                 <field>Type</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Description</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>ActivityDate</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>PlannedFromDate__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>PlannedToDate__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Category__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Result__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
@@ -61,10 +130,31 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
+                <field>WhoId</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
                 <field>WhatId</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Email__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Phone__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Location__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
         </quickActionLayoutColumns>
+        <quickActionLayoutColumns/>
     </quickActionLayout>
     <successMessage>New Activity was created</successMessage>
     <targetObject>Task</targetObject>

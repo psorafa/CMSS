@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>ClientClaim12DaysAfterReceivedDateAlert</fullName>
+        <description>Client Claim 12 days after Received Date Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>ClientOmbudsman</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/ClientClaim12DaysAfterReceivedDatePayments</template>
+    </alerts>
+    <alerts>
+        <fullName>ClientClaim16DaysAfterReceivedDateAlert</fullName>
+        <description>Client Claim 16 days after Received Date Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>ClientOmbudsman</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/ClientClaim16DaysAfterReceivedDatePayments</template>
+    </alerts>
+    <alerts>
         <fullName>ClientClaim25DaysAfterReceivedDateAlert</fullName>
         <description>Client Claim 25 days after Received Date Alert</description>
         <protected>false</protected>
@@ -381,6 +409,49 @@ OwnerId &lt;&gt; LastModifiedById</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>ClientClaimNoAnswerPaymentsTimeDependentNotification</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>1,2</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.ResponseSentDate__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>notEqual</operation>
+            <value>2,3</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.CaseTypeNotificationHelper__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
+        </criteriaItems>
+        <description>25 or 16 days after Received Date sends email alert to Client Claim case owner if the conditions are met.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>ClientClaim16DaysAfterReceivedDateAlert</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Case.ReceivedDate__c</offsetFromField>
+            <timeLength>16</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>ClientClaim12DaysAfterReceivedDateAlert</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Case.ReceivedDate__c</offsetFromField>
+            <timeLength>12</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
         <fullName>ClientClaimNoAnswerTimeDependentNotification</fullName>
         <active>true</active>
         <criteriaItems>
@@ -397,14 +468,27 @@ OwnerId &lt;&gt; LastModifiedById</formula>
             <operation>notEqual</operation>
             <value>2,3</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>Case.CaseTypeNotificationHelper__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
         <description>25 or 31 days after Received Date sends email alert to Client Claim case owner if the conditions are met.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
+            <actions>
+                <name>ClientClaim25DaysAfterReceivedDateAlert</name>
+                <type>Alert</type>
+            </actions>
             <offsetFromField>Case.ReceivedDate__c</offsetFromField>
             <timeLength>25</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
         <workflowTimeTriggers>
+            <actions>
+                <name>ClientClaim31DaysAfterReceivedDateAlert</name>
+                <type>Alert</type>
+            </actions>
             <offsetFromField>Case.ReceivedDate__c</offsetFromField>
             <timeLength>31</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>

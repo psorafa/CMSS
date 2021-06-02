@@ -66,4 +66,34 @@
         <target>/error</target>
         <type>InternalLink</type>
     </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Chatter</label>
+        <position>10</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <subMenu>
+            <navigationMenuItem>
+                <label>Moje příspěvky</label>
+                <position>0</position>
+                <publiclyAvailable>false</publiclyAvailable>
+                <target>/myfeed</target>
+                <type>InternalLink</type>
+            </navigationMenuItem>
+            <navigationMenuItem>
+                <defaultListViewId>My_ChatterGroups</defaultListViewId>
+                <label>Skupiny</label>
+                <position>1</position>
+                <publiclyAvailable>false</publiclyAvailable>
+                <target>CollaborationGroup</target>
+                <type>SalesforceObject</type>
+            </navigationMenuItem>
+            <navigationMenuItem>
+                <label>Streamy</label>
+                <position>2</position>
+                <publiclyAvailable>false</publiclyAvailable>
+                <target>/streams</target>
+                <type>InternalLink</type>
+            </navigationMenuItem>
+        </subMenu>
+        <type>MenuLabel</type>
+    </navigationMenuItem>
 </NavigationMenu>
