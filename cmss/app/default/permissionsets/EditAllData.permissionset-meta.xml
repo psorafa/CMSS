@@ -3953,6 +3953,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>NonLifeInsuranceObject__c.InsuranceType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>NonLifeInsuranceOtherObject__c.ClientID__c</field>
         <readable>true</readable>
     </fieldPermissions>

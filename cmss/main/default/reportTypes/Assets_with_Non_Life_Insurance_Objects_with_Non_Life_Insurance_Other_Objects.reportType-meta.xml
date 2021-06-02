@@ -1417,6 +1417,11 @@
             <field>HouseholdLocation__c</field>
             <table>Asset.NonLifeInsuranceObjects__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>InsuranceType__c</field>
+            <table>Asset.NonLifeInsuranceObjects__r</table>
+        </columns>
         <masterLabel>Non Life Insurance Objects</masterLabel>
     </sections>
     <sections>
