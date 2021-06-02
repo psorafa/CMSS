@@ -883,6 +883,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Offers__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Ownership</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2939,6 +2944,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CampaignMember__c.CampaignEndDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CampaignMember__c.CampaignIsActive__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CampaignMember__c.CampaignStartDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
