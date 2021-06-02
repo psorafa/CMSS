@@ -413,7 +413,7 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>NewTask</actionName>
+            <actionName>Account.NewActivity</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>0</sortOrder>
         </platformActionListItems>
@@ -439,6 +439,9 @@
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
+        <quickActionListItems>
+            <quickActionName>Account.NewActivity</quickActionName>
+        </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>

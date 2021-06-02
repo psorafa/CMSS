@@ -5797,15 +5797,7 @@
         <layout>ProductContractUrl__mdt-Product Contract Url Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Task-Meeting Layout</layout>
-        <recordType>Task.Meeting</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-Phone Call Layout</layout>
-        <recordType>Task.PhoneCall</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-Task Layout</layout>
+        <layout>Task-UnifiedActivityLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>TaskRecordTypeMapping__mdt-Task Record Type Mapping Layout</layout>
@@ -5933,9 +5925,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Task.Task</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>CampaignMember__c</tab>
@@ -6061,6 +6054,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>EditOppLineItemUnitPrice</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>EditTask</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
