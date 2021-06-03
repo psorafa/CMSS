@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>User</fullName>
     <fields>CombinedName__c</fields>
     <fields>EmployeeNumber</fields>
     <fields>CommissionAccountNrAll__c</fields>
+    <fields>SortingCode__c</fields>
+    <fields>Phone</fields>
+    <fields>Email</fields>
     <label>User</label>
 </CompactLayout>
