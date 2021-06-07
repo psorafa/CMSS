@@ -1,11 +1,19 @@
 public with sharing class SearchResultDTO {
+    @AuraEnabled
 	public String recordId { get; set; }
+    @AuraEnabled
 	public String name { get; set; }
+    @AuraEnabled
 	public String birthNumber { get; set; }
+    @AuraEnabled
 	public String compRegNum { get; set; }
+    @AuraEnabled
 	public String assetNumber { get; set; }
+    @AuraEnabled
 	public String city { get; set; }
+    @AuraEnabled
 	public String postalCode { get; set; }
+    @AuraEnabled
 	public String sObjectType { get; set; }
 
 	public SearchResultDTO(
