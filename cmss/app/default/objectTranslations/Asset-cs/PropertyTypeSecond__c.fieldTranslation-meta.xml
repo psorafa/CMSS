@@ -3,6 +3,10 @@
     <label>2. druh nemovitosti</label>
     <name>PropertyTypeSecond__c</name>
     <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>neuvedeno</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1</masterLabel>
         <translation>rodinný dům</translation>
     </picklistValues>
