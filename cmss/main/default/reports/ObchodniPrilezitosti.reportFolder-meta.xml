@@ -2,8 +2,8 @@
 <ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
     <folderShares>
         <accessLevel>View</accessLevel>
-        <sharedTo>AllInternalUsers</sharedTo>
-        <sharedToType>Organization</sharedToType>
+        <sharedTo>AllInternalCRMUsers</sharedTo>
+        <sharedToType>Group</sharedToType>
     </folderShares>
     <name>Obchodní příležitosti</name>
 </ReportFolder>
