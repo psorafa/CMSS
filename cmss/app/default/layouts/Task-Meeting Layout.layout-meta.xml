@@ -29,6 +29,10 @@
                 <behavior>Edit</behavior>
                 <field>PlannedToDate__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DeactivateDate__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

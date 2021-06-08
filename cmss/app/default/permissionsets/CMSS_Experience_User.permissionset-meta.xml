@@ -2793,6 +2793,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Event.DeactivateDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Event.DelegatedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3944,6 +3949,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.CreatedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.DeactivateDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
