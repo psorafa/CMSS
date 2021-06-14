@@ -173,15 +173,13 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 					this.isSearchButtonDisabled = false;
 					if (data && data.length === 1) {
                         this.noRecordsFound = false;
-                        console.log('### wtf');
                         // this.navigateToRecordPage(data[0].recordId); //### comment here
                     } else if (data && data.length > 1) {
 						this.noRecordsFound = false;
 					} else {
-						this.showToast('info', this.label.noRecordsFound, '');
-						this.noRecordsFound = true;
-					}
-                    console.log('### show results');
+								this.showToast('info', this.label.noRecordsFound, '');
+								this.noRecordsFound = true;
+							}
 					this.showResults = true;
 					this.spinner = false;
 				})
