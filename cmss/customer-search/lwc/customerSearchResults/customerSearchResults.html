@@ -50,7 +50,12 @@
 								<td data-label={labelCompRegNum}>
 									<div class="slds-truncate">{item.compRegNum}</div>
 								</td>
-
+                                <td data-label={labelGlobalId}>
+									<div class="slds-truncate">{item.globalId}</div>
+								</td>
+                                <td data-label={labelEmail}>
+									<div class="slds-truncate">{item.email}</div>
+								</td>
 								<template if:true={isAssetSearch}>
 									<td data-label={labelAssetNumber}>
 										<div class="slds-truncate">{item.assetNumber}</div>

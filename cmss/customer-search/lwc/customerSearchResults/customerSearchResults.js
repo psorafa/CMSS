@@ -16,45 +16,62 @@ import noRecordsFound from '@salesforce/label/c.NoRecordsFound';
 import goToRecordDetail from '@salesforce/label/c.NavigateToRecordButton';
 
 export default class CustomerSearchResults extends LightningElement {
-	@api searchResults;
-	@api isAssetSearch;
-	@api showSearchResults;
-	@api showNoRecordFound;
+					@api searchResults;
+					@api isAssetSearch;
+					@api showSearchResults;
+					@api showNoRecordFound;
 
-	@track labelName = '';
-	@track labelBirthNumber = '';
-	@track labelCompRegNum = '';
-	@track labelCity = '';
-	@track labelPostalCode = '';
-	@track labelAssetNumber = '';
+					@track labelName = '';
+					@track labelBirthNumber = '';
+					@track labelCompRegNum = '';
+					@track labelEmail = '';
+                    @track labelGlobalId = '';
+					@track labelCompRegNum = '';
+					@track labelCity = '';
+					@track labelPostalCode = '';
+					@track labelAssetNumber = '';
 
-	@track label = { clientLabel, assetLabel, errorLabel, noRecordsFound, goToRecordDetail };
+					@track label = { clientLabel, assetLabel, errorLabel, noRecordsFound, goToRecordDetail };
 
-	//getting the labels of the fields from Account object
-	@wire(getObjectInfo, { objectApiName: ACCOUNT_OBJECT })
-	accInfo({ data }) {
-		if (data) {
-			this.labelBirthNumber = data.fields.PersonalIdentificationNr__c.label;
-			this.labelCompRegNum = data.fields.CompanyRegistrationNumber__c.label;
-			this.labelName = data.fields.Name.label;
-			this.labelCity = data.fields.BillingCity.label;
-			this.labelPostalCode = data.fields.BillingPostalCode.label;
-		}
-	}
+					//getting the labels of the fields from Account object
+					@wire(getObjectInfo, { objectApiName: ACCOUNT_OBJECT })
+					accInfo({ data }) {
+						console.log('### accInfo');
+						if (data) {
+							this.labelBirthNumber = data.fields.PersonalIdentificationNr__c.label;
+							this.labelCompRegNum = data.fields.CompanyRegistrationNumber__c.label;
+							this.labelName = data.fields.Name.label;
+							this.labelCity = data.fields.BillingCity.label;
+							this.labelPostalCode = data.fields.BillingPostalCode.label;
+                            this.labelGlobalId = data.fields.GlobalId__c.label; 
+                            
+                            if (data.fields.isPersonAccount) { //TODO VM doesn't work
+                                this.labelEmail = data.fields.PersonEmail.label; 
+                            }   else {
+                                this.labelEmail = data.fields.CompanyEmail__c.label;
+                            }
+                            console.log('### labelEmail: ' + this.labelEmail);
+						}
+					}
 
-	//getting the labels of the fields from Asset object
-	@wire(getObjectInfo, { objectApiName: ASSET_OBJECT })
-	assetInfo({ data }) {
-		if (data) {
-			this.labelAssetNumber = data.fields.Name.label;
-		}
-	}
+					//getting the labels of the fields from Asset object
+					@wire(getObjectInfo, { objectApiName: ASSET_OBJECT })
+					assetInfo({ data }) {
+						console.log('### assetInfo');
+						if (data) {
+							console.log('### if passed');
 
-	navigateToRecordPage(event) {
-		// Navigate to the record page
-		const eventToFire = new CustomEvent('redirecttorecord', {
-			detail: { recordId: event.target.value.recordId }
-		});
-		this.dispatchEvent(eventToFire);
-	}
-}
+							this.labelAssetNumber = data.fields.Name.label;
+							console.log('### labelAssetNumber set');
+						}
+					}
+
+					navigateToRecordPage(event) {
+						console.log('### navigateToRecordPage');
+						// Navigate to the record page
+						const eventToFire = new CustomEvent('redirecttorecord', {
+							detail: { recordId: event.target.value.recordId }
+						});
+						this.dispatchEvent(eventToFire);
+					}
+				}

@@ -14,6 +14,10 @@ public with sharing class SearchResultDTO {
     @AuraEnabled
 	public String postalCode { get; set; }
     @AuraEnabled
+	public String email { get; set; }
+    @AuraEnabled
+	public String globalId { get; set; }
+    @AuraEnabled
 	public String sObjectType { get; set; }
 
 	public SearchResultDTO(
@@ -24,6 +28,8 @@ public with sharing class SearchResultDTO {
 		String assetNumber,
 		String city,
 		String postalCode,
+        String email,
+        String globalId,
 		String sObjectType
 	) {
 		this.recordId = recordId;
@@ -33,6 +39,8 @@ public with sharing class SearchResultDTO {
 		this.assetNumber = assetNumber;
 		this.city = city;
 		this.postalCode = postalCode;
+        this.email = email;
+        this.globalId = globalId;
 		this.sObjectType = sObjectType;
 	}
 }

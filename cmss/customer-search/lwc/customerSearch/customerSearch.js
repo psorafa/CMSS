@@ -44,11 +44,15 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	@track showResults = false;
 	@track isSearchButtonDisabled = true;
 
-	@track labelLastName = '';
-	@track labelFirstName = '';
-	@track labelBirthNumber = '';
-	@track labelCompRegNum = '';
-	@track labelAssetNumber = '';
+    @track labelName = '';
+    @track labelBirthNumber = '';
+    @track labelCompRegNum = '';
+    @track labelEmail = '';
+    @track labelGlobalId = '';
+    @track labelCompRegNum = '';
+    @track labelCity = '';
+    @track labelPostalCode = '';
+    @track labelAssetNumber = '';
 
 	@track label = {
 		clientIdentificationTitle,
@@ -160,7 +164,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 				assetNumber: this.inputAssetNumber,
 				searchAmong: CLIENTS
 			};
-
+			window.console.log(searchCriteria);
 			findRecords({
 				searchCriteria: searchCriteria
 			})
@@ -168,14 +172,16 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 					this.searchResults = data;
 					this.isSearchButtonDisabled = false;
 					if (data && data.length === 1) {
-						this.noRecordsFound = false;
-						this.navigateToRecordPage(data[0].recordId);
-					} else if (data && data.length > 1) {
+                        this.noRecordsFound = false;
+                        console.log('### wtf');
+                        // this.navigateToRecordPage(data[0].recordId); //### comment here
+                    } else if (data && data.length > 1) {
 						this.noRecordsFound = false;
 					} else {
 						this.showToast('info', this.label.noRecordsFound, '');
 						this.noRecordsFound = true;
 					}
+                    console.log('### show results');
 					this.showResults = true;
 					this.spinner = false;
 				})
