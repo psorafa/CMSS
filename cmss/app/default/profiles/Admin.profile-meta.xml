@@ -527,7 +527,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.AverageMonthlyIncome__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -602,12 +602,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.CryptoCurrenciesList__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.CryptoCurrencyPlatform__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -672,7 +672,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.EconomicSector__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -682,7 +682,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.EmployerICO__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -727,7 +727,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.HasCryptoCurrency__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -828,7 +828,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.LastAmlReviewDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.LastCsProductEndDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.LastIdentificationType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -872,7 +882,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.NextAmlReviewDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -937,7 +947,7 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.RiskClass__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4003,11 +4013,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>ContactInformation__c.TechnicalStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>ContactInformation__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4169,6 +4174,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Event.City__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.CreatedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.DeactivateDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5388,6 +5403,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Task.DeactivateDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Task.DelegatedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5963,18 +5983,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>ProductContractUrl__mdt-Product Contract Url Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-Meeting Layout</layout>
-        <recordType>Task.Meeting</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-Phone Call Layout</layout>
-        <recordType>Task.PhoneCall</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-Task Layout</layout>
-        <recordType>Task.Task</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Task-UnifiedActivityLayout</layout>

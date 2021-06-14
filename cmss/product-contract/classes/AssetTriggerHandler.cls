@@ -93,6 +93,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 				if (opp.AccountId == asset.AccountId &&
 					opp.OwnerId == asset.ClosingAgentId__c &&
 					asset.ProductCloseDate__c >= opp.ValidFrom__c &&
+                    opp.ValidTo__c != null &&
 					asset.ProductCloseDate__c <= opp.ValidTo__c.addDays(30)
 					) {
                     Opportunity foundOpp = addOpportunityInfo(opp, asset, assetRelatedInfoById.get(asset.Id), recordtypesByIds.get(asset.recordTypeId).Description);
@@ -127,7 +128,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 		opp.Description = String.isEmpty(opp.Description) ? 'Příležitost automaticky založena při vzniku smlouvy' : opp.Description;
 		opp.DueDate__c = opp.DueDate__c == null ? System.today() : opp.DueDate__c;
 		List<String> oppNameList = new List<String>{
-			'Sjednání smlouvy', recordTypedescription, asset.Name
+			recordTypedescription, asset.Name
 		};
 		opp.Name = String.isEmpty(opp.Name) ? String.join(oppNameList, ' ') : opp.Name;
 		opp.OriginalAsset__c = String.isEmpty(opp.OriginalAsset__c) ? asset.Id : opp.OriginalAsset__c;

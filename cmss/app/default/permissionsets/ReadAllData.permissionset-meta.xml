@@ -3239,11 +3239,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ContactInformation__c.TechnicalStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>ContactInformation__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3400,6 +3395,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.CreatedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.DeactivateDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4525,6 +4525,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.CreatedDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.DeactivateDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

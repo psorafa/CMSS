@@ -3520,11 +3520,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ContactInformation__c.TechnicalStatus__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>ContactInformation__c.Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -5378,15 +5373,7 @@
         <layout>ProductContractUrl__mdt-Product Contract Url Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Task-Meeting Layout</layout>
-        <recordType>Task.Meeting</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-Phone Call Layout</layout>
-        <recordType>Task.PhoneCall</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-Task Layout</layout>
+        <layout>Task-UnifiedActivityLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>User-User Layout</layout>
