@@ -3238,11 +3238,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>ContactInformation__c.TechnicalStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>ContactInformation__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
