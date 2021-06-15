@@ -2328,6 +2328,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.AccountName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.AccountingFundsType2__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4739,6 +4744,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>User.GlobalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.GlowID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
