@@ -109,7 +109,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 			} else { //if no opp was paired, we will create a new one
 				Opportunity newOpp = addOpportunityInfo(new Opportunity(), asset, assetRelatedInfoById.get(asset.Id), recordtypesByIds.get(asset.recordTypeId).Description);
                 if (newOpp != null){
-                    oppsToUpsertbyIds.put(newOpp.Id, opp);
+                    oppsToUpsertbyIds.put(newOpp.Id, newOpp);
                 }			
             }
 		}
