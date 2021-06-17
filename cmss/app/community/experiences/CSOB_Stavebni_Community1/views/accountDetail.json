@@ -214,8 +214,8 @@
   }, {
     "components" : [ {
       "componentAttributes" : {
+        "customHeadTags" : "",
         "description" : "",
-        "metaTags" : "",
         "title" : "{!Record._Object}: {!Record._Title}"
       },
       "componentName" : "forceCommunity:seoAssistant",
@@ -282,17 +282,7 @@
             "width" : "MEDIUM"
           },
           "componentName" : "forceCommunity:responsiveRelatedListSingle",
-          "id" : "e4a7834c-3a47-4b71-b4fb-8cada3f39c70",
-          "renditionMap" : { },
-          "type" : "component"
-        }, {
-          "componentAttributes" : {
-            "relatedListApiName" : "CombinedAttachments",
-            "relatedListComponentOverride" : "ADVGRID",
-            "width" : "MEDIUM"
-          },
-          "componentName" : "forceCommunity:responsiveRelatedListSingle",
-          "id" : "72beab5c-7d76-49d2-bcc0-298b2cc43caf",
+          "id" : "b169c6e8-ee9d-4ae8-962b-9de561f7f755",
           "renditionMap" : { },
           "type" : "component"
         } ],
@@ -342,6 +332,17 @@
         "renditionMap" : { },
         "type" : "region"
       } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "relatedListApiName" : "AttachedContentDocuments",
+        "relatedListComponentOverride" : "ADVGRID",
+        "width" : "MEDIUM"
+      },
+      "componentName" : "forceCommunity:responsiveRelatedListSingle",
+      "id" : "e906cfc3-a96f-4f97-9ead-ae63f67fc33f",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
