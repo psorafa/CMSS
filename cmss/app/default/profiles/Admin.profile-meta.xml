@@ -5989,10 +5989,11 @@
         <layout>PortfolioManagementRequest__c-Portfolio Management Request Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Product2-Product Layout</layout>
+        <layout>ProductContractUrl__mdt-Product Contract Url Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>ProductContractUrl__mdt-Product Contract Url Layout</layout>
+        <layout>Task-Task Layout</layout>
+        <recordType>Task.Meeting</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Task-UnifiedActivityLayout</layout>
