@@ -46,7 +46,6 @@ public without sharing class CustomerSearchController {
 	 */
 	@AuraEnabled
 	public static List<SearchResultDTO> findRecords(SearchCriteriaDTO searchCriteria) {
-        System.debug('### searchCriteria:' + searchCriteria);
 		searchCriteriaObject = searchCriteria == null ? searchCriteriaObject : searchCriteria;
 		firstName = searchCriteria.firstName;
 		lastName = searchCriteria.lastName;
@@ -55,15 +54,12 @@ public without sharing class CustomerSearchController {
 		assetNumber = searchCriteria.assetNumber;
 		searchAmong = String.isBlank(searchCriteria.searchAmong) ? searchAmong : searchCriteria.searchAmong; //if searchAmong not provided, we use search among clients by default
 
-        System.debug('### search among: ' + searchAmong);
-
 		List<SearchResultDTO> finalResults = new List<SearchResultDTO>();
 
 		//one of compRegNum, assetNumber and birthNumber needs to be filled in
 		// if birthNumber is filled in, one of fistName or lastName needs to be filled in
 		if (validateInputs()) {
 			String query = getQueryString();
-            System.debug('### getQueryString: '+ getQueryString());
 			List<SObject> searchResults = String.isNotBlank(query) ? runSosl(query) : new List<SObject>();
 
 			if (!searchResults.isEmpty()) {
@@ -75,7 +71,6 @@ public without sharing class CustomerSearchController {
 			}
 		}
 
-        System.debug('### final result: ' + finalResults);
 		return finalResults;
 	}
 
@@ -102,8 +97,6 @@ public without sharing class CustomerSearchController {
 
 		searchTerm = getSearchTerm();
 		returningString = getReturningString();
-        System.debug('### searchTerm: '+searchTerm);
-        System.debug('### returningString: '+returningString);
 
 		if (String.isNotBlank(searchTerm) && String.isNotBlank(returningString)) {
 			query = 'FIND ' + searchTerm + ' IN ALL FIELDS RETURNING ' + returningString;
@@ -123,15 +116,15 @@ public without sharing class CustomerSearchController {
 		if (String.isNotBlank(birthNumber)) {
 			searchTerm += birthNumber;
 			if (String.isNotBlank(firstName)) {
-				searchTerm += ' AND ' + firstName + '*';
+				searchTerm += ' AND ' + firstName;
 			}
 			if (String.isNotBlank(lastName)) {
-				searchTerm += ' AND ' + lastName + '*';
+				searchTerm += ' AND ' + lastName;
 			}
 		} else if (String.isNotBlank(compRegNum)) {
 			searchTerm += compRegNum;
 		} else if (String.isNotBlank(assetNumber)) {
-			searchTerm += assetNumber + '*';
+			searchTerm += assetNumber;
 		}
 		searchTerm += '\'';
 
@@ -182,17 +175,12 @@ public without sharing class CustomerSearchController {
 	 */
 	@TestVisible
 	private static List<SObject> runSosl(String query) {
-        System.debug('### query: '+query);
 		List<List<SObject>> searchResultList = Search.query(query);
-        System.debug('### searchResultList: ' + searchResultList);
-
 		List<SObject> searchResults = new List<SObject>();
 
 		if (searchResultList != null && !searchResultList.isEmpty()) {
 			searchResults = searchResultList.get(0);
 		}
-
-        System.debug('### searchResults: ' + searchResults);
 
 		return searchResults;
 	}
@@ -208,18 +196,21 @@ public without sharing class CustomerSearchController {
 						(String.isNotBlank(birthNumber) && birthNumber == accountResult.PersonalIdentificationNr__c) ||
 						(String.isNotBlank(compRegNum) && compRegNum == accountResult.CompanyRegistrationNumber__c)
 					) {
-                        String email = accountResult.isPersonAccount ? accountResult.PersonEmail : accountResult.CompanyEmail__c;
+						String email = accountResult.isPersonAccount
+							? accountResult.PersonEmail
+							: accountResult.CompanyEmail__c;
 						filteredResults.add(
 							new SearchResultDTO(
 								accountResult.Id,
+								null,
 								accountResult.Name,
 								accountResult.PersonalIdentificationNr__c,
 								accountResult.CompanyRegistrationNumber__c,
 								null,
 								accountResult.BillingCity,
 								accountResult.BillingPostalCode,
-                                email,
-                                accountResult.GlobalId__c,
+								email,
+								accountResult.GlobalId__c,
 								ACCOUNT_SOBJECT
 							)
 						);
@@ -231,18 +222,21 @@ public without sharing class CustomerSearchController {
 						String.isNotBlank(assetNumber) &&
 						(assetNumber == assetResult.Name || assetResult.Name.startsWithIgnoreCase(assetNumber))
 					) {
-                        String email = assetResult.Account.isPersonAccount ? assetResult.Account.PersonEmail : assetResult.Account.CompanyEmail__c;
+						String email = assetResult.Account.isPersonAccount
+							? assetResult.Account.PersonEmail
+							: assetResult.Account.CompanyEmail__c;
 						filteredResults.add(
 							new SearchResultDTO(
 								assetResult.AccountId,
+								assetResult.Id,
 								assetResult.Account.Name,
 								assetResult.Account.PersonalIdentificationNr__c,
 								assetResult.Account.CompanyRegistrationNumber__c,
 								assetResult.Name,
 								assetResult.Account.BillingCity,
 								assetResult.Account.BillingPostalCode,
-                                email,
-                                assetResult.Account.GlobalId__c,
+								email,
+								assetResult.Account.GlobalId__c,
 								ASSET_SOBJECT
 							)
 						);
@@ -258,14 +252,15 @@ public without sharing class CustomerSearchController {
 						filteredResults.add(
 							new SearchResultDTO(
 								leadResult.Id,
+								null,
 								leadResult.Name,
 								leadResult.PersonalIdentificationNr__c,
 								null,
 								null,
 								leadResult.City,
 								leadResult.PostalCode,
-                                leadResult.Email,
-                                null,
+								leadResult.Email,
+								null,
 								LEAD_SOBJECT
 							)
 						);

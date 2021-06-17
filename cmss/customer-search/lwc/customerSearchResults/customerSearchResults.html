@@ -24,10 +24,10 @@
 							<th scope="col">
 								<div class="slds-truncate" title={labelCompRegNum}>{labelCompRegNum}</div>
 							</th>
-                            <th scope="col">
+							<th scope="col">
 								<div class="slds-truncate" title={labelGlobalId}>{labelGlobalId}</div>
 							</th>
-                            <th scope="col">
+							<th scope="col">
 								<div class="slds-truncate" title={labelEmail}>{labelEmail}</div>
 							</th>
 							<template if:true={isAssetSearch}>
@@ -48,7 +48,15 @@
 						<template for:each={searchResults} for:item="item">
 							<tr key={item.recordId}>
 								<td data-label={labelName}>
-									<div class="slds-truncate">{item.name}</div>
+									<!-- <div class="slds-truncate">{item.name}</div> -->
+									<lightning-button
+										label={item.name}
+										title={item.name}
+										value={item.recordId}
+										onclick={navigateToRecordPage}
+										variant="base"
+									>
+									</lightning-button>
 								</td>
 								<td data-label={labelBirthNumber}>
 									<div class="slds-truncate">{item.birthNumber}</div>
@@ -56,15 +64,22 @@
 								<td data-label={labelCompRegNum}>
 									<div class="slds-truncate">{item.compRegNum}</div>
 								</td>
-                                <td data-label={labelGlobalId}>
+								<td data-label={labelGlobalId}>
 									<div class="slds-truncate">{item.globalId}</div>
 								</td>
-                                <td data-label={labelEmail}>
+								<td data-label={labelEmail}>
 									<div class="slds-truncate">{item.email}</div>
 								</td>
 								<template if:true={isAssetSearch}>
 									<td data-label={labelAssetNumber}>
-										<div class="slds-truncate">{item.assetNumber}</div>
+										<lightning-button
+											label={item.assetNumber}
+											title={item.assetNumber}
+											value={item.childRecordId}
+											onclick={navigateToRecordPage}
+											variant="base"
+										>
+										</lightning-button>
 									</td>
 								</template>
 								<td data-label={labelCity}>
@@ -72,16 +87,6 @@
 								</td>
 								<td data-label={labelPostalCode}>
 									<div class="slds-truncate">{item.postalCode}</div>
-								</td>
-								<!--REDIRECTING TO SELECTED RECORD DETAIL-->
-								<td>
-									<lightning-button
-										label={label.goToRecordDetail}
-										title={label.goToRecordDetail}
-										value={item}
-										onclick={navigateToRecordPage}
-									>
-									</lightning-button>
 								</td>
 							</tr>
 						</template>
