@@ -14,8 +14,8 @@ import ASSET_OBJECT from '@salesforce/schema/Asset';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 import clientIdentificationTitle from '@salesforce/label/c.ClientIdentification';
-import firstNamePlaceholder from '@salesforce/label/c.InputPlaceholderFirstName';
 import lastNamePlaceholder from '@salesforce/label/c.InputPlaceholderLastName';
+import namePlaceholder from '@salesforce/label/c.InputPlaceholderName';
 import birthNrPlaceholder from '@salesforce/label/c.InputPlaceholderBirthNumber';
 import compRegNrPlaceholder from '@salesforce/label/c.InputPlaceholderCompRegNr';
 import assetPlaceholder from '@salesforce/label/c.InputPlaceholderAssetNumber';
@@ -34,7 +34,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	spinner = false;
 
 	inputLastName = '';
-	inputFirstName = '';
+	inputName = '';
 	inputBirthNumber = '';
 	inputCompRegNum = '';
 	inputAssetNumber = '';
@@ -43,16 +43,15 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	@track noRecordsFound = true;
 	@track showResults = false;
 	@track isSearchButtonDisabled = true;
-
+	@track labelName = '';
 	@track labelLastName = '';
-	@track labelFirstName = '';
 	@track labelBirthNumber = '';
 	@track labelCompRegNum = '';
 	@track labelAssetNumber = '';
 
 	@track label = {
 		clientIdentificationTitle,
-		firstNamePlaceholder,
+		namePlaceholder,
 		lastNamePlaceholder,
 		birthNrPlaceholder,
 		compRegNrPlaceholder,
@@ -73,8 +72,8 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 		if (data) {
 			this.labelBirthNumber = data.fields.PersonalIdentificationNr__c.label;
 			this.labelCompRegNum = data.fields.CompanyRegistrationNumber__c.label;
-			this.labelFirstName = data.fields.FirstName.label;
 			this.labelLastName = data.fields.LastName.label;
+			this.labelName = data.fields.Name.label;
 		}
 	}
 
@@ -102,18 +101,13 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	}
 
 	@api
-	get isFirstNameRequired() {
-		return this.inputBirthNumber && !this.inputLastName;
+	get isNameRequiredAndVisible() {
+		return this.inputCompRegNum || (this.inputAssetNumber && !this.inputLastName);
 	}
 
 	@api
-	get isLastNameRequired() {
-		return this.inputBirthNumber && !this.inputFirstName;
-	}
-
-	@api
-	get showPersonArea() {
-		return this.inputBirthNumber && true;
+	get isLastNameRequiredAndVisible() {
+		return this.inputBirthNumber || (this.inputAssetNumber && !this.inputName);
 	}
 
 	@api
@@ -131,11 +125,31 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 			this.inputAssetNumber = event.detail.value;
 		} else if (event.target.name === 'lastName') {
 			this.inputLastName = event.detail.value;
-		} else if (event.target.name === 'firstName') {
-			this.inputFirstName = event.detail.value;
+		} else if (event.target.name === 'name') {
+			this.inputName = event.detail.value;
 		}
+
+		this.clearHiddenValues();
 		event.target.reportValidity();
 		this.isSearchCriteriaOk();
+	}
+
+	clearHiddenValues() {
+		if (!this.isBirthNumberRequiredAndVisible) {
+			this.inputBirthNumber = '';
+		}
+		if (!this.isCompRegNumRequiredAndVisible) {
+			this.inputCompRegNum = '';
+		}
+		if (!this.isAssetNumberRequiredAndVisible) {
+			this.inputAssetNumber = '';
+		}
+		if (!this.isNameRequiredAndVisible) {
+			this.inputName = '';
+		}
+		if (!this.isLastNameRequiredAndVisible) {
+			this.inputLastName = '';
+		}
 	}
 
 	//function triggered by onclick event of the search button
@@ -153,8 +167,8 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 			this.spinner = true;
 			this.searchResults = [];
 			let searchCriteria = {
-				firstName: this.inputFirstName,
 				lastName: this.inputLastName,
+				name: this.inputName,
 				birthNumber: this.inputBirthNumber,
 				compRegNum: this.inputCompRegNum,
 				assetNumber: this.inputAssetNumber,

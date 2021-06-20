@@ -49,13 +49,13 @@
         <name>InputPlaceholderCompRegNr</name>
     </customLabels>
     <customLabels>
-        <label>Vložte alespoň začátek křestního jména</label>
-        <name>InputPlaceholderFirstName</name>
-    </customLabels>
-    <customLabels>
         <label>Vložte alespoň začátek příjmení</label>
         <name>InputPlaceholderLastName</name>
     </customLabels>
+    <label>Vložte celé jméno klienta</label>
+        <name>InputPlaceholderName</name>
+    </customLabels>
+    <customLabels>
     <customLabels>
         <label>Zkontrolujte a opravte vložené hodnoty podle zobrazených chybových hlášek.</label>
         <name>InputValuesNotValidMessage</name>
@@ -143,6 +143,10 @@
     <customTabs>
         <label>Identifikace klienta</label>
         <name>ClientIdentification</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Customer Search --></label>
+        <name>Customer_Search</name>
     </customTabs>
     <flowDefinitions>
         <flows/>
