@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
         <label>Smlouva</label>
@@ -9,7 +9,8 @@
         <name>Assets</name>
     </customLabels>
     <customLabels>
-        <label>Pod tímto uživatelem je příliš mnoho klientů. Změna správy stavu byla provedena pouze pro 5 000 záznamů.</label>
+        <label
+		>Pod tímto uživatelem je příliš mnoho klientů. Změna správy stavu byla provedena pouze pro 5 000 záznamů.</label>
         <name>TooManyClients</name>
     </customLabels>
     <customLabels>
@@ -52,10 +53,10 @@
         <label>Vložte alespoň začátek příjmení</label>
         <name>InputPlaceholderLastName</name>
     </customLabels>
-    <label>Vložte celé jméno klienta</label>
+    <customLabels>
+        <label>Vložte celé jméno klienta</label>
         <name>InputPlaceholderName</name>
     </customLabels>
-    <customLabels>
     <customLabels>
         <label>Zkontrolujte a opravte vložené hodnoty podle zobrazených chybových hlášek.</label>
         <name>InputValuesNotValidMessage</name>
@@ -149,15 +150,15 @@
         <name>Customer_Search</name>
     </customTabs>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>CASE_OnCreateActions</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>CASE_OnUpdateActions</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>CaseTypeWithAsset</fullName>
     </flowDefinitions>
     <flowDefinitions>
@@ -196,7 +197,7 @@
         <fullName>EventWithObjUpdate</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>GetRecordTypeIdByNameAndSObjectType</fullName>
     </flowDefinitions>
     <flowDefinitions>
@@ -249,7 +250,7 @@
         <fullName>ProductContractUrl</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows/>
+        <flows />
         <fullName>UpdateCaseRecordType</fullName>
     </flowDefinitions>
     <quickActions>
