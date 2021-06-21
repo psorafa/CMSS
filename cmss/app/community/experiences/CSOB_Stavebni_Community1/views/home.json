@@ -1,6 +1,6 @@
 {
   "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
-  "componentName" : "siteforce:sldsOneColLayout",
+  "componentName" : "siteforce:sldsTwoCol84Layout",
   "id" : "66be39cf-813b-49f0-abb6-b9ca503bd421",
   "label" : "Home",
   "regions" : [ {
@@ -29,6 +29,75 @@
     } ],
     "id" : "b2108e53-7cd6-4981-a8b6-9a588f9d8198",
     "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "richTextValue" : "<p><b>Seznam novinek z centrály.</b></p>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "5b4bf658-6f6b-4447-95f5-9b793871d6cc",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "enableInlineEdit" : true,
+        "filterName" : "00B5E000002lZrAUAU",
+        "layout" : "FULL",
+        "pageSize" : 25,
+        "scope" : "Task",
+        "showActionBar" : true,
+        "showChartsPanel" : false,
+        "showDisplay" : "showall",
+        "showFilterPanel" : false,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : false,
+        "showObjectName" : false,
+        "showPinnedList" : false,
+        "showSearchBar" : false
+      },
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "e8fe8240-5a2b-4d04-9a24-7395cc5db90a",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "enableInlineEdit" : true,
+        "filterName" : "00B5E000002lZqyUAE",
+        "layout" : "FULL",
+        "pageSize" : 25,
+        "scope" : "Opportunity",
+        "showActionBar" : true,
+        "showChartsPanel" : false,
+        "showDisplay" : "showall",
+        "showFilterPanel" : false,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : false,
+        "showObjectName" : true,
+        "showPinnedList" : false,
+        "showSearchBar" : false
+      },
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "cbe25318-e04c-4184-945e-0a226f5a8277",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "showCreateNewCalendar" : true,
+        "showOtherCalendars" : true,
+        "showSidebar" : true
+      },
+      "componentName" : "forceCommunity:calendar",
+      "id" : "a8a5486d-5c26-47e8-8a1b-5d5189382bf5",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "11f9982a-a798-4885-942e-705ad3a81e43",
+    "regionName" : "sidebar",
     "type" : "region"
   } ],
   "themeLayoutType" : "Home",
