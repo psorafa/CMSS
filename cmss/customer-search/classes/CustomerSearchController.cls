@@ -117,7 +117,7 @@ public without sharing class CustomerSearchController {
 		} else if (String.isNotBlank(compRegNum)) {
 			searchTerm += compRegNum;
 		} else if (String.isNotBlank(assetNumber)) {
-			searchTerm += assetNumber;
+			searchTerm += assetNumber + '*';
 		}
 
 		searchTerm += '\'';
