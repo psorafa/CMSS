@@ -133,7 +133,7 @@ public without sharing class CustomerSearchController {
 		'(Id,PersonalIdentificationNr__c,CompanyRegistrationNumber__c,Name,FirstName,LastName,BillingCity,BillingPostalCode, IsPersonAccount, PersonEmail, CompanyEmail__c, GlobalId__c WHERE ';
 	@TestVisible
 	private static final String LEAD_OBJECT_STRING =
-		LEAD_SOBJECT + '(Id,FirstName,LastName,Name,PersonalIdentificationNr__c,City,PostalCode)';
+		LEAD_SOBJECT + '(Id,FirstName,LastName,Name,Email,PersonalIdentificationNr__c,City,PostalCode)';
 	@TestVisible
 	private static final String ASSET_OBJECT_STRING =
 		ASSET_SOBJECT +
@@ -157,8 +157,8 @@ public without sharing class CustomerSearchController {
 		Boolean queryChildObject = String.isNotBlank(assetNumber) || searchAmong == LEADS;
 		if (String.isNotBlank(LastName)) {
 			whereCondition += queryChildObject
-				? 'AND Account.LastName =\'' + LastName + '\''
-				: 'AND LastName =\'' + LastName + '\'';
+				? ' AND Account.LastName =\'' + LastName + '\''
+				: ' AND LastName =\'' + LastName + '\'';
 		} else if (String.isNotBlank(Name)) {
 			whereCondition += queryChildObject ? 'AND Account.Name =\'' + Name + '\'' : 'AND Name =\'' + Name + '\'';
 		}
