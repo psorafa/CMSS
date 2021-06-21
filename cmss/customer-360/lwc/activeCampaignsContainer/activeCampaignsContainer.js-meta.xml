@@ -2,7 +2,7 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>52.0</apiVersion>
     <isExposed>true</isExposed>
-    <masterLabel>Active campaigns list container</masterLabel>
+    <masterLabel>Active campaigns container</masterLabel>
     <targets>
         <target>lightningCommunity__Page</target>
         <target>lightningCommunity__Default</target>
