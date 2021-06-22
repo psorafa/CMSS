@@ -27,13 +27,13 @@
     <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
     <networkMemberGroups>
-        <profile>Admin</profile>
         <profile>cmss experience user</profile>
+        <profile>admin</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
         <forgotPasswordPageOverrideSetting>Standard</forgotPasswordPageOverrideSetting>
-        <homePageOverrideSetting>Designer</homePageOverrideSetting>
+        <homePageOverrideSetting>Standard</homePageOverrideSetting>
         <loginPageOverrideSetting>Standard</loginPageOverrideSetting>
         <selfRegProfilePageOverrideSetting>Designer</selfRegProfilePageOverrideSetting>
     </networkPageOverrides>
@@ -43,8 +43,22 @@
     <site>CSOB_Stavebni_Community</site>
     <status>Live</status>
     <tabs>
+        <customTab>ClientZone__c</customTab>
+        <customTab>PortfolioManagementA__c</customTab>
+        <customTab>PortfolioManagementC__c</customTab>
+        <customTab>PortfolioManagementRequest__c</customTab>
+        <customTab>ConsolidationResult__c</customTab>
         <defaultTab>home</defaultTab>
+        <standardTab>home</standardTab>
+        <standardTab>Account</standardTab>
+        <standardTab>Asset</standardTab>
+        <standardTab>Case</standardTab>
         <standardTab>Chatter</standardTab>
+        <standardTab>Opportunity</standardTab>
+        <standardTab>Campaign</standardTab>
+        <standardTab>report</standardTab>
+        <standardTab>Dashboard</standardTab>
+        <standardTab>OtherUserProfile</standardTab>
     </tabs>
     <welcomeTemplate>unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>
 </Network>
