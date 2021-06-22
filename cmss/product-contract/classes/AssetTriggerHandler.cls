@@ -60,7 +60,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 			clientIds.add(asset.AccountId);
 		}
 
-		List<Opportunity> oppsToUpsert = new List<Opportunity>();
+		Map<Id, Opportunity> oppsToUpsertbyIds = new Map<Id, Opportunity>();
 
 		Set<String> irrelevantCategories = new Set<String>{
 			'5', '6', '7'
@@ -103,15 +103,18 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 				}
 			}
 			if (currentOppsToUpdate.size() > 0) { //if opp was found (or more opps were found), add it to the upsert list
-				oppsToUpsert.addAll(currentOppsToUpdate);
+                for (Opportunity opp : currentOppsToUpdate){
+                    oppsToUpsertbyIds.put(opp.Id, opp);
+                }
 			} else { //if no opp was paired, we will create a new one
 				Opportunity newOpp = addOpportunityInfo(new Opportunity(), asset, assetRelatedInfoById.get(asset.Id), recordtypesByIds.get(asset.recordTypeId).Description);
                 if (newOpp != null){
-                    oppsToUpsert.add(newOpp);
+                    oppsToUpsertbyIds.put(newOpp.Id, newOpp);
                 }			
             }
 		}
 
+        List <Opportunity> oppsToUpsert = oppsToUpsertbyIds.values();
 		upsert oppsToUpsert;
 	}
 
