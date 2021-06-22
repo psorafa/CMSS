@@ -6,7 +6,8 @@
   "label" : "Build Your Own",
   "layouts" : {
     "Inner" : "dead4580-6827-415f-99ba-6697d3c34de9",
-    "Login" : "1d04a015-4663-4f47-b7aa-2dd45be9577f"
+    "Login" : "1d04a015-4663-4f47-b7aa-2dd45be9577f",
+    "ServiceNotAvailable" : "8c00150b-b141-4b51-adf4-3f5fcb4b7318"
   },
   "type" : "theme",
   "views" : [ {
@@ -90,6 +91,20 @@
       } ],
       "id" : "c6402ec9-ed44-4268-88c4-28b1b41450cf",
       "regionName" : "navBar",
+      "type" : "region"
+    } ],
+    "type" : "view"
+  }, {
+    "componentName" : "siteforce:themeLayoutStarter",
+    "id" : "8c00150b-b141-4b51-adf4-3f5fcb4b7318",
+    "label" : "ServiceNotAvailable",
+    "regions" : [ {
+      "id" : "5138fb52-4475-46ef-b45a-6668e5fc9966",
+      "regionName" : "themeHeader",
+      "type" : "region"
+    }, {
+      "id" : "f7535441-de20-40a6-b44a-cf5ad1beb843",
+      "regionName" : "themeFooter",
       "type" : "region"
     } ],
     "type" : "view"
