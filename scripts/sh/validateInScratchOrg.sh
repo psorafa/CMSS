@@ -40,7 +40,7 @@ sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wai
 
 #push source
 echo "Validating source deploy sequence..."
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/main/
+sfdx force:source:deploy --ignorewarnings --targetusername $ALIAS --sourcepath cmss/main/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/integrations/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/customer-360/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/customer-search/
