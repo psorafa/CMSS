@@ -1,0 +1,14 @@
+<template>
+	<div class="slds-p-bottom_small">
+		<c-filterable-related-list
+			record-id={recordId}
+			child-object-name="CampaignMember__c"
+			parent-field-name="Account__c"
+			columns="Campaign__c, CampaignStartDate__c"
+			list-name="Aktivní kampaně"
+			condition="CampaignEndDate__c >= TODAY AND CampaignIsActive__c = TRUE"
+			icon-name="standard:campaign"
+		>
+		</c-filterable-related-list>
+	</div>
+</template>
