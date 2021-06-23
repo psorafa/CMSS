@@ -3,6 +3,10 @@
     <label>Rizikový profil</label>
     <name>RiskClass__c</name>
     <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>Neurčeno</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1</masterLabel>
         <translation><!-- 1 --></translation>
     </picklistValues>
