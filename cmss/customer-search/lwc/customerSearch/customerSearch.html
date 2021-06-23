@@ -37,7 +37,9 @@
 				>
 					<!--FORM CLIENT-->
 					<template if:true={showClientSearch}>
-						<div class="slds-m-bottom--large slds-m-top--small slds-m-left--small slds-text-heading_medium">
+						<div
+							class="slds-m-bottom--medium slds-m-top--small slds-m-left--small slds-text-heading_medium"
+						>
 							{label.clientLabel}
 						</div>
 						<div class="slds-m-around--small">
@@ -79,40 +81,15 @@
 									></lightning-input>
 								</div>
 							</template>
-
-							<template if:true={showPersonArea}>
-								<div class="slds-m-around--small" id="firstNameDiv">
-									<lightning-input
-										label={labelFirstName}
-										message-when-value-missing={label.nameMissingMessage}
-										minlength="0"
-										name="firstName"
-										onchange={updateVariables}
-										onblur={isSearchCriteriaOk}
-										placeholder={label.firstNamePlaceholder}
-										required={isFirstNameRequired}
-									></lightning-input>
-								</div>
-								<div class="slds-m-around--small" id="lastNameDiv">
-									<lightning-input
-										label={labelLastName}
-										message-when-value-missing={label.nameMissingMessage}
-										minlength="0"
-										name="lastName"
-										onchange={updateVariables}
-										onblur={isSearchCriteriaOk}
-										placeholder={label.lastNamePlaceholder}
-										required={isLastNameRequired}
-									></lightning-input>
-								</div>
-							</template>
 						</div>
 					</template>
 
 					<!--FORM ASSET-->
 					<template if:true={isAssetNumberRequiredAndVisible}>
 						<br />
-						<div class="slds-m-bottom--large slds-m-top--small slds-m-left--small slds-text-heading_medium">
+						<div
+							class="slds-m-bottom--medium slds-m-top--small slds-m-left--small slds-text-heading_medium"
+						>
 							{label.assetLabel}
 						</div>
 						<div class="slds-m-around--small">
@@ -133,10 +110,42 @@
 							</div>
 						</div>
 					</template>
-
+					<!--BOTH FORMS-->
+					<template if:true={isNameRequiredAndVisible}>
+						<div class="slds-m-around--small">
+							<div class="slds-m-around--small" id="nameDiv1">
+								<lightning-input
+									label={labelName}
+									message-when-value-missing={label.nameMissingMessage}
+									minlength="0"
+									name="name"
+									onchange={updateVariables}
+									onblur={isSearchCriteriaOk}
+									placeholder={label.namePlaceholder}
+									required={isNameRequiredAndVisible}
+								></lightning-input>
+							</div>
+						</div>
+					</template>
+					<template if:true={isLastNameRequiredAndVisible}>
+						<div class="slds-m-around--small">
+							<div class="slds-m-around--small" id="lastNameDiv">
+								<lightning-input
+									label={labelLastName}
+									message-when-value-missing={label.nameMissingMessage}
+									minlength="0"
+									name="lastName"
+									onchange={updateVariables}
+									onblur={isSearchCriteriaOk}
+									placeholder={label.lastNamePlaceholder}
+									required={isLastNameRequiredAndVisible}
+								></lightning-input>
+							</div>
+						</div>
+					</template>
 					<br />
 					<div
-						class="slds-align_absolute-center slds-m-around--small slds-m-top--x-large"
+						class="slds-align_absolute-center slds-m-around--small slds-m-top--x-medium"
 						id="searchButtonDiv"
 					>
 						<lightning-button
@@ -152,6 +161,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!--SEARCH RESULTS-->
 	<div>
 		<template if:true={showResults}>

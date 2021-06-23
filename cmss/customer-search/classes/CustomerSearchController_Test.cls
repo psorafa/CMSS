@@ -55,7 +55,7 @@ private class CustomerSearchController_Test {
 		Test.setFixedSearchResults(fixedSearchResults);
 		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			null,
-			null,
+			businessClient.Name,
 			null,
 			businessClient.CompanyRegistrationNumber__c,
 			null,
@@ -80,7 +80,7 @@ private class CustomerSearchController_Test {
 		fixedSearchResults.add(personClient.Id);
 		Test.setFixedSearchResults(fixedSearchResults);
 		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
-			personClient.FirstName,
+			personClient.lastName,
 			null,
 			personClient.PersonalIdentificationNr__c,
 			null,
@@ -106,7 +106,7 @@ private class CustomerSearchController_Test {
 		fixedSearchResults.add(Lead1.Id);
 		Test.setFixedSearchResults(fixedSearchResults);
 		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
-			lead1.FirstName,
+			lead1.lastName,
 			null,
 			lead1.PersonalIdentificationNr__c,
 			null,
@@ -133,7 +133,7 @@ private class CustomerSearchController_Test {
 		fixedSearchResults.add(asset2.Id);
 		Test.setFixedSearchResults(fixedSearchResults);
 		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
-			null,
+			personClient.lastName,
 			null,
 			null,
 			null,
@@ -157,7 +157,7 @@ private class CustomerSearchController_Test {
 		testSetup();
 		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			null,
-			null,
+			businessClient.Name,
 			null,
 			businessClient.CompanyRegistrationNumber__c,
 			null,
@@ -272,17 +272,14 @@ private class CustomerSearchController_Test {
 		String expectedQueryString =
 			'FIND \'' +
 			personClient.PersonalIdentificationNr__c +
-			' AND ' +
-			personClient.FirstName +
-			'*' +
-			' AND ' +
-			personClient.LastName.substring(0, 2) +
-			'*\'' +
+			'\'' +
 			' IN ALL FIELDS RETURNING ' +
 			ACCOUNT_OBJECT_STRING +
-			'IsPersonAccount = true AND AccountStatus__c = \'1\')';
-		CustomerSearchController.firstName = personClient.FirstName;
-		CustomerSearchController.lastName = personClient.LastName.substring(0, 2);
+			'IsPersonAccount = true AND AccountStatus__c = \'1\' AND LastName =\'' +
+			personClient.LastName +
+			'\')';
+
+		CustomerSearchController.lastName = personClient.LastName;
 		CustomerSearchController.birthNumber = personClient.PersonalIdentificationNr__c;
 		Test.startTest();
 		String query = CustomerSearchController.getQueryString();
@@ -296,17 +293,13 @@ private class CustomerSearchController_Test {
 		String expectedQueryString =
 			'FIND \'' +
 			personClient.PersonalIdentificationNr__c +
-			' AND ' +
-			personClient.FirstName +
-			'*' +
-			' AND ' +
-			personClient.LastName.substring(0, 2) +
-			'*\'' +
+			'\'' +
 			' IN ALL FIELDS RETURNING ' +
 			ACCOUNT_OBJECT_STRING +
-			'IsPersonAccount = true AND AccountStatus__c != \'1\')';
-		CustomerSearchController.firstName = personClient.FirstName;
-		CustomerSearchController.lastName = personClient.LastName.substring(0, 2);
+			'IsPersonAccount = true AND AccountStatus__c != \'1\' AND LastName =\'' +
+			personClient.LastName +
+			'\')';
+		CustomerSearchController.lastName = personClient.LastName;
 		CustomerSearchController.birthNumber = personClient.PersonalIdentificationNr__c;
 		CustomerSearchController.searchAmong = CustomerSearchController.PROSPECTS;
 		Test.startTest();
@@ -354,14 +347,8 @@ private class CustomerSearchController_Test {
 		String expectedQueryString =
 			'FIND \'' +
 			personClient.PersonalIdentificationNr__c +
-			' AND ' +
-			lead1.FirstName +
-			'*' +
-			' AND ' +
-			lead1.LastName +
-			'*\' IN ALL FIELDS RETURNING ' +
+			'\' IN ALL FIELDS RETURNING ' +
 			LEAD_OBJECT_STRING;
-		CustomerSearchController.firstName = lead1.FirstName;
 		CustomerSearchController.lastName = lead1.LastName;
 		CustomerSearchController.birthNumber = personClient.PersonalIdentificationNr__c;
 		CustomerSearchController.searchAmong = CustomerSearchController.LEADS;

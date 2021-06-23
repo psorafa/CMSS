@@ -24,6 +24,8 @@ export default class CustomerSearchResults extends LightningElement {
 	@track labelName = '';
 	@track labelBirthNumber = '';
 	@track labelCompRegNum = '';
+	@track labelEmail = '';
+	@track labelGlobalId = '';
 	@track labelCity = '';
 	@track labelPostalCode = '';
 	@track labelAssetNumber = '';
@@ -39,6 +41,8 @@ export default class CustomerSearchResults extends LightningElement {
 			this.labelName = data.fields.Name.label;
 			this.labelCity = data.fields.BillingCity.label;
 			this.labelPostalCode = data.fields.BillingPostalCode.label;
+			this.labelGlobalId = data.fields.GlobalId__c.label;
+			this.labelEmail = data.fields.PersonEmail.label;
 		}
 	}
 
@@ -53,7 +57,7 @@ export default class CustomerSearchResults extends LightningElement {
 	navigateToRecordPage(event) {
 		// Navigate to the record page
 		const eventToFire = new CustomEvent('redirecttorecord', {
-			detail: { recordId: event.target.value.recordId }
+			detail: { recordId: event.target.value }
 		});
 		this.dispatchEvent(eventToFire);
 	}
