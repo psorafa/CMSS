@@ -28,9 +28,9 @@ set -e
 #deploy to org (CHECK ONLY SO FAR FOR TESTING)
 if [ -z  "$TEST" ];
 then
-    sfdx force:source:deploy --sourcepath $PACKAGE --targetusername $ALIAS
+    sfdx force:source:deploy --ignorewarnings --sourcepath $PACKAGE --targetusername $ALIAS
 else
-    sfdx force:source:deploy --sourcepath $PACKAGE --targetusername $ALIAS --testlevel $TEST
+    sfdx force:source:deploy --ignorewarnings --sourcepath $PACKAGE --targetusername $ALIAS --testlevel $TEST
 fi
 
 echo "Deploy Successfull!"

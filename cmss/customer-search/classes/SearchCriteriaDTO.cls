@@ -1,9 +1,15 @@
 public with sharing class SearchCriteriaDTO {
-	public String firstName { get; set; }
+	@AuraEnabled
 	public String lastName { get; set; }
+	@AuraEnabled
+	public String name { get; set; }
+	@AuraEnabled
 	public String birthNumber { get; set; }
+	@AuraEnabled
 	public String compRegNum { get; set; }
+	@AuraEnabled
 	public String assetNumber { get; set; }
+	@AuraEnabled
 	public String searchAmong { get; set; }
 
 	public SearchCriteriaDTO() {
@@ -11,15 +17,15 @@ public with sharing class SearchCriteriaDTO {
 	}
 
 	public SearchCriteriaDTO(
-		String firstName,
 		String lastName,
+		String name,
 		String birthNumber,
 		String compRegNum,
 		String assetNumber,
 		String searchAmong
 	) {
-		this.firstName = firstName;
 		this.lastName = lastName;
+		this.name = name;
 		this.birthNumber = birthNumber;
 		this.compRegNum = compRegNum;
 		this.assetNumber = assetNumber;

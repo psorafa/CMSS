@@ -18,9 +18,9 @@ public without sharing class CustomerSearchController {
 
 	//inputs from findRecords method
 	@TestVisible
-	private static String firstName;
-	@TestVisible
 	private static String lastName;
+	@TestVisible
+	private static String name;
 	@TestVisible
 	private static String birthNumber;
 	@TestVisible
@@ -47,8 +47,8 @@ public without sharing class CustomerSearchController {
 	@AuraEnabled
 	public static List<SearchResultDTO> findRecords(SearchCriteriaDTO searchCriteria) {
 		searchCriteriaObject = searchCriteria == null ? searchCriteriaObject : searchCriteria;
-		firstName = searchCriteria.firstName;
 		lastName = searchCriteria.lastName;
+		name = searchCriteria.name;
 		birthNumber = searchCriteria.birthNumber;
 		compRegNum = searchCriteria.compRegNum;
 		assetNumber = searchCriteria.assetNumber;
@@ -70,6 +70,7 @@ public without sharing class CustomerSearchController {
 				finalResults = callSearchAgainForDifferentScope();
 			}
 		}
+
 		return finalResults;
 	}
 
@@ -79,9 +80,8 @@ public without sharing class CustomerSearchController {
 	 */
 	@TestVisible
 	private static Boolean validateInputs() {
-		return String.isNotBlank(compRegNum) ||
-			String.isNotBlank(assetNumber) ||
-			(String.isNotBlank(birthNumber) && (String.isNotBlank(firstName) || String.isNotBlank(lastName)));
+		return ((String.isNotBlank(compRegNum) || String.isNotBlank(assetNumber) || String.isNotBlank(birthNumber)) &&
+		(String.isNotBlank(Name) || String.isNotBlank(lastName)));
 	}
 
 	/**
@@ -114,17 +114,12 @@ public without sharing class CustomerSearchController {
 
 		if (String.isNotBlank(birthNumber)) {
 			searchTerm += birthNumber;
-			if (String.isNotBlank(firstName)) {
-				searchTerm += ' AND ' + firstName + '*';
-			}
-			if (String.isNotBlank(lastName)) {
-				searchTerm += ' AND ' + lastName + '*';
-			}
 		} else if (String.isNotBlank(compRegNum)) {
 			searchTerm += compRegNum;
 		} else if (String.isNotBlank(assetNumber)) {
 			searchTerm += assetNumber + '*';
 		}
+
 		searchTerm += '\'';
 
 		return searchTerm;
@@ -135,14 +130,14 @@ public without sharing class CustomerSearchController {
 	@TestVisible
 	private static final String ACCOUNT_OBJECT_STRING =
 		ACCOUNT_SOBJECT +
-		'(Id,PersonalIdentificationNr__c,CompanyRegistrationNumber__c,Name,FirstName,LastName,BillingCity,BillingPostalCode WHERE ';
+		'(Id,PersonalIdentificationNr__c,CompanyRegistrationNumber__c,Name,FirstName,LastName,BillingCity,BillingPostalCode, IsPersonAccount, PersonEmail, CompanyEmail__c, GlobalId__c WHERE ';
 	@TestVisible
 	private static final String LEAD_OBJECT_STRING =
-		LEAD_SOBJECT + '(Id,FirstName,LastName,Name,PersonalIdentificationNr__c,City,PostalCode)';
+		LEAD_SOBJECT + '(Id,FirstName,LastName,Name,Email,PersonalIdentificationNr__c,City,PostalCode)';
 	@TestVisible
 	private static final String ASSET_OBJECT_STRING =
 		ASSET_SOBJECT +
-		'(Id,Name,AccountId,Account.Name,Account.BillingCity,Account.BillingPostalCode,Account.PersonalIdentificationNr__c,Account.CompanyRegistrationNumber__c WHERE ';
+		'(Id,Name,AccountId,Account.Name,Account.BillingCity,Account.BillingPostalCode,Account.PersonalIdentificationNr__c,Account.CompanyRegistrationNumber__c, Account.IsPersonAccount, Account.PersonEmail, Account.CompanyEmail__c, Account.GlobalId__c WHERE ';
 	/**
 	 * @description method to build and @return text to be used in the SOSL query after RETURNING keyword based on the sObject Type for which we need the string
 	 * @author Andrea Olexova
@@ -158,6 +153,15 @@ public without sharing class CustomerSearchController {
 			whereCondition += '!= ';
 		}
 		whereCondition += '\'1\'';
+
+		Boolean queryChildObject = String.isNotBlank(assetNumber) || searchAmong == LEADS;
+		if (String.isNotBlank(LastName)) {
+			whereCondition += queryChildObject
+				? ' AND Account.LastName =\'' + LastName + '\''
+				: ' AND LastName =\'' + LastName + '\'';
+		} else if (String.isNotBlank(Name)) {
+			whereCondition += queryChildObject ? 'AND Account.Name =\'' + Name + '\'' : 'AND Name =\'' + Name + '\'';
+		}
 
 		if (LEADS == searchAmong) {
 			return LEAD_OBJECT_STRING;
@@ -195,15 +199,21 @@ public without sharing class CustomerSearchController {
 						(String.isNotBlank(birthNumber) && birthNumber == accountResult.PersonalIdentificationNr__c) ||
 						(String.isNotBlank(compRegNum) && compRegNum == accountResult.CompanyRegistrationNumber__c)
 					) {
+						String email = accountResult.isPersonAccount
+							? accountResult.PersonEmail
+							: accountResult.CompanyEmail__c;
 						filteredResults.add(
 							new SearchResultDTO(
 								accountResult.Id,
+								null,
 								accountResult.Name,
 								accountResult.PersonalIdentificationNr__c,
 								accountResult.CompanyRegistrationNumber__c,
 								null,
 								accountResult.BillingCity,
 								accountResult.BillingPostalCode,
+								email,
+								accountResult.GlobalId__c,
 								ACCOUNT_SOBJECT
 							)
 						);
@@ -215,15 +225,21 @@ public without sharing class CustomerSearchController {
 						String.isNotBlank(assetNumber) &&
 						(assetNumber == assetResult.Name || assetResult.Name.startsWithIgnoreCase(assetNumber))
 					) {
+						String email = assetResult.Account.isPersonAccount
+							? assetResult.Account.PersonEmail
+							: assetResult.Account.CompanyEmail__c;
 						filteredResults.add(
 							new SearchResultDTO(
 								assetResult.AccountId,
+								assetResult.Id,
 								assetResult.Account.Name,
 								assetResult.Account.PersonalIdentificationNr__c,
 								assetResult.Account.CompanyRegistrationNumber__c,
 								assetResult.Name,
 								assetResult.Account.BillingCity,
 								assetResult.Account.BillingPostalCode,
+								email,
+								assetResult.Account.GlobalId__c,
 								ASSET_SOBJECT
 							)
 						);
@@ -234,17 +250,20 @@ public without sharing class CustomerSearchController {
 					if (
 						(String.isNotBlank(birthNumber) && birthNumber == leadResult.PersonalIdentificationNr__c) &&
 						((String.isNotBlank(lastName) && leadResult.LastName.startsWithIgnoreCase(lastName)) ||
-						(String.isNotBlank(firstName) && leadResult.FirstName.startsWithIgnoreCase(firstName)))
+						(String.isNotBlank(name) && leadResult.FirstName.startsWithIgnoreCase(name)))
 					) {
 						filteredResults.add(
 							new SearchResultDTO(
 								leadResult.Id,
+								null,
 								leadResult.Name,
 								leadResult.PersonalIdentificationNr__c,
 								null,
 								null,
 								leadResult.City,
 								leadResult.PostalCode,
+								leadResult.Email,
+								null,
 								LEAD_SOBJECT
 							)
 						);

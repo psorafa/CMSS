@@ -64,6 +64,13 @@
         <value>Error</value>
     </labels>
     <labels>
+        <fullName>InputNamePlaceholder</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>InputNamePlaceholder</shortDescription>
+        <value>salesforce je uplne dementni</value>
+    </labels>
+    <labels>
         <fullName>InputPlaceholderAssetNumber</fullName>
         <categories>CustomerSearch</categories>
         <language>en_US</language>
@@ -102,6 +109,13 @@
         <protected>false</protected>
         <shortDescription>Last Name Placeholder</shortDescription>
         <value>Input Last Name</value>
+    </labels>
+    <labels>
+        <fullName>InputPlaceholderName</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>Name Placeholder</shortDescription>
+        <value>Input name</value>
     </labels>
     <labels>
         <fullName>InputValuesNotValidMessage</fullName>
@@ -254,12 +268,12 @@
         <value>SMS Communication</value>
     </labels>
     <labels>
-        <fullName>YouDoNotHavePermissionToDeleteCases</fullName>
-        <categories>CaseTriggerHandler</categories>
+        <fullName>TooManyClients</fullName>
+        <categories>Portfolio Management</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>YouDoNotHavePermissionToDeleteCases</shortDescription>
-        <value>You do not have permissions to delete cases</value>
+        <shortDescription>Too Many Clients</shortDescription>
+        <value>There are too many clients under this user, only 5 000 records have been transferred.</value>
     </labels>
     <labels>
         <fullName>TransferAllClients</fullName>
@@ -270,11 +284,11 @@
         <value>Transfer All Clients</value>
     </labels>
     <labels>
-        <fullName>TooManyClients</fullName>
-        <categories>Portfolio Management</categories>
+        <fullName>YouDoNotHavePermissionToDeleteCases</fullName>
+        <categories>CaseTriggerHandler</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Too Many Clients</shortDescription>
-        <value>There are too many clients under this user, only 5 000 records have been transferred.</value>
+        <shortDescription>YouDoNotHavePermissionToDeleteCases</shortDescription>
+        <value>You do not have permissions to delete cases</value>
     </labels>
 </CustomLabels>

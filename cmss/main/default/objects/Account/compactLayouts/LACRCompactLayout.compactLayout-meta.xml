@@ -3,9 +3,11 @@
     <fullName>LACRCompactLayout</fullName>
     <fields>CombinedName__c</fields>
     <fields>CompanyEmail__c</fields>
+    <fields>Phone</fields>
     <fields>BillingAddress</fields>
     <fields>PortfolioMngmtA__c</fields>
     <fields>PortfolioMngmtC__c</fields>
-    <fields>Offers__c</fields>
+    <fields>CompanyRegistrationNumber__c</fields>
+    <fields>GlobalId__c</fields>
     <label>LACRCompactLayout</label>
 </CompactLayout>

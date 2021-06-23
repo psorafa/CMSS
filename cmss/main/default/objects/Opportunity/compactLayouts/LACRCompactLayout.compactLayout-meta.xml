@@ -6,5 +6,7 @@
     <fields>AccountId</fields>
     <fields>CloseDate</fields>
     <fields>OwnerId</fields>
+    <fields>ProductType__c</fields>
+    <fields>Category__c</fields>
     <label>LACRCompactLayout</label>
 </CompactLayout>

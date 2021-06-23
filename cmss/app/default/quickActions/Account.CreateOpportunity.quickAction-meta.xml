@@ -6,20 +6,40 @@
         <formula>Account.Id</formula>
     </fieldOverrides>
     <fieldOverrides>
+        <field>Category__c</field>
+        <literalValue>4</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>CloseDate</field>
         <formula>TODAY() + 90</formula>
     </fieldOverrides>
     <fieldOverrides>
-        <field>CustomText__c</field>
-        <formula>&#39;Vlastní obchodní příležitost&#39;</formula>
+        <field>DataSource__c</field>
+        <literalValue>73</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>IsVisibleForNel__c</field>
+        <formula>false</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Name</field>
-        <formula>&#39;random text&#39;</formula>
+        <formula>&#39;Moje příležitost&#39;</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Probability</field>
+        <formula>20</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>StageName</field>
-        <literalValue>1</literalValue>
+        <literalValue>6</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>ValidFrom__c</field>
+        <formula>Now()</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>ValidTo__c</field>
+        <formula>Now() + 120</formula>
     </fieldOverrides>
     <label>Create Opportunity</label>
     <optionsCreateFeedItem>false</optionsCreateFeedItem>
@@ -28,34 +48,44 @@
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
+                <field>Name</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
                 <field>AccountId</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>CustomText__c</field>
+                <field>ProductType__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Name</field>
+                <field>Description</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>CloseDate</field>
+                <field>StageName</field>
                 <uiBehavior>Required</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>StageName</field>
+                <field>Category__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>CloseDate</field>
                 <uiBehavior>Required</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
     </quickActionLayout>
-    <successMessage>New Opportunity was created</successMessage>
+    <successMessage>New Opportunity was created.</successMessage>
     <targetObject>Opportunity</targetObject>
     <targetParentField>Account</targetParentField>
     <type>Create</type>

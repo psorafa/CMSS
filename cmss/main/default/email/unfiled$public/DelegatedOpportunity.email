@@ -1,0 +1,12 @@
+V CRM SalesForce Vám byla přiřazena obchodní příležitost:
+
+Název: {!Opportunity.CombineOpportunityName__c}
+
+Klient: {!Opportunity.Account}
+
+Termín splnění příležitosti: {!Opportunity.CloseDate}
+
+Pro zobrazení detailu příležitosti klikněte na odkaz: "{!Opportunity.Link}".
+
+
+Tento e-mail je odeslán automaticky ze systému SalesForce.

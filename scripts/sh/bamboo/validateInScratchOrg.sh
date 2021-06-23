@@ -36,7 +36,7 @@ killAll=0
 #wrap sfdx source push with timeout
 pushWithTimeout() {
     timeout -k 1 15m \
-    sfdx force:source:deploy --targetusername "$1" --sourcepath "$2"
+    sfdx force:source:deploy --ignorewarnings --targetusername "$1" --sourcepath "$2"
 }
 
 #cleanup when done
