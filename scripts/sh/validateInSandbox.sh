@@ -16,9 +16,9 @@ set -o xtrace
 #validate deployment
 if [ -z "$TEST" ];
 then
-    sfdx force:source:deploy --sourcepath $PACKAGE --targetusername $ALIAS --checkonly
+    sfdx force:source:deploy --ignorewarnings --sourcepath $PACKAGE --targetusername $ALIAS --checkonly
 else
-    sfdx force:source:deploy --sourcepath $PACKAGE --targetusername $ALIAS --testlevel $TEST --checkonly
+    sfdx force:source:deploy --ignorewarnings --sourcepath $PACKAGE --targetusername $ALIAS --testlevel $TEST --checkonly
 fi
 
 set +o
