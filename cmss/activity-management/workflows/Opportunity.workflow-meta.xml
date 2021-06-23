@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>DelegatedOpportunityAlert</fullName>
+        <description>Delegated Opportunity Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/DelegatedOpportunity</template>
+    </alerts>
+    <alerts>
+        <fullName>NewOpportunityAlert</fullName>
+        <ccEmails>magdalena.rafaj@icloud.com</ccEmails>
+        <description>New Opportunity Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/NewOpportunity</template>
+    </alerts>
+    <rules>
+        <fullName>DelegatedOpportunity</fullName>
+        <actions>
+            <name>DelegatedOpportunityAlert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(
+    NOT(ISNEW()),
+    ISCHANGED(OwnerId)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>NewOpportunityNotification</fullName>
+        <actions>
+            <name>NewOpportunityAlert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>User is notified when new opportunity where he is Owner is creates.</description>
+        <formula>AND(
+    ISNEW(),
+    ISPICKVAL(StageName, &apos;6&apos;),
+				OR(
+       NOT(ISPICKVAL(Category__c,&apos;5&apos;)),
+       NOT(ISPICKVAL(Category__c,&apos;6&apos;)),
+       NOT(ISPICKVAL(Category__c,&apos;7&apos;))
+							),
+				CreatedById &lt;&gt; OwnerId,
+				Author__c &lt;&gt; Owner.CommissionAccountBase__c 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
     <rules>
         <fullName>OppEditable</fullName>
         <active>false</active>
