@@ -23,7 +23,7 @@
     </fieldOverrides>
     <fieldOverrides>
         <field>Name</field>
-        <formula>&#39;Moje příležitost&#39;</formula>
+        <formula>&apos;Moje příležitost&apos;</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Probability</field>
@@ -88,5 +88,6 @@
     <successMessage>New Opportunity was created.</successMessage>
     <targetObject>Opportunity</targetObject>
     <targetParentField>Account</targetParentField>
+    <targetRecordType>Opportunity.Editable</targetRecordType>
     <type>Create</type>
 </QuickAction>
