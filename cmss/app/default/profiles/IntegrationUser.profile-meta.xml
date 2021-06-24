@@ -5439,10 +5439,19 @@
         <layout>Product2-Product Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>ProductContractUrl__mdt-Product Contract Url Layout</layout>
+        <layout>Task-UnifiedActivityLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Task-UnifiedActivityLayout</layout>
+        <recordType>Task.Meeting</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-UnifiedActivityLayout</layout>
+        <recordType>Task.PhoneCall</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-UnifiedActivityLayout</layout>
+        <recordType>Task.Task</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>TaskRecordTypeMapping__mdt-Task Record Type Mapping Layout</layout>

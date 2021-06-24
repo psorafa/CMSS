@@ -490,11 +490,51 @@
     <picklistValues>
         <picklist>Subject</picklist>
         <values>
+            <fullName>CSOB Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Call</fullName>
             <default>false</default>
         </values>
         <values>
+            <fullName>Change of Personal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixation of a Loan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Housing plans</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IZP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manager Task</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mortgage Fixation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mu to U</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PMO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PP</fullName>
             <default>false</default>
         </values>
         <values>
@@ -503,6 +543,14 @@
         </values>
         <values>
             <fullName>Send Quote</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>StSp End of Binding Period</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>StSp Entitlement to a Loan</fullName>
             <default>false</default>
         </values>
     </picklistValues>
