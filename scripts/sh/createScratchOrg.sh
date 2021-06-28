@@ -28,7 +28,7 @@ fi
 sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wait 8 -u $ALIAS
 
 #push source
-sfdx force:source:push --targetusername $ALIAS
+sfdx force:source:push --ignorewarnings --targetusername $ALIAS
 
 #workaround to catch translation errors that silently fail in push
 sfdx force:source:deploy --sourcepath cmss/app/default/translations --targetusername $ALIAS
