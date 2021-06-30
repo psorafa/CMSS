@@ -50,7 +50,7 @@ sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/activity-mana
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/portfolio-management/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/product-contract/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/case-management/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/app/
+sfdx force:source:deploy --ignorewarnings --targetusername $ALIAS --sourcepath cmss/app/
 
 #run tests
 if [ -n "$TEST" ];
