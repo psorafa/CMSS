@@ -8,6 +8,72 @@
     "regionName" : "header",
     "type" : "region"
   }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "tabsetConfig" : {
+          "UUID" : "db1d8bc7-7db3-4ca2-86d9-8a49c9a65004",
+          "activeTab" : "",
+          "tabs" : [ {
+            "UUID" : "28f5194d-b03d-4141-9254-d0873bccfdce",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "1",
+            "tabName" : "Kalendář"
+          }, {
+            "UUID" : "235edbaf-5d03-4817-bd66-17cabba52f5b",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "2",
+            "tabName" : "Obchodní příležitosti"
+          }, {
+            "UUID" : "25e4c1b4-4ee2-4c25-8abc-fefe4845d987",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "3",
+            "tabName" : "Servisní příležitosti"
+          } ],
+          "useOverflowMenu" : false
+        }
+      },
+      "componentName" : "forceCommunity:tabset",
+      "id" : "db1d8bc7-7db3-4ca2-86d9-8a49c9a65004",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "showCreateNewCalendar" : false,
+            "showOtherCalendars" : false,
+            "showSidebar" : true
+          },
+          "componentName" : "forceCommunity:calendar",
+          "id" : "2c1499dd-ca45-495f-8fee-c46e5ccef2d5",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "28f5194d-b03d-4141-9254-d0873bccfdce",
+        "regionLabel" : "Kalendář",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "id" : "235edbaf-5d03-4817-bd66-17cabba52f5b",
+        "regionLabel" : "Obchodní příležitosti",
+        "regionName" : "2",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "id" : "25e4c1b4-4ee2-4c25-8abc-fefe4845d987",
+        "regionLabel" : "Servisní příležitosti",
+        "regionName" : "3",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
     "id" : "b79bd9a3-5675-4bd4-9a83-670d33512510",
     "regionName" : "content",
     "type" : "region"
@@ -43,32 +109,32 @@
     }, {
       "componentAttributes" : {
         "enableInlineEdit" : true,
-        "filterName" : "00B5E000002lZrAUAU",
-        "layout" : "FULL",
-        "pageSize" : 25,
-        "scope" : "Task",
+        "filterName" : "00B5r0000013SrHEAU",
+        "layout" : "COMPACT",
+        "pageSize" : 10,
+        "scope" : "Opportunity",
         "showActionBar" : true,
-        "showChartsPanel" : false,
+        "showChartsPanel" : true,
         "showDisplay" : "showall",
-        "showFilterPanel" : false,
+        "showFilterPanel" : true,
         "showImageIcon" : true,
-        "showManualRefreshButton" : false,
-        "showObjectName" : false,
-        "showPinnedList" : false,
-        "showSearchBar" : false
+        "showManualRefreshButton" : true,
+        "showObjectName" : true,
+        "showPinnedList" : true,
+        "showSearchBar" : true
       },
       "componentName" : "forceCommunity:objectHome",
-      "id" : "e8fe8240-5a2b-4d04-9a24-7395cc5db90a",
+      "id" : "5a954d72-d747-483d-937e-0309545ee2e0",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
     }, {
       "componentAttributes" : {
         "enableInlineEdit" : true,
-        "filterName" : "00B5E000002lZqyUAE",
-        "layout" : "FULL",
-        "pageSize" : 25,
-        "scope" : "Opportunity",
+        "filterName" : "00B5r0000013SFPEA2",
+        "layout" : "COMPACT",
+        "pageSize" : 10,
+        "scope" : "Task",
         "showActionBar" : true,
         "showChartsPanel" : false,
         "showDisplay" : "showall",
@@ -86,12 +152,17 @@
       "type" : "component"
     }, {
       "componentAttributes" : {
-        "showCreateNewCalendar" : true,
-        "showOtherCalendars" : true,
-        "showSidebar" : true
+        "actions" : [ {
+          "isPublic" : true,
+          "name" : "NewTask"
+        }, {
+          "isPublic" : true,
+          "name" : "NewOpportunity"
+        } ],
+        "label" : "Nová Aktivita / Příležitost"
       },
-      "componentName" : "forceCommunity:calendar",
-      "id" : "a8a5486d-5c26-47e8-8a1b-5d5189382bf5",
+      "componentName" : "forceCommunity:createRecordButton",
+      "id" : "f1f96391-81ee-4cb8-8fc4-243500ba91c6",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
