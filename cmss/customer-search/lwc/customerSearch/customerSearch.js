@@ -27,6 +27,7 @@ import invalidValuesMessage from '@salesforce/label/c.InputValuesNotValidMessage
 import searchButton from '@salesforce/label/c.SearchButton';
 import errorLabel from '@salesforce/label/c.Error';
 import noRecordsFound from '@salesforce/label/c.NoRecordsFound';
+import assignTypeAccess from '@salesforce/apex/AccessShareController.assignTypeAccess';
 
 const CLIENTS = 'CLIENTS';
 
@@ -183,8 +184,12 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 					this.isSearchButtonDisabled = false;
 					if (data && data.length === 1) {
 						this.noRecordsFound = false;
+						this.assignAccountAccess(data[0].recordId);
 						this.navigateToRecordPage(data[0].recordId);
 					} else if (data && data.length > 1) {
+						data.forEach(acc => {
+							this.assignAccountAccess(acc.recordId);
+						});
 						this.noRecordsFound = false;
 					} else {
 						this.showToast('info', this.label.noRecordsFound, '');
@@ -250,5 +255,17 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 		if ((event.keyCode === 13 || event.keyCode === '13') && this.isSearchCriteriaOk()) {
 			this.searchClient();
 		}
+	}
+
+	assignAccountAccess(accountId) {
+		assignTypeAccess({
+			accountId: accountId
+		});
+		// .then(() => {
+		// 	console.log('access assign successful');
+		// })
+		// .catch(error => {
+		// 	console.log('access assign unsuccessful');
+		// });
 	}
 }
