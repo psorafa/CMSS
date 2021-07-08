@@ -7,7 +7,6 @@
 import { LightningElement, track, wire, api } from 'lwc';
 import findRecords from '@salesforce/apex/CustomerSearchController.findRecords';
 import assignSearchAccess from '@salesforce/apex/CustomerSearchController.assignSearchAccess';
-// import assignTypeAccess from '@salesforce/apex/AccessShareController.assignTypeAccess';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
