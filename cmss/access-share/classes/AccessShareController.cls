@@ -6,22 +6,17 @@
  */
 public without sharing class AccessShareController {
 	/*
-	 * @author: Nikita Belimenko
 	 * @description: Grant access to user with Type 'Search', this function will be called from FE with @AuraEnabled annotation
 	 */
-	@AuraEnabled
-	public static void assignTypeAccess(String accountId) {
-		System.debug('### AccessShareController.assignTypeAccess');
-		System.debug('### accountId: ' + accountId);
+	// @AuraEnabled
+	// public static void assignTypeAccess(String accountId) {
+	// 	User currentUser = UserDao.getUserById(UserInfo.getUserId());
+	// 	String sObjectName = Utils.getObjectNameByRecordId(accountId);
 
-		User currentUser = UserDao.getUserById(UserInfo.getUserId());
-		String sObjectName = Utils.getObjectNameByRecordId(accountId);
-
-		getSearchAccess(currentUser, accountId, sObjectName);
-	}
+	// 	getSearchAccess(currentUser, accountId, sObjectName);
+	// }
 
 	/*
-	 * @author: Nikita Belimenko
 	 * @description: Check if recordid is Asset, Account or Claim, then grant access
 	 */
 	public static void getSearchAccess(User currentUser, Id accountId, String type) {
@@ -31,7 +26,6 @@ public without sharing class AccessShareController {
 	}
 
 	/*
-	 * @author: Nikita Belimenko
 	 * @description: Grant access to Account, Asset and Claim
 	 */
 	public static void grantAccessToAccountAndAssetAndClaimByAccountId(Id accountId, User currentUser) {

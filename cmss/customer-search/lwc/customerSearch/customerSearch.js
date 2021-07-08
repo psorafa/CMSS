@@ -6,6 +6,8 @@
 
 import { LightningElement, track, wire, api } from 'lwc';
 import findRecords from '@salesforce/apex/CustomerSearchController.findRecords';
+import assignSearchAccess from '@salesforce/apex/CustomerSearchController.assignSearchAccess';
+
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
 
@@ -27,7 +29,6 @@ import invalidValuesMessage from '@salesforce/label/c.InputValuesNotValidMessage
 import searchButton from '@salesforce/label/c.SearchButton';
 import errorLabel from '@salesforce/label/c.Error';
 import noRecordsFound from '@salesforce/label/c.NoRecordsFound';
-import assignTypeAccess from '@salesforce/apex/AccessShareController.assignTypeAccess';
 
 const CLIENTS = 'CLIENTS';
 
@@ -258,7 +259,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	}
 
 	assignAccountAccess(accountId) {
-		assignTypeAccess({
+		assignSearchAccess({
 			accountId: accountId
 		});
 		// .then(() => {
@@ -269,3 +270,4 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 		// });
 	}
 }
+s;
