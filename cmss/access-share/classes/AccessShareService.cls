@@ -1,72 +1,72 @@
 public without sharing class AccessShareService {
-	public static void updateOwnershipOnAccounts(List<AccessShare__c> ownerTypeAccessShares) {
-		Map<Id, AccessShare__c> accSharesWithAccIdsMap = new Map<Id, AccessShare__c>();
-		Set<Id> accIds = new Set<Id>();
-		Set<Id> ownerIds = new Set<Id>();
+	// public static void updateOwnershipOnAccounts(List<AccessShare__c> ownerTypeAccessShares) {
+	// 	Map<Id, AccessShare__c> accSharesWithAccIdsMap = new Map<Id, AccessShare__c>();
+	// 	Set<Id> accIds = new Set<Id>();
+	// 	Set<Id> ownerIds = new Set<Id>();
 
-		for (AccessShare__c accSh : ownerTypeAccessShares) {
-			accIds.add(accSh.AccessTo__c);
-			ownerIds.add(accSh.RequestedBy__c);
-			accSharesWithAccIdsMap.put(accSh.AccessTo__c, accSh);
-		}
-		List<Account> accounts = [SELECT Co_ownership__c FROM Account WHERE Id IN :accIds FOR UPDATE];
+	// 	for (AccessShare__c accSh : ownerTypeAccessShares) {
+	// 		accIds.add(accSh.AccessTo__c);
+	// 		ownerIds.add(accSh.RequestedBy__c);
+	// 		accSharesWithAccIdsMap.put(accSh.AccessTo__c, accSh);
+	// 	}
+	// 	List<Account> accounts = [SELECT Co_ownership__c FROM Account WHERE Id IN :accIds FOR UPDATE];
 
-		Map<Id, Account> accountsMap = new Map<Id, Account>(accounts);
+	// 	Map<Id, Account> accountsMap = new Map<Id, Account>(accounts);
 
-		Map<Account, Set<Id>> accountsWithOwnersMap = new Map<Account, Set<Id>>();
-		List<AccessShare__c> allRelatedAccessShares = AccessShareDao.getNonExpiredAccessShareByRecordIdsAndType(
-			accIds,
-			'Owner'
-		);
+	// 	Map<Account, Set<Id>> accountsWithOwnersMap = new Map<Account, Set<Id>>();
+	// 	List<AccessShare__c> allRelatedAccessShares = AccessShareDao.getNonExpiredAccessShareByRecordIdsAndType(
+	// 		accIds,
+	// 		'Owner'
+	// 	);
 
-		Set<Id> allOwnersIds = new Set<Id>();
+	// 	Set<Id> allOwnersIds = new Set<Id>();
 
-		for (AccessShare__c accSh : allRelatedAccessShares) {
-			allOwnersIds.add(accSh.RequestedBy__c);
-		}
+	// 	for (AccessShare__c accSh : allRelatedAccessShares) {
+	// 		allOwnersIds.add(accSh.RequestedBy__c);
+	// 	}
 
-		List<User> activeUsers = UserDao.getActiveUsersByIds(allOwnersIds);
-		Set<Id> activeUsersIds = new Set<Id>();
-		for (User u : activeUsers) {
-			activeUsersIds.add(u.Id);
-		}
+	// 	List<User> activeUsers = UserDao.getActiveUsersByIds(allOwnersIds);
+	// 	Set<Id> activeUsersIds = new Set<Id>();
+	// 	for (User u : activeUsers) {
+	// 		activeUsersIds.add(u.Id);
+	// 	}
 
-		List<AccessShare__c> allActiveRelatedAccessShares = AccessShareDao.getNonExpiredAccessShareByRecordIdsAndRequestedByAndType(
-			accIds,
-			activeUsersIds,
-			'Owner'
-		);
+	// 	List<AccessShare__c> allActiveRelatedAccessShares = AccessShareDao.getNonExpiredAccessShareByRecordIdsAndRequestedByAndType(
+	// 		accIds,
+	// 		activeUsersIds,
+	// 		'Owner'
+	// 	);
 
-		for (Account acc : accounts) {
-			Set<Id> accOwnerIds = new Set<Id>();
-			for (AccessShare__c accSh : allActiveRelatedAccessShares) {
-				if (acc.Id == accSh.AccessTo__c) {
-					accOwnerIds.add(accSh.RequestedBy__c);
-				}
-			}
-			accountsWithOwnersMap.put(acc, accOwnerIds);
-		}
+	// 	for (Account acc : accounts) {
+	// 		Set<Id> accOwnerIds = new Set<Id>();
+	// 		for (AccessShare__c accSh : allActiveRelatedAccessShares) {
+	// 			if (acc.Id == accSh.AccessTo__c) {
+	// 				accOwnerIds.add(accSh.RequestedBy__c);
+	// 			}
+	// 		}
+	// 		accountsWithOwnersMap.put(acc, accOwnerIds);
+	// 	}
 
-		List<Account> accountsToUpdate = new List<Account>();
-		for (Account acc : accountsWithOwnersMap.keyset()) {
-			Set<Id> ownersForAccIds = accountsWithOwnersMap.get(acc);
-			acc.Co_ownership__c = '';
-			Integer i = 0;
-			for (Id ownerId : ownersForAccIds) {
-				acc.Co_ownership__c += ownerId + '/';
-				i++;
-				// set to maximum of 12 possible IDS - text can contain only 255 charactes -> 255 : 18 (length of ID) >= 12
+	// 	List<Account> accountsToUpdate = new List<Account>();
+	// 	for (Account acc : accountsWithOwnersMap.keyset()) {
+	// 		Set<Id> ownersForAccIds = accountsWithOwnersMap.get(acc);
+	// 		acc.Co_ownership__c = '';
+	// 		Integer i = 0;
+	// 		for (Id ownerId : ownersForAccIds) {
+	// 			acc.Co_ownership__c += ownerId + '/';
+	// 			i++;
+	// 			// set to maximum of 12 possible IDS - text can contain only 255 charactes -> 255 : 18 (length of ID) >= 12
 
-				if (i == 12) {
-					break;
-				}
-			}
-			acc.Co_ownership__c.substringBeforeLast('/');
-			accountsToUpdate.add(acc);
-		}
+	// 			if (i == 12) {
+	// 				break;
+	// 			}
+	// 		}
+	// 		acc.Co_ownership__c.substringBeforeLast('/');
+	// 		accountsToUpdate.add(acc);
+	// 	}
 
-		update accountsToUpdate;
-	}
+	// 	update accountsToUpdate;
+	// }
 
 	public class UnprocessedRecords {
 		public AccountShare[] accountShares = new List<AccountShare>{};
@@ -74,10 +74,6 @@ public without sharing class AccessShareService {
 	}
 
 	public static UnprocessedRecords assignAccess(Set<AccessShareDTO> accessShareDtos, String type) {
-		System.debug('### accessShareService.assignAccess');
-		System.debug('### accessShareDtos: ' + accessShareDtos);
-		System.debug('### type: ' + type);
-
 		UnprocessedRecords unprocessedRecords = new UnprocessedRecords();
 
 		if (accessShareDtos != null && !accessShareDtos.isEmpty()) {
