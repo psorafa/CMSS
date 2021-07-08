@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OpenOpportunitiesCount__c</fullName>
+    <description>Počet otevřených příležitostí</description>
+    <externalId>false</externalId>
+    <label>Open Opportunities Count</label>
+    <summaryFilterItems>
+        <field>Opportunity.StateCode__c</field>
+        <operation>equals</operation>
+        <value>Open</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <type>Summary</type>
+</CustomField>
