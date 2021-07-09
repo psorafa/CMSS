@@ -6,6 +6,8 @@
 
 import { LightningElement, track, wire, api } from 'lwc';
 import findRecords from '@salesforce/apex/CustomerSearchController.findRecords';
+import assignSearchAccess from '@salesforce/apex/CustomerSearchController.assignSearchAccess';
+
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
 
@@ -183,8 +185,12 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 					this.isSearchButtonDisabled = false;
 					if (data && data.length === 1) {
 						this.noRecordsFound = false;
+						this.assignAccountAccess(data[0].recordId);
 						this.navigateToRecordPage(data[0].recordId);
 					} else if (data && data.length > 1) {
+						data.forEach(acc => {
+							this.assignAccountAccess(acc.recordId);
+						});
 						this.noRecordsFound = false;
 					} else {
 						this.showToast('info', this.label.noRecordsFound, '');
@@ -250,5 +256,17 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 		if ((event.keyCode === 13 || event.keyCode === '13') && this.isSearchCriteriaOk()) {
 			this.searchClient();
 		}
+	}
+
+	assignAccountAccess(accountId) {
+		assignSearchAccess({
+			accountId: accountId
+		});
+		// .then(() => {
+		// 	console.log('access assign successful');
+		// })
+		// .catch(error => {
+		// 	console.log('access assign unsuccessful');
+		// });
 	}
 }
