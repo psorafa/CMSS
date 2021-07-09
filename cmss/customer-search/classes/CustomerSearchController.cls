@@ -74,6 +74,14 @@ public without sharing class CustomerSearchController {
 		return finalResults;
 	}
 
+	@AuraEnabled
+	public static void assignSearchAccess(String accountId) {
+		User currentUser = UserDao.getUserById(UserInfo.getUserId());
+		String sObjectName = Utils.getObjectNameByRecordId(accountId);
+
+		AccessShareController.getSearchAccess(currentUser, accountId, sObjectName);
+	}
+
 	/**
 	 * @description method to validate whether the parametres of findRecords method are valid and @return true if valid, false if not
 	 * @author Andrea Olexova
