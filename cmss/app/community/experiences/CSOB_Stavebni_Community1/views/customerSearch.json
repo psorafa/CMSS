@@ -1,0 +1,45 @@
+{
+  "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "id" : "31a44cdc-17ec-4ae0-a21a-f3066661cd60",
+  "label" : "Customer Search",
+  "regions" : [ {
+    "id" : "2ae6999c-8261-4452-b164-873dde27530e",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:customerSearch",
+      "id" : "3fbbab9d-9680-4a3a-a9af-e0b9fa9350b7",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "5307fb77-5a22-423e-9c6a-e9828d7e3bc2",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "ca5d6e51-4993-4f7a-915f-444a8ff452a0",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Customer Search"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "869007b0-b7d0-4509-b57e-6f26386d8904",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "12557fe7-07c2-4372-a4c7-1df65ae852cb",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-customer-search"
+}
