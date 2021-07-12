@@ -33,7 +33,7 @@ public without sharing class AccessShareController {
 		AccessShareController.addAccessShareDtoToSet(
 			currentUser,
 			accountId,
-			Datetime.now().addDays(2),
+			Datetime.now().addDays(1),
 			'CustomerSearch',
 			accessShareDtos
 		);
