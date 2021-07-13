@@ -5614,6 +5614,42 @@
         <layout>Asset-Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Asset-BuildingSavings</layout>
+        <recordType>Asset.BuildingSavings</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-CSOB Current Account</layout>
+        <recordType>Asset.CSOBCurrentAccount</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Credit and Intermediate Loan</layout>
+        <recordType>Asset.CreditAndIntermediateLoan</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-CreditCase</layout>
+        <recordType>Asset.CreditCases</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Investment Life Insurance</layout>
+        <recordType>Asset.InvestmentLifeInsurance</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Mortgages</layout>
+        <recordType>Asset.Mortgages</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-PMO</layout>
+        <recordType>Asset.PMO</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Pension</layout>
+        <recordType>Asset.PensionProducts</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-RiskLifeInsurance</layout>
+        <recordType>Asset.RiskLifeInsurance</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>AssetAccountRelation__c-Asset Account Relation Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
