@@ -5602,6 +5602,10 @@
     </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Account Layout</layout>
+        <recordType>Account.Business_Account</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-LACRLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>AccountRelation__c-Account Relation Layout</layout>
@@ -5706,7 +5710,7 @@
         <layout>PensionStrategy__c-Pension Strategy Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PersonAccount-Person Account Layout</layout>
+        <layout>PersonAccount-LACRPersonLayout</layout>
         <recordType>PersonAccount.PersonAccount</recordType>
     </layoutAssignments>
     <layoutAssignments>
