@@ -1,8 +1,6 @@
 /*
  * AccessShareController is responsible for processing incoming requests to AccessShare
  * Invokes business logic from AccessShareService
- *
- * @author Belimenko Nikita
  */
 public without sharing class AccessShareController {
 	/*
