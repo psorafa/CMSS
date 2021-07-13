@@ -1,8 +1,11 @@
 /*
  * AccessShareSchedule remove all expired access from AccessShare and AccountShare tables
  *
- * @author Belimenko Nikita
  */
+
+//Scheduling example:
+//System.schedule('Delete search access shares','0 0 0 * * ?', new AccessShareSchedule());
+
 global class AccessShareSchedule implements Schedulable {
 	/*****************************************************************************************************
 	@methodName: removeAccess

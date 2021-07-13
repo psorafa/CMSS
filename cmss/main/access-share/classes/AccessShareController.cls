@@ -1,8 +1,6 @@
 /*
  * AccessShareController is responsible for processing incoming requests to AccessShare
  * Invokes business logic from AccessShareService
- *
- * @author Belimenko Nikita
  */
 public without sharing class AccessShareController {
 	/*
@@ -33,7 +31,7 @@ public without sharing class AccessShareController {
 		AccessShareController.addAccessShareDtoToSet(
 			currentUser,
 			accountId,
-			Datetime.now().addDays(2),
+			Datetime.now().addDays(1),
 			'CustomerSearch',
 			accessShareDtos
 		);
