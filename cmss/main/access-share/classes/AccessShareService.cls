@@ -203,8 +203,6 @@ public without sharing class AccessShareService {
 			}
 		}
 
-		System.debug('### return');
-
 		return unprocessedRecords;
 	}
 
