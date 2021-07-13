@@ -94,6 +94,17 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>UnifiedActivityLayout</layout>
+        <sections>
+            <label>Základní informace</label>
+            <section>Basic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <quickActions>
         <label><!-- Defer --></label>
         <name>Defer</name>
