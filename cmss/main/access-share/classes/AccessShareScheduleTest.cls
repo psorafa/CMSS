@@ -9,13 +9,13 @@ private class AccessShareScheduleTest {
 		insert new List<User>{ userCreator, userObserver };
 
 		System.runAs(userCreator) {
-			Account acc1 = new Account(Name = 'Test Acc1');
+			Account acc1 = new Account(Name = 'Test Acc1', GlobalId__c = '089786');
 			acc1 = TestDataFactory.getAccount(acc1);
 			insert acc1;
 		}
 
 		Integer accessShareSizeOrig = AccessShareDao.getAllRecordsFromAccessShare().size();
-		Id testAccId = [SELECT Id FROM Account WHERE Name = 'Test Acc1' LIMIT 1].Id;
+		Id testAccId = [SELECT Id FROM Account WHERE GlobalId__c = '089786' LIMIT 1].Id;
 
 		Test.startTest();
 
@@ -45,14 +45,14 @@ private class AccessShareScheduleTest {
 		insert new List<User>{ userCreator, userObserver };
 
 		System.runAs(userCreator) {
-			Account acc1 = new Account(Name = 'Test Acc1');
+			Account acc1 = new Account(Name = 'Test Acc1', GlobalId__c = '089786');
 			acc1 = TestDataFactory.getAccount(acc1);
 			Asset asset1 = new Asset(Name = '132435');
 			asset1 = TestDataFactory.getAsset(asset1);
 			insert new List<SObject>{ acc1, asset1 };
 		}
 
-		Id testAccId = [SELECT Id FROM Account WHERE Name = 'Test Acc1' LIMIT 1].Id;
+		Id testAccId = [SELECT Id FROM Account WHERE GlobalId__c = '089786' LIMIT 1].Id;
 
 		Test.startTest();
 		AccessShareController.getSearchAccess(userObserver, testAccId, 'Account');
