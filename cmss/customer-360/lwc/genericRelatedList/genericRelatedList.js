@@ -89,7 +89,7 @@ export default class GenericRelatedList extends LightningElement {
 						}
 					}
 				}
-				record['Link'] = '/lightning/r/' + this.relatedObjectName + '/' + record.Id + '/view';
+				record['Link'] = '/' + record.Id;
 			});
 		}
 		this.headerTitle += ' (' + parsedData.length + ')';
