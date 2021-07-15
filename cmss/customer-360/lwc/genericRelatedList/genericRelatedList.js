@@ -15,6 +15,12 @@ export default class GenericRelatedList extends LightningElement {
 	@api relatedObjectName;
 	@api colsAddition
 
+    sfdcBaseURL;
+
+    renderedCallback() {
+        this.sfdcBaseURL = window.location.origin;
+    }
+
 	@api
 	set relatedListName(value) {
 		if (value) {
@@ -70,6 +76,7 @@ export default class GenericRelatedList extends LightningElement {
         });
 	}
 
+
 	/*
 	 * This function processes data and match correct Id Links to their records used in lightning-datatable
 	 */
@@ -89,7 +96,7 @@ export default class GenericRelatedList extends LightningElement {
 						}
 					}
 				}
-				record['Link'] = '/' + record.Id;
+				record['Link'] = this.sfdcBaseURL + '/' + record.Id;
 			});
 		}
 		this.headerTitle += ' (' + parsedData.length + ')';
