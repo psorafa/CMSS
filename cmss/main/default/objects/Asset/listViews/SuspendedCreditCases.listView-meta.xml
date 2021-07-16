@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SuspendedCreditCases</fullName>
+    <columns>ASSET.NAME</columns>
+    <columns>PersonalIdentificationNr__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>AddressZipCode__c</columns>
+    <columns>AddressCity__c</columns>
+    <columns>RequestSignDate__c</columns>
+    <columns>CreditAmount__c</columns>
+    <columns>Status__c</columns>
+    <columns>CurrentBalance__c</columns>
+    <columns>Agent__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ProductType__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>10008</value>
+    </filters>
+    <label>Pozastavené úvěrové případy</label>
+</ListView>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HasRLIRelatedAsset__c</fullName>
+    <description>Má RŽP na smlouvě</description>
+    <externalId>false</externalId>
+    <label>Has RLI Related Asset</label>
+    <summaryFilterItems>
+        <field>AssetRelationship.ProductTypeRelatedAsset__c</field>
+        <operation>equals</operation>
+        <value>7</value>
+    </summaryFilterItems>
+    <summaryForeignKey>AssetRelationship.AssetId</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>
