@@ -14,13 +14,6 @@
           "UUID" : "db1d8bc7-7db3-4ca2-86d9-8a49c9a65004",
           "activeTab" : "",
           "tabs" : [ {
-            "UUID" : "28f5194d-b03d-4141-9254-d0873bccfdce",
-            "allowGuestUser" : false,
-            "locked" : false,
-            "seedComponents" : [ ],
-            "tabKey" : "1",
-            "tabName" : "Kalendář"
-          }, {
             "UUID" : "235edbaf-5d03-4817-bd66-17cabba52f5b",
             "allowGuestUser" : false,
             "locked" : false,
@@ -28,12 +21,12 @@
             "tabKey" : "2",
             "tabName" : "Obchodní příležitosti"
           }, {
-            "UUID" : "25e4c1b4-4ee2-4c25-8abc-fefe4845d987",
+            "UUID" : "28f5194d-b03d-4141-9254-d0873bccfdce",
             "allowGuestUser" : false,
             "locked" : false,
             "seedComponents" : [ ],
-            "tabKey" : "3",
-            "tabName" : "Servisní příležitosti"
+            "tabKey" : "1",
+            "tabName" : "Kalendář"
           } ],
           "useOverflowMenu" : false
         }
@@ -43,7 +36,23 @@
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
-            "showCreateNewCalendar" : false,
+            "height" : "700",
+            "recordId" : "01Z3N0000010KiGUAU"
+          },
+          "componentName" : "forceCommunity:dashboard",
+          "id" : "42c02c4a-58f1-4729-ba88-9c0e57de1f0c",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "235edbaf-5d03-4817-bd66-17cabba52f5b",
+        "regionLabel" : "Obchodní příležitosti",
+        "regionName" : "2",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "showCreateNewCalendar" : true,
             "showOtherCalendars" : false,
             "showSidebar" : true
           },
@@ -55,18 +64,6 @@
         "id" : "28f5194d-b03d-4141-9254-d0873bccfdce",
         "regionLabel" : "Kalendář",
         "regionName" : "1",
-        "renditionMap" : { },
-        "type" : "region"
-      }, {
-        "id" : "235edbaf-5d03-4817-bd66-17cabba52f5b",
-        "regionLabel" : "Obchodní příležitosti",
-        "regionName" : "2",
-        "renditionMap" : { },
-        "type" : "region"
-      }, {
-        "id" : "25e4c1b4-4ee2-4c25-8abc-fefe4845d987",
-        "regionLabel" : "Servisní příležitosti",
-        "regionName" : "3",
         "renditionMap" : { },
         "type" : "region"
       } ],
@@ -108,10 +105,64 @@
       "type" : "component"
     }, {
       "componentAttributes" : {
+        "canChangeSorting" : false,
+        "defaultFilter" : "",
+        "defaultSortOrderHomeFeed" : "Relevance",
+        "defaultSortOrderTopicsFeed" : "Relevance",
+        "feedDesign" : "BROWSE",
+        "hasFeedSearch" : false,
+        "subjectId" : "",
+        "type" : "Record"
+      },
+      "componentName" : "forceCommunity:forceCommunityFeed",
+      "id" : "b5465cbb-784d-4610-9645-0361d8fdc02e",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "actions" : [ {
+          "isPublic" : true,
+          "name" : "NewTask"
+        }, {
+          "isPublic" : true,
+          "name" : "NewOpportunity"
+        } ],
+        "label" : "Nová Aktivita / Příležitost"
+      },
+      "componentName" : "forceCommunity:createRecordButton",
+      "id" : "f1f96391-81ee-4cb8-8fc4-243500ba91c6",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
         "enableInlineEdit" : true,
-        "filterName" : "00B5r0000013SrHEAU",
+        "filterName" : "00B3N000004seZAUAY",
         "layout" : "COMPACT",
-        "pageSize" : 10,
+        "pageSize" : 4,
+        "scope" : "Account",
+        "showActionBar" : true,
+        "showChartsPanel" : true,
+        "showDisplay" : "showall",
+        "showFilterPanel" : true,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : true,
+        "showObjectName" : true,
+        "showPinnedList" : true,
+        "showSearchBar" : true
+      },
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "821af24d-c189-430b-951e-617cf2372719",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "enableInlineEdit" : true,
+        "filterName" : "00B3N000004seZzUAI",
+        "layout" : "COMPACT",
+        "pageSize" : 4,
         "scope" : "Opportunity",
         "showActionBar" : true,
         "showChartsPanel" : true,
@@ -131,9 +182,9 @@
     }, {
       "componentAttributes" : {
         "enableInlineEdit" : true,
-        "filterName" : "00B5r0000013SFPEA2",
+        "filterName" : "00B3N000004sea9UAA",
         "layout" : "COMPACT",
-        "pageSize" : 10,
+        "pageSize" : 4,
         "scope" : "Task",
         "showActionBar" : true,
         "showChartsPanel" : false,
@@ -152,17 +203,23 @@
       "type" : "component"
     }, {
       "componentAttributes" : {
-        "actions" : [ {
-          "isPublic" : true,
-          "name" : "NewTask"
-        }, {
-          "isPublic" : true,
-          "name" : "NewOpportunity"
-        } ],
-        "label" : "Nová Aktivita / Příležitost"
+        "enableInlineEdit" : true,
+        "filterName" : "00B3N000004sfK2UAI",
+        "layout" : "COMPACT",
+        "pageSize" : 4,
+        "scope" : "Asset",
+        "showActionBar" : true,
+        "showChartsPanel" : true,
+        "showDisplay" : "showall",
+        "showFilterPanel" : true,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : true,
+        "showObjectName" : true,
+        "showPinnedList" : true,
+        "showSearchBar" : true
       },
-      "componentName" : "forceCommunity:createRecordButton",
-      "id" : "f1f96391-81ee-4cb8-8fc4-243500ba91c6",
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "828511f2-81a0-4a1f-8836-acf9202ac27b",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
