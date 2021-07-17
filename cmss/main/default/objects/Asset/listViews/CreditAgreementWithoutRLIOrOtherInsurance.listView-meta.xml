@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CreditAgreementWithoutRLIOrOtherInsurance</fullName>
+    <columns>ASSET.NAME</columns>
+    <columns>ProductSubtype__c</columns>
+    <columns>PersonalIdentificationNr__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>AddressZipCode__c</columns>
+    <columns>AddressCity__c</columns>
+    <columns>ProductCloseDate__c</columns>
+    <columns>Tariff__c</columns>
+    <columns>TargetAmount__c</columns>
+    <columns>CurrentBalance__c</columns>
+    <columns>ContractConditions__c</columns>
+    <columns>ClosingAgentId__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ProductSubtype__c</field>
+        <operation>equals</operation>
+        <value>1001,2002</value>
+    </filters>
+    <filters>
+        <field>HasRLIRelatedAsset__c</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </filters>
+    <label>Úvěrové smlouvy bez RŽP nebo jiného poj.</label>
+</ListView>
