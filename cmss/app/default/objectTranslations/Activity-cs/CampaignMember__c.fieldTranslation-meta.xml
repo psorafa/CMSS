@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label>Skutečný počet oslovených</label>
-    <name>NumberOfCampaignMembers__c</name>
+    <label>Klient v kampani</label>
+    <name>CampaignMember__c</name>
+    <relationshipLabel><!-- Activities --></relationshipLabel>
 </CustomFieldTranslation>

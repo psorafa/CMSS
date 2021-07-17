@@ -3098,6 +3098,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Event.CampaignMember__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Event.Category__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4059,6 +4064,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.CallDirectionCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.CampaignMember__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

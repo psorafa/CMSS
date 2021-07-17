@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>NumberOfCampaignMembers__c</fullName>
-    <description>Počet členů kampaně</description>
+    <description>Number of related records from CampaignMember__c object</description>
     <externalId>false</externalId>
-    <label>Number of Campaign Members</label>
+    <label>Number Of Campaign Members</label>
     <summaryForeignKey>CampaignMember__c.Campaign__c</summaryForeignKey>
     <summaryOperation>count</summaryOperation>
     <type>Summary</type>
