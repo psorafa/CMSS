@@ -3,65 +3,72 @@
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>false</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastník kampaně</value>
     </caseValues>
     <caseValues>
         <caseType>Nominative</caseType>
         <plural>true</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastníci kampaně</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>false</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastníka kampaně</value>
     </caseValues>
     <caseValues>
         <caseType>Accusative</caseType>
         <plural>true</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastníky kampaně</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>false</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastníka kampaně</value>
     </caseValues>
     <caseValues>
         <caseType>Genitive</caseType>
         <plural>true</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastníků kampaně</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>false</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastníkovi kampaně</value>
     </caseValues>
     <caseValues>
         <caseType>Dative</caseType>
         <plural>true</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastníkům kampaně</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>false</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastníkem kampaně</value>
     </caseValues>
     <caseValues>
         <caseType>Instrumental</caseType>
         <plural>true</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastníky kampaně</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>false</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastníkovi kampaně</value>
     </caseValues>
     <caseValues>
         <caseType>Locative</caseType>
         <plural>true</plural>
-        <value><!-- Campaign Member --></value>
+        <value>Účastnících kampaně</value>
     </caseValues>
-    <gender><!-- Neuter --></gender>
-    <nameFieldLabel><!-- Campaign Member Name --></nameFieldLabel>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>CampaignMember Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Účastník kampaně</nameFieldLabel>
     <quickActions>
         <label>Nemá zájem</label>
         <name>NewLostOpportunity</name>

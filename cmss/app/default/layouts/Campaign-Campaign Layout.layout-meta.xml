@@ -297,17 +297,10 @@
         <relatedList>RelatedAttachmentList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>MEMBER_TYPE</fields>
-        <fields>STATUS</fields>
-        <fields>FIRST_NAME</fields>
-        <fields>LAST_NAME</fields>
-        <fields>TITLE</fields>
-        <fields>COMPANY</fields>
-        <relatedList>RelatedCampaignMemberList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
+        <fields>CombinedAccountName__c</fields>
         <fields>Asset__c</fields>
+        <fields>Account.NAME</fields>
         <fields>LAST_ACTIVITY</fields>
         <relatedList>CampaignMember__c.Campaign__c</relatedList>
     </relatedLists>
