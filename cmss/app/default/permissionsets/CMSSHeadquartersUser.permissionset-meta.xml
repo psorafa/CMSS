@@ -3233,6 +3233,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Event.ProductType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Event.Result__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4189,6 +4194,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.PostCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.ProductType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
