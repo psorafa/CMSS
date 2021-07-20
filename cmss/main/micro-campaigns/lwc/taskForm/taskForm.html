@@ -1,30 +1,34 @@
 <!-- Task Form -->
 <template>
     <lightning-card title="Úkol">
-        <div class="slds-p-horizontal_medium">
+        <div class="slds-p-around_large">
 
             <lightning-input
                     label="Název"
                     onchange={handleSubjectChange}
+                    required="true"
             ></lightning-input>
 
             <lightning-textarea
                     label="Popis"
                     onchange={handleDescriptionChange}
+                    required="true"
             ></lightning-textarea>
 
             <lightning-input
                     type="date"
-                    value={defaultDate}
+                    value={_task.dueDate}
                     label="Termín"
                     onchange={handleDueDateChange}
+                    required="true"
             ></lightning-input>
 
             <lightning-combobox
                     options={categoryOptions}
-                    value="3"
+                    value={_task.category}
                     label="Kategorie"
                     onchange={handleCategoryChange}
+                    required="true"
             ></lightning-combobox>
 
             <lightning-combobox

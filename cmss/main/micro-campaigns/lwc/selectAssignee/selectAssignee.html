@@ -1,26 +1,27 @@
 <!-- Select Assignee -->
 <template>
     <lightning-card title="Řešitel">
-        <div class="slds-p-horizontal_medium">
+        <div class="slds-p-around_large">
             <lightning-combobox
                     options={_options}
                     label=""
                     value={_selection}
                     onchange={handleSelectionChange}
             ></lightning-combobox>
-                <template if:true={displaySearch}>
-                    <br/>
-                    <c-search-component
-                            obj-name="User"
-                            icon-name="standard:user"
-                            label-name="Uživatel"
-                            placeholder="Name or CPU"
-                            fields="Name,CommissionAccountNr__c"
-                            display-fields="Name,CommissionAccountNr__c"
-                            onlookup={handleLookupChange}
 
-                    ></c-search-component>
-                </template>
+            <template if:true={displaySearch}>
+                <br/>
+                <c-search-component
+                        obj-name="User"
+                        icon-name="standard:user"
+                        label-name="Uživatel"
+                        placeholder="Name or CPU"
+                        fields="Name,CommissionAccountNr__c"
+                        display-fields="Name,CommissionAccountNr__c"
+                        onlookup={handleLookupChange}
+                ></c-search-component>
+                <br/>
+            </template>
         </div>
     </lightning-card>
 </template>

@@ -10,6 +10,7 @@
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
             <property name="outputData" label="outputData" type="String" role="outputOnly" />
+            <property name="ids" label="ids" type="String[]" role="inputOnly" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

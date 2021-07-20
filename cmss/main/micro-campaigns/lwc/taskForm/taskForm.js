@@ -9,7 +9,10 @@ export default class TaskForm extends LightningElement {
     @wire(getPicklistValues, {objectName: 'Task', fieldName: 'ProductType__c'})
     productTypeValues
 
-    @track _task = {}
+    @track _task = {
+        dueDate : this.defaultDate,
+        category : '3'
+    }
 
     get task() {
         return JSON.stringify(this._task)

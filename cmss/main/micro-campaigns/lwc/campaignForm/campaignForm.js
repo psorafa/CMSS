@@ -32,7 +32,7 @@ export default class CampaignForm extends LightningElement {
     fireUpdate() {
         if (this.doNotCreateCampaign) {
             this.dispatchEvent(new CustomEvent('change', {
-                detail : {}
+                detail : null
             }))
         } else {
             this.dispatchEvent(new CustomEvent('change', {
