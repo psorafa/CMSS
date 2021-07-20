@@ -1,37 +1,41 @@
 import { LightningElement, api, track } from 'lwc';
+import { FlowAttributeChangeEvent } from 'lightning/flowSupport';
 
 export default class CreateMicroCampaignForm extends LightningElement {
 
-    @track _someValue
     @track _campaign
+    @track _task
+    @track _assignee
 
     @api
-    get testInput() {
-        return 'test input'
+    get outputData() {
+        return JSON.stringify({
+            campaign : {...this._campaign},
+            task : {...this._task},
+            assignee : {...this._assignee}
+        })
     }
-    set testInput(str) {
-
-    }
-    @api
-    get testOutput() {
-        return this._someValue;
-    }
-    set testOutput(str) {
-
+    set outputData(val) {
     }
 
     propagateValuesToFlow() {
-        const attributeChangeEvent = new FlowAttributeChangeEvent('someValue', this._someValue)
+        console.log('output: ' + this.outputData)
+        const attributeChangeEvent = new FlowAttributeChangeEvent('outputData', this.outputData)
         this.dispatchEvent(attributeChangeEvent)
-        // todo
     }
 
     handleAssigneeChange(event) {
-        this._someValue = event.detail
+        this._assignee = event.detail
+        this.propagateValuesToFlow()
     }
 
     handleCampaignChange(event) {
-        console.log(JSON.stringify(event.detail))
         this._campaign = event.detail
+        this.propagateValuesToFlow()
+    }
+
+    handleTaskChange(event) {
+        this._task = event.detail
+        this.propagateValuesToFlow()
     }
 }

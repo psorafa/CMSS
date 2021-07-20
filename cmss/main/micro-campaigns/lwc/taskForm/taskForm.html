@@ -10,26 +10,27 @@
 
             <lightning-textarea
                     label="Popis"
-                    onchange={handleSubjectChange}
+                    onchange={handleDescriptionChange}
             ></lightning-textarea>
 
             <lightning-input
                     type="date"
                     value={defaultDate}
                     label="Termín"
+                    onchange={handleDueDateChange}
             ></lightning-input>
 
             <lightning-combobox
                     options={categoryOptions}
-                    value="2"
+                    value="3"
                     label="Kategorie"
                     onchange={handleCategoryChange}
             ></lightning-combobox>
 
             <lightning-combobox
                     options={productTypeOptions}
-                    value="2"
                     label="Typ produktu"
+                    onchange={handleProductTypeChange}
             ></lightning-combobox>
         </div>
     </lightning-card>
