@@ -201,6 +201,24 @@
         <content>ClientRecordPageCMSSUsers</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Business_Account</recordType>
+        <type>Flexipage</type>
+        <profile>CMSS User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ClientRecordPageCMSSUsers</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <type>Flexipage</type>
+        <profile>CMSS User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>ClientRecordPageCMSSUsers</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
         <type>Flexipage</type>
         <profile>CMSS Experience User</profile>
     </profileActionOverrides>
@@ -283,20 +301,10 @@
         <profile>CMSS User</profile>
     </profileActionOverrides>
     <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ClientRecordPageCMSSUsers</content>
+        <actionName>Tab</actionName>
+        <content>HomePageCMSSUser</content>
         <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>Account.Business_Account</recordType>
-        <type>Flexipage</type>
-        <profile>CMSS User</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>ClientRecordPageCMSSUsers</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Account</pageOrSobjectType>
-        <recordType>PersonAccount.PersonAccount</recordType>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
         <type>Flexipage</type>
         <profile>CMSS User</profile>
     </profileActionOverrides>
