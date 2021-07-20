@@ -1,0 +1,36 @@
+<!-- Task Form -->
+<template>
+    <lightning-card title="Úkol">
+        <div class="slds-p-horizontal_medium">
+
+            <lightning-input
+                    label="Název"
+                    onchange={handleSubjectChange}
+            ></lightning-input>
+
+            <lightning-textarea
+                    label="Popis"
+                    onchange={handleSubjectChange}
+            ></lightning-textarea>
+
+            <lightning-input
+                    type="date"
+                    value={defaultDate}
+                    label="Termín"
+            ></lightning-input>
+
+            <lightning-combobox
+                    options={categoryOptions}
+                    value="2"
+                    label="Kategorie"
+                    onchange={handleCategoryChange}
+            ></lightning-combobox>
+
+            <lightning-combobox
+                    options={productTypeOptions}
+                    value="2"
+                    label="Typ produktu"
+            ></lightning-combobox>
+        </div>
+    </lightning-card>
+</template>

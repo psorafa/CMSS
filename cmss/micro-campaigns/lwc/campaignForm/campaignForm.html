@@ -1,0 +1,22 @@
+<!-- Campaign Form -->
+<template>
+    <lightning-card title="Kampaň">
+        <div class="slds-p-horizontal_medium">
+            <lightning-input
+                    type="checkbox"
+                    label="Nevytvářet kampaň"
+                    value={doNotCreateCampaign}
+                    onchange={handleCheckboxChange}
+            ></lightning-input>
+            <br/>
+            <template if:false={doNotCreateCampaign}>
+                <lightning-record-edit-form object-api-name="Campaign" class="slds-m-around_medium" density="comfy">
+                    <lightning-messages></lightning-messages>
+                    <lightning-input-field field-name="Name" onchange={handleNameChange} value={_campaign.name}></lightning-input-field>
+                    <lightning-input-field field-name="EndDate" onchange={handleEndDateChange} value={_campaign.endDate}></lightning-input-field>
+                    <lightning-input-field field-name="Description" onchange={handleDescriptionChange} value={_campaign.description}></lightning-input-field>
+                </lightning-record-edit-form>
+            </template>
+        </div>
+    </lightning-card>
+</template>
