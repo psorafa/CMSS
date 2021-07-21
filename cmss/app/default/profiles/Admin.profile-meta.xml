@@ -4157,13 +4157,13 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Event.ActivityTypeColor__c</field>
+        <editable>true</editable>
+        <field>Event.ActivityType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Event.ActivityType__c</field>
+        <editable>false</editable>
+        <field>Event.ActivityTypeColor__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5987,14 +5987,6 @@
         <layout>Opportunity-LACRLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Opportunity-LACRLayout</layout>
-        <recordType>Opportunity.Editable</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Opportunity-LACRLayout</layout>
-        <recordType>Opportunity.NotEditable</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>PensionStrategy__c-Pension Strategy Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -6018,18 +6010,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Task-UnifiedActivityLayout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-UnifiedActivityLayout</layout>
-        <recordType>Task.Meeting</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-UnifiedActivityLayout</layout>
-        <recordType>Task.PhoneCall</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-UnifiedActivityLayout</layout>
-        <recordType>Task.Task</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>TaskRecordTypeMapping__mdt-Task Record Type Mapping Layout</layout>

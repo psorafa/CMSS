@@ -29,7 +29,7 @@ export default class TaskForm extends LightningElement {
     get defaultDate() {
         let date = new Date()
         date.setDate(date.getDate() + 30);
-        return date.toISOString()
+        return date.toISOString().substr(0, 10)
     }
 
     handleSubjectChange(event) {

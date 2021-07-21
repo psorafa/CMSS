@@ -40,7 +40,7 @@ export default class CreateMicroCampaignForm extends LightningElement {
     }
 
     get noIds() {
-        return !!this._ids && false // todo: temporarily always false
+        return (this._ids == undefined || this._ids.length == 0)
     }
 
     propagateValuesToFlow() {
@@ -65,10 +65,10 @@ export default class CreateMicroCampaignForm extends LightningElement {
 
     navigateNext(event) {
         event.stopPropagation()
-        if (this._campaign !== null && !(this._campaign.name && this._campaign.description && this._campaign.endDate)) {
+        if (this._campaign !== null && !(this._campaign.name && this._campaign.endDate)) {
             return
         }
-        if (!(this._task.subject && this._task.description && this._task.dueDate && this._task.category && this._task.productType)) {
+        if (!(this._task.subject && this._task.description && this._task.dueDate && this._task.category)) {
             return
         }
         this.dispatchEvent(new FlowNavigationNextEvent())

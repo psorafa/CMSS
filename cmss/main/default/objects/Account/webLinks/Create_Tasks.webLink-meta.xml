@@ -5,10 +5,9 @@
     <description>Create a set of tasks for selected accounts</description>
     <displayType>massActionButton</displayType>
     <encodingKey>UTF-8</encodingKey>
-    <height>600</height>
     <linkType>url</linkType>
     <masterLabel>Create Tasks</masterLabel>
-    <openType>sidebar</openType>
+    <openType>replace</openType>
     <protected>false</protected>
     <requireRowSelection>true</requireRowSelection>
     <url>/flow/CreateMicroCampaign?retURL=%2Flightning%2Fo%2FAccount</url>
