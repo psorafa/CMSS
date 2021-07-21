@@ -12,9 +12,8 @@
     <columns>PortfolioMngmtA__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>FirstProductStartDate__c</field>
-        <operation>greaterOrEqual</operation>
-        <value>LAST_WEEK</value>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>notEqual</operation>
     </filters>
     <label>Všichni klienti</label>
 </ListView>

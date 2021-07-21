@@ -9,8 +9,8 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
-            <property name="testInput" label="testInput" type="String" />
-            <property name="testOutput" label="testOutput" type="String" />
+            <property name="outputData" label="outputData" type="String" role="outputOnly" />
+            <property name="ids" label="ids" type="String[]" role="inputOnly" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

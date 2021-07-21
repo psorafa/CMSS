@@ -6,17 +6,20 @@ export default class TaskForm extends LightningElement {
     @wire(getPicklistValues, {objectName: 'Task', fieldName: 'Category__c'})
     categoryValues
 
-    @track _task = {}
+    @wire(getPicklistValues, {objectName: 'Task', fieldName: 'ProductType__c'})
+    productTypeValues
+
+    @track _task = {
+        dueDate : this.defaultDate,
+        category : '3'
+    }
 
     get task() {
         return JSON.stringify(this._task)
     }
 
     get productTypeOptions() {
-        return [
-            {value : '1', label : 'produkt 1'},
-            {value : '2', label : 'produkt 2'}
-        ];
+        return this.productTypeValues.data ? [ { label: ' ' }, ...this.productTypeValues.data] : []
     }
 
     get categoryOptions() {
@@ -26,7 +29,25 @@ export default class TaskForm extends LightningElement {
     get defaultDate() {
         let date = new Date()
         date.setDate(date.getDate() + 30);
-        return date.toISOString()
+        return date.toISOString().substr(0, 10)
+    }
+
+    handleSubjectChange(event) {
+        event.stopPropagation()
+        this._task.subject = event.detail.value
+        this.fireUpdate()
+    }
+
+    handleDescriptionChange(event) {
+        event.stopPropagation()
+        this._task.description = event.detail.value
+        this.fireUpdate()
+    }
+
+    handleDueDateChange(event) {
+        event.stopPropagation()
+        this._task.dueDate = event.detail.value
+        this.fireUpdate()
     }
 
     handleCategoryChange(event) {
@@ -35,9 +56,9 @@ export default class TaskForm extends LightningElement {
         this.fireUpdate()
     }
 
-    handleSubjectChange(event) {
+    handleProductTypeChange(event) {
         event.stopPropagation()
-        this._task.subject = event.detail.value
+        this._task.productType = event.detail.value
         this.fireUpdate()
     }
 
