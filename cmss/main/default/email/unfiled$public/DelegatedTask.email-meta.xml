@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>When new Task is delegated, its owner receives this email.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Delegated Task</name>
+    <style>none</style>
+    <subject>Nová aktivita v CRM - {!Task.Subject}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
