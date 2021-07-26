@@ -67,78 +67,77 @@ public without sharing class AccessShareController {
 	// 	}
 	// }
 
-	// /*
-	//  * @description: Grant access to user with Type 'Opportunity'
-	//  */
-	// public static void assignOpportunityAccessBulk(List<Opportunity> opportunityList) {
-	// 	if (opportunityList != null && !opportunityList.isEmpty()) {
-	// 		Set<Id> userIds = new Set<Id>();
+	/*
+	 * @description: Grant access to user with Type 'Opportunity'
+	 */
+	public static void assignOpportunityAccessBulk(List<Opportunity> opportunityList) {
+		if (opportunityList != null && !opportunityList.isEmpty()) {
+			Set<Id> userIds = new Set<Id>();
 
-	// 		for (Opportunity opportunity : opportunityList) {
-	// 			userIds.add(opportunity.OwnerId);
-	// 		}
+			for (Opportunity opportunity : opportunityList) {
+				userIds.add(opportunity.OwnerId);
+			}
 
-	// 		Map<Id, User> usersMap = new Map<Id, User>(UserDao.getUsersById(userIds));
+			Map<Id, User> usersMap = new Map<Id, User>(UserDao.getUsersById(userIds));
 
-	// 		Set<AccessShareDTO> accessShareDtos = new Set<AccessShareDTO>();
-	// 		for (Opportunity opp : opportunityList) {
-	// 			if (usersMap.get(opp.OwnerId).IsActive == true) {
-	// 				AccessShareController.addAccessShareDtoToSet(
-	// 					usersMap.get(opp.OwnerId),
-	// 					opp.AccountId,
-	// 					opp.CloseDate,
-	// 					opp.Id,
-	// 					AccessShareDtos
-	// 				);
-	// 			}
-	// 		}
-	// 		assignAccess(accessShareDtos, 'Opportunity');
-	// 	}
-	// }
+			Set<AccessShareDTO> accessShareDtos = new Set<AccessShareDTO>();
+			for (Opportunity opp : opportunityList) {
+				if (usersMap.get(opp.OwnerId).IsActive == true) {
+					AccessShareController.addAccessShareDtoToSet(
+						usersMap.get(opp.OwnerId),
+						opp.AccountId,
+						opp.CloseDate,
+						opp.Id,
+						AccessShareDtos
+					);
+				}
+			}
+			assignAccess(accessShareDtos, 'Opportunity');
+		}
+	}
 
-	// /*
-	//  * @description: Grant access to user with Type 'Task'
-	//  */
-	// public static void assignTaskAccessBulk(List<Task> taskList) {
-	// 	if (taskList != null && !taskList.isEmpty()) {
-	// 		Set<Id> whatIds = new Set<Id>();
-	// 		Set<Id> userIds = new Set<Id>();
+	/*
+	 * @description: Grant access to user with Type 'Task'
+	 */
+	public static void assignTaskAccessBulk(List<Task> taskList) {
+		if (taskList != null && !taskList.isEmpty()) {
+			Set<Id> whatIds = new Set<Id>();
+			Set<Id> userIds = new Set<Id>();
 
-	// 		for (Task task : taskList) {
-	// 			whatIds.add(task.WhatId);
-	// 			userIds.add(task.OwnerId);
-	// 		}
+			for (Task task : taskList) {
+				whatIds.add(task.WhatId);
+				userIds.add(task.OwnerId);
+			}
 
-	// 		Map<Id, User> usersMap = new Map<Id, User>(UserDao.getUsersById(userIds));
-	// 		Map<Id, Asset> assetMap = new Map<Id, Asset>(
-	// 			CustomerSearchHelper.getAssetsWithoutSharingRulesByIds(whatIds)
-	// 		);
+			Map<Id, User> usersMap = new Map<Id, User>(UserDao.getUsersById(userIds));
+			Map<Id, Asset> assetMap = new Map<Id, Asset>([SELECT Id, AccountId FROM Asset WHERE Id IN :whatIds]);
 
-	// 		Set<AccessShareDTO> accessShareDtos = new Set<AccessShareDTO>();
-	// 		for (Task task : taskList) {
-	// 			if (usersMap.get(task.OwnerId).IsActive == true) {
-	// 				String accId;
-	// 				if (task.AccountId != null) {
-	// 					accId = task.AccountId;
-	// 				} else if (task.WhatId != null) {
-	// 					accId = assetMap.get(task.WhatId).AccountId;
-	// 				} else {
-	// 					continue;
-	// 				}
+			Set<AccessShareDTO> accessShareDtos = new Set<AccessShareDTO>();
+			for (Task task : taskList) {
+				if (usersMap.get(task.OwnerId).IsActive == true) {
+					String accId;
+					if (task.AccountId != null) {
+						accId = task.AccountId;
+					} else if (task.WhatId != null) {
+						accId = assetMap.get(task.WhatId).AccountId;
+					} else {
+						continue;
+					}
 
-	// 				AccessShareController.addAccessShareDtoToSet(
-	// 					usersMap.get(task.OwnerId),
-	// 					accId,
-	// 					task.ActivityDate.addDays(1),
-	// 					task.Id,
-	// 					AccessShareDtos
-	// 				);
-	// 			}
-	// 		}
+					AccessShareController.addAccessShareDtoToSet(
+						usersMap.get(task.OwnerId),
+						accId,
+						// task.ActivityDate.addDays(1), //TODO proc to tam neni?
+						System.today().addDays(1),
+						task.Id,
+						AccessShareDtos
+					);
+				}
+			}
 
-	// 		assignAccess(accessShareDtos, 'Task');
-	// 	}
-	// }
+			assignAccess(accessShareDtos, 'Task');
+		}
+	}
 
 	// /*
 	//  * @description: Grant access to user with Type 'Owner'
@@ -243,118 +242,118 @@ public without sharing class AccessShareController {
 	// 	}
 	// }
 
-	// /*
-	//  * @description: Remove Task from AccessShare table
-	//  */
-	// public static void removeTaskAccessBulk(List<Task> taskList) {
-	// 	if (taskList != null & !taskList.isEmpty()) {
-	// 		Set<Id> taskWhatIds = new Set<Id>();
-	// 		for (Task t : taskList) {
-	// 			taskWhatIds.add(t.WhatId);
-	// 		}
+	/*
+	 * @description: Remove Task from AccessShare table
+	 */
+	public static void removeTaskAccessBulk(List<Task> taskList) {
+		if (taskList != null & !taskList.isEmpty()) {
+			Set<Id> taskWhatIds = new Set<Id>();
+			for (Task t : taskList) {
+				taskWhatIds.add(t.WhatId);
+			}
 
-	// 		List<Asset> assetList = CustomerSearchHelper.getAssetsWithoutSharingRulesByIds(taskWhatIds);
+			List<Asset> assetList = [SELECT Id, AccountId FROM Asset WHERE Id IN :taskWhatIds];
 
-	// 		Map<Id, Set<Id>> accountIdByUser = new Map<Id, Set<id>>();
-	// 		Set<Id> accountIds = new Set<Id>();
+			Map<Id, Set<Id>> accountIdByUser = new Map<Id, Set<id>>();
+			Set<Id> accountIds = new Set<Id>();
 
-	// 		for (Task task : taskList) {
-	// 			if (task.AccountId != null) {
-	// 				Utils.addToMapsSet(accountIdByUser, task.OwnerId, task.AccountId);
-	// 				accountIds.add(task.AccountId);
-	// 			}
-	// 			for (Asset asset : assetList) {
-	// 				if (asset.Id.equals(task.WhatId)) {
-	// 					Utils.addToMapsSet(accountIdByUser, task.OwnerId, asset.AccountId);
-	// 					accountIds.add(asset.AccountId);
-	// 				}
-	// 			}
-	// 		}
+			for (Task task : taskList) {
+				if (task.AccountId != null) {
+					Utils.addToMapsSet(accountIdByUser, task.OwnerId, task.AccountId);
+					accountIds.add(task.AccountId);
+				}
+				for (Asset asset : assetList) {
+					if (asset.Id.equals(task.WhatId)) {
+						Utils.addToMapsSet(accountIdByUser, task.OwnerId, asset.AccountId);
+						accountIds.add(asset.AccountId);
+					}
+				}
+			}
 
-	// 		//all manual account share
-	// 		Set<AccessShareDTO.Remove> accessShareDtoRemoves = new Set<AccessShareDTO.Remove>();
-	// 		List<AccountShare> accountShareListToRemove = new List<AccountShare>();
-	// 		for (
-	// 			AccountShare accountSh : AccountShareDao.getAccountShareByUserAndAccountIds(
-	// 				accountIdByUser.keyset(),
-	// 				accountIds
-	// 			)
-	// 		) {
-	// 			for (Task task : taskList) {
-	// 				if (task.ownerId == accountSh.UserOrGroupId) {
-	// 					if (task.AccountId != null && task.AccountId == accountSh.AccountId) {
-	// 						addAccessShareDtoRemoveToSet(accountSh, String.valueOf(task.Id), accessShareDtoRemoves);
-	// 					}
-	// 					Asset asset = new Map<Id, Asset>(assetList).get(task.WhatId);
-	// 					if (asset != null) {
-	// 						if (asset.AccountId == accountSh.AccountId)
-	// 							addAccessShareDtoRemoveToSet(accountSh, String.valueOf(task.Id), accessShareDtoRemoves);
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 		//all accessShares with all types
-	// 		List<AccessShare__c> accessSharesToConsider = new List<AccessShare__C>();
-	// 		for (
-	// 			AccessShare__c AccessSh : AccessShareDao.getAccessShareByUserAndAccountIds(
-	// 				accountIdByUser.keyset(),
-	// 				accountIds
-	// 			)
-	// 		) {
-	// 			if (accountIdByUser.get(AccessSh.RequestedBy__c).contains(AccessSh.AccessTo__c)) {
-	// 				accessSharesToConsider.add(accessSh);
-	// 			}
-	// 		}
+			//all manual account share
+			Set<AccessShareDTO.Remove> accessShareDtoRemoves = new Set<AccessShareDTO.Remove>();
+			List<AccountShare> accountShareListToRemove = new List<AccountShare>();
+			for (
+				AccountShare accountSh : AccountShareDao.getAccountShareByUserAndAccountIds(
+					accountIdByUser.keyset(),
+					accountIds
+				)
+			) {
+				for (Task task : taskList) {
+					if (task.ownerId == accountSh.UserOrGroupId) {
+						if (task.AccountId != null && task.AccountId == accountSh.AccountId) {
+							addAccessShareDtoRemoveToSet(accountSh, String.valueOf(task.Id), accessShareDtoRemoves);
+						}
+						Asset asset = new Map<Id, Asset>(assetList).get(task.WhatId);
+						if (asset != null) {
+							if (asset.AccountId == accountSh.AccountId)
+								addAccessShareDtoRemoveToSet(accountSh, String.valueOf(task.Id), accessShareDtoRemoves);
+						}
+					}
+				}
+			}
+			//all accessShares with all types
+			List<AccessShare__c> accessSharesToConsider = new List<AccessShare__C>();
+			for (
+				AccessShare__c AccessSh : AccessShareDao.getAccessShareByUserAndAccountIds(
+					accountIdByUser.keyset(),
+					accountIds
+				)
+			) {
+				if (accountIdByUser.get(AccessSh.RequestedBy__c).contains(AccessSh.AccessTo__c)) {
+					accessSharesToConsider.add(accessSh);
+				}
+			}
 
-	// 		AccessShareService.removeAccess(accessShareDtoRemoves, accessSharesToConsider, 'Task');
-	// 	}
-	// }
+			AccessShareService.removeAccess(accessShareDtoRemoves, accessSharesToConsider, 'Task');
+		}
+	}
 
-	// /*
-	//  * @description: Remove tandem from AccessShare table
-	//  */
-	// public static void removeOpportunityAccessBulk(List<Opportunity> opportunityList) {
-	// 	if (opportunityList != null && !opportunityList.isEmpty()) {
-	// 		Map<Id, Set<Id>> accountIdByUser = new Map<Id, Set<id>>();
-	// 		Set<Id> accountIds = new Set<Id>();
+	/*
+	 * @description: Remove tandem from AccessShare table
+	 */
+	public static void removeOpportunityAccessBulk(List<Opportunity> opportunityList) {
+		if (opportunityList != null && !opportunityList.isEmpty()) {
+			Map<Id, Set<Id>> accountIdByUser = new Map<Id, Set<id>>();
+			Set<Id> accountIds = new Set<Id>();
 
-	// 		for (Opportunity opportunity : opportunityList) {
-	// 			Utils.addToMapsSet(accountIdByUser, opportunity.OwnerId, opportunity.accountId);
-	// 			accountIds.add(opportunity.AccountId);
-	// 		}
+			for (Opportunity opportunity : opportunityList) {
+				Utils.addToMapsSet(accountIdByUser, opportunity.OwnerId, opportunity.accountId);
+				accountIds.add(opportunity.AccountId);
+			}
 
-	// 		//all manual account share
-	// 		Set<AccessShareDTO.Remove> accessShareDtoRemoves = new Set<AccessShareDTO.Remove>();
-	// 		List<AccountShare> accountShareListToRemove = new List<AccountShare>();
-	// 		for (
-	// 			AccountShare accountSh : AccountShareDao.getAccountShareByUserAndAccountIds(
-	// 				accountIdByUser.keyset(),
-	// 				accountIds
-	// 			)
-	// 		) {
-	// 			for (Opportunity opp : opportunityList) {
-	// 				if (opp.OwnerId == accountSh.UserOrGroupId && opp.AccountId == accountSh.AccountId) {
-	// 					addAccessShareDtoRemoveToSet(accountSh, String.valueOf(opp.Id), accessShareDtoRemoves);
-	// 				}
-	// 			}
-	// 		}
+			//all manual account share
+			Set<AccessShareDTO.Remove> accessShareDtoRemoves = new Set<AccessShareDTO.Remove>();
+			List<AccountShare> accountShareListToRemove = new List<AccountShare>();
+			for (
+				AccountShare accountSh : AccountShareDao.getAccountShareByUserAndAccountIds(
+					accountIdByUser.keyset(),
+					accountIds
+				)
+			) {
+				for (Opportunity opp : opportunityList) {
+					if (opp.OwnerId == accountSh.UserOrGroupId && opp.AccountId == accountSh.AccountId) {
+						addAccessShareDtoRemoveToSet(accountSh, String.valueOf(opp.Id), accessShareDtoRemoves);
+					}
+				}
+			}
 
-	// 		//all accessShares with all types
-	// 		List<AccessShare__c> accessSharesToConsider = new List<AccessShare__C>();
-	// 		for (
-	// 			AccessShare__c AccessSh : AccessShareDao.getAccessShareByUserAndAccountIds(
-	// 				accountIdByUser.keyset(),
-	// 				accountIds
-	// 			)
-	// 		) {
-	// 			if (accountIdByUser.get(AccessSh.RequestedBy__c).contains(AccessSh.AccessTo__c)) {
-	// 				accessSharesToConsider.add(accessSh);
-	// 			}
-	// 		}
+			//all accessShares with all types
+			List<AccessShare__c> accessSharesToConsider = new List<AccessShare__C>();
+			for (
+				AccessShare__c AccessSh : AccessShareDao.getAccessShareByUserAndAccountIds(
+					accountIdByUser.keyset(),
+					accountIds
+				)
+			) {
+				if (accountIdByUser.get(AccessSh.RequestedBy__c).contains(AccessSh.AccessTo__c)) {
+					accessSharesToConsider.add(accessSh);
+				}
+			}
 
-	// 		AccessShareService.removeAccess(accessShareDtoRemoves, accessSharesToConsider, 'Opportunity');
-	// 	}
-	// }
+			AccessShareService.removeAccess(accessShareDtoRemoves, accessSharesToConsider, 'Opportunity');
+		}
+	}
 
 	// /*
 	//  * @description: Remove assetAgent from AccessShare table

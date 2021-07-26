@@ -11,6 +11,8 @@ global class AccessShareBatch implements Database.Batchable<sObject>, Database.S
 	}
 
 	global Database.QueryLocator start(Database.BatchableContext bc) {
+		System.debug('### start');
+		System.debug('### type: ' + type);
 		return Database.getQueryLocator(
 			[
 				SELECT
@@ -37,6 +39,7 @@ global class AccessShareBatch implements Database.Batchable<sObject>, Database.S
 	}
 
 	public Void execute(Database.BatchableContext jobId, List<AccessShare__c> accessShareList) {
+		System.debug('### execute');
 		Map<Id, Set<Id>> accountIdByUser = new Map<Id, Set<id>>();
 		Set<Id> accountIds = new Set<Id>();
 
@@ -91,6 +94,7 @@ global class AccessShareBatch implements Database.Batchable<sObject>, Database.S
 	}
 
 	public Void finish(Database.BatchableContext jobId) {
+		System.debug('### finish');
 		// Integration_Log__c log = new Integration_Log__c();
 
 		// if (!errors.isEmpty()) {
