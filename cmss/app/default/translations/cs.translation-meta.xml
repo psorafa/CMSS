@@ -50,7 +50,11 @@
         <name>InputPlaceholderCompRegNr</name>
     </customLabels>
     <customLabels>
-        <label>Vložte alespoň začátek příjmení</label>
+        <label><!-- First Name Placeholder --></label>
+        <name>InputPlaceholderFirstName</name>
+    </customLabels>
+    <customLabels>
+        <label>Vložte celé příjmení klienta</label>
         <name>InputPlaceholderLastName</name>
     </customLabels>
     <customLabels>
