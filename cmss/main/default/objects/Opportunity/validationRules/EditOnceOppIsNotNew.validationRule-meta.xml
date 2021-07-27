@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EditOnceOppIsNotNew</fullName>
-    <active>true</active>
-    <description>Once Opp stages is different than 1, it can&apos;t be changed back to stage 1 again.</description>
+    <active>false</active>
+    <description>Once Opp stages is different than 6, it can&apos;t be changed back to stage 1 again.</description>
     <errorConditionFormula>AND(
-ISPICKVAL(StageName,&quot;1&quot;),
-CASE(PRIORVALUE(StageName),
-&quot;1&quot;,1,
-0) = 0
-)</errorConditionFormula>
-    <errorMessage>Stage can&apos;t be changed back to 1.</errorMessage>
+    TEXT(PRIORVALUE(StageName))== &quot;6&quot;,
+				ISPICKVAL(StageName,&quot;6&quot;),
+    ISCHANGED(StageName),
+    $Profile.Name &lt;&gt; &apos;IntegrationUser&apos;
+    )</errorConditionFormula>
+    <errorMessage>Stage can&apos;t be changed back to 6.</errorMessage>
 </ValidationRule>

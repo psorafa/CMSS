@@ -5749,7 +5749,7 @@
         <layout>NonLifeInsuranceRisk__c-Non Life Insurance Risk Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Opportunity-Opportunity Layout</layout>
+        <layout>Opportunity-LACRLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>OpportunityStateCodeMapping__mdt-Opportunity State Code Mapping Layout</layout>
@@ -6675,9 +6675,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Opportunity.Editable</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
