@@ -20,7 +20,7 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 
 	public override void afterUpdate() {
 		AQMessageService.handleUpdate(Trigger.new, Trigger.oldMap, Opportunity.SObjectType);
-		handleUpdatedOppsShares(Trigger.old, Trigger.new);
+		handleAfterUpdateOppsShares(Trigger.old, Trigger.new);
 	}
 
 	public override void afterUndelete() {
@@ -43,7 +43,7 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 		}
 	}
 
-	public void handleUpdatedOppsShares(SObject[] oldListSo, SObject[] newListSo) {
+	private void handleAfterUpdateOppsShares(SObject[] oldListSo, SObject[] newListSo) {
 		// if (DataFactoryTest.shouldRunTrigger()) {
 		List<Opportunity> oldOppList = (List<Opportunity>) oldListSo;
 		List<Opportunity> oppList = (List<Opportunity>) newListSo;
@@ -52,14 +52,21 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 
 		List<Opportunity> assignAccessList = new List<Opportunity>();
 		List<Opportunity> removeAccessList = new List<Opportunity>();
+
+		List<String> closedLostOppStages = new List<String>{ '4', '5', '7' }; //TODO check 7 - should be access removed upon closed won?
+
 		for (Opportunity opp : oppList) {
 			Opportunity oldOpp = oldOpps.get(opp.Id);
 
 			if (opp.OwnerId != oldOpp.OwnerId) {
 				removeAccessList.add(oldOpp);
 				assignAccessList.add(opp);
-			} else if (opp.CloseDate != oldOpp.CloseDate && opp.StageName != 'Closed Lost') {
-				assignAccessList.add(opp);
+			} else if (opp.StageName != oldOpp.StageName) {
+				if (!closedLostOppStages.contains(opp.StageName)) {
+					assignAccessList.add(opp);
+				} else {
+					removeAccessList.add(opp);
+				}
 			}
 		}
 
@@ -68,45 +75,49 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 		if (!assignAccessList.isEmpty())
 			AccessShareController.assignOpportunityAccessBulk(assignAccessList);
 
-		Set<Id> oppOwnersIds = new Set<Id>();
-		for (Opportunity opp : oppList) {
-			// if (opp.Batchcheckbox__c == true) { TODO VM k cemu to je??
-			oppOwnersIds.add(opp.OwnerId);
-			// }
-		}
+		// Set<Id> oppOwnersIds = new Set<Id>();
+		// for (Opportunity opp : oppList) {
+		// 	// if (opp.Batchcheckbox__c == true) { TODO VM k cemu to je??
+		// 	oppOwnersIds.add(opp.OwnerId);
+		// 	// }
+		// }
 
-		// due Autoprolongation of opportunity update AccessShare
-		List<AccessShare__c> accShares = AccessShareDao.getAllNonExpiredRecordsFromAccessShareByRequestedByIdsAndType(
-			oppOwnersIds,
-			'Opportunity'
-		);
-		// List<Opportunity> oppsToProlongate = OpportunityDao.getAllOpenOpportunitiesByUserIds(oppOwnersIds);
-		List<Opportunity> oppsToProlongate = [SELECT Id, AccountId, OwnerId FROM Opportunity WHERE StateCode__c = '0'];
+		// // due Autoprolongation of opportunity update AccessShare
+		// List<AccessShare__c> accShares = AccessShareDao.getAllNonExpiredRecordsFromAccessShareByRequestedByIdsAndType(
+		// 	oppOwnersIds,
+		// 	'Opportunity'
+		// );
+		// // List<Opportunity> oppsToProlongate = OpportunityDao.getAllOpenOpportunitiesByUserIds(oppOwnersIds);
+		// List<Opportunity> oppsToProlongate = [
+		// 	SELECT Id, CloseDate, AccountId, OwnerId
+		// 	FROM Opportunity
+		// 	WHERE StateCode__c = '0'
+		// ]; //TODO VM why we are selecting anyopps in trigger handler? no Id limiting?
 
-		List<Opportunity> oppsToUpdate = new List<Opportunity>();
-		List<AccessShare__c> accSharesToUpdate = new List<AccessShare__c>();
+		// List<Opportunity> oppsToUpdate = new List<Opportunity>();
+		// List<AccessShare__c> accSharesToUpdate = new List<AccessShare__c>();
 
-		if (!oppsToProlongate.isEmpty()) {
-			for (Opportunity opp : oppsToProlongate) {
-				for (AccessShare__c accSh : accShares) {
-					if (opp.AccountId != null) {
-						if (
-							opp.OwnerId == accSh.RequestedBy__c &&
-							opp.AccountId == accSh.AccessTo__c &&
-							opp.Id == accSh.Reason__c
-						) {
-							accSh.ExpirationDate__c = opp.CloseDate;
-							// opp.Batchcheckbox__c = false; //TODO VM je to k necemu??
-							accSharesToUpdate.add(accSh);
-							oppsToUpdate.add(opp);
-						}
-					}
-				}
-			}
+		// if (!oppsToProlongate.isEmpty()) {
+		// 	for (Opportunity opp : oppsToProlongate) {
+		// 		for (AccessShare__c accSh : accShares) {
+		// 			if (opp.AccountId != null) {
+		// 				if (
+		// 					opp.OwnerId == accSh.RequestedBy__c &&
+		// 					opp.AccountId == accSh.AccessTo__c &&
+		// 					opp.Id == accSh.Reason__c
+		// 				) {
+		// 					accSh.ExpirationDate__c = opp.CloseDate;
+		// 					// opp.Batchcheckbox__c = false; //TODO VM je to k necemu??
+		// 					accSharesToUpdate.add(accSh);
+		// 					oppsToUpdate.add(opp);
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
 
-			update oppsToUpdate;
-			update accSharesToUpdate;
-		}
+		// update oppsToUpdate;
+		// update accSharesToUpdate;
 		// }
 	}
 
