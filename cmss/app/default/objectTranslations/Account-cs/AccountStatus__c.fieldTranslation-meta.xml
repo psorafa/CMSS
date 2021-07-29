@@ -4,7 +4,7 @@
     <name>AccountStatus__c</name>
     <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation>Klient (= aktivní klient a klient neaktivní do 2 let od ukončení poslední smlouvy)</translation>
+        <translation>Klient</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
@@ -12,11 +12,11 @@
     </picklistValues>
     <picklistValues>
         <masterLabel>3</masterLabel>
-        <translation>Neaktivní klient do 2 let od ukončení poslední smlouvy</translation>
+        <translation>Neaktivní klient</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>4</masterLabel>
-        <translation>Bývalý klient (po 2 letech od ukončení poslední smlouvy až do likvidace/blokace)</translation>
+        <translation>Bývalý klient</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>5</masterLabel>
