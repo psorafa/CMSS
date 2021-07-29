@@ -11,6 +11,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 
 	public override void beforeDelete() {
 		AQMessageService.handleDelete(Trigger.old, Task.SObjectType);
+		AccessShareController.removeTaskAccessBulk(Trigger.old);
 	}
 
 	public override void afterInsert() {
@@ -28,12 +29,6 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	public void handleInsertedTasksShares(SObject[] soList) {
-		//TODO VM move outside
-		// if (!DataFactoryTest.shouldRunTrigger()) {
-		// 	return;
-		// }
-
-		// // Logged because of owner changes based on allocation rules in before insert
 		// insert IntegrationLogService.createIntegrationLog(
 		// 	new Integration_Log__c(),
 		// 	soList,
@@ -43,30 +38,16 @@ public class TaskTriggerHandler extends TriggerHandler {
 		// 	'All Tasks have been processed on before insert'
 		// );
 
-		// if (System.UserInfo.getUserId() != ETL_USR_ID) {
 		Task[] assignAccessList = new List<Task>{};
 
-		// Id clientsRequestRecordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
-		// 	.get('Clients_request_CRM')
-		// 	.getRecordTypeId();
-
 		for (Task newTask : (Task[]) soList) {
-			// if (newTask.OwnerId != ETL_USR_ID && newTask.RecordTypeId != clientsRequestRecordTypeId) {
 			assignAccessList.add(newTask);
-			// }
 		}
 
 		AccessShareController.assignTaskAccessBulk(assignAccessList);
-
-		// }
 	}
 
-	public void handleUpdatedTasksShares(SObject[] oldListSo, SObject[] newListSo) {
-		// if (!DataFactoryTest.shouldRunTrigger()) {
-		//     return;
-		// }
-
-		// // Logged because of owner changes based on allocation rules in before insert
+	private void handleUpdatedTasksShares(SObject[] oldListSo, SObject[] newListSo) {
 		// insert IntegrationLogService.createIntegrationLog(
 		//     new Integration_Log__c(),
 		//     newListSo,
@@ -76,39 +57,27 @@ public class TaskTriggerHandler extends TriggerHandler {
 		//     'All Tasks have been processed on before update'
 		// );
 
-		// if (System.UserInfo.getUserId() != ETL_USR_ID) {
 		Task[] removeAccessList = new List<Task>{};
 		Task[] assignAccessList = new List<Task>{};
 
-		// Id clientsRequestRecordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
-		// 	.get('Clients_request_CRM')
-		// 	.getRecordTypeId();
+		List<String> closedStatuses = new List<String>{ '0', '2' };
 
 		for (Task newTask : (Task[]) newListSo) {
 			Task oldTask = (Task) Trigger.oldMap.get(newTask.Id);
 
-			// if (newTask.OwnerId != ETL_USR_ID && oldTask.RecordTypeId != clientsRequestRecordTypeId) {
 			Boolean isWhatIdNull = (oldTask.WhatId == null && newTask.WhatId == null);
 
 			if (!oldTask.OwnerId.equals(newTask.OwnerId) && !isWhatIdNull) {
-                System.debug('### remove and assign access');
 				removeAccessList.add(oldTask);
 				assignAccessList.add(newTask);
-			} else if (newTask.Status.equals('Closed') || newTask.ActivityDate <= Date.today()) {
-                System.debug('### remove access');
+			} else if (closedStatuses.contains(newTask.Status) || newTask.ActivityDate <= Date.today()) {
 				removeAccessList.add(newTask);
 			} else if (oldTask.ActivityDate != newTask.ActivityDate && !isWhatIdNull) {
-                System.debug('### assign access');
 				assignAccessList.add(newTask);
 			}
-			// }
 		}
-
-        System.debug('### remove access list: '+ removeAccessList);
-        System.debug('### remove access list: '+ assignAccessList);
 
 		AccessShareController.removeTaskAccessBulk(removeAccessList);
 		AccessShareController.assignTaskAccessBulk(assignAccessList);
-		// }
 	}
 }

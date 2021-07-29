@@ -15,12 +15,12 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 
 	public override void afterInsert() {
 		AQMessageService.handleInsert(Trigger.new, Opportunity.SObjectType);
-		handleInsertedOppsShares(Trigger.new);
+		// handleInsertedOppsShares(Trigger.new);
 	}
 
 	public override void afterUpdate() {
 		AQMessageService.handleUpdate(Trigger.new, Trigger.oldMap, Opportunity.SObjectType);
-		handleAfterUpdateOppsShares(Trigger.old, Trigger.new);
+		// handleAfterUpdateOppsShares(Trigger.old, Trigger.new);
 	}
 
 	public override void afterUndelete() {
@@ -44,7 +44,6 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 	}
 
 	private void handleAfterUpdateOppsShares(SObject[] oldListSo, SObject[] newListSo) {
-		// if (DataFactoryTest.shouldRunTrigger()) {
 		List<Opportunity> oldOppList = (List<Opportunity>) oldListSo;
 		List<Opportunity> oppList = (List<Opportunity>) newListSo;
 		List<Opportunity> oppsWithNewOwner = new List<Opportunity>();
@@ -53,7 +52,7 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 		List<Opportunity> assignAccessList = new List<Opportunity>();
 		List<Opportunity> removeAccessList = new List<Opportunity>();
 
-		List<String> closedLostOppStages = new List<String>{ '4', '5', '7' }; //TODO check 7 - should be access removed upon closed won?
+		List<String> closedLostOppStages = new List<String>{ '4', '5', '7' };
 
 		for (Opportunity opp : oppList) {
 			Opportunity oldOpp = oldOpps.get(opp.Id);
@@ -74,66 +73,9 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 			AccessShareController.removeOpportunityAccessBulk(removeAccessList);
 		if (!assignAccessList.isEmpty())
 			AccessShareController.assignOpportunityAccessBulk(assignAccessList);
-
-		// Set<Id> oppOwnersIds = new Set<Id>();
-		// for (Opportunity opp : oppList) {
-		// 	// if (opp.Batchcheckbox__c == true) { TODO VM k cemu to je??
-		// 	oppOwnersIds.add(opp.OwnerId);
-		// 	// }
-		// }
-
-		// // due Autoprolongation of opportunity update AccessShare
-		// List<AccessShare__c> accShares = AccessShareDao.getAllNonExpiredRecordsFromAccessShareByRequestedByIdsAndType(
-		// 	oppOwnersIds,
-		// 	'Opportunity'
-		// );
-		// // List<Opportunity> oppsToProlongate = OpportunityDao.getAllOpenOpportunitiesByUserIds(oppOwnersIds);
-		// List<Opportunity> oppsToProlongate = [
-		// 	SELECT Id, CloseDate, AccountId, OwnerId
-		// 	FROM Opportunity
-		// 	WHERE StateCode__c = '0'
-		// ]; //TODO VM why we are selecting anyopps in trigger handler? no Id limiting?
-
-		// List<Opportunity> oppsToUpdate = new List<Opportunity>();
-		// List<AccessShare__c> accSharesToUpdate = new List<AccessShare__c>();
-
-		// if (!oppsToProlongate.isEmpty()) {
-		// 	for (Opportunity opp : oppsToProlongate) {
-		// 		for (AccessShare__c accSh : accShares) {
-		// 			if (opp.AccountId != null) {
-		// 				if (
-		// 					opp.OwnerId == accSh.RequestedBy__c &&
-		// 					opp.AccountId == accSh.AccessTo__c &&
-		// 					opp.Id == accSh.Reason__c
-		// 				) {
-		// 					accSh.ExpirationDate__c = opp.CloseDate;
-		// 					// opp.Batchcheckbox__c = false; //TODO VM je to k necemu??
-		// 					accSharesToUpdate.add(accSh);
-		// 					oppsToUpdate.add(opp);
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
-
-		// update oppsToUpdate;
-		// update accSharesToUpdate;
-		// }
 	}
 
 	public void handleInsertedOppsShares(SObject[] soList) {
 		AccessShareController.assignOpportunityAccessBulk(soList);
-
-		// Set<Id> accIds = new Set<Id>();
-		// Set<Id> accOwnersIds = new Set<Id>();
-
-		// for (Opportunity opp : (List<Opportunity>) soList) {
-		// 	oppListIds.add(opp.Id);
-
-		// 	if (opp.AccountId != null) {
-		// 		accIds.add(m_accountMapAfter.get(opp.AccountId).Id);
-		// 		accOwnersIds.add(m_accountMapAfter.get(opp.AccountId).OwnerId);
-		// 	}
-		// }
 	}
 }
