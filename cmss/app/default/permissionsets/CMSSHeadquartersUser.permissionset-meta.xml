@@ -68,6 +68,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Birthday__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.CSOBElectronicBanking__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -384,6 +389,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Offers__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.OpenOpportunitiesCount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1113,6 +1123,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Asset.HasRLIRelatedAsset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Asset.HeadquarterDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1354,6 +1369,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset.PercentageSaved__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset.PersonalIdentificationNr__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2014,6 +2034,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Campaign.IsActive</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Campaign.NumberOfCampaignMembers__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3093,6 +3118,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Event.CampaignMember__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Event.Category__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3209,6 +3239,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Event.PostCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.ProductType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4058,6 +4093,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Task.CampaignMember__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Task.Category__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4164,6 +4204,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.PostCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.ProductType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

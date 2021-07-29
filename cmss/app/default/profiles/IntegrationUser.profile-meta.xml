@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>standard__LightningSales</application>
@@ -5409,14 +5409,6 @@
         <layout>Opportunity-LACRLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Opportunity-LACRLayout</layout>
-        <recordType>Opportunity.Editable</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Opportunity-LACRLayout</layout>
-        <recordType>Opportunity.NotEditable</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>PensionStrategy__c-Pension Strategy Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -5440,18 +5432,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Task-UnifiedActivityLayout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-UnifiedActivityLayout</layout>
-        <recordType>Task.Meeting</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-UnifiedActivityLayout</layout>
-        <recordType>Task.PhoneCall</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Task-UnifiedActivityLayout</layout>
-        <recordType>Task.Task</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>TaskRecordTypeMapping__mdt-Task Record Type Mapping Layout</layout>

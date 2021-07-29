@@ -1309,6 +1309,16 @@
             <field>YearPremiumWithoutDiscount__c</field>
             <table>Asset</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PersonalIdentificationNr__c</field>
+            <table>Asset</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>HasRLIRelatedAsset__c</field>
+            <table>Asset</table>
+        </columns>
         <masterLabel>Assets</masterLabel>
     </sections>
     <sections>

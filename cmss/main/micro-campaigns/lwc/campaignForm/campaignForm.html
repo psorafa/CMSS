@@ -1,0 +1,35 @@
+<!-- Campaign Form -->
+<template>
+    <lightning-card title="Kampaň">
+        <div class="slds-p-around_large">
+            <lightning-input
+                    type="checkbox"
+                    label="Nevytvářet kampaň"
+                    value={doNotCreateCampaign}
+                    onchange={handleCheckboxChange}
+            ></lightning-input>
+            <br/>
+            <template if:false={doNotCreateCampaign}>
+
+                <lightning-input
+                        label="Název kampaně"
+                        onchange={handleNameChange}
+                        required="true"
+                ></lightning-input>
+
+                <lightning-input
+                        type="date"
+                        label="Datum ukončení"
+                        onchange={handleEndDateChange}
+                        required="true"
+                ></lightning-input>
+
+                <lightning-textarea
+                        label="Popis"
+                        onchange={handleDescriptionChange}
+                ></lightning-textarea>
+
+            </template>
+        </div>
+    </lightning-card>
+</template>

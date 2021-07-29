@@ -1214,6 +1214,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Asset.HasRLIRelatedAsset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Asset.HeadquarterDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1455,6 +1460,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset.PercentageSaved__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset.PersonalIdentificationNr__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2230,6 +2240,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Campaign.IsActive</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Campaign.NumberOfCampaignMembers__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3514,6 +3529,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.ProductType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.Result__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4630,6 +4650,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.PostCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.ProductType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
