@@ -229,6 +229,18 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
     <externalSharingModel>Private</externalSharingModel>
+    <profileSearchLayouts>
+        <fields>ACCOUNT.NAME</fields>
+        <fields>PersonalIdentificationNr__c</fields>
+        <fields>GlobalId__c</fields>
+        <fields>ACCOUNT.PHONE1</fields>
+        <fields>PC_EMAIL</fields>
+        <fields>PortfolioMngmtA__c</fields>
+        <fields>ACCOUNT.ADDRESS1_ZIP</fields>
+        <fields>ACCOUNT.ADDRESS1_CITY</fields>
+        <fields>Age__c</fields>
+        <profileName>CMSS Headquarters User</profileName>
+    </profileSearchLayouts>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <searchLayouts>
         <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
