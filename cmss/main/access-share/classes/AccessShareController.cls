@@ -139,53 +139,6 @@ public without sharing class AccessShareController {
 		}
 	}
 
-	// /*
-	//  * @description: Grant access to user with Type 'Owner'
-	//  */
-	// public static void assignAssetAgentAccessBulk(List<Asset_Agent__c> assetAgentList) {
-	// 	if (assetAgentList != null && !assetAgentList.isEmpty()) {
-	// 		Set<String> roleSet = new Set<String>{
-	// 			'Pečující',
-	// 			'Hlavní pečující',
-	// 			'Pečující hlavní (BAL)',
-	// 			'Pečující vedlejší (BAL)',
-	// 			'Pečující hlavní (ŽP+OPV)',
-	// 			'Pečující vedlejší (ŽP+OPV)'
-	// 		};
-
-	// 		//check and remove invalid asset_agent
-	// 		List<Asset_Agent__c> verifiedAssetAgentList = AssetAgentService.removeInvalidAssetAgent(assetAgentList);
-
-	// 		if (verifiedAssetAgentList != null && !verifiedAssetAgentList.isEmpty()) {
-	// 			Set<Id> assetIds = new Set<Id>();
-	// 			Set<Id> userIds = new Set<Id>();
-
-	// 			for (Asset_Agent__c assetAgent : verifiedAssetAgentList) {
-	// 				assetIds.add(assetAgent.iContract__c);
-	// 				userIds.add(assetAgent.User__c);
-	// 			}
-
-	// 			Map<Id, User> usersMap = new Map<Id, User>(UserDao.getUsersById(userIds));
-	// 			Map<Id, Asset> assetMap = new Map<Id, Asset>(AssetDao.getAssetByIds(assetIds));
-
-	// 			Set<AccessShareDTO> accessShareDtos = new Set<AccessShareDTO>();
-	// 			for (Asset_Agent__c assetAgent : verifiedAssetAgentList) {
-	// 				if (usersMap.get(assetAgent.User__c).IsActive == true) {
-	// 					AccessShareController.addAccessShareDtoToSet(
-	// 						usersMap.get(assetAgent.User__c),
-	// 						assetMap.get(assetAgent.iContract__c).AccountId,
-	// 						Date.today().addYears(15),
-	// 						assetAgent.Id,
-	// 						AccessShareDtos
-	// 					);
-	// 				}
-	// 			}
-
-	// 			assignAccess(accessShareDtos, 'Owner');
-	// 		}
-	// 	}
-	// }
-
 	/*
 	 * @description: Grant access to user
 	 */
