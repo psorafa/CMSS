@@ -204,44 +204,6 @@ public without sharing class AccessShareController {
 		AccessShareService.removeAccess(accessShareDtoRemoves, accessShareList, type);
 	}
 
-	// /*
-	//  * @description: Remove TandemAccount__c from AccessShare table
-	//  */
-	// public static void removeTandemAccountAccessBulk(List<TandemAccount__c> tandemAccountList, List<Tandem__c> tandemList) {
-	// 	if (tandemAccountList != null && tandemList != null && !tandemAccountList.isEmpty() && !tandemList.isEmpty()) {
-	// 		Map<Id, Tandem__c> tandemById = new Map<Id, Tandem__c>(tandemList);
-
-	// 		Map<Id, Set<Id>> accountIdByUser = new Map<Id,Set<id>>();
-	// 		Set<Id> accountIds = new Set<Id>();
-	// 		for (TandemAccount__c tandemAccount : tandemAccountList) {
-	// 			Tandem__c tandem = tandemById.get(tandemAccount.TandemId__c);
-	// 			Utils.addToMapsSet(accountIdByUser, tandem.TandemUserId2__c, tandemAccount.Account__c);
-	// 			accountIds.add(tandemAccount.Account__c);
-	// 		}
-
-	// 		//all manual account share
-	// 		Set<AccessShareDTO.Remove> accessShareDtoRemoves = new Set<AccessShareDTO.Remove>();
-	// 		List<AccountShare> accountShareListToRemove = new List<AccountShare>();
-	// 		for (AccountShare accountSh : AccountShareDao.getAccountShareByUserAndAccountIds(accountIdByUser.keyset(), accountIds)) {
-	// 			for (TandemAccount__c tandemAccount : tandemAccountList) {
-	// 				if (tandemById.get(tandemAccount.TandemId__c).TandemUserId2__c == accountSh.UserOrGroupId && tandemAccount.Account__c == accountSh.AccountId) {
-	// 					addAccessShareDtoRemoveToSet(accountSh, String.valueOf(tandemAccount.Id), accessShareDtoRemoves);
-	// 				}
-	// 			}
-	// 		}
-
-	// 		//all accessShares with all types
-	// 		List<AccessShare__c> accessSharesToConsider = new List<AccessShare__C>();
-	// 		for (AccessShare__c AccessSh : AccessShareDao.getAccessShareByUserAndAccountIds(accountIdByUser.keyset(), accountIds)) {
-	// 			if (accountIdByUser.get(AccessSh.RequestedBy__c).contains(AccessSh.AccessTo__c)) {
-	// 				accessSharesToConsider.add(accessSh);
-	// 			}
-	// 		}
-
-	// 		AccessShareService.removeAccess(accessShareDtoRemoves, accessSharesToConsider, 'Tandem');
-	// 	}
-	// }
-
 	/*
 	 * @description: Remove Task from AccessShare table
 	 */
@@ -354,64 +316,6 @@ public without sharing class AccessShareController {
 			AccessShareService.removeAccess(accessShareDtoRemoves, accessSharesToConsider, 'Opportunity');
 		}
 	}
-
-	// /*
-	//  * @description: Remove assetAgent from AccessShare table
-	//  */
-	// public static void removeAssetAgentAccessBulk(List<Asset_Agent__c> assetAgentList) {
-	// 	if (assetAgentList != null && !assetAgentList.isEmpty()) {
-	// 		Set<Id> assetIds = new Set<Id>();
-	// 		for (Asset_Agent__c assetAgent : assetAgentList) {
-	// 			assetIds.add(assetAgent.iContract__c);
-	// 		}
-	// 		Map<Id, Asset> assetsMap = new Map<Id, Asset>(AssetDao.getAssetByIds(assetIds));
-
-	// 		Map<Id, Set<Id>> accountIdByUser = new Map<Id, Set<id>>();
-	// 		Set<Id> accountIds = new Set<Id>();
-
-	// 		for (Asset_Agent__c assetAgent : assetAgentList) {
-	// 			Utils.addToMapsSet(
-	// 				accountIdByUser,
-	// 				assetAgent.User__c,
-	// 				assetsMap.get(assetAgent.iContract__c).AccountId
-	// 			);
-	// 			accountIds.add(assetsMap.get(assetAgent.iContract__c).AccountId);
-	// 		}
-
-	// 		//all manual account share
-	// 		Set<AccessShareDTO.Remove> accessShareDtoRemoves = new Set<AccessShareDTO.Remove>();
-	// 		List<AccountShare> accountShareListToRemove = new List<AccountShare>();
-	// 		for (
-	// 			AccountShare accountSh : AccountShareDao.getAccountShareByUserAndAccountIds(
-	// 				accountIdByUser.keyset(),
-	// 				accountIds
-	// 			)
-	// 		) {
-	// 			for (Asset_Agent__c assetAgent : assetAgentList) {
-	// 				if (
-	// 					assetAgent.User__c == accountSh.UserOrGroupId &&
-	// 					assetsMap.get(assetAgent.iContract__c).AccountId == accountSh.AccountId
-	// 				) {
-	// 					addAccessShareDtoRemoveToSet(accountSh, String.valueOf(assetAgent.Id), accessShareDtoRemoves);
-	// 				}
-	// 			}
-	// 		}
-	// 		//all accessShares with all types
-	// 		List<AccessShare__c> accessSharesToConsider = new List<AccessShare__C>();
-	// 		for (
-	// 			AccessShare__c AccessSh : AccessShareDao.getAccessShareByUserAndAccountIds(
-	// 				accountIdByUser.keyset(),
-	// 				accountIds
-	// 			)
-	// 		) {
-	// 			if (accountIdByUser.get(AccessSh.RequestedBy__c).contains(AccessSh.AccessTo__c)) {
-	// 				accessSharesToConsider.add(accessSh);
-	// 			}
-	// 		}
-
-	// 		AccessShareService.removeAccess(accessShareDtoRemoves, accessSharesToConsider, 'Owner');
-	// 	}
-	// }
 
 	public static void addAccessShareDtoRemoveToSet(
 		AccountShare accountSh,
