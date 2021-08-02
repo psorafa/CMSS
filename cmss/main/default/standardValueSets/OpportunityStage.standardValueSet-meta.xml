@@ -12,13 +12,13 @@
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>3</fullName>
+        <fullName>2</fullName>
         <default>false</default>
-        <description>Získaná</description>
-        <label>3</label>
+        <description>Blokovaná</description>
+        <label>2</label>
         <closed>false</closed>
-        <forecastCategory>Forecast</forecastCategory>
-        <probability>99</probability>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>50</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
@@ -32,13 +32,13 @@
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>2</fullName>
+        <fullName>3</fullName>
         <default>false</default>
-        <description>Blokovaná</description>
-        <label>2</label>
+        <description>Získaná</description>
+        <label>3</label>
         <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>50</probability>
+        <forecastCategory>Forecast</forecastCategory>
+        <probability>99</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
@@ -62,12 +62,22 @@
         <won>true</won>
     </standardValue>
     <standardValue>
+        <fullName>8</fullName>
+        <default>false</default>
+        <description>Expirovaná</description>
+        <label>8</label>
+        <closed>true</closed>
+        <forecastCategory>Omitted</forecastCategory>
+        <probability>0</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
         <fullName>4</fullName>
         <default>false</default>
         <description>Zrušená</description>
         <label>4</label>
-        <closed>true</closed>
-        <forecastCategory>Omitted</forecastCategory>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
         <probability>0</probability>
         <won>false</won>
     </standardValue>
