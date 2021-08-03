@@ -39,7 +39,7 @@
                 </groupingSortProperties>
                 <header>Příležitosti obchodní OZ</header>
                 <legendPosition>Right</legendPosition>
-                <report>ObchodniPrilezitosti/OpportunitiesSalesReps</report>
+                <report>CMSSPublic/OpportunitiesSalesReps</report>
                 <showPercentage>false</showPercentage>
                 <showValues>true</showValues>
                 <sortBy>RowLabelAscending</sortBy>
@@ -69,7 +69,7 @@
                 <indicatorHighColor>#00716B</indicatorHighColor>
                 <indicatorLowColor>#C23934</indicatorLowColor>
                 <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
-                <report>SledovaniProdukce/UnfinishedCCandML</report>
+                <report>CMSSPublic/UnfinishedCCandML</report>
                 <showPercentage>false</showPercentage>
                 <showRange>false</showRange>
                 <showTotal>true</showTotal>
@@ -96,7 +96,7 @@
                 <indicatorHighColor>#F50000</indicatorHighColor>
                 <indicatorLowColor>#008040</indicatorLowColor>
                 <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
-                <report>SledovaniProdukce/AccountsWithoutActiveContract</report>
+                <report>CMSSPublic/AccountsWithoutActiveContract</report>
                 <showRange>false</showRange>
             </dashboardComponent>
             <rowIndex>8</rowIndex>
@@ -120,7 +120,7 @@
                 <indicatorHighColor>#F50000</indicatorHighColor>
                 <indicatorLowColor>#008040</indicatorLowColor>
                 <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
-                <report>OdbytovaSit/Klienti_bez_bezneho_uctu</report>
+                <report>CMSSPublic/Klienti_bez_bezneho_uctu</report>
                 <showRange>false</showRange>
             </dashboardComponent>
             <rowIndex>8</rowIndex>
