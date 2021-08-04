@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PensionCompactLayout</fullName>
+    <fields>Name</fields>
+    <fields>MonthFeeEmployer__c</fields>
+    <fields>MonthFeeParticipant__c</fields>
+    <fields>MonthFeeThirdPerson__c</fields>
+    <label>Pension Compact Layout</label>
+</CompactLayout>
