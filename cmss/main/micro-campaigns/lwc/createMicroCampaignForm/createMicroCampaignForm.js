@@ -8,7 +8,17 @@ export default class CreateMicroCampaignForm extends LightningElement {
     @track _task
     @track _assignee
 
-    @api
+
+    get outputValid() {
+        if (this._campaign != null && !(this._campaign.name && this._campaign.endDate && this._campaign.description)) {
+            return false
+        }
+        if (this._task == null || !(this._task.subject && this._task.description && this._task.dueDate)) {
+            return false
+        }
+        return true
+    }
+
     get outputData() {
         return JSON.stringify({
             ids : [...this._ids],
@@ -17,60 +27,33 @@ export default class CreateMicroCampaignForm extends LightningElement {
             assignee : this._assignee
         })
     }
-    set outputData(val) {
-    }
 
-    @api
-    get ids() {
-        return this._ids
-    }
-    set ids(val) {
-        console.log(JSON.stringify(this._ids))
-        this._ids = val ? val : []
-    }
-
-    @api
-    get outputValid() {
-        if (this._campaign != null && !(this._campaign.name && this._campaign.endDate && this._campaign.description)) {
-            return false
-        }
-        return true
-    }
-    set outputValid(val) {
-    }
-
-    get noIds() {
-        return (this._ids == undefined || this._ids.length == 0)
-    }
-
-    propagateValuesToFlow() {
+    fireChangeEvent() {
         console.log('output: ' + this.outputData)
-        this.dispatchEvent(new FlowAttributeChangeEvent('outputData', this.outputData))
+        this.dispatchEvent(new CustomEvent('change', {
+			detail : {
+			    data : this.outputData,
+			    valid : this.outputValid
+			}
+		}))
     }
 
     handleAssigneeChange(event) {
+        event.stopPropagation()
         this._assignee = event.detail
-        this.propagateValuesToFlow()
+        this.fireChangeEvent()
     }
 
     handleCampaignChange(event) {
+        event.stopPropagation()
         this._campaign = event.detail
-        this.propagateValuesToFlow()
+        this.fireChangeEvent()
     }
 
     handleTaskChange(event) {
+        event.stopPropagation()
         this._task = event.detail
-        this.propagateValuesToFlow()
+        this.fireChangeEvent()
     }
 
-    navigateNext(event) {
-        event.stopPropagation()
-        if (this._campaign !== null && !(this._campaign.name && this._campaign.endDate)) {
-            return
-        }
-        if (!(this._task.subject && this._task.description && this._task.dueDate && this._task.category)) {
-            return
-        }
-        this.dispatchEvent(new FlowNavigationNextEvent())
-    }
 }
