@@ -12,9 +12,6 @@
       "componentAttributes" : {
         "scopes" : [ {
           "isPublic" : true,
-          "name" : "User"
-        }, {
-          "isPublic" : true,
           "name" : "Account"
         }, {
           "isPublic" : true,
@@ -37,6 +34,9 @@
         }, {
           "isPublic" : true,
           "name" : "Report"
+        }, {
+          "isPublic" : true,
+          "name" : "User"
         } ],
         "searchResultFiltering" : true,
         "searchTerm" : "{!term}",
