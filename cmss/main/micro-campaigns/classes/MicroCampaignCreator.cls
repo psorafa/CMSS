@@ -104,7 +104,7 @@ public with sharing class MicroCampaignCreator {
 		CreationResult creationResult = new CreationResult();
 		creationResult.erroredRecords = new List<SObject>();
 		creationResult.numberOfSuccesses = 0;
-		creationResult.campaignId = campaign.Id;
+		creationResult.campaignId = campaign?.Id;
 
 		List<Database.SaveResult> saveResults = Database.insert(tasks, false);
 		for (Integer i = 0; i < tasks.size(); i++) {
