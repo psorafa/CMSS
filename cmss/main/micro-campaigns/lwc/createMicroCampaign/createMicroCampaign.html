@@ -17,6 +17,13 @@
             </div>
         </template>
 
+        <template if:true={showSpinner}>
+            <lightning-spinner></lightning-spinner>
+        </template>
+
+        <template if:true={showResults}>
+            <c-create-micro-campaign-result result={results} error={error}></c-create-micro-campaign-result>
+        </template>
 
     </div>
 </template>

@@ -3,14 +3,13 @@ import { FlowAttributeChangeEvent, FlowNavigationNextEvent } from 'lightning/flo
 
 export default class CreateMicroCampaignForm extends LightningElement {
 
-    @track _ids = []
     @track _campaign
     @track _task
     @track _assignee
 
 
     get outputValid() {
-        if (this._campaign != null && !(this._campaign.name && this._campaign.endDate && this._campaign.description)) {
+        if (this._campaign != null && !(this._campaign.name && this._campaign.endDate)) {
             return false
         }
         if (this._task == null || !(this._task.subject && this._task.description && this._task.dueDate)) {
@@ -20,16 +19,14 @@ export default class CreateMicroCampaignForm extends LightningElement {
     }
 
     get outputData() {
-        return JSON.stringify({
-            ids : [...this._ids],
+        return {
             campaign : {...this._campaign},
             task : {...this._task},
             assignee : this._assignee
-        })
+        }
     }
 
     fireChangeEvent() {
-        console.log('output: ' + this.outputData)
         this.dispatchEvent(new CustomEvent('change', {
 			detail : {
 			    data : this.outputData,

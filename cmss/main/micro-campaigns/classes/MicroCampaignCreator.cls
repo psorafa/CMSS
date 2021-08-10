@@ -118,7 +118,10 @@ public with sharing class MicroCampaignCreator {
 				} else {
 					creationResult.erroredRecords.add(accountsByPersonContactId.get(task.WhoId));
 				}
-				Logger.error('Cannot create task for micro-campaign', JSON.serializePretty(saveResult.getErrors()));
+				Logger.error(
+					'Cannot create task for micro-campaign',
+					'Task:\n' + JSON.serializePretty(tasks.get(i)) + '\nError:\n' + JSON.serializePretty(saveResult.getErrors())
+				);
 			}
 		}
 		creationResult.numberOfErrors = creationResult.erroredRecords.size();
