@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PensionProducts</fullName>
     <active>true</active>
+    <compactLayoutAssignment>PensionCompactLayout</compactLayoutAssignment>
     <description>Penzijní připojištění</description>
     <label>Pension Products</label>
     <picklistValues>
