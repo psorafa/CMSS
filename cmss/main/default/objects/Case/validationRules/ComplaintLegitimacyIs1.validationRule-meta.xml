@@ -5,7 +5,9 @@
     <description>If Complaint Legitimacy is 1, Cause Legit Complaint is required.</description>
     <errorConditionFormula>ISPICKVAL (ComplaintLegitimacy__c, &apos;1&apos;) &amp;&amp;
  ISBLANK(TEXT(CauseLegitComplaint__c)) &amp;&amp;
-	NOT (ISBLANK(ResponseSentDate__c))</errorConditionFormula>
+	NOT (ISBLANK(ResponseSentDate__c)) &amp;&amp;
+$RecordType.DeveloperName &lt;&gt; &quot;GDPR&quot; &amp;&amp;
+$RecordType.DeveloperName &lt;&gt; &quot;ClosedGDPRClaim&quot;</errorConditionFormula>
     <errorDisplayField>CauseLegitComplaint__c</errorDisplayField>
     <errorMessage>Field is required</errorMessage>
 </ValidationRule>
