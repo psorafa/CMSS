@@ -5752,6 +5752,14 @@
         <layout>Opportunity-LACRLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Opportunity-LACRLayout</layout>
+        <recordType>Opportunity.Editable</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-LACRLayout</layout>
+        <recordType>Opportunity.NotEditable</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>OpportunityStateCodeMapping__mdt-Opportunity State Code Mapping Layout</layout>
     </layoutAssignments>
     <layoutAssignments>

@@ -11,7 +11,7 @@
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Opportunity Information</label>
         <layoutColumns>
@@ -83,10 +83,6 @@
                 <behavior>Edit</behavior>
                 <field>ValidFrom__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CreatedDateTime__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -104,10 +100,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ValidTo__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UpdateDate__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -147,15 +139,19 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>CreatedDateTime__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UpdateDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>DataSource__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IsVisibleForNel__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>StateCode__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -170,6 +166,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ExternalId__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>StateCode__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -322,7 +322,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1j000002aSSq</masterLabel>
+        <masterLabel>00h7a000000yGvE</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
