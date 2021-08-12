@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AssignedToCurrentUser__c</fullName>
+    <description>Checks if Assigned To User ID is the same as Current User ID</description>
+    <externalId>false</externalId>
+    <formula>Owner:User.Id = $User.Id</formula>
+    <label>Assigned To Current User</label>
+    <type>Checkbox</type>
+</CustomField>
