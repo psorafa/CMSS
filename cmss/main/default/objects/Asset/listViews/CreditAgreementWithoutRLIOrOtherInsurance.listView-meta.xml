@@ -21,7 +21,7 @@
     </filters>
     <filters>
         <field>HasRLIRelatedAsset__c</field>
-        <operation>greaterThan</operation>
+        <operation>equals</operation>
         <value>0</value>
     </filters>
     <label>Úvěrové smlouvy bez RŽP nebo jiného poj.</label>
