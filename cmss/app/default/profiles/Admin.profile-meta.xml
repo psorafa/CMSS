@@ -1,10 +1,46 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>standard__LightningSales</application>
         <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>
+        <classAccesses>
+        <apexClass>AccessLogService</apexClass>
+        <enabled>true</enabled>
+        </classAccesses>
+    <classAccesses>
+        <apexClass>AccessShareBatch</apexClass>
+        <enabled>true</enabled>
+        </classAccesses>
+    <classAccesses>
+        <apexClass>AccessShareController</apexClass>
+        <enabled>true</enabled>
+        </classAccesses>
+    <classAccesses>
+        <apexClass>AccessShareDTO</apexClass>
+        <enabled>true</enabled>
+        </classAccesses>
+    <classAccesses>
+        <apexClass>AccessShareDao</apexClass>
+        <enabled>true</enabled>
+        </classAccesses>
+    <classAccesses>
+        <apexClass>AccessShareSchedule</apexClass>
+        <enabled>true</enabled>
+        </classAccesses>
+    <classAccesses>
+        <apexClass>AccessShareScheduleTest</apexClass>
+        <enabled>true</enabled>
+        </classAccesses>
+    <classAccesses>
+        <apexClass>AccessShareService</apexClass>
+        <enabled>true</enabled>
+        </classAccesses>
+    <classAccesses>
+        <apexClass>AccessSharingUtils</apexClass>
+        <enabled>true</enabled>
+        </classAccesses>
     <classAccesses>
         <apexClass>AccountConsolidationUtility</apexClass>
         <enabled>true</enabled>
@@ -1250,6 +1286,46 @@
         <editable>false</editable>
         <field>AQTask__e.RecordId__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+        <fieldPermissions>
+        <editable>true</editable>
+        <field>AccessShare__c.AccessTo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AccessShare__c.Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AccessShare__c.RequestedBy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AccessShare__c.RoleId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Access_Log__c.AccessTo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Access_Log__c.Message__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Access_Log__c.RequestedBy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Access_Log__c.Type__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -6099,6 +6175,24 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>AQTask__e</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>AccessShare__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Access_Log__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>

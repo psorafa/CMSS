@@ -91,28 +91,11 @@ global class AccessShareBatch implements Database.Batchable<sObject>, Database.S
 	}
 
 	public Void finish(Database.BatchableContext jobId) {
-		// Integration_Log__c log = new Integration_Log__c();
-
-		// if (!errors.isEmpty()) {
-		// 	IntegrationLogService.errorIntegrationLog(
-		// 		log,
-		// 		deletedIds,
-		// 		'AccessShareBatch',
-		// 		'Failed to remove Expired AccessShares -> ' + type,
-		// 		String.join(errors, '\n')
-		// 	);
-		// } else {
-		// 	IntegrationLogService.createIntegrationLog(
-		// 		log,
-		// 		deletedIds,
-		// 		'Batch',
-		// 		'AccessShareBatch',
-		// 		'Removed Expired -> ' + type,
-		// 		'Expired Access Shares removed.'
-		// 	);
-		// 	log.Number_Of_Rows__c = deletedIds.size();
-		// }
-
-		// insert log;
+		List<String> errorMessageList = new List<String>();
+		errorMessageList.add('Failed to remove Expired AccessShares -> ' + type);
+		errorMessageList.addAll(errors);
+		if (!errors.isEmpty()) {
+			AccessLogService.insertErrorLog('Error', String.join(errorMessageList, '\n'));
+		}
 	}
 }
