@@ -1,0 +1,51 @@
+<template>
+
+	<template if:true={showError}>
+		<div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+			<h2>Došlo k neočekávané chybě. Pokud budete kontaktovat IT helpdesk, prosím poskytněte následující údaje.</h2>
+		</div>
+		<br />
+		<pre style="white-space: pre-wrap">{errorString}</pre>
+	</template>
+
+	<template if:false={showError}>
+		<lightning-card title="">
+			<div class="slds-p-around_large">
+
+				<lightning-icon icon-name="action:approval" variant="success"></lightning-icon>
+				<br/>
+				<h2 class="slds-m-top_medium">
+					Vytvořeno {numberOfSuccesses} úkolů.
+				</h2>
+				<br/>
+				<template if:true={campaignCreated}>
+					<div>
+						<a href="javascript:void(0)" onclick={handleCampaignClick}>Přejít na kampaň</a>
+					</div>
+				</template>
+
+				<template if:false={completeSuccess}>
+					<div class="slds-m-top_medium slds-text-color_error">
+						Nebylo možné vytvořit {_result.numberOfErrors} úkolů:
+						<ul class="slds-m-around_medium slds-list_dotted">
+							<template for:each={_result.erroredRecords} for:item="error">
+								<li key={error.Id}>
+									<a href="javascript:void(0)" name={error.Id} onclick={handleAccountClick}>{error.Name}</a>
+								</li>
+							</template>
+						</ul>
+					</div>
+					<div class="slds-m-top_medium">
+						Budete-li kontaktovat IT helpdesk, prosím poskytněte následující údaje:
+						<br/>
+						<pre>
+							transactionId: {_result.transactionId}
+						</pre>
+					</div>
+				</template>
+
+			</div>
+		</lightning-card>
+	</template>
+
+</template>

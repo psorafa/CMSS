@@ -1,7 +1,7 @@
 public with sharing class Logger {
 
 	private static String defaultLogLevel = 'debug';
-    private static String transactionId = getUUID();
+    private static final String transactionId = getUUID();
 	private static Integer defaultLogLevelNumber = 4;
 	private static final String DEBUG_LEVEL = 'debug';
 	private static final String INFO_LEVEL = 'info';
@@ -97,7 +97,7 @@ public with sharing class Logger {
 		error(message, null, null);
 	}
 
-	public static void createLogEvent(String logLevel, String message, Exception ex, String payload) {
+	private static void createLogEvent(String logLevel, String message, Exception ex, String payload) {
 		LogEvent__e logEvent = new LogEvent__e();
         logEvent.TransactionId__c = transactionId;
 		logEvent.Message__c = message;
@@ -132,7 +132,7 @@ public with sharing class Logger {
 		}
     }
     
-    public static String getUUID()  {
+    private static String getUUID()  {
         Blob b = Crypto.generateAesKey(128);
         String h = EncodingUtil.convertToHex(b);
         String guid = h.substring(0,8)+ '-' + h.substring(8,12) + '-' + h.substring(12,16) + '-' + h.substring(16,20) + '-' + h.substring(20);
@@ -163,5 +163,9 @@ public with sharing class Logger {
 		}
 		dataMap.put('Headers', headers);
 		return JSON.serializePretty(dataMap);
+	}
+
+	public static String getTransactionId() {
+		return transactionId;
 	}
 }

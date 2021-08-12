@@ -1,27 +1,14 @@
 <!-- Create Micro Campaign Form -->
 <template>
-    <div style="max-width: 50em; margin: auto;">
-        <template if:false={noIds}>
-            <c-campaign-form onchange={handleCampaignChange}></c-campaign-form>
+    <c-campaign-form onchange={handleCampaignChange}></c-campaign-form>
 
-            <br/>
+    <br/>
 
-            <c-task-form onchange={handleTaskChange}></c-task-form>
+    <c-task-form onchange={handleTaskChange}></c-task-form>
 
-            <br/>
+    <br/>
 
-            <c-select-assignee onchange={handleAssigneeChange}></c-select-assignee>
+    <c-select-assignee onchange={handleAssigneeChange}></c-select-assignee>
 
-            <br/>
-            <div class="slds-card__footer slds-text-align_right">
-                <lightning-button variant="brand" label="Vytvořit" onclick={navigateNext}></lightning-button>
-            </div>
-        </template>
-
-        <template if:true={noIds}>
-            <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
-                <h2>Nebyly vybrány žádné záznamy.</h2>
-            </div>
-        </template>
-    </div>
+    <br/>
 </template>
