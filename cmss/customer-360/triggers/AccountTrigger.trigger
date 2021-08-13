@@ -7,5 +7,8 @@ trigger AccountTrigger on Account(
 	after delete,
 	after undelete
 ) {
+	if (!FeatureManagement.checkPermission('SkipCalculations')) {
+		dlrs.RollupService.triggerHandler();
+	}
 	new AccountTriggerHandler().run();
 }
