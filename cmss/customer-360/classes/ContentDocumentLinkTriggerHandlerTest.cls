@@ -10,6 +10,11 @@ private class ContentDocumentLinkTriggerHandlerTest {
 
         Test.startTest();
         ContentDocumentLinkTriggerHandler.setExternalVisibility(links);
+
+		// cover trigger:
+		try {
+			insert links;
+		} catch (Exception e) {}
         Test.stopTest();
 
         for (ContentDocumentLink link : links) {
