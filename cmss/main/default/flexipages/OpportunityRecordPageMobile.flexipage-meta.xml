@@ -155,6 +155,17 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>flowLayout</name>
+                <value>oneColumn</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>flowName</name>
+                <value>ArrangeProduct</value>
+            </componentInstanceProperties>
+            <componentName>flowruntime:interview</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
                 <name>tabs</name>
                 <value>Facet-3feb2ff1-aad3-49fd-8f85-fad093e8536e</value>
             </componentInstanceProperties>
