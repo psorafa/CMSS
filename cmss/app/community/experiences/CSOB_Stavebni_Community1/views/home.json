@@ -96,10 +96,21 @@
   }, {
     "components" : [ {
       "componentAttributes" : {
-        "richTextValue" : "<p><b>Seznam novinek z centrály.</b></p>"
+        "richTextValue" : "<p><b style=\"color: rgb(8, 151, 234); font-size: 16px;\">Novinky a odkazy</b></p><p><br></p><p><b style=\"color: rgb(0, 0, 0);\">Hodnocení aplikace SalesForce</b></p><p>odkaz pro zadání zpětné vazby, námětů, chyb a připomínek ….<b> </b><a href=\"https://forms.gle/6Z6qYFPkZNAdazt39\" rel=\"noopener noreferrer\" target=\"_blank\">odkaz</a></p><p><br></p><p><b style=\"font-size: 12px; color: rgb(0, 0, 0);\">Všechna infa</b><span style=\"font-size: 12px; color: rgb(0, 0, 0);\"> - </span><a href=\"https://shrprodinternal.cmss.local/sites/edoc/info/Lists/Info/AllItems.aspx\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"font-size: 12px; color: rgb(8, 151, 234);\">odkaz</a></p><p><b style=\"font-size: 12px; color: rgb(0, 0, 0);\">Nejnovější Info</b><span style=\"font-size: 12px; color: rgb(0, 0, 0);\">:</span><span style=\"font-size: 12px; color: rgb(8, 151, 234);\"> </span><a href=\"https://spsprodinternal.cmss.local/sites/edoc/info/Lists/Info/1.%20OZ/2021/INFO_60_2021.docx?d=w08c0f3575e914e7bb70d8c4cf6238d73\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"font-size: 12px; color: rgb(8, 151, 234);\">Info 60/2021</a><span style=\"font-size: 12px; color: rgb(0, 0, 0);\">&nbsp;&nbsp;&nbsp;Úrokové sazby MÚ od 19. 7. 2021</span></p><p><br></p><p><b style=\"font-size: 12px; color: rgb(0, 0, 0);\">Týdenní informace</b><span style=\"font-size: 12px; color: rgb(0, 0, 0);\"> - </span><a href=\"https://spsprodinternal.cmss.local/sites/edoc/docs/Lists/221/T%C3%BDdenn%C3%AD%20informace/2021/T%C3%BDdenn%C3%AD%20informace%202021%20word.docx\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"font-size: 12px; color: rgb(8, 151, 234);\">TI 28/2021</a></p>"
       },
       "componentName" : "forceCommunity:richTextInline",
       "id" : "5b4bf658-6f6b-4447-95f5-9b793871d6cc",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "flowArguments" : "",
+        "flowLayout" : "oneColumn",
+        "flowName" : "ArrangeProduct"
+      },
+      "componentName" : "forceCommunity:flowCommunity",
+      "id" : "b6e67a5b-8ce5-4446-a693-7b9ea90c6c41",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
