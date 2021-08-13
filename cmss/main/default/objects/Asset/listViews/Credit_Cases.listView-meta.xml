@@ -2,11 +2,15 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Credit_Cases</fullName>
     <columns>ASSET.NAME</columns>
+    <columns>PersonalIdentificationNr__c</columns>
     <columns>ACCOUNT.NAME</columns>
+    <columns>AddressZipCode__c</columns>
+    <columns>AddressCity__c</columns>
     <columns>RequestSignDate__c</columns>
     <columns>CreditAmount__c</columns>
+    <columns>RemainingDraw__c</columns>
     <columns>Status__c</columns>
-    <columns>CurrentBalance__c</columns>
+    <columns>ClosingAgentId__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>ASSET.RECORDTYPE</field>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>WithoutOUFOIn30Days</fullName>
-    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+    <fullName>MyPersonAccounts</fullName>
     <columns>ACCOUNT.NAME</columns>
     <columns>PersonalIdentificationNr__c</columns>
     <columns>ACCOUNT.PHONE1</columns>
@@ -10,21 +9,11 @@
     <columns>ACCOUNT.ADDRESS1_CITY</columns>
     <columns>Age__c</columns>
     <columns>PortfolioMngmtA__c</columns>
-    <columns>NextAmlReviewDate__c</columns>
-    <filterScope>Everything</filterScope>
+    <filterScope>Mine</filterScope>
     <filters>
         <field>PersonType__c</field>
         <operation>equals</operation>
         <value>1</value>
     </filters>
-    <filters>
-        <field>LastAmlReviewDate__c</field>
-        <operation>equals</operation>
-    </filters>
-    <filters>
-        <field>NextAmlReviewDate__c</field>
-        <operation>equals</operation>
-        <value>LAST_N_DAYS:30</value>
-    </filters>
-    <label>Klienti bez patného OUFO v příštích 30 d</label>
+    <label>Moje fyzické osoby</label>
 </ListView>

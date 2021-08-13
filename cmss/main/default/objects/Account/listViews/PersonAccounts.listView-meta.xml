@@ -3,10 +3,12 @@
     <fullName>PersonAccounts</fullName>
     <booleanFilter>1 AND 2</booleanFilter>
     <columns>ACCOUNT.NAME</columns>
+    <columns>PersonalIdentificationNr__c</columns>
     <columns>ACCOUNT.PHONE1</columns>
     <columns>PC_EMAIL</columns>
+    <columns>ACCOUNT.ADDRESS1_ZIP</columns>
     <columns>ACCOUNT.ADDRESS1_CITY</columns>
-    <columns>PersonalIdentificationNr__c</columns>
+    <columns>Age__c</columns>
     <columns>PortfolioMngmtA__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
@@ -19,5 +21,8 @@
         <operation>greaterOrEqual</operation>
         <value>LAST_WEEK</value>
     </filters>
-    <label>Fyzické osoby</label>
+    <label>Fyzické osoby s novou smlouvou</label>
+    <sharedTo>
+        <role>X69_948011_mng</role>
+    </sharedTo>
 </ListView>
