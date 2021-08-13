@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Call</fullName>
+        <default>false</default>
+        <label>Call</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Send Letter/Quote</fullName>
+        <default>false</default>
+        <label>Send Letter/Quote</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email</fullName>
+        <default>false</default>
+        <label>Email</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Meeting</fullName>
+        <default>false</default>
+        <label>Meeting</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Manager Task</fullName>
+        <default>false</default>
+        <label>Manager Task</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Mortgage Fixation</fullName>
+        <default>false</default>
+        <label>Mortgage Fixation</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Fixation of a Loan</fullName>
+        <default>false</default>
+        <label>Fixation of a Loan</label>
+    </standardValue>
+    <standardValue>
+        <fullName>IZP</fullName>
+        <default>false</default>
+        <label>IZP</label>
+    </standardValue>
+    <standardValue>
+        <fullName>PMO</fullName>
+        <default>false</default>
+        <label>PMO</label>
+    </standardValue>
+    <standardValue>
+        <fullName>StSp End of Binding Period</fullName>
+        <default>false</default>
+        <label>StSp End of Binding Period</label>
+    </standardValue>
+    <standardValue>
+        <fullName>StSp Entitlement to a Loan</fullName>
+        <default>false</default>
+        <label>StSp Entitlement to a Loan</label>
+    </standardValue>
+    <standardValue>
+        <fullName>PP</fullName>
+        <default>false</default>
+        <label>PP</label>
+    </standardValue>
+    <standardValue>
+        <fullName>MU to U</fullName>
+        <default>false</default>
+        <label>MU to U</label>
+    </standardValue>
+    <standardValue>
+        <fullName>CSOB Account</fullName>
+        <default>false</default>
+        <label>CSOB Account</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Housing Plans</fullName>
+        <default>false</default>
+        <label>Housing Plans</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Change of Personal</fullName>
+        <default>false</default>
+        <label>Change of Personal</label>
+    </standardValue>
+</StandardValueSet>

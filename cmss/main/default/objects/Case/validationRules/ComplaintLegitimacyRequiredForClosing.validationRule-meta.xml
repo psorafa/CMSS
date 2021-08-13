@@ -5,7 +5,9 @@
     <description>Response Sent can&apos;t be filled if Complaint Legitimacy is empty.</description>
     <errorConditionFormula>$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp; 
 ISBLANK (TEXT(ComplaintLegitimacy__c)) &amp;&amp;
-NOT (ISBLANK (ResponseSentDate__c))</errorConditionFormula>
+NOT (ISBLANK (ResponseSentDate__c)) &amp;&amp;
+$RecordType.DeveloperName &lt;&gt; &quot;GDPR&quot; &amp;&amp;
+$RecordType.DeveloperName &lt;&gt; &quot;ClosedGDPRClaim&quot;</errorConditionFormula>
     <errorDisplayField>ComplaintLegitimacy__c</errorDisplayField>
     <errorMessage>Field is required</errorMessage>
 </ValidationRule>

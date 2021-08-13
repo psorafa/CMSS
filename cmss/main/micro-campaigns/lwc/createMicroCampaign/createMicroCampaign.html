@@ -1,0 +1,29 @@
+<!-- Create Micro Campaign -->
+<template>
+    <div style="max-width: 50em; margin: auto;">
+
+        <template if:true={noIds}>
+            <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                <h2>Nebyly vybrány žádné záznamy.</h2>
+            </div>
+        </template>
+
+        <template if:true={showForm}>
+            <c-create-micro-campaign-form onchange={handleFormChange}></c-create-micro-campaign-form>
+
+            <div class="slds-card__footer slds-text-align_right">
+                <span class="slds-text-color_error slds-p-around_medium" if:true={_dataInvalid}>Vyplňte všechna povinná pole</span>
+                <lightning-button variant="brand" label="Vytvořit" onclick={handleCreateClick} disabled={_dataInvalid}></lightning-button>
+            </div>
+        </template>
+
+        <template if:true={showSpinner}>
+            <lightning-spinner></lightning-spinner>
+        </template>
+
+        <template if:true={showResults}>
+            <c-create-micro-campaign-result result={results} error={error}></c-create-micro-campaign-result>
+        </template>
+
+    </div>
+</template>

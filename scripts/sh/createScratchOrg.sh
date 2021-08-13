@@ -26,6 +26,7 @@ fi
 
 #install packages
 sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wait 8 -u $ALIAS
+sfdx force:package:install --package 04t5p000000eegF -r --publishwait 3 --wait 8 -u $ALIAS
 
 #push source
 sfdx force:source:push --ignorewarnings --targetusername $ALIAS

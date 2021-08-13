@@ -178,10 +178,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CreateMicroCampaignAction</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CreateMicroCampaignController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -5704,7 +5700,7 @@
         <layout>CrossSellingClosure__c-Cross Selling Closure Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Event-Event Layout</layout>
+        <layout>Event-Basic Event Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>FinancialOperation__c-Financial Operation Layout</layout>
@@ -5750,6 +5746,14 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Opportunity-LACRLayout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-LACRLayout</layout>
+        <recordType>Opportunity.Editable</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-LACRLayout</layout>
+        <recordType>Opportunity.NotEditable</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>OpportunityStateCodeMapping__mdt-Opportunity State Code Mapping Layout</layout>
@@ -6697,9 +6701,9 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
         <recordType>Task.Task</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>CampaignMember__c</tab>

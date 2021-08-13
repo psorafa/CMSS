@@ -114,6 +114,17 @@
   }, {
     "components" : [ {
       "componentAttributes" : {
+        "flowArguments" : "",
+        "flowLayout" : "oneColumn",
+        "flowName" : "ArrangeProduct"
+      },
+      "componentName" : "forceCommunity:flowCommunity",
+      "id" : "b834b3d4-5f96-4974-a1ab-7b7237da2b77",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
         "tabsetConfig" : {
           "UUID" : "d8bc0888-ac3f-41ca-9749-82cab881edaa",
           "activeTab" : "",
