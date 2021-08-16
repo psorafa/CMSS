@@ -12,19 +12,9 @@
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>2</fullName>
-        <default>false</default>
-        <description>Blokovaná</description>
-        <label>2</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>50</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
         <fullName>1</fullName>
         <default>false</default>
-        <description>Probíhá</description>
+        <description>Rozpracovaná</description>
         <label>1</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
@@ -34,7 +24,7 @@
     <standardValue>
         <fullName>3</fullName>
         <default>false</default>
-        <description>Získaná</description>
+        <description>Uzavřená pozitivně</description>
         <label>3</label>
         <closed>false</closed>
         <forecastCategory>Forecast</forecastCategory>
@@ -44,7 +34,7 @@
     <standardValue>
         <fullName>5</fullName>
         <default>false</default>
-        <description>Vyprodaná</description>
+        <description>Uzavřená negativně</description>
         <label>5</label>
         <closed>true</closed>
         <forecastCategory>Omitted</forecastCategory>
@@ -79,6 +69,16 @@
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>0</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>2</fullName>
+        <default>false</default>
+        <description>Blokovaná</description>
+        <label>2</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>50</probability>
         <won>false</won>
     </standardValue>
 </StandardValueSet>
