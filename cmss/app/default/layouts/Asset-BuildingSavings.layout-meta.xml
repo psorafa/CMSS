@@ -37,10 +37,6 @@
                 <behavior>Edit</behavior>
                 <field>CurrentBalance__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CurrentPayStatus__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -104,6 +100,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>AssignmentType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrentPayStatus__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
