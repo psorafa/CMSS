@@ -5598,6 +5598,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>Access_Log__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>CampaignMember__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
