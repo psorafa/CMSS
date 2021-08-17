@@ -51,8 +51,7 @@ global with sharing class SF_PersonManagementSOAPService {
 		Logger.debug('Incoming request', JSON.serialize(request));
 		try {
 			CreateCZContractResponseType response = (CreateCZContractResponseType) SOAPResponseFactory.constructResponse(CreateCZContractResponseType.class, request.requestHeader);
-			String createdClientZoneId = ClientZoneService.createClientZoneContract(request.requestBody.clientZone, request.requestBody.clientRelations);
-			response.responseBody = new CreateCZContractResponseBody(createdClientZoneId);
+			response.responseBody = ClientZoneService.createClientZoneContract(request.requestBody.clientZone, request.requestBody.clientRelations);
 			Logger.debug('Returning success response', JSON.serialize(response));
 			return response;
 		} catch (SOAPCommonTypes.BusinessException e) {
@@ -277,9 +276,11 @@ global with sharing class SF_PersonManagementSOAPService {
 
 	global class CreateCZContractResponseBody {
 		webService String clientZoneId;
+		webService Datetime dateCreated;
 
-		CreateCZContractResponseBody(String clientZoneId) {
+		global CreateCZContractResponseBody(String clientZoneId, Datetime dateCreated) {
 			this.clientZoneId = clientZoneId;
+			this.dateCreated = dateCreated;
 		}
 	}
 
