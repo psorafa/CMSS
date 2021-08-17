@@ -1,6 +1,6 @@
 V CRM SalesForce máte novou aktivitu:
 
-Název: Task.Subject {!Task.Link}
+Název: {!Task.Subject} {!Task.Link}
 
 Klient: {!Account.Name}
 
