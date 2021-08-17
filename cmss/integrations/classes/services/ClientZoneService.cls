@@ -11,27 +11,26 @@ public with sharing class ClientZoneService {
 		return createdClientZone.ExternalId__c;
 	}
 
-	public static String createClientZoneContract(
+	public static SF_PersonManagementSOAPService.CreateCZContractResponseBody createClientZoneContract(
 		SF_PersonManagementSOAPService.ClientZoneType clientZone,
 		List<SF_PersonManagementSOAPService.ClientRelationType> clientRelations
 	) {
-		String clientZoneId;
 		Validation.requireAttribute(clientZone.globalId, 'GlobalId');
 		Id clientSfId = ReferenceUtility.getAccountByGlobalId(clientZone.globalId).Id;
 		List<ClientZone__c> clientZones = [SELECT Id, ExternalId__c, Role__c FROM ClientZone__c WHERE Account__c = :clientSfId AND Status__c = '1'];
 		ClientZone__c clZone;
-		Validation.requireAttribute(clientZone.closedBy, 'closedBy');
-		Id closedById = ReferenceUtility.getUserByCPU(clientZone.closedBy).Id;
+		Id closedById;
+		if (clientZone.closedBy != null) {
+			closedById = ReferenceUtility.getUserByCPU(clientZone.closedBy).Id;
+		}
 		if (clientZones.isEmpty()) {
 			clZone = insertClientZone(clientSfId, clientZone, closedById);
-			clientZoneId = clZone.ExternalId__c;
 		} else if (clientZones.size() > 1) {
 			throw new SOAPCommonTypes.BusinessException(203, 'More than 1 ClientZone exist for Client GlobalId: ' + clientZone.globalId);
 		} else {
 			clZone = clientZones.get(0);
-			if (Integer.valueOf(clientZone.role) >= Integer.valueOf(clZone.Role__c) || clZone.Role__c == '8') {
+			if ((Integer.valueOf(clientZone.role) >= Integer.valueOf(clZone.Role__c) && clZone.Role__c != '7') || clZone.Role__c == '8') {
 				updateClientZone(clZone, clientZone, closedById);
-				clientZoneId = clZone.ExternalId__c;
 			} else {
 				throw new SOAPCommonTypes.BusinessException(202, 'Record already exists: ClientZone - SF ID: ' + clZone.Id);
 			}
@@ -41,7 +40,8 @@ public with sharing class ClientZoneService {
 				upsertAccountRelations(clientRelations, clZone, clientSfId);
 			}
 		}
-		return clientZoneId;
+		clZone = [SELECT CreatedDate, ExternalId__c FROM ClientZone__c WHERE ExternalId__c = :clZone.ExternalId__c];
+		return new SF_PersonManagementSOAPService.CreateCZContractResponseBody(clZone.ExternalId__c, clZone.CreatedDate);
 	}
 
 	private static ClientZone__c insertClientZone(Id accountId, SF_PersonManagementSOAPService.ClientZoneType clientZoneRequest, Id closedBySfId) {
