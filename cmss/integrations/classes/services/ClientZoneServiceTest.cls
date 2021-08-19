@@ -55,9 +55,6 @@ private class ClientZoneServiceTest {
 
 	@IsTest
 	static void createCZContractTest() {
-		List<ClientZone__c> clientZonesEmpty = [SELECT Id FROM ClientZone__c WHERE Account__c = :client.Id LIMIT 1];
-		System.assert(clientZonesEmpty.isEmpty());
-
 		User user = createUser('MrTester', 'mrTesterGlobal', 'closedBy9876');
 		List<SF_PersonManagementSOAPService.ClientRelationType> clientRelationTypes = new List<SF_PersonManagementSOAPService.ClientRelationType>();
 		clientRelationTypes.add(prepareAccountRelationType(validTo1, client.GlobalId__c, externalId1));
@@ -83,6 +80,56 @@ private class ClientZoneServiceTest {
 		System.assertEquals(clientZone.Role__c, clientRole8NoAccess);
 		System.assertEquals(clientZone.ClosedBy__c, user.Id);
 		System.assertEquals(clientZone.Account__c, client.Id);
+
+		List<AccountRelation__c> accountRelations = [
+			SELECT Id, Account__c, AccountRole__c, RelatedAccount__c, RelatedAccountRole__c, ValidTo__c
+			FROM AccountRelation__c
+		];
+		System.assertEquals(3, accountRelations.size());
+		Integer correctValidToCount = 0;
+		for (AccountRelation__c accountRelation : accountRelations) {
+			System.assertEquals(client.Id, accountRelation.RelatedAccount__c);
+			System.assertEquals('1502', accountRelation.RelatedAccountRole__c);
+			System.assertEquals('1501', accountRelation.AccountRole__c);
+			if (validTo1 == accountRelation.ValidTo__c || validTo2 == accountRelation.ValidTo__c || validTo3 == accountRelation.ValidTo__c) {
+				correctValidToCount++;
+			}
+		}
+		System.assertEquals(3, correctValidToCount);
+	}
+
+	@IsTest
+	static void createCZContractNoClosedBy() {
+		User user = createUser('MrTester', 'mrTesterGlobal', 'closedBy9876');
+		List<SF_PersonManagementSOAPService.ClientRelationType> clientRelationTypes = new List<SF_PersonManagementSOAPService.ClientRelationType>();
+		clientRelationTypes.add(prepareAccountRelationType(validTo1, client.GlobalId__c, externalId1));
+		clientRelationTypes.add(prepareAccountRelationType(validTo2, client.GlobalId__c, externalId2));
+		clientRelationTypes.add(prepareAccountRelationType(validTo3, client.GlobalId__c, externalId3));
+		SF_PersonManagementSOAPService.CreateCZContractRequestType clientZoneRequest = prepareCreateClientRequest(
+			clientRelationTypes,
+			globalId,
+			clientRole8NoAccess,
+			null
+		);
+
+		Test.startTest();
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
+		Test.stopTest();
+
+		System.assertEquals(false, czContractResponseType.isFault);
+		System.assertNotEquals(null, czContractResponseType.responseBody.clientZoneId);
+
+		List<ClientZone__c> clientZones = [SELECT Id, Name, ContractNumber__c, Username__c, VerificationPhone__c, Email__c, Role__c, ClosedBy__c, ExternalId__c, Account__c FROM ClientZone__c WHERE ExternalId__c = :czContractResponseType.responseBody.clientZoneId];
+		System.assertEquals(1, clientZones.size());
+		ClientZone__c clientZone = clientZones.get(0);
+		System.assertEquals(contractNumber, clientZone.Name);
+		System.assertEquals(contractNumber, clientZone.ContractNumber__c);
+		System.assertEquals(userName, clientZone.Username__c);
+		System.assertEquals(verPhone, clientZone.VerificationPhone__c);
+		System.assertEquals(mail, clientZone.Email__c);
+		System.assertEquals(clientRole8NoAccess, clientZone.Role__c);
+		System.assertEquals(null, clientZone.ClosedBy__c);
+		System.assertEquals(client.Id, clientZone.Account__c);
 
 		List<AccountRelation__c> accountRelations = [
 			SELECT Id, Account__c, AccountRole__c, RelatedAccount__c, RelatedAccountRole__c, ValidTo__c
@@ -208,6 +255,26 @@ private class ClientZoneServiceTest {
 		Test.stopTest();
 		System.assert(czContractResponseType.isFault);
 		System.assert(czContractResponseType.fault.message.contains('Record not found: User - CPU:'));
+	}
+
+	@IsTest
+	static void updateClientZoneTestFromLowerWhen7() {
+		String globalIdUpdate = 'globalIdUpdate';
+		Account account = createAccount('updateAcc', globalIdUpdate);
+		ClientZone__c clientZone = TestDataFactory.getClientZone(new ClientZone__c(
+			Status__c = '1',
+			Account__c = account.Id,
+			Role__c = '7'
+		));
+		insert clientZone;
+
+		SF_PersonManagementSOAPService.CreateCZContractRequestType clientZoneRequest = prepareCreateClientRequest(null, globalIdUpdate, '7', closedBy);
+		Test.startTest();
+		SF_PersonManagementSOAPService.CreateCZContractResponseType czContractResponseType = SF_PersonManagementSOAPService.createCZContract(clientZoneRequest);
+		Test.stopTest();
+
+		System.assertEquals(true, czContractResponseType.isFault);
+		System.assert(czContractResponseType.fault.message.startsWith('Record already exists'));
 	}
 
 	@IsTest
