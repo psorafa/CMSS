@@ -11,10 +11,10 @@
         <field>Account.Age__c</field>
     </columns>
     <columns>
-        <field>PC_EMAIL</field>
+        <field>PHONE1</field>
     </columns>
     <columns>
-        <field>PHONE1</field>
+        <field>PC_EMAIL</field>
     </columns>
     <columns>
         <field>ADDRESS1_ZIP</field>
@@ -26,38 +26,28 @@
         <field>ADDRESS1_STREET</field>
     </columns>
     <columns>
-        <field>Account.LastProductEndDate__c</field>
+        <field>Account.AccountStatus__c</field>
     </columns>
     <columns>
         <field>Account.AddressingNonpersonalized__c</field>
     </columns>
     <columns>
-        <field>Account.LastAmlReviewDate__c</field>
-    </columns>
-    <columns>
-        <field>Account.NextAmlReviewDate__c</field>
-    </columns>
-    <columns>
-        <field>Account.AccountStatus__c</field>
-    </columns>
-    <columns>
         <field>Account.PortfolioMngmtC__c</field>
     </columns>
     <filter>
-        <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
-            <column>Account.NextAmlReviewDate__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>lessOrEqual</operator>
-            <value>TODAY</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Account.NextAmlReviewDate__c</column>
+            <column>Account.HasCsProduct__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value/>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>IS_PARTNER</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
@@ -67,7 +57,7 @@
         <field>Account.PortfolioMngmtA__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Klienti bez OUFO</name>
+    <name>Klienti bez běžného účtu</name>
     <params>
         <name>co</name>
         <value>1</value>
