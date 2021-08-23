@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PMO</fullName>
     <active>true</active>
+    <compactLayoutAssignment>PMOCompactLayout</compactLayoutAssignment>
     <description>Pojištění majetku a odpovědnosti</description>
     <label>PMO</label>
     <picklistValues>
