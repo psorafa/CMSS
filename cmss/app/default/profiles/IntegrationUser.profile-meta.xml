@@ -3890,11 +3890,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Event.StatusReason__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Event.Street__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -5066,11 +5061,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Task.StatusReason__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

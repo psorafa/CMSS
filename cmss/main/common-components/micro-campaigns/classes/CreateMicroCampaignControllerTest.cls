@@ -56,7 +56,7 @@ private class CreateMicroCampaignControllerTest {
 
 		Account a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account];
 		Task t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-			Source__c, Status, StatusReason__c, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
+			Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
 			Location__c, Phone__c
 		FROM Task WHERE WhoId = :a.PersonContactId];
 
@@ -66,8 +66,7 @@ private class CreateMicroCampaignControllerTest {
 		System.assertEquals('Low', t.Priority);
 		System.assertEquals(data.task.productType, t.ProductType__c);
 		System.assertEquals('73', t.Source__c);
-		System.assertEquals('0', t.Status);
-		System.assertEquals('12', t.StatusReason__c);
+		System.assertEquals('1', t.Status);
 		System.assertEquals(data.task.subject, t.Subject);
 		System.assertEquals(Date.today(), t.ValidFrom__c);
 		System.assertEquals(Date.today().addMonths(3), t.ValidTo__c);

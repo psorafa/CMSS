@@ -20,8 +20,7 @@ private class MicroCampaignCreatorTest {
 			Priority = 'Low',
 			ProductType__c = '1',
 			Source__c = '73',
-			Status = '0',
-			StatusReason__c = '12',
+			Status = '1',
 			Subject = 'test subject',
 			ValidFrom__c = Date.today(),
 			ValidTo__c = Date.today().addMonths(3)
@@ -53,7 +52,7 @@ private class MicroCampaignCreatorTest {
 
 		Account a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account WHERE Id = :a1.Id];
 		Task t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-					Source__c, Status, StatusReason__c, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
+					Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
 					Location__c, Phone__c
 					FROM Task WHERE WhoId = :a.PersonContactId];
 
@@ -65,7 +64,6 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(taskTemplate.ProductType__c, t.ProductType__c);
 		System.assertEquals(taskTemplate.Source__c, t.Source__c);
 		System.assertEquals(taskTemplate.Status, t.Status);
-		System.assertEquals(taskTemplate.StatusReason__c, t.StatusReason__c);
 		System.assertEquals(taskTemplate.Subject, t.Subject);
 		System.assertEquals(taskTemplate.ValidFrom__c, t.ValidFrom__c);
 		System.assertEquals(taskTemplate.ValidTo__c, t.ValidTo__c);
@@ -78,7 +76,7 @@ private class MicroCampaignCreatorTest {
 
 		a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account WHERE Id = :a2.Id];
 		t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-			Source__c, Status, StatusReason__c, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
+			Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
 			Location__c, Phone__c
 		FROM Task WHERE WhoId = :a.PersonContactId];
 
@@ -90,7 +88,6 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(taskTemplate.ProductType__c, t.ProductType__c);
 		System.assertEquals(taskTemplate.Source__c, t.Source__c);
 		System.assertEquals(taskTemplate.Status, t.Status);
-		System.assertEquals(taskTemplate.StatusReason__c, t.StatusReason__c);
 		System.assertEquals(taskTemplate.Subject, t.Subject);
 		System.assertEquals(taskTemplate.ValidFrom__c, t.ValidFrom__c);
 		System.assertEquals(taskTemplate.ValidTo__c, t.ValidTo__c);
@@ -136,7 +133,7 @@ private class MicroCampaignCreatorTest {
 
 		Account a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account WHERE Id = :a1.Id];
 		Task t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-			Source__c, Status, StatusReason__c, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
+			Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
 			Location__c, Phone__c
 		FROM Task WHERE Asset__c = :ass1.Id];
 
@@ -148,7 +145,6 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(taskTemplate.ProductType__c, t.ProductType__c);
 		System.assertEquals(taskTemplate.Source__c, t.Source__c);
 		System.assertEquals(taskTemplate.Status, t.Status);
-		System.assertEquals(taskTemplate.StatusReason__c, t.StatusReason__c);
 		System.assertEquals(taskTemplate.Subject, t.Subject);
 		System.assertEquals(taskTemplate.ValidFrom__c, t.ValidFrom__c);
 		System.assertEquals(taskTemplate.ValidTo__c, t.ValidTo__c);
@@ -161,7 +157,7 @@ private class MicroCampaignCreatorTest {
 
 		a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account WHERE Id = :a2.Id];
 		t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-			Source__c, Status, StatusReason__c, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
+			Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
 			Location__c, Phone__c
 		FROM Task WHERE Asset__c = :ass2.Id];
 
@@ -173,7 +169,6 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(taskTemplate.ProductType__c, t.ProductType__c);
 		System.assertEquals(taskTemplate.Source__c, t.Source__c);
 		System.assertEquals(taskTemplate.Status, t.Status);
-		System.assertEquals(taskTemplate.StatusReason__c, t.StatusReason__c);
 		System.assertEquals(taskTemplate.Subject, t.Subject);
 		System.assertEquals(taskTemplate.ValidFrom__c, t.ValidFrom__c);
 		System.assertEquals(taskTemplate.ValidTo__c, t.ValidTo__c);
@@ -185,7 +180,7 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(a.Phone, t.Phone__c);
 
 		t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-			Source__c, Status, StatusReason__c, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
+			Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
 			Location__c, Phone__c
 		FROM Task WHERE Asset__c = :ass3.Id];
 
@@ -197,7 +192,6 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(taskTemplate.ProductType__c, t.ProductType__c);
 		System.assertEquals(taskTemplate.Source__c, t.Source__c);
 		System.assertEquals(taskTemplate.Status, t.Status);
-		System.assertEquals(taskTemplate.StatusReason__c, t.StatusReason__c);
 		System.assertEquals(taskTemplate.Subject, t.Subject);
 		System.assertEquals(taskTemplate.ValidFrom__c, t.ValidFrom__c);
 		System.assertEquals(taskTemplate.ValidTo__c, t.ValidTo__c);
