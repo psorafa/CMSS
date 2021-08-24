@@ -37,7 +37,7 @@
         "components" : [ {
           "componentAttributes" : {
             "height" : "700",
-            "recordId" : "01Z3N0000010KiGUAU"
+            "recordId" : "01Z3N000001Dq7dUAC"
           },
           "componentName" : "forceCommunity:dashboard",
           "id" : "42c02c4a-58f1-4729-ba88-9c0e57de1f0c",
@@ -100,7 +100,7 @@
       },
       "componentName" : "forceCommunity:richTextInline",
       "id" : "5b4bf658-6f6b-4447-95f5-9b793871d6cc",
-      "renderPriority" : "NEUTRAL",
+      "renderPriority" : "HIGHEST",
       "renditionMap" : { },
       "type" : "component"
     }, {
@@ -111,7 +111,7 @@
       },
       "componentName" : "forceCommunity:flowCommunity",
       "id" : "b6e67a5b-8ce5-4446-a693-7b9ea90c6c41",
-      "renderPriority" : "NEUTRAL",
+      "renderPriority" : "HIGH",
       "renditionMap" : { },
       "type" : "component"
     }, {
@@ -127,7 +127,7 @@
       },
       "componentName" : "forceCommunity:forceCommunityFeed",
       "id" : "b5465cbb-784d-4610-9645-0361d8fdc02e",
-      "renderPriority" : "NEUTRAL",
+      "renderPriority" : "HIGHEST",
       "renditionMap" : { },
       "type" : "component"
     }, {
@@ -143,7 +143,7 @@
       },
       "componentName" : "forceCommunity:createRecordButton",
       "id" : "f1f96391-81ee-4cb8-8fc4-243500ba91c6",
-      "renderPriority" : "NEUTRAL",
+      "renderPriority" : "HIGHEST",
       "renditionMap" : { },
       "type" : "component"
     }, {
@@ -165,7 +165,7 @@
       },
       "componentName" : "forceCommunity:objectHome",
       "id" : "821af24d-c189-430b-951e-617cf2372719",
-      "renderPriority" : "NEUTRAL",
+      "renderPriority" : "HIGHEST",
       "renditionMap" : { },
       "type" : "component"
     }, {
@@ -187,7 +187,7 @@
       },
       "componentName" : "forceCommunity:objectHome",
       "id" : "5a954d72-d747-483d-937e-0309545ee2e0",
-      "renderPriority" : "NEUTRAL",
+      "renderPriority" : "HIGHEST",
       "renditionMap" : { },
       "type" : "component"
     }, {
@@ -209,7 +209,7 @@
       },
       "componentName" : "forceCommunity:objectHome",
       "id" : "cbe25318-e04c-4184-945e-0a226f5a8277",
-      "renderPriority" : "NEUTRAL",
+      "renderPriority" : "HIGHEST",
       "renditionMap" : { },
       "type" : "component"
     }, {
@@ -231,7 +231,7 @@
       },
       "componentName" : "forceCommunity:objectHome",
       "id" : "828511f2-81a0-4a1f-8836-acf9202ac27b",
-      "renderPriority" : "NEUTRAL",
+      "renderPriority" : "HIGHEST",
       "renditionMap" : { },
       "type" : "component"
     } ],
