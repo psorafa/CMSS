@@ -2,30 +2,30 @@
 <StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <sorted>false</sorted>
     <standardValue>
-        <fullName>6</fullName>
-        <default>false</default>
-        <description>Nová</description>
-        <label>6</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>0</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
         <fullName>1</fullName>
         <default>false</default>
-        <description>Rozpracovaná</description>
-        <label>1</label>
+        <description>Nová</description>
+        <label>New</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>10</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
+        <fullName>2</fullName>
+        <default>false</default>
+        <description>Rozpracovaná</description>
+        <label>In Progress</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>20</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
         <fullName>3</fullName>
         <default>false</default>
         <description>Uzavřená pozitivně</description>
-        <label>3</label>
+        <label>Closed Positive</label>
         <closed>false</closed>
         <forecastCategory>Forecast</forecastCategory>
         <probability>99</probability>
@@ -35,7 +35,7 @@
         <fullName>5</fullName>
         <default>false</default>
         <description>Uzavřená negativně</description>
-        <label>5</label>
+        <label>Closed Negative</label>
         <closed>true</closed>
         <forecastCategory>Omitted</forecastCategory>
         <probability>0</probability>
@@ -45,7 +45,7 @@
         <fullName>7</fullName>
         <default>false</default>
         <description>Spárovaná</description>
-        <label>7</label>
+        <label>Paired</label>
         <closed>true</closed>
         <forecastCategory>Closed</forecastCategory>
         <probability>100</probability>
@@ -55,30 +55,10 @@
         <fullName>8</fullName>
         <default>false</default>
         <description>Expirovaná</description>
-        <label>8</label>
+        <label>Expired</label>
         <closed>true</closed>
         <forecastCategory>Omitted</forecastCategory>
         <probability>0</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>4</fullName>
-        <default>false</default>
-        <description>Zrušená</description>
-        <label>4</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>0</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>2</fullName>
-        <default>false</default>
-        <description>Blokovaná</description>
-        <label>2</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>50</probability>
         <won>false</won>
     </standardValue>
 </StandardValueSet>
