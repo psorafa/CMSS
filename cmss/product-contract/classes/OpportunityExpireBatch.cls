@@ -1,4 +1,5 @@
 public without sharing class OpportunityExpireBatch implements Database.Batchable<sObject>, Schedulable {
+	//System.schedule('Process expired opportunities','0 0 0 * * ?', new OpportunityExpireBatch());
 
     @testVisible
     private final OpportunityExpirationConfig__mdt cfg;
