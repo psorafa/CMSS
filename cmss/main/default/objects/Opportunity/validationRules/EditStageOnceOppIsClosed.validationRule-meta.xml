@@ -2,15 +2,15 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EditStageOnceOppIsClosed</fullName>
     <active>true</active>
-    <description>Once Opportunity is in stages 5 (Vyprodaná), 7 (Spárovaná) or 4 (Zrušená) the stage can&apos;t be changed again.</description>
+    <description>Once Opportunity is in stages 5 (Uzavřená negativně) or 7 (Spárovaná) the stage can&apos;t be changed again.</description>
     <errorConditionFormula>AND(
-				OR(
-        TEXT(PRIORVALUE(StageName))== &quot;5&quot;,
-								TEXT(PRIORVALUE(StageName))== &quot;7&quot;,
-								TEXT(PRIORVALUE(StageName))== &quot;4&quot;
-								),
-    ISCHANGED(StageName), 
-				$Profile.Name &lt;&gt; &apos;IntegrationUser&apos;
+ISCHANGED(StageName),
+!ISPICKVAL(StageName,&apos;8&apos;),
+CASE(PRIORVALUE(StageName),
+&quot;1&quot;,1,
+&quot;2&quot;,1,
+&quot;3&quot;,1,
+0) = 0
 )</errorConditionFormula>
-    <errorMessage>Stage change is not allowed once it is closed.</errorMessage>
+    <errorMessage>Stage change is not allowed once it is 5 or 7.</errorMessage>
 </ValidationRule>
