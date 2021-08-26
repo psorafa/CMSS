@@ -61,7 +61,6 @@ private class CreateMicroCampaignControllerTest {
 		FROM Task WHERE WhoId = :a.PersonContactId];
 
 		System.assertEquals(data.task.dueDate, t.ActivityDate);
-		System.assertEquals(UserInfo.getName(), t.Author__c);
 		System.assertEquals(data.task.category, t.Category__c);
 		System.assertEquals(data.task.description, t.Description);
 		System.assertEquals('Low', t.Priority);

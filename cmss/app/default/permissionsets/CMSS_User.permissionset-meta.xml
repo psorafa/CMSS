@@ -2851,7 +2851,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Event.Author__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3631,7 +3631,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Opportunity.Author__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3951,7 +3951,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Task.Author__c</field>
         <readable>true</readable>
     </fieldPermissions>
