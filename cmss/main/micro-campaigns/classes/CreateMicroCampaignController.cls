@@ -64,7 +64,6 @@ public with sharing class CreateMicroCampaignController {
 	private static Task prepareTaskTemplate(InputTask task, String assignee) {
 		return new Task(
 			ActivityDate = task.dueDate,
-			Author__c = UserInfo.getName(),
 			Category__c = task.category,
 			Description = task.description,
 			OwnerId = assignee,

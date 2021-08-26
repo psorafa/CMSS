@@ -14,7 +14,6 @@ private class MicroCampaignCreatorTest {
 	private static Task getTaskTemplate() {
 		return new Task(
 			ActivityDate = Date.today().addDays(15),
-			Author__c = 'Some',
 			Category__c = '1',
 			Description = 'test description',
 			OwnerId = null,
