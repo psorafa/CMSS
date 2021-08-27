@@ -133,10 +133,10 @@ public with sharing class OpportunityExpireBatchTest {
 
 		for (Opportunity op : opps) {
 			System.assert(
-				op.Name == 'TestAcc  TestOpp01' ||
-				op.Name == 'TestAcc  TestOpp02' ||
-				op.Name == 'TestAcc  TestOpp03' ||
-				op.Name == 'TestAcc  TestOpp05',
+				op.Name.contains('TestOpp01') ||
+				op.Name.contains('TestOpp02') ||
+				op.Name.contains('TestOpp03') ||
+				op.Name.contains('TestOpp05'),
 				'Invalid opp found: ' + op.Name
 			);
 		}
