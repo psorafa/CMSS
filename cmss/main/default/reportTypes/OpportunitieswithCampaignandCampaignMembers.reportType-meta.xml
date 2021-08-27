@@ -1077,11 +1077,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Owner.IsPortalSelfRegistered</field>
-            <table>Opportunity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Owner.SortingCode__c</field>
             <table>Opportunity</table>
         </columns>
