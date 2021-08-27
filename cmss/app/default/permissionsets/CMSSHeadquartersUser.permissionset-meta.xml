@@ -3532,6 +3532,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>LoanCaseDoc__c.TextShort__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>LoanCaseDoc__c.Text__c</field>
         <readable>true</readable>
     </fieldPermissions>
