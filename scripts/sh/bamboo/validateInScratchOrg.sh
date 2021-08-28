@@ -56,8 +56,6 @@ function finish {
 trap finish EXIT
 set -o xtrace
 
-#temp workaround for "session expired" bug
-sfdx force:org:list
 #workaround for "SyntaxError: Unexpected token < in JSON at position 1" bug
 sfdx force:config:set restDeploy=false
 #create scratch org
