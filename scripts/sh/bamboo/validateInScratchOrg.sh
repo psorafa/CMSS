@@ -56,8 +56,6 @@ function finish {
 trap finish EXIT
 set -o xtrace
 
-#temp workaround for "session expired" bug
-sfdx force:org:list
 #workaround for "SyntaxError: Unexpected token < in JSON at position 1" bug
 sfdx force:config:set restDeploy=false
 #create scratch org
@@ -82,6 +80,7 @@ pushWithTimeout $ALIAS cmss/customer-search/
 pushWithTimeout $ALIAS cmss/consent-icons/
 pushWithTimeout $ALIAS cmss/consent-management/
 pushWithTimeout $ALIAS cmss/activity-management/
+pushWithTimeout $ALIAS cmss/opportunity-management/
 pushWithTimeout $ALIAS cmss/portfolio-management/
 pushWithTimeout $ALIAS cmss/product-contract/
 pushWithTimeout $ALIAS cmss/case-management/
