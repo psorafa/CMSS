@@ -16,6 +16,11 @@
     <columns>SubveneBaseCurrentYear__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
+        <field>ASSET.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset.BuildingSavings</value>
+    </filters>
+    <filters>
         <field>SubveneBaseCurrentYear__c</field>
         <operation>lessThan</operation>
         <value>20000</value>
