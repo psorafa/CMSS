@@ -18,16 +18,25 @@
         <field>Asset$Account.Id</field>
     </columns>
     <columns>
+        <field>Asset$Account.PersonalIdentificationNr__c</field>
+    </columns>
+    <columns>
         <field>Asset$Account.BillingAddress</field>
     </columns>
     <columns>
         <field>Asset$Account.Phone</field>
     </columns>
     <columns>
+        <field>Asset$Account.PersonContact.Email</field>
+    </columns>
+    <columns>
         <field>Asset$Account.PortfolioMngmtA__c</field>
     </columns>
     <columns>
         <field>Asset$ClosingAgentId__c.CommissionAccountBase__c</field>
+    </columns>
+    <columns>
+        <field>Asset$ClosingAgentId__c.Email</field>
     </columns>
     <columns>
         <field>Asset$ClosingAgentId__c.SuperiorLevel2__c.CommissionAccountBase__c</field>
@@ -44,6 +53,23 @@
     <columns>
         <field>Asset$Status</field>
     </columns>
+    <filter>
+        <criteriaItems>
+            <column>Asset$ProductType__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Asset$Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>10008</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
@@ -56,12 +82,12 @@
         <value>1</value>
     </params>
     <reportType>Assets__c</reportType>
-    <scope>user</scope>
+    <scope>team</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>Asset$AccountOpening__c</dateColumn>
-        <interval>INTERVAL_CURRENT</interval>
+        <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>
