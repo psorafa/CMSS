@@ -300,7 +300,6 @@
         <fields>NAME</fields>
         <fields>CombinedAccountName__c</fields>
         <fields>Asset__c</fields>
-        <fields>Account__c</fields>
         <fields>LAST_ACTIVITY</fields>
         <relatedList>CampaignMember__c.Campaign__c</relatedList>
     </relatedLists>
