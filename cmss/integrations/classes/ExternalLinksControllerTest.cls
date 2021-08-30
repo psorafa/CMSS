@@ -8,10 +8,10 @@ private class ExternalLinksControllerTest {
         upsert settings;
 
         Test.startTest();
-        String url = ExternalLinksController.getNelBaseUrl();
+        IntegrationSettings__c urls = ExternalLinksController.getIntegrationSettings();
         Test.stopTest();
 
-        System.assertEquals(settings.NELBaseUrl__c, url);
+        System.assertEquals(settings.NELBaseUrl__c, urls.NELBaseUrl__c);
 	}
 
     @IsTest
