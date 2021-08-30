@@ -13,10 +13,6 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Campaign__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ExternalId__c</field>
             </layoutItems>
@@ -27,6 +23,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>CampaignStartDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Campaign__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
