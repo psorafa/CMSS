@@ -227,7 +227,23 @@
     "regionName" : "sfdcHiddenRegion",
     "type" : "region"
   }, {
-    "components" : [  {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:externalLinks",
+      "id" : "6bac2893-7b9f-48b2-b38e-8034b8c62264",
+      "renderPriority" : "HIGH",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "c:activeCampaignsContainer",
+      "id" : "6806fc7d-584c-49a3-9b84-1fef5e018e5c",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
       "componentAttributes" : {
         "tabsetConfig" : {
           "UUID" : "5bdd7246-ba92-434c-8366-977d8e61e60a",
