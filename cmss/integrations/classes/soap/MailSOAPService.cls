@@ -7,7 +7,8 @@ public class MailSOAPService {
 	private static final String faultEndpoint = 'http://service.cmss.cz/fault';
 
 	public class MailServicePort {
-		public String endpoint_x = 'http://wasvyvojesbi.cmss.local:11116/mail_service-2.0.0/MailService';
+		public String endpoint_x =
+			IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c + '/mail_service_v02/MailService';
 		public Map<String, String> inputHttpHeaders_x;
 		public Map<String, String> outputHttpHeaders_x;
 		public String clientCertName_x;
@@ -15,9 +16,9 @@ public class MailSOAPService {
 		public String clientCertPasswd_x;
 		public Integer timeout_x;
 		private transient String[] ns_map_type_info = new List<String>{
-			'http://service.cmss.cz/datamodel/mailservice/sendemail',
+			sendMailEndpoint,
 			'MailSOAPService',
-			'http://service.cmss.cz/fault',
+			faultEndpoint,
 			'MailSOAPService'
 		};
 
@@ -35,6 +36,7 @@ public class MailSOAPService {
 
 			Map<String, MailSOAPService.sendEmailResponse_element> response_map_x = new Map<String, MailSOAPService.sendEmailResponse_element>();
 			response_map_x.put('response_x', response_x);
+			System.debug('Request: ' + request_x);
 			WebServiceCallout.invoke(
 				this,
 				request_x,
@@ -100,8 +102,8 @@ public class MailSOAPService {
 			new SOAPCommonTypes.OutboundHttpHeader()
 				.addWssToHeader(
 					header,
-					IntegrationSettings__c.getOrgDefaults().MailServiceUsername__c,
-					IntegrationSettings__c.getOrgDefaults().MailServicePassword__c
+					IntegrationSettings__c.getOrgDefaults().EsbUsername__c,
+					IntegrationSettings__c.getOrgDefaults().EsbPassword__c
 				);
 			DOM.XmlNode body = envelope.addChildElement('Body', env_ns, 'soapenv');
 			return body.addChildElement('requestName', serviceNamespace, 'sendemail');
@@ -266,7 +268,7 @@ public class MailSOAPService {
 	}
 
 	public class AttachmentType {
-		Attachment attachment;
+		Attachment attachment; //TBD
 	}
 
 	//Extends http://service.cmss.cz/fault:CMSSFaultInfo

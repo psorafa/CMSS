@@ -3,11 +3,25 @@ public class SendNotificationHandler {
 	private String emailTemplateDevName;
 	private MailSOAPService.MailServicePort mailService;
 
-	private String senderEmail = 'someEmail@whatShouldItBe.com';
+	private String senderEmail = 'someEmail@whatShouldItBe.com'; //TODO
 	private String receiverEmail;
 	private String emailSubject;
 	@testVisible
 	private String emailBody;
+	private Map<String, String> specialVariableValues;
+
+	public SendNotificationHandler(
+		sObject onObject,
+		String emailTemplateDevName,
+		String receiverEmail,
+		Map<String, String> specialVariableValues
+	) {
+		this.onObject = onObject;
+		this.emailTemplateDevName = emailTemplateDevName;
+		this.receiverEmail = receiverEmail;
+		this.specialVariableValues = specialVariableValues;
+		this.mailService = new MailSOAPService.MailServicePort();
+	}
 
 	public SendNotificationHandler(sObject onObject, String emailTemplateDevName, String receiverEmail) {
 		this.onObject = onObject;
@@ -33,8 +47,8 @@ public class SendNotificationHandler {
 
 		while (finalText.contains('{!')) {
 			String fieldName = finalText.substringBetween('{!', '}');
-			if (fieldName == 'ORG_URL') {
-				finalText = finalText.replace('{!' + fieldName + '}', URL.getSalesforceBaseUrl().toExternalForm());
+			if (this.specialVariableValues != null && this.specialVariableValues.keySet().contains(fieldName)) {
+				finalText = finalText.replace('{!' + fieldName + '}', this.specialVariableValues.get(fieldName));
 			} else {
 				List<String> fieldRelation = fieldName.split('\\.');
 				SObject childObject = onObject;

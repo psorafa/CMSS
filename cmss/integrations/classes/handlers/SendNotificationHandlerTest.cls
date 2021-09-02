@@ -40,18 +40,31 @@ public class SendNotificationHandlerTest {
 		opportunity.Account = account;
 		insert opportunity;
 
-		SendNotificationHandler handler = new SendNotificationHandler(
+		ClientZone__c clientZone = new clientZone__c();
+		clientZone.ContractNumber__c = '1234';
+		clientZone.Account__c = account.Id;
+		insert clientZone;
+
+		SendNotificationHandler handlerWithSpecialVars = new SendNotificationHandler(
 			opportunity,
 			'UnfinishedContractNotification',
+			'mail@test.com',
+			new Map<String, String>{ 'DateOfCreation__c' => 'NOW', 'ORG_URL' => 'some url' }
+		);
+
+		SendNotificationHandler handler = new SendNotificationHandler(
+			clientZone,
+			'UnsignedContractNotification',
 			'mail@test.com'
 		);
 
 		Test.startTest();
+		handlerWithSpecialVars.handle();
 		handler.handle();
 		Test.stopTest();
 
-		System.assert(!handler.emailBody.contains('{!'));
-		System.assert(handler.emailBody.contains('Karel'));
-		System.assert(handler.emailBody.contains('Novák'));
+		System.assert(!handlerWithSpecialVars.emailBody.contains('{!'));
+		System.assert(handlerWithSpecialVars.emailBody.contains('Karel'));
+		System.assert(handlerWithSpecialVars.emailBody.contains('Novák'));
 	}
 }

@@ -4,7 +4,7 @@ public class ConsentCalloutService {
 	private static final String DT_NS = 'http://service.cmss.cz/person/ConsentService/v01/datatypes';
 
 	public class ConsentServicePort {
-		public String endpoint_x = IntegrationSettings__c.getOrgDefaults().ConsentServiceEndpoint__c + '/ConsentServiceWeb_v01/ConsentService';
+		public String endpoint_x = IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c + '/ConsentServiceWeb_v01/ConsentService';
 
 		public ConsentDataTypesService.DisableChannelConsentResponseBodyType disableChannelConsent_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.DisableChannelConsentRequestBodyType requestBody) {
 			DOM.Document doc = new DOM.Document();
@@ -146,8 +146,8 @@ public class ConsentCalloutService {
 			DOM.XmlNode header = envelope.addChildElement('Header', env_ns, 'soapenv');
 			new SOAPCommonTypes.OutboundHttpHeader().addWssToHeader(
 				header,
-				IntegrationSettings__c.getOrgDefaults().ConsentServiceUsername__c,
-				IntegrationSettings__c.getOrgDefaults().ConsentServicePassword__c
+				IntegrationSettings__c.getOrgDefaults().EsbUsername__c,
+				IntegrationSettings__c.getOrgDefaults().EsbPassword__c
 			);
 			DOM.XmlNode body = envelope.addChildElement('Body', env_ns, 'soapenv');
 			return body.addChildElement(requestName, DT_NS, 'dat');
