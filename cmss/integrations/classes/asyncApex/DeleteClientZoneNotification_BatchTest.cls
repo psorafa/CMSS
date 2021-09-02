@@ -43,7 +43,7 @@ public class DeleteClientZoneNotification_BatchTest {
 		insert new List<ClientZone__c>{ clientZone1, clientZone2 };
 
 		AccountRelation__c accountRelation = new AccountRelation__c();
-		accountRelation.RelationTypeNEL__c = '1';
+		accountRelation.AccountRole__c = '1501';
 		accountRelation.Account__c = account1.Id;
 		accountRelation.RelatedAccount__c = account2.Id;
 		insert accountRelation;

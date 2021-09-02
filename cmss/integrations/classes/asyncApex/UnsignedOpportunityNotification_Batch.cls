@@ -1,4 +1,4 @@
-public without sharing class UnsignedOpportunityNotification_Batch implements Database.Batchable<sObject>, Schedulable {
+public without sharing class UnsignedOpportunityNotification_Batch implements Database.Batchable<sObject>, Database.AllowsCallouts, Schedulable {
 	private DateTime actualDate;
 	static final Set<Integer> VALID_DAYS_FROM_CREATION = new Set<Integer>{ 3 };
 	static final String UNFINISHED_CONTRACT_TEMPLATE = 'UnfinishedContractNotification';
@@ -18,39 +18,51 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 				Category__c,
 				StageName,
 				ContractId,
-				//ContractNumber__c,
 				CreatedDateTime__c,
 				Owner.Email,
 				Account.PersonEmail,
 				Account.FirstName,
-				Account.LastName
+				Account.LastName,
+				Account.PortfolioMngmtC__c
 			FROM Opportunity
 			WHERE Category__c = '7' AND (StageName = '1' OR StageName = '2')
 		];
 	}
 
 	public void execute(Database.BatchableContext jobId, List<Opportunity> opportunities) {
-		for (Opportunity opportunity : opportunities) {
-			Integer numberOfDaysFromOppCreation = (Date.valueOf(opportunity.CreatedDateTime__c)
-				.daysBetween(Date.valueOf(actualDate)) + 1);
-			if (VALID_DAYS_FROM_CREATION.contains(numberOfDaysFromOppCreation)) {
-				if (opportunity?.Account?.PersonEmail != null) {
-					SendNotificationHandler userNotificationHandler = new SendNotificationHandler(
-						opportunity,
-						UNSIGNED_CONTRACT_TEMPLATE,
-						opportunity.Account.PersonEmail
-					);
-					userNotificationHandler.handle();
-				}
-				if (opportunity?.Owner?.Email != null) {
-					SendNotificationHandler ownerNotificationHandler = new SendNotificationHandler(
-						opportunity,
-						UNFINISHED_CONTRACT_TEMPLATE,
-						opportunity.Owner.Email
-					);
-					ownerNotificationHandler.handle();
+		try {
+			for (Opportunity opportunity : opportunities) {
+				Integer numberOfDaysFromOppCreation = (Date.valueOf(opportunity.CreatedDateTime__c)
+					.daysBetween(Date.valueOf(actualDate)) + 1);
+				if (VALID_DAYS_FROM_CREATION.contains(numberOfDaysFromOppCreation)) {
+					if (opportunity?.Account?.PersonEmail != null) {
+						SendNotificationHandler userNotificationHandler = new SendNotificationHandler(
+							opportunity,
+							UNSIGNED_CONTRACT_TEMPLATE,
+							opportunity.Account.PersonEmail,
+							new Map<String, String>{ 'ContractNumber__c' => 'TODO' }
+						);
+						userNotificationHandler.handle();
+					}
+					if (opportunity?.Owner?.Email != null && opportunity.Account.PortfolioMngmtC__c == null) {
+						SendNotificationHandler ownerNotificationHandler = new SendNotificationHandler(
+							opportunity,
+							UNFINISHED_CONTRACT_TEMPLATE,
+							opportunity.Owner.Email,
+							new Map<String, String>{
+								'ORG_URL' => URL.getSalesforceBaseUrl().toExternalForm(),
+								'DateOfCreation__c' => 'TODO'
+							}
+						);
+						ownerNotificationHandler.handle();
+					}
 				}
 			}
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
+			Logger.saveLogs();
 		}
 	}
 

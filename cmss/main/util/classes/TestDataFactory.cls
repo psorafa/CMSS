@@ -304,15 +304,9 @@ public class TestDataFactory {
 
 	public static IntegrationSettings__c getIntegrationSettings() {
 		return new IntegrationSettings__c(
-			ConsentServiceEndpoint__c = 'https://test.test',
-			ConsentServiceUsername__c = 'testusername',
-			ConsentServicePassword__c = 'testpass',
-			PortfolioManagementServiceEndpoint__c = 'https://test.test',
-			PortfolioManagementServiceUsername__c = 'testusername',
-			PortfolioManagementServicePassword__c = 'testpass',
-			MailServiceEndpoint__c = 'https://test.test',
-			MailServiceUsername__c = 'testusername',
-			MailServicePassword__c = 'testpass'
+			EsbEndpoint__c = 'https://test.test',
+			EsbUsername__c = 'testusername',
+			EsbPassword__c = 'testpass'
 		);
 	}
 
