@@ -113,14 +113,10 @@
     "type" : "region"
   }, {
     "components" : [ {
-      "componentAttributes" : {
-        "flowArguments" : "",
-        "flowLayout" : "oneColumn",
-        "flowName" : "ArrangeProduct"
-      },
-      "componentName" : "forceCommunity:flowCommunity",
-      "id" : "b834b3d4-5f96-4974-a1ab-7b7237da2b77",
-      "renderPriority" : "NEUTRAL",
+      "componentAttributes" : { },
+      "componentName" : "c:externalLinks",
+      "id" : "8e885b87-6512-4e06-8312-645a8babb659",
+      "renderPriority" : "HIGH",
       "renditionMap" : { },
       "type" : "component"
     }, {

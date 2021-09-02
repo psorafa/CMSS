@@ -228,13 +228,18 @@
     "type" : "region"
   }, {
     "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:externalLinks",
+      "id" : "6bac2893-7b9f-48b2-b38e-8034b8c62264",
+      "renderPriority" : "HIGH",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
       "componentAttributes" : {
-        "flowArguments" : "",
-        "flowLayout" : "oneColumn",
-        "flowName" : "ArrangeProduct"
+        "recordId" : "{!recordId}"
       },
-      "componentName" : "forceCommunity:flowCommunity",
-      "id" : "654a8ef1-c9a4-491c-b1aa-e92e72e4d89c",
+      "componentName" : "c:activeCampaignsContainer",
+      "id" : "6806fc7d-584c-49a3-9b84-1fef5e018e5c",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
