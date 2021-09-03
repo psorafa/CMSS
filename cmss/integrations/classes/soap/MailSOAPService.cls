@@ -27,10 +27,10 @@ public class MailSOAPService {
 			String xsi = 'http://www.w3.org/2001/XMLSchema-instance';
 			String xsd = 'http://www.w3.org/2001/XMLSchema';
 
-			DOM.XmlNode envelope = doc.createRootElement('Envelope', env, 'env');
+			DOM.XmlNode envelope = doc.createRootElement('Envelope', env, 'soapenv');
 			envelope.setNamespace('xsd', xsd);
 			envelope.setNamespace('xsi', xsi);
-			DOM.XmlNode header = envelope.addChildElement('Header', env, '');
+			DOM.XmlNode header = envelope.addChildElement('Header', env, 'soapenv');
 			new SOAPCommonTypes.OutboundHttpHeader()
 				.addWssToHeader(
 					header,
@@ -38,7 +38,7 @@ public class MailSOAPService {
 					IntegrationSettings__c.getOrgDefaults().EsbPassword__c
 				);
 
-			DOM.XmlNode body = envelope.addChildElement('Body', env, '');
+			DOM.XmlNode body = envelope.addChildElement('Body', env, 'soapenv');
 			return body;
 		}
 
