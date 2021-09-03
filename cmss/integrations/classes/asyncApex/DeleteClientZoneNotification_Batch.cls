@@ -32,49 +32,57 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 			for (ClientZone__c record : recordList) {
 				accountToClientZoneMap.put(record.Account__c, record);
 			}
-
 			Map<Id, AccountRelation__c> validAccountRelations = getAssociatedAccounts(accountToClientZoneMap.keySet());
 			Map<Id, Task> associatedTasks = getAssociatedTasks(accountToClientZoneMap.keySet());
 			Map<Id, Opportunity> associatedOpportunities = getAssociatedOpportunities(accountToClientZoneMap.keySet());
 
-			List<ClientZone__c> clientZonesToUpdate = new List<ClientZone__c>();
-
-			for (ClientZone__c clientZone : accountToClientZoneMap.values()) {
-				if (
-					!validAccountRelations.containsKey(clientZone.Account__c) ||
-					!associatedTasks.containsKey(clientZone.Account__c) ||
-					!associatedOpportunities.containsKey(clientZone.Account__c)
-				) {
-					if (
-						clientZone.CancelationNotificationSentDate__c == null &&
-						clientZone.CreatedDate__c < actualDate.addDays(-15)
-					) {
-						SendNotificationHandler handler = new SendNotificationHandler(
-							clientZone,
-							CANCELATION_TEMPLATE_NAME,
-							clientZone.Account__r.PersonEmail,
-							new Map<String, String>{ 'CANCELATION_DATE' => String.valueOf(this.actualDate.addDays(14)) }
-						);
-						handler.handle();
-						clientZone.CancelationNotificationSentDate__c = System.now();
-						clientZonesToUpdate.add(clientZone);
-					} else if (
-						clientZone.CancelationNotificationSentDate__c != null &&
-						clientZone.CancelationNotificationSentDate__c < actualDate.addDays(-15) &&
-						clientZone.CancelationNotificationSentDate__c > actualDate.addDays(-75)
-					) {
-						CancelCZContractHandler handler = new CancelCZContractHandler(clientZone);
-						handler.handle();
-					}
-				}
-			}
-			update clientZonesToUpdate;
+			processClientZones(accountToClientZoneMap, validAccountRelations, associatedTasks, associatedOpportunities);
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
 			throw e;
 		} finally {
 			Logger.saveLogs();
 		}
+	}
+
+	private void processClientZones(
+		Map<Id, ClientZone__c> accountToClientZoneMap,
+		Map<Id, AccountRelation__c> validAccountRelations,
+		Map<Id, Task> associatedTasks,
+		Map<Id, Opportunity> associatedOpportunities
+	) {
+		List<ClientZone__c> clientZonesToUpdate = new List<ClientZone__c>();
+
+		for (ClientZone__c clientZone : accountToClientZoneMap.values()) {
+			if (
+				!validAccountRelations.containsKey(clientZone.Account__c) ||
+				!associatedTasks.containsKey(clientZone.Account__c) ||
+				!associatedOpportunities.containsKey(clientZone.Account__c)
+			) {
+				if (
+					clientZone.CancelationNotificationSentDate__c == null &&
+					clientZone.CreatedDate__c < actualDate.addDays(-15)
+				) {
+					SendNotificationHandler handler = new SendNotificationHandler(
+						clientZone,
+						CANCELATION_TEMPLATE_NAME,
+						clientZone.Account__r.PersonEmail,
+						new Map<String, String>{ 'CANCELATION_DATE' => String.valueOf(this.actualDate.addDays(14)) }
+					);
+					handler.handle();
+					clientZone.CancelationNotificationSentDate__c = System.now();
+					clientZonesToUpdate.add(clientZone);
+				} else if (
+					clientZone.CancelationNotificationSentDate__c != null &&
+					clientZone.CancelationNotificationSentDate__c < actualDate.addDays(-15) &&
+					clientZone.CancelationNotificationSentDate__c > actualDate.addDays(-75)
+				) {
+					CancelCZContractHandler handler = new CancelCZContractHandler(clientZone);
+					handler.handle();
+				}
+			}
+		}
+		update clientZonesToUpdate;
 	}
 
 	private Map<Id, AccountRelation__c> getAssociatedAccounts(Set<Id> accountIds) {

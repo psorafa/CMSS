@@ -20,6 +20,7 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 				ContractId,
 				CreatedDateTime__c,
 				Owner.Email,
+				AccountId,
 				Account.PersonEmail,
 				Account.FirstName,
 				Account.LastName,
@@ -31,6 +32,8 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 
 	public void execute(Database.BatchableContext jobId, List<Opportunity> opportunities) {
 		try {
+			Map<Id, ClientZone__c> associatedClientZones = getAssociatedClientZones(opportunities);
+
 			for (Opportunity opportunity : opportunities) {
 				Integer numberOfDaysFromOppCreation = (Date.valueOf(opportunity.CreatedDateTime__c)
 					.daysBetween(Date.valueOf(actualDate)) + 1);
@@ -40,7 +43,12 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 							opportunity,
 							UNSIGNED_CONTRACT_TEMPLATE,
 							opportunity.Account.PersonEmail,
-							new Map<String, String>{ 'ContractNumber__c' => 'TODO' }
+							new Map<String, String>{
+								'ContractNumber__c' => '' +
+								String.valueOf(
+									associatedClientZones?.get(opportunity.AccountId)?.get('ContractNumber__c')
+								)
+							}
 						);
 						userNotificationHandler.handle();
 					}
@@ -49,10 +57,7 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 							opportunity,
 							UNFINISHED_CONTRACT_TEMPLATE,
 							opportunity.Owner.Email,
-							new Map<String, String>{
-								'ORG_URL' => URL.getSalesforceBaseUrl().toExternalForm(),
-								'DateOfCreation__c' => 'TODO'
-							}
+							new Map<String, String>{ 'ORG_URL' => URL.getSalesforceBaseUrl().toExternalForm() }
 						);
 						ownerNotificationHandler.handle();
 					}
@@ -64,6 +69,26 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 		} finally {
 			Logger.saveLogs();
 		}
+	}
+
+	private Map<Id, ClientZone__c> getAssociatedClientZones(List<Opportunity> opportunities) {
+		List<Id> accountIds = new List<Id>();
+		for (Opportunity opportunity : opportunities) {
+			accountIds.add(opportunity.AccountId);
+		}
+
+		Map<Id, ClientZone__c> accountsToClientZones = new Map<Id, ClientZone__c>();
+		List<ClientZone__c> clientZones = [
+			SELECT ContractNumber__c, Account__c
+			FROM ClientZone__c
+			WHERE Account__c IN :accountIds
+		];
+
+		for (ClientZone__c zone : clientZones) {
+			accountsToClientZones.put(zone.Account__c, zone);
+		}
+
+		return accountsToClientZones;
 	}
 
 	public void finish(Database.BatchableContext jobId) {
