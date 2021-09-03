@@ -227,7 +227,7 @@ public class PortfolioManagementCalloutService {
 		}
 	}
 	public class PortfolioManagementServicePort {
-		public String endpoint_x = IntegrationSettings__c.getOrgDefaults().PortfolioManagementServiceEndpoint__c + '/PortfolioManagementServiceWeb_v10/PortfolioManagementService';
+		public String endpoint_x = IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c + '/PortfolioManagementServiceWeb_v10/PortfolioManagementService';
 
 		private DOM.XmlNode populateDoc(DOM.Document doc) {
 			String env = 'http://schemas.xmlsoap.org/soap/envelope/';
@@ -240,8 +240,8 @@ public class PortfolioManagementCalloutService {
 			DOM.XmlNode header = envelope.addChildElement('Header', env, 'soapenv');
 			new SOAPCommonTypes.OutboundHttpHeader().addWssToHeader(
 				header,
-				IntegrationSettings__c.getOrgDefaults().ConsentServiceUsername__c,
-				IntegrationSettings__c.getOrgDefaults().ConsentServicePassword__c
+				IntegrationSettings__c.getOrgDefaults().EsbUsername__c,
+				IntegrationSettings__c.getOrgDefaults().EsbPassword__c
 			);
 			DOM.XmlNode body = envelope.addChildElement('Body', env, 'soapenv');
 			return body;

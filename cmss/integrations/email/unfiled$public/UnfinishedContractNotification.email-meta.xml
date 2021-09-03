@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Is sent to an opportunity owner to notify about unfinished contract</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Unfinished Contract Notification</name>
+    <style>none</style>
+    <subject>Nedokončená Smlouva o stavebním spoření v KZ, klient {!Account.FirstName} {!Account.LastName}, {!Id} </subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
