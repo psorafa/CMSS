@@ -3,7 +3,7 @@ public class SendNotificationHandler {
 	private String emailTemplateDevName;
 	private MailSOAPService.MailServicePort mailService;
 
-	private String senderEmail = 'someEmail@whatShouldItBe.com'; //TODO
+	private String senderEmail = 'noreply@csobstavebni.cz';
 	private String receiverEmail;
 	private String emailSubject;
 	@testVisible
@@ -78,9 +78,6 @@ public class SendNotificationHandler {
 	}
 	@TestVisible
 	private void sendEmailNotificaton() {
-		try {
-			mailService.sendEmail(receiverEmail, senderEmail, emailSubject, emailBody);
-		} catch (Exception e) {
-		}
+		mailService.sendEmail_Http(receiverEmail, senderEmail, emailSubject, emailBody);
 	}
 }

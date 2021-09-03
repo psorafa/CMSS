@@ -2,7 +2,42 @@
 
 @isTest
 public class MailSOAPServiceTest {
-	public class MailServiceMockImpl implements WebServiceMock {
+	public class MailSOAPServiceHttpMock implements HttpCalloutMock {
+		public HTTPResponse respond(HTTPRequest req) {
+			HttpResponse res = new HttpResponse();
+			res.setHeader('Content-Type', 'application/json');
+			DOM.Document responseDoc = new DOM.Document();
+			DOM.XmlNode envelope = responseDoc.createRootElement(
+				'Envelope',
+				'http://schemas.xmlsoap.org/soap/envelope/',
+				's'
+			);
+			DOM.XmlNode bodyNode = envelope.addChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/', null);
+
+			DOM.Document reqDoc = req.getBodyDocument();
+			DOM.XmlNode rootNode = reqDoc.getRootElement();
+			DOM.XmlNode reqBodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
+			DOM.XmlNode[] methodNode = reqBodyNode.getChildElements();
+			if (methodNode[0].getName() == 'sendEmail') {
+				DOM.XmlNode ResponseNode = bodyNode.addChildElement(
+					'sendEmailResponse',
+					'http://service.cmss.cz/mail',
+					null
+				);
+			} else if (methodNode[0].getName() == 'sendEmailWithAttachments') {
+				DOM.XmlNode ResponseNode = bodyNode.addChildElement(
+					'sendEmailWithAttachmentsResponse',
+					'http://service.cmss.cz/mail',
+					null
+				);
+			}
+			res.setBody(responseDoc.toXmlString());
+			res.setStatusCode(200);
+			return res;
+		}
+	}
+
+	public class MailSOAPServiceMockImpl implements WebServiceMock {
 		public void doInvoke(
 			Object stub,
 			Object request,
@@ -14,70 +49,58 @@ public class MailSOAPServiceTest {
 			String responseName,
 			String responseType
 		) {
-			System.debug(
-				LoggingLevel.INFO,
-				'MailSOAPServiceTest.doInvoke() - ' +
-				'\n request: ' +
-				request +
-				'\n response: ' +
-				response +
-				'\n endpoint: ' +
-				endpoint +
-				'\n soapAction: ' +
-				soapAction +
-				'\n requestName: ' +
-				requestName +
-				'\n responseNS: ' +
-				responseNS +
-				'\n responseName: ' +
-				responseName +
-				'\n responseType: ' +
-				responseType
-			);
-
 			if (request instanceof MailSOAPService.SendEmailType) {
-				response.put('response_x', new MailSOAPService.sendEmailResponse_element());
+				response.put('response_x', new MailSOAPService.sendEmailResponse_element(null));
 			} else if (request instanceof MailSOAPService.SendEmailWithAttachmentsType) {
-				response.put('response_x', new MailSOAPService.sendEmailWithAttachmentsResponse_element());
+				response.put('response_x', new MailSOAPService.sendEmailWithAttachmentsResponse_element(null));
 			}
 		}
 	}
 
 	@TestSetup
-	static void insertCustomSettings() {
-		IntegrationSettings__c intSet = TestDataFactory.getIntegrationSettings();
-		insert intSet;
+	static void makeData() {
+		insert TestDataFactory.getIntegrationSettings();
 	}
 
 	@isTest
 	static void coverGeneratedCodeTypes() {
-		Test.setMock(WebServiceMock.class, new MailServiceMockImpl());
+		Test.setMock(WebServiceMock.class, new MailSOAPServiceMockImpl());
 		MailSOAPService parentObject = new MailSOAPService();
-		new MailSOAPService.SendEmailType();
-		new MailSOAPService.SendEmailWithAttachmentsType();
-		new MailSOAPService.CMSSBusinessLogicFaultInfo();
-		new MailSOAPService.CMSSFaultInfo();
-		new MailSOAPService.CMSSSecurityFaultInfo();
-		new MailSOAPService.CMSSServiceFaultInfo();
-		new MailSOAPService.sendEmailResponse_element();
-		new MailSOAPService.sendEmailWithAttachmentsResponse_element();
+		DOM.Document doc = new DOM.Document();
+		DOM.XmlNode mockNode = doc.createRootElement('Envelope', 'http://schemas.xmlsoap.org/soap/envelope/', 'env');
+		new MailSOAPService.CMSSBusinessLogicFaultInfo(mockNode);
+		new MailSOAPService.CMSSFaultInfo(mockNode);
+		new MailSOAPService.CMSSSecurityFaultInfo(mockNode);
+		new MailSOAPService.CMSSServiceFaultInfo(mockNode);
+		MailSOAPService.SendEmailType Obj1 = new MailSOAPService.SendEmailType();
+		Obj1.populateXmlNode(mockNode);
+		MailSOAPService.SendEmailWithAttachmentsType Obj2 = new MailSOAPService.SendEmailWithAttachmentsType();
+		Obj2.populateXmlNode(mockNode);
+		MailSOAPService.CMSSBusinessLogicFaultInfo Obj3 = new MailSOAPService.CMSSBusinessLogicFaultInfo();
+		Obj3.populateXmlNode(mockNode);
+		MailSOAPService.CMSSFaultInfo Obj4 = new MailSOAPService.CMSSFaultInfo();
+		Obj4.populateXmlNode(mockNode);
+		MailSOAPService.CMSSSecurityFaultInfo Obj5 = new MailSOAPService.CMSSSecurityFaultInfo();
+		Obj5.populateXmlNode(mockNode);
+		MailSOAPService.CMSSServiceFaultInfo Obj6 = new MailSOAPService.CMSSServiceFaultInfo();
+		Obj6.populateXmlNode(mockNode);
+		new MailSOAPService.sendEmailResponse_element(null);
+		new MailSOAPService.sendEmailWithAttachmentsResponse_element(null);
 	}
-
 	@isTest
-	static void coverCodeForsendEmail() {
-		Test.setMock(WebServiceMock.class, new MailServiceMockImpl());
-		Test.startTest();
+	static void coverCodeForsendEmail_Http() {
+		Test.setMock(HttpCalloutMock.class, new MailSOAPServiceHttpMock());
 		MailSOAPService.MailServicePort testObject = new MailSOAPService.MailServicePort();
-		testObject.sendEmail(null, null, null, null);
+		Test.startTest();
+		testObject.sendEmail_Http(null, null, null, null);
 		Test.stopTest();
 	}
-
 	@isTest
-	static void coverCodeForsendEmailWithAttachments() {
-		Test.setMock(WebServiceMock.class, new MailServiceMockImpl());
-		Test.startTest();
+	static void coverCodeForsendEmailWithAttachments_Http() {
+		Test.setMock(HttpCalloutMock.class, new MailSOAPServiceHttpMock());
 		MailSOAPService.MailServicePort testObject = new MailSOAPService.MailServicePort();
-		testObject.sendEmailWithAttachments(null, null, null, null, null);
+		Test.startTest();
+		testObject.sendEmailWithAttachments_Http(null, null, null, null, null);
 		Test.stopTest();
 	}
 }

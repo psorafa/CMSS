@@ -22,39 +22,58 @@ public class MailSOAPService {
 			'MailSOAPService'
 		};
 
-		public void sendEmail(String Receiver, String Sender, String Subject, String Body) {
-			DOM.Document doc = new DOM.Document();
-			Dom.XmlNode methodNode = setupRequest(doc);
+		private DOM.XmlNode populateDoc(DOM.Document doc) {
+			String env = 'http://schemas.xmlsoap.org/soap/envelope/';
+			String xsi = 'http://www.w3.org/2001/XMLSchema-instance';
+			String xsd = 'http://www.w3.org/2001/XMLSchema';
 
-			MailSOAPService.SendEmailType request_x = new MailSOAPService.SendEmailType();
-			MailSOAPService.sendEmailResponse_element response_x;
-			request_x.Receiver = Receiver;
-			request_x.Sender = Sender;
-			request_x.Subject = Subject;
-			request_x.Body = Body;
-			request_x.populateXmlNode(methodNode);
+			DOM.XmlNode envelope = doc.createRootElement('Envelope', env, 'env');
+			envelope.setNamespace('xsd', xsd);
+			envelope.setNamespace('xsi', xsi);
+			DOM.XmlNode header = envelope.addChildElement('Header', env, '');
+			new SOAPCommonTypes.OutboundHttpHeader()
+				.addWssToHeader(
+					header,
+					IntegrationSettings__c.getOrgDefaults().EsbUsername__c,
+					IntegrationSettings__c.getOrgDefaults().EsbPassword__c
+				);
 
-			Map<String, MailSOAPService.sendEmailResponse_element> response_map_x = new Map<String, MailSOAPService.sendEmailResponse_element>();
-			response_map_x.put('response_x', response_x);
-			System.debug('Request: ' + request_x);
-			WebServiceCallout.invoke(
-				this,
-				request_x,
-				response_map_x,
-				new List<String>{
-					endpoint_x,
-					'http://services.cmss.cz/MailService/sendEmail',
-					serviceNamespace,
-					'sendEmailRequest',
-					serviceNamespace,
-					'sendEmailResponse',
-					'MailSOAPService.sendEmailResponse_element'
-				}
-			);
-			response_x = response_map_x.get('response_x');
+			DOM.XmlNode body = envelope.addChildElement('Body', env, '');
+			return body;
 		}
 
-		public void sendEmailWithAttachments(
+		public void sendEmail_Http(String Receiver, String Sender, String Subject, String Body) {
+			DOM.Document doc = new DOM.Document();
+			DOM.XmlNode reqBody = populateDoc(doc);
+			DOM.XmlNode methodNode = reqBody.addChildElement('sendEmail', serviceNamespace, '');
+			MailSOAPService.SendEmailType request_x = new MailSOAPService.SendEmailType(
+				Receiver,
+				Sender,
+				Subject,
+				Body
+			);
+			request_x.populateXmlNode(methodNode);
+
+			HttpRequest req = new HttpRequest();
+			req.setEndpoint(endpoint_x);
+			req.setMethod('POST');
+			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
+			req.setHeader('SOAPAction', 'http://services.cmss.cz/MailService/sendEmail');
+			req.setBodyDocument(doc);
+
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
+			Logger.saveLogs();
+			Http http = new Http();
+			HTTPResponse res = http.send(req);
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
+			Logger.saveLogs();
+			Dom.Document responseDoc = res.getBodyDocument();
+			Dom.XmlNode rootNode = responseDoc.getRootElement();
+			Dom.XmlNode bodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
+			Dom.XmlNode sendEmailResponseNode = bodyNode.getChildElement('sendEmailResponse', serviceNamespace);
+		}
+
+		public void sendEmailWithAttachments_Http(
 			String Receiver,
 			String Sender,
 			String Subject,
@@ -62,61 +81,48 @@ public class MailSOAPService {
 			MailSOAPService.AttachmentType[] Attachments
 		) {
 			DOM.Document doc = new DOM.Document();
-			Dom.XmlNode methodNode = setupRequest(doc);
-
-			MailSOAPService.SendEmailWithAttachmentsType request_x = new MailSOAPService.SendEmailWithAttachmentsType();
-			MailSOAPService.sendEmailWithAttachmentsResponse_element response_x;
-			request_x.Receiver = Receiver;
-			request_x.Sender = Sender;
-			request_x.Subject = Subject;
-			request_x.Body = Body;
-			request_x.Attachments = Attachments;
+			DOM.XmlNode reqBody = populateDoc(doc);
+			DOM.XmlNode methodNode = reqBody.addChildElement('sendEmailWithAttachments', serviceNamespace, '');
+			MailSOAPService.SendEmailWithAttachmentsType request_x = new MailSOAPService.SendEmailWithAttachmentsType(
+				Receiver,
+				Sender,
+				Subject,
+				Body,
+				Attachments
+			);
 			request_x.populateXmlNode(methodNode);
 
-			Map<String, MailSOAPService.sendEmailWithAttachmentsResponse_element> response_map_x = new Map<String, MailSOAPService.sendEmailWithAttachmentsResponse_element>();
-			response_map_x.put('response_x', response_x);
-			WebServiceCallout.invoke(
-				this,
-				request_x,
-				response_map_x,
-				new List<String>{
-					endpoint_x,
-					'http://services.cmss.cz/MailService/sendEmailWithAttachments',
-					serviceNamespace,
-					'sendEmailWithAttachmentsRequest',
-					serviceNamespace,
-					'sendEmailWithAttachmentsResponse',
-					'MailSOAPService.sendEmailWithAttachmentsResponse_element'
-				}
+			HttpRequest req = new HttpRequest();
+			req.setEndpoint(endpoint_x);
+			req.setMethod('POST');
+			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
+			req.setHeader('SOAPAction', 'http://services.cmss.cz/MailService/sendEmailWithAttachments');
+			req.setBodyDocument(doc);
+			Http http = new Http();
+			HTTPResponse res = http.send(req);
+			Dom.Document responseDoc = res.getBodyDocument();
+			Dom.XmlNode rootNode = responseDoc.getRootElement();
+			Dom.XmlNode bodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
+			Dom.XmlNode sendEmailWithAttachmentsResponseNode = bodyNode.getChildElement(
+				'sendEmailWithAttachmentsResponse',
+				serviceNamespace
 			);
-			response_x = response_map_x.get('response_x');
-		}
-
-		private Dom.XmlNode setupRequest(DOM.Document doc) {
-			String env_ns = 'http://schemas.xmlsoap.org/soap/envelope/';
-
-			DOM.XmlNode envelope = doc.createRootElement('Envelope', env_ns, 'soapenv');
-			envelope.setNamespace('mailservice', serviceNamespace);
-			envelope.setNamespace('sendemail', sendMailEndpoint);
-			DOM.XmlNode header = envelope.addChildElement('Header', env_ns, 'soapenv');
-			new SOAPCommonTypes.OutboundHttpHeader()
-				.addWssToHeader(
-					header,
-					IntegrationSettings__c.getOrgDefaults().EsbUsername__c,
-					IntegrationSettings__c.getOrgDefaults().EsbPassword__c
-				);
-			DOM.XmlNode body = envelope.addChildElement('Body', env_ns, 'soapenv');
-			return body.addChildElement('requestName', serviceNamespace, 'sendemail');
 		}
 	}
 
 	public class sendEmailResponse_element {
 		private transient String[] apex_schema_type_info = new List<String>{ serviceNamespace, 'true', 'false' };
 		private transient String[] field_order_type_info = new List<String>{};
+		public sendEmailResponse_element(DOM.XmlNode responseNode) {
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+		}
 	}
 	public class sendEmailWithAttachmentsResponse_element {
 		private transient String[] apex_schema_type_info = new List<String>{ serviceNamespace, 'true', 'false' };
 		private transient String[] field_order_type_info = new List<String>{};
+		public sendEmailWithAttachmentsResponse_element(DOM.XmlNode responseNode) {
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+		}
 	}
 
 	public class SendEmailType {
@@ -124,22 +130,6 @@ public class MailSOAPService {
 		public String Sender;
 		public String Subject;
 		public String Body;
-		public CommonMessageService.RequestHeader requestHeader;
-
-		public void populateXmlNode(Dom.XmlNode outerNode) {
-			Dom.XmlNode receiverNode = outerNode.addChildElement('Receiver', sendMailEndpoint, '');
-			receiverNode.addTextNode((this.Receiver == null) ? '' : this.Receiver);
-
-			Dom.XmlNode senderNode = outerNode.addChildElement('Sender', sendMailEndpoint, '');
-			senderNode.addTextNode((this.Sender == null) ? '' : this.Sender);
-
-			Dom.XmlNode subjectNode = outerNode.addChildElement('Subject', sendMailEndpoint, '');
-			subjectNode.addTextNode((this.Subject == null) ? '' : this.Subject);
-
-			Dom.XmlNode bodyNode = outerNode.addChildElement('Body', sendMailEndpoint, '');
-			bodyNode.addTextNode((this.Body == null) ? '' : this.Body);
-		}
-
 		private transient String[] Receiver_type_info = new List<String>{
 			'Receiver',
 			sendMailEndpoint,
@@ -172,16 +162,34 @@ public class MailSOAPService {
 			'1',
 			'false'
 		};
-		private transient String[] requestHeader_type_info = new List<String>{
-			'requestHeader',
-			sendMailEndpoint,
-			'RequestHeader',
-			'1',
-			'1',
-			'false'
-		};
 		private transient String[] apex_schema_type_info = new List<String>{ sendMailEndpoint, 'true', 'false' };
 		private transient String[] field_order_type_info = new List<String>{ 'Receiver', 'Sender', 'Subject', 'Body' };
+		public SendEmailType() {
+		}
+
+		public SendEmailType(String Receiver, String Sender, String Subject, String Body) {
+			this.Receiver = Receiver;
+			this.Sender = Sender;
+			this.Subject = Subject;
+			this.Body = Body;
+		}
+
+		public void populateXmlNode(Dom.XmlNode outerNode) {
+			Dom.XmlNode ReceiverNode = outerNode.addChildElement('Receiver', sendMailEndpoint, '');
+			if (this.Receiver != null) {
+				ReceiverNode.addTextNode(this.Receiver);
+			}
+			Dom.XmlNode SenderNode = outerNode.addChildElement('Sender', sendMailEndpoint, '');
+			if (this.Sender != null) {
+				SenderNode.addTextNode(this.Sender);
+			}
+			Dom.XmlNode SubjectNode = outerNode.addChildElement('Subject', sendMailEndpoint, '');
+			if (this.Subject != null) {
+				SubjectNode.addTextNode(this.Subject);
+			}
+			Dom.XmlNode BodyNode = outerNode.addChildElement('Body', sendMailEndpoint, '');
+			BodyNode.addTextNode((this.Body == null) ? '' : this.Body);
+		}
 	}
 
 	public class SendEmailWithAttachmentsType {
@@ -190,33 +198,6 @@ public class MailSOAPService {
 		public String Subject;
 		public String Body;
 		public MailSOAPService.AttachmentType[] Attachments;
-
-		public void populateXmlNode(Dom.XmlNode outerNode) {
-			Dom.XmlNode receiverNode = outerNode.addChildElement('Receiver', sendMailEndpoint, '');
-			receiverNode.addTextNode((this.Receiver == null) ? '' : this.Receiver);
-
-			Dom.XmlNode senderNode = outerNode.addChildElement('Sender', sendMailEndpoint, '');
-			senderNode.addTextNode((this.Sender == null) ? '' : this.Sender);
-
-			Dom.XmlNode subjectNode = outerNode.addChildElement('Subject', sendMailEndpoint, '');
-			subjectNode.addTextNode((this.Subject == null) ? '' : this.Subject);
-
-			Dom.XmlNode bodyNode = outerNode.addChildElement('Body', sendMailEndpoint, '');
-			bodyNode.addTextNode((this.Body == null) ? '' : this.Body);
-
-			Dom.XmlNode attachmentsNode = outerNode.addChildElement('Attachments', sendMailEndpoint, '');
-			if (this.Attachments != null) {
-				for (MailSOAPService.AttachmentType att : Attachments) {
-					Dom.XmlNode currentAttachmentNode = attachmentsNode.addChildElement(
-						'Attachment',
-						sendMailEndpoint,
-						''
-					);
-					currentAttachmentNode.addTextNode(String.valueOf(att.attachment));
-				}
-			}
-		}
-
 		private transient String[] Receiver_type_info = new List<String>{
 			'Receiver',
 			sendMailEndpoint,
@@ -265,10 +246,51 @@ public class MailSOAPService {
 			'Body',
 			'Attachments'
 		};
+		public SendEmailWithAttachmentsType() {
+		}
+		public SendEmailWithAttachmentsType(
+			String Receiver,
+			String Sender,
+			String Subject,
+			String Body,
+			MailSOAPService.AttachmentType[] Attachments
+		) {
+			this.Receiver = Receiver;
+			this.Sender = Sender;
+			this.Subject = Subject;
+			this.Body = Body;
+			this.Attachments = Attachments;
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode) {
+			Dom.XmlNode ReceiverNode = outerNode.addChildElement('Receiver', sendMailEndpoint, '');
+			if (this.Receiver != null) {
+				ReceiverNode.addTextNode(this.Receiver);
+			}
+			Dom.XmlNode SenderNode = outerNode.addChildElement('Sender', sendMailEndpoint, '');
+			if (this.Sender != null) {
+				SenderNode.addTextNode(this.Sender);
+			}
+			Dom.XmlNode SubjectNode = outerNode.addChildElement('Subject', sendMailEndpoint, '');
+			if (this.Subject != null) {
+				SubjectNode.addTextNode(this.Subject);
+			}
+			Dom.XmlNode BodyNode = outerNode.addChildElement('Body', sendMailEndpoint, '');
+			BodyNode.addTextNode((this.Body == null) ? '' : this.Body);
+
+			MailSOAPService.AttachmentType[] AttachmentsObj = this.Attachments;
+			if (AttachmentsObj != null) {
+				for (MailSOAPService.AttachmentType element : AttachmentsObj) {
+					Dom.XmlNode AttachmentsNode = outerNode.addChildElement('Attachments', sendMailEndpoint, '');
+					element.populateXmlNode(AttachmentsNode);
+				}
+			}
+		}
 	}
 
 	public class AttachmentType {
 		Attachment attachment; //TBD
+		public void populateXmlNode(Dom.XmlNode outerNode) {
+		}
 	}
 
 	//Extends http://service.cmss.cz/fault:CMSSFaultInfo
@@ -302,6 +324,39 @@ public class MailSOAPService {
 		};
 		private transient String[] apex_schema_type_info = new List<String>{ faultEndpoint, 'true', 'false' };
 		private transient String[] field_order_type_info = new List<String>{ 'message', 'cause', 'errorNumber' };
+		public CMSSBusinessLogicFaultInfo() {
+		}
+		public CMSSBusinessLogicFaultInfo(DOM.XmlNode responseNode) {
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			DOM.XmlNode messageNode = responseNode.getChildElement('message', faultEndpoint);
+			this.message = (messageNode == null) ? null : messageNode.getText();
+			nodesParsed.add(messageNode);
+			DOM.XmlNode causeNode = responseNode.getChildElement('cause', faultEndpoint);
+			if (causeNode == null) {
+				this.cause = null;
+			} else {
+				MailSOAPService.CMSSFaultInfo causeObj = new MailSOAPService.CMSSFaultInfo(causeNode);
+				nodesParsed.add(causeNode);
+				this.cause = causeObj;
+			}
+			DOM.XmlNode errorNumberNode = responseNode.getChildElement('errorNumber', faultEndpoint);
+			this.errorNumber = (errorNumberNode == null) ? null : Integer.valueOf(errorNumberNode.getText());
+			nodesParsed.add(errorNumberNode);
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode) {
+			Dom.XmlNode messageNode = outerNode.addChildElement('message', faultEndpoint, '');
+			messageNode.addTextNode((this.message == null) ? '' : this.message);
+
+			MailSOAPService.CMSSFaultInfo causeObj = this.cause;
+			Dom.XmlNode causeNode = outerNode.addChildElement('cause', faultEndpoint, '');
+			if (causeObj != null) {
+				causeObj.populateXmlNode(causeNode);
+			}
+			Dom.XmlNode errorNumberNode = outerNode.addChildElement('errorNumber', faultEndpoint, '');
+			if (this.errorNumber != null) {
+				errorNumberNode.addTextNode(String.valueOf(this.errorNumber));
+			}
+		}
 	}
 
 	public class CMSSFaultInfo {
@@ -325,6 +380,32 @@ public class MailSOAPService {
 		};
 		private transient String[] apex_schema_type_info = new List<String>{ faultEndpoint, 'true', 'false' };
 		private transient String[] field_order_type_info = new List<String>{ 'message', 'cause' };
+		public CMSSFaultInfo() {
+		}
+		public CMSSFaultInfo(DOM.XmlNode responseNode) {
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			DOM.XmlNode messageNode = responseNode.getChildElement('message', faultEndpoint);
+			this.message = (messageNode == null) ? null : messageNode.getText();
+			nodesParsed.add(messageNode);
+			DOM.XmlNode causeNode = responseNode.getChildElement('cause', faultEndpoint);
+			if (causeNode == null) {
+				this.cause = null;
+			} else {
+				MailSOAPService.CMSSFaultInfo causeObj = new MailSOAPService.CMSSFaultInfo(causeNode);
+				nodesParsed.add(causeNode);
+				this.cause = causeObj;
+			}
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode) {
+			Dom.XmlNode messageNode = outerNode.addChildElement('message', faultEndpoint, '');
+			messageNode.addTextNode((this.message == null) ? '' : this.message);
+
+			MailSOAPService.CMSSFaultInfo causeObj = this.cause;
+			Dom.XmlNode causeNode = outerNode.addChildElement('cause', faultEndpoint, '');
+			if (causeObj != null) {
+				causeObj.populateXmlNode(causeNode);
+			}
+		}
 	}
 
 	//Extends http://service.cmss.cz/fault:CMSSFaultInfo
@@ -372,6 +453,48 @@ public class MailSOAPService {
 			'errorNumber',
 			'errorNumberDetail'
 		};
+		public CMSSSecurityFaultInfo() {
+		}
+		public CMSSSecurityFaultInfo(DOM.XmlNode responseNode) {
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			DOM.XmlNode messageNode = responseNode.getChildElement('message', faultEndpoint);
+			this.message = (messageNode == null) ? null : messageNode.getText();
+			nodesParsed.add(messageNode);
+			DOM.XmlNode causeNode = responseNode.getChildElement('cause', faultEndpoint);
+			if (causeNode == null) {
+				this.cause = null;
+			} else {
+				MailSOAPService.CMSSFaultInfo causeObj = new MailSOAPService.CMSSFaultInfo(causeNode);
+				nodesParsed.add(causeNode);
+				this.cause = causeObj;
+			}
+			DOM.XmlNode errorNumberNode = responseNode.getChildElement('errorNumber', faultEndpoint);
+			this.errorNumber = (errorNumberNode == null) ? null : Integer.valueOf(errorNumberNode.getText());
+			nodesParsed.add(errorNumberNode);
+			DOM.XmlNode errorNumberDetailNode = responseNode.getChildElement('errorNumberDetail', faultEndpoint);
+			this.errorNumberDetail = (errorNumberDetailNode == null)
+				? null
+				: Integer.valueOf(errorNumberDetailNode.getText());
+			nodesParsed.add(errorNumberDetailNode);
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode) {
+			Dom.XmlNode messageNode = outerNode.addChildElement('message', faultEndpoint, '');
+			messageNode.addTextNode((this.message == null) ? '' : this.message);
+
+			MailSOAPService.CMSSFaultInfo causeObj = this.cause;
+			Dom.XmlNode causeNode = outerNode.addChildElement('cause', faultEndpoint, '');
+			if (causeObj != null) {
+				causeObj.populateXmlNode(causeNode);
+			}
+			Dom.XmlNode errorNumberNode = outerNode.addChildElement('errorNumber', faultEndpoint, '');
+			if (this.errorNumber != null) {
+				errorNumberNode.addTextNode(String.valueOf(this.errorNumber));
+			}
+			Dom.XmlNode errorNumberDetailNode = outerNode.addChildElement('errorNumberDetail', faultEndpoint, '');
+			if (this.errorNumberDetail != null) {
+				errorNumberDetailNode.addTextNode(String.valueOf(this.errorNumberDetail));
+			}
+		}
 	}
 
 	//Extends http://service.cmss.cz/fault:CMSSFaultInfo
@@ -396,5 +519,31 @@ public class MailSOAPService {
 		};
 		private transient String[] apex_schema_type_info = new List<String>{ faultEndpoint, 'true', 'false' };
 		private transient String[] field_order_type_info = new List<String>{ 'message', 'cause' };
+		public CMSSServiceFaultInfo() {
+		}
+		public CMSSServiceFaultInfo(DOM.XmlNode responseNode) {
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			DOM.XmlNode messageNode = responseNode.getChildElement('message', faultEndpoint);
+			this.message = (messageNode == null) ? null : messageNode.getText();
+			nodesParsed.add(messageNode);
+			DOM.XmlNode causeNode = responseNode.getChildElement('cause', faultEndpoint);
+			if (causeNode == null) {
+				this.cause = null;
+			} else {
+				MailSOAPService.CMSSFaultInfo causeObj = new MailSOAPService.CMSSFaultInfo(causeNode);
+				nodesParsed.add(causeNode);
+				this.cause = causeObj;
+			}
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode) {
+			Dom.XmlNode messageNode = outerNode.addChildElement('message', faultEndpoint, '');
+			messageNode.addTextNode((this.message == null) ? '' : this.message);
+
+			MailSOAPService.CMSSFaultInfo causeObj = this.cause;
+			Dom.XmlNode causeNode = outerNode.addChildElement('cause', faultEndpoint, '');
+			if (causeObj != null) {
+				causeObj.populateXmlNode(causeNode);
+			}
+		}
 	}
 }

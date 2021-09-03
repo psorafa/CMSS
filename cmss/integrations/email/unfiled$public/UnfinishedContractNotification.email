@@ -1,6 +1,6 @@
 Dobrý den,
 
-klient ve Vaší správě stavu {!Account.LastName} {!Account.FirstName}, nedokončil ve své Klientské zóně dne {!DateOfCreation__c} sjednání Smlouvy o stavebním spoření číslo. Prosím kontaktujte klienta za účelem ověření požadavku na sjednání smlouvy a případné pomoci s dokončením procesu sjednání. Další informace naleznete zde: <a href='{!ORG_URL}/{!Id}'>{!Id}</a>.
+klient ve Vaší správě stavu {!Account.LastName} {!Account.FirstName}, nedokončil ve své Klientské zóně dne {!CreatedDateTime__c} sjednání Smlouvy o stavebním spoření číslo. Prosím kontaktujte klienta za účelem ověření požadavku na sjednání smlouvy a případné pomoci s dokončením procesu sjednání. Další informace naleznete zde: <a href='{!ORG_URL}/{!Id}'>{!Id}</a>.
 
 S přáním příjemného dne
 
