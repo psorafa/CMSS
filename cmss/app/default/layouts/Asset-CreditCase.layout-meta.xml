@@ -309,8 +309,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>ObjectID__c</fields>
-        <fields>Priority__c</fields>
+        <fields>Account.NAME</fields>
         <fields>AssetsProductType__c</fields>
         <fields>RelationType__c</fields>
         <relatedList>AssetAccountRelation__c.Asset__c</relatedList>
