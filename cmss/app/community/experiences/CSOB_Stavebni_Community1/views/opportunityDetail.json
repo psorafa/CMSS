@@ -162,14 +162,6 @@
       }, {
         "components" : [ {
           "componentAttributes" : {
-            "richTextValue" : "<p><b>Pravidla používání chatu</b>:</p><p>1. Příjemce zadávejte pomocí znaku&nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví</p><p>2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu</p><p>3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob</p>"
-          },
-          "componentName" : "forceCommunity:richTextInline",
-          "id" : "f4edf0a9-b550-4b9c-9295-adc63dcde810",
-          "renditionMap" : { },
-          "type" : "component"
-        }, {
-          "componentAttributes" : {
             "context" : "RECORD",
             "recordId" : "{!recordId}",
             "width" : "MEDIUM"
@@ -191,6 +183,14 @@
           },
           "componentName" : "forceCommunity:forceCommunityFeed",
           "id" : "4e508b40-e81f-404c-9e74-0788e3fbbb66",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<p><b>Pravidla používání chatu</b>:</p><p>1. Příjemce zadávejte pomocí znaku&nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví</p><p>2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu</p><p>3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "f4edf0a9-b550-4b9c-9295-adc63dcde810",
           "renditionMap" : { },
           "type" : "component"
         } ],
