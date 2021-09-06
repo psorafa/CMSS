@@ -1,10 +1,12 @@
 public class AccountTriggerHandler extends TriggerHandler {
 	public override void beforeInsert() {
+		validateAccount(Trigger.new);
 		invalidateAccount(Trigger.new);
 		setOwner(Trigger.new);
 	}
 
 	public override void beforeUpdate() {
+		validateAccount(Trigger.new);
 		invalidateAccount(Trigger.new);
 		setOwner(Trigger.new);
 	}
@@ -46,6 +48,15 @@ public class AccountTriggerHandler extends TriggerHandler {
 		for (Account a : accounts) {
 			if (a.DateOfDeletion__c != null || a.AccountStatus__c == '4' || a.AccountStatus__c == '5') {
 				a.IsInvalid__c = true;
+			}
+		}
+	}
+
+	@TestVisible
+	private static void validateAccount(List<Account> accounts) {
+		for (Account a : accounts) {
+			if (a.IsInvalid__c == true && a.DateOfDeletion__c == null && a.AccountStatus__c != '5') {
+				a.IsInvalid__c = false;
 			}
 		}
 	}
