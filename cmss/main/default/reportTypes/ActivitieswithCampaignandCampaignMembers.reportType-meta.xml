@@ -338,11 +338,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>StatusReason__c</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Street__c</field>
             <table>Activity</table>
         </columns>
@@ -404,6 +399,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>WebLink__c</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TaskResult__c</field>
             <table>Activity</table>
         </columns>
         <masterLabel>Activities</masterLabel>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Výsledek</label>
+    <name>TaskResult__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Má zájem / Schůzka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2</masterLabel>
+        <translation>Nemá zájem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>Nezastižen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>Chyba dat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Naplánováno</translation>
+    </picklistValues>
+</CustomFieldTranslation>

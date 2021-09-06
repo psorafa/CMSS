@@ -4429,6 +4429,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Event.TaskResult__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Event.Topic__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5660,6 +5665,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.Summary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.TaskResult__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
