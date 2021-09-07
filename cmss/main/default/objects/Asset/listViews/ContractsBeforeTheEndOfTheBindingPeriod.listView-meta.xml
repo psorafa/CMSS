@@ -4,8 +4,6 @@
     <columns>ASSET.NAME</columns>
     <columns>PersonalIdentificationNr__c</columns>
     <columns>ACCOUNT.NAME</columns>
-    <columns>AddressZipCode__c</columns>
-    <columns>AddressCity__c</columns>
     <columns>ProductCloseDate__c</columns>
     <columns>Tariff__c</columns>
     <columns>TargetAmount__c</columns>
@@ -13,6 +11,8 @@
     <columns>EvaluationNumber__c</columns>
     <columns>ContractConditions__c</columns>
     <columns>ClosingAgentId__c</columns>
+    <columns>PortfolioMngmtA__c</columns>
+    <columns>CommissionAccountBase__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>ProductCloseDate__c</field>

@@ -133,6 +133,8 @@
         <searchResultsAdditionalFields>ProductCloseDate__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ClosingAgentId__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>StateCode__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PortfolioMngmtA__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CommissionAccountBase__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>
