@@ -16,7 +16,7 @@
         <value>3</value>
     </filters>
     <filters>
-        <field>StateCode__c</field>
+        <field>OPPORTUNITY.CLOSED</field>
         <operation>equals</operation>
         <value>0</value>
     </filters>

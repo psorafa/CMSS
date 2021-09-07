@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <valueTranslation>
-        <masterLabel>1</masterLabel>
-        <translation>Dokončeno</translation>
+        <masterLabel>New</masterLabel>
+        <translation>Nová</translation>
     </valueTranslation>
     <valueTranslation>
-        <masterLabel>2</masterLabel>
-        <translation>Zrušeno</translation>
+        <masterLabel>Planned</masterLabel>
+        <translation>Naplánovaná</translation>
     </valueTranslation>
     <valueTranslation>
-        <masterLabel>3</masterLabel>
-        <translation>Naplánováno</translation>
+        <masterLabel>Closed positive</masterLabel>
+        <translation>Uzavřená pozitivně</translation>
     </valueTranslation>
     <valueTranslation>
-        <masterLabel>0</masterLabel>
-        <translation>Otevřeno</translation>
+        <masterLabel>Closed negative</masterLabel>
+        <translation>Uzavřená negativně</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Expired</masterLabel>
+        <translation>Expirovaná</translation>
     </valueTranslation>
 </StandardValueSetTranslation>

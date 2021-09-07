@@ -70,8 +70,7 @@ public with sharing class CreateMicroCampaignController {
 			Priority = 'Low',
 			ProductType__c = task.productType,
 			Source__c = '73',
-			Status = '0',
-			StatusReason__c = '12',
+			Status = '1',
 			Subject = task.subject,
 			ValidFrom__c = Date.today(),
 			ValidTo__c = Date.today().addMonths(3)

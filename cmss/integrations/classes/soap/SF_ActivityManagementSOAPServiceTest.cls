@@ -52,7 +52,7 @@ private class SF_ActivityManagementSOAPServiceTest {
 		Task queriedTask = [
 			SELECT
 				Id, Type, Description, CallDirectionCode__c, InternalAttendee__c, Phone__c, ActivityDate, Status, 
-                StatusReason__c, Subject, ValidTo__c, Result__c, OwnerId, UpdatedBy__c, Author__c, WhatId,
+                Subject, ValidTo__c, Result__c, OwnerId, UpdatedBy__c, Author__c, WhatId,
                 Email__c, IsVisibleForNel__c, OpportunityExternalId__c, Location__c, PlannedToDate__c, WebLink__c, City__c,
                 HouseNumber__c, PostCode__c, Street__c, IsKZMessage__c, IsRead__c, WhoId, ValidFrom__c
 			FROM Task
@@ -68,7 +68,6 @@ private class SF_ActivityManagementSOAPServiceTest {
         System.assertEquals(queriedTask.Phone__c, actType.phoneNumber);
         System.assertEquals(queriedTask.ActivityDate, actType.dueDate);
         System.assertEquals(queriedTask.Status, actType.stateCode);
-        System.assertEquals(queriedTask.StatusReason__c, actType.statusCode);
         System.assertEquals(queriedTask.Subject, actType.name);
         System.assertEquals(queriedTask.ValidTo__c, actType.validTo);
         System.assertEquals(queriedTask.Result__c, actType.result);
@@ -146,7 +145,7 @@ private class SF_ActivityManagementSOAPServiceTest {
 		Task queriedTask = [
 			SELECT
 				Id, Type, Description, CallDirectionCode__c, InternalAttendee__c, Phone__c, ActivityDate, Status, 
-                StatusReason__c, Subject, ValidTo__c, Result__c, OwnerId, UpdatedBy__c, Author__c, WhatId,
+                Subject, ValidTo__c, Result__c, OwnerId, UpdatedBy__c, Author__c, WhatId,
                 Email__c, IsVisibleForNel__c, OpportunityExternalId__c, Location__c, PlannedToDate__c, WebLink__c, City__c,
                 HouseNumber__c, PostCode__c, Street__c, IsKZMessage__c, IsRead__c, WhoId, ValidFrom__c
 			FROM Task
@@ -162,7 +161,6 @@ private class SF_ActivityManagementSOAPServiceTest {
         System.assertEquals(queriedTask.Phone__c, actType.phoneNumber);
         System.assertEquals(queriedTask.ActivityDate, actType.dueDate);
         System.assertEquals(queriedTask.Status, actType.stateCode);
-        System.assertEquals(queriedTask.StatusReason__c, actType.statusCode);
         System.assertEquals(queriedTask.Subject, actType.name);
         System.assertEquals(queriedTask.ValidTo__c, actType.validTo);
         System.assertEquals(queriedTask.Result__c, actType.result);

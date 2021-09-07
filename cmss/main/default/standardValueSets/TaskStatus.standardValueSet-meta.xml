@@ -3,26 +3,38 @@
     <sorted>false</sorted>
     <standardValue>
         <fullName>1</fullName>
-        <default>false</default>
-        <label>1</label>
-        <closed>true</closed>
+        <default>true</default>
+        <label>New</label>
+        <closed>false</closed>
     </standardValue>
     <standardValue>
         <fullName>0</fullName>
-        <default>true</default>
+        <default>false</default>
         <label>0</label>
         <closed>false</closed>
     </standardValue>
     <standardValue>
         <fullName>2</fullName>
         <default>false</default>
-        <label>2</label>
-        <closed>true</closed>
+        <label>Planned</label>
+        <closed>false</closed>
     </standardValue>
     <standardValue>
         <fullName>3</fullName>
         <default>false</default>
-        <label>3</label>
-        <closed>false</closed>
+        <label>Closed positive</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>4</fullName>
+        <default>false</default>
+        <label>Closed negative</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>5</fullName>
+        <default>false</default>
+        <label>Expired</label>
+        <closed>true</closed>
     </standardValue>
 </StandardValueSet>

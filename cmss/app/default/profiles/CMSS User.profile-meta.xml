@@ -4225,11 +4225,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Event.StatusReason__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Event.Street__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -5035,11 +5030,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Opportunity.StateCode__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Opportunity.TotalOpportunityQuantity</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -5061,11 +5051,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.ValidTo__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityStateCodeMapping__mdt.StateCode__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5431,11 +5416,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Task.StatusReason__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5873,9 +5853,6 @@
     <layoutAssignments>
         <layout>Opportunity-LACRLayout</layout>
         <recordType>Opportunity.NotEditable</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>OpportunityStateCodeMapping__mdt-Opportunity State Code Mapping Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PensionStrategy__c-Pension Strategy Layout</layout>

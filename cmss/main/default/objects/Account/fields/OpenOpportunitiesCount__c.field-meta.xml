@@ -5,9 +5,9 @@
     <externalId>false</externalId>
     <label>Open Opportunities Count</label>
     <summaryFilterItems>
-        <field>Opportunity.StateCode__c</field>
+        <field>Opportunity.IsClosed</field>
         <operation>equals</operation>
-        <value>Open</value>
+        <value>false</value>
     </summaryFilterItems>
     <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
     <summaryOperation>count</summaryOperation>
