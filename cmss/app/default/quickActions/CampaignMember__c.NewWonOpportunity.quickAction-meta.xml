@@ -11,7 +11,7 @@
     </fieldOverrides>
     <fieldOverrides>
         <field>Name</field>
-        <formula>CampaignMember__c.Account__r.Name &amp;&apos; - &apos;&amp; text(TODAY()) &amp;&apos; - &apos;&amp; CampaignMember__c.Campaign__r.Product__r.Name</formula>
+        <formula>CampaignMember__c.Account__r.Name &amp;&apos; - &apos;&amp; text(TODAY()) &amp;&apos; - &apos;&amp; Text(CampaignMember__c.Campaign__r.Product__c)</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>StageName</field>
