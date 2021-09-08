@@ -1,4 +1,4 @@
-trigger CampaignTrigger on Campaign(
+trigger CampaignMemberTrigger on Campaign(
 	before insert,
 	before update,
 	before delete,
