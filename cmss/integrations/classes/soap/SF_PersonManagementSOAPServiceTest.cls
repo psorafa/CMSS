@@ -6,6 +6,7 @@ private class SF_PersonManagementSOAPServiceTest {
 	private static String prefixTitle = 'prefix';
 	private static String suffixTitle = 'suffix';
 	private static String clientGlobalId = '0123456789';
+	private static String clientExternalId = '1234567890';
 	private static Date birthDate = Date.today().addYears(-20);
     private static String gender = 'male';
     private static String citizenship = '3';
@@ -53,7 +54,7 @@ private class SF_PersonManagementSOAPServiceTest {
 		System.assertEquals(prefixTitle, account.PersonTitle);
 		System.assertEquals(suffixTitle, account.Suffix);
 		System.assertEquals(clientGlobalId, account.GlobalId__c);
-		System.assertEquals(clientGlobalId, account.ExternalId__c);
+		System.assertEquals(clientExternalId, account.ExternalId__c);
 		System.assertEquals(birthDate, account.Birthdate__c);
         System.assertEquals(gender, account.Gender__c);
         System.assertEquals(citizenship, account.Nationality__c);
@@ -137,7 +138,7 @@ private class SF_PersonManagementSOAPServiceTest {
 	}
 
 	@IsTest
-	static void createClient_alreadyExists() {
+	static void createClient_alreadyExistsByGlobalId() {
 		insert new Account(
 			Name = 'existing',
 			GlobalId__c = clientGlobalId
@@ -153,6 +154,25 @@ private class SF_PersonManagementSOAPServiceTest {
 		System.assert(response.isFault);
 		System.assertEquals(202, response.fault.errorNumber);
 		System.assertEquals('Record already exists: Client - Global ID: ' + clientGlobalId, response.fault.message);
+	}
+
+    @IsTest
+	static void createClient_alreadyExistsByExternalId() {
+		insert new Account(
+			Name = 'existing',
+			ExternalId__c = clientExternalId
+		);
+		createUser('testUserSpaA', 'spsA');
+		createUser('testUserSpaC', 'spsC');
+		SF_PersonManagementSOAPService.CreateClientRequestType clientRequest = prepareCreateClientRequest(false, false);
+
+		Test.startTest();
+		SF_PersonManagementSOAPService.CreateClientResponseType response = SF_PersonManagementSOAPService.createClient(clientRequest);
+		Test.stopTest();
+
+		System.assert(response.isFault);
+		System.assertEquals(202, response.fault.errorNumber);
+		System.assertEquals('Record already exists: Client - External ID: ' + clientExternalId, response.fault.message);
 	}
 
 	private static SF_PersonManagementSOAPService.CreateClientRequestType prepareCreateClientRequest(Boolean personAccount, Boolean createPersonCommunications) {
@@ -174,7 +194,7 @@ private class SF_PersonManagementSOAPServiceTest {
 		requestBody.client.prefixTitle = prefixTitle;
 		requestBody.client.suffixTitle = suffixTitle;
 		requestBody.client.clientGlobalId = clientGlobalId;
-		requestBody.client.externalId = clientGlobalId;
+		requestBody.client.externalId = clientExternalId;
 		requestBody.client.birthDate = birthDate;
         requestBody.client.gender = gender;
         requestBody.client.citizenship = citizenship;

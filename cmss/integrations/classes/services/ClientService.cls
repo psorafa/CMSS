@@ -12,8 +12,11 @@ public with sharing class ClientService {
 	}
 
 	public static Id insertAccount(SF_PersonManagementSOAPService.ClientType clientType) {
-		if (accountAlreadyExists(clientType.clientGlobalId)) {
+		if (accountAlreadyExists(clientType.clientGlobalId, 'GlobalId__c')) {
 			throw new SOAPCommonTypes.BusinessException(202, 'Record already exists: Client - Global ID: ' + clientType.clientGlobalId);
+		}
+        if (accountAlreadyExists(clientType.externalId, 'ExternalId__c')) {
+			throw new SOAPCommonTypes.BusinessException(202, 'Record already exists: Client - External ID: ' + clientType.externalId);
 		}
 		Account client = new Account(
 			SbId__c = clientType.personNumber,
@@ -88,10 +91,17 @@ public with sharing class ClientService {
 		contactInfoList.add(contactInfo);
 	}
 
-	private static Boolean accountAlreadyExists(String globalId) {
-		for (Account a : [SELECT Id FROM Account WHERE GlobalId__c = :globalId LIMIT 1]) {
-			return true;
+	private static Boolean accountAlreadyExists(String id, String uniqueFieldName) {
+		List<Account> duplicates = Database.query(
+			'SELECT Id FROM Account WHERE ' +
+			uniqueFieldName +
+			' = ' +
+			'\'' + id + '\'' +
+			' LIMIT 1'
+		);
+		if (duplicates.isEmpty()) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 }
