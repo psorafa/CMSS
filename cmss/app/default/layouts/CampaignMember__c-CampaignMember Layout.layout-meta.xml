@@ -114,6 +114,19 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
+        <fields>TASK.SUBJECT</fields>
+        <fields>TASK.STATUS</fields>
+        <fields>TASK.PRIORITY</fields>
+        <fields>TASK.DUE_DATE</fields>
+        <fields>ACTIVITY.TASK</fields>
+        <fields>TASK.WHO_NAME</fields>
+        <fields>TASK.WHAT_NAME</fields>
+        <fields>TASK.CLOSED</fields>
+        <fields>CORE.USERS.FULL_NAME</fields>
+        <fields>TASK.LAST_UPDATE</fields>
+        <relatedList>Activity.CampaignMember__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <excludeButtons>NewEvent</excludeButtons>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
