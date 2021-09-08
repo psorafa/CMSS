@@ -15,9 +15,7 @@
 				</div>
 				<div class="slds-media__body">
 					<h2 class="slds-card__header-title">
-						<span class="slds-card__header-link slds-truncate">
-							{headerTitle}
-						</span>
+						<span class="slds-card__header-link slds-truncate"> {headerTitle} </span>
 					</h2>
 				</div>
 			</header>
@@ -26,10 +24,11 @@
 			<lightning-spinner if:true={loading}></lightning-spinner>
 			<template if:true={anyData} class="slds-m-left_small slds-m-bottom_small">
 				<lightning-datatable
-						key-field="Id"
-						data={records}
-						columns={colsData}
-						hide-checkbox-column="true"
+					class="slds-max-medium-table_stacked"
+					key-field="Id"
+					data={records}
+					columns={colsData}
+					hide-checkbox-column="true"
 				></lightning-datatable>
 			</template>
 			<template if:true={error}>
