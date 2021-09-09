@@ -313,6 +313,14 @@
     <relatedLists>
         <fields>Name</fields>
         <fields>Asset</fields>
+        <fields>RelationshipType</fields>
+        <fields>FromDate</fields>
+        <fields>ToDate</fields>
+        <relatedList>Primary Assets</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>Name</fields>
+        <fields>Asset</fields>
         <fields>ProductTypeAssetId__c</fields>
         <fields>RelatedAsset</fields>
         <fields>ProductTypeRelatedAsset__c</fields>
