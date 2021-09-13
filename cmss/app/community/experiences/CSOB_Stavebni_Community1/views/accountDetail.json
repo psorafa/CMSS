@@ -228,13 +228,18 @@
     "type" : "region"
   }, {
     "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:externalLinks",
+      "id" : "6bac2893-7b9f-48b2-b38e-8034b8c62264",
+      "renderPriority" : "HIGH",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
       "componentAttributes" : {
-        "flowArguments" : "",
-        "flowLayout" : "oneColumn",
-        "flowName" : "ArrangeProduct"
+        "recordId" : "{!recordId}"
       },
-      "componentName" : "forceCommunity:flowCommunity",
-      "id" : "654a8ef1-c9a4-491c-b1aa-e92e72e4d89c",
+      "componentName" : "c:activeCampaignsContainer",
+      "id" : "6806fc7d-584c-49a3-9b84-1fef5e018e5c",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
@@ -305,14 +310,6 @@
       }, {
         "components" : [ {
           "componentAttributes" : {
-            "richTextValue" : "<p><br></p><p><b>﻿Pravidla používání chatu</b>:</p><p>1. Příjemce zadávejte pomocí znaku&nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví</p><p>2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu</p><p>3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob</p>"
-          },
-          "componentName" : "forceCommunity:richTextInline",
-          "id" : "41b8eb9c-d27c-4bcb-84bb-a9f914e6f549",
-          "renditionMap" : { },
-          "type" : "component"
-        }, {
-          "componentAttributes" : {
             "context" : "RECORD",
             "recordId" : "{!recordId}",
             "width" : "MEDIUM"
@@ -334,6 +331,14 @@
           },
           "componentName" : "forceCommunity:forceCommunityFeed",
           "id" : "2c29846e-bbae-4152-898e-fc4695206a06",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<p><br></p><p><b>﻿Pravidla používání chatu</b>:</p><p>1. Příjemce zadávejte pomocí znaku&nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví</p><p>2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu</p><p>3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "41b8eb9c-d27c-4bcb-84bb-a9f914e6f549",
           "renditionMap" : { },
           "type" : "component"
         } ],

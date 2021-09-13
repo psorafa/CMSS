@@ -2,6 +2,9 @@
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PensionCompactLayout</fullName>
     <fields>Name</fields>
+    <fields>AccountId</fields>
+    <fields>ProductType__c</fields>
+    <fields>Status__c</fields>
     <fields>MonthFeeEmployer__c</fields>
     <fields>MonthFeeParticipant__c</fields>
     <fields>MonthFeeThirdPerson__c</fields>

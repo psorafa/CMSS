@@ -4,13 +4,13 @@
     <columns>ASSET.NAME</columns>
     <columns>PersonalIdentificationNr__c</columns>
     <columns>ACCOUNT.NAME</columns>
-    <columns>AddressZipCode__c</columns>
-    <columns>AddressCity__c</columns>
     <columns>RequestSignDate__c</columns>
     <columns>CreditAmount__c</columns>
     <columns>RemainingDraw__c</columns>
     <columns>Status__c</columns>
     <columns>ClosingAgentId__c</columns>
+    <columns>PortfolioMngmtA__c</columns>
+    <columns>CommissionAccountBase__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>ASSET.RECORDTYPE</field>

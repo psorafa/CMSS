@@ -27,9 +27,7 @@ private class AccountTriggerHandlerTest {
 	static void setOwnerTest() {
 		User defaultOwner = TestDataFactory.getUser(new User());
 		User portfolioManager = TestDataFactory.getUser(new User());
-		insert new List<User> {
-			defaultOwner, portfolioManager
-		};
+		insert new List<User>{ defaultOwner, portfolioManager };
 		CommonSetting__c setting = CommonSetting__c.getOrgDefaults();
 		setting.AccountDefaultOwner__c = defaultOwner.Id;
 		insert setting;
@@ -50,7 +48,7 @@ private class AccountTriggerHandlerTest {
 	}
 
 	@IsTest
-	static void inavlidateAccountTest() {
+	static void invalidateAccountTest() {
 		Datetime myDateTime = Datetime.newInstance(2006, 3, 16, 12, 6, 13);
 		Account a1 = TestDataFactory.getAccount(new Account(DateOfDeletion__c = myDateTime));
 		Account a2 = TestDataFactory.getAccount(new Account(AccountStatus__c = '4'));
@@ -65,5 +63,23 @@ private class AccountTriggerHandlerTest {
 		System.assertEquals(true, a2.IsInvalid__c);
 		System.assertEquals(true, a3.IsInvalid__c);
 		System.assertEquals(false, a4.IsInvalid__c);
+	}
+
+	@IsTest
+	static void validateAccountTest() {
+		Datetime myDateTime = Datetime.newInstance(2006, 3, 16, 12, 6, 13);
+		Account a1 = TestDataFactory.getAccount(
+			new Account(DateOfDeletion__c = myDateTime, IsInvalid__c = true, AccountStatus__c = '5')
+		);
+		Account a2 = TestDataFactory.getAccount(new Account(AccountStatus__c = '3', IsInvalid__c = true));
+		Account a3 = TestDataFactory.getAccount(new Account(AccountStatus__c = '5', IsInvalid__c = true));
+
+		Test.startTest();
+		AccountTriggerHandler.validateAccount(new List<Account>{ a1, a2, a3 });
+		Test.stopTest();
+
+		System.assertEquals(true, a1.IsInvalid__c);
+		System.assertEquals(false, a2.IsInvalid__c);
+		System.assertEquals(true, a3.IsInvalid__c);
 	}
 }

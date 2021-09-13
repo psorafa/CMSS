@@ -55,7 +55,6 @@ public with sharing class TaskService {
         if (data.stateCode != null) {
             t.Status = data.stateCode;
         }
-        t.StatusReason__c = data.statusCode;
         t.Subject = data.name;
         t.ValidTo__c = data.validTo;
         t.Result__c = data.result;

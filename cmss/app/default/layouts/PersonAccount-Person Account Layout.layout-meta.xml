@@ -459,7 +459,7 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Campaign.NAME</fields>
+        <fields>Campaign__c</fields>
         <fields>CampaignEndDate__c</fields>
         <relatedList>CampaignMember__c.Account__c</relatedList>
         <sortField>CampaignEndDate__c</sortField>

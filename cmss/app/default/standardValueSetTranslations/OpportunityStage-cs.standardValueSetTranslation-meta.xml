@@ -2,30 +2,26 @@
 <StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <valueTranslation>
         <masterLabel>1</masterLabel>
-        <translation>Probíhá</translation>
+        <translation>Nová</translation>
     </valueTranslation>
     <valueTranslation>
         <masterLabel>2</masterLabel>
-        <translation>Blokovaná</translation>
+        <translation>Rozpracovaná</translation>
     </valueTranslation>
     <valueTranslation>
         <masterLabel>3</masterLabel>
-        <translation>Získaná</translation>
-    </valueTranslation>
-    <valueTranslation>
-        <masterLabel>4</masterLabel>
-        <translation>Zrušená</translation>
+        <translation>Uzavřená pozitivně</translation>
     </valueTranslation>
     <valueTranslation>
         <masterLabel>5</masterLabel>
-        <translation>Vyprodaná</translation>
-    </valueTranslation>
-    <valueTranslation>
-        <masterLabel>6</masterLabel>
-        <translation>Nová</translation>
+        <translation>Uzavřená negativně</translation>
     </valueTranslation>
     <valueTranslation>
         <masterLabel>7</masterLabel>
         <translation>Spárovaná</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>8</masterLabel>
+        <translation>Expirovaná</translation>
     </valueTranslation>
 </StandardValueSetTranslation>

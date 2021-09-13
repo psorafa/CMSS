@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Product__c</fullName>
     <externalId>false</externalId>
-    <formula>Campaign__r.Product__r.Name</formula>
+    <formula>TEXT(Campaign__r.Product__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Product</label>
     <required>false</required>

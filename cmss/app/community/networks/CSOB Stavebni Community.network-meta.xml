@@ -30,6 +30,7 @@
         <profile>cmss experience user</profile>
         <profile>admin</profile>
         <profile>cmss user</profile>
+        <profile>cmss headquarters user</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
@@ -40,7 +41,7 @@
     </networkPageOverrides>
     <picassoSite>CSOB_Stavebni_Community1</picassoSite>
     <selfRegistration>false</selfRegistration>
-    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <sendWelcomeEmail>false</sendWelcomeEmail>
     <site>CSOB_Stavebni_Community</site>
     <status>Live</status>
     <tabs>

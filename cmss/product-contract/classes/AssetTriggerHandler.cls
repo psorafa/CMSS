@@ -70,9 +70,9 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 			SELECT
 				Id, AccountId, Amount, Author__c, Category__c, CloseDate, CreatedDateTime__c, Description, DueDate__c, ExternalId__c,
 				Name, OriginalAsset__c, OwnerId, Owner.CommissionAccountNr__c, Probability, ProductType__c, Reason__c, StageName, UpdateDate__c,
-				ValidFrom__c, ValidTo__c, StateCode__c
+				ValidFrom__c, ValidTo__c
 			FROM Opportunity
-			WHERE AccountId IN :clientIds AND Category__c NOT IN :irrelevantCategories AND StateCode__c = '0'
+			WHERE AccountId IN :clientIds AND Category__c NOT IN :irrelevantCategories AND IsClosed = false
 		];
 
         Map<Id, Asset> assetRelatedInfoById = new Map<Id, Asset>([
@@ -139,7 +139,6 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 		opp.UpdateDate__c = opp.UpdateDate__c == null ? System.now() : opp.UpdateDate__c;
 		opp.ValidFrom__c = opp.ValidFrom__c == null ? System.now().addMinutes(-30) : opp.ValidFrom__c;
 		opp.ValidTo__c = opp.ValidTo__c == null ? System.now() : opp.ValidTo__c;
-		opp.StateCode__c = String.isEmpty(opp.StateCode__c) ? '1' : opp.StateCode__c;
 
 		if (String.isEmpty(opp.OwnerId)) {
 			if (String.isNotEmpty(asset.ClosingAgentId__c)) {

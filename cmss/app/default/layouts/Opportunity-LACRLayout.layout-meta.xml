@@ -31,11 +31,19 @@
                 <behavior>Edit</behavior>
                 <field>OriginalAsset__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CampaignMember__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Category__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ServiceCategory__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -166,10 +174,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ExternalId__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>StateCode__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

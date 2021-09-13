@@ -22,10 +22,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Product__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>ActionCategory__c</field>
             </layoutItems>
             <layoutItems>
@@ -48,6 +44,10 @@
                 <behavior>Edit</behavior>
                 <field>InputType__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>NumberOfCampaignMembers__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -57,6 +57,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Status</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Product__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -93,10 +97,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ExpectedResponse</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>NumberOfCampaignMembers__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -300,7 +300,6 @@
         <fields>NAME</fields>
         <fields>CombinedAccountName__c</fields>
         <fields>Asset__c</fields>
-        <fields>Account.NAME</fields>
         <fields>LAST_ACTIVITY</fields>
         <relatedList>CampaignMember__c.Campaign__c</relatedList>
     </relatedLists>

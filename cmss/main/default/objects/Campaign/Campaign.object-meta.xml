@@ -157,7 +157,7 @@
     <compactLayoutAssignment>CampaignCompactLayout</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <externalSharingModel>Read</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <searchLayouts>
         <customTabListAdditionalFields>CAMPAIGN.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>CAMPAIGN.STATUS</customTabListAdditionalFields>
@@ -173,5 +173,5 @@
         <searchResultsAdditionalFields>Product__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>NumberOfCampaignMembers__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>FullAccess</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

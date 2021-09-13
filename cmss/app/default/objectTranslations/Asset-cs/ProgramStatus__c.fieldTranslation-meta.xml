@@ -3,19 +3,87 @@
     <label>Aktuální stav programu</label>
     <name>ProgramStatus__c</name>
     <picklistValues>
-        <masterLabel>0</masterLabel>
-        <translation>neuveden</translation>
+        <masterLabel>10</masterLabel>
+        <translation>pravidelné spoření-aktiv-obd. 1-4roky</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>1</masterLabel>
-        <translation>Pravidelné spoření</translation>
+        <masterLabel>11</masterLabel>
+        <translation>pravidelné spoření-aktiv-obd. 4-6let</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>2</masterLabel>
-        <translation>Flexibilní spoření</translation>
+        <masterLabel>12</masterLabel>
+        <translation>pravidelné spoření-aktiv-obd. 6-9let</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>9</masterLabel>
-        <translation>Bez programu</translation>
+        <masterLabel>13</masterLabel>
+        <translation>pravidelné spoření-aktiv-obd. 9-a více</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14</masterLabel>
+        <translation>pravidelné spoření/bonusový program -aktiv-obd. 1-6let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20</masterLabel>
+        <translation>pravidel.spoř.-ukončeno-podm. nespl.-1-4roky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>21</masterLabel>
+        <translation>pravidel.spoř.-ukončeno-podm.nespl. 4-6let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22</masterLabel>
+        <translation>pravidel.spoř.-ukončeno-podm.nespl. 6-9let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>23</masterLabel>
+        <translation>pravidel.spoř.-ukončeno-podm.nespl. 9-a více</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24</masterLabel>
+        <translation>pravidel.spoř. /bonus program -ukončeno-podm.nespl. 1-6let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30</masterLabel>
+        <translation>flexibilní spoř. aktiv-obd. 1-6let</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>31</masterLabel>
+        <translation>flexibilní spoř. aktiv-obd. 6-a více</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>40</masterLabel>
+        <translation>program ukončen z důvodu výpovědi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>41</masterLabel>
+        <translation>program ukončen z důvodu čerpání Ú/MÚ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>42</masterLabel>
+        <translation>program ukončen z důvod. přechodu -jiný tarif</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>43</masterLabel>
+        <translation>prg.FLEX ukončen z důvod.přechodu do prg.PRAV</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>44</masterLabel>
+        <translation>program ukončen z důvodu zrušení sml.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>45</masterLabel>
+        <translation>program ukončen z důvodu nespoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>46</masterLabel>
+        <translation>program ukončen z důvodu přidělení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>47</masterLabel>
+        <translation>prog.ukončen z důvodu přechodu do tarifu Atraktiv bez bonusu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>48</masterLabel>
+        <translation>prog.ukončen z důvodu přechodu do tarifu Atraktiv bez bonusu</translation>
     </picklistValues>
 </CustomFieldTranslation>
