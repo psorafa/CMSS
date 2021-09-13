@@ -137,9 +137,9 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 
 	private Map<Id, Opportunity> getAssociatedOpportunities(Set<Id> accountIds) {
 		List<Opportunity> opportunities = [
-			SELECT AccountId, StateCode__c
+			SELECT AccountId
 			FROM Opportunity
-			WHERE AccountId IN :accountIds AND StateCode__c = '0'
+			WHERE AccountId IN :accountIds AND IsClosed = false
 		];
 
 		Map<Id, Opportunity> associatedOpportunities = new Map<Id, Opportunity>();
