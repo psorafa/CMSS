@@ -2,21 +2,13 @@ public without sharing class ActivityExpireBatch implements Database.Batchable<s
 	//Scheduling example:
 	//System.schedule('Process expired activities','0 0 0 * * ?', new ActivityExpireBatch());
 
-	private final String mode;
 	private final Date expiredDay;
 	private final ActivityExpirationConfig__mdt cfg;
 
 	/**
-	 * Default constructor, go for 'task' mode.
+	 * constructor
 	 */
 	public ActivityExpireBatch() {
-		this('task');
-	}
-
-	/**
-	 * Parametrized constructor, set the given mode.
-	 */
-	public ActivityExpireBatch(String mode) {
 		this.cfg = [
 			SELECT ClosedResult__c, ClosedStatus__c, ExpirationDays__c, ExpiredStatus__c, FinalStatuses__c
 			FROM ActivityExpirationConfig__mdt
@@ -24,7 +16,6 @@ public without sharing class ActivityExpireBatch implements Database.Batchable<s
 		];
 		System.debug('CFG: ' + JSON.serializePretty(cfg));
 
-		this.mode = mode;
 		this.expiredDay = System.today().addDays(-cfg.ExpirationDays__c.intValue());
 	}
 
@@ -32,27 +23,16 @@ public without sharing class ActivityExpireBatch implements Database.Batchable<s
 	 * Batchable start - do the query.
 	 */
 	public List<sObject> start(Database.BatchableContext jobId) {
-		return mode == 'task'
-			? (List<sObject>) [
-					SELECT Id, Subject, ValidTo__c, Status__c
-					FROM Task
-					WHERE
-						(ValidTo__c <= TODAY
-						AND (Status__c != :cfg.ClosedStatus__c
-						OR Result__c != :cfg.ClosedResult__c))
-						OR (ValidTo__c <= :expiredDay
-						AND Status__c != :cfg.ExpiredStatus__c)
-			  ]
-			: (List<sObject>) [
-					SELECT Id, Subject, ValidTo__c, Status__c
-					FROM Event
-					WHERE
-						(ValidTo__c <= TODAY
-						AND (Status__c != :cfg.ClosedStatus__c
-						OR Result__c != :cfg.ClosedResult__c))
-						OR (ValidTo__c <= :expiredDay
-						AND Status__c != :cfg.ExpiredStatus__c)
-			  ];
+		return (List<sObject>) [
+			SELECT Id, Subject, ValidTo__c, Status
+			FROM Task
+			WHERE
+				(ValidTo__c <= TODAY
+				AND (Status != :cfg.ClosedStatus__c
+				OR Result__c != :cfg.ClosedResult__c))
+				OR (ValidTo__c <= :expiredDay
+				AND Status != :cfg.ExpiredStatus__c)
+		];
 	}
 
 	/**
@@ -62,38 +42,35 @@ public without sharing class ActivityExpireBatch implements Database.Batchable<s
 		List<sObject> toUpdate = new List<sObject>();
 
 		for (sObject act : recordList) {
-			String status = (String) act.get('Status__c');
+			String status = (String) act.get('Status');
 			Date validTo = (Date) act.get('validTo__c');
 
 			if (validTo < expiredDay) {
-				act.put('Status__c', cfg.ExpiredStatus__c);
+				act.put('Status', cfg.ExpiredStatus__c);
 				act.put('DeactivateDate__c', System.today());
 				toUpdate.add(act);
 			} else {
-				act.put('Status__c', cfg.ClosedStatus__c);
+				act.put('Status', cfg.ClosedStatus__c);
 				act.put('result__c', cfg.ClosedResult__c);
 				toUpdate.add(act);
 			}
 		}
 
 		if (toUpdate.size() > 0) {
-			System.debug('Updating ' + toUpdate.size() + ' ' + mode + 's.');
+			System.debug('Updating ' + toUpdate.size() + ' tasks.');
 			update toUpdate;
 		}
 	}
 
 	/**
-	 * Batchable finish - chain event mode just after the task mode run finishes.
+	 * Batchable finish - mandatory
 	 */
 	public void finish(Database.BatchableContext jobId) {
-		if (mode == 'task') {
-			ActivityExpireBatch eventBatch = new ActivityExpireBatch('event');
-			Database.executeBatch(eventBatch);
-		}
+		System.debug('Execution of ActivityExpireBatch finished');
 	}
 
 	/**
-	 * Schedulable execute - start the task mode run.
+	 * Schedulable execute
 	 */
 	public void execute(SchedulableContext sc) {
 		Database.executeBatch(this);
