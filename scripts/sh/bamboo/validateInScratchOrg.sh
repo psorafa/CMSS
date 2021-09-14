@@ -56,6 +56,8 @@ function finish {
 trap finish EXIT
 set -o xtrace
 
+export SFDX_AUTOUPDATE_DISABLE=true
+
 #workaround for "SyntaxError: Unexpected token < in JSON at position 1" bug
 sfdx force:config:set restDeploy=false
 #create scratch org

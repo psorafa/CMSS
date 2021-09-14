@@ -27,6 +27,8 @@ PACKAGE=${3-"cmss"}
 
 set -o xtrace
 
+export SFDX_AUTOUPDATE_DISABLE=true
+
 #validate deployment
 if [ -z  "$TEST" ];
 then
