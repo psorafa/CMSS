@@ -18,6 +18,7 @@ public class LogEventTriggerHandler {
 		log.Level__c = logEvent.Level__c;
 		log.Payload__c = logEvent.Payload__c;
 		log.Message__c = logEvent.Message__c;
+		log.OwnerId = logEvent.CreatedById;
 		return log;
 	}
 
