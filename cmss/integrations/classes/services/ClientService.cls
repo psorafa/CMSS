@@ -1,4 +1,4 @@
-public with sharing class ClientService {
+public without sharing class ClientService {
 
 	private static List<ContactInformation__c> contactInfoList = new List<ContactInformation__c>();
 
