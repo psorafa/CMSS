@@ -1,41 +1,48 @@
 <!-- Task Form -->
 <template>
-    <lightning-card title="Úkol">
-        <div class="slds-p-around_large">
+	<lightning-card title="Úkol">
+		<div class="slds-p-around_large">
+			<lightning-input label="Název" onchange={handleSubjectChange} required="true"></lightning-input>
 
-            <lightning-input
-                    label="Název"
-                    onchange={handleSubjectChange}
-                    required="true"
-            ></lightning-input>
+			<lightning-combobox
+				options={typeOptions}
+				label="Typ"
+				value={_task.type}
+				onchange={handleTypeChange}
+				required="true"
+			></lightning-combobox>
 
-            <lightning-textarea
-                    label="Popis"
-                    onchange={handleDescriptionChange}
-                    required="true"
-            ></lightning-textarea>
+			<lightning-textarea label="Popis" onchange={handleDescriptionChange} required="true"></lightning-textarea>
 
-            <lightning-input
-                    type="date"
-                    value={_task.dueDate}
-                    label="Termín"
-                    onchange={handleDueDateChange}
-                    required="true"
-            ></lightning-input>
+			<lightning-input
+				type="date"
+				value={validFromDate}
+				label="Platnost od"
+				onchange={handleValidFromChange}
+				required="true"
+			></lightning-input>
 
-            <lightning-combobox
-                    options={categoryOptions}
-                    value={_task.category}
-                    label="Kategorie"
-                    onchange={handleCategoryChange}
-                    required="true"
-            ></lightning-combobox>
+			<lightning-input
+				type="date"
+				value={dueDate}
+				label="Termín splnění"
+				onchange={handleDueDateChange}
+				required="true"
+			></lightning-input>
 
-            <lightning-combobox
-                    options={productTypeOptions}
-                    label="Typ produktu"
-                    onchange={handleProductTypeChange}
-            ></lightning-combobox>
-        </div>
-    </lightning-card>
+			<lightning-combobox
+				options={categoryOptions}
+				value={_task.category}
+				label="Kategorie"
+				onchange={handleCategoryChange}
+				required="true"
+			></lightning-combobox>
+
+			<lightning-combobox
+				options={productTypeOptions}
+				label="Typ produktu"
+				onchange={handleProductTypeChange}
+			></lightning-combobox>
+		</div>
+	</lightning-card>
 </template>

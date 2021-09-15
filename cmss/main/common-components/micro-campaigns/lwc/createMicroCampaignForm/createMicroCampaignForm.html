@@ -1,14 +1,18 @@
 <!-- Create Micro Campaign Form -->
 <template>
-    <c-campaign-form onchange={handleCampaignChange}></c-campaign-form>
+	<c-campaign-form onchange={handleCampaignChange}></c-campaign-form>
 
-    <br/>
+	<br />
 
-    <c-task-form onchange={handleTaskChange}></c-task-form>
+	<c-task-form
+		valid-from-date={_campaign.startDate}
+		due-date={_campaign.endDate}
+		onchange={handleTaskChange}
+	></c-task-form>
 
-    <br/>
+	<br />
 
-    <c-select-assignee onchange={handleAssigneeChange}></c-select-assignee>
+	<c-select-assignee onchange={handleAssigneeChange}></c-select-assignee>
 
-    <br/>
+	<br />
 </template>

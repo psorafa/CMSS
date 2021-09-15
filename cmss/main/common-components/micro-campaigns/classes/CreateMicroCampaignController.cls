@@ -1,8 +1,9 @@
 public with sharing class CreateMicroCampaignController {
-
 	public class PicklistEntry {
-		@AuraEnabled public String value;
-		@AuraEnabled public String label;
+		@AuraEnabled
+		public String value;
+		@AuraEnabled
+		public String label;
 	}
 
 	@AuraEnabled(Cacheable=true)
@@ -13,7 +14,7 @@ public with sharing class CreateMicroCampaignController {
 			Schema.DescribeFieldResult fieldResult = res.fields.getMap().get(fieldName).getDescribe();
 			List<PicklistEntry> pickListValuesList = new List<PicklistEntry>();
 			List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
-			for( Schema.PicklistEntry pickListVal : ple){
+			for (Schema.PicklistEntry pickListVal : ple) {
 				PicklistEntry entry = new PicklistEntry();
 				entry.label = pickListVal.getLabel();
 				entry.value = pickListVal.getValue();
@@ -41,17 +42,27 @@ public with sharing class CreateMicroCampaignController {
 			return creator.create();
 		} catch (Exception e) {
 			Logger.error('Error in micro-campaign creation', e);
-			throw new AuraHandledException('Unexpected exception: ' + e.getMessage() + '; transactionId: ' + Logger.getTransactionId());
+			throw new AuraHandledException(
+				'Unexpected exception: ' +
+				e.getMessage() +
+				'; transactionId: ' +
+				Logger.getTransactionId()
+			);
 		} finally {
 			Logger.saveLogs();
 		}
 	}
 
+	@TestVisible
 	private static Campaign prepareCampaignTemplate(InputCampaign campaign) {
+		if (campaign.id != null) {
+			return SearchController.getCampaign(campaign.id, 'Id, Name, EndDate, StartDate, Description');
+		}
 		if (campaign != null && campaign.name != null) {
 			return new Campaign(
 				Name = campaign.name,
 				EndDate = campaign.endDate,
+				StartDate = campaign.startDate,
 				Description = campaign.description,
 				Type = 'Microcampaign',
 				DataSource__c = '73',
@@ -77,7 +88,6 @@ public with sharing class CreateMicroCampaignController {
 		);
 	}
 
-
 	public class InputData {
 		public List<String> ids;
 		public InputCampaign campaign;
@@ -86,10 +96,13 @@ public with sharing class CreateMicroCampaignController {
 	}
 
 	public class InputCampaign {
+		public String id;
 		public String name;
 		public Date endDate;
+		public Date startDate;
 		public String description;
 	}
+
 	public class InputTask {
 		public String subject;
 		public String description;
