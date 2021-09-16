@@ -25,6 +25,8 @@ fi
 set -o xtrace
 set -e
 
+export SFDX_AUTOUPDATE_DISABLE=true
+
 #deploy to org (CHECK ONLY SO FAR FOR TESTING)
 if [ -z  "$TEST" ];
 then
