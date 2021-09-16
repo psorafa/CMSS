@@ -24,7 +24,6 @@
             </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
         </componentInstances>
-        <mode>Replace</mode>
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -32,7 +31,6 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
-        <mode>Replace</mode>
         <name>detailTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -52,27 +50,7 @@
             </componentInstanceProperties>
             <componentName>force:relatedListContainer</componentName>
         </componentInstances>
-        <mode>Replace</mode>
         <name>relatedTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentName>forceChatter:recordFeedContainer</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>decorate</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>richTextValue</name>
-                <value>&lt;p&gt;&lt;b&gt;Pravidla používání chatu&lt;/b&gt;:&lt;/p&gt;&lt;p&gt;1. Příjemce zadávejte pomocí znaku&amp;nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví&lt;/p&gt;&lt;p&gt;2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu&lt;/p&gt;&lt;p&gt;3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob&lt;/p&gt;</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:richText</componentName>
-        </componentInstances>
-        <mode>Replace</mode>
-        <name>feedTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -102,10 +80,47 @@
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
+        <name>tabs</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>tabs</name>
+                <value>tabs</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tabset</componentName>
+        </componentInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>forceChatter:recordFeedContainer</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;p&gt;&lt;b&gt;Pravidla používání chatu&lt;/b&gt;:&lt;/p&gt;&lt;p&gt;1. Příjemce zadávejte pomocí znaku&amp;nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví&lt;/p&gt;&lt;p&gt;2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu&lt;/p&gt;&lt;p&gt;3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob&lt;/p&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+        </componentInstances>
+        <name>Facet-165d702d-2012-44f7-a49e-cacbf6e23bfb</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>active</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>body</name>
-                <value>feedTabContent</value>
+                <value>Facet-165d702d-2012-44f7-a49e-cacbf6e23bfb</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
@@ -113,8 +128,7 @@
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <mode>Replace</mode>
-        <name>tabs</name>
+        <name>Facet-d9f123aa-0b70-40d8-b5c8-746dec47a047</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -124,19 +138,17 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>tabs</name>
-                <value>tabs</value>
+                <value>Facet-d9f123aa-0b70-40d8-b5c8-746dec47a047</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
         </componentInstances>
-        <mode>Replace</mode>
-        <name>main</name>
+        <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>Task Record Page</masterLabel>
-    <parentFlexiPage>sfa__Task_rec_L</parentFlexiPage>
     <sobjectType>Task</sobjectType>
     <template>
-        <name>flexipage:recordHomeSingleColTemplateDesktop</name>
+        <name>flexipage:recordHomeTemplateDesktop</name>
     </template>
     <type>RecordPage</type>
 </FlexiPage>
