@@ -272,6 +272,14 @@
     </relatedLists>
     <relatedLists>
         <fields>Name</fields>
+        <fields>Asset</fields>
+        <fields>RelationshipType</fields>
+        <fields>FromDate</fields>
+        <fields>ToDate</fields>
+        <relatedList>Primary Assets</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>Name</fields>
         <fields>RelationshipType</fields>
         <fields>RelatedAsset</fields>
         <fields>FromDate</fields>
