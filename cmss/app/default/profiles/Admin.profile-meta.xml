@@ -1934,6 +1934,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Asset.HasMURelatedAsset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Asset.HasRLIRelatedAsset__c</field>
         <readable>true</readable>
     </fieldPermissions>
