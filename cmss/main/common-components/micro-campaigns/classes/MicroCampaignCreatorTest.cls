@@ -118,7 +118,8 @@ private class MicroCampaignCreatorTest {
 
 		List<Id> ids = new List<Id>{ ass1.Id, ass2.Id, ass3.Id };
 
-		Campaign campaignTemplate = null;
+		Campaign campaignTemplate = new Campaign();
+        campaignTemplate.Name = 'Test Campaign';
 		Task taskTemplate = getTaskTemplate();
 
 		Test.startTest();
@@ -129,7 +130,7 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(3, result.numberOfSuccesses);
 		System.assertEquals(0, result.numberOfErrors);
 		System.assertEquals(Logger.getTransactionId(), result.transactionId);
-		System.assertEquals(null, result.campaignId);
+		System.assertNotEquals(null, result.campaignId);
 
 		Account a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account WHERE Id = :a1.Id];
 		Task t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
@@ -150,7 +151,7 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(taskTemplate.ValidTo__c, t.ValidTo__c);
 		System.assertEquals(a.OwnerId, t.OwnerId);
 		System.assertEquals(a.PersonContactId, t.WhoId);
-		System.assertEquals(null, t.WhatId);
+		System.assertNotEquals(null, t.WhatId);
 		System.assertEquals(a.PersonEmail, t.Email__c);
 		System.assertEquals(a.BillingStreet + ' ' + a.BillingCity + ' ' + a.BillingPostalCode, t.Location__c);
 		System.assertEquals(a.Phone, t.Phone__c);
@@ -174,7 +175,7 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(taskTemplate.ValidTo__c, t.ValidTo__c);
 		System.assertEquals(a.OwnerId, t.OwnerId);
 		System.assertEquals(a.PersonContactId, t.WhoId);
-		System.assertEquals(null, t.WhatId);
+		System.assertNotEquals(null, t.WhatId);
 		System.assertEquals(a.PersonEmail, t.Email__c);
 		System.assertEquals(a.BillingStreet + ' ' + a.BillingCity + ' ' + a.BillingPostalCode, t.Location__c);
 		System.assertEquals(a.Phone, t.Phone__c);
@@ -197,7 +198,7 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(taskTemplate.ValidTo__c, t.ValidTo__c);
 		System.assertEquals(a.OwnerId, t.OwnerId);
 		System.assertEquals(a.PersonContactId, t.WhoId);
-		System.assertEquals(null, t.WhatId);
+		System.assertNotEquals(null, t.WhatId);
 		System.assertEquals(a.PersonEmail, t.Email__c);
 		System.assertEquals(a.BillingStreet + ' ' + a.BillingCity + ' ' + a.BillingPostalCode, t.Location__c);
 		System.assertEquals(a.Phone, t.Phone__c);
