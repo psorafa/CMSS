@@ -55,7 +55,6 @@ private class CustomerSearchController_Test {
 		Test.setFixedSearchResults(fixedSearchResults);
 		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			null,
-			businessClient.Name,
 			null,
 			businessClient.CompanyRegistrationNumber__c,
 			null,
@@ -64,13 +63,7 @@ private class CustomerSearchController_Test {
 		Test.startTest();
 		List<SearchResultDTO> results = CustomerSearchController.findRecords(searchCriteria);
 		Test.stopTest();
-		System.assert(results != null && results.size() == 1, 'Not expected results size or null results: ' + results);
-		System.assertEquals(
-			CustomerSearchController.ACCOUNT_SOBJECT,
-			results.get(0).sObjectType,
-			'SObjectType not as expected.'
-		);
-		System.assertEquals(businessClient.Id, results.get(0).recordId, 'Record Id not as expected.');
+		System.assert(results == null || results.size() == 0, 'Not expected results size: ' + results);
 	}
 
 	@IsTest
@@ -81,7 +74,6 @@ private class CustomerSearchController_Test {
 		Test.setFixedSearchResults(fixedSearchResults);
 		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			personClient.lastName,
-			null,
 			personClient.PersonalIdentificationNr__c,
 			null,
 			null,
@@ -107,7 +99,6 @@ private class CustomerSearchController_Test {
 		Test.setFixedSearchResults(fixedSearchResults);
 		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			lead1.lastName,
-			null,
 			lead1.PersonalIdentificationNr__c,
 			null,
 			null,
@@ -136,7 +127,6 @@ private class CustomerSearchController_Test {
 			personClient.lastName,
 			null,
 			null,
-			null,
 			asset1.Name,
 			CustomerSearchController.CLIENTS
 		);
@@ -157,7 +147,6 @@ private class CustomerSearchController_Test {
 		testSetup();
 		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			null,
-			businessClient.Name,
 			null,
 			businessClient.CompanyRegistrationNumber__c,
 			null,
@@ -174,7 +163,6 @@ private class CustomerSearchController_Test {
 		testSetup();
 		SearchCriteriaDTO searchCriteria = new SearchCriteriaDTO(
 			personClient.FirstName,
-			personClient.LastName.substring(2),
 			personClient.PersonalIdentificationNr__c,
 			null,
 			null,

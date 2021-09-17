@@ -17,7 +17,6 @@ import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 import clientIdentificationTitle from '@salesforce/label/c.ClientIdentification';
 import lastNamePlaceholder from '@salesforce/label/c.InputPlaceholderLastName';
-import namePlaceholder from '@salesforce/label/c.InputPlaceholderName';
 import birthNrPlaceholder from '@salesforce/label/c.InputPlaceholderBirthNumber';
 import compRegNrPlaceholder from '@salesforce/label/c.InputPlaceholderCompRegNr';
 import assetPlaceholder from '@salesforce/label/c.InputPlaceholderAssetNumber';
@@ -36,7 +35,6 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	spinner = false;
 
 	inputLastName = '';
-	inputName = '';
 	inputBirthNumber = '';
 	inputCompRegNum = '';
 	inputAssetNumber = '';
@@ -53,7 +51,6 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 
 	@track label = {
 		clientIdentificationTitle,
-		namePlaceholder,
 		lastNamePlaceholder,
 		birthNrPlaceholder,
 		compRegNrPlaceholder,
@@ -103,13 +100,8 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	}
 
 	@api
-	get isNameRequiredAndVisible() {
-		return this.inputCompRegNum || (this.inputAssetNumber && !this.inputLastName);
-	}
-
-	@api
 	get isLastNameRequiredAndVisible() {
-		return this.inputBirthNumber || (this.inputAssetNumber && !this.inputName);
+		return this.inputBirthNumber || this.inputAssetNumber;
 	}
 
 	@api
@@ -127,8 +119,6 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 			this.inputAssetNumber = event.detail.value;
 		} else if (event.target.name === 'lastName') {
 			this.inputLastName = event.detail.value;
-		} else if (event.target.name === 'name') {
-			this.inputName = event.detail.value;
 		}
 
 		this.clearHiddenValues();
@@ -145,9 +135,6 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 		}
 		if (!this.isAssetNumberRequiredAndVisible) {
 			this.inputAssetNumber = '';
-		}
-		if (!this.isNameRequiredAndVisible) {
-			this.inputName = '';
 		}
 		if (!this.isLastNameRequiredAndVisible) {
 			this.inputLastName = '';
@@ -170,7 +157,6 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 			this.searchResults = [];
 			let searchCriteria = {
 				lastName: this.inputLastName,
-				name: this.inputName,
 				birthNumber: this.inputBirthNumber,
 				compRegNum: this.inputCompRegNum,
 				assetNumber: this.inputAssetNumber,
@@ -180,7 +166,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 			findRecords({
 				searchCriteria: searchCriteria
 			})
-				.then(data => {
+				.then((data) => {
 					this.searchResults = data;
 					this.isSearchButtonDisabled = false;
 					if (data && data.length === 1) {
@@ -188,7 +174,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 						this.assignAccountAccess(data[0].recordId);
 						this.navigateToRecordPage(data[0].recordId);
 					} else if (data && data.length > 1) {
-						data.forEach(acc => {
+						data.forEach((acc) => {
 							this.assignAccountAccess(acc.recordId);
 						});
 						this.noRecordsFound = false;
@@ -199,7 +185,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 					this.showResults = true;
 					this.spinner = false;
 				})
-				.catch(error => {
+				.catch((error) => {
 					this.spinner = false;
 					this.showToast(
 						'error',
@@ -214,7 +200,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	isSearchCriteriaOk() {
 		let ok = true;
 		let inputFields = this.template.querySelectorAll('lightning-input');
-		inputFields.forEach(field => {
+		inputFields.forEach((field) => {
 			if (!field.checkValidity()) {
 				ok = false;
 			}

@@ -20,8 +20,6 @@ public without sharing class CustomerSearchController {
 	@TestVisible
 	private static String lastName;
 	@TestVisible
-	private static String name;
-	@TestVisible
 	private static String birthNumber;
 	@TestVisible
 	private static String compRegNum;
@@ -48,7 +46,6 @@ public without sharing class CustomerSearchController {
 	public static List<SearchResultDTO> findRecords(SearchCriteriaDTO searchCriteria) {
 		searchCriteriaObject = searchCriteria == null ? searchCriteriaObject : searchCriteria;
 		lastName = searchCriteria.lastName;
-		name = searchCriteria.name;
 		birthNumber = searchCriteria.birthNumber;
 		compRegNum = searchCriteria.compRegNum;
 		assetNumber = searchCriteria.assetNumber;
@@ -89,7 +86,7 @@ public without sharing class CustomerSearchController {
 	@TestVisible
 	private static Boolean validateInputs() {
 		return ((String.isNotBlank(compRegNum) || String.isNotBlank(assetNumber) || String.isNotBlank(birthNumber)) &&
-		(String.isNotBlank(Name) || String.isNotBlank(lastName)));
+		(String.isNotBlank(lastName)));
 	}
 
 	/**
@@ -167,8 +164,6 @@ public without sharing class CustomerSearchController {
 			whereCondition += queryChildObject
 				? ' AND Account.LastName =\'' + LastName + '\''
 				: ' AND LastName =\'' + LastName + '\'';
-		} else if (String.isNotBlank(Name)) {
-			whereCondition += queryChildObject ? 'AND Account.Name =\'' + Name + '\'' : 'AND Name =\'' + Name + '\'';
 		}
 
 		if (LEADS == searchAmong) {
@@ -257,8 +252,7 @@ public without sharing class CustomerSearchController {
 				for (Lead leadResult : (List<Lead>) searchResults) {
 					if (
 						(String.isNotBlank(birthNumber) && birthNumber == leadResult.PersonalIdentificationNr__c) &&
-						((String.isNotBlank(lastName) && leadResult.LastName.startsWithIgnoreCase(lastName)) ||
-						(String.isNotBlank(name) && leadResult.FirstName.startsWithIgnoreCase(name)))
+						((String.isNotBlank(lastName) && leadResult.LastName.startsWithIgnoreCase(lastName)))
 					) {
 						filteredResults.add(
 							new SearchResultDTO(

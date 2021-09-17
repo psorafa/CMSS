@@ -111,22 +111,6 @@
 						</div>
 					</template>
 					<!--BOTH FORMS-->
-					<template if:true={isNameRequiredAndVisible}>
-						<div class="slds-m-around--small">
-							<div class="slds-m-around--small" id="nameDiv1">
-								<lightning-input
-									label={labelName}
-									message-when-value-missing={label.nameMissingMessage}
-									minlength="0"
-									name="name"
-									onchange={updateVariables}
-									onblur={isSearchCriteriaOk}
-									placeholder={label.namePlaceholder}
-									required={isNameRequiredAndVisible}
-								></lightning-input>
-							</div>
-						</div>
-					</template>
 					<template if:true={isLastNameRequiredAndVisible}>
 						<div class="slds-m-around--small">
 							<div class="slds-m-around--small" id="lastNameDiv">
