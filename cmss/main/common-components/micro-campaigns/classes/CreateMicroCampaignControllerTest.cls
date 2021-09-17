@@ -76,6 +76,22 @@ private class CreateMicroCampaignControllerTest {
 		System.assertEquals(a.PersonEmail, t.Email__c);
 		System.assertEquals(a.BillingStreet + ' ' + a.BillingCity + ' ' + a.BillingPostalCode, t.Location__c);
 		System.assertEquals(a.Phone, t.Phone__c);
+	}
 
+    @isTest
+	static void testPrepareCampaignTemplateWithExistingCampaign(){
+		
+		Campaign existingCampaign = new Campaign();
+        existingCampaign.Name = 'Existing Campaign';
+		insert existingCampaign;
+
+		CreateMicroCampaignController.InputCampaign input = new CreateMicroCampaignController.InputCampaign();
+		input.id = existingCampaign.Id;
+		
+        Test.startTest();
+        Campaign retrievedCampaign = CreateMicroCampaignController.prepareCampaignTemplate(input);
+        Test.stopTest();
+
+        System.assertEquals(existingCampaign, retrievedCampaign);
 	}
 }

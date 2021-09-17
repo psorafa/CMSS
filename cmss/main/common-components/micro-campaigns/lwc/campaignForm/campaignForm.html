@@ -1,35 +1,59 @@
 <!-- Campaign Form -->
 <template>
-    <lightning-card title="Kampaň">
-        <div class="slds-p-around_large">
-            <lightning-input
-                    type="checkbox"
-                    label="Nevytvářet kampaň"
-                    value={doNotCreateCampaign}
-                    onchange={handleCheckboxChange}
-            ></lightning-input>
-            <br/>
-            <template if:false={doNotCreateCampaign}>
+	<lightning-card title="Kampaň">
+		<div class="slds-p-around_large">
+			<lightning-input
+				type="checkbox"
+				label="Nevytvářet kampaň"
+				value={doNotCreateCampaign}
+				onchange={handleCheckboxChange}
+			></lightning-input>
+			<br />
+			<template if:false={doNotCreateCampaign}>
+				<c-search-component
+					obj-name="Campaign"
+					icon-name="standard:campaign"
+					label-name="Existující kampaň"
+					placeholder="Name"
+					fields="IsActive, OwnerId"
+					display-fields="Name"
+					onlookup={handleLookupChange}
+					search-condition={campaignSearchCondition}
+					disabled="false"
+				></c-search-component>
 
-                <lightning-input
-                        label="Název kampaně"
-                        onchange={handleNameChange}
-                        required="true"
-                ></lightning-input>
+				<lightning-input
+					label="Název kampaně"
+					value={_campaign.name}
+					onchange={handleNameChange}
+					required="true"
+					disabled={campaignExists}
+				></lightning-input>
 
-                <lightning-input
-                        type="date"
-                        label="Datum ukončení"
-                        onchange={handleEndDateChange}
-                        required="true"
-                ></lightning-input>
+				<lightning-input
+					type="date"
+					label="Skutečné datum zahájení kampaně"
+					value={_campaign.startDate}
+					onchange={handleStartDateChange}
+					disabled={campaignExists}
+				></lightning-input>
 
-                <lightning-textarea
-                        label="Popis"
-                        onchange={handleDescriptionChange}
-                ></lightning-textarea>
+				<lightning-input
+					type="date"
+					label="Datum ukončení"
+					value={_campaign.endDate}
+					onchange={handleEndDateChange}
+					required="true"
+					disabled={campaignExists}
+				></lightning-input>
 
-            </template>
-        </div>
-    </lightning-card>
+				<lightning-textarea
+					label="Popis"
+					value={_campaign.description}
+					onchange={handleDescriptionChange}
+					disabled={campaignExists}
+				></lightning-textarea>
+			</template>
+		</div>
+	</lightning-card>
 </template>

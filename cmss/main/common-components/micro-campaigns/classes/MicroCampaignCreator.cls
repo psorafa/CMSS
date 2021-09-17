@@ -45,7 +45,7 @@ public with sharing class MicroCampaignCreator {
 	}
 
 	private void createCampaign() {
-		if (campaign != null) {
+		if (campaign != null && campaign.Id == null) {
 			insert campaign;
 		}
 	}
