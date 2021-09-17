@@ -114,11 +114,11 @@ public without sharing class AccessShareController {
 
 			Set<AccessShareDTO> accessShareDtos = new Set<AccessShareDTO>();
 			for (Task task : taskList) {
-				if (usersMap.get(task.OwnerId).IsActive == true) {
+				if (usersMap.get(task.OwnerId)?.IsActive == true) {
 					String accId;
 					if (task.AccountId != null) {
 						accId = task.AccountId;
-					} else if (task.WhatId != null) {
+					} else if (task.WhatId != null && assetMap.get(task.WhatId) != null) {
 						accId = assetMap.get(task.WhatId).AccountId;
 					} else {
 						continue;

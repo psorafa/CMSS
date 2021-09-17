@@ -42,6 +42,15 @@ export default class CreateMicroCampaignResult extends NavigationMixin(Lightning
         return !!this._result.campaignId
     }
 
+    get erroredAccountsNotEmpty() {
+        return this._result.erroredAccounts?.length > 0
+    }
+
+    get erroredRecordsNotEmpty() {
+        return this._result.erroredRecords?.length > 0
+    }
+    
+
     handleCampaignClick(event) {
         event.stopPropagation()
         this.navigateToSObjectRecord(this._result.campaignId)
