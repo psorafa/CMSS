@@ -26,6 +26,14 @@ export default class CreateMicroCampaignForm extends LightningElement {
 		};
 	}
 
+	get campaignStartDate() {
+		return this._campaign?.startDate;
+	}
+
+	get campaignEndDate() {
+		return this._campaign?.endDate;
+	}
+
 	fireChangeEvent() {
 		this.dispatchEvent(
 			new CustomEvent('change', {
