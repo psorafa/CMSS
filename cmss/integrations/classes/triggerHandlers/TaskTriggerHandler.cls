@@ -65,14 +65,14 @@ public class TaskTriggerHandler extends TriggerHandler {
 		for (Task newTask : (Task[]) newListSo) {
 			Task oldTask = (Task) Trigger.oldMap.get(newTask.Id);
 
-			Boolean isWhatIdNull = (oldTask.WhatId == null && newTask.WhatId == null);
+			Boolean isAccountNull = (oldTask.AccountId == null && newTask.AccountId == null);
 
-			if (!oldTask.OwnerId.equals(newTask.OwnerId) && !isWhatIdNull) {
+			if (!oldTask.OwnerId.equals(newTask.OwnerId) && !isAccountNull) {
 				removeAccessList.add(oldTask);
 				assignAccessList.add(newTask);
 			} else if (closedStatuses.contains(newTask.Status) || newTask.ActivityDate <= Date.today()) {
 				removeAccessList.add(newTask);
-			} else if (oldTask.ActivityDate != newTask.ActivityDate && !isWhatIdNull) {
+			} else if (oldTask.ActivityDate != newTask.ActivityDate && !isAccountNull) {
 				assignAccessList.add(newTask);
 			}
 		}
