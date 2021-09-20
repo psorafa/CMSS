@@ -56,7 +56,6 @@ export default class CampaignForm extends LightningElement {
 
 	handleLookupChange(event) {
 		event.stopPropagation();
-		console.log('Idčko', event.detail);
 		if (event.detail) {
 			getCampaignData({ campaignId: event.detail, fields: 'Name, Description, EndDate, StartDate' }).then(
 				(campaign) => {

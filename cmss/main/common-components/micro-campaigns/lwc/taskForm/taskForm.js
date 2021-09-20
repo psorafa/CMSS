@@ -12,7 +12,6 @@ export default class TaskForm extends LightningElement {
 	typeValues;
 
 	@track _task = {
-		dueDate: this.defaultDate,
 		type: '5',
 		category: '3',
 		validFrom: this.validFromDate,
@@ -36,12 +35,6 @@ export default class TaskForm extends LightningElement {
 
 	get typeOptions() {
 		return this.typeValues.data;
-	}
-
-	get defaultDate() {
-		let date = new Date();
-		date.setDate(date.getDate() + 30);
-		return date.toISOString().substr(0, 10);
 	}
 
 	handleSubjectChange(event) {

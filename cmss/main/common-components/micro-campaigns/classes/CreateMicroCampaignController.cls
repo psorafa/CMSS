@@ -75,11 +75,13 @@ public with sharing class CreateMicroCampaignController {
 	private static Task prepareTaskTemplate(InputTask task, String assignee) {
 		return new Task(
 			ActivityDate = task.dueDate,
+			Author__c = UserInfo.getUserId(),
 			Category__c = task.category,
 			Description = task.description,
 			OwnerId = assignee,
 			Priority = 'Low',
 			ProductType__c = task.productType,
+			Type = task.type,
 			Source__c = '73',
 			Status = '1',
 			Subject = task.subject,
@@ -107,6 +109,7 @@ public with sharing class CreateMicroCampaignController {
 		public String subject;
 		public String description;
 		public String productType;
+		public String type;
 		public Date dueDate;
 		public String category;
 	}

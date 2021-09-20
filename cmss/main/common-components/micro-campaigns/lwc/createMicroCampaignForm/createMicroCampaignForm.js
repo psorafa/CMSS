@@ -31,7 +31,13 @@ export default class CreateMicroCampaignForm extends LightningElement {
 	}
 
 	get campaignEndDate() {
-		return this._campaign?.endDate;
+		return this._campaign?.endDate || this.defaultDate;
+	}
+
+	get defaultDate() {
+		let date = new Date();
+		date.setDate(date.getDate() + 30);
+		return date.toISOString().substr(0, 10);
 	}
 
 	fireChangeEvent() {
