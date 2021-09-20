@@ -24,6 +24,10 @@
         <apexClass>PermissionUtility</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>SearchController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>ČMSS uživatel mimo uživatele centrály</description>
     <fieldPermissions>
         <editable>false</editable>
