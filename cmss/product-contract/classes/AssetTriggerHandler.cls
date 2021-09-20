@@ -45,7 +45,8 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 				isAssetStatusActive(asset) &&
                 (oldAssetsMap == null ||
                 !isAssetStatusActive(oldAssetsMap.get(asset.Id))) && //if record is new or just activated
-                asset.ProductCloseDate__c >= System.today() 
+				asset.ProductCloseDate__c >= System.today()-30 &&
+				asset.CreatedDate >= System.today()-1
 			) {
 				filteredAssetsList.add(asset);
 			}
