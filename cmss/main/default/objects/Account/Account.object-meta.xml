@@ -250,12 +250,13 @@
         <lookupPhoneDialogsAdditionalFields>PC_PHONE5</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>PC_PHONE6</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PC_LAST_NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>GlobalId__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PersonalIdentificationNr__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CompanyRegistrationNumber__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.PHONE1</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PC_EMAIL</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>ACCOUNT.ADDRESS1_ZIP</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.ADDRESS1_STREET</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.ADDRESS1_CITY</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PortfolioMngmtA__c</searchResultsAdditionalFields>
     </searchLayouts>
