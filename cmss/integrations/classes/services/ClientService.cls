@@ -1,5 +1,4 @@
 public without sharing class ClientService {
-
 	private static List<ContactInformation__c> contactInfoList = new List<ContactInformation__c>();
 
 	public static Id createClientAndContactInfos(
@@ -13,37 +12,47 @@ public without sharing class ClientService {
 
 	public static Id insertAccount(SF_PersonManagementSOAPService.ClientType clientType) {
 		if (accountAlreadyExists(clientType.clientGlobalId, 'GlobalId__c')) {
-			throw new SOAPCommonTypes.BusinessException(202, 'Record already exists: Client - Global ID: ' + clientType.clientGlobalId);
+			throw new SOAPCommonTypes.BusinessException(
+				202,
+				'Record already exists: Client - Global ID: ' + clientType.clientGlobalId
+			);
 		}
-        if (accountAlreadyExists(clientType.externalId, 'ExternalId__c')) {
-			throw new SOAPCommonTypes.BusinessException(202, 'Record already exists: Client - External ID: ' + clientType.externalId);
+		if (accountAlreadyExists(clientType.externalId, 'ExternalId__c')) {
+			throw new SOAPCommonTypes.BusinessException(
+				202,
+				'Record already exists: Client - External ID: ' + clientType.externalId
+			);
 		}
 		Account client = new Account(
 			SbId__c = clientType.personNumber,
 			PersonalIdentificationNr__c = clientType.personalIdentityNumber,
 			GlobalId__c = clientType.clientGlobalId,
 			ExternalId__c = clientType.externalId,
-            Birthdate__c = clientType.birthDate,
-            Nationality__c = clientType.citizenship,
+			Birthdate__c = clientType.birthDate,
+			Nationality__c = clientType.citizenship,
 			Gender__c = clientType.gender,
 			IsPoliticallyExposed__c = clientType.isPoliticallyExposed,
 			IsResident__c = clientType.isCrResident
-        );
+		);
 		if (clientType.spSa != null) {
-            client.PortfolioMngmtA__c = ReferenceUtility.getUserByCPU(clientType.spSa).Id;
-        }
-        if (clientType.spSc != null) {
-            client.PortfolioMngmtC__c = ReferenceUtility.getUserByCPU(clientType.spSc).Id;
-        }
+			client.PortfolioMngmtA__c = ReferenceUtility.getUserByCPU(clientType.spSa).Id;
+		}
+		if (clientType.spSc != null) {
+			client.PortfolioMngmtC__c = ReferenceUtility.getUserByCPU(clientType.spSc).Id;
+		}
 		if (clientType.lastName != null) {
 			client.FirstName = clientType.firstName;
 			client.LastName = clientType.lastName;
 			client.PersonTitle = clientType.prefixTitle;
 			client.Suffix = clientType.suffixTitle;
-			client.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('PersonAccount').getRecordTypeId();
+			client.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName()
+				.get('PersonAccount')
+				.getRecordTypeId();
 		} else {
 			client.Name = clientType.name;
-			client.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
+			client.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName()
+				.get('Business_Account')
+				.getRecordTypeId();
 		}
 		SObjectUtil.stripNullFields(client);
 		DmlUtility.insertRecord(client);
@@ -51,7 +60,10 @@ public without sharing class ClientService {
 		return client.Id;
 	}
 
-	public static void createContactInfos(List<SF_PersonManagementSOAPService.PersonCommunicationType> communicationTypes, Id accountId) {
+	public static void createContactInfos(
+		List<SF_PersonManagementSOAPService.PersonCommunicationType> communicationTypes,
+		Id accountId
+	) {
 		if (communicationTypes == null || communicationTypes.isEmpty()) {
 			return;
 		}
@@ -63,7 +75,10 @@ public without sharing class ClientService {
 		Logger.debug('Inserted ContactInformation__c list', JSON.serialize(contactInfoList));
 	}
 
-	private static void createContactInformation(SF_PersonManagementSOAPService.PersonCommunicationType commType, Id accountId) {
+	private static void createContactInformation(
+		SF_PersonManagementSOAPService.PersonCommunicationType commType,
+		Id accountId
+	) {
 		ContactInformation__c contactInfo = new ContactInformation__c(
 			Account__c = accountId,
 			Type__c = commType.contactType,
@@ -96,7 +111,9 @@ public without sharing class ClientService {
 			'SELECT Id FROM Account WHERE ' +
 			uniqueFieldName +
 			' = ' +
-			'\'' + id + '\'' +
+			'\'' +
+			id +
+			'\'' +
 			' LIMIT 1'
 		);
 		if (duplicates.isEmpty()) {
