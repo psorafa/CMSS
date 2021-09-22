@@ -13,11 +13,13 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 
 	public override void afterInsert() {
 		AQMessageService.handleInsert(Trigger.new, Opportunity.SObjectType);
+		handleUpdateAccountDateFields();
 		// handleInsertedOppsShares(Trigger.new);
 	}
 
 	public override void afterUpdate() {
 		AQMessageService.handleUpdate(Trigger.new, Trigger.oldMap, Opportunity.SObjectType);
+		handleUpdateAccountDateFields();
 		// handleAfterUpdateOppsShares(Trigger.old, Trigger.new);
 	}
 
@@ -26,6 +28,49 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 	}
 
 	// ***************************** handlers and helping methods***************************************** //
+
+	public void handleUpdateAccountDateFields() {
+		Set<Account> accountsToUpdate = new Set<Account>();
+		Map<Id, Opportunity> opportunityWithAccount = new Map<Id, Opportunity>(
+			[
+				SELECT AccountId, Account.LastInteractionDate__c, Account.OpenedOpportunityDate__c
+				FROM Opportunity
+				WHERE Id IN :Trigger.newMap.keySet()
+			]
+		);
+
+		for (Opportunity newOpportunity : (Opportunity[]) Trigger.new) {
+			Opportunity oldOpportunity = (Opportunity) (Trigger.isInsert
+				? new Opportunity()
+				: Trigger.oldMap.get(newOpportunity.Id));
+			Account actualOpportunityAccount = opportunityWithAccount.get(newOpportunity.Id)?.Account;
+
+			if (
+				newOpportunity.LastModifiedDate != oldOpportunity?.LastModifiedDate &&
+				newOpportunity.LastModifiedDate.date() <= Date.today() &&
+				(newOpportunity.LastModifiedDate > actualOpportunityAccount?.LastInteractionDate__c ||
+				actualOpportunityAccount?.LastInteractionDate__c == null)
+			) {
+				actualOpportunityAccount.LastInteractionDate__c = (Date) newOpportunity.LastModifiedDate.date();
+				accountsToUpdate.add(actualOpportunityAccount);
+			}
+
+			if (
+				newOpportunity.CloseDate != oldOpportunity?.CloseDate &&
+				newOpportunity.CloseDate > Date.today() &&
+				(newOpportunity.StageName == '1' ||
+				newOpportunity.StageName == '2' ||
+				newOpportunity.StageName == '3') &&
+				(newOpportunity.CloseDate < actualOpportunityAccount?.OpenedOpportunityDate__c ||
+				actualOpportunityAccount?.OpenedOpportunityDate__c == null)
+			) {
+				actualOpportunityAccount.OpenedOpportunityDate__c = newOpportunity.CloseDate;
+				accountsToUpdate.add(actualOpportunityAccount);
+			}
+		}
+
+		update new List<Account>(new Set<Account>(accountsToUpdate));
+	}
 
 	private void handleAfterUpdateOppsShares(SObject[] oldListSo, SObject[] newListSo) {
 		List<Opportunity> oldOppList = (List<Opportunity>) oldListSo;
