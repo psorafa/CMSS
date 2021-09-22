@@ -11,18 +11,6 @@ public without sharing class ClientService {
 	}
 
 	public static Id insertAccount(SF_PersonManagementSOAPService.ClientType clientType) {
-		if (accountAlreadyExists(clientType.clientGlobalId, 'GlobalId__c')) {
-			throw new SOAPCommonTypes.BusinessException(
-				202,
-				'Record already exists: Client - Global ID: ' + clientType.clientGlobalId
-			);
-		}
-		if (accountAlreadyExists(clientType.externalId, 'ExternalId__c')) {
-			throw new SOAPCommonTypes.BusinessException(
-				202,
-				'Record already exists: Client - External ID: ' + clientType.externalId
-			);
-		}
 		Account client = new Account(
 			SbId__c = clientType.personNumber,
 			PersonalIdentificationNr__c = clientType.personalIdentityNumber,
@@ -55,7 +43,27 @@ public without sharing class ClientService {
 				.getRecordTypeId();
 		}
 		SObjectUtil.stripNullFields(client);
-		DmlUtility.insertRecord(client);
+
+		try {
+			DmlUtility.insertRecord(client);
+		} catch (SOAPCommonTypes.BusinessException ex) {
+			DmlException e = (DmlException) ex.getCause();
+			if (e.getDmlType(0) == StatusCode.DUPLICATE_VALUE) {
+				if (accountAlreadyExists(clientType.clientGlobalId, 'GlobalId__c')) {
+					throw new SOAPCommonTypes.BusinessException(
+						202,
+						'Record already exists: Client - Global ID: ' + clientType.clientGlobalId
+					);
+				}
+				if (accountAlreadyExists(clientType.externalId, 'ExternalId__c')) {
+					throw new SOAPCommonTypes.BusinessException(
+						202,
+						'Record already exists: Client - External ID: ' + clientType.externalId
+					);
+				}
+			}
+			throw ex;
+		}
 		Logger.debug('Inserted account', JSON.serialize(client));
 		return client.Id;
 	}
