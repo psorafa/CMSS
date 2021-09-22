@@ -9,7 +9,6 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>false</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
@@ -51,6 +50,16 @@
                 <fullName>8</fullName>
                 <default>false</default>
                 <label>No Access</label>
+            </value>
+            <value>
+                <fullName>9</fullName>
+                <default>false</default>
+                <label>kz_csob_id</label>
+            </value>
+            <value>
+                <fullName>10</fullName>
+                <default>false</default>
+                <label>kz_csob_id_ammendment</label>
             </value>
         </valueSetDefinition>
     </valueSet>
