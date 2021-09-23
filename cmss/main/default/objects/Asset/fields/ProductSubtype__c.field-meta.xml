@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ProductSubtype__c</fullName>
     <description>Podtyp produktu</description>
     <externalId>false</externalId>
     <label>Product Subtype</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Picklist</type>
     <valueSet>
@@ -329,6 +330,16 @@
                 <fullName>13093099</fullName>
                 <default>false</default>
                 <label>13093099</label>
+            </value>
+            <value>
+                <fullName>13069014</fullName>
+                <default>false</default>
+                <label>13069014</label>
+            </value>
+            <value>
+                <fullName>13069015</fullName>
+                <default>false</default>
+                <label>13069015</label>
             </value>
         </valueSetDefinition>
     </valueSet>
