@@ -43,8 +43,6 @@ public class TaskTriggerHandler extends TriggerHandler {
 		for (Task newTask : (Task[]) Trigger.new) {
 			Task oldTask = (Task) (Trigger.isInsert ? new Task() : Trigger.oldMap.get(newTask.Id));
 			Account actualTaskAccount = tasksWithAccount.get(newTask.Id)?.Account;
-			System.debug(actualTaskAccount);
-			System.debug(Date.today());
 			if (
 				newTask.CompletedDateTime != oldTask?.CompletedDateTime &&
 				newTask.CompletedDateTime.date() <= Date.today() &&
