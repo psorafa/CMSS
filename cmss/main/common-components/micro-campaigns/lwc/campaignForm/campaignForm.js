@@ -4,7 +4,6 @@ import getCampaignData from '@salesforce/apex/SearchController.getCampaign';
 
 const DEFAULT_CAMPAIGN_VALUES = {
 	startDate: new Date().toISOString().substr(0, 10),
-	endDate: null,
 	name: '',
 	describtion: ''
 };
@@ -14,7 +13,16 @@ export default class CampaignForm extends LightningElement {
 	campaignSearchCondition = "CreatedById = '" + Id + "' AND IsActive = true";
 	campaignExists;
 
-	@track _campaign = JSON.parse(JSON.stringify(DEFAULT_CAMPAIGN_VALUES));
+	@track _campaign = {
+		...JSON.parse(JSON.stringify(DEFAULT_CAMPAIGN_VALUES)),
+		endDate: this.defaultDate
+	};
+
+	get defaultDate() {
+		let date = new Date();
+		date.setDate(date.getDate() + 30);
+		return date.toISOString().substr(0, 10);
+	}
 
 	handleCheckboxChange(event) {
 		event.stopPropagation();
@@ -62,7 +70,10 @@ export default class CampaignForm extends LightningElement {
 				}
 			);
 		} else {
-			this._campaign = JSON.parse(JSON.stringify(DEFAULT_CAMPAIGN_VALUES));
+			this._campaign = {
+				...JSON.parse(JSON.stringify(DEFAULT_CAMPAIGN_VALUES)),
+				endDate: this.defaultDate
+			};
 			this.campaignExists = false;
 
 			this.dispatchEvent(new CustomEvent('change', { detail: this._campaign }));
