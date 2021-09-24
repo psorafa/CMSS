@@ -73,9 +73,11 @@ public with sharing class CreateMicroCampaignController {
 	}
 
 	private static Task prepareTaskTemplate(InputTask task, String assignee) {
+		User actualUser = [SELECT CommissionAccountNr__c FROM User WHERE Id = :UserInfo.getUserId()];
+
 		return new Task(
 			ActivityDate = task.dueDate,
-			Author__c = UserInfo.getName(),
+			Author__c = actualUser.CommissionAccountNr__c,
 			Category__c = task.category,
 			Description = task.description,
 			OwnerId = assignee,
