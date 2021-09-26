@@ -571,6 +571,11 @@
             <field>ManagerKP__c.LastName</field>
             <table>User</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ExternalId2__c</field>
+            <table>User</table>
+        </columns>
         <masterLabel>Users</masterLabel>
     </sections>
 </ReportType>
