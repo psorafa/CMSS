@@ -11,20 +11,13 @@ export default class TaskForm extends LightningElement {
 	@wire(getPicklistValues, { objectName: 'Task', fieldName: 'Type' })
 	typeValues;
 
-	@track _task = {
-		dueDate: this.defaultDate,
-		type: '5',
-		category: '3',
-		validFrom: this.validFromDate,
-		dueDate: this.dueDate
-	};
-
 	@api validFromDate;
 	@api dueDate;
 
-	get task() {
-		return JSON.stringify(this._task);
-	}
+	@track _task = {
+		type: '5',
+		category: '3'
+	};
 
 	get productTypeOptions() {
 		return this.productTypeValues.data ? [{ label: ' ' }, ...this.productTypeValues.data] : [];
@@ -38,10 +31,9 @@ export default class TaskForm extends LightningElement {
 		return this.typeValues.data;
 	}
 
-	get defaultDate() {
-		let date = new Date();
-		date.setDate(date.getDate() + 30);
-		return date.toISOString().substr(0, 10);
+	connectedCallback() {
+		this._task.validFrom = this.validFromDate;
+		this._task.dueDate = this.dueDate;
 	}
 
 	handleSubjectChange(event) {

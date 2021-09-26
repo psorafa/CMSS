@@ -9,10 +9,17 @@ export default class CreateMicroCampaignForm extends LightningElement {
 	@track _assignee;
 
 	get outputValid() {
-		if (this._campaign != null && !(this._campaign.name && this._campaign.endDate)) {
+		if (this._campaign != null && (!this._campaign?.name || !this._campaign?.endDate)) {
 			return false;
 		}
-		if (this._task == null || !(this._task.subject && this._task.description && this._task.dueDate)) {
+		console.log(JSON.stringify(this._task));
+		if (
+			this._task == null ||
+			!this._task?.subject ||
+			!this._task?.description ||
+			!this._task?.dueDate ||
+			!this._task?.validFrom
+		) {
 			return false;
 		}
 		return true;
@@ -31,7 +38,13 @@ export default class CreateMicroCampaignForm extends LightningElement {
 	}
 
 	get campaignEndDate() {
-		return this._campaign?.endDate;
+		return this._campaign?.endDate || this.defaultDate;
+	}
+
+	get defaultDate() {
+		let date = new Date();
+		date.setDate(date.getDate() + 30);
+		return date.toISOString().substr(0, 10);
 	}
 
 	fireChangeEvent() {
