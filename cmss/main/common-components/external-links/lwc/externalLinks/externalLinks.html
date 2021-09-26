@@ -33,8 +33,33 @@
 						<li><a href="javascript:void(0)" onclick={handleClickCsobPenze}>Doplňkové penzijní spoření</a></li>
 						<li><a href="javascript:void(0)" onclick={handleClickCsobPlusKonto}>Plus konto kurýr</a></li>
 						<li><a href="javascript:void(0)" onclick={handleClickCsobPremium}>Premium konto - vzdáleně</a></li>
-						<li><a href="javascript:void(0)" onclick={handleClickOsobniUdaje}>Změna osobních údajů</a></li>
-						<li><a href="javascript:void(0)" onclick={handleClickKlientskaZona}>Založení klientské zóny</a></li>
+						<template if:true={hasClientContext}>
+							<li><a href="javascript:void(0)" onclick={handleClickOsobniUdaje}>Změna osobních údajů</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickKlientskaZona}>Založení klientské zóny</a></li>
+						</template>
+						<template if:false={hasClientContext}>
+							<li><a href="javascript:void(0)" onclick={handleClickAxigen}>Axigen</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickExpo}>Expo+</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickOZCSOBStavebni}>OZ ČSOB Stavební</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickINVOZNavod}>INVOZ - návod</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickNahlizeniDoKatastru}>Nahlížení do katastru</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickVzdelavani}>Vzdělávání</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickAdministrace}>Administrace</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickInSign}>InSign</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickKontakty}>Kontakty</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickNovaModelovaHhypoteka}>Nová modelová hypotéka</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickSpotrebitelskeUveryCSOB}>Spotřebitelské úvěry ČSOB</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickZeus}>Zeus</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickDoporuceniKlientaNaPobockuCSOB}>Doporučení klienta na pobočku ČSOB</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickITWeb}>IT web</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickMobilniKalkulacka}>Mobilní kalkulačka</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickUloziste}>Úložiště</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickO2Family}>O2 Family</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickEshop}>Eshop</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickINVOZInstalace}>INVOZ - instalace</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickModel8}>Model8</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickVernostniProgram}>Věrnostní program</a></li>
+						</template>
 					</ul>
 
 				</div>
