@@ -7,7 +7,7 @@
     </fieldOverrides>
     <fieldOverrides>
         <field>Author__c</field>
-        <formula>$User.FirstName + &apos; &apos; +  $User.LastName</formula>
+        <formula>$User.CommissionAccountNr__c</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Category__c</field>
