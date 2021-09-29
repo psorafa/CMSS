@@ -33,6 +33,9 @@ export default class ExternalLinks extends LightningElement {
  	    this.showModal = false
 	}
 
+	handleClickNEL(e) {
+	    window.open(this.baseUrls.NELBaseUrl__c, "_blank")
+ 	}
 	handleClickStavebniSporeni(e) {
 	    window.open(this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-esporeni?clientId=' + this.clientGlobalId, "_blank")
  	}
@@ -58,7 +61,7 @@ export default class ExternalLinks extends LightningElement {
  	    window.open('https://www.csobpremium.cz/portal/nezarazene/referovani-premium-klientu-z-cmss', "_blank")
   	}
   	handleClickOsobniUdaje(e) {
-  	    window.open(this.baseUrls.NELBaseUrl__c + '/api/1.0.0/persons/clients/' + this.clientGlobalId + '?fullData=true', "_blank")
+  	    window.open(this.baseUrls.NELBaseUrl__c + '/group/nel/detail-klienta?clientId=' + this.clientGlobalId, "_blank")
    	}
   	handleClickKlientskaZona(e) {
   	    window.open(this.baseUrls.NELBaseUrl__c + '/group/nel/detail-klienta?clientId=' + this.clientGlobalId, "_blank")
