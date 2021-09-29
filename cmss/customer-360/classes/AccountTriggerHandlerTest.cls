@@ -25,6 +25,12 @@ private class AccountTriggerHandlerTest {
 
 	@IsTest
 	static void setOwnerTest() {
+		Id communityRecordType = [
+			SELECT Id
+			FROM RecordType
+			WHERE SobjectType = 'Account' AND Name = 'Community Account'
+		]
+		.Id;
 		User defaultOwner = TestDataFactory.getUser(new User());
 		User portfolioManager = TestDataFactory.getUser(new User());
 		insert new List<User>{ defaultOwner, portfolioManager };
@@ -35,16 +41,18 @@ private class AccountTriggerHandlerTest {
 		insert a1;
 		Account a2 = TestDataFactory.getAccount(new Account());
 		Account a3 = TestDataFactory.getAccount(new Account());
+		Account a4 = TestDataFactory.getAccount(new Account(recordTypeId = communityRecordType));
 
 		Test.startTest();
 		a1.PortfolioMngmtA__c = portfolioManager.Id;
 		a2.PortfolioMngmtA__c = portfolioManager.Id;
-		AccountTriggerHandler.setOwner(new List<Account>{ a1, a2, a3 });
+		AccountTriggerHandler.setOwner(new List<Account>{ a1, a2, a3, a4 });
 		Test.stopTest();
 
 		System.assertEquals(portfolioManager.Id, a1.OwnerId);
 		System.assertEquals(portfolioManager.Id, a2.OwnerId);
 		System.assertEquals(defaultOwner.Id, a3.OwnerId);
+		System.assertEquals(null, a4.OwnerId);
 	}
 
 	@IsTest
