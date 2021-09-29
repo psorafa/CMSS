@@ -23,6 +23,10 @@
 				<div class="slds-modal__content slds-p-around_medium">
 
 					<ul class="slds-list_dotted">
+						<template if:false={hasClientContext}>
+							<li><a href="javascript:void(0)" onclick={handleClickNEL}>NEL - homepage</a></li>
+							<li><a href="javascript:void(0)" onclick={handleClickNEL}>Založení klienta</a></li>
+						</template>
 						<li><a href="javascript:void(0)" onclick={handleClickStavebniSporeni}>Stavební spoření</a></li>
 						<li><a href="javascript:void(0)" onclick={handleClickEUver}>eÚvěry</a></li>
 						<li><a href="javascript:void(0)" onclick={handleClickEPrescore}>ePrescore</a></li>
