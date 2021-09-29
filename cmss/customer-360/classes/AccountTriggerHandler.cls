@@ -32,7 +32,16 @@ public class AccountTriggerHandler extends TriggerHandler {
 	@TestVisible
 	private static void setOwner(List<Account> accounts) {
 		CommonSetting__c commonSetting = CommonSetting__c.getOrgDefaults();
+		Id communityRecordType = [
+			SELECT Id
+			FROM RecordType
+			WHERE SobjectType = 'Account' AND Name = 'Community Account'
+		]
+		.Id;
 		for (Account a : accounts) {
+			if (a.RecordTypeId == communityRecordType) {
+				continue;
+			}
 			if (commonSetting.OwnerForHiddenRecords__c != null && a.IsInvalid__c) {
 				a.OwnerId = commonSetting.OwnerForHiddenRecords__c;
 			} else if (a.PortfolioMngmtA__c != null) {
