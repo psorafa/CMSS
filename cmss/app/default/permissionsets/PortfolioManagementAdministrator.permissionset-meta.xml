@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
         <apexClass>APRD__ObjectDetailController</apexClass>
@@ -25,6 +25,11 @@
         <name>BulkOwnershipStateChangeVisibility</name>
     </customPermissions>
     <description>Správce portfolio managementu</description>
+        <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.DaysOfComplaintSolving__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PortfolioManagementA__c.Account__c</field>
