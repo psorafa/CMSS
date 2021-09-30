@@ -44,7 +44,9 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 				? new Opportunity()
 				: Trigger.oldMap.get(newOpportunity.Id));
 			Account actualOpportunityAccount = opportunityWithAccount.get(newOpportunity.Id)?.Account;
-
+			if (actualOpportunityAccount == null) {
+				continue;
+			}
 			if (
 				newOpportunity.LastModifiedDate != oldOpportunity?.LastModifiedDate &&
 				newOpportunity.LastModifiedDate.date() <= Date.today() &&

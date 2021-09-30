@@ -43,6 +43,9 @@ public class TaskTriggerHandler extends TriggerHandler {
 		for (Task newTask : (Task[]) Trigger.new) {
 			Task oldTask = (Task) (Trigger.isInsert ? new Task() : Trigger.oldMap.get(newTask.Id));
 			Account actualTaskAccount = tasksWithAccount.get(newTask.Id)?.Account;
+			if (actualTaskAccount == null) {
+				continue;
+			}
 			if (
 				newTask.CompletedDateTime != oldTask?.CompletedDateTime &&
 				newTask.CompletedDateTime.date() <= Date.today() &&
@@ -65,7 +68,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 			}
 		}
 
-		update new List<Account>(accountsToUpdate);
+		update new List<Account>(new Set<Account>(accountsToUpdate));
 	}
 
 	public void handleInsertedTasksShares(SObject[] soList) {

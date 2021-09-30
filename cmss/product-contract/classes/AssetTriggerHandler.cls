@@ -45,7 +45,9 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 		for (Asset newAsset : (Asset[]) Trigger.new) {
 			Asset oldAsset = (Asset) (Trigger.isInsert ? new Asset() : Trigger.oldMap.get(newAsset.Id));
 			Account actualAssetAccount = assetWithAccount.get(newAsset.Id)?.Account;
-
+            if (actualAssetAccount == null) {
+				continue;
+			}
 			if (
 				newAsset.ProductCloseDate__c != oldAsset?.ProductCloseDate__c &&
 				newAsset.ProductCloseDate__c <= Date.today()
