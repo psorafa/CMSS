@@ -20,6 +20,10 @@ public with sharing class AccountRelatedListController {
         User[] users = [SELECT Id FROM User WHERE CommissionAccountBase__c = :commAccountBase];
         return users.size() > 0 ? users[0].Id : null;
     }
+    
+    @AuraEnabled(cacheable=true)
+    public static Boolean checkPermission(String permissionName){
+    return FeatureManagement.checkPermission(permissionName); }
 
     @AuraEnabled
     public static String createPortManRequestsForUsersClients(PortfolioManagementRequest__c pmr, Id userId, String portManType) {

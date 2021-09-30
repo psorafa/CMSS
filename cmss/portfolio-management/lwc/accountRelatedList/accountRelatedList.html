@@ -10,7 +10,8 @@
                 <lightning-input type="text" name="billingPostalCode" label={postalCodeLabel} onchange={handleFilterChange}></lightning-input>
             </lightning-layout-item>
             <lightning-layout-item size="9" padding="around-small" class="slds-m-top_large">
-                <lightning-button variant="brand" label={labels.bulkOwnershipStateChange} onclick={handleSelectedRows} class="slds-float--right slds-m-left_x-small"></lightning-button>
+                <template if:true={btnVisibility}>
+                <lightning-button variant="brand" label={labels.bulkOwnershipStateChange} onclick={handleSelectedRows} class="slds-float--right slds-m-left_x-small"></lightning-button></template>
                 <lightning-button variant="brand" label={labels.selectAll} onclick={handleSelectAll} class="slds-float--right slds-m-left_x-small"></lightning-button>
             </lightning-layout-item>
         </lightning-layout>
