@@ -5,5 +5,8 @@
     <fields>AccountId</fields>
     <fields>ProductType__c</fields>
     <fields>CreditAmount__c</fields>
+    <fields>FirstDrawDate__c</fields>
+    <fields>Status__c</fields>
+    <fields>CreditType__c</fields>
     <label>Credit Case Compact Layout</label>
 </CompactLayout>
