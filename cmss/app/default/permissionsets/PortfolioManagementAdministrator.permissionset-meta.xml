@@ -25,7 +25,7 @@
         <name>BulkOwnershipStateChangeVisibility</name>
     </customPermissions>
     <description>Správce portfolio managementu</description>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Case.DaysOfComplaintSolving__c</field>
         <readable>false</readable>
