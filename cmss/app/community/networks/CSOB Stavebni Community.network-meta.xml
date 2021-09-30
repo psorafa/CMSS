@@ -6,7 +6,7 @@
     <communityRoles/>
     <disableReputationRecordConversations>false</disableReputationRecordConversations>
     <emailSenderAddress>ondrej.tancibudek@enehano.cz</emailSenderAddress>
-    <emailSenderName>CSOB Stavebni Community</emailSenderName>
+    <emailSenderName>CRM ČSOB Stavební spořitelna</emailSenderName>
     <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
     <enableDirectMessages>true</enableDirectMessages>
     <enableGuestChatter>false</enableGuestChatter>
@@ -39,6 +39,7 @@
         <loginPageOverrideSetting>Standard</loginPageOverrideSetting>
         <selfRegProfilePageOverrideSetting>Designer</selfRegProfilePageOverrideSetting>
     </networkPageOverrides>
+    <newSenderAddress>crm_noreply@csobstavebni.cz</newSenderAddress>
     <picassoSite>CSOB_Stavebni_Community1</picassoSite>
     <selfRegistration>false</selfRegistration>
     <sendWelcomeEmail>false</sendWelcomeEmail>
