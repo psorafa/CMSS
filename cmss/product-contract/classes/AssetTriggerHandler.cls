@@ -31,7 +31,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 	// ***************************** handlers and helping methods***************************************** //
 
 	private static void filterAndPairWithOpp(List<Asset> newAssetsList, Map<Id, Asset> oldAssetsMap) {
-		Set<String> irrelevantProductTypes = new Set<String>{ '1', '2', '13', '15' };
+		Set<String> irrelevantProductTypes = new Set<String>{ '1', '2' };
 
 		List<Asset> filteredAssetsList = new List<Asset>();
 
@@ -39,7 +39,10 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 			if (
 				!irrelevantProductTypes.contains(asset.ProductType__c) &&
 				String.isNotEmpty(asset.ClosingAgentId__c) &&
-				isAssetStatusActive(asset) &&
+				(isAssetStatusActive(asset) ||
+				((asset.ProductType__c == '13' && asset.Status__c == '0000') ||
+				(asset.ProductType__c == '15' &&
+				asset.Status__c == '8001'))) &&
 				(oldAssetsMap == null || !isAssetStatusActive(oldAssetsMap.get(asset.Id))) && //if record is new or just activated
 				asset.ProductCloseDate__c >= System.today() - 30 &&
 				asset.CreatedDate >= System.today() - 1
@@ -108,6 +111,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 				if (
 					opp.AccountId == asset.AccountId &&
 					opp.OwnerId == asset.ClosingAgentId__c &&
+					opp.ProductType__c == asset.ProductType__c &&
 					asset.ProductCloseDate__c >= opp.ValidFrom__c &&
 					opp.ValidTo__c != null &&
 					asset.ProductCloseDate__c <= opp.ValidTo__c.addDays(30)
@@ -171,7 +175,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 		opp.ProductType__c = opp.ProductType__c == null ? recordTypedescription : opp.ProductType__c;
 		opp.UpdateDate__c = opp.UpdateDate__c == null ? System.now() : opp.UpdateDate__c;
 		opp.ValidFrom__c = opp.ValidFrom__c == null ? System.now().addMinutes(-30) : opp.ValidFrom__c;
-		opp.ValidTo__c = opp.ValidTo__c == null ? System.now() : opp.ValidTo__c;
+		opp.ValidTo__c = opp.ValidTo__c == null ? System.now().addDays(120) : opp.ValidTo__c;
 
 		if (String.isEmpty(opp.OwnerId)) {
 			if (String.isNotEmpty(asset.ClosingAgentId__c)) {
