@@ -217,6 +217,26 @@
           "id" : "ce455fac-fc80-492b-836b-b0ad1484832c",
           "renditionMap" : { },
           "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "PortfolioManagementC__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "de15b4ad-5972-4062-a913-377fec4970d2",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "PortfolioManagementRequests__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "a8f576b1-60cc-4add-b909-b2b768720778",
+          "renditionMap" : { },
+          "type" : "component"
         } ],
         "id" : "a39f30a7-5afb-4800-a679-0e054e0bab16",
         "regionLabel" : "Správa Stavu",
@@ -224,28 +244,6 @@
         "renditionMap" : { },
         "type" : "region"
       } ],
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
-      "componentAttributes" : {
-        "relatedListApiName" : "PortfolioManagementC__r",
-        "relatedListComponentOverride" : "ADVGRID",
-        "width" : "MEDIUM"
-      },
-      "componentName" : "forceCommunity:responsiveRelatedListSingle",
-      "id" : "de15b4ad-5972-4062-a913-377fec4970d2",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
-      "componentAttributes" : {
-        "relatedListApiName" : "PortfolioManagementRequests__r",
-        "relatedListComponentOverride" : "ADVGRID",
-        "width" : "MEDIUM"
-      },
-      "componentName" : "forceCommunity:responsiveRelatedListSingle",
-      "id" : "a8f576b1-60cc-4add-b909-b2b768720778",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
