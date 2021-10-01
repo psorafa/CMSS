@@ -4,14 +4,22 @@ private class UserTriggerHandlerTest {
 	static void makeData() {
 		UserRole userRole = new UserRole(Name = 'TestRole');
 		insert userRole;
+
+		Profile adminProfile = [SELECT id, Name FROM Profile WHERE name = 'System Administrator'].get(0);
+		User user = TestDataFactory.getUser(
+			new User(
+				profileId = adminProfile.id,
+				UserRoleId = userRole.Id,
+				LastName = 'Jackson',
+				Username = 'samuelel@jackson.com'
+			)
+		);
+		insert user;
 	}
 
 	@IsTest
 	static void contactInfoUpdatedTest() {
-		Id userRoleId = [SELECT Id FROM UserRole WHERE Name = 'TestRole' LIMIT 1].Id;
-		User runningUser = new User(Id = UserInfo.getUserId());
-		runningUser.UserRoleId = userRoleId;
-		update runningUser;
+		User runningUser = [SELECT Id FROM User WHERE LastName = 'Jackson'];
 
 		User communityUser;
 		Contact portalContact;
@@ -26,6 +34,7 @@ private class UserTriggerHandlerTest {
 
 			communityUser = TestDataFactory.getUser(
 				new User(
+					AgentId__c = '12355',
 					AgentActivityType__c = '2',
 					CommissionAccountBase__c = '2',
 					IsAgentActive__c = true,
