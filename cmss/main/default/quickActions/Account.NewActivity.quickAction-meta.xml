@@ -63,10 +63,6 @@
         <formula>NOW()</formula>
     </fieldOverrides>
     <fieldOverrides>
-        <field>ValidTo__c</field>
-        <formula>TODAY() + 104</formula>
-    </fieldOverrides>
-    <fieldOverrides>
         <field>WhatId</field>
         <formula>Account.Id</formula>
     </fieldOverrides>
