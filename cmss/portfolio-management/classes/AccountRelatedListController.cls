@@ -22,8 +22,9 @@ public with sharing class AccountRelatedListController {
     }
     
     @AuraEnabled(cacheable=true)
-    public static Boolean checkPermission(String permissionName){
-    return FeatureManagement.checkPermission(permissionName); }
+    public static Boolean checkPermission(String permissionName) {
+        return FeatureManagement.checkPermission(permissionName); 
+    }
 
     @AuraEnabled
     public static String createPortManRequestsForUsersClients(PortfolioManagementRequest__c pmr, Id userId, String portManType) {
