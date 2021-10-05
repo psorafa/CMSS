@@ -1258,6 +1258,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.InsuranceBankAccountNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.InsuranceEndDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1464,6 +1469,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.OpeningBalance__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.OriginalInsuranceAmount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1914,6 +1924,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.TotalRequiedAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.UnassignedInterestNetto__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
