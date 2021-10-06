@@ -4,6 +4,7 @@ import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getAccounts from '@salesforce/apex/AccountRelatedListController.getAccounts';
 import getUserId from '@salesforce/apex/AccountRelatedListController.getUserId';
+import checkPermission from '@salesforce/apex/AccountRelatedListController.checkPermission';
 import createPortManRequests from '@salesforce/apex/AccountRelatedListController.createPortManRequests';
 import createPortManRequestsForUsersClients from '@salesforce/apex/AccountRelatedListController.createPortManRequestsForUsersClients';
 import save from '@salesforce/label/c.Save';
@@ -19,250 +20,263 @@ import checkUserCRUD from '@salesforce/apex/PermissionUtility.checkUserCRUD';
 const recordsToShow = 50;
 
 export default class AccountRelatedList extends LightningElement {
-    @api recordId;
-    @api portManType;
-    @track columns = [];
-    @track data = [];
-    @track selectedData = [];
-    @track tableElement;
-    @track accountFieldLabels = {};
-    @track portManRequest = {};
-    transferAllClients = false;
-    offset = 0;
-    accountCount;
-    billingCity;
-    billingPostalCode;
-    isModalOpen = false;
-    isSaving = false;
-    isLoading = false;
-    isAllSelected = false;
-    isAccessEnabled = false;
-    labels = {
-        save,
-        cancel,
-        selectAll,
-        bulkOwnershipStateChange,
-        transferAllClients
-    };
+	@api recordId;
+	@api portManType;
+	@track columns = [];
+	@track data = [];
+	@track selectedData = [];
+	@track tableElement;
+	@track accountFieldLabels = {};
+	@track portManRequest = {};
+	transferAllClients = false;
+	offset = 0;
+	accountCount;
+	billingCity;
+	billingPostalCode;
+	isModalOpen = false;
+	isSaving = false;
+	isLoading = false;
+	isAllSelected = false;
+	isAccessEnabled = false;
+	btnVisibility = false;
+	labels = {
+		save,
+		cancel,
+		selectAll,
+		bulkOwnershipStateChange,
+		transferAllClients
+	};
 
-    get cityLabel() {
-        return ( this.accountFieldLabels && this.accountFieldLabels.BillingCity && this.accountFieldLabels.BillingCity.label ) || '';
-    }
+	get cityLabel() {
+		return (
+			(this.accountFieldLabels &&
+				this.accountFieldLabels.BillingCity &&
+				this.accountFieldLabels.BillingCity.label) ||
+			''
+		);
+	}
 
-    get postalCodeLabel() {
-        return ( this.accountFieldLabels && this.accountFieldLabels.BillingPostalCode && this.accountFieldLabels.BillingPostalCode.label ) || '';
-    }
+	get postalCodeLabel() {
+		return (
+			(this.accountFieldLabels &&
+				this.accountFieldLabels.BillingPostalCode &&
+				this.accountFieldLabels.BillingPostalCode.label) ||
+			''
+		);
+	}
 
-    connectedCallback() {
-        this.isLoading = true;
-        this.handleGetAccounts(
-            null, 
-            null, 
-            recordsToShow, 
-            this.offset, 
-            data => {
-                this.accountCount = data.accountCount;
-                this.data = data.accounts.map(item => ({...item, NameUrl: '/' + item.Id}));
-                this.isLoading = false;
-        })
-    }
+	@wire(checkPermission, { permissionName: 'BulkOwnershipStateChangeVisibility' })
+	handlePerm({ data }) {
+		this.btnVisibility = data;
+	}
 
-    @wire(getObjectInfo, { objectApiName: ACCOUNT_OBJ })
-    handleAccountInfo({ data, error }) {
-        if (data) {
-            this.columns = [
-                { label: data.fields.CombinedName__c.label, fieldName: 'NameUrl', type: 'url', typeAttributes: {label: { fieldName: 'CombinedName__c' } } },
-                { label: data.fields.BillingStreet.label, fieldName: 'BillingStreet' },
-                { label: data.fields.BillingCity.label, fieldName: 'BillingCity' },
-                { label: data.fields.BillingPostalCode.label, fieldName: 'BillingPostalCode' },
-                { label: data.fields.Phone.label, fieldName: 'Phone' },
-                { label: data.fields.PersonEmail.label, fieldName: 'PersonEmail' },
-                { label: data.fields.PersonType__c.label, fieldName: 'PersonType__c' },
-            ];
-            this.accountFieldLabels = data.fields;
-        } else if (error) {
-            this.fireToast('error', errorTitle);
-        }
-    }
+	connectedCallback() {
+		this.isLoading = true;
+		this.handleGetAccounts(null, null, recordsToShow, this.offset, (data) => {
+			this.accountCount = data.accountCount;
+			this.data = data.accounts.map((item) => ({ ...item, NameUrl: '/' + item.Id }));
+			this.isLoading = false;
+		});
+	}
 
-    @wire(checkUserCRUD, { objectName: 'PortfolioManagementRequest__c', operation: 'insert' })
-    handleCheckUserCRUD({ data, error }) {
-        if (data) {
-            this.isAccessEnabled = data;
-        } else if (error) {
-            this.fireToast('error', errorTitle);
-        }
-    }
+	@wire(getObjectInfo, { objectApiName: ACCOUNT_OBJ })
+	handleAccountInfo({ data, error }) {
+		if (data) {
+			this.columns = [
+				{
+					label: data.fields.CombinedName__c.label,
+					fieldName: 'NameUrl',
+					type: 'url',
+					typeAttributes: { label: { fieldName: 'CombinedName__c' } }
+				},
+				{ label: data.fields.BillingStreet.label, fieldName: 'BillingStreet' },
+				{ label: data.fields.BillingCity.label, fieldName: 'BillingCity' },
+				{ label: data.fields.BillingPostalCode.label, fieldName: 'BillingPostalCode' },
+				{ label: data.fields.Phone.label, fieldName: 'Phone' },
+				{ label: data.fields.PersonEmail.label, fieldName: 'PersonEmail' },
+				{ label: data.fields.PersonType__c.label, fieldName: 'PersonType__c' }
+			];
+			this.accountFieldLabels = data.fields;
+		} else if (error) {
+			this.fireToast('error', errorTitle);
+		}
+	}
 
-    loadMoreData(event) {
-        if (this.accountCount && this.offset < this.accountCount) {
-            this.tableElement = event.target;
-            this.tableElement.isLoading = true;
-            this.tableElement.enableInfiniteLoading = false;
-            this.offset += recordsToShow;
+	@wire(checkUserCRUD, { objectName: 'PortfolioManagementRequest__c', operation: 'insert' })
+	handleCheckUserCRUD({ data, error }) {
+		if (data) {
+			this.isAccessEnabled = data;
+		} else if (error) {
+			this.fireToast('error', errorTitle);
+		}
+	}
 
-            this.handleGetAccounts(
-                this.billingCity, 
-                this.billingPostalCode, 
-                recordsToShow, 
-                this.offset, 
-                data => {
-                    this.accountCount = data.accountCount;
-                    const mappedData = data.accounts.map(item => ({...item, NameUrl: '/' + item.Id}))
-                    this.data = this.data.concat(mappedData);
-                    this.setInfiniteLoading();
-                    this.tableElement.isLoading = false;
-            })
-        }
-    }
+	loadMoreData(event) {
+		if (this.accountCount && this.offset < this.accountCount) {
+			this.tableElement = event.target;
+			this.tableElement.isLoading = true;
+			this.tableElement.enableInfiniteLoading = false;
+			this.offset += recordsToShow;
 
-    setInfiniteLoading() {
-        if (this.tableElement) {
-            this.tableElement.enableInfiniteLoading = this.offset < this.accountCount ? true : false;
-        }
-    }
+			this.handleGetAccounts(this.billingCity, this.billingPostalCode, recordsToShow, this.offset, (data) => {
+				this.accountCount = data.accountCount;
+				const mappedData = data.accounts.map((item) => ({ ...item, NameUrl: '/' + item.Id }));
+				this.data = this.data.concat(mappedData);
+				this.setInfiniteLoading();
+				this.tableElement.isLoading = false;
+			});
+		}
+	}
 
-    handleSelectAll() {
-        this.isLoading = true;
-        this.handleGetAccounts(
-            this.billingCity, 
-            this.billingPostalCode, 
-            50000, 
-            0, 
-            data => {
-                this.accountCount = data.accountCount;
-                this.selectedData = data.accounts.map(row => row.Id);
-                this.isAllSelected = true;
-                this.isLoading = false;
-                this.changeModalVisibility();
-        })
-    }
+	setInfiniteLoading() {
+		if (this.tableElement) {
+			this.tableElement.enableInfiniteLoading = this.offset < this.accountCount ? true : false;
+		}
+	}
 
-    handleSelectedRows() {
-        if (this.selectedData && this.selectedData.length > 0) {
-            this.changeModalVisibility();
-        } else {
-            this.fireToast('error', noRecordsFound);
-        }
-    }
+	handleSelectAll() {
+		this.isLoading = true;
+		this.handleGetAccounts(this.billingCity, this.billingPostalCode, 50000, 0, (data) => {
+			this.accountCount = data.accountCount;
+			this.selectedData = data.accounts.map((row) => row.Id);
+			this.isAllSelected = true;
+			this.isLoading = false;
+			this.changeModalVisibility();
+		});
+	}
 
-    handlePMRValueChange(event) {
-        this.portManRequest[event.target.fieldName] = event.target.value;
-        if (event.target.fieldName === 'PortfolioManagerCPU__c') {
-            getUserId({ commAccountBase: event.target.value })
-                .then(data => {
-                    this.template.querySelector('[data-element="PortfolioManager__c"]').value = data;
-                    this.portManRequest['PortfolioManager__c'] = data;
-                })
-                .catch(error => { this.handleErrors(error, false) });
-        }
-    }
+	handleSelectedRows() {
+		if (this.selectedData && this.selectedData.length > 0) {
+			this.changeModalVisibility();
+		} else {
+			this.fireToast('error', noRecordsFound);
+		}
+	}
 
-    handleCheckboxChange() {
-        this.transferAllClients = this.template.querySelectorAll('[data-element="transfer-all-clients"]')[0].checked;
-    }
+	handlePMRValueChange(event) {
+		this.portManRequest[event.target.fieldName] = event.target.value;
+		if (event.target.fieldName === 'PortfolioManagerCPU__c') {
+			getUserId({ commAccountBase: event.target.value })
+				.then((data) => {
+					this.template.querySelector('[data-element="PortfolioManager__c"]').value = data;
+					this.portManRequest['PortfolioManager__c'] = data;
+				})
+				.catch((error) => {
+					this.handleErrors(error, false);
+				});
+		}
+	}
 
-    handleFilterChange(event) {
-        this.isLoading = true;
-        this.offset = 0;
-        
-        if (event.target.name === 'billingCity') {
-            this.billingCity = event.target.value ? '%' + event.target.value + '%' : '';
-        } else if (event.target.name === 'billingPostalCode') {
-            this.billingPostalCode = event.target.value ? '%' + event.target.value + '%' : '';
-        }
+	handleCheckboxChange() {
+		this.transferAllClients = this.template.querySelectorAll('[data-element="transfer-all-clients"]')[0].checked;
+	}
 
-        this.handleGetAccounts(
-            this.billingCity, 
-            this.billingPostalCode, 
-            recordsToShow, 
-            this.offset, 
-            data => {
-                this.accountCount = data.accountCount;
-                this.data = data.accounts.map(item => ({...item, NameUrl: '/' + item.Id}));
-                this.setInfiniteLoading();
-                this.isLoading = false;
-        })
-    }
+	handleFilterChange(event) {
+		this.isLoading = true;
+		this.offset = 0;
 
-    handleGetAccounts(billingCity, billingPostalCode, limit, offset, thenFunction) {
-        getAccounts({ 
-            userId: this.recordId, 
-            portManType: this.portManType, 
-            billingCity: billingCity,
-            billingPostalCode: billingPostalCode,
-            recordsToShow: limit, 
-            offset: offset
-        })
-        .then(thenFunction)
-        .catch(error => { this.handleErrors(error, false) });
-    }
+		if (event.target.name === 'billingCity') {
+			this.billingCity = event.target.value ? '%' + event.target.value + '%' : '';
+		} else if (event.target.name === 'billingPostalCode') {
+			this.billingPostalCode = event.target.value ? '%' + event.target.value + '%' : '';
+		}
 
-    getSelectedRows(event) {
-        this.selectedData = event.detail.selectedRows.map(row => row.Id);
-    }
+		this.handleGetAccounts(this.billingCity, this.billingPostalCode, recordsToShow, this.offset, (data) => {
+			this.accountCount = data.accountCount;
+			this.data = data.accounts.map((item) => ({ ...item, NameUrl: '/' + item.Id }));
+			this.setInfiniteLoading();
+			this.isLoading = false;
+		});
+	}
 
-    changeModalVisibility() {
-        this.portManRequest = {};
-        this.isModalOpen = !this.isModalOpen;
-        if (!this.isModalOpen && this.isAllSelected) {
-            this.template.querySelector('lightning-datatable').selectedRows = [];
-            this.selectedData = [];
-            this.isAllSelected = false;
-        }
-    }
+	handleGetAccounts(billingCity, billingPostalCode, limit, offset, thenFunction) {
+		getAccounts({
+			userId: this.recordId,
+			portManType: this.portManType,
+			billingCity: billingCity,
+			billingPostalCode: billingPostalCode,
+			recordsToShow: limit,
+			offset: offset
+		})
+			.then(thenFunction)
+			.catch((error) => {
+				this.handleErrors(error, false);
+			});
+	}
 
-    saveModal() {
-        if (!this.portManRequest.PortfolioManager__c || !this.portManRequest.PortfolioManagerCPU__c) {
-            this.fireToast('error', errorTitle, requiredFields);
-            return;
-        }
+	getSelectedRows(event) {
+		this.selectedData = event.detail.selectedRows.map((row) => row.Id);
+	}
 
-        this.toggleSpinner();
+	changeModalVisibility() {
+		this.portManRequest = {};
+		this.isModalOpen = !this.isModalOpen;
+		if (!this.isModalOpen && this.isAllSelected) {
+			this.template.querySelector('lightning-datatable').selectedRows = [];
+			this.selectedData = [];
+			this.isAllSelected = false;
+		}
+	}
 
-        this.portManRequest.PortfolioManagementType__c = this.portManType;
-        const parameters = { pmr: this.portManRequest }
-        if (this.transferAllClients) {
-            parameters.userId = this.recordId;
-            parameters.portManType = this.portManType;
-            createPortManRequestsForUsersClients(parameters)
-                .then(data => { this.handleCreatePMRSuccess(data) })
-                .catch(error => { this.handleErrors(error, true) });
-        } else {
-            parameters.accountIds = this.selectedData;
-            createPortManRequests(parameters)
-                .then(data => { this.handleCreatePMRSuccess(data) })
-                .catch(error => { this.handleErrors(error, true) });
-        }
-    }
+	saveModal() {
+		if (!this.portManRequest.PortfolioManager__c || !this.portManRequest.PortfolioManagerCPU__c) {
+			this.fireToast('error', errorTitle, requiredFields);
+			return;
+		}
 
-    handleCreatePMRSuccess(response) {
-        this.fireToast('success', response);
-        this.changeModalVisibility();
-        this.toggleSpinner();
-    }
+		this.toggleSpinner();
 
-    handleErrors(error, disableSpinner) {
-        console.log(JSON.stringify(error))
-        this.fireToast('error', errorTitle, (error && error.body && error.body.message) ? error.body.message : '');
-        if (disableSpinner) {
-            this.toggleSpinner();
-        }
-        if (this.isLoading) {
-            this.isLoading = false;
-        }
-    }
+		this.portManRequest.PortfolioManagementType__c = this.portManType;
+		const parameters = { pmr: this.portManRequest };
+		if (this.transferAllClients) {
+			parameters.userId = this.recordId;
+			parameters.portManType = this.portManType;
+			createPortManRequestsForUsersClients(parameters)
+				.then((data) => {
+					this.handleCreatePMRSuccess(data);
+				})
+				.catch((error) => {
+					this.handleErrors(error, true);
+				});
+		} else {
+			parameters.accountIds = this.selectedData;
+			createPortManRequests(parameters)
+				.then((data) => {
+					this.handleCreatePMRSuccess(data);
+				})
+				.catch((error) => {
+					this.handleErrors(error, true);
+				});
+		}
+	}
 
-    toggleSpinner() {
-        this.isSaving = !this.isSaving;
-    }
+	handleCreatePMRSuccess(response) {
+		this.fireToast('success', response);
+		this.changeModalVisibility();
+		this.toggleSpinner();
+	}
 
-    fireToast(variant, title, message) {
-        const evt = new ShowToastEvent({
-            variant: variant,
-            title: title,
-            message: message,
-        });
-        this.dispatchEvent(evt);
-    }
+	handleErrors(error, disableSpinner) {
+		console.log(JSON.stringify(error));
+		this.fireToast('error', errorTitle, error && error.body && error.body.message ? error.body.message : '');
+		if (disableSpinner) {
+			this.toggleSpinner();
+		}
+		if (this.isLoading) {
+			this.isLoading = false;
+		}
+	}
+
+	toggleSpinner() {
+		this.isSaving = !this.isSaving;
+	}
+
+	fireToast(variant, title, message) {
+		const evt = new ShowToastEvent({
+			variant: variant,
+			title: title,
+			message: message
+		});
+		this.dispatchEvent(evt);
+	}
 }
