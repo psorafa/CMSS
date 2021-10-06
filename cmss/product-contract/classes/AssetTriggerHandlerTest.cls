@@ -151,6 +151,31 @@ public class AssetTriggerHandlerTest {
 		System.assertEquals(100, opp.Probability);
 	}
 
+    @isTest
+	static void accountFieldsUpdatedTest() {
+		Account acc1 = TestDataFactory.getAccount(new Account());
+		acc1.OpenedActivityDate__c = null;
+		acc1.LastInteractionDate__c = null;
+		insert acc1;
+
+        Asset asset1 = TestDataFactory.getAsset(new Asset());
+        asset1.AccountId = acc1.Id;
+		asset1.ProductCloseDate__c = System.today().addDays(-5);
+
+		insert asset1;
+
+        Account updatedAccount = [SELECT Id, AssetLastCloseDate__c, LastInteractionDate__c FROM Account WHERE Id = :acc1.Id];
+
+		System.assertEquals(asset1.ProductCloseDate__c, updatedAccount.AssetLastCloseDate__c);
+		System.assertEquals(asset1.ProductCloseDate__c, updatedAccount.LastInteractionDate__c);
+
+        asset1.ProductCloseDate__c = System.today().addDays(-3);
+        update asset1;
+        updatedAccount = [SELECT Id, AssetLastCloseDate__c, LastInteractionDate__c FROM Account WHERE Id = :acc1.Id];
+
+		System.assertEquals(asset1.ProductCloseDate__c, updatedAccount.AssetLastCloseDate__c);
+		System.assertEquals(asset1.ProductCloseDate__c, updatedAccount.LastInteractionDate__c);
+	}
     @IsTest
     static void pairSpecialOptionOppTest() {
 		Account acc = TestDataFactory.getAccount();

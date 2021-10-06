@@ -22,13 +22,50 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 
 	public override void afterInsert() {
 		filterAndPairWithOpp(Trigger.new, null);
+        handleUpdateAccountDateFields();
 	}
 
 	public override void afterUpdate() {
 		filterAndPairWithOpp(Trigger.new, (Map<Id, Asset>) Trigger.oldMap);
+        handleUpdateAccountDateFields();
 	}
 
 	// ***************************** handlers and helping methods***************************************** //
+
+    public void handleUpdateAccountDateFields() {
+		Set<Account> accountsToUpdate = new Set<Account>();
+		Map<Id, Asset> assetWithAccount = new Map<Id, Asset>(
+			[
+				SELECT AccountId, Account.LastInteractionDate__c, Account.AssetLastCloseDate__c
+				FROM Asset
+				WHERE Id IN :Trigger.newMap.keySet()
+			]
+		);
+
+		for (Asset newAsset : (Asset[]) Trigger.new) {
+			Asset oldAsset = (Asset) (Trigger.isInsert ? new Asset() : Trigger.oldMap.get(newAsset.Id));
+			Account actualAssetAccount = assetWithAccount.get(newAsset.Id)?.Account;
+            if (actualAssetAccount == null) {
+				continue;
+			}
+			if (
+				newAsset.ProductCloseDate__c != oldAsset?.ProductCloseDate__c &&
+				newAsset.ProductCloseDate__c <= Date.today()
+			) {
+				if (newAsset.ProductCloseDate__c > actualAssetAccount?.LastInteractionDate__c || 
+                    actualAssetAccount?.LastInteractionDate__c == null ) {
+					actualAssetAccount.LastInteractionDate__c = newAsset.ProductCloseDate__c;
+					accountsToUpdate.add(actualAssetAccount);
+				}
+				if (newAsset.ProductCloseDate__c > actualAssetAccount?.AssetLastCloseDate__c || actualAssetAccount?.AssetLastCloseDate__c == null) {
+					actualAssetAccount.AssetLastCloseDate__c = newAsset.ProductCloseDate__c;
+					accountsToUpdate.add(actualAssetAccount);
+				}
+			}
+		}
+
+        update (new List<Account>(new Set<Account>(accountsToUpdate)));
+	}
 
 	private static void filterAndPairWithOpp(List<Asset> newAssetsList, Map<Id, Asset> oldAssetsMap) {
 		Set<String> irrelevantProductTypes = new Set<String>{ '1', '2' };
