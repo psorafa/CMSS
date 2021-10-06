@@ -2,53 +2,53 @@
 <StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <sorted>false</sorted>
     <standardValue>
-        <fullName>Advertisement</fullName>
+        <fullName>1</fullName>
         <default>true</default>
-        <label>Advertisement</label>
+        <label>Advertisement_</label>
     </standardValue>
     <standardValue>
-        <fullName>Email</fullName>
+        <fullName>2</fullName>
         <default>false</default>
-        <label>Email</label>
+        <label>Email_</label>
     </standardValue>
     <standardValue>
-        <fullName>Telemarketing</fullName>
+        <fullName>3</fullName>
         <default>false</default>
-        <label>Telemarketing</label>
+        <label>Telemarketing_</label>
     </standardValue>
     <standardValue>
-        <fullName>Banner Ads</fullName>
+        <fullName>4</fullName>
         <default>false</default>
-        <label>Banner Ads</label>
+        <label>Banner Ads_</label>
     </standardValue>
     <standardValue>
-        <fullName>Seminar / Conference</fullName>
+        <fullName>5</fullName>
         <default>false</default>
-        <label>Seminar / Conference</label>
+        <label>Seminar / Conference_</label>
     </standardValue>
     <standardValue>
-        <fullName>Public Relations</fullName>
+        <fullName>6</fullName>
         <default>false</default>
-        <label>Public Relations</label>
+        <label>Public Relations_</label>
     </standardValue>
     <standardValue>
-        <fullName>Partners</fullName>
+        <fullName>7</fullName>
         <default>false</default>
-        <label>Partners</label>
+        <label>Partners_</label>
     </standardValue>
     <standardValue>
-        <fullName>Referral Program</fullName>
+        <fullName>8</fullName>
         <default>false</default>
-        <label>Referral Program</label>
+        <label>Referral Program_</label>
     </standardValue>
     <standardValue>
-        <fullName>Other</fullName>
+        <fullName>9</fullName>
         <default>false</default>
-        <label>Other</label>
+        <label>Other_</label>
     </standardValue>
     <standardValue>
-        <fullName>Microcampaign</fullName>
+        <fullName>10</fullName>
         <default>false</default>
-        <label>Microcampaign</label>
+        <label>Microcampaign_</label>
     </standardValue>
 </StandardValueSet>
