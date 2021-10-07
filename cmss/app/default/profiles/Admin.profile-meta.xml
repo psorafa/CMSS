@@ -1588,8 +1588,8 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Asset.ClosureFee__c</field>
+        <editable>false</editable>
+        <field>Asset.ClosingAgentIsCurrentUser__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
