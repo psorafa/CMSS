@@ -27,7 +27,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>AND(     NOT(ISNEW()),     ISCHANGED(OwnerId) )</formula>
+        <formula>AND(     NOT(ISNEW()),     ISCHANGED(OwnerId), RecordType.DeveloperName&lt;&gt;&apos;Service&apos; )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -38,13 +38,14 @@
         </actions>
         <active>true</active>
         <description>User is notified when new opportunity where he is Owner is creates.</description>
-        <formula>AND(     ISNEW(),     ISPICKVAL(StageName, &apos;1&apos;), 				AND(        NOT(ISPICKVAL(Category__c,&apos;5&apos;)),        NOT(ISPICKVAL(Category__c,&apos;6&apos;)),        NOT(ISPICKVAL(Category__c,&apos;7&apos;)) 							), 				CreatedById &lt;&gt; OwnerId, 				Author__c &lt;&gt; Owner.CommissionAccountBase__c  )</formula>
+        <formula>AND(     ISNEW(),     ISPICKVAL(StageName, &apos;1&apos;), 				AND(        NOT(ISPICKVAL(Category__c,&apos;5&apos;)),        NOT(ISPICKVAL(Category__c,&apos;6&apos;)),        NOT(ISPICKVAL(Category__c,&apos;7&apos;)) 							), 				CreatedById &lt;&gt; OwnerId, 				Author__c &lt;&gt; Owner.CommissionAccountBase__c,
+RecordType.DeveloperName&lt;&gt;&apos;Service&apos;  )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>OppEditable</fullName>
         <active>false</active>
-        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <booleanFilter>(1 OR 2 OR 3) AND 4</booleanFilter>
         <criteriaItems>
             <field>Opportunity.StageName</field>
             <operation>equals</operation>
@@ -60,13 +61,18 @@
             <operation>equals</operation>
             <value>3</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Service</value>
+        </criteriaItems>
         <description>When opportunity in stages 1, 2 and 3, the record type is Editable</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>OppNotEditable</fullName>
         <active>false</active>
-        <booleanFilter>1 OR 2</booleanFilter>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
         <criteriaItems>
             <field>Opportunity.StageName</field>
             <operation>equals</operation>
@@ -76,6 +82,11 @@
             <field>Opportunity.StageName</field>
             <operation>equals</operation>
             <value>7</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Service</value>
         </criteriaItems>
         <description>When opportunity in stages 5 and 7, the record type is NotEditable</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
