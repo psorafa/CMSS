@@ -10,5 +10,10 @@
     <columns>CreatedDateTime__c</columns>
     <columns>OPPORTUNITY.CLOSE_DATE</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>Opportunity.Service</value>
+    </filters>
     <label>Všechny</label>
 </ListView>

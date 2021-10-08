@@ -15,5 +15,10 @@
         <operation>equals</operation>
         <value>THIS_MONTH</value>
     </filters>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>Opportunity.Service</value>
+    </filters>
     <label>Termín tento měsíc</label>
 </ListView>
