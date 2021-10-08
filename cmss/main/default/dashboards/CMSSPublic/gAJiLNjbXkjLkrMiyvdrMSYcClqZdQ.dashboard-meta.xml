@@ -9,7 +9,7 @@
     <dashboardColorPalette>unity</dashboardColorPalette>
     <dashboardGridLayout>
         <dashboardGridComponents>
-            <colSpan>7</colSpan>
+            <colSpan>4</colSpan>
             <columnIndex>0</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
@@ -18,70 +18,40 @@
                     <axisBinding>y</axisBinding>
                     <column>RowCount</column>
                 </chartSummary>
-                <componentType>Bar</componentType>
+                <componentType>BarStacked</componentType>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <drillEnabled>false</drillEnabled>
                 <drillToDetailEnabled>false</drillToDetailEnabled>
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
-                <groupingColumn>STAGE_NAME</groupingColumn>
+                <groupingColumn>ASSIGNED</groupingColumn>
+                <groupingColumn>SUBJECT</groupingColumn>
                 <groupingSortProperties>
                     <groupingSorts>
                         <groupingLevel>g1</groupingLevel>
                         <sortOrder>a</sortOrder>
                     </groupingSorts>
-                </groupingSortProperties>
-                <header>Obchodní příležitosti - aktuální kvartál</header>
-                <legendPosition>Bottom</legendPosition>
-                <report>ObchodniPrilezitosti/Obchodn_pleitosti_aktuln_kvartl_jUB</report>
-                <showPercentage>false</showPercentage>
-                <showPicturesOnCharts>false</showPicturesOnCharts>
-                <showValues>true</showValues>
-                <sortBy>RowLabelAscending</sortBy>
-                <useReportChart>false</useReportChart>
-            </dashboardComponent>
-            <rowIndex>0</rowIndex>
-            <rowSpan>15</rowSpan>
-        </dashboardGridComponents>
-        <dashboardGridComponents>
-            <colSpan>5</colSpan>
-            <columnIndex>7</columnIndex>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartAxisRange>Auto</chartAxisRange>
-                <chartSummary>
-                    <axisBinding>y</axisBinding>
-                    <column>RowCount</column>
-                </chartSummary>
-                <componentType>Column</componentType>
-                <decimalPrecision>-1</decimalPrecision>
-                <displayUnits>Auto</displayUnits>
-                <drillEnabled>false</drillEnabled>
-                <drillToDetailEnabled>false</drillToDetailEnabled>
-                <enableHover>false</enableHover>
-                <expandOthers>false</expandOthers>
-                <groupingColumn>STAGE_NAME</groupingColumn>
-                <groupingSortProperties>
                     <groupingSorts>
-                        <groupingLevel>g1</groupingLevel>
+                        <groupingLevel>g2</groupingLevel>
                         <sortOrder>a</sortOrder>
                     </groupingSorts>
                 </groupingSortProperties>
-                <header>Otevřené servisní aktivity - podsíť</header>
-                <legendPosition>Bottom</legendPosition>
-                <report>OdbytovaSit/New_Opportunities_Report_ne4</report>
+                <header>Činnosti týmu</header>
+                <legendPosition>Right</legendPosition>
+                <report>ManazerskeReporty/DB_MOT_pocet_cinnosti_30_dni_CDE</report>
                 <showPercentage>false</showPercentage>
-                <showValues>true</showValues>
+                <showValues>false</showValues>
                 <sortBy>RowLabelAscending</sortBy>
+                <title>Přehled za posledních 30 dní</title>
                 <useReportChart>false</useReportChart>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
-            <rowSpan>15</rowSpan>
+            <rowSpan>8</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
-            <colSpan>3</colSpan>
-            <columnIndex>0</columnIndex>
+            <colSpan>2</colSpan>
+            <columnIndex>4</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <chartSummary>
@@ -91,44 +61,21 @@
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
-                <header>Pozastavené ÚP</header>
-                <indicatorBreakpoint1>10.0</indicatorBreakpoint1>
-                <indicatorBreakpoint2>20.0</indicatorBreakpoint2>
-                <indicatorHighColor>#DA0101</indicatorHighColor>
-                <indicatorLowColor>#008040</indicatorLowColor>
-                <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
-                <report>OdbytovaSit/Pozastavene_UP</report>
+                <header>Kampaně MOT</header>
+                <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>2.0</indicatorBreakpoint2>
+                <indicatorHighColor>#C23934</indicatorHighColor>
+                <indicatorLowColor>#00716B</indicatorLowColor>
+                <indicatorMiddleColor>#C23934</indicatorMiddleColor>
+                <metricLabel>Počet aktivit po termínu</metricLabel>
+                <report>ManazerskeReporty/DB_MOT_mikrokampan_po_termnu_1tI</report>
                 <showRange>false</showRange>
             </dashboardComponent>
-            <rowIndex>15</rowIndex>
-            <rowSpan>9</rowSpan>
+            <rowIndex>0</rowIndex>
+            <rowSpan>4</rowSpan>
         </dashboardGridComponents>
         <dashboardGridComponents>
-            <colSpan>3</colSpan>
-            <columnIndex>3</columnIndex>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartSummary>
-                    <column>RowCount</column>
-                </chartSummary>
-                <componentType>Metric</componentType>
-                <decimalPrecision>-1</decimalPrecision>
-                <displayUnits>Auto</displayUnits>
-                <groupingSortProperties/>
-                <header>Klienti bez běžného účtu</header>
-                <indicatorBreakpoint1>100.0</indicatorBreakpoint1>
-                <indicatorBreakpoint2>1000.0</indicatorBreakpoint2>
-                <indicatorHighColor>#DA0000</indicatorHighColor>
-                <indicatorLowColor>#008040</indicatorLowColor>
-                <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
-                <report>OdbytovaSit/Klienti_bez_bezneho_uctu_xsn</report>
-                <showRange>false</showRange>
-            </dashboardComponent>
-            <rowIndex>15</rowIndex>
-            <rowSpan>9</rowSpan>
-        </dashboardGridComponents>
-        <dashboardGridComponents>
-            <colSpan>3</colSpan>
+            <colSpan>2</colSpan>
             <columnIndex>6</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
@@ -139,17 +86,236 @@
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
-                <header>Klienti bez OUFO</header>
-                <indicatorBreakpoint1>100.0</indicatorBreakpoint1>
-                <indicatorBreakpoint2>500.0</indicatorBreakpoint2>
-                <indicatorHighColor>#DA0000</indicatorHighColor>
-                <indicatorLowColor>#008040</indicatorLowColor>
+                <header>Celkový počet AML aktualizací</header>
+                <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>2.0</indicatorBreakpoint2>
+                <indicatorHighColor>#00716B</indicatorHighColor>
+                <indicatorLowColor>#C23934</indicatorLowColor>
                 <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
-                <report>OdbytovaSit/Klienti_bez_OUFO_wzw</report>
+                <metricLabel>Za posledních 30 dní na kmeni</metricLabel>
+                <report>ManazerskeReporty/DB_MOT_AML_poslednch_30_dn_FRX</report>
                 <showRange>false</showRange>
             </dashboardComponent>
-            <rowIndex>15</rowIndex>
-            <rowSpan>9</rowSpan>
+            <rowIndex>0</rowIndex>
+            <rowSpan>4</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>2</colSpan>
+            <columnIndex>8</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartSummary>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>Metric</componentType>
+                <decimalPrecision>-1</decimalPrecision>
+                <displayUnits>Auto</displayUnits>
+                <groupingSortProperties/>
+                <header>Počet končících ePrescore</header>
+                <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>2.0</indicatorBreakpoint2>
+                <indicatorHighColor>#C23934</indicatorHighColor>
+                <indicatorLowColor>#C23934</indicatorLowColor>
+                <indicatorMiddleColor>#C23934</indicatorMiddleColor>
+                <metricLabel>45-60 dní od ePrescore</metricLabel>
+                <report>ManazerskeReporty/DB_MOT_konc_ePrescore_VBl</report>
+                <showRange>false</showRange>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex>
+            <rowSpan>4</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>2</colSpan>
+            <columnIndex>10</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartSummary>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>Metric</componentType>
+                <decimalPrecision>-1</decimalPrecision>
+                <displayUnits>Auto</displayUnits>
+                <groupingSortProperties/>
+                <header>Pozastavené úvěry</header>
+                <indicatorBreakpoint1>1.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>2.0</indicatorBreakpoint2>
+                <indicatorHighColor>#C23934</indicatorHighColor>
+                <indicatorLowColor>#C23934</indicatorLowColor>
+                <indicatorMiddleColor>#C23934</indicatorMiddleColor>
+                <metricLabel>Počet všech pozastavených</metricLabel>
+                <report>ManazerskeReporty/DB_MOT_pozastaven_vry_uRZ</report>
+                <showRange>false</showRange>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex>
+            <rowSpan>4</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>4</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <componentType>FlexTable</componentType>
+                <flexComponentProperties>
+                    <decimalPrecision>-1</decimalPrecision>
+                    <flexTableColumn>
+                        <reportColumn>Account.PortfolioMngmtA__c</reportColumn>
+                        <showSubTotal>false</showSubTotal>
+                        <showTotal>true</showTotal>
+                        <type>grouping</type>
+                    </flexTableColumn>
+                    <flexTableColumn>
+                        <breakPoint1>10.0</breakPoint1>
+                        <breakPoint2>20.0</breakPoint2>
+                        <breakPointOrder>0</breakPointOrder>
+                        <highRangeColor>29035</highRangeColor>
+                        <lowRangeColor>12728628</lowRangeColor>
+                        <midRangeColor>16758621</midRangeColor>
+                        <reportColumn>RowCount</reportColumn>
+                        <showSubTotal>false</showSubTotal>
+                        <showTotal>true</showTotal>
+                        <type>aggregate</type>
+                    </flexTableColumn>
+                    <flexTableSortInfo>
+                        <sortOrder>1</sortOrder>
+                    </flexTableSortInfo>
+                    <hideChatterPhotos>false</hideChatterPhotos>
+                </flexComponentProperties>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortColumn>RowCount</sortColumn>
+                        <sortOrder>d</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
+                <header>Aktualizace AML</header>
+                <report>ManazerskeReporty/DB_MOT_AML_poslednch_30_dn_FRX</report>
+                <title>Počet v posledních 30 dnech</title>
+            </dashboardComponent>
+            <rowIndex>4</rowIndex>
+            <rowSpan>12</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>8</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <chartSummary>
+                    <axisBinding>y</axisBinding>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>BarStacked</componentType>
+                <decimalPrecision>-1</decimalPrecision>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <groupingColumn>Asset.ClosingAgentId__c</groupingColumn>
+                <groupingColumn>Asset.Status__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                    <groupingSorts>
+                        <groupingLevel>g2</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
+                <header>Úvěry v pololetí</header>
+                <legendPosition>Right</legendPosition>
+                <report>ManazerskeReporty/DB_MOT_vry_dle_stavu_qAE</report>
+                <showPercentage>false</showPercentage>
+                <showValues>false</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <title>Dle stavu úvěru</title>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+            <rowIndex>4</rowIndex>
+            <rowSpan>12</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <chartSummary>
+                    <axisBinding>y</axisBinding>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>BarStacked</componentType>
+                <decimalPrecision>-1</decimalPrecision>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <groupingColumn>Activity$Owner</groupingColumn>
+                <groupingColumn>Activity$Status</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                    <groupingSorts>
+                        <groupingLevel>g2</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
+                <header>Kampaně MOT</header>
+                <legendPosition>Bottom</legendPosition>
+                <report>ManazerskeReporty/DB_MOT_mikrokampan_ptch_90_dn_a1A</report>
+                <showPercentage>false</showPercentage>
+                <showValues>false</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <title>V příštích 90 dnech dle stavu</title>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+            <rowIndex>8</rowIndex>
+            <rowSpan>8</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>12</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <chartSummary>
+                    <axisBinding>y</axisBinding>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>ColumnStacked</componentType>
+                <decimalPrecision>-1</decimalPrecision>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <groupingColumn>Asset$ClosingAgentId__c</groupingColumn>
+                <groupingColumn>Asset$ProductType__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                    <groupingSorts>
+                        <groupingLevel>g2</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
+                <header>Produkty</header>
+                <legendPosition>Bottom</legendPosition>
+                <report>ManazerskeReporty/DB_MOT_produkce_4Qp</report>
+                <showPercentage>false</showPercentage>
+                <showValues>false</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <title>Sjednané v aktuálním pololetí</title>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+            <rowIndex>16</rowIndex>
+            <rowSpan>11</rowSpan>
         </dashboardGridComponents>
         <numberOfColumns>12</numberOfColumns>
         <rowHeight>36</rowHeight>
@@ -157,7 +323,7 @@
     <dashboardType>LoggedInUser</dashboardType>
     <isGridLayout>true</isGridLayout>
     <textColor>#000000</textColor>
-    <title>Dashboard řízení 1</title>
+    <title>Homepage (MOT)</title>
     <titleColor>#000000</titleColor>
     <titleSize>12</titleSize>
 </Dashboard>

@@ -19,7 +19,7 @@
             "locked" : false,
             "seedComponents" : [ ],
             "tabKey" : "2",
-            "tabName" : "Obchodní příležitosti"
+            "tabName" : "Přehled"
           }, {
             "UUID" : "28f5194d-b03d-4141-9254-d0873bccfdce",
             "allowGuestUser" : false,
@@ -36,8 +36,8 @@
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
-            "height" : "700",
-            "recordId" : "01Z3N000001Dq7dUAC"
+            "height" : "1100",
+            "recordId" : "01Z1x000001Fb6XEAS"
           },
           "componentName" : "forceCommunity:dashboard",
           "id" : "42c02c4a-58f1-4729-ba88-9c0e57de1f0c",
@@ -45,7 +45,7 @@
           "type" : "component"
         } ],
         "id" : "235edbaf-5d03-4817-bd66-17cabba52f5b",
-        "regionLabel" : "Obchodní příležitosti",
+        "regionLabel" : "Přehled",
         "regionName" : "2",
         "renditionMap" : { },
         "type" : "region"
@@ -104,13 +104,6 @@
       "renditionMap" : { },
       "type" : "component"
     }, {
-      "componentAttributes" : { },
-      "componentName" : "c:externalLinks",
-      "id" : "59b6d9a4-1761-4859-9d2b-45ebdd40e12f",
-      "renderPriority" : "HIGH",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
       "componentAttributes" : {
         "canChangeSorting" : false,
         "defaultFilter" : "",
@@ -123,6 +116,35 @@
       },
       "componentName" : "forceCommunity:forceCommunityFeed",
       "id" : "b5465cbb-784d-4610-9645-0361d8fdc02e",
+      "renderPriority" : "HIGHEST",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : { },
+      "componentName" : "c:externalLinks",
+      "id" : "59b6d9a4-1761-4859-9d2b-45ebdd40e12f",
+      "renderPriority" : "HIGH",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "enableInlineEdit" : true,
+        "filterName" : "00B1x000005KlZBEA0",
+        "layout" : "COMPACT",
+        "pageSize" : 4,
+        "scope" : "Task",
+        "showActionBar" : true,
+        "showChartsPanel" : true,
+        "showDisplay" : "showall",
+        "showFilterPanel" : true,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : true,
+        "showObjectName" : true,
+        "showPinnedList" : true,
+        "showSearchBar" : true
+      },
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "821af24d-c189-430b-951e-617cf2372719",
       "renderPriority" : "HIGHEST",
       "renditionMap" : { },
       "type" : "component"
@@ -145,73 +167,7 @@
     }, {
       "componentAttributes" : {
         "enableInlineEdit" : true,
-        "filterName" : "00B3N000004seZAUAY",
-        "layout" : "COMPACT",
-        "pageSize" : 4,
-        "scope" : "Account",
-        "showActionBar" : true,
-        "showChartsPanel" : true,
-        "showDisplay" : "showall",
-        "showFilterPanel" : true,
-        "showImageIcon" : true,
-        "showManualRefreshButton" : true,
-        "showObjectName" : true,
-        "showPinnedList" : true,
-        "showSearchBar" : true
-      },
-      "componentName" : "forceCommunity:objectHome",
-      "id" : "821af24d-c189-430b-951e-617cf2372719",
-      "renderPriority" : "HIGHEST",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
-      "componentAttributes" : {
-        "enableInlineEdit" : true,
-        "filterName" : "00B3N000004seZzUAI",
-        "layout" : "COMPACT",
-        "pageSize" : 4,
-        "scope" : "Opportunity",
-        "showActionBar" : true,
-        "showChartsPanel" : true,
-        "showDisplay" : "showall",
-        "showFilterPanel" : true,
-        "showImageIcon" : true,
-        "showManualRefreshButton" : true,
-        "showObjectName" : true,
-        "showPinnedList" : true,
-        "showSearchBar" : true
-      },
-      "componentName" : "forceCommunity:objectHome",
-      "id" : "5a954d72-d747-483d-937e-0309545ee2e0",
-      "renderPriority" : "HIGHEST",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
-      "componentAttributes" : {
-        "enableInlineEdit" : true,
-        "filterName" : "00B3N000004sea9UAA",
-        "layout" : "COMPACT",
-        "pageSize" : 4,
-        "scope" : "Task",
-        "showActionBar" : true,
-        "showChartsPanel" : false,
-        "showDisplay" : "showall",
-        "showFilterPanel" : false,
-        "showImageIcon" : true,
-        "showManualRefreshButton" : false,
-        "showObjectName" : true,
-        "showPinnedList" : false,
-        "showSearchBar" : false
-      },
-      "componentName" : "forceCommunity:objectHome",
-      "id" : "cbe25318-e04c-4184-945e-0a226f5a8277",
-      "renderPriority" : "HIGHEST",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
-      "componentAttributes" : {
-        "enableInlineEdit" : true,
-        "filterName" : "00B3N000004sfK2UAI",
+        "filterName" : "00B1x000005KlYUEA0",
         "layout" : "COMPACT",
         "pageSize" : 4,
         "scope" : "Asset",
@@ -226,7 +182,29 @@
         "showSearchBar" : true
       },
       "componentName" : "forceCommunity:objectHome",
-      "id" : "828511f2-81a0-4a1f-8836-acf9202ac27b",
+      "id" : "61b8c37e-21bc-416a-ab02-464a2ee1b07c",
+      "renderPriority" : "HIGHEST",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "enableInlineEdit" : true,
+        "filterName" : "00B1x000005KlXxEAK",
+        "layout" : "COMPACT",
+        "pageSize" : 4,
+        "scope" : "Account",
+        "showActionBar" : true,
+        "showChartsPanel" : true,
+        "showDisplay" : "showall",
+        "showFilterPanel" : true,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : true,
+        "showObjectName" : true,
+        "showPinnedList" : true,
+        "showSearchBar" : true
+      },
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "5a954d72-d747-483d-937e-0309545ee2e0",
       "renderPriority" : "HIGHEST",
       "renditionMap" : { },
       "type" : "component"
