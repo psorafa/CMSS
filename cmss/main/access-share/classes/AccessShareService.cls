@@ -6,13 +6,17 @@ public without sharing class AccessShareService {
 
 	public static UnprocessedRecords assignAccess(Set<AccessShareDTO> accessShareDtos, String type) {
 		UnprocessedRecords unprocessedRecords = new UnprocessedRecords();
+		Set<AccessShareDTO> fullAccessShareDtos = accessShareDtos;
+		if (type == 'search') {
+			fullAccessShareDtos.addAll(AccessSharingUtils.getRelatedAccessShareDTOs(accessShareDtos));
+		}
 
-		if (accessShareDtos != null && !accessShareDtos.isEmpty()) {
+		if (fullAccessShareDtos != null && !fullAccessShareDtos.isEmpty()) {
 			AccountShare[] newAccountShares = AccountSharingUtils.getNewAccountShareWithFullAccessList2(
-				accessShareDtos
+				fullAccessShareDtos
 			);
 
-			AccessShare__c[] newAccessShares = AccessSharingUtils.getNewAccessShareList2(accessShareDtos, type);
+			AccessShare__c[] newAccessShares = AccessSharingUtils.getNewAccessShareList2(fullAccessShareDtos, type);
 
 			Set<Id> accountIds = new Set<Id>();
 			Set<Id> userIds = new Set<Id>();
