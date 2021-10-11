@@ -29,6 +29,7 @@ public without sharing class OpportunityExpireBatch implements Database.Batchabl
 			FROM Opportunity
 			WHERE
 				StageName != '8'
+                AND Category__c = '3'
 				AND (ValidTo__c <= :validToTreshold
 				OR (ValidTo__c = NULL
 				AND ValidFrom__c <= :validFromTreshold))
