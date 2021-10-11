@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ClientsWithoutActivityIn6Months</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>PC_LAST_NAME</columns>
+    <columns>PersonalIdentificationNr__c</columns>
+    <columns>ACCOUNT.PHONE1</columns>
+    <columns>PC_EMAIL</columns>
+    <columns>ACCOUNT.ADDRESS1_ZIP</columns>
+    <columns>ACCOUNT.ADDRESS1_STREET</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>Age__c</columns>
+    <columns>PortfolioMngmtA__c</columns>
+    <columns>GlobalId__c</columns>
+    <columns>LastInteractionDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PersonType__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>PersonAccount.PersonAccount</value>
+    </filters>
+    <filters>
+        <field>LastInteractionDate__c</field>
+        <operation>notEqual</operation>
+        <value>LAST_N_DAYS:180</value>
+    </filters>
+    <label>Klienti bez aktivity za posledních 6 M</label>
+</ListView>

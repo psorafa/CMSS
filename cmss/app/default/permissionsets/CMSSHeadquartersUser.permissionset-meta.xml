@@ -65,6 +65,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.AssetLastCloseDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.AverageMonthlyIncome__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -375,6 +380,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.LastInteractionDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.LastProductEndDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -426,6 +436,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.OpenOpportunitiesCount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.OpenedActivityDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.OpenedOpportunityDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
