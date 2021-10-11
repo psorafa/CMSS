@@ -20,5 +20,10 @@
         <operation>equals</operation>
         <value>1,2</value>
     </filters>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>Opportunity.Service</value>
+    </filters>
     <label>Všechny aktivní</label>
 </ListView>

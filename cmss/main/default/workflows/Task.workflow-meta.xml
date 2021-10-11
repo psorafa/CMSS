@@ -79,8 +79,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>AND( ISNEW(),ISPICKVAL(Status ,&apos;1&apos;), OR( ISBLANK(Opportunity__c), DATEVALUE (Opportunity__r.CreatedDate) &lt;&gt; TODAY()),
-CreatedById &lt;&gt; OwnerId)</formula>
+        <formula>AND( ISNEW(),ISPICKVAL(Status ,&apos;1&apos;), CreatedById &lt;&gt; OwnerId)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
