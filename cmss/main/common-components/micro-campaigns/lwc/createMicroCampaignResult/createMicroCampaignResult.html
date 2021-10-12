@@ -23,39 +23,35 @@
 				</template>
 
 				<template if:false={completeSuccess}>
-					<div class="slds-m-top_medium slds-text-color_error">
-						Nebylo možné vytvořit {_result.numberOfErrors} záznamů:
+					<div class="slds-m-top_medium">Počet {objectName} celkem: {totalNumberOfProcessedRecords}</div>
+					<div class="slds-m-top_medium slds-text-color_success">
+						Počet {objectName}, ke kterým se úkoly vytvořily: {_result.numberOfSuccesses}
 					</div>
-					<template if:true={erroredRecordsNotEmpty}>
-						<div class="slds-m-top_medium slds-text-color_error">
-							Úkoly:
-							<ul class="slds-m-around_medium slds-list_dotted">
-								<template for:each={_result.erroredRecords} for:item="error">
-									<li key={error.Id}>
-										<a href="javascript:void(0)" name={error.Id} onclick={handleAccountClick}
-											>{error.Name}</a
-										>
-									</li>
-								</template>
-							</ul>
-						</div>
-					</template>
-
-					<template if:true={erroredAccountsNotEmpty}>
-						<div class="slds-m-top_medium slds-text-color_error">
-							Účastníky kampaně pro klienty, k nimž nemáte dostatečná oprávnění:
-							<ul class="slds-m-around_medium slds-list_dotted">
-								<template for:each={_result.erroredAccounts} for:item="error">
-									<li key={error.Id}>
-										<a href="javascript:void(0)" name={error.Id} onclick={handleAccountClick}
-											>{error.Name}</a
-										>
-									</li>
-								</template>
-							</ul>
-						</div>
-					</template>
-
+					<div class="slds-m-top_medium slds-text-color_error">
+						Počet {objectName}, ke kterým nebylo možné úkoly vytvořit: {_result.numberOfErrors}
+					</div>
+					<div class="slds-m-top_medium slds-text-color_error">
+						<ul class="slds-m-around_medium slds-list_dotted">
+							<template for:each={_result.erroredRecords} for:item="error">
+								<li key={error.Id}>
+									<a href="javascript:void(0)" name={error.Id} onclick={handleAccountClick}
+										>{error.Name}</a
+									>
+								</li>
+							</template>
+						</ul>
+					</div>
+					<div class="slds-m-top_medium slds-text-color_success">
+						<ul class="slds-m-around_medium slds-list_dotted">
+							<template for:each={_result.successfulRecords} for:item="success">
+								<li key={success.Id}>
+									<a href="javascript:void(0)" name={success.Id} onclick={handleAccountClick}
+										>{success.Name}</a
+									>
+								</li>
+							</template>
+						</ul>
+					</div>
 					<div class="slds-m-top_medium">
 						Budete-li kontaktovat IT helpdesk, prosím poskytněte následující údaje:
 						<br />

@@ -6,6 +6,7 @@ public with sharing class MicroCampaignCreator {
 	private Map<Id, Account> accountsMap;
 	private Map<Id, Asset> assetsMap;
 	private Map<Id, Account> accountsByPersonContactId;
+	private Set<Account> invalidAccounts = new Set<Account>();
 	private Set<Account> uninsertableMembers = new Set<Account>();
 
 	public MicroCampaignCreator(List<Id> ids, Campaign campaignTemplate, Task taskTemplate) {
@@ -17,7 +18,9 @@ public with sharing class MicroCampaignCreator {
 
 	private void loadDataToMaps(List<Id> ids) {
 		if (assetsBased) {
-			assetsMap = new Map<Id, Asset>([SELECT Id, AccountId FROM Asset WHERE Id IN :ids AND AccountId != NULL]);
+			assetsMap = new Map<Id, Asset>(
+				[SELECT Id, AccountId, Name FROM Asset WHERE Id IN :ids AND AccountId != NULL]
+			);
 			Set<Id> accountIds = new Set<Id>();
 			for (Asset asset : assetsMap.values()) {
 				accountIds.add(asset.AccountId);
@@ -43,7 +46,11 @@ public with sharing class MicroCampaignCreator {
 		);
 		accountsByPersonContactId = new Map<Id, Account>();
 		for (Account account : accountsMap.values()) {
-			accountsByPersonContactId.put(account.PersonContactId, account);
+			if (account.PersonContactId == null) {
+				invalidAccounts.add(account);
+			} else {
+				accountsByPersonContactId.put(account.PersonContactId, account);
+			}
 		}
 	}
 
@@ -83,7 +90,10 @@ public with sharing class MicroCampaignCreator {
 	private List<Task> prepareTasksFromAccounts() {
 		List<Task> tasks = new List<Task>();
 		for (Account account : accountsMap.values()) {
-			if (campaignMembersByAccountId.keySet().contains(String.valueOf(account.Id))) {
+			if (
+				campaignMembersByAccountId.keySet().contains(String.valueOf(account.Id)) &&
+				account.PersonContactId != null
+			) {
 				Task t = prepareTaskFromTemplate(account);
 				tasks.add(t);
 			}
@@ -94,7 +104,10 @@ public with sharing class MicroCampaignCreator {
 	private List<Task> prepareTasksFromAssets() {
 		List<Task> tasks = new List<Task>();
 		for (Asset asset : assetsMap.values()) {
-			if (campaignMembersByAccountId.keySet().contains(String.valueOf(asset.AccountId))) {
+			if (
+				campaignMembersByAccountId.keySet().contains(String.valueOf(asset.AccountId)) &&
+				accountsMap.get(asset.AccountId)?.PersonContactId != null
+			) {
 				Task t = prepareTaskFromTemplate(accountsMap.get(asset.AccountId));
 				t.Asset__c = asset.Id;
 				tasks.add(t);
@@ -121,7 +134,7 @@ public with sharing class MicroCampaignCreator {
 
 	private CreationResult insertTasks(List<Task> tasks) {
 		CreationResult creationResult = new CreationResult();
-		creationResult.erroredAccounts = new List<Account>();
+		creationResult.successfulRecords = new List<SObject>();
 		creationResult.erroredRecords = new List<SObject>();
 		creationResult.numberOfSuccesses = 0;
 		creationResult.campaignId = campaign?.Id;
@@ -132,6 +145,11 @@ public with sharing class MicroCampaignCreator {
 			Database.SaveResult saveResult = saveResults.get(i);
 			if (saveResult.isSuccess()) {
 				creationResult.numberOfSuccesses++;
+				if (assetsBased) {
+					creationResult.successfulRecords.add(assetsMap.get(task.Asset__c));
+				} else {
+					creationResult.successfulRecords.add(accountsByPersonContactId.get(task.WhoId));
+				}
 			} else {
 				if (assetsBased) {
 					creationResult.erroredRecords.add(assetsMap.get(task.Asset__c));
@@ -148,14 +166,20 @@ public with sharing class MicroCampaignCreator {
 			}
 		}
 		for (Account limitedAccessAccount : uninsertableMembers) {
-			creationResult.erroredAccounts.add(limitedAccessAccount);
 			Logger.error(
 				'Cannot create campaign member for micro-campaign ' + JSON.serializePretty(campaign),
 				'Insufficient access to Account:\n' + JSON.serializePretty(limitedAccessAccount)
 			);
 		}
-		creationResult.numberOfErrors = creationResult.erroredRecords.size() + creationResult.erroredAccounts.size();
+		creationResult.numberOfErrors = creationResult.erroredRecords.size();
+		for (Account invalidAccount : invalidAccounts) {
+			creationResult.numberOfErrors++;
+			creationResult.erroredRecords.add(invalidAccount);
+		}
+
 		creationResult.transactionId = Logger.getTransactionId();
+		creationResult.onObject = assetsBased ? 'Asset' : 'Account';
+
 		return creationResult;
 	}
 
@@ -167,10 +191,12 @@ public with sharing class MicroCampaignCreator {
 		@AuraEnabled
 		public List<SObject> erroredRecords;
 		@AuraEnabled
-		public List<Account> erroredAccounts;
+		public List<SObject> successfulRecords;
 		@AuraEnabled
 		public String transactionId;
 		@AuraEnabled
 		public Id campaignId;
+		@AuraEnabled
+		public String onObject;
 	}
 }

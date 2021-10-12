@@ -26,6 +26,14 @@ export default class CreateMicroCampaignResult extends NavigationMixin(Lightning
 	    return !!this.error
 	}
 
+    get totalNumberOfProcessedRecords() {
+		return this._result.numberOfErrors + this._result.numberOfSuccesses
+	}
+
+	get objectName() {
+		return this._result.onObject === 'Account' ? 'klientů' : 'smluv'
+	}
+
 	get errorString() {
 	    return JSON.stringify(this.error, null, 2)
 	}
