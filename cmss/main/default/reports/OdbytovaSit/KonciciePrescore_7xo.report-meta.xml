@@ -1,59 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
-    <chart>
-        <backgroundColor1>#FFFFFF</backgroundColor1>
-        <backgroundColor2>#FFFFFF</backgroundColor2>
-        <backgroundFadeDir>Diagonal</backgroundFadeDir>
-        <chartSummaries>
-            <axisBinding>y</axisBinding>
-            <column>RowCount</column>
-        </chartSummaries>
-        <chartType>HorizontalBar</chartType>
-        <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>true</expandOthers>
-        <groupingColumn>Asset.ClosingAgentId__c</groupingColumn>
-        <location>CHART_BOTTOM</location>
-        <showAxisLabels>false</showAxisLabels>
-        <showPercentage>false</showPercentage>
-        <showTotal>false</showTotal>
-        <showValues>false</showValues>
-        <size>Medium</size>
-        <summaryAxisRange>Auto</summaryAxisRange>
-        <textColor>#000000</textColor>
-        <textSize>12</textSize>
-        <titleColor>#000000</titleColor>
-        <titleSize>18</titleSize>
-    </chart>
     <columns>
-        <field>ACCOUNT.NAME</field>
+        <field>Account$Name</field>
     </columns>
     <columns>
-        <field>ASSET.NAME</field>
+        <field>Account.Assets$ActualSolver__c</field>
     </columns>
     <columns>
-        <field>Asset.ActualSolver__c</field>
+        <field>Account.Assets$RecordCreationDate__c</field>
     </columns>
     <columns>
-        <field>Asset.RecordCreationDate__c</field>
+        <field>Account.Assets$ClosingAgentId__c</field>
     </columns>
     <description>Zobrazuje počet končících ePrescore (45 - 60 dní)</description>
     <filter>
         <criteriaItems>
-            <column>Asset.Status__c</column>
+            <column>Account.Assets$Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>10001</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Asset.RecordCreationDate__c</column>
+            <column>Account.Assets$RecordCreationDate__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>lessThan</operator>
             <value>N_DAYS_AGO:30</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Asset.RecordCreationDate__c</column>
+            <column>Account.Assets$RecordCreationDate__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>greaterThan</operator>
@@ -64,7 +40,7 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Asset.ClosingAgentId__c</field>
+        <field>Account.Assets$Name</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Končící ePrescore</name>
@@ -72,13 +48,13 @@
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>AccountAsset</reportType>
+    <reportType>AccountsWithAssetsOZ__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>false</showGrandTotal>
     <showSubTotals>false</showSubTotals>
     <timeFrameFilter>
-        <dateColumn>Asset.RecordCreationDate__c</dateColumn>
+        <dateColumn>Account.Assets$RecordCreationDate__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

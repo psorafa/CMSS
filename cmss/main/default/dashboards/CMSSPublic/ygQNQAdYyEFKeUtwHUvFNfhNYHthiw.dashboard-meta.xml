@@ -20,14 +20,13 @@
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <groupingSortProperties/>
-                <header>Počet končících ePrescore</header>
+                <header>Končící ePrescore</header>
                 <indicatorBreakpoint1>33.0</indicatorBreakpoint1>
                 <indicatorBreakpoint2>67.0</indicatorBreakpoint2>
                 <indicatorHighColor>#C23934</indicatorHighColor>
                 <indicatorLowColor>#C23934</indicatorLowColor>
                 <indicatorMiddleColor>#C23934</indicatorMiddleColor>
-                <metricLabel>45-60 dní od ePrescore</metricLabel>
-                <report>OdbytovaSit/Konc_ePrescore_RV0</report>
+                <report>OdbytovaSit/KonciciePrescore_7xo</report>
                 <showRange>false</showRange>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
@@ -52,7 +51,7 @@
                 <indicatorLowColor>#00716B</indicatorLowColor>
                 <indicatorMiddleColor>#FFB75D</indicatorMiddleColor>
                 <metricLabel>Záporný aktuální stav plateb</metricLabel>
-                <report>OdbytovaSit/Klienti_vprodlen_pI9</report>
+                <report>OdbytovaSit/KlientiVProdleni_6aq</report>
                 <showRange>false</showRange>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
@@ -67,44 +66,50 @@
                 <flexComponentProperties>
                     <decimalPrecision>-1</decimalPrecision>
                     <flexTableColumn>
-                        <reportColumn>Activity.Subject</reportColumn>
+                        <reportColumn>SUBJECT</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.Who.Name</reportColumn>
+                        <reportColumn>WHO_NAME</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.CreatedDate</reportColumn>
+                        <reportColumn>CREATED_DATE</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.Status</reportColumn>
+                        <reportColumn>STATUS</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.Result__c</reportColumn>
+                        <reportColumn>Activity.TaskResult__c</reportColumn>
+                        <showSubTotal>false</showSubTotal>
+                        <showTotal>false</showTotal>
+                        <type>detail</type>
+                    </flexTableColumn>
+                    <flexTableColumn>
+                        <reportColumn>DUE_DATE</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableSortInfo>
-                        <sortColumn>Activity.Subject</sortColumn>
+                        <sortColumn>SUBJECT</sortColumn>
                         <sortOrder>1</sortOrder>
                     </flexTableSortInfo>
                     <hideChatterPhotos>true</hideChatterPhotos>
                 </flexComponentProperties>
                 <groupingSortProperties/>
                 <header>Zpožděné aktivity</header>
-                <report>OdbytovaSit/Zpodn_aktivity_ire</report>
+                <report>OdbytovaSit/ZpozdeneAktivity_Kss</report>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
             <rowSpan>7</rowSpan>
@@ -118,19 +123,19 @@
                 <flexComponentProperties>
                     <decimalPrecision>-1</decimalPrecision>
                     <flexTableColumn>
-                        <reportColumn>ASSET.NAME</reportColumn>
+                        <reportColumn>Asset.Name</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>User.PersonalIdentificationNumber__c</reportColumn>
+                        <reportColumn>Account.PersonalIdentificationNr__c</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>ACCOUNT.NAME</reportColumn>
+                        <reportColumn>Account.Name</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
@@ -142,20 +147,20 @@
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Account.PortfolioMngmtA__c</reportColumn>
+                        <reportColumn>Asset.PortfolioMngmtA__c</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableSortInfo>
-                        <sortColumn>ASSET.NAME</sortColumn>
+                        <sortColumn>Asset.Name</sortColumn>
                         <sortOrder>1</sortOrder>
                     </flexTableSortInfo>
                     <hideChatterPhotos>true</hideChatterPhotos>
                 </flexComponentProperties>
                 <groupingSortProperties/>
                 <header>Rozpracované ÚP</header>
-                <report>OdbytovaSit/Rozpracovan_P_Qo7</report>
+                <report>OdbytovaSit/RozpracovaneUP_deg</report>
                 <title>Přehled 90 dní od podpisu žádosti</title>
             </dashboardComponent>
             <rowIndex>5</rowIndex>
@@ -170,44 +175,50 @@
                 <flexComponentProperties>
                     <decimalPrecision>-1</decimalPrecision>
                     <flexTableColumn>
-                        <reportColumn>Activity.Subject</reportColumn>
+                        <reportColumn>SUBJECT</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.Who.Name</reportColumn>
+                        <reportColumn>WHO_NAME</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.CreatedDate</reportColumn>
+                        <reportColumn>CREATED_DATE</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.Status</reportColumn>
+                        <reportColumn>STATUS</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.Result__c</reportColumn>
+                        <reportColumn>Activity.TaskResult__c</reportColumn>
+                        <showSubTotal>false</showSubTotal>
+                        <showTotal>false</showTotal>
+                        <type>detail</type>
+                    </flexTableColumn>
+                    <flexTableColumn>
+                        <reportColumn>DUE_DATE</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableSortInfo>
-                        <sortColumn>Activity.Subject</sortColumn>
+                        <sortColumn>DUE_DATE</sortColumn>
                         <sortOrder>1</sortOrder>
                     </flexTableSortInfo>
                     <hideChatterPhotos>true</hideChatterPhotos>
                 </flexComponentProperties>
                 <groupingSortProperties/>
                 <header>Obchodní aktivity</header>
-                <report>OdbytovaSit/Obchodn_aktivity_goh</report>
+                <report>OdbytovaSit/ObchodniAktivity_CkG</report>
             </dashboardComponent>
             <rowIndex>7</rowIndex>
             <rowSpan>7</rowSpan>
@@ -221,7 +232,7 @@
                 <flexComponentProperties>
                     <decimalPrecision>-1</decimalPrecision>
                     <flexTableColumn>
-                        <reportColumn>ASSET.NAME</reportColumn>
+                        <reportColumn>Asset.Name</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
@@ -233,7 +244,7 @@
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>ACCOUNT.NAME</reportColumn>
+                        <reportColumn>Account.TextName</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
@@ -251,14 +262,14 @@
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableSortInfo>
-                        <sortColumn>ASSET.NAME</sortColumn>
+                        <sortColumn>Asset.Name</sortColumn>
                         <sortOrder>1</sortOrder>
                     </flexTableSortInfo>
                     <hideChatterPhotos>true</hideChatterPhotos>
                 </flexComponentProperties>
                 <groupingSortProperties/>
                 <header>Moje produkce</header>
-                <report>OdbytovaSit/Moje_produkce_tSf</report>
+                <report>OdbytovaSit/MojeProdukce_iTL</report>
                 <title>Přehled za aktuální pololetí</title>
             </dashboardComponent>
             <rowIndex>13</rowIndex>
@@ -273,44 +284,50 @@
                 <flexComponentProperties>
                     <decimalPrecision>-1</decimalPrecision>
                     <flexTableColumn>
-                        <reportColumn>Activity.Subject</reportColumn>
+                        <reportColumn>SUBJECT</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.Who.Name</reportColumn>
+                        <reportColumn>WHO_NAME</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.CreatedDate</reportColumn>
+                        <reportColumn>CREATED_DATE</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.Status</reportColumn>
+                        <reportColumn>STATUS</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>Activity.Result__c</reportColumn>
+                        <reportColumn>Activity.TaskResult__c</reportColumn>
+                        <showSubTotal>false</showSubTotal>
+                        <showTotal>false</showTotal>
+                        <type>detail</type>
+                    </flexTableColumn>
+                    <flexTableColumn>
+                        <reportColumn>DUE_DATE</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>false</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableSortInfo>
-                        <sortColumn>Activity.Subject</sortColumn>
+                        <sortColumn>DUE_DATE</sortColumn>
                         <sortOrder>1</sortOrder>
                     </flexTableSortInfo>
                     <hideChatterPhotos>true</hideChatterPhotos>
                 </flexComponentProperties>
                 <groupingSortProperties/>
                 <header>Servisní aktivity</header>
-                <report>OdbytovaSit/Servisn_aktivity_Njg</report>
+                <report>OdbytovaSit/ServisniAktivity_4qK</report>
             </dashboardComponent>
             <rowIndex>14</rowIndex>
             <rowSpan>7</rowSpan>

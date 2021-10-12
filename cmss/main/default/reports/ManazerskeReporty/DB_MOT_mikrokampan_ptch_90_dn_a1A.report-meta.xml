@@ -33,7 +33,7 @@
         <field>Activity$Who</field>
     </columns>
     <columns>
-        <field>Activity$Result__c</field>
+        <field>Activity$TaskResult__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -67,6 +67,7 @@
         <value>1</value>
     </params>
     <reportType>ActivitieswithCampaignandCampaignMembers__c</reportType>
+    <roleHierarchyFilter>X69_948011_mng</roleHierarchyFilter>
     <scope>team</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
