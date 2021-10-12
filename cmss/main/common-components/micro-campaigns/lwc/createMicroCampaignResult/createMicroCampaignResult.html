@@ -34,9 +34,15 @@
 						<ul class="slds-m-around_medium slds-list_dotted">
 							<template for:each={_result.erroredRecords} for:item="error">
 								<li key={error.Id}>
-									<a href="javascript:void(0)" name={error.Id} onclick={handleAccountClick}
-										>{error.Name}</a
+									<a
+										href="javascript:void(0)"
+										name={error.erroredObject.Id}
+										onclick={handleAccountClick}
+										>{error.erroredObject.Name}</a
 									>
+									<ul class="slds-m-around_medium slds-list_dotted">
+										<li key={error.Id}>{error.errorMessage}</li>
+									</ul>
 								</li>
 							</template>
 						</ul>

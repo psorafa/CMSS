@@ -8,7 +8,7 @@ export default class CreateMicroCampaignResult extends NavigationMixin(Lightning
 
 	@api
 	get result() {
-	    return this._result
+        return this._result
  	}
  	set result(value) {
  	    this._result = value
