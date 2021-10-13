@@ -1948,13 +1948,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Asset.HasMortgageInsurance__c</field>
+        <editable>false</editable>
+        <field>Asset.HasLoanCaseRelatedAsset__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset.HasMURelatedAsset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.HasMortgageInsurance__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2175,6 +2180,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.NettoDeposit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset.NumberofLoanCaseRelatedAssets__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

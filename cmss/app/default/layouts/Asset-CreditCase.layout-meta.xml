@@ -286,11 +286,13 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>DueDate__c</fields>
-        <fields>Number__c</fields>
         <fields>Phase__c</fields>
-        <fields>Status__c</fields>
+        <fields>Group__c</fields>
+        <fields>Number__c</fields>
         <fields>TextShort__c</fields>
+        <fields>Status__c</fields>
+        <fields>DueDate__c</fields>
+        <fields>ReceiveDate__c</fields>
         <relatedList>LoanCaseDoc__c.Asset__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -330,7 +332,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1X000001l6cS</masterLabel>
+        <masterLabel>00h1X000003IHzH</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
