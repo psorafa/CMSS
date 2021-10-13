@@ -1,7 +1,7 @@
 <template>
     <div class="slds-p-bottom_small">
         <c-asset-related-list 
-            columns="Name, ProductType__c, ProductCloseDate__c, Tariff__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c" 
+            columns="Name, ProductType__c, ProductCloseDate__c, Tariff__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c, HasLoanCaseRelatedAsset__c" 
             condition-assets="(RecordType.DeveloperName = 'BuildingSavings' OR RecordType.DeveloperName = 'CreditAndIntermediateLoan')" 
             list-name="Stavební spoření a úvěry" 
             icon-name="standard:asset_object" 

@@ -29,14 +29,14 @@
             "locked" : false,
             "seedComponents" : [ ],
             "tabKey" : "1",
-            "tabName" : "Podrobnosti"
+            "tabName" : "Smlouva"
           }, {
             "UUID" : "ac019434-3293-46b1-a5e7-68fde67e60ab",
             "allowGuestUser" : false,
             "locked" : false,
             "seedComponents" : [ ],
             "tabKey" : "2",
-            "tabName" : "Související"
+            "tabName" : "Podrobnosti"
           } ],
           "useOverflowMenu" : false
         }
@@ -54,7 +54,7 @@
           "type" : "component"
         } ],
         "id" : "7dd0fbdf-fcaa-4ad5-93df-1da30ce07831",
-        "regionLabel" : "Podrobnosti",
+        "regionLabel" : "Smlouva",
         "regionName" : "1",
         "renditionMap" : { },
         "type" : "region"
@@ -70,7 +70,7 @@
           "type" : "component"
         } ],
         "id" : "ac019434-3293-46b1-a5e7-68fde67e60ab",
-        "regionLabel" : "Související",
+        "regionLabel" : "Podrobnosti",
         "regionName" : "2",
         "renditionMap" : { },
         "type" : "region"
