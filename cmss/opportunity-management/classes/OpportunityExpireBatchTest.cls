@@ -9,7 +9,7 @@ public with sharing class OpportunityExpireBatchTest {
 
 	static final Date validToTreshold = System.today();
 	static final Date validFromTreshold = System.today().addDays(-120);
-
+    static final String SERVICE_CATEGORY = '3';
 	@IsTest
 	static void finishTest() {
 		OpportunityExpireBatch batch = new OpportunityExpireBatch();
@@ -55,6 +55,7 @@ public with sharing class OpportunityExpireBatchTest {
 	private static Opportunity getOpp(Date validFrom, Date validTo, String statusOpp) {
 		Integer i = cntr++;
 		return new Opportunity(
+            Category__c = SERVICE_CATEGORY,
 			ValidFrom__c = validFrom,
 			ValidTo__c = validTo,
 			StageName = statusOpp,
