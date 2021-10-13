@@ -63,10 +63,7 @@ public without sharing class AccessSharingUtils {
 		List<AssetAccountRelation__c> assetAccountRelations = [
 			SELECT Id, Asset__c, Asset__r.Id, Asset__r.EndDate__c, Asset__r.AccountId, Account__c
 			FROM AssetAccountRelation__c
-			WHERE
-				Asset__r.EndDate__c > :System.Today().addYears(-2)
-				AND Account__c IN :accountIds
-				AND RelationType__c != '1'
+			WHERE Account__c IN :accountIds AND RelationType__c != '1'
 		];
 
 		Map<Id, Set<Id>> accountAssetsMap = new Map<Id, Set<Id>>();
