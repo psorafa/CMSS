@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<apiVersion>52.0</apiVersion>
+	<description>Pinned Feed Display</description>
+	<isExposed>true</isExposed>
+	<masterLabel>Pinned Feed Display</masterLabel>
+	<targets>
+		<target>lightning__RecordPage</target>
+		<target>lightning__HomePage</target>
+        <target>lightningCommunity__Default</target>
+	</targets>
+    <targetConfigs>
+      <targetConfig targets="lightning__RecordPage, lightning__HomePage, lightningCommunity__Default">
+          <property name="chatterGroupId" label= "Chatter Group Id" type="String" />
+          <property name="maxNumberOfItems" label= "Maximal Number Of Feed Items Shown" type="Integer" />
+      </targetConfig>
+  </targetConfigs>
+</LightningComponentBundle>

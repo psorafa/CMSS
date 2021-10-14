@@ -1,0 +1,8 @@
+.feed--extended {
+	max-height: max-content;
+}
+
+.feed--not-extended {
+	max-height: 150px;
+	overflow: hidden;
+}

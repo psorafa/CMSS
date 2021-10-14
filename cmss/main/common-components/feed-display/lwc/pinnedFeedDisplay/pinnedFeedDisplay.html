@@ -1,0 +1,11 @@
+<template>
+	<template if:true={feedItems}>
+		<ul class="slds-feed__list">
+			<template for:each={feedItems} for:item="feedItem">
+				<li class="slds-feed__item slds-feed--padding" key={feedItem.Id}>
+					<c-single-feed-item feed={feedItem}></c-single-feed-item>
+				</li>
+			</template>
+		</ul>
+	</template>
+</template>
