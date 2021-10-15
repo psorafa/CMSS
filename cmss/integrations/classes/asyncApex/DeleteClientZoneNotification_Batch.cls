@@ -19,7 +19,7 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 				Status__c,
 				Account__c,
 				Account__r.PersonEmail,
-				CreatedDate__c,
+				CreatedDate,
 				CancelationNotificationSentDate__c
 			FROM ClientZone__c
 			WHERE ClosedBy__c = NULL AND (Role__c = '7' OR Role__c = '9') AND Status__c = '1'
@@ -27,6 +27,7 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 	}
 
 	public void execute(Database.BatchableContext jobId, List<ClientZone__c> recordList) {
+		List<ClientZone__c> clientZonesToUpdate = new List<ClientZone__c>();
 		try {
 			Map<Id, ClientZone__c> accountToClientZoneMap = new Map<Id, ClientZone__c>();
 			for (ClientZone__c record : recordList) {
@@ -36,23 +37,28 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 			Map<Id, Task> associatedTasks = getAssociatedTasks(accountToClientZoneMap.keySet());
 			Map<Id, Opportunity> associatedOpportunities = getAssociatedOpportunities(accountToClientZoneMap.keySet());
 
-			processClientZones(accountToClientZoneMap, validAccountRelations, associatedTasks, associatedOpportunities);
+			clientZonesToUpdate = processClientZones(
+				accountToClientZoneMap,
+				validAccountRelations,
+				associatedTasks,
+				associatedOpportunities
+			);
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
 			throw e;
 		} finally {
 			Logger.saveLogs();
+			update clientZonesToUpdate;
 		}
 	}
 
-	private void processClientZones(
+	private List<ClientZone__c> processClientZones(
 		Map<Id, ClientZone__c> accountToClientZoneMap,
 		Map<Id, AccountRelation__c> validAccountRelations,
 		Map<Id, Task> associatedTasks,
 		Map<Id, Opportunity> associatedOpportunities
 	) {
 		List<ClientZone__c> clientZonesToUpdate = new List<ClientZone__c>();
-
 		for (ClientZone__c clientZone : accountToClientZoneMap.values()) {
 			if (
 				!validAccountRelations.containsKey(clientZone.Account__c) ||
@@ -61,15 +67,9 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 			) {
 				if (
 					clientZone.CancelationNotificationSentDate__c == null &&
-					clientZone.CreatedDate__c < actualDate.addDays(-15)
+					clientZone.CreatedDate < actualDate.addDays(-15)
 				) {
-					SendNotificationHandler handler = new SendNotificationHandler(
-						clientZone,
-						CANCELATION_TEMPLATE_NAME,
-						clientZone.Account__r.PersonEmail,
-						new Map<String, String>{ 'CANCELATION_DATE' => String.valueOf(this.actualDate.addDays(14)) }
-					);
-					handler.handle();
+					sendNotification(clientZone);
 					clientZone.CancelationNotificationSentDate__c = System.now();
 					clientZonesToUpdate.add(clientZone);
 				} else if (
@@ -82,7 +82,17 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 				}
 			}
 		}
-		update clientZonesToUpdate;
+		return clientZonesToUpdate;
+	}
+
+	private void sendNotification(ClientZone__c clientZone) {
+		SendNotificationHandler handler = new SendNotificationHandler(
+			clientZone,
+			CANCELATION_TEMPLATE_NAME,
+			clientZone.Account__r.PersonEmail,
+			new Map<String, String>{ 'CANCELATION_DATE' => String.valueOf(this.actualDate) }
+		);
+		handler.handle();
 	}
 
 	private Map<Id, AccountRelation__c> getAssociatedAccounts(Set<Id> accountIds) {
@@ -139,7 +149,7 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 		List<Opportunity> opportunities = [
 			SELECT AccountId
 			FROM Opportunity
-			WHERE AccountId IN :accountIds AND IsClosed = false
+			WHERE AccountId IN :accountIds AND IsClosed = FALSE
 		];
 
 		Map<Id, Opportunity> associatedOpportunities = new Map<Id, Opportunity>();

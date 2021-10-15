@@ -58,7 +58,7 @@ public class UnsignedOppNotification_BatchTest {
 		opportunity.AccountId = account1.Id;
 		opportunity.Name = 'Test opportunity';
 		opportunity.CloseDate = Date.valueOf(System.now().addDays(15));
-		opportunity.CreatedDateTime__c = Date.valueOf(System.now().addDays(-3));
+		opportunity.CreatedDateTime__c = Date.valueOf(System.now().addDays(-2));
 		insert opportunity;
 
 		ClientZone__c clientZone = new ClientZone__c();
