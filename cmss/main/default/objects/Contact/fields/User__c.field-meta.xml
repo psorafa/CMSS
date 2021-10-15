@@ -3,6 +3,7 @@
     <fullName>User__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
+    <inlineHelpText>Zobrazení veškerých informací o OZ, kontaktech a správě stavu</inlineHelpText>
     <label>User</label>
     <referenceTo>User</referenceTo>
     <relationshipName>Contacts</relationshipName>
