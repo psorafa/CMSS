@@ -1,0 +1,40 @@
+<template>
+	<div class="content">
+		<div class="slds-feed">
+			<article class="slds-post slds-card slds-p-around--medium">
+				<header class="slds-post__header slds-media">
+					<div class="slds-media__figure">
+						<div class="slds-avatar slds-avatar_circle slds-avatar_large">
+							<img alt="Photo" src={feed.PhotoUrl} title="Photo" />
+						</div>
+					</div>
+					<div class="slds-media__body">
+						<div class="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
+							<p>
+								<a href={groupIdUrl} title={feed.GroupDisplayName}>{feed.GroupDisplayName}</a>
+								<a href={authorIdUrl}>&#xa0;-&#xa0;{feed.AuthorDisplayName}</a>
+							</p>
+						</div>
+						<p class="slds-text-body_small">
+							<a
+								href={feedItemUrl}
+								title="Click for single-item view of this post"
+								class="slds-text-link_reset"
+								>{feed.RelativeCreatedDate}</a
+							>
+						</p>
+					</div>
+				</header>
+				<div class={feedItemCardBodyStyle}>
+					<lightning-formatted-rich-text value={feed.Text}></lightning-formatted-rich-text>
+				</div>
+
+				<footer class="slds-post__footer">
+					<template if:true={isExtendable}>
+						<a title={extendLabel} onclick={handleExtend}>{extendLabel}</a>
+					</template>
+				</footer>
+			</article>
+		</div>
+	</div>
+</template>
