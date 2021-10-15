@@ -10,8 +10,12 @@ public class CancelCZContractHandler {
 	}
 
 	private void updateExistingClientZone() {
-		clientZone.Role__c = '8';
-		clientZone.Status__c = '2';
-		DmlUtility.updateRecord(clientZone);
+		ClientZone__c clientZoneToUpdate = new ClientZone__c(
+			Id = clientZone.Id,
+			Role__c = '8',
+			Status__c = '2',
+			CancellationDate__c = System.today()
+		);
+		DmlUtility.updateRecord(clientZoneToUpdate);
 	}
 }
