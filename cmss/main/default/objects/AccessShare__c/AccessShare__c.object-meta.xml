@@ -160,7 +160,9 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Access Share</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

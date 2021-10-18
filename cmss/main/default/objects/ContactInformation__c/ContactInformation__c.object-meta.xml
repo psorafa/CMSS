@@ -162,6 +162,7 @@
     </nameField>
     <pluralLabel>Contact Information</pluralLabel>
     <searchLayouts>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <searchResultsAdditionalFields>IsMain__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PhoneNumber__c</searchResultsAdditionalFields>
