@@ -161,6 +161,7 @@
     </nameField>
     <pluralLabel>Logs</pluralLabel>
     <searchLayouts>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <searchResultsAdditionalFields>TransactionId__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Level__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Message__c</searchResultsAdditionalFields>

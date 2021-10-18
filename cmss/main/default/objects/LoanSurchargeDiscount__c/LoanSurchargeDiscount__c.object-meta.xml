@@ -160,7 +160,9 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Loan Surcharge Discounts</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

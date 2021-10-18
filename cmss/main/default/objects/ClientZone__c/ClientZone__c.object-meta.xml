@@ -162,6 +162,7 @@
     </nameField>
     <pluralLabel>Client Zones</pluralLabel>
     <searchLayouts>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Username__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>VerificationPhone__c</searchResultsAdditionalFields>

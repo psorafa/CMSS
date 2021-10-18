@@ -163,6 +163,7 @@
     </nameField>
     <pluralLabel>Portfolio Management Requests</pluralLabel>
     <searchLayouts>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PortfolioManagementType__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PortfolioManager__c</searchResultsAdditionalFields>
