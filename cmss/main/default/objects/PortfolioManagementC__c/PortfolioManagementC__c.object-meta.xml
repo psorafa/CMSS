@@ -160,7 +160,9 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Portfolio Management C</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <excludedStandardButtons>PrintableListView</excludedStandardButtons>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
