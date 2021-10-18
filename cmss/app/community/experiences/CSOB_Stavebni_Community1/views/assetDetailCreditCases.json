@@ -1,0 +1,200 @@
+{
+  "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
+  "componentName" : "siteforce:sldsTwoCol84Layout",
+  "id" : "eb347eaa-82d4-44dd-8f69-44e502d994dd",
+  "label" : "Asset Detail - Credit Cases",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "forceCommunity:recordHeadline",
+      "id" : "729c4f71-0e5c-4340-ad72-6c26912cbe07",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "750345ce-74bf-4a36-997d-debfe6a63ade",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "tabsetConfig" : {
+          "UUID" : "04d4dcf0-f089-4f74-918f-e3f66d7537aa",
+          "activeTab" : "",
+          "tabs" : [ {
+            "UUID" : "d3365645-bb1a-430d-b3dd-8836529e6c2c",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "1",
+            "tabName" : "Smlouva"
+          }, {
+            "UUID" : "3f5cba91-d0a8-4f62-96ec-8bc58d7e40c2",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "2",
+            "tabName" : "Podrobnosti"
+          } ],
+          "useOverflowMenu" : false
+        }
+      },
+      "componentName" : "forceCommunity:tabset",
+      "id" : "04d4dcf0-f089-4f74-918f-e3f66d7537aa",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "forceCommunity:recordDetail",
+          "id" : "7323b9e4-1080-47e4-8410-b5911a9cf368",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "d3365645-bb1a-430d-b3dd-8836529e6c2c",
+        "regionLabel" : "Smlouva",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "relatedListApiName" : "Loan_Assurances__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "8f3b804d-8093-4d38-af7f-dc864b60f735",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "Loan_Case_Docs__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "b66a2250-86d4-40b9-b53c-967820178c70",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "Loan_Surcharge_Discounts__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "933482cd-c938-4eda-8b16-ad4b6e39cbb5",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "AssetAccountRelations__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "b8c022a6-fef8-477c-ad45-14ee0ca4447e",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "RelatedAssets",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "636118ad-58e1-4590-89ad-d88258a2f2a4",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "PrimaryAssets",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "89dccdce-f78c-4fe7-ac00-ed3807eac653",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "3f5cba91-d0a8-4f62-96ec-8bc58d7e40c2",
+        "regionLabel" : "Podrobnosti",
+        "regionName" : "2",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "03f513df-1ffc-4536-9ac8-09ed46d6a445",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "1d9b6b48-54ff-4601-9e89-9db36d1f5666",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "{!Record._Object}: {!Record._Title}"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "c4072435-be31-4b3b-a91b-17f928c0055f",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "ac8d70e0-993e-4380-8304-a27806303012",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "context" : "RECORD",
+        "recordId" : "{!recordId}",
+        "width" : "MEDIUM"
+      },
+      "componentName" : "forceCommunity:feedPublisher",
+      "id" : "400de329-2f31-49f0-b6f9-7a0879dcbca4",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "canChangeSorting" : true,
+        "defaultFilter" : "",
+        "defaultSortOrderHomeFeed" : "Relevance",
+        "defaultSortOrderTopicsFeed" : "Relevance",
+        "feedDesign" : "DEFAULT",
+        "hasFeedSearch" : true,
+        "subjectId" : "{!recordId}",
+        "type" : "Record"
+      },
+      "componentName" : "forceCommunity:forceCommunityFeed",
+      "id" : "bf2fa818-f29d-4dfc-be61-df047660fa0a",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "richTextValue" : "<p><b>Pravidla používání chatu</b>:</p><p>1. Příjemce zadávejte pomocí znaku&nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví</p><p>2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu</p><p>3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob</p>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "b0670ebc-365f-47d1-a009-f15383f3fc97",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "c008f3a3-374e-4c5f-b79d-964490d2e0c7",
+    "regionName" : "sidebar",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "detail-02i"
+}

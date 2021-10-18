@@ -1,0 +1,170 @@
+{
+  "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
+  "componentName" : "siteforce:sldsTwoCol84Layout",
+  "id" : "301675bf-ca44-4bf0-8127-d1b9f6ecfa81",
+  "label" : "Asset Detail - Risk Life Insurance",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "forceCommunity:recordHeadline",
+      "id" : "611c1569-9902-4cd3-9ee8-6a5aa6565507",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "b3a9449d-4b8a-466b-b478-0c08b0b3ec91",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "tabsetConfig" : {
+          "UUID" : "e8a90836-0a49-40d4-b9aa-9fc4b778d9a1",
+          "activeTab" : "",
+          "tabs" : [ {
+            "UUID" : "cf47be31-3db5-4905-b6b0-97bbb4eff229",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "1",
+            "tabName" : "Smlouva"
+          }, {
+            "UUID" : "f9a33cfd-6b55-435f-b62a-5e02838486fb",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "2",
+            "tabName" : "Podrobnosti"
+          } ],
+          "useOverflowMenu" : false
+        }
+      },
+      "componentName" : "forceCommunity:tabset",
+      "id" : "e8a90836-0a49-40d4-b9aa-9fc4b778d9a1",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "forceCommunity:recordDetail",
+          "id" : "e2a340c7-303f-4b82-a470-b63b67f98a71",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "cf47be31-3db5-4905-b6b0-97bbb4eff229",
+        "regionLabel" : "Smlouva",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "relatedListApiName" : "AssetAccountRelations__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "2a789cd7-d7d7-4f41-9678-d186211dcf4d",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "RelatedAssets",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "4a5ce3c7-67e5-4bdc-910a-62bc9a270aeb",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "PrimaryAssets",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "b67607b8-1532-473d-b2f3-83cd23a2a1de",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "f9a33cfd-6b55-435f-b62a-5e02838486fb",
+        "regionLabel" : "Podrobnosti",
+        "regionName" : "2",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "456183d1-b8c2-4168-9502-3a21c582bcab",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "deed73bf-a5dd-4394-94fa-2c3498a20dd8",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "{!Record._Object}: {!Record._Title}"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "88cd9122-ae28-4b4d-bc71-4d55b1c0703e",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "ef2364df-95f1-4723-a2e2-02a827158126",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "context" : "RECORD",
+        "recordId" : "{!recordId}",
+        "width" : "MEDIUM"
+      },
+      "componentName" : "forceCommunity:feedPublisher",
+      "id" : "34b1f621-3d84-40b9-8a81-94b5ff8c2328",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "canChangeSorting" : true,
+        "defaultFilter" : "",
+        "defaultSortOrderHomeFeed" : "Relevance",
+        "defaultSortOrderTopicsFeed" : "Relevance",
+        "feedDesign" : "DEFAULT",
+        "hasFeedSearch" : true,
+        "subjectId" : "{!recordId}",
+        "type" : "Record"
+      },
+      "componentName" : "forceCommunity:forceCommunityFeed",
+      "id" : "e0512048-0e64-49af-bd15-b90e25c9f948",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "richTextValue" : "<p><b>Pravidla používání chatu</b>:</p><p>1. Příjemce zadávejte pomocí znaku&nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví</p><p>2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu</p><p>3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob</p>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "6d951e99-9e3b-4e00-8475-395cce1bacbc",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "8906fedd-c0ca-4d65-991a-25d1b7bb98ec",
+    "regionName" : "sidebar",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "detail-02i"
+}

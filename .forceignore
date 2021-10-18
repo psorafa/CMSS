@@ -15,6 +15,11 @@ package.xml
 cmss/main/default/profiles/Trial Customer Portal User.profile-meta.xml
 cmss/app/community/appMenus/AppSwitcher.appMenu-meta.xml
 
+# Deploy of audiences
+
+metadata
+
+
 # Workaround until the Entitlement Process Versioning is turned on
 # or until another solution for deploying used entitlement processes found
 # cmss\case-management\entitlementProcesses\claim management.entitlementProcess-meta.xml

@@ -1,0 +1,180 @@
+{
+  "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
+  "componentName" : "siteforce:sldsTwoCol84Layout",
+  "id" : "6e58107a-9c63-480b-818a-f0d30a149b97",
+  "label" : "Asset Detail - Building Savings",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "forceCommunity:recordHeadline",
+      "id" : "f0a23a98-0e74-442b-804c-06eb2d0fe7c6",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "f203f30f-4431-4b59-a8f1-48408db475d6",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "tabsetConfig" : {
+          "UUID" : "13a851a3-5242-4e2e-8025-ea86fbafa6f1",
+          "activeTab" : "",
+          "tabs" : [ {
+            "UUID" : "faa246b3-5de0-4892-b969-72969fec0349",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "1",
+            "tabName" : "Smlouva"
+          }, {
+            "UUID" : "2e574628-a314-4dd4-b929-1441d3be2bd5",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "2",
+            "tabName" : "Podrobnosti"
+          } ],
+          "useOverflowMenu" : false
+        }
+      },
+      "componentName" : "forceCommunity:tabset",
+      "id" : "13a851a3-5242-4e2e-8025-ea86fbafa6f1",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "forceCommunity:recordDetail",
+          "id" : "2e96ed54-8c14-41e3-85e6-894627fbe6ae",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "faa246b3-5de0-4892-b969-72969fec0349",
+        "regionLabel" : "Smlouva",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "relatedListApiName" : "AssetAccountRelations__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "77124897-07ee-4585-a2ae-a1ddc7ecd3bf",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "PrimaryAssets",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "2f990bf6-3272-448b-92db-abb2124c57a1",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "Asset_Changes__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "594e0a4b-3de5-445b-925a-1571aa3bf969",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "relatedListApiName" : "Asset_DIMAs__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "47d7200e-c90d-4bdf-b202-682d0531cbb7",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "2e574628-a314-4dd4-b929-1441d3be2bd5",
+        "regionLabel" : "Podrobnosti",
+        "regionName" : "2",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "64797568-1818-4b02-a4aa-cb9293844712",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "b9b43d0b-45a9-4f9e-abe7-737a415dc9b4",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "{!Record._Object}: {!Record._Title}"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "bbaec642-d1d5-4595-8cfb-01497dac1995",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "ed6136c6-f02d-42fe-9491-e0f4d7716da6",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "context" : "RECORD",
+        "recordId" : "{!recordId}",
+        "width" : "MEDIUM"
+      },
+      "componentName" : "forceCommunity:feedPublisher",
+      "id" : "cc6d8fa7-af2e-4b28-af8c-41b06d63d209",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "canChangeSorting" : true,
+        "defaultFilter" : "",
+        "defaultSortOrderHomeFeed" : "Relevance",
+        "defaultSortOrderTopicsFeed" : "Relevance",
+        "feedDesign" : "DEFAULT",
+        "hasFeedSearch" : true,
+        "subjectId" : "{!recordId}",
+        "type" : "Record"
+      },
+      "componentName" : "forceCommunity:forceCommunityFeed",
+      "id" : "cc3128ad-210a-447c-a053-a127d280e48f",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "richTextValue" : "<p><b>Pravidla používání chatu</b>:</p><p>1. Příjemce zadávejte pomocí znaku&nbsp;@příjmení_příjemce nebo skupiny - začněte psát a systém Vám napoví</p><p>2. Chat v SalesForce používejte primárně pro zprávy a dotazy týkající se obchodu a činnosti Vašeho týmu</p><p>3. Při komunikaci se prosím vyhýbejte neslušným výrazům a komentářům týkajícím se rasy, náboženství nebo zdravotního stavu osob</p>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "892e059f-fc9f-47be-bc9d-2078fffe3938",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "b3f7b89e-23d1-42aa-a286-7368279ac2b5",
+    "regionName" : "sidebar",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "detail-02i"
+}
