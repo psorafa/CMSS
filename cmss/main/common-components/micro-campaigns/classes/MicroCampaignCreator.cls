@@ -62,7 +62,7 @@ public with sharing class MicroCampaignCreator {
 					accountsByPersonContactId.put(account.PersonContactId, account);
 				} else {
 					invalidAccounts.add(account);
-					if (account.PersonContactId != null) {
+					if (account.PersonContactId == null) {
 						invalidResults.put(account.Id, 'Zvolený account není klient.');
 					} else {
 						invalidResults.put(account.Id, 'Uživatel není váš podřízený.');
@@ -78,6 +78,10 @@ public with sharing class MicroCampaignCreator {
 
 	private boolean isAssigneeSubordinate(Id userId) {
 		Id actualUserRoleId = UserInfo.getUserRoleId();
+		String actualUserProfileName = [SELECT Name FROM Profile WHERE Id = :UserInfo.getProfileId()].Name;
+		if (actualUserProfileName == 'System Administrator') {
+			return true;
+		}
 		Id assigneeUserRoleId = [SELECT UserRoleId FROM User WHERE Id = :userId]?.UserRoleId;
 		if (assigneeUserRoleId == null) {
 			return false;
