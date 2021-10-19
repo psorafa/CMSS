@@ -36,6 +36,16 @@
             <componentName>flexipage:richText</componentName>
         </componentInstances>
         <componentInstances>
+            <componentInstanceProperties>
+                <name>chatterGroupId</name>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>maxNumberOfItems</name>
+                <value>3</value>
+            </componentInstanceProperties>
+            <componentName>pinnedFeedDisplay</componentName>
+        </componentInstances>
+        <componentInstances>
             <componentName>externalLinks</componentName>
         </componentInstances>
         <componentInstances>
