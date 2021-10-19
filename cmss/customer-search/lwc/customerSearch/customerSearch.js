@@ -166,41 +166,40 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 			findRecords({
 				searchCriteria: searchCriteria
 			})
-				.then((data) => {
+				.then(data => {
 					this.searchResults = data;
-					this.isSearchButtonDisabled = false;
-					if (data && data.length === 1) {
-						this.noRecordsFound = false;
-						this.assignAccountAccess(data[0].recordId);
-						this.navigateToRecordPage(data[0].recordId);
-					} else if (data && data.length > 1) {
-						data.forEach((acc) => {
-							this.assignAccountAccess(acc.recordId);
-						});
-						this.noRecordsFound = false;
-					} else {
-						this.showToast('info', this.label.noRecordsFound, '');
-						this.noRecordsFound = true;
+					if (!data) {
+						throw new Error('no data');
 					}
-					this.showResults = true;
-					this.spinner = false;
+					this.recordId = data[0].recordId;
+					return assignSearchAccess({
+						accountId: this.recordId
+					});
 				})
-				.catch((error) => {
-					this.spinner = false;
-					this.showToast(
-						'error',
-						this.label.errorLabel,
-						error.body.exceptionType + ': ' + error.body.message
-					);
-					this.isSearchButtonDisabled = false;
+				.then(() => {
+					this.navigateToRecordPage(this.recordId);
+				})
+				.catch(error => {
+					this.handleErrors(error);
 				});
+		}
+	}
+
+	handleErrors(error) {
+		this.spinner = false;
+		this.isSearchButtonDisabled = false;
+		if (error.message === 'no data') {
+			this.showToast('info', this.label.noRecordsFound, '');
+			this.noRecordsFound = true;
+		} else {
+			this.showToast('error', this.label.errorLabel, error.body.exceptionType + ': ' + error.body.message);
 		}
 	}
 
 	isSearchCriteriaOk() {
 		let ok = true;
 		let inputFields = this.template.querySelectorAll('lightning-input');
-		inputFields.forEach((field) => {
+		inputFields.forEach(field => {
 			if (!field.checkValidity()) {
 				ok = false;
 			}
