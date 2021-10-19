@@ -66,7 +66,6 @@ public class DeleteClientZoneNotification_BatchTest {
 		clientZone1.Role__c = '7';
 		clientZone1.Status__c = '1';
 		clientZone1.Account__c = account1.Id;
-		clientZone1.CreatedDate = System.now().addDays(-16);
 		clientZone1.CancelationNotificationSentDate__c = null;
 
 		ClientZone__c clientZone2 = new ClientZone__c();
@@ -74,10 +73,12 @@ public class DeleteClientZoneNotification_BatchTest {
 		clientZone2.Role__c = '7';
 		clientZone2.Status__c = '1';
 		clientZone2.Account__c = account2.Id;
-		clientZone2.CreatedDate = System.now().addDays(-50);
 		clientZone2.CancelationNotificationSentDate__c = System.now().addDays(-35);
 
 		insert new List<ClientZone__c>{ clientZone1, clientZone2 };
+
+		Test.setCreatedDate(clientZone1.ID, System.now().addDays(-16));
+		Test.setCreatedDate(clientZone2.ID, System.now().addDays(-50));
 
 		AccountRelation__c accountRelation = new AccountRelation__c();
 		accountRelation.AccountRole__c = '1501';
