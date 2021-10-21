@@ -1507,6 +1507,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Asset.PortfolioMgmtA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Asset.PortfolioMngmtA__c</field>
         <readable>true</readable>
     </fieldPermissions>

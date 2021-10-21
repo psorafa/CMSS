@@ -2098,6 +2098,11 @@
             <field>HasRLIRelatedAsset__c</field>
             <table>Account.Assets</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PortfolioMgmtA__c</field>
+            <table>Account.Assets</table>
+        </columns>
         <masterLabel>Assets</masterLabel>
     </sections>
 </ReportType>
