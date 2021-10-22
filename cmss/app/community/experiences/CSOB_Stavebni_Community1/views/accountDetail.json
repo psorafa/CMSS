@@ -272,13 +272,15 @@
     "type" : "region"
   }, {
     "components" : [ {
-      "componentAttributes" : { },
-      "componentName" : "c:externalLinks",
-      "id" : "6bac2893-7b9f-48b2-b38e-8034b8c62264",
-      "renderPriority" : "HIGH",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
+		"componentAttributes": {
+			"recordId": "{!recordId}"
+		},
+		"componentName": "c:externalLinks",
+		"id": "6bac2893-7b9f-48b2-b38e-8034b8c62264",
+		"renderPriority": "HIGH",
+		"renditionMap": {},
+		"type": "component"
+	}, {
       "componentAttributes" : {
         "recordId" : "{!recordId}"
       },
