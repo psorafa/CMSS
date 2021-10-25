@@ -67,13 +67,12 @@
         <value>1</value>
     </params>
     <reportType>ActivitieswithCampaignandCampaignMembers__c</reportType>
-    <roleHierarchyFilter>X69_948011_mng</roleHierarchyFilter>
     <scope>team</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
-        <dateColumn>Activity$CallActualEnd__c</dateColumn>
+        <dateColumn>Activity$ActivityDate</dateColumn>
         <interval>INTERVAL_NEXT90</interval>
     </timeFrameFilter>
 </Report>
