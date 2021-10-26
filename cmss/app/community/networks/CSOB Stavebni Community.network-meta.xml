@@ -5,7 +5,7 @@
     <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
     <communityRoles/>
     <disableReputationRecordConversations>false</disableReputationRecordConversations>
-    <emailSenderAddress>ondrej.tancibudek@enehano.cz</emailSenderAddress>
+    <emailSenderAddress>crm_no_reply@csobstavebni.cz</emailSenderAddress>
     <emailSenderName>CRM ČSOB Stavební spořitelna</emailSenderName>
     <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
     <enableDirectMessages>true</enableDirectMessages>
@@ -39,10 +39,9 @@
         <loginPageOverrideSetting>Standard</loginPageOverrideSetting>
         <selfRegProfilePageOverrideSetting>Designer</selfRegProfilePageOverrideSetting>
     </networkPageOverrides>
-    <newSenderAddress>crm_noreply@csobstavebni.cz</newSenderAddress>
     <picassoSite>CSOB_Stavebni_Community1</picassoSite>
     <selfRegistration>false</selfRegistration>
-    <sendWelcomeEmail>false</sendWelcomeEmail>
+    <sendWelcomeEmail>true</sendWelcomeEmail>
     <site>CSOB_Stavebni_Community</site>
     <status>Live</status>
     <tabs>
