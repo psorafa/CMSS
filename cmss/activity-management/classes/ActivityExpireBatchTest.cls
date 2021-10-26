@@ -21,41 +21,19 @@ public with sharing class ActivityExpireBatchTest {
 	}
 
 	@IsTest
-	static void startTaskTest() {
-		ActivityExpireBatch batch = new ActivityExpireBatch();
-
-		createTestData();
-
-		List<sObject> objects = (List<sObject>) batch.start(null);
-
-		Integer found = 0;
-		for (sObject a : objects) {
-			found++;
-			System.debug(a);
-			String subj = (String) a.get('subject');
-			System.assert(
-				subj == 'TestTask1' ||
-				subj == 'TestTask2' ||
-				subj == 'TestTask4',
-				'Unexpected row subject found: ' + subj
-			);
-		}
-		System.assertEquals(3, found, 'Invalid set of selected tasks');
-	}
-
-	@IsTest
 	static void executeBatchTest() {
 		ActivityExpireBatch batch = new ActivityExpireBatch();
 
 		createTestData();
 
-		List<Task> before = (List<Task>) batch.start(null);
-		batch.execute(null, before);
+		Test.startTest();
+		Database.executeBatch(batch);
+		Test.stopTest();
 
 		List<Task> after = [
 			SELECT Id, Subject, ValidTo__c, Status, DeactivateDate__c
 			FROM Task
-			WHERE Id IN :before
+			WHERE ValidTo__c <= TODAY
 			ORDER BY Subject
 		];
 

@@ -10,20 +10,22 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 		Database.executeBatch(this);
 	}
 
-	public List<ClientZone__c> start(Database.BatchableContext jobId) {
-		return (List<ClientZone__c>) [
-			SELECT
-				Id,
-				ClosedBy__c,
-				Role__c,
-				Status__c,
-				Account__c,
-				Account__r.PersonEmail,
-				CreatedDate,
-				CancelationNotificationSentDate__c
-			FROM ClientZone__c
-			WHERE ClosedBy__c = NULL AND (Role__c = '7' OR Role__c = '9') AND Status__c = '1'
-		];
+	public Database.QueryLocator start(Database.BatchableContext jobId) {
+		return Database.getQueryLocator(
+			[
+				SELECT
+					Id,
+					ClosedBy__c,
+					Role__c,
+					Status__c,
+					Account__c,
+					Account__r.PersonEmail,
+					CreatedDate,
+					CancelationNotificationSentDate__c
+				FROM ClientZone__c
+				WHERE ClosedBy__c = NULL AND (Role__c = '7' OR Role__c = '9') AND Status__c = '1'
+			]
+		);
 	}
 
 	public void execute(Database.BatchableContext jobId, List<ClientZone__c> recordList) {
