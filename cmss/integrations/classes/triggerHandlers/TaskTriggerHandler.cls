@@ -48,11 +48,11 @@ public class TaskTriggerHandler extends TriggerHandler {
 			}
 			if (
 				newTask.CompletedDateTime != oldTask?.CompletedDateTime &&
-				newTask.CompletedDateTime.date() <= Date.today() &&
+				newTask?.CompletedDateTime?.date() <= Date.today() &&
 				(newTask.CompletedDateTime > actualTaskAccount?.LastInteractionDate__c ||
 				actualTaskAccount?.LastInteractionDate__c == null)
 			) {
-				actualTaskAccount.LastInteractionDate__c = (Date) newTask?.CompletedDateTime.date();
+				actualTaskAccount.LastInteractionDate__c = (Date) newTask?.CompletedDateTime?.date();
 				accountsToUpdate.add(actualTaskAccount);
 			}
 
