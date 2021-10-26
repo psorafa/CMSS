@@ -55,7 +55,7 @@ public class AccountTriggerHandler extends TriggerHandler {
 	@TestVisible
 	private static void invalidateAccount(List<Account> accounts) {
 		for (Account a : accounts) {
-			if (a.DateOfDeletion__c != null || a.AccountStatus__c == '4' || a.AccountStatus__c == '5') {
+			if (a.DateOfDeletion__c != null || a.AccountStatus__c == '5') {
 				a.IsInvalid__c = true;
 			}
 		}

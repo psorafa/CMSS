@@ -68,7 +68,7 @@ private class AccountTriggerHandlerTest {
 		Test.stopTest();
 
 		System.assertEquals(true, a1.IsInvalid__c);
-		System.assertEquals(true, a2.IsInvalid__c);
+		System.assertEquals(false, a2.IsInvalid__c);
 		System.assertEquals(true, a3.IsInvalid__c);
 		System.assertEquals(false, a4.IsInvalid__c);
 	}
