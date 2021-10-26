@@ -23,17 +23,19 @@ public without sharing class OpportunityExpireBatch implements Database.Batchabl
 	/**
 	 * Batchable start - do the query.
 	 */
-	public List<sObject> start(Database.BatchableContext jobId) {
-		return [
-			SELECT Id, Name, Reason__c
-			FROM Opportunity
-			WHERE
-				StageName != '8'
-                AND Category__c = '3'
-				AND (ValidTo__c <= :validToTreshold
-				OR (ValidTo__c = NULL
-				AND ValidFrom__c <= :validFromTreshold))
-		];
+	public Database.QueryLocator start(Database.BatchableContext jobId) {
+		return Database.getQueryLocator(
+			[
+				SELECT Id, Name, Reason__c
+				FROM Opportunity
+				WHERE
+					StageName != '8'
+					AND Category__c = '3'
+					AND (ValidTo__c <= :validToTreshold
+					OR (ValidTo__c = NULL
+					AND ValidFrom__c <= :validFromTreshold))
+			]
+		);
 	}
 
 	/**

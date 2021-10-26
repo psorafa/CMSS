@@ -18,26 +18,28 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 		Database.executeBatch(this);
 	}
 
-	public List<Opportunity> start(Database.BatchableContext jobId) {
-		return (List<Opportunity>) [
-			SELECT
-				Category__c,
-				StageName,
-				ContractId,
-				CreatedDateTime__c,
-				Owner.Email,
-				AccountId,
-				Account.PersonEmail,
-				Account.FirstName,
-				Account.LastName,
-				Account.PortfolioMngmtC__c
-			FROM Opportunity
-			WHERE
-				Category__c = '7'
-				AND (StageName = '1'
-				OR StageName = '2')
-				AND CreatedDateTime__c > :this.createdDateLimit
-		];
+	public Database.QueryLocator start(Database.BatchableContext jobId) {
+		return Database.getQueryLocator(
+			[
+				SELECT
+					Category__c,
+					StageName,
+					ContractId,
+					CreatedDateTime__c,
+					Owner.Email,
+					AccountId,
+					Account.PersonEmail,
+					Account.FirstName,
+					Account.LastName,
+					Account.PortfolioMngmtC__c
+				FROM Opportunity
+				WHERE
+					Category__c = '7'
+					AND (StageName = '1'
+					OR StageName = '2')
+					AND CreatedDateTime__c > :this.createdDateLimit
+			]
+		);
 	}
 
 	public void execute(Database.BatchableContext jobId, List<Opportunity> opportunities) {

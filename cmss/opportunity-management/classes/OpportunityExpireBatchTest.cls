@@ -9,7 +9,7 @@ public with sharing class OpportunityExpireBatchTest {
 
 	static final Date validToTreshold = System.today();
 	static final Date validFromTreshold = System.today().addDays(-120);
-    static final String SERVICE_CATEGORY = '3';
+	static final String SERVICE_CATEGORY = '3';
 	@IsTest
 	static void finishTest() {
 		OpportunityExpireBatch batch = new OpportunityExpireBatch();
@@ -55,7 +55,7 @@ public with sharing class OpportunityExpireBatchTest {
 	private static Opportunity getOpp(Date validFrom, Date validTo, String statusOpp) {
 		Integer i = cntr++;
 		return new Opportunity(
-            Category__c = SERVICE_CATEGORY,
+			Category__c = SERVICE_CATEGORY,
 			ValidFrom__c = validFrom,
 			ValidTo__c = validTo,
 			StageName = statusOpp,
@@ -120,30 +120,6 @@ public with sharing class OpportunityExpireBatchTest {
 	}
 
 	@IsTest
-	static void startTest() {
-		OpportunityExpireBatch batch = new OpportunityExpireBatch();
-		batch.cfg.ChainActivityExpireBatch__c = false;
-		batch.validToTreshold = validToTreshold;
-		batch.validFromTreshold = validFromTreshold;
-
-		createData();
-
-		List<Opportunity> opps = (List<Opportunity>) batch.start(null);
-
-		System.assertEquals(4, opps.size(), 'Invalid opps set found');
-
-		for (Opportunity op : opps) {
-			System.assert(
-				op.Name.contains('TestOpp01') ||
-				op.Name.contains('TestOpp02') ||
-				op.Name.contains('TestOpp03') ||
-				op.Name.contains('TestOpp05'),
-				'Invalid opp found: ' + op.Name
-			);
-		}
-	}
-
-	@IsTest
 	static void executeBatchableTest() {
 		OpportunityExpireBatch batch = new OpportunityExpireBatch();
 		batch.cfg.ChainActivityExpireBatch__c = false;
@@ -151,11 +127,11 @@ public with sharing class OpportunityExpireBatchTest {
 		batch.validFromTreshold = validFromTreshold;
 
 		createData();
+		Test.startTest();
 
-		List<Opportunity> opps = (List<Opportunity>) batch.start(null);
-
-		batch.execute(null, opps);
-
+		//List<Opportunity> opps = [SELECT Id, Name, StageName, Reason__c FROM Opportunity ORDER BY Name];
+		Database.executeBatch(batch);
+		Test.stopTest();
 		List<Opportunity> postOpps = [SELECT Id, Name, StageName, Reason__c FROM Opportunity ORDER BY Name];
 
 		String[] expectedStage = new List<String>{
