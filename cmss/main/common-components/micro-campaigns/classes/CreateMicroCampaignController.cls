@@ -36,6 +36,7 @@ public with sharing class CreateMicroCampaignController {
 			InputData data = (InputData) JSON.deserialize(jsonData, InputData.class);
 			MicroCampaignCreator creator = new MicroCampaignCreator(
 				data.ids,
+				data.assignee,
 				prepareCampaignTemplate(data.campaign),
 				prepareTaskTemplate(data.task, data.assignee)
 			);

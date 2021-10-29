@@ -1,6 +1,5 @@
 @IsTest
 private class MicroCampaignCreatorTest {
-
 	private static Campaign getCampaignTemplate() {
 		return new Campaign(
 			Name = 'test campaign',
@@ -29,32 +28,56 @@ private class MicroCampaignCreatorTest {
 
 	@IsTest
 	static void testBehaviorWithAccountIds() {
-        Account a1 = TestDataFactory.getPersonAccount(new Account());
-        Account a2 = TestDataFactory.getPersonAccount(new Account());
-		insert new List<Account>{ a1, a2 };
+		Account a1 = TestDataFactory.getPersonAccount(new Account());
+		Account a2 = TestDataFactory.getPersonAccount(new Account());
+		Account a3 = TestDataFactory.getAccount(new Account());
+		insert new List<Account>{ a1, a2, a3 };
 
-		List<Id> ids = new List<Id>{ a1.Id, a2.Id };
+		List<Id> ids = new List<Id>{ a1.Id, a2.Id, a3.Id };
 
 		Campaign campaignTemplate = getCampaignTemplate();
 		Task taskTemplate = getTaskTemplate();
 
 		Test.startTest();
-		MicroCampaignCreator creator = new MicroCampaignCreator(ids, campaignTemplate, taskTemplate);
+		MicroCampaignCreator creator = new MicroCampaignCreator(ids, null, campaignTemplate, taskTemplate);
 		MicroCampaignCreator.CreationResult result = creator.create();
 		Test.stopTest();
 
 		Campaign campaign = [SELECT Id FROM Campaign];
 
 		System.assertEquals(2, result.numberOfSuccesses);
-		System.assertEquals(0, result.numberOfErrors);
+		System.assertEquals(1, result.numberOfErrors);
+		System.assertEquals(a3.Id, result.erroredRecords[0].erroredObject.Id);
 		System.assertEquals(Logger.getTransactionId(), result.transactionId);
 		System.assertEquals(campaign.Id, result.campaignId);
 
-		Account a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account WHERE Id = :a1.Id];
-		Task t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-					Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
-					Location__c, Phone__c
-					FROM Task WHERE WhoId = :a.PersonContactId];
+		Account a = [
+			SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId
+			FROM Account
+			WHERE Id = :a1.Id
+		];
+		Task t = [
+			SELECT
+				ActivityDate,
+				Author__c,
+				Category__c,
+				Description,
+				OwnerId,
+				Priority,
+				ProductType__c,
+				Source__c,
+				Status,
+				Subject,
+				ValidFrom__c,
+				ValidTo__c,
+				WhoId,
+				WhatId,
+				Email__c,
+				Location__c,
+				Phone__c
+			FROM Task
+			WHERE WhoId = :a.PersonContactId
+		];
 
 		System.assertEquals(taskTemplate.ActivityDate, t.ActivityDate);
 		System.assertEquals(taskTemplate.Author__c, t.Author__c);
@@ -74,11 +97,33 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(a.BillingStreet + ' ' + a.BillingCity + ' ' + a.BillingPostalCode, t.Location__c);
 		System.assertEquals(a.Phone, t.Phone__c);
 
-		a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account WHERE Id = :a2.Id];
-		t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-			Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
-			Location__c, Phone__c
-		FROM Task WHERE WhoId = :a.PersonContactId];
+		a = [
+			SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId
+			FROM Account
+			WHERE Id = :a2.Id
+		];
+		t = [
+			SELECT
+				ActivityDate,
+				Author__c,
+				Category__c,
+				Description,
+				OwnerId,
+				Priority,
+				ProductType__c,
+				Source__c,
+				Status,
+				Subject,
+				ValidFrom__c,
+				ValidTo__c,
+				WhoId,
+				WhatId,
+				Email__c,
+				Location__c,
+				Phone__c
+			FROM Task
+			WHERE WhoId = :a.PersonContactId
+		];
 
 		System.assertEquals(taskTemplate.ActivityDate, t.ActivityDate);
 		System.assertEquals(taskTemplate.Author__c, t.Author__c);
@@ -105,25 +150,23 @@ private class MicroCampaignCreatorTest {
 		Account a2 = TestDataFactory.getPersonAccount(new Account());
 		insert new List<Account>{ a1, a2 };
 
-		Asset ass1 = TestDataFactory.getAsset(new Asset(
-			AccountId = a1.Id
-		));
-		Asset ass2 = TestDataFactory.getAsset(new Asset(
-			AccountId = a2.Id
-		));
-		Asset ass3 = TestDataFactory.getAsset(new Asset(
-			AccountId = a2.Id   // second asset for same account
-		));
-		insert new List<Asset> {ass1, ass2, ass3};
+		Asset ass1 = TestDataFactory.getAsset(new Asset(AccountId = a1.Id));
+		Asset ass2 = TestDataFactory.getAsset(new Asset(AccountId = a2.Id));
+		Asset ass3 = TestDataFactory.getAsset(
+			new Asset(
+				AccountId = a2.Id // second asset for same account
+			)
+		);
+		insert new List<Asset>{ ass1, ass2, ass3 };
 
 		List<Id> ids = new List<Id>{ ass1.Id, ass2.Id, ass3.Id };
 
 		Campaign campaignTemplate = new Campaign();
-        campaignTemplate.Name = 'Test Campaign';
+		campaignTemplate.Name = 'Test Campaign';
 		Task taskTemplate = getTaskTemplate();
 
 		Test.startTest();
-		MicroCampaignCreator creator = new MicroCampaignCreator(ids, campaignTemplate, taskTemplate);
+		MicroCampaignCreator creator = new MicroCampaignCreator(ids, null, campaignTemplate, taskTemplate);
 		MicroCampaignCreator.CreationResult result = creator.create();
 		Test.stopTest();
 
@@ -132,11 +175,33 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(Logger.getTransactionId(), result.transactionId);
 		System.assertNotEquals(null, result.campaignId);
 
-		Account a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account WHERE Id = :a1.Id];
-		Task t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-			Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
-			Location__c, Phone__c
-		FROM Task WHERE Asset__c = :ass1.Id];
+		Account a = [
+			SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId
+			FROM Account
+			WHERE Id = :a1.Id
+		];
+		Task t = [
+			SELECT
+				ActivityDate,
+				Author__c,
+				Category__c,
+				Description,
+				OwnerId,
+				Priority,
+				ProductType__c,
+				Source__c,
+				Status,
+				Subject,
+				ValidFrom__c,
+				ValidTo__c,
+				WhoId,
+				WhatId,
+				Email__c,
+				Location__c,
+				Phone__c
+			FROM Task
+			WHERE Asset__c = :ass1.Id
+		];
 
 		System.assertEquals(taskTemplate.ActivityDate, t.ActivityDate);
 		System.assertEquals(taskTemplate.Author__c, t.Author__c);
@@ -156,11 +221,33 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(a.BillingStreet + ' ' + a.BillingCity + ' ' + a.BillingPostalCode, t.Location__c);
 		System.assertEquals(a.Phone, t.Phone__c);
 
-		a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account WHERE Id = :a2.Id];
-		t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-			Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
-			Location__c, Phone__c
-		FROM Task WHERE Asset__c = :ass2.Id];
+		a = [
+			SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId
+			FROM Account
+			WHERE Id = :a2.Id
+		];
+		t = [
+			SELECT
+				ActivityDate,
+				Author__c,
+				Category__c,
+				Description,
+				OwnerId,
+				Priority,
+				ProductType__c,
+				Source__c,
+				Status,
+				Subject,
+				ValidFrom__c,
+				ValidTo__c,
+				WhoId,
+				WhatId,
+				Email__c,
+				Location__c,
+				Phone__c
+			FROM Task
+			WHERE Asset__c = :ass2.Id
+		];
 
 		System.assertEquals(taskTemplate.ActivityDate, t.ActivityDate);
 		System.assertEquals(taskTemplate.Author__c, t.Author__c);
@@ -180,10 +267,28 @@ private class MicroCampaignCreatorTest {
 		System.assertEquals(a.BillingStreet + ' ' + a.BillingCity + ' ' + a.BillingPostalCode, t.Location__c);
 		System.assertEquals(a.Phone, t.Phone__c);
 
-		t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-			Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
-			Location__c, Phone__c
-		FROM Task WHERE Asset__c = :ass3.Id];
+		t = [
+			SELECT
+				ActivityDate,
+				Author__c,
+				Category__c,
+				Description,
+				OwnerId,
+				Priority,
+				ProductType__c,
+				Source__c,
+				Status,
+				Subject,
+				ValidFrom__c,
+				ValidTo__c,
+				WhoId,
+				WhatId,
+				Email__c,
+				Location__c,
+				Phone__c
+			FROM Task
+			WHERE Asset__c = :ass3.Id
+		];
 
 		System.assertEquals(taskTemplate.ActivityDate, t.ActivityDate);
 		System.assertEquals(taskTemplate.Author__c, t.Author__c);

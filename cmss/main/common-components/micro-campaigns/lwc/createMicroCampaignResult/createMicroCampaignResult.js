@@ -8,7 +8,7 @@ export default class CreateMicroCampaignResult extends NavigationMixin(Lightning
 
 	@api
 	get result() {
-	    return this._result
+        return this._result
  	}
  	set result(value) {
  	    this._result = value
@@ -24,6 +24,14 @@ export default class CreateMicroCampaignResult extends NavigationMixin(Lightning
 
 	get showError() {
 	    return !!this.error
+	}
+
+    get totalNumberOfProcessedRecords() {
+		return this._result.numberOfErrors + this._result.numberOfSuccesses
+	}
+
+	get objectName() {
+		return this._result.onObject === 'Account' ? 'klientů' : 'smluv'
 	}
 
 	get errorString() {
