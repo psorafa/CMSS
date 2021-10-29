@@ -27,7 +27,7 @@ public class UserTriggerHandler extends TriggerHandler {
 				FirstName,
 				LastName,
 				Email,
-				Phone,
+				Phone1__c,
 				IsActive,
 				ContactId
 			FROM User
@@ -71,7 +71,7 @@ public class UserTriggerHandler extends TriggerHandler {
 			c.FirstName = actualUser.FirstName;
 			c.LastName = actualUser.LastName;
 			c.Email = actualUser.Email;
-			c.Phone = actualUser.Phone;
+			c.Phone = actualUser.Phone1__c;
 		}
 		update contacts;
 	}

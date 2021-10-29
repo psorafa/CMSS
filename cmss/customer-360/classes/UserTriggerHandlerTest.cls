@@ -41,7 +41,7 @@ private class UserTriggerHandlerTest {
 					FirstName = 'Kamil',
 					LastName = 'Testovič',
 					Email = 'kamil@test.cz',
-					Phone = '123456789',
+					Phone1__c = '123456789',
 					ProfileId = communityProfileId,
 					ContactId = portalContact.Id,
 					IsActive = true
