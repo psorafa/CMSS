@@ -177,6 +177,10 @@
                 <behavior>Edit</behavior>
                 <field>UnassignedInterest__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>UnassignedInterestNetto__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
