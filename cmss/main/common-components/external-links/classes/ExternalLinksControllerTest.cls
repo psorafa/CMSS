@@ -34,4 +34,18 @@ private class ExternalLinksControllerTest {
         System.assertEquals(a.GlobalId__c, globalIdFromTask);
         System.assertEquals(a.GlobalId__c, globalIdFromOpportunity);
     }
+
+    @IsTest
+    static void testGetObjectApiName() {
+        Account account = TestDataFactory.getAccount(new Account());
+        insert account;
+        Opportunity opportunity = TestDataFactory.getOpportunity(new Opportunity());
+        insert opportunity;
+
+        String accountApiName = ExternalLinksController.getObjectApiName(account.Id);
+        String opportunityApiName = ExternalLinksController.getObjectApiName(opportunity.Id);
+
+        System.assertEquals(accountApiName, 'Account');
+        System.assertEquals(opportunityApiName, 'Opportunity');
+    }
 }

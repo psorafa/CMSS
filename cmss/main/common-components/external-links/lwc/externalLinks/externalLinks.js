@@ -1,8 +1,10 @@
 import { LightningElement, track, api, wire } from 'lwc';
 import getIntegrationSettings from '@salesforce/apex/ExternalLinksController.getIntegrationSettings';
 import getClientGlobalId from '@salesforce/apex/ExternalLinksController.getClientGlobalId';
+import getObjectApiName from '@salesforce/apex/ExternalLinksController.getObjectApiName';
 
 export default class ExternalLinks extends LightningElement {
+	@api objectApiName;
 	@api recordId;
 
 	@wire(getClientGlobalId, { accountOrTaskOrOpportunityId: '$recordId' })
@@ -22,6 +24,16 @@ export default class ExternalLinks extends LightningElement {
 
 	get hasClientContext() {
 		return !!this.clientGlobalIdResult.data;
+	}
+
+	get isOnAccount() {
+		return this.hasClientContext && this.objectApiName === 'Account';
+	}
+
+	connectedCallback() {
+		if (!this.objectApiName && this.recordId) {
+			getObjectApiName({ recordId: this.recordId }).then((apiName) => (this.objectApiName = apiName));
+		}
 	}
 
 	handleOpenModal(event) {
