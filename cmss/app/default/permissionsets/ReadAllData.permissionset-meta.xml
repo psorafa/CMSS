@@ -3779,6 +3779,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.ServiceCategory__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4920,6 +4925,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.Sender__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.ServiceCategory__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
