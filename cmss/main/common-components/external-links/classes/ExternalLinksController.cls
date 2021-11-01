@@ -1,5 +1,4 @@
 public with sharing class ExternalLinksController {
-
 	@AuraEnabled(Cacheable=true)
 	public static String getClientGlobalId(Id accountOrTaskOrOpportunityId) {
 		if (accountOrTaskOrOpportunityId == null) {
@@ -16,7 +15,11 @@ public with sharing class ExternalLinksController {
 			}
 		}
 		if (accountOrTaskOrOpportunityId.getSobjectType() == Opportunity.SObjectType) {
-			for (Opportunity o : [SELECT Account.GlobalId__c FROM Opportunity WHERE Id = :accountOrTaskOrOpportunityId]) {
+			for (Opportunity o : [
+				SELECT Account.GlobalId__c
+				FROM Opportunity
+				WHERE Id = :accountOrTaskOrOpportunityId
+			]) {
 				return o.Account.GlobalId__c;
 			}
 		}
@@ -26,5 +29,11 @@ public with sharing class ExternalLinksController {
 	@AuraEnabled(Cacheable=true)
 	public static IntegrationSettings__c getIntegrationSettings() {
 		return IntegrationSettings__c.getInstance();
+	}
+
+	@AuraEnabled(Cacheable=true)
+	public static String getObjectApiName(Id recordId) {
+		Schema.SObjectType objectType = recordId?.getSobjectType();
+		return objectType != null ? String.valueOf(objectType) : '';
 	}
 }
