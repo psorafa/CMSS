@@ -11,12 +11,16 @@ export default class TaskForm extends LightningElement {
 	@wire(getPicklistValues, { objectName: 'Task', fieldName: 'Type' })
 	typeValues;
 
+	@wire(getPicklistValues, { objectName: 'Task', fieldName: 'Priority' })
+	priorityValues;
+
 	@api validFromDate;
 	@api dueDate;
 
 	@track _task = {
 		type: '5',
-		category: '3'
+		category: '3',
+		priority: 'Normal'
 	};
 
 	get productTypeOptions() {
@@ -29,6 +33,10 @@ export default class TaskForm extends LightningElement {
 
 	get typeOptions() {
 		return this.typeValues.data;
+	}
+
+	get priorityOptions() {
+		return this.priorityValues.data;
 	}
 
 	connectedCallback() {
@@ -77,6 +85,12 @@ export default class TaskForm extends LightningElement {
 	handleProductTypeChange(event) {
 		event.stopPropagation();
 		this._task.productType = event.detail.value;
+		this.fireUpdate();
+	}
+
+	handlePriorityChange(event) {
+		event.stopPropagation();
+		this._task.priority = event.detail.value;
 		this.fireUpdate();
 	}
 

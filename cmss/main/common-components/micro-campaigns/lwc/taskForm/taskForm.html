@@ -43,6 +43,13 @@
 				label="Typ produktu"
 				onchange={handleProductTypeChange}
 			></lightning-combobox>
+
+			<lightning-combobox
+				options={priorityOptions}
+				value={_task.priority}
+				label="Priorita"
+				onchange={handlePriorityChange}
+			></lightning-combobox>
 		</div>
 	</lightning-card>
 </template>
