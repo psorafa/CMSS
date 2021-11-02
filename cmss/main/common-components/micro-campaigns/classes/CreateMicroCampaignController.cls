@@ -65,7 +65,7 @@ public with sharing class CreateMicroCampaignController {
 				EndDate = campaign.endDate,
 				StartDate = campaign.startDate,
 				Description = campaign.description,
-				Type = 'Microcampaign',
+				Type = '10',
 				DataSource__c = '73',
 				IsActive = true
 			);
