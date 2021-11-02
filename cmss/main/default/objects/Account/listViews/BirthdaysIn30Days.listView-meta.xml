@@ -14,11 +14,6 @@
     <columns>GlobalId__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>PersonType__c</field>
-        <operation>equals</operation>
-        <value>1</value>
-    </filters>
-    <filters>
         <field>Birthday__c</field>
         <operation>equals</operation>
         <value>NEXT_N_DAYS:30</value>

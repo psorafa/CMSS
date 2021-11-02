@@ -13,9 +13,9 @@
     <columns>AddressingNonpersonalized__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>PersonType__c</field>
+        <field>ACCOUNT.RECORDTYPE</field>
         <operation>equals</operation>
-        <value>1</value>
+        <value>PersonAccount.PersonAccount</value>
     </filters>
     <filters>
         <field>AddressingNonpersonalized__c</field>

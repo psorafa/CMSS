@@ -17,5 +17,10 @@
         <operation>equals</operation>
         <value>0</value>
     </filters>
+    <filters>
+        <field>ASSET.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset.BuildingSavings</value>
+    </filters>
     <label>Stavební spoření bez MÚ</label>
 </ListView>

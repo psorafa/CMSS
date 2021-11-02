@@ -22,5 +22,10 @@
         <operation>equals</operation>
         <value>0</value>
     </filters>
+    <filters>
+        <field>ASSET.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset.CreditAndIntermediateLoan</value>
+    </filters>
     <label>Úvěrové smlouvy bez RŽP</label>
 </ListView>

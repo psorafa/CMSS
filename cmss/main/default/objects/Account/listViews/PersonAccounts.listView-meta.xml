@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PersonAccounts</fullName>
-    <booleanFilter>1 AND 2 AND 3</booleanFilter>
     <columns>ACCOUNT.NAME</columns>
     <columns>PC_LAST_NAME</columns>
     <columns>PersonalIdentificationNr__c</columns>
@@ -14,11 +13,6 @@
     <columns>PortfolioMngmtA__c</columns>
     <columns>GlobalId__c</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>PersonType__c</field>
-        <operation>equals</operation>
-        <value>1</value>
-    </filters>
     <filters>
         <field>FirstProductStartDate__c</field>
         <operation>greaterOrEqual</operation>

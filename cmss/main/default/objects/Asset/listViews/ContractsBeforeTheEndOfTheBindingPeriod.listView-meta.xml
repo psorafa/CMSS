@@ -20,9 +20,9 @@
         <value>N_DAYS_AGO:1826</value>
     </filters>
     <filters>
-        <field>ProductType__c</field>
+        <field>ASSET.RECORDTYPE</field>
         <operation>equals</operation>
-        <value>9</value>
+        <value>Asset.BuildingSavings</value>
     </filters>
     <label>Smlouvy před koncem vázací doby</label>
 </ListView>

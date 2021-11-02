@@ -15,11 +15,6 @@
     <columns>LastInteractionDate__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>PersonType__c</field>
-        <operation>equals</operation>
-        <value>1</value>
-    </filters>
-    <filters>
         <field>ACCOUNT.RECORDTYPE</field>
         <operation>equals</operation>
         <value>PersonAccount.PersonAccount</value>

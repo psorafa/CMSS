@@ -25,5 +25,10 @@
         <operation>greaterThan</operation>
         <value>80</value>
     </filters>
+    <filters>
+        <field>ASSET.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset.CreditAndIntermediateLoan</value>
+    </filters>
     <label>Smlouvy v řádném úvěru podle splacenosti</label>
 </ListView>
