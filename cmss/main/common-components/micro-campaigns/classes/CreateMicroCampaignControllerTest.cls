@@ -38,6 +38,7 @@ private class CreateMicroCampaignControllerTest {
 		data.task.subject = 'test subject';
 		data.task.description = 'test description';
 		data.task.category = '1';
+		data.task.priority = 'Normal';
 		data.task.productType = '1';
 		data.task.dueDate = Date.today().addDays(10);
 
@@ -63,7 +64,7 @@ private class CreateMicroCampaignControllerTest {
 		System.assertEquals(data.task.dueDate, t.ActivityDate);
 		System.assertEquals(data.task.category, t.Category__c);
 		System.assertEquals(data.task.description, t.Description);
-		System.assertEquals('Low', t.Priority);
+		System.assertEquals('Normal', t.Priority);
 		System.assertEquals(data.task.productType, t.ProductType__c);
 		System.assertEquals('73', t.Source__c);
 		System.assertEquals('1', t.Status);

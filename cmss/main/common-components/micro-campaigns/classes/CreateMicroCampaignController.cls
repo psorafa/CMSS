@@ -82,7 +82,7 @@ public with sharing class CreateMicroCampaignController {
 			Category__c = task.category,
 			Description = task.description,
 			OwnerId = assignee,
-			Priority = 'Low',
+			Priority = task.priority,
 			ProductType__c = task.productType,
 			Type = task.type,
 			Source__c = '73',
@@ -115,5 +115,6 @@ public with sharing class CreateMicroCampaignController {
 		public String type;
 		public Date dueDate;
 		public String category;
+		public String priority;
 	}
 }
