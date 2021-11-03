@@ -4,6 +4,8 @@
  */
 import { LightningElement, api, track } from 'lwc';
 import getFieldsDetails from '@salesforce/apex/GenericRelatedListController.getFieldsDetails';
+import { loadStyle } from 'lightning/platformResourceLoader';
+import genericRelatedListCSS from '@salesforce/resourceUrl/genericRelatedList';
 
 export default class GenericRelatedList extends LightningElement {
 	@track data;
@@ -13,13 +15,20 @@ export default class GenericRelatedList extends LightningElement {
 	@api cols;
 	@api iconName;
 	@api relatedObjectName;
-	@api colsAddition
+	@api colsAddition;
 
-    sfdcBaseURL;
+	sfdcBaseURL;
 
-    renderedCallback() {
-        this.sfdcBaseURL = window.location.origin;
-    }
+	renderedCallback() {
+		this.sfdcBaseURL = window.location.origin;
+		Promise.all([loadStyle(this, genericRelatedListCSS)])
+			.then(() => {
+				console.log('css loaded');
+			})
+			.catch(error => {
+				console.log('error', error);
+			});
+	}
 
 	@api
 	set relatedListName(value) {
@@ -61,21 +70,20 @@ export default class GenericRelatedList extends LightningElement {
 		getFieldsDetails({
 			objectName: this.relatedObjectName,
 			fieldsToShow: fields
-        })
-        .then(fieldsDetails => {
-            this.colsData = fieldsDetails;
-            if (this.colsAddition) {
-                this.colsData.push(this.colsAddition)
-            }
-            this.loading = false;
-        })
-        .catch(error => {
-            console.log('error', error);
-            this.loading = false;
-            this.error = JSON.stringify(error, undefined, 4)
-        });
+		})
+			.then(fieldsDetails => {
+				this.colsData = fieldsDetails;
+				if (this.colsAddition) {
+					this.colsData.push(this.colsAddition);
+				}
+				this.loading = false;
+			})
+			.catch(error => {
+				console.log('error', error);
+				this.loading = false;
+				this.error = JSON.stringify(error, undefined, 4);
+			});
 	}
-
 
 	/*
 	 * This function processes data and match correct Id Links to their records used in lightning-datatable
@@ -103,10 +111,10 @@ export default class GenericRelatedList extends LightningElement {
 		return parsedData;
 	}
 
-    /*
-     * to flatten the data structure, as datatable component does not allow to use deeper attributes. Also will
-     * generate '.Link' attributes to use in clickable links.
-     */
+	/*
+	 * to flatten the data structure, as datatable component does not allow to use deeper attributes. Also will
+	 * generate '.Link' attributes to use in clickable links.
+	 */
 	flattenStructure(topObject, prefix, toBeFlattened) {
 		for (const prop in toBeFlattened) {
 			const curVal = toBeFlattened[prop];
