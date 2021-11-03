@@ -72,15 +72,6 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	public void handleInsertedTasksShares(SObject[] soList) {
-		// insert IntegrationLogService.createIntegrationLog(
-		// 	new Integration_Log__c(),
-		// 	soList,
-		// 	'Batch',
-		// 	'Tasks before insert',
-		// 	'Processed',
-		// 	'All Tasks have been processed on before insert'
-		// );
-
 		Task[] assignAccessList = new List<Task>{};
 
 		for (Task newTask : (Task[]) soList) {
@@ -91,15 +82,6 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	private void handleUpdatedTasksShares(SObject[] oldListSo, SObject[] newListSo) {
-		// insert IntegrationLogService.createIntegrationLog(
-		//     new Integration_Log__c(),
-		//     newListSo,
-		//     'Batch',
-		//     'Tasks before update',
-		//     'Processed',
-		//     'All Tasks have been processed on before update'
-		// );
-
 		Task[] removeAccessList = new List<Task>{};
 		Task[] assignAccessList = new List<Task>{};
 
