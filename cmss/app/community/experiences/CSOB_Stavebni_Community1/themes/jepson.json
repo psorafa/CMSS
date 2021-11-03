@@ -1,6 +1,6 @@
 {
   "activeBrandingSetId" : "683c2e76-3617-49a0-88d0-2eb174266833",
-  "customCSS" : "",
+  "customCSS" : "div[aria-label*=\"Klienti\"] .slds-button-group li:last-child{\n    display: none;\n}\ndiv[aria-label*=\"Accounts\"] .slds-button-group li:last-child{\n    display: none;\n}\ndiv[aria-label*=\"Smlouvy klientů\"] .slds-button-group li:last-child{\n    display: none;\n}\ndiv[aria-label*=\"Assets\"] .slds-button-group li:last-child{\n    display: none;\n}",
   "developerName" : "jepson",
   "id" : "625cdb57-eec7-40b4-a002-4cef7137a7a1",
   "label" : "Jepson",
