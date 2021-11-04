@@ -23,5 +23,10 @@
         <operation>equals</operation>
         <value>11001,11008</value>
     </filters>
+    <filters>
+        <field>ASSET.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset.BuildingSavings,Asset.CreditCases</value>
+    </filters>
     <label>Smlouvy s nesplněnou podmínkou provize</label>
 </ListView>

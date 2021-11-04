@@ -25,5 +25,10 @@
         <operation>greaterThan</operation>
         <value>TODAY</value>
     </filters>
+    <filters>
+        <field>ASSET.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset.BuildingSavings</value>
+    </filters>
     <label>Smlouvy ve výpovědi</label>
 </ListView>
