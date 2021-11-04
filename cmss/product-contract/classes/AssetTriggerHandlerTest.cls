@@ -176,6 +176,7 @@ public class AssetTriggerHandlerTest {
 		System.assertEquals(asset1.ProductCloseDate__c, updatedAccount.AssetLastCloseDate__c);
 		System.assertEquals(asset1.ProductCloseDate__c, updatedAccount.LastInteractionDate__c);
 	}
+
     @IsTest
     static void pairSpecialOptionOppTest() {
 		Account acc = TestDataFactory.getAccount();
@@ -210,4 +211,44 @@ public class AssetTriggerHandlerTest {
 		System.assertEquals(100, opp.Probability);
 	}
 
+    @IsTest
+    static void newOpportunitiesCreatedTest() {
+		Account acc = TestDataFactory.getAccount();
+		insert acc;
+
+		User owner = new User();
+		owner.FirstName = 'Joe';
+		owner.LastName = 'Tester';
+        owner.CommissionAccountNr__c = '1234';
+		owner = TestDataFactory.getUser(owner);
+		insert owner;
+        
+		Asset asset1 = new Asset();
+		asset1.Name = 'Test asset1';
+		asset1.AccountId = acc.Id;
+		asset1.ProductCloseDate__c = System.today();
+        asset1.ClosingAgentId__c = owner.Id; 
+        asset1.ProductType__c = '13';
+        asset1.Status__c = '0000';
+        asset1.RecordTypeId = Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName().get('CreditCases').getRecordTypeId();
+		asset1 = TestDataFactory.getAsset(asset1);
+
+        Asset asset2 = new Asset();
+		asset2.Name = 'Test asset2';
+		asset2.AccountId = acc.Id;
+		asset2.ProductCloseDate__c = System.today();
+        asset2.ClosingAgentId__c = owner.Id; 
+        asset2.ProductType__c = '13';
+        asset2.Status__c = '0000';
+        asset2.RecordTypeId = Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName().get('CreditCases').getRecordTypeId();
+		asset2 = TestDataFactory.getAsset(asset2);
+
+        List<Opportunity> oppsBefore = [SELECT Id, Name FROM Opportunity];
+		Test.startTest();
+		insert new List<Asset> {asset1, asset2};
+		Test.stopTest();
+        List<Opportunity> oppsAfter = [SELECT Id, Name FROM Opportunity];
+
+		System.assertEquals(oppsAfter.size(), oppsBefore.size() + 2);
+	}
 }

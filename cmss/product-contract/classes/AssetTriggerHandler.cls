@@ -22,17 +22,17 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 
 	public override void afterInsert() {
 		filterAndPairWithOpp(Trigger.new, null);
-        handleUpdateAccountDateFields();
+		handleUpdateAccountDateFields();
 	}
 
 	public override void afterUpdate() {
 		filterAndPairWithOpp(Trigger.new, (Map<Id, Asset>) Trigger.oldMap);
-        handleUpdateAccountDateFields();
+		handleUpdateAccountDateFields();
 	}
 
 	// ***************************** handlers and helping methods***************************************** //
 
-    public void handleUpdateAccountDateFields() {
+	public void handleUpdateAccountDateFields() {
 		Set<Account> accountsToUpdate = new Set<Account>();
 		Map<Id, Asset> assetWithAccount = new Map<Id, Asset>(
 			[
@@ -45,26 +45,31 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 		for (Asset newAsset : (Asset[]) Trigger.new) {
 			Asset oldAsset = (Asset) (Trigger.isInsert ? new Asset() : Trigger.oldMap.get(newAsset.Id));
 			Account actualAssetAccount = assetWithAccount.get(newAsset.Id)?.Account;
-            if (actualAssetAccount == null) {
+			if (actualAssetAccount == null) {
 				continue;
 			}
 			if (
 				newAsset.ProductCloseDate__c != oldAsset?.ProductCloseDate__c &&
 				newAsset.ProductCloseDate__c <= Date.today()
 			) {
-				if (newAsset.ProductCloseDate__c > actualAssetAccount?.LastInteractionDate__c || 
-                    actualAssetAccount?.LastInteractionDate__c == null ) {
+				if (
+					newAsset.ProductCloseDate__c > actualAssetAccount?.LastInteractionDate__c ||
+					actualAssetAccount?.LastInteractionDate__c == null
+				) {
 					actualAssetAccount.LastInteractionDate__c = newAsset.ProductCloseDate__c;
 					accountsToUpdate.add(actualAssetAccount);
 				}
-				if (newAsset.ProductCloseDate__c > actualAssetAccount?.AssetLastCloseDate__c || actualAssetAccount?.AssetLastCloseDate__c == null) {
+				if (
+					newAsset.ProductCloseDate__c > actualAssetAccount?.AssetLastCloseDate__c ||
+					actualAssetAccount?.AssetLastCloseDate__c == null
+				) {
 					actualAssetAccount.AssetLastCloseDate__c = newAsset.ProductCloseDate__c;
 					accountsToUpdate.add(actualAssetAccount);
 				}
 			}
 		}
 
-        update (new List<Account>(new Set<Account>(accountsToUpdate)));
+		update (new List<Account>(new Set<Account>(accountsToUpdate)));
 	}
 
 	private static void filterAndPairWithOpp(List<Asset> newAssetsList, Map<Id, Asset> oldAssetsMap) {
@@ -99,6 +104,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 		}
 
 		Map<Id, Opportunity> oppsToUpsertbyIds = new Map<Id, Opportunity>();
+		List<Opportunity> oppsToUpsert = new List<Opportunity>();
 
 		Set<String> irrelevantCategories = new Set<String>{ '5', '6', '7' };
 
@@ -178,12 +184,12 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 					recordtypesByIds.get(asset.recordTypeId).Description
 				);
 				if (newOpp != null) {
-					oppsToUpsertbyIds.put(newOpp.Id, newOpp);
+					oppsToUpsert.add(newOpp);
 				}
 			}
 		}
 
-		List<Opportunity> oppsToUpsert = oppsToUpsertbyIds.values();
+		oppsToUpsert.addAll(oppsToUpsertbyIds.values());
 		upsert oppsToUpsert;
 	}
 
