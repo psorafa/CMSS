@@ -14,11 +14,6 @@
     <columns>GlobalId__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>PersonType__c</field>
-        <operation>equals</operation>
-        <value>2</value>
-    </filters>
-    <filters>
         <field>ACCOUNT.RECORDTYPE</field>
         <operation>equals</operation>
         <value>Account.Business_Account</value>

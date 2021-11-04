@@ -16,9 +16,9 @@
     <columns>CommissionAccountBase__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>ProductType__c</field>
+        <field>ASSET.RECORDTYPE</field>
         <operation>equals</operation>
-        <value>9</value>
+        <value>Asset.BuildingSavings</value>
     </filters>
     <filters>
         <field>CurrentInterestRate__c</field>
