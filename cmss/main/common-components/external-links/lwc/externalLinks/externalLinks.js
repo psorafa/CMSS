@@ -32,7 +32,7 @@ export default class ExternalLinks extends LightningElement {
 
 	connectedCallback() {
 		if (!this.objectApiName && this.recordId) {
-			getObjectApiName({ recordId: this.recordId }).then((apiName) => (this.objectApiName = apiName));
+			getObjectApiName({ recordId: this.recordId }).then(apiName => (this.objectApiName = apiName));
 		}
 	}
 
@@ -48,10 +48,14 @@ export default class ExternalLinks extends LightningElement {
 		window.open(this.baseUrls.NELBaseUrl__c, '_blank');
 	}
 	handleClickStavebniSporeni(e) {
-		window.open(
-			this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-esporeni?clientId=' + this.clientGlobalId,
-			'_blank'
-		);
+		if (this.clientGlobalId) {
+			window.open(
+				this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-esporeni?clientId=' + this.clientGlobalId,
+				'_blank'
+			);
+		} else {
+			window.open(this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-esporeni', '_blank');
+		}
 	}
 	handleClickEUver(e) {
 		window.open(this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-euveru?&createNew=1', '_blank');
@@ -60,10 +64,14 @@ export default class ExternalLinks extends LightningElement {
 		window.open(this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-eprescore?&createNew=1', '_blank');
 	}
 	handleClickBeznyUcet(e) {
-		window.open(
-			this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-csob-bu?clientId=' + this.clientGlobalId,
-			'_blank'
-		);
+		if (this.clientGlobalId) {
+			window.open(
+				this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-csob-bu?clientId=' + this.clientGlobalId,
+				'_blank'
+			);
+		} else {
+			window.open(this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-csob-bu', '_blank');
+		}
 	}
 	handleClickZeus(e) {
 		window.open(
