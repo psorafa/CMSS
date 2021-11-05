@@ -2,7 +2,7 @@ public class OpenAMRegistrationHandler implements Auth.RegistrationHandler{
 
 	public User createUser(Id portalId, Auth.UserData data){
 		System.debug('SSO login attempt: ' + JSON.serializePretty(data));
-		for (User u : [SELECT Id FROM User WHERE LoginName__c = :data.identifier]) {
+		for (User u : [SELECT Id FROM User WHERE LoginName__c = :data.identifier OR GlowID__c = :data.identifier]) {
 			System.debug('User found: ' + u.Id);
 			return u;
 		}
