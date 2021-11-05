@@ -2,11 +2,13 @@ public class TaskTriggerHandler extends TriggerHandler {
 	public override void beforeInsert() {
 		TaskService.setRecordType(Trigger.new);
 		IntegrationUtility.populateDefaultExternalId(Trigger.new);
+		updateTaskFields(Trigger.new);
 	}
 
 	public override void beforeUpdate() {
 		TaskService.setRecordType(Trigger.new);
 		IntegrationUtility.populateDefaultExternalId(Trigger.new);
+		updateTaskFields(Trigger.new);
 	}
 
 	public override void beforeDelete() {
@@ -15,19 +17,105 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	public override void afterInsert() {
-		AQMessageService.handleInsert(Trigger.new, Task.SObjectType);
+		handleAqMessagingInsertInFuture(Trigger.newMap.keySet());
 		handleInsertedTasksShares(Trigger.new);
 		handleUpdateAccountDateFields();
+		sendNewTaskNotifications(Trigger.new);
 	}
 
 	public override void afterUpdate() {
 		AQMessageService.handleUpdate(Trigger.new, Trigger.oldMap, Task.SObjectType);
 		handleUpdatedTasksShares(Trigger.old, Trigger.new);
 		handleUpdateAccountDateFields();
+		sendDelegatedTaskNotifications(Trigger.new, Trigger.oldMap);
 	}
 
 	public override void afterUndelete() {
 		AQMessageService.handleInsert(Trigger.new, Task.SObjectType);
+	}
+
+	public void updateTaskFields(List<Task> newTasks) {
+		for (Task task : newTasks) {
+			if (task.Type != null) {
+				task.ActivityType__c = task.Type;
+			}
+			if (task.IsVisibleInSelfService == false) {
+				task.IsVisibleInSelfService = true;
+			}
+			if (task.Description != null) {
+				task.Summary__c = task.Description.length() > 30 ? task.Description.left(30) + '...' : task.Description;
+			}
+		}
+	}
+
+	public void sendNewTaskNotifications(List<Task> newTasks) {
+		List<Id> tasksToNotifyAbout = new List<Id>();
+		for (Task task : newTasks) {
+			if (task.Status == '1' && task.CreatedById != task.OwnerId) {
+				tasksToNotifyAbout.add(task.Id);
+			}
+		}
+		if (tasksToNotifyAbout.size() > 0 && !System.isBatch()) {
+			sendNewTaskNotificationEmails(tasksToNotifyAbout);
+		}
+	}
+
+	public void sendDelegatedTaskNotifications(List<SObject> newTasks, Map<Id, SObject> oldTasksMap) {
+		List<Id> tasksToNotifyAbout = new List<Id>();
+		for (Task task : (List<Task>) newTasks) {
+			if (task.OwnerId != ((Task) oldTasksMap.get(task.Id)).OwnerId) {
+				tasksToNotifyAbout.add(task.Id);
+			}
+		}
+		if (tasksToNotifyAbout.size() > 0 && !System.isBatch()) {
+			sendDelegatedTaskNotificationEmails(tasksToNotifyAbout);
+		}
+	}
+
+	@testVisible
+	@future
+	private static void sendNewTaskNotificationEmails(List<Id> taskIds) {
+		Map<String, Object> params = new Map<String, Object>{ 'newTasks' => taskIds };
+		Flow.Interview.SendNewTaskEmailNotifications sendEmailsFlow = new Flow.Interview.SendNewTaskEmailNotifications(
+			params
+		);
+		sendEmailsFlow.start();
+	}
+
+	@testVisible
+	@future
+	private static void sendDelegatedTaskNotificationEmails(List<Id> taskIds) {
+		Map<String, Object> params = new Map<String, Object>{ 'delegatedTasks' => taskIds };
+		Flow.Interview.SendDelegatedTaskEmailNotifications sendEmailsFlow = new Flow.Interview.SendDelegatedTaskEmailNotifications(
+			params
+		);
+		sendEmailsFlow.start();
+	}
+
+	@testVisible
+	@future
+	private static void handleAqMessagingInsertInFuture(Set<Id> taskIds) {
+		String idsString = '(';
+		for (Id singleId : taskIds) {
+			idsString += '\'' + singleId + '\'' + ', ';
+		}
+		idsString = idsString.removeEnd(', ');
+		idsString += ')';
+
+		String accessibleFields = '';
+		for (SObjectField field : Task.SObjectType.getDescribe().fields.getMap().values()) {
+			DescribeFieldResult describe = field.getDescribe();
+			if (describe.isAccessible()) {
+				accessibleFields += describe.getName() + ', ';
+			}
+		}
+		accessibleFields = accessibleFields.removeEnd(', ');
+
+		String queryString = 'SELECT ' + accessibleFields + ' FROM Task WHERE Id IN ' + idsString;
+
+		List<Task> tasks = Database.query(queryString);
+
+		AQMessageService.handleInsert(tasks, Task.SObjectType);
 	}
 
 	public void handleUpdateAccountDateFields() {

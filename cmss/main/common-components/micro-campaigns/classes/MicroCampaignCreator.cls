@@ -11,12 +11,15 @@ public with sharing class MicroCampaignCreator {
 	private Map<Id, String> invalidResults = new Map<Id, String>();
 	private Set<Account> uninsertableMembers = new Set<Account>();
 	private Map<Id, UserRole> allRoles;
+	private Map<Id, Id> usersToRoleIds;
+	private String actualUserProfileName;
 
 	public MicroCampaignCreator(List<Id> ids, Id assignedUser, Campaign campaignTemplate, Task taskTemplate) {
 		this.assetsBased = ids.get(0).getSobjectType() == Asset.SObjectType;
 		this.assignedUser = assignedUser;
 		this.taskTemplate = taskTemplate;
 		this.campaign = campaignTemplate;
+		this.actualUserProfileName = [SELECT Name FROM Profile WHERE Id = :UserInfo.getProfileId()].Name;
 		loadDataToMaps(ids);
 	}
 
@@ -49,7 +52,7 @@ public with sharing class MicroCampaignCreator {
 			]
 		);
 		accountsByPersonContactId = new Map<Id, Account>();
-		generateRolesMap();
+		generateRolesMap(accountsMap.values());
 
 		if (assignedUser != null && !isAssigneeSubordinate(assignedUser)) {
 			invalidAccounts.addAll(accountsMap.values());
@@ -72,17 +75,25 @@ public with sharing class MicroCampaignCreator {
 		}
 	}
 
-	private void generateRolesMap() {
+	private void generateRolesMap(List<Account> accounts) {
 		allRoles = new Map<Id, UserRole>([SELECT Id, ParentRoleId FROM UserRole WHERE PortalType = 'None']);
+		usersToRoleIds = new Map<Id, Id>();
+		Set<Id> ownerIds = new Set<Id>();
+		for (Account acc : accounts) {
+			ownerIds.add(acc.OwnerId);
+		}
+		List<User> owners = [SELECT Id, UserRoleId FROM User WHERE Id IN :ownerIds];
+		for (User owner : owners) {
+			usersToRoleIds.put(owner.Id, owner.UserRoleId);
+		}
 	}
 
 	private boolean isAssigneeSubordinate(Id userId) {
 		Id actualUserRoleId = UserInfo.getUserRoleId();
-		String actualUserProfileName = [SELECT Name FROM Profile WHERE Id = :UserInfo.getProfileId()].Name;
 		if (actualUserProfileName == 'System Administrator') {
 			return true;
 		}
-		Id assigneeUserRoleId = [SELECT UserRoleId FROM User WHERE Id = :userId]?.UserRoleId;
+		Id assigneeUserRoleId = usersToRoleIds.get(userId);
 		if (assigneeUserRoleId == null) {
 			return false;
 		}
@@ -188,7 +199,6 @@ public with sharing class MicroCampaignCreator {
 		for (Integer i = 0; i < tasks.size(); i++) {
 			Task task = tasks.get(i);
 			Database.SaveResult saveResult = saveResults.get(i);
-			System.debug('Save result: ' + saveResult);
 			if (saveResult.isSuccess()) {
 				creationResult.numberOfSuccesses++;
 				if (assetsBased) {
