@@ -5736,6 +5736,10 @@
         <recordType>Opportunity.NotEditable</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Opportunity-LACRLayout</layout>
+        <recordType>Opportunity.Service</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>PensionStrategy__c-Pension Strategy Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
