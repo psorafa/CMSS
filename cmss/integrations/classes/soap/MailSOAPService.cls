@@ -42,12 +42,12 @@ public class MailSOAPService {
 			return body;
 		}
 
-		public void sendEmail_Http(String Receiver, String Sender, String Subject, String Body) {
+		public void sendEmail_Http(String Reciever, String Sender, String Subject, String Body) {
 			DOM.Document doc = new DOM.Document();
 			DOM.XmlNode reqBody = populateDoc(doc);
-			DOM.XmlNode methodNode = reqBody.addChildElement('sendEmail', serviceNamespace, '');
+			DOM.XmlNode methodNode = reqBody.addChildElement('sendEmailRequest', serviceNamespace, 'mail');
 			MailSOAPService.SendEmailType request_x = new MailSOAPService.SendEmailType(
-				Receiver,
+				Reciever,
 				Sender,
 				Subject,
 				Body
@@ -74,7 +74,7 @@ public class MailSOAPService {
 		}
 
 		public void sendEmailWithAttachments_Http(
-			String Receiver,
+			String Reciever,
 			String Sender,
 			String Subject,
 			String Body,
@@ -82,9 +82,13 @@ public class MailSOAPService {
 		) {
 			DOM.Document doc = new DOM.Document();
 			DOM.XmlNode reqBody = populateDoc(doc);
-			DOM.XmlNode methodNode = reqBody.addChildElement('sendEmailWithAttachments', serviceNamespace, '');
+			DOM.XmlNode methodNode = reqBody.addChildElement(
+				'sendEmailWithAttachmentsRequest',
+				serviceNamespace,
+				'mail'
+			);
 			MailSOAPService.SendEmailWithAttachmentsType request_x = new MailSOAPService.SendEmailWithAttachmentsType(
-				Receiver,
+				Reciever,
 				Sender,
 				Subject,
 				Body,
@@ -126,12 +130,12 @@ public class MailSOAPService {
 	}
 
 	public class SendEmailType {
-		public String Receiver;
+		public String Reciever;
 		public String Sender;
 		public String Subject;
 		public String Body;
-		private transient String[] Receiver_type_info = new List<String>{
-			'Receiver',
+		private transient String[] Reciever_type_info = new List<String>{
+			'Reciever',
 			sendMailEndpoint,
 			'string',
 			'1',
@@ -163,43 +167,43 @@ public class MailSOAPService {
 			'false'
 		};
 		private transient String[] apex_schema_type_info = new List<String>{ sendMailEndpoint, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'Receiver', 'Sender', 'Subject', 'Body' };
+		private transient String[] field_order_type_info = new List<String>{ 'Reciever', 'Sender', 'Subject', 'Body' };
 		public SendEmailType() {
 		}
 
-		public SendEmailType(String Receiver, String Sender, String Subject, String Body) {
-			this.Receiver = Receiver;
+		public SendEmailType(String Reciever, String Sender, String Subject, String Body) {
+			this.Reciever = Reciever;
 			this.Sender = Sender;
 			this.Subject = Subject;
 			this.Body = Body;
 		}
 
 		public void populateXmlNode(Dom.XmlNode outerNode) {
-			Dom.XmlNode ReceiverNode = outerNode.addChildElement('Receiver', sendMailEndpoint, '');
-			if (this.Receiver != null) {
-				ReceiverNode.addTextNode(this.Receiver);
+			Dom.XmlNode RecieverNode = outerNode.addChildElement('Reciever', sendMailEndpoint, 'sen');
+			if (this.Reciever != null) {
+				RecieverNode.addTextNode(this.Reciever);
 			}
-			Dom.XmlNode SenderNode = outerNode.addChildElement('Sender', sendMailEndpoint, '');
+			Dom.XmlNode SenderNode = outerNode.addChildElement('Sender', sendMailEndpoint, 'sen');
 			if (this.Sender != null) {
 				SenderNode.addTextNode(this.Sender);
 			}
-			Dom.XmlNode SubjectNode = outerNode.addChildElement('Subject', sendMailEndpoint, '');
+			Dom.XmlNode SubjectNode = outerNode.addChildElement('Subject', sendMailEndpoint, 'sen');
 			if (this.Subject != null) {
 				SubjectNode.addTextNode(this.Subject);
 			}
-			Dom.XmlNode BodyNode = outerNode.addChildElement('Body', sendMailEndpoint, '');
+			Dom.XmlNode BodyNode = outerNode.addChildElement('Body', sendMailEndpoint, 'sen');
 			BodyNode.addTextNode((this.Body == null) ? '' : this.Body);
 		}
 	}
 
 	public class SendEmailWithAttachmentsType {
-		public String Receiver;
+		public String Reciever;
 		public String Sender;
 		public String Subject;
 		public String Body;
 		public MailSOAPService.AttachmentType[] Attachments;
-		private transient String[] Receiver_type_info = new List<String>{
-			'Receiver',
+		private transient String[] Reciever_type_info = new List<String>{
+			'Reciever',
 			sendMailEndpoint,
 			'string',
 			'1',
@@ -240,7 +244,7 @@ public class MailSOAPService {
 		};
 		private transient String[] apex_schema_type_info = new List<String>{ sendMailEndpoint, 'true', 'false' };
 		private transient String[] field_order_type_info = new List<String>{
-			'Receiver',
+			'Reciever',
 			'Sender',
 			'Subject',
 			'Body',
@@ -249,22 +253,22 @@ public class MailSOAPService {
 		public SendEmailWithAttachmentsType() {
 		}
 		public SendEmailWithAttachmentsType(
-			String Receiver,
+			String Reciever,
 			String Sender,
 			String Subject,
 			String Body,
 			MailSOAPService.AttachmentType[] Attachments
 		) {
-			this.Receiver = Receiver;
+			this.Reciever = Reciever;
 			this.Sender = Sender;
 			this.Subject = Subject;
 			this.Body = Body;
 			this.Attachments = Attachments;
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode) {
-			Dom.XmlNode ReceiverNode = outerNode.addChildElement('Receiver', sendMailEndpoint, '');
-			if (this.Receiver != null) {
-				ReceiverNode.addTextNode(this.Receiver);
+			Dom.XmlNode RecieverNode = outerNode.addChildElement('Reciever', sendMailEndpoint, '');
+			if (this.Reciever != null) {
+				RecieverNode.addTextNode(this.Reciever);
 			}
 			Dom.XmlNode SenderNode = outerNode.addChildElement('Sender', sendMailEndpoint, '');
 			if (this.Sender != null) {
@@ -279,9 +283,10 @@ public class MailSOAPService {
 
 			MailSOAPService.AttachmentType[] AttachmentsObj = this.Attachments;
 			if (AttachmentsObj != null) {
+				Dom.XmlNode AttachmentsNode = outerNode.addChildElement('Attachments', sendMailEndpoint, '');
 				for (MailSOAPService.AttachmentType element : AttachmentsObj) {
-					Dom.XmlNode AttachmentsNode = outerNode.addChildElement('Attachments', sendMailEndpoint, '');
-					element.populateXmlNode(AttachmentsNode);
+					Dom.XmlNode AttachmentNode = AttachmentsNode.addChildElement('Attachment', sendMailEndpoint, '');
+					AttachmentsNode.addTextNode(JSON.serialize(element.attachment));
 				}
 			}
 		}
