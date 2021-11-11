@@ -62,11 +62,9 @@ public class MailSOAPService {
 			req.setBodyDocument(doc);
 
 			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
-			Logger.saveLogs();
 			Http http = new Http();
 			HTTPResponse res = http.send(req);
 			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
-			Logger.saveLogs();
 			Dom.Document responseDoc = res.getBodyDocument();
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
