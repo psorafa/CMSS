@@ -3,14 +3,17 @@
     <fullName>AddressingNonpersonalized</fullName>
     <booleanFilter>1 AND (2 OR 3)</booleanFilter>
     <columns>ACCOUNT.NAME</columns>
+    <columns>PC_LAST_NAME</columns>
     <columns>PersonalIdentificationNr__c</columns>
     <columns>ACCOUNT.PHONE1</columns>
     <columns>PC_EMAIL</columns>
     <columns>ACCOUNT.ADDRESS1_ZIP</columns>
+    <columns>ACCOUNT.ADDRESS1_STREET</columns>
     <columns>ACCOUNT.ADDRESS1_CITY</columns>
     <columns>Age__c</columns>
     <columns>PortfolioMngmtA__c</columns>
     <columns>AddressingNonpersonalized__c</columns>
+    <columns>GlobalId__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>ACCOUNT.RECORDTYPE</field>
