@@ -1,0 +1,33 @@
+<template>
+	<article class="slds-card slds-card_boundary slds-color__background_gray-3">
+		<div class="slds-card__header slds-grid">
+			<header class="slds-media slds-media_center slds-has-flexi-truncate">
+				<div class="slds-media__figure">
+					<span class="slds-icon_container slds-icon-standard-account">
+						<lightning-icon icon-name="standard:asset_relationship" size="small"></lightning-icon>
+					</span>
+				</div>
+				<div class="slds-media__body">
+					<h2 class="slds-card__header-title">
+						<span class="slds-card__header-link slds-truncate">Navázané smlouvy</span>
+					</h2>
+				</div>
+			</header>
+		</div>
+		<div class="slds-card__body">
+			<lightning-spinner if:true={loading}></lightning-spinner>
+			<template if:true={tableData} class="slds-m-left_small slds-m-bottom_small">
+				<lightning-datatable
+					class="slds-max-medium-table_stacked"
+					key-field="Id"
+					data={tableData}
+					columns={columns}
+					hide-checkbox-column="true"
+				></lightning-datatable>
+			</template>
+			<template if:true={error}>
+				<pre>{error}</pre>
+			</template>
+		</div>
+	</article>
+</template>
