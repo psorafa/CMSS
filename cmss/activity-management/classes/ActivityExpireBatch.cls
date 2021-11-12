@@ -31,7 +31,6 @@ public without sharing class ActivityExpireBatch implements Database.Batchable<s
 				FROM Task
 				WHERE ValidTo__c <= TODAY AND Status NOT IN :finalStatuses
 				ORDER BY WhatId
-				FOR UPDATE
 			]
 		);
 	}
