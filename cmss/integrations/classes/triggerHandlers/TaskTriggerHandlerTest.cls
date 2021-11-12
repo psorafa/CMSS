@@ -10,37 +10,53 @@ class TaskTriggerHandlerTest {
 		Integer accessShareSize = AccessShareDao.getAllRecordsFromAccessShare().size();
 		Integer accountShareSize = AccountShareDao.getAllRecordsFromAccountShare().size();
 
-		Task task = new Task(WhatId = acc1.Id, OwnerId = u.Id, ActivityDate = Date.today().addYears(1));
+		Task task = new Task(
+			WhatId = acc1.Id,
+			OwnerId = u.Id,
+			ActivityDate = Date.today().addYears(1),
+			Status = '1',
+			Type = '5',
+			IsVisibleInSelfService = false,
+			Description = 'Some text that is a bit longer than 30 characters.'
+		);
 
 		Test.startTest();
 		insert task;
 		Test.stopTest();
 
+		task = [SELECT ActivityType__c, IsVisibleInSelfService, Summary__c FROM Task WHERE Id = :task.Id];
+
 		System.assertEquals(accessShareSize + 1, AccessShareDao.getAllRecordsFromAccessShare().size());
 		System.assertEquals(accountShareSize + 1, AccountShareDao.getAllRecordsFromAccountShare().size());
+		System.assertEquals('5', task.ActivityType__c);
+		System.assertEquals(true, task.IsVisibleInSelfService);
+		System.assertEquals(33, task.Summary__c.length());
+		System.assert(task.Summary__c.endsWith('...'));
 	}
 
 	@isTest
 	static void afterUpdateTest() {
 		Account acc1 = TestDataFactory.getAccount(new Account());
 		insert acc1;
-		User u = TestDataFactory.getUser(new User());
-		insert u;
+		User u1 = TestDataFactory.getUser(new User());
+		User u2 = TestDataFactory.getUser(new User());
+		insert new List<User>{ u1, u2 };
 
 		Integer accessShareSize = AccessShareDao.getAllRecordsFromAccessShare().size();
 		Integer accountShareSize = AccountShareDao.getAllRecordsFromAccountShare().size();
 
-		Task task = new Task(WhatId = acc1.Id, OwnerId = u.Id, ActivityDate = Date.today().addYears(1));
+		Task task = new Task(WhatId = acc1.Id, OwnerId = u1.Id, ActivityDate = Date.today().addYears(1));
 
 		insert task;
 		task.Status = '0';
+		task.OwnerId = u2.Id;
 
 		Test.startTest();
 		update task;
 		Test.stopTest();
 
-		System.assertEquals(accessShareSize, AccessShareDao.getAllRecordsFromAccessShare().size());
-		System.assertEquals(accountShareSize, AccountShareDao.getAllRecordsFromAccountShare().size());
+		System.assertEquals(accessShareSize + 1, AccessShareDao.getAllRecordsFromAccessShare().size());
+		System.assertEquals(accountShareSize + 1, AccountShareDao.getAllRecordsFromAccountShare().size());
 	}
 
 	@isTest
