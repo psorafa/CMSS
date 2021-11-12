@@ -542,6 +542,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.AdditionalInformation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.AddressingNonpersonalized__c</field>
         <readable>true</readable>
@@ -619,6 +624,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.ClientZoneAccess__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.ClientZonewithLatestAgreementDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
