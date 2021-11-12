@@ -30,6 +30,8 @@ public without sharing class ActivityExpireBatch implements Database.Batchable<s
 				SELECT Id, Subject, ValidTo__c, Status
 				FROM Task
 				WHERE ValidTo__c <= TODAY AND Status NOT IN :finalStatuses
+				ORDER BY WhatId
+				FOR UPDATE
 			]
 		);
 	}
@@ -72,6 +74,6 @@ public without sharing class ActivityExpireBatch implements Database.Batchable<s
 	 * Schedulable execute
 	 */
 	public void execute(SchedulableContext sc) {
-		Database.executeBatch(this);
+		Database.executeBatch(this, 100);
 	}
 }
