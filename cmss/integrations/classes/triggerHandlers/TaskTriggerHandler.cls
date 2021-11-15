@@ -102,16 +102,14 @@ public class TaskTriggerHandler extends TriggerHandler {
 		idsString = idsString.removeEnd(', ');
 		idsString += ')';
 
-		String accessibleFields = '';
+		String allFields = '';
 		for (SObjectField field : Task.SObjectType.getDescribe().fields.getMap().values()) {
 			DescribeFieldResult describe = field.getDescribe();
-			if (describe.isAccessible()) {
-				accessibleFields += describe.getName() + ', ';
-			}
+			allFields += describe.getName() + ', ';
 		}
-		accessibleFields = accessibleFields.removeEnd(', ');
+		allFields = allFields.removeEnd(', ');
 
-		String queryString = 'SELECT ' + accessibleFields + ' FROM Task WHERE Id IN ' + idsString;
+		String queryString = 'SELECT ' + allFields + ' FROM Task WHERE Id IN ' + idsString;
 
 		List<Task> tasks = Database.query(queryString);
 
