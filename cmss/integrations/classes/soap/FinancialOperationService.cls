@@ -1,4 +1,4 @@
-public class FinancialOperationService {
+public without sharing class FinancialOperationService {
 	private static final String s_ns0 = 'http://service.cmss.cz/account/FinancialOperationService/v05/datatypes';
 
 	public class FinancialOperationServicePort {

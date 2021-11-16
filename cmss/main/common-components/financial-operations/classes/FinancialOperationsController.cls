@@ -1,4 +1,4 @@
-public with sharing class FinancialOperationsController {
+public without sharing class FinancialOperationsController {
 	public static FinancialOperationDataTypesService.GetFinancialOperationInfoResponseBodyType financialOperationsCallout(
 		Long basicNumber,
 		Long endNumber,
@@ -42,10 +42,10 @@ public with sharing class FinancialOperationsController {
 				dateTo,
 				dateFrom
 			);
-			FinancialOperationDataTypesService.ContractFinancialOperationInfoType[] aa = stub.contractFinancialOperationInfoList.contractFinancialOperationInfo;
+			FinancialOperationDataTypesService.ContractFinancialOperationInfoType[] response = stub.contractFinancialOperationInfoList.contractFinancialOperationInfo;
 
 			List<DataWrapper> data = new List<DataWrapper>();
-			for (FinancialOperationDataTypesService.ContractFinancialOperationInfoType fc : aa) {
+			for (FinancialOperationDataTypesService.ContractFinancialOperationInfoType fc : response) {
 				data.add(getDataWrapperRecord(fc));
 			}
 			return JSON.serialize(data);

@@ -1,4 +1,4 @@
-public class FinancialOperationDataTypesService {
+public without sharing class without sharing FinancialOperationDataTypesService {
     private static final String s_ns0 = 'http://service.cmss.cz/account/FinancialOperationService/v05/datatypes';
     public static DateTime parseDateTime(String nodeText) {
         String iso8601 = nodeText;
@@ -564,7 +564,7 @@ public class FinancialOperationDataTypesService {
     //Failed to find base class: http://service.cmss.cz/common/CommonMessage/v01:RequestMessage - Unable to create ApexClass for complexTypeQualifiedName: http://service.cmss.cz/common/CommonMessage/v01:RequestMessage
     //Corresponding complexType was null.
     //Název parametru: complexType
-    public class GetFinancialOperationInfoRequestType {
+    public class  GetFinancialOperationInfoRequestType {
         public CommonMessageService.RequestHeader requestHeader;
         private transient String[] requestHeader_type_info = new List<String>{
             'requestHeader',

@@ -66,11 +66,9 @@ export default class FinancialOperationsDataTable extends LightningElement {
 		if (event.target.value != null) {
 			if (event.target.name == 'dateTo') {
 				this.dateTo = event.target.value;
-				console.log(this.dateTo);
 			}
 			if (event.target.name == 'dateFrom') {
 				this.dateFrom = event.target.value;
-				console.log(this.dateFrom);
 			}
 		}
 	}
@@ -90,12 +88,11 @@ export default class FinancialOperationsDataTable extends LightningElement {
 			.then(result => {
 				this.data = JSON.parse(result);
 				this.showSpinner = false;
-				console.log('susccess');
 			})
 			.catch(error => {
 				this.showSpinner = false;
 				console.log(JSON.stringify(error));
-				this.fireToast('error', 'Nebyly nalezene žádné záznamy');
+				this.fireToast('success', 'Nebyly nalezené žádné záznamy');
 			});
 	}
 
