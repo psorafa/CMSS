@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>CommunityWelcomeExternalUser</fullName>
+        <description>Community Welcome: External User</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Email</field>
+            <type>email</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/Community_Welcome_External_Users_1636379012908</template>
+    </alerts>
+    <alerts>
+        <fullName>CommunityWelcomeInternalUser</fullName>
+        <description>Community Welcome: Internal User</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Email</field>
+            <type>email</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/Community_Welcome_Internal_Users_1636379309677</template>
+    </alerts>
+</Workflow>
