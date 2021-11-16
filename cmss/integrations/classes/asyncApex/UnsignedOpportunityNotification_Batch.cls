@@ -1,5 +1,5 @@
 public without sharing class UnsignedOpportunityNotification_Batch implements Database.Batchable<sObject>, Database.AllowsCallouts, Schedulable {
-	private DateTime actualDate;
+	private Date actualDate;
 	private DateTime createdDateLimit;
 
 	static final Set<Integer> VALID_DAYS_FROM_CREATION = new Set<Integer>{ 2, 7 };
@@ -47,8 +47,7 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 			Map<Id, ClientZone__c> associatedClientZones = getAssociatedClientZones(opportunities);
 
 			for (Opportunity opportunity : opportunities) {
-				Integer numberOfDaysFromOppCreation = (Date.valueOf(opportunity.CreatedDateTime__c)
-					.daysBetween(Date.valueOf(actualDate)) + 1);
+				Integer numberOfDaysFromOppCreation = opportunity.CreatedDateTime__c.date().daysBetween(actualDate);
 				if (VALID_DAYS_FROM_CREATION.contains(numberOfDaysFromOppCreation)) {
 					if (opportunity?.Account?.PersonEmail != null) {
 						SendNotificationHandler userNotificationHandler = new SendNotificationHandler(
