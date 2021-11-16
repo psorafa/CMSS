@@ -1,60 +1,63 @@
 <!-- Campaign Form -->
 <template>
-	<lightning-card title="Kampaň">
-		<div class="slds-p-around_large">
-			<lightning-input
-				type="checkbox"
-				label="Nevytvářet kampaň"
-				value={doNotCreateCampaign}
-				onchange={handleCheckboxChange}
-			></lightning-input>
-			<br />
-			<template if:false={doNotCreateCampaign}>
-				<c-search-component
-					obj-name="Campaign"
-					icon-name="standard:campaign"
-					label-name="Existující kampaň"
-					placeholder="Name"
-					fields="IsActive, OwnerId"
-					display-fields="Name"
-					onlookup={handleLookupChange}
-					search-condition={campaignSearchCondition}
-					disabled="false"
-				></c-search-component>
-
+	<template if:false={canNotCreateCampaigns}>
+		<lightning-card title="Kampaň">
+			<div class="slds-p-around_large">
 				<lightning-input
-					label="Název kampaně"
-					value={_campaign.name}
-					onchange={handleNameChange}
-					required="true"
-					disabled={campaignExists}
+					type="checkbox"
+					label="Nevytvářet kampaň"
+					value={doNotCreateCampaign}
+					onchange={handleCheckboxChange}
 				></lightning-input>
+				<br />
 
-				<lightning-input
-					type="date"
-					label="Skutečné datum zahájení kampaně"
-					value={_campaign.startDate}
-					onchange={handleStartDateChange}
-					disabled={campaignExists}
-				></lightning-input>
+				<template if:false={doNotCreateCampaign}>
+					<c-search-component
+						obj-name="Campaign"
+						icon-name="standard:campaign"
+						label-name="Existující kampaň"
+						placeholder="Name"
+						fields="IsActive, OwnerId"
+						display-fields="Name"
+						onlookup={handleLookupChange}
+						search-condition={campaignSearchCondition}
+						disabled="false"
+					></c-search-component>
 
-				<lightning-input
-					type="date"
-					label="Datum ukončení"
-					value={_campaign.endDate}
-					onchange={handleEndDateChange}
-					required="true"
-					disabled={campaignExists}
-				></lightning-input>
+					<lightning-input
+						label="Název kampaně"
+						value={_campaign.name}
+						onchange={handleNameChange}
+						required="true"
+						disabled={campaignExists}
+					></lightning-input>
 
-				<lightning-textarea
-					label="Popis"
-					value={_campaign.description}
-					onchange={handleDescriptionChange}
-					disabled={campaignExists}
-				></lightning-textarea>
-				<lightning-input label="Typ kampaně" value="Mikrokampaň" disabled="true"></lightning-input>
-			</template>
-		</div>
-	</lightning-card>
+					<lightning-input
+						type="date"
+						label="Skutečné datum zahájení kampaně"
+						value={_campaign.startDate}
+						onchange={handleStartDateChange}
+						disabled={campaignExists}
+					></lightning-input>
+
+					<lightning-input
+						type="date"
+						label="Datum ukončení"
+						value={_campaign.endDate}
+						onchange={handleEndDateChange}
+						required="true"
+						disabled={campaignExists}
+					></lightning-input>
+
+					<lightning-textarea
+						label="Popis"
+						value={_campaign.description}
+						onchange={handleDescriptionChange}
+						disabled={campaignExists}
+					></lightning-textarea>
+					<lightning-input label="Typ kampaně" value="Mikrokampaň" disabled="true"></lightning-input>
+				</template>
+			</div>
+		</lightning-card>
+	</template>
 </template>
