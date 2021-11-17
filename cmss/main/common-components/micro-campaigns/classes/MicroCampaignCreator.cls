@@ -147,7 +147,7 @@ public with sharing class MicroCampaignCreator {
 		List<Task> tasks = new List<Task>();
 		for (Account account : accountsMap.values()) {
 			if (
-				campaignMembersByAccountId.keySet().contains(String.valueOf(account.Id)) &&
+				(campaign == null || campaignMembersByAccountId.keySet().contains(String.valueOf(account.Id))) &&
 				!invalidAccounts.contains(account)
 			) {
 				Task t = prepareTaskFromTemplate(account);
@@ -161,7 +161,7 @@ public with sharing class MicroCampaignCreator {
 		List<Task> tasks = new List<Task>();
 		for (Asset asset : assetsMap.values()) {
 			if (
-				campaignMembersByAccountId.keySet().contains(String.valueOf(asset.AccountId)) &&
+				(campaign == null || campaignMembersByAccountId.keySet().contains(String.valueOf(asset.AccountId))) &&
 				!invalidAccounts.contains(accountsMap.get(asset.AccountId))
 			) {
 				Task t = prepareTaskFromTemplate(accountsMap.get(asset.AccountId));

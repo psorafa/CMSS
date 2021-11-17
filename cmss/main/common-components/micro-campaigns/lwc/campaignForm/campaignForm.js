@@ -1,6 +1,10 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, wire } from 'lwc';
+import { getFieldValue, getRecord } from 'lightning/uiRecordApi';
+
 import Id from '@salesforce/user/Id';
 import getCampaignData from '@salesforce/apex/SearchController.getCampaign';
+
+import MARKETING_PERMISSION from '@salesforce/schema/User.UserPermissionsMarketingUser';
 
 const DEFAULT_CAMPAIGN_VALUES = {
 	startDate: new Date().toISOString().substr(0, 10),
@@ -9,11 +13,24 @@ const DEFAULT_CAMPAIGN_VALUES = {
 };
 
 export default class CampaignForm extends LightningElement {
-	@track doNotCreateCampaign = false;
+	@wire(getRecord, { recordId: Id, fields: [MARKETING_PERMISSION] })
+	retrieveCurrentUserDatadata({ error, data }) {
+		if (data) {
+			const hasMarketingUserPermission = getFieldValue(data, MARKETING_PERMISSION);
+			this.doNotCreateCampaign = !hasMarketingUserPermission;
+			this.canNotCreateCampaigns = !hasMarketingUserPermission;
+			this.fireUpdate();
+		} else if (error) {
+			console.log(JSON.stringify(error));
+		}
+	}
+
+	doNotCreateCampaign = false;
+	canNotCreateCampaigns = false;
 	campaignSearchCondition = "CreatedById = '" + Id + "' AND IsActive = true";
 	campaignExists;
 
-	@track _campaign = {
+	_campaign = {
 		...JSON.parse(JSON.stringify(DEFAULT_CAMPAIGN_VALUES)),
 		endDate: this.defaultDate
 	};
