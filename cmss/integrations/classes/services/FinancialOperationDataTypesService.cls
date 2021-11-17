@@ -1,4 +1,4 @@
-public without sharing FinancialOperationDataTypesService {
+public without sharing class FinancialOperationDataTypesService {
     private static final String s_ns0 = 'http://service.cmss.cz/account/FinancialOperationService/v05/datatypes';
     public static DateTime parseDateTime(String nodeText) {
         String iso8601 = nodeText;
