@@ -256,23 +256,6 @@
         <fields>CREATEDBY_USER</fields>
         <relatedList>AssetAccountRelation__c.Asset__c</relatedList>
     </relatedLists>
-    <relatedLists>
-        <fields>Name</fields>
-        <fields>Asset</fields>
-        <fields>RelationshipType</fields>
-        <fields>FromDate</fields>
-        <fields>ToDate</fields>
-        <relatedList>Primary Assets</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>Name</fields>
-        <fields>RelationshipType</fields>
-        <fields>RelatedAsset</fields>
-        <fields>FromDate</fields>
-        <fields>ToDate</fields>
-        <fields>CreatedBy</fields>
-        <relatedList>Related Assets</relatedList>
-    </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

@@ -32,6 +32,32 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
+            <componentName>relatedAssetsRelatedList</componentName>
+            <visibilityRule>
+                <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.RecordType.Name}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Credit cases</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.RecordType.Name}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Credit and Intermediate Loan</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.RecordType.Name}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Building Savings</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.RecordType.Name}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Risk Life Insurance</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
             <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>
                 <value>ADVGRID</value>
