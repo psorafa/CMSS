@@ -1,0 +1,265 @@
+<template>
+	<!-- DATATABLE-->
+	<article class="slds-card slds-card_boundary slds-color__background_gray-3">
+		<div class="slds-grid slds-gutters">
+			<div class="slds-card__header slds-col">
+				<header class="slds-media slds-media_center slds-has-flexi-truncate ">
+					<div class="slds-media__figure">
+						<span class="slds-icon_container slds-icon-standard-account">
+							<lightning-icon icon-name="standard:currency" size="small"></lightning-icon>
+						</span>
+					</div>
+					<div class="slds-media__body">
+						<h2 class="slds-card__header-title">
+							<span class="slds-card__header-link slds-truncate"> Finanční obraty </span>
+						</h2>
+					</div>
+				</header>
+			</div>
+			<lightning-layout>
+				<lightning-layout-item size="12" class="slds-col slds-media slds-media_center slds-has-flexi-truncate">
+					<lightning-button
+						variant="brand"
+						label="Načist finanční obraty"
+						onclick={showImportFOModal}
+						class="slds-float--right slds-p-right_medium slds-p-top_small"
+					></lightning-button>
+				</lightning-layout-item>
+			</lightning-layout>
+		</div>
+		<template if:true={showSpinner}>
+			<lightning-spinner></lightning-spinner>
+		</template>
+		<div class="slds-card__body">
+			<template if:true={showData}>
+				<lightning-datatable
+					hide-checkbox-column="true"
+					key-field="dataTable"
+					data={data}
+					columns={columns}
+					onrowaction={handleRowAction}
+				>
+				</lightning-datatable>
+			</template>
+		</div>
+
+		<!-- IMPORT FINANCIAL OPERATIONS MODAL-->
+		<template if:true={openImportFOModal}>
+			<div class="slds-modal slds-fade-in-open slds-backdrop">
+				<div class="slds-modal__container">
+					<!--HEADER Section-->
+					<div class="slds-modal__header">
+						<lightning-button-icon
+							icon-name="utility:close"
+							alternative-text="Close this window"
+							size="large"
+							variant="bare-inverse"
+							onclick={closeImportFOModal}
+							class="slds-modal__close"
+						>
+						</lightning-button-icon>
+						<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+							Výběrte prosim období
+						</h2>
+					</div>
+					<!--Body Section-->
+					<div class="slds-modal__content slds-p-around_medium slds-grid">
+						<div class="slds-col">
+							<span>
+								<lightning-input
+									name="dateFrom"
+									onchange={handleFormInputChange}
+									class="slds-float--right slds-m-right_x-medium"
+									type="date"
+									label="Datum od"
+									value={defaultDateFrom}
+								></lightning-input>
+							</span>
+						</div>
+						<div class="slds-col">
+							<lightning-input
+								name="dateTo"
+								onchange={handleFormInputChange}
+								class="slds-float--right slds-m-right_x-medium"
+								type="date"
+								label="Datum do"
+								value={defaultDateTo}
+							></lightning-input>
+						</div>
+						<div class="slds-col">
+							<span>
+								<button
+									class="slds-float--right slds-m-right_x-small  slds-button slds-button_brand slds-m-top_large"
+									onclick={handleClick}
+								>
+									Vybrat
+								</button>
+							</span>
+						</div>
+					</div>
+					<!---Footer Section-->
+					<div class="slds-modal__footer">
+						<button
+							class="slds-button slds-button_neutral  slds-float--right  slds-m-right_x-small"
+							onclick={closeImportFOModal}
+						>
+							Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</template>
+		<!-- DETAIL MODAL-->
+		<template if:true={openDetailModal}>
+			<div class="slds-modal slds-fade-in-open slds-backdrop">
+				<div class="slds-modal__container">
+					<!--HEADER Section-->
+					<div class="slds-modal__header">
+						<lightning-button-icon
+							icon-name="utility:close"
+							alternative-text="Close this window"
+							size="large"
+							variant="bare-inverse"
+							onclick={closeDetailModal}
+							class="slds-modal__close"
+						>
+						</lightning-button-icon>
+						<h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">
+							Detail finančního obratu
+						</h2>
+					</div>
+					<!--Body Section-->
+					<div class=" slds-grid slds-wrap slds-modal__content slds-p-around_large">
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="text"
+								label="Předčíslí účtu"
+								value={allData.senderReceiverAccountPrefix}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="text"
+								label="Číslo účtu"
+								value={allData.senderReceiverAccountNumber}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="text"
+								label="Směrový kód banky"
+								value={allData.senderReceiverBankIdNumber}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="text"
+								label="KS"
+								value={allData.constantSymbol}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="text"
+								label="Částka"
+								value={allData.amount}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="date"
+								label="Datum provedení operace"
+								value={allData.transactionDateTime}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="text"
+								label="Zpráva"
+								value={allData.avField}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="text"
+								label="Název operace"
+								value={allData.transactionDescription}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="date"
+								label="Datum zaúčtování"
+								value={allData.valueDate}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="text"
+								label="Jméno odesílatele"
+								value={allData.senderReceiverName}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="text"
+								label="SS"
+								value={allData.specificSymbol}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="text"
+								label="VS"
+								value={allData.variableSymbol}
+								disabled="true"
+							></lightning-input>
+						</div>
+						<div class="slds-col slds-size_2-of-4">
+							<lightning-input
+								class=" slds-m-around_x-small"
+								type="date"
+								label="Datum přijetí potvrzení"
+								value={allData.bookingDate}
+								disabled="true"
+							></lightning-input>
+						</div>
+					</div>
+
+					<!---Footer Section-->
+					<div class="slds-modal__footer">
+						<button
+							class="slds-button slds-button_neutral  slds-float--right  slds-m-right_x-small"
+							onclick={closeDetailModal}
+						>
+							Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</template>
+	</article>
+</template>
