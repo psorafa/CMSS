@@ -19,7 +19,7 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 					Role__c,
 					Status__c,
 					Account__c,
-					Account__r.PersonEmail,
+					Email__c,
 					CreatedDate,
 					CancelationNotificationSentDate__c
 				FROM ClientZone__c
@@ -88,13 +88,15 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 	}
 
 	private void sendNotification(ClientZone__c clientZone) {
-		SendNotificationHandler handler = new SendNotificationHandler(
-			clientZone,
-			CANCELATION_TEMPLATE_NAME,
-			clientZone.Account__r.PersonEmail,
-			new Map<String, String>{ 'CANCELATION_DATE' => String.valueOf(this.actualDate) }
-		);
-		handler.handle();
+		if (clientZone.Email__c != null) {
+			SendNotificationHandler handler = new SendNotificationHandler(
+				clientZone,
+				CANCELATION_TEMPLATE_NAME,
+				clientZone.Email__c,
+				new Map<String, String>{ 'CANCELATION_DATE' => this.actualDate.addDays(14).format('dd. MM. yyyy') }
+			);
+			handler.handle();
+		}
 	}
 
 	private Map<Id, AccountRelation__c> getAssociatedAccounts(Set<Id> accountIds) {
