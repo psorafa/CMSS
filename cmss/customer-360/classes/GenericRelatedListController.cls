@@ -1,4 +1,4 @@
-public with sharing class GenericRelatedListController {
+public without sharing class GenericRelatedListController {
 	@AuraEnabled
 	public static String getDataForDataTable(
 		String sObjectName,

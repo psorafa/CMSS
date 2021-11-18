@@ -1,4 +1,4 @@
-public class AssetRelatedListController {
+public without sharing class AssetRelatedListController {
 
 	@AuraEnabled
 	public static String getDataForDataTable(
