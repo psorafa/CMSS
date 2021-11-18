@@ -1,5 +1,4 @@
 public without sharing class AssetRelatedListController {
-
 	@AuraEnabled
 	public static String getDataForDataTable(
 		List<String> fieldsToShow,
@@ -10,7 +9,9 @@ public without sharing class AssetRelatedListController {
 		List<AssetAccountRelation__c> relations = selectRelations(accountId, conditionRelations);
 		Set<Id> relatedAssetsIds = getAssetIds(relations);
 		String assetsCondition = prepareAssetsCondition(accountId, conditionAssets, new List<Id>(relatedAssetsIds));
-		Map<Id, Asset> assetMap = new Map<Id, Asset>((List<Asset>) GenericRelatedListController.queryData('Asset', fieldsToShow, assetsCondition));
+		Map<Id, Asset> assetMap = new Map<Id, Asset>(
+			(List<Asset>) GenericRelatedListController.queryData('Asset', fieldsToShow, assetsCondition)
+		);
 
 		List<Map<String, Object>> assetObjectsFromRelations = new List<Map<String, Object>>();
 		// assets from relations, respecting relations order
@@ -36,7 +37,10 @@ public without sharing class AssetRelatedListController {
 	}
 
 	private static List<AssetAccountRelation__c> selectRelations(Id accountId, String condition) {
-		String query = 'SELECT Id, toLabel(RelationType__c), Asset__c FROM AssetAccountRelation__c WHERE Account__c = \'' + accountId + '\'';
+		String query =
+			'SELECT Id, toLabel(RelationType__c), Asset__c FROM AssetAccountRelation__c WHERE Account__c = \'' +
+			accountId +
+			'\'';
 		if (!String.isBlank(condition)) {
 			query += ' AND ' + condition;
 		}
@@ -71,5 +75,4 @@ public without sharing class AssetRelatedListController {
 		Map<String, Object> untypedMap = (Map<String, Object>) JSON.deserializeUntyped(serialized);
 		return untypedMap;
 	}
-
 }
