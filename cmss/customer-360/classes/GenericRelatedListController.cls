@@ -1,10 +1,6 @@
-public with sharing class GenericRelatedListController {
+public without sharing class GenericRelatedListController {
 	@AuraEnabled
-	public static String getDataForDataTable(
-		String sObjectName,
-		List<String> fieldsToShow,
-		String condition
-	) {
+	public static String getDataForDataTable(String sObjectName, List<String> fieldsToShow, String condition) {
 		List<SObject> result = queryData(sObjectName, fieldsToShow, condition);
 		System.debug('JSON Result: ' + JSON.serialize(result));
 		return JSON.serialize(result);
@@ -16,11 +12,7 @@ public with sharing class GenericRelatedListController {
 		return builder.getColumnDTOs();
 	}
 
-	public static List<SObject> queryData(
-		String sObjectName,
-		List<String> fieldsToShow,
-		String condition
-	) {
+	public static List<SObject> queryData(String sObjectName, List<String> fieldsToShow, String condition) {
 		Set<String> fields = convertFields(fieldsToShow, sObjectName);
 		String soql = prepareSOQL(sObjectName, fields, condition);
 		List<SObject> result = Database.query(soql);
@@ -46,16 +38,8 @@ public with sharing class GenericRelatedListController {
 		return fieldsSet;
 	}
 
-	private static String prepareSOQL(
-		String objectName,
-		Set<String> fields,
-		String condition
-	) {
-		String soql =
-			'SELECT ' +
-				String.join(new List<String>(fields), ',') +
-				' FROM ' +
-				objectName;
+	private static String prepareSOQL(String objectName, Set<String> fields, String condition) {
+		String soql = 'SELECT ' + String.join(new List<String>(fields), ',') + ' FROM ' + objectName;
 		if (!String.isBlank(condition)) {
 			soql += ' WHERE ' + condition;
 		}
