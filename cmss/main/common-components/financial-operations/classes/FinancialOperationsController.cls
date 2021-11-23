@@ -2,7 +2,7 @@ public without sharing class FinancialOperationsController {
 	public static FinancialOperationDataTypesService.GetFinancialOperationInfoResponseBodyType financialOperationsCallout(
 		Long basicNumber,
 		Long endNumber,
-		//Long checkNumber, checkNumber is not  required
+		Long checkNumber,
 		Date dateTo,
 		Date dateFrom
 	) {
@@ -13,7 +13,7 @@ public without sharing class FinancialOperationsController {
 			BasicTypesService.AccountNumberType contractIdNumber = new BasicTypesService.AccountNumberType();
 			contractIdNumber.basicNumber = basicNumber;
 			contractIdNumber.endNumber = endNumber;
-			//contractIdNumber.checkNumber = checkNumber;  checkNumber is not required
+			contractIdNumber.checkNumber = checkNumber;
 			FinancialOperationDataTypesService.ContractFinancialOperationInfoRequestType info = new FinancialOperationDataTypesService.ContractFinancialOperationInfoRequestType();
 			info.contractIdNumber = contractIdNumber;
 			info.dateFrom = dateFrom;
@@ -33,12 +33,15 @@ public without sharing class FinancialOperationsController {
 	@AuraEnabled(cacheable=true)
 	public static String getData(Date dateTo, Date dateFrom, Id recordId) {
 		String assetName = [SELECT Name FROM Asset WHERE Id = :recordId].Name;
-		Long adjustedAssetName = Long.valueOf(assetName.substring(0, assetName.length() - 3));
+		Long basicNumber = Long.valueOf(assetName.left(7));
+		Long checkNumber = Long.valueOf(assetName.substring(7, 8));
+		Long endNumber = Long.valueOf(assetName.right(2));
 
 		try {
 			FinancialOperationDataTypesService.GetFinancialOperationInfoResponseBodyType stub = financialOperationsCallout(
-				adjustedAssetName,
-				1,
+				basicNumber,
+				endNumber,
+				checkNumber,
 				dateTo,
 				dateFrom
 			);
