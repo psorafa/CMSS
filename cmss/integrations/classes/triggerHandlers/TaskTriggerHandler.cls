@@ -49,10 +49,20 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	public void sendNewTaskNotifications(List<Task> newTasks) {
+		List<Id> potentialTasksToNotifyAbout = new List<Id>();
 		List<Id> tasksToNotifyAbout = new List<Id>();
+
 		for (Task task : newTasks) {
 			if (task.Status == '1' && task.CreatedById != task.OwnerId) {
-				tasksToNotifyAbout.add(task.Id);
+				potentialTasksToNotifyAbout.add(task.Id);
+			}
+		}
+		Map<Id, Task> relatedOwnersMap = new Map<Id, Task>(
+			[SELECT Owner.IsActive, Owner.Email FROM Task WHERE Id IN :potentialTasksToNotifyAbout]
+		);
+		for (Id taskId : potentialTasksToNotifyAbout) {
+			if (relatedOwnersMap.get(taskId).Owner.IsActive && relatedOwnersMap.get(taskId).Owner.Email != null) {
+				tasksToNotifyAbout.add(taskId);
 			}
 		}
 		if (tasksToNotifyAbout.size() > 0 && !System.isBatch()) {
@@ -61,10 +71,20 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	public void sendDelegatedTaskNotifications(List<SObject> newTasks, Map<Id, SObject> oldTasksMap) {
+		List<Id> potentialTasksToNotifyAbout = new List<Id>();
 		List<Id> tasksToNotifyAbout = new List<Id>();
+
 		for (Task task : (List<Task>) newTasks) {
 			if (task.OwnerId != ((Task) oldTasksMap.get(task.Id)).OwnerId) {
-				tasksToNotifyAbout.add(task.Id);
+				potentialTasksToNotifyAbout.add(task.Id);
+			}
+		}
+		Map<Id, Task> relatedOwnersMap = new Map<Id, Task>(
+			[SELECT Owner.IsActive, Owner.Email FROM Task WHERE Id IN :potentialTasksToNotifyAbout]
+		);
+		for (Id taskId : potentialTasksToNotifyAbout) {
+			if (relatedOwnersMap.get(taskId).Owner.IsActive && relatedOwnersMap.get(taskId).Owner.Email != null) {
+				tasksToNotifyAbout.add(taskId);
 			}
 		}
 		if (tasksToNotifyAbout.size() > 0 && !System.isBatch()) {
