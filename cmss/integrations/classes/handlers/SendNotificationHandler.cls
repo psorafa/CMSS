@@ -37,8 +37,12 @@ public class SendNotificationHandler {
 
 	@TestVisible
 	private void setUpEmail() {
-		EmailTemplate template = [SELECT Body, Subject FROM EmailTemplate WHERE DeveloperName = :emailTemplateDevName];
-		emailBody = processTextation(template.Body);
+		EmailTemplate template = [
+			SELECT HtmlValue, Subject
+			FROM EmailTemplate
+			WHERE DeveloperName = :emailTemplateDevName
+		];
+		emailBody = processTextation(template.HtmlValue);
 		emailSubject = processTextation(template.Subject);
 	}
 

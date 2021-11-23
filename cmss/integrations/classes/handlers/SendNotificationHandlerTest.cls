@@ -68,7 +68,11 @@ public class SendNotificationHandlerTest {
 			opportunity,
 			'UnfinishedContractNotification',
 			'mail@test.com',
-			new Map<String, String>{ 'DateOfCreation__c' => 'NOW', 'ORG_URL' => 'some url' }
+			new Map<String, String>{
+				'DateOfCreation__c' => 'NOW',
+				'ORG_URL' => 'some url',
+				'ContractNumber__c' => '1234'
+			}
 		);
 
 		SendNotificationHandler handler = new SendNotificationHandler(
