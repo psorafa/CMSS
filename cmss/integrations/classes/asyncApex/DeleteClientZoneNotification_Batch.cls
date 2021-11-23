@@ -3,7 +3,7 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 	private final String CANCELATION_TEMPLATE_NAME = 'ClientZoneCancelationNotification';
 
 	public DeleteClientZoneNotification_Batch() {
-		this.actualDate = System.today();
+		this.actualDate = System.now();
 	}
 
 	public void execute(SchedulableContext sc) {
@@ -93,7 +93,7 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 				clientZone,
 				CANCELATION_TEMPLATE_NAME,
 				clientZone.Email__c,
-				new Map<String, String>{ 'CANCELATION_DATE' => this.actualDate.addDays(14).format('dd. MM. yyyy') }
+				new Map<String, String>{ 'CANCELATION_DATE' => actualDate.addDays(14).format('dd. MM. yyyy') }
 			);
 			handler.handle();
 		}

@@ -24,7 +24,6 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 				SELECT
 					Category__c,
 					StageName,
-					ContractId,
 					CreatedDateTime__c,
 					Owner.Email,
 					AccountId,
@@ -68,7 +67,14 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 							opportunity,
 							UNFINISHED_CONTRACT_TEMPLATE,
 							opportunity.Owner.Email,
-							new Map<String, String>{ 'ORG_URL' => URL.getSalesforceBaseUrl().toExternalForm() }
+							new Map<String, String>{
+								'ORG_URL' => URL.getSalesforceBaseUrl().toExternalForm(),
+								'CreatedDateTime__c' => opportunity.CreatedDateTime__c.format('dd. MM. yyyy'),
+								'ContractNumber__c' => '' +
+								String.valueOf(
+									associatedClientZones?.get(opportunity.AccountId)?.get('ContractNumber__c')
+								)
+							}
 						);
 						ownerNotificationHandler.handle();
 					}
