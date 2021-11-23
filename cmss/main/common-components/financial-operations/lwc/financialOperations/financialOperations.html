@@ -1,21 +1,20 @@
 <template>
 	<!-- DATATABLE-->
 	<article class="slds-card slds-card_boundary slds-color__background_gray-3">
-		<div class="slds-grid slds-gutters">
-			<div class="slds-card__header slds-col">
-				<header class="slds-media slds-media_center slds-has-flexi-truncate ">
-					<div class="slds-media__figure">
-						<span class="slds-icon_container slds-icon-standard-account">
-							<lightning-icon icon-name="standard:currency" size="small"></lightning-icon>
-						</span>
-					</div>
-					<div class="slds-media__body">
-						<h2 class="slds-card__header-title">
-							<span class="slds-card__header-link slds-truncate"> Finanční obraty </span>
-						</h2>
-					</div>
-				</header>
-			</div>
+		<div class="slds-card__header slds-grid slds-col">
+			<header class="slds-media slds-media_center slds-has-flexi-truncate ">
+				<div class="slds-media__figure">
+					<span class="slds-icon_container slds-icon-standard-account">
+						<lightning-icon icon-name="standard:currency" size="small"></lightning-icon>
+					</span>
+				</div>
+				<div class="slds-media__body">
+					<h2 class="slds-card__header-title">
+						<span class="slds-card__header-link slds-truncate"> Finanční obraty </span>
+					</h2>
+				</div>
+			</header>
+
 			<lightning-layout>
 				<lightning-layout-item size="12" class="slds-col slds-media slds-media_center slds-has-flexi-truncate">
 					<lightning-button
@@ -59,7 +58,7 @@
 						>
 						</lightning-button-icon>
 						<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
-							Výběrte prosim období
+							Vyberte období
 						</h2>
 					</div>
 					<!--Body Section-->
@@ -103,7 +102,7 @@
 							class="slds-button slds-button_neutral  slds-float--right  slds-m-right_x-small"
 							onclick={closeImportFOModal}
 						>
-							Close
+							Zavřít
 						</button>
 					</div>
 				</div>
@@ -255,7 +254,7 @@
 							class="slds-button slds-button_neutral  slds-float--right  slds-m-right_x-small"
 							onclick={closeDetailModal}
 						>
-							Close
+							Zavřít
 						</button>
 					</div>
 				</div>
