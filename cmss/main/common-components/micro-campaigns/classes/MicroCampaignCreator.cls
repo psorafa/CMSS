@@ -76,7 +76,7 @@ public with sharing class MicroCampaignCreator {
 	}
 
 	private void generateRolesMap(List<Account> accounts) {
-		allRoles = new Map<Id, UserRole>([SELECT Id, ParentRoleId FROM UserRole WHERE PortalType = 'None']);
+		allRoles = new Map<Id, UserRole>([SELECT Id, ParentRoleId FROM UserRole]);
 		usersToRoleIds = new Map<Id, Id>();
 		Set<Id> ownerIds = new Set<Id>();
 		for (Account acc : accounts) {
@@ -101,7 +101,7 @@ public with sharing class MicroCampaignCreator {
 			return true;
 		}
 		UserRole actualRole = allRoles.get(assigneeUserRoleId);
-		while (actualRole.ParentRoleId != null) {
+		while (actualRole?.ParentRoleId != null) {
 			if (actualRole.ParentRoleId == actualUserRoleId) {
 				return true;
 			}
