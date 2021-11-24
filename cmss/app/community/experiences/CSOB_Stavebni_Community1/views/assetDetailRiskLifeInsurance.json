@@ -60,6 +60,20 @@
         "type" : "region"
       }, {
         "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:financialOperations",
+          "id" : "b8ac0a51-75ff-4b3e-a727-7d4096ed885a",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "c:relatedAssetsRelatedList",
+          "id" : "57619b6c-ea4e-4b54-8b07-757d470678bc",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
           "componentAttributes" : {
             "relatedListApiName" : "AssetAccountRelations__r",
             "relatedListComponentOverride" : "ADVGRID",

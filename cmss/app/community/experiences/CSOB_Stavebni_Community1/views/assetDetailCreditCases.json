@@ -60,6 +60,20 @@
         "type" : "region"
       }, {
         "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:financialOperations",
+          "id" : "0a6e473a-3637-49ed-a9f1-06fb7b6efa46",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "c:relatedAssetsRelatedList",
+          "id" : "4e6c0e27-f181-4ee2-90ee-d968a93fefe9",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
           "componentAttributes" : {
             "relatedListApiName" : "Loan_Assurances__r",
             "relatedListComponentOverride" : "ADVGRID",
