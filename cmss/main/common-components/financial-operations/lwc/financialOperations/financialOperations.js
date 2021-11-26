@@ -15,7 +15,7 @@ const columns = [
 		}
 	},
 	{ label: 'Název operace', fieldName: 'transactionDescription', type: 'text' },
-	{ label: 'Datum operace', fieldName: 'transactionDateTime', type: 'date' },
+	{ label: 'Datum operace', fieldName: 'transactionDateTime', type: 'date-local' },
 	{ label: 'Jméno odesílatele', fieldName: 'senderReceiverName', type: 'text' },
 	{ label: 'Předčíslí účtu', fieldName: 'senderReceiverAccountPrefix', type: 'text' },
 	{ label: 'Číslo účtu ', fieldName: 'senderReceiverAccountNumber', type: 'text' },
