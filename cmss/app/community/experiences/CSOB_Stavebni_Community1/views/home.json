@@ -96,7 +96,7 @@
   }, {
     "components" : [ {
       "componentAttributes" : {
-        "richTextValue" : "<p><b style=\"color: rgb(8, 151, 234); font-size: 16px;\">Novinky a odkazy</b></p><p><br></p><p><b style=\"color: rgb(0, 0, 0);\">Hodnocení aplikace SalesForce</b></p><p>odkaz pro zadání zpětné vazby, námětů, chyb a připomínek ….<b> </b><a href=\"https://forms.gle/6Z6qYFPkZNAdazt39\" rel=\"noopener noreferrer\" target=\"_blank\">odkaz</a></p><p><br></p><p><b style=\"font-size: 12px; color: rgb(0, 0, 0);\">Všechna infa</b><span style=\"font-size: 12px; color: rgb(0, 0, 0);\"> - </span><a href=\"https://shrprodinternal.cmss.local/sites/edoc/info/Lists/Info/AllItems.aspx\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"font-size: 12px; color: rgb(8, 151, 234);\">odkaz</a></p><p><b style=\"font-size: 12px; color: rgb(0, 0, 0);\">Nejnovější Info</b><span style=\"font-size: 12px; color: rgb(0, 0, 0);\">:</span><span style=\"font-size: 12px; color: rgb(8, 151, 234);\"> </span><a href=\"https://spsprodinternal.cmss.local/sites/edoc/info/Lists/Info/1.%20OZ/2021/INFO_60_2021.docx?d=w08c0f3575e914e7bb70d8c4cf6238d73\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"font-size: 12px; color: rgb(8, 151, 234);\">Info 60/2021</a><span style=\"font-size: 12px; color: rgb(0, 0, 0);\">&nbsp;&nbsp;&nbsp;Úrokové sazby MÚ od 19. 7. 2021</span></p><p><br></p><p><b style=\"font-size: 12px; color: rgb(0, 0, 0);\">Týdenní informace</b><span style=\"font-size: 12px; color: rgb(0, 0, 0);\"> - </span><a href=\"https://spsprodinternal.cmss.local/sites/edoc/docs/Lists/221/T%C3%BDdenn%C3%AD%20informace/2021/T%C3%BDdenn%C3%AD%20informace%202021%20word.docx\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"font-size: 12px; color: rgb(8, 151, 234);\">TI 28/2021</a></p>"
+        "richTextValue" : "<p><b style=\"color: rgb(8, 151, 234);\">Novinky a odkazy</b></p><p><span style=\"color: rgb(107, 109, 112);\">&nbsp;</span></p><p><b style=\"color: black;\">Vítejte v novém CRM</b></p><p><span style=\"color: rgb(107, 109, 112);\">Právě jsme nasadili první fázi</span></p><p><span style=\"color: rgb(107, 109, 112);\">CRM pro manažery a OZ ČSOB Stavební spořitelny. Budeme rádi, pokud systém bude</span></p><p><span style=\"color: rgb(107, 109, 112);\">užitečný pro Vaši práci, na dalších vylepšeních stále pracujeme.</span></p><p><span style=\"color: rgb(107, 109, 112);\">&nbsp;</span></p><p><b style=\"color: rgb(8, 151, 234);\">Podpora</b></p><p><span style=\"color: rgb(107, 109, 112);\">V případě problémů využijte</span></p><p><span style=\"color: rgb(107, 109, 112);\">prosím následující kanály:</span></p><ul><li><b>Pomoc:&nbsp;</b><a href=\"https://csobstavebni.lightning.force.com/visualEditor/crm_podpora@csobstavebni.cz\" rel=\"noopener noreferrer\" target=\"_blank\">crm_podpora@csobstavebni.cz</a></li><li><b>Podpora (nevím, jak na to):&nbsp;</b>225 222 222</li><li><b>Helpdesk (nefunguje to):</b>&nbsp;225 225 333</li></ul><p><b style=\"color: rgb(8, 151, 234);\">Zpětná vazba</b></p><p><span style=\"color: rgb(107, 109, 112);\">Budeme rádi za Vaši zpětnou</span></p><p><span style=\"color: rgb(107, 109, 112);\">vazbu - náměty, připomínky a chyby&nbsp;</span><b style=\"color: rgb(107, 109, 112);\">můžete hlásit přes formulá</b><span style=\"color: rgb(107, 109, 112);\">ř -&nbsp;</span><a href=\"https://forms.gle/utGKuF6dK1Lq2bhh6\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(107, 109, 112);\">odkaz</a></p><p><span style=\"color: rgb(107, 109, 112);\">&nbsp;</span></p><p><span style=\"color: rgb(107, 109, 112);\">Seznam námětů, chyb a</span></p><p><span style=\"color: rgb(107, 109, 112);\">připomínek z pilotního provozu, na kterých pracujeme -&nbsp;</span><a href=\"https://docs.google.com/spreadsheets/d/1F5roxQBSNls0CEmg5VyJvNfimIwGej7iBCrqr0mJEAw/edit#gid=2090414318\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(107, 109, 112);\">odkaz</a></p>"
       },
       "componentName" : "forceCommunity:richTextInline",
       "id" : "5b4bf658-6f6b-4447-95f5-9b793871d6cc",
@@ -104,18 +104,9 @@
       "renditionMap" : { },
       "type" : "component"
     }, {
-      "componentAttributes" : {
-        "canChangeSorting" : false,
-        "defaultFilter" : "",
-        "defaultSortOrderHomeFeed" : "Relevance",
-        "defaultSortOrderTopicsFeed" : "Relevance",
-        "feedDesign" : "BROWSE",
-        "hasFeedSearch" : false,
-        "subjectId" : "",
-        "type" : "Record"
-      },
-      "componentName" : "forceCommunity:forceCommunityFeed",
-      "id" : "b5465cbb-784d-4610-9645-0361d8fdc02e",
+      "componentAttributes" : { },
+      "componentName" : "c:pinnedFeedDisplay",
+      "id" : "23f8efae-4a01-4097-9236-d2a4287dc501",
       "renderPriority" : "HIGHEST",
       "renditionMap" : { },
       "type" : "component"
