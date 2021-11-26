@@ -1,6 +1,4 @@
 import { LightningElement, api, track, wire } from 'lwc';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import search from '@salesforce/apex/SearchController.search';
 const DELAY = 300;
 export default class SearchComponent extends LightningElement {
@@ -16,6 +14,7 @@ export default class SearchComponent extends LightningElement {
 	@api fields = ['Name'];
 	@api displayFields = 'Name, Rating, AccountNumber';
 	@api searchCondition = '';
+	@api subordinateOnly = false; //Applicable only if objName is User
 
 	@track error;
 
@@ -78,7 +77,8 @@ export default class SearchComponent extends LightningElement {
 					objectName: this.objName,
 					fields: this.fields,
 					searchTerm: searchKey,
-					searchCondition: this.searchCondition
+					searchCondition: this.searchCondition,
+					subordinateOnly: this.subordinateOnly
 				})
 					.then((result) => {
 						let stringResult = JSON.stringify(result);
