@@ -43,13 +43,16 @@ export default class RelatedAssetsRelatedList extends LightningElement {
 	@wire(getDataForDataTable, { assetId: '$recordId' })
 	getDataForTable({ data, error }) {
 		if (data) {
-			this.tableData = JSON.parse(data).map((assetRelation) => {
+			this.tableData = JSON.parse(data).map(assetRelation => {
 				const relatedAssetData =
 					assetRelation.AssetId === this.recordId ? assetRelation.RelatedAsset : assetRelation.Asset;
+
 				return {
 					Id: assetRelation.Id,
 					relatedAsset: relatedAssetData.Name,
-					relatedAssetUrl: '/' + relatedAssetData.Id,
+					relatedAssetUrl: window.location.toString().includes('lightning')
+						? '/' + relatedAssetData.Id
+						: '/asset/' + relatedAssetData.Id,
 					clientName: relatedAssetData.Account.Name,
 					clientUrl: '/' + relatedAssetData.Account.Id,
 					productType: assetRelation.ProductTypeAssetId__c,

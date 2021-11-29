@@ -121,7 +121,12 @@ export default class GenericRelatedList extends LightningElement {
 			if (typeof curVal === 'object') {
 				this.flattenStructure(topObject, prefix + '.' + prop, curVal);
 			} else if (prop == 'Id') {
-				topObject[prefix + '.Link'] = '/lightning/r/' + prefix + '/' + curVal + '/view';
+				if (window.location.toString().includes('lightning')) {
+					topObject[prefix + '.Link'] = '/lightning/r/' + prefix + '/' + curVal + '/view';
+				} else {
+					topObject[prefix + '.Link'] =
+						'/s/' + toBeFlattened.attributes.type.toLowerCase() + '/' + curVal + '/view';
+				}
 			} else {
 				topObject[prefix + '.' + prop] = curVal;
 			}
