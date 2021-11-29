@@ -60,15 +60,8 @@
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
-        <label>Lidé</label>
-        <position>9</position>
-        <publiclyAvailable>false</publiclyAvailable>
-        <target>/error</target>
-        <type>InternalLink</type>
-    </navigationMenuItem>
-    <navigationMenuItem>
         <label>Chatter</label>
-        <position>10</position>
+        <position>9</position>
         <publiclyAvailable>false</publiclyAvailable>
         <subMenu>
             <navigationMenuItem>
