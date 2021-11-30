@@ -1,6 +1,6 @@
 public without sharing class SearchController {
-	private static Integer MAX_NUMBER_OF_QUERIED_OBJS = 20;
-	private static Integer Offset = 0;
+	private static final Integer MAX_NUMBER_OF_QUERIED_OBJS = 20;
+	private static Integer offset = 0;
 
 	@AuraEnabled
 	public static List<SObject> search(String objectName, List<String> fields, String searchTerm) {
@@ -24,7 +24,7 @@ public without sharing class SearchController {
 			' LIMIT ' +
 			String.valueOf(MAX_NUMBER_OF_QUERIED_OBJS) +
 			' OFFSET ' +
-			String.valueOf(Offset) +
+			String.valueOf(offset) +
 			')';
 		System.debug('Query ' + query);
 		List<List<SObject>> searchRecords = Search.query(query);
@@ -45,10 +45,8 @@ public without sharing class SearchController {
 
 		Map<Id, UserRole> userRolesMap = new Map<Id, UserRole>([SELECT Id, ParentRoleId FROM UserRole]);
 		String actualUserRoleId = UserInfo.getUserRoleId();
-		Id actualUserProfileId = UserInfo.getProfileId();
-		String actualUserProfileName = [SELECT Name FROM Profile WHERE Id = :actualUserProfileId].Name;
+		Boolean isAdmin = isActualUserAdmin();
 		fields.add('UserRole.ParentRoleId');
-
 		List<SObject> queriedObjects = new List<SObject>();
 		List<User> subordinateUsers = new List<User>();
 		Boolean doQuery = true;
@@ -58,10 +56,7 @@ public without sharing class SearchController {
 			queriedObjects = search(objectName, fields, searchTerm, searchCondition);
 			limitCounter++;
 			for (User user : (List<User>) queriedObjects) {
-				if (
-					actualUserProfileName == 'System Administrator' ||
-					isUserSubordinate(actualUserRoleId, user.UserRole?.ParentRoleId, userRolesMap)
-				) {
+				if (isAdmin || isUserSubordinate(actualUserRoleId, user.UserRole?.ParentRoleId, userRolesMap)) {
 					subordinateUsers.add(user);
 				}
 			}
@@ -72,10 +67,16 @@ public without sharing class SearchController {
 			) {
 				doQuery = false;
 			} else {
-				Offset += MAX_NUMBER_OF_QUERIED_OBJS;
+				offset += MAX_NUMBER_OF_QUERIED_OBJS;
 			}
 		}
 		return subordinateUsers;
+	}
+
+	private static Boolean isActualUserAdmin() {
+		Id actualUserProfileId = UserInfo.getProfileId();
+		String actualUserProfileName = [SELECT Name FROM Profile WHERE Id = :actualUserProfileId].Name;
+		return actualUserProfileName == 'System Administrator';
 	}
 
 	@testVisible
