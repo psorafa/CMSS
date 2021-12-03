@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StateCodeColour__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(  StateCode__c , &quot;1&quot;,  IMAGE(&quot;/resource/AssetStateCodeIcons/kolecko_green.png&quot;, &quot;Aktivní&quot;,16,16), &quot;0&quot;, IMAGE(&quot;/resource/AssetStateCodeIcons/kolecko_red.png&quot;, &quot;Neaktivní&quot;,16,16),&quot;&quot;)</formula>
+    <label>State Code Colour</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

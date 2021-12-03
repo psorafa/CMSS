@@ -2103,6 +2103,11 @@
             <field>PortfolioMgmtA__c</field>
             <table>Account.Assets</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>StateCodeColour__c</field>
+            <table>Account.Assets</table>
+        </columns>
         <masterLabel>Assets</masterLabel>
     </sections>
 </ReportType>

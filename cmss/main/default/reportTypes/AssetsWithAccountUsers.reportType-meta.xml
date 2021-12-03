@@ -2041,6 +2041,11 @@
             <field>PortfolioMgmtA__c</field>
             <table>Asset</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>StateCodeColour__c</field>
+            <table>Asset</table>
+        </columns>
         <masterLabel>Assets</masterLabel>
     </sections>
     <sections>
