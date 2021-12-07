@@ -1,59 +1,66 @@
 <template>
-    <div class="slds-p-bottom_small">
-        <c-asset-related-list 
-            columns="Name, ProductType__c, ProductCloseDate__c, Tariff__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c, HasLoanCaseRelatedAsset__c, Status__c" 
-            condition-assets="(RecordType.DeveloperName = 'BuildingSavings' OR RecordType.DeveloperName = 'CreditAndIntermediateLoan')" 
-            list-name="Stavební spoření a úvěry" 
-            icon-name="standard:asset_object" 
-            record-id={recordId}>
-        </c-asset-related-list>
-    </div>
-    <div class="slds-p-bottom_small">
-        <c-asset-related-list 
-            columns="Name, RequestSignDate__c, CreditAmount__c, CurrentBalance__c, Status__c" 
-            condition-assets="RecordType.DeveloperName = 'CreditCases'" 
-            list-name="Úvěrové případy" 
-            icon-name="" 
-            record-id={recordId}></c-asset-related-list>
-    </div>
-    <div class="slds-p-bottom_small">
-        <c-asset-related-list 
-            columns="Name, RequestSignDate__c, ConfirmationDate__c, InsuranceType__c, DateUpdated__c, Status__c" 
-            condition-assets="RecordType.DeveloperName = 'RiskLifeInsurance'" 
-            list-name="Rizikové životní pojištění" 
-            icon-name="standard:employee_asset" 
-            record-id={recordId}></c-asset-related-list>
-    </div>
-    <div class="slds-p-bottom_small">
-        <c-asset-related-list 
-            columns="Name, RequestSignDate__c, LoanAmount__c, DateUpdated__c, Status__c" 
-            condition-assets="RecordType.DeveloperName = 'Mortgages'" 
-            list-name="Hypoteční úvěry" 
-            icon-name="standard:investment_account" 
-            record-id={recordId}></c-asset-related-list>
-    </div>
-    <div class="slds-p-bottom_small">
-        <c-asset-related-list 
-            columns="ProductType__c, Name, ProductCloseDate__c, CancellationDate__c, CancellationReason__c, DateUpdated__c, AmountRepayment__c, Status__c" 
-            condition-assets="(RecordType.DeveloperName = 'PMO' OR RecordType.DeveloperName = 'InvestmentLifeInsurance')" 
-            list-name="Pojistné produkty" 
-            icon-name="standard:asset_action_source" 
-            record-id={recordId}></c-asset-related-list>
-    </div>
-    <div class="slds-p-bottom_small">
-        <c-asset-related-list 
-            columns="Name, ProductCloseDate__c, DateUpdated__c, AmountRepayment__c, Status__c" 
-            condition-assets="RecordType.DeveloperName = 'PensionProducts'" 
-            list-name="Penzijní produkty" 
-            icon-name="standard:maintenance_asset" 
-            record-id={recordId}></c-asset-related-list>
-    </div>
-    <div class="slds-p-bottom_small">
-        <c-asset-related-list 
-            columns="Name, ProductType__c, ProductSubtype__c, ProductCloseDate__c, DateUpdated__c, Status__c" 
-            condition-assets="RecordType.DeveloperName = 'CSOBCurrentAccount'" 
-            list-name="Běžné a spořící účty" 
-            icon-name="" 
-            record-id={recordId}></c-asset-related-list>
-    </div>
+	<div class="slds-p-bottom_small">
+		<c-asset-related-list
+			columns="StateCodeColour__c, Name, ProductType__c, ProductCloseDate__c, Tariff__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c, HasLoanCaseRelatedAsset__c, Status__c"
+			condition-assets="(RecordType.DeveloperName = 'BuildingSavings' OR RecordType.DeveloperName = 'CreditAndIntermediateLoan')"
+			list-name="Stavební spoření a úvěry"
+			icon-name="standard:asset_object"
+			record-id={recordId}
+		>
+		</c-asset-related-list>
+	</div>
+	<div class="slds-p-bottom_small">
+		<c-asset-related-list
+			columns="StateCodeColour__c, Name, RequestSignDate__c, CreditAmount__c, CurrentBalance__c, Status__c"
+			condition-assets="RecordType.DeveloperName = 'CreditCases'"
+			list-name="Úvěrové případy"
+			icon-name=""
+			record-id={recordId}
+		></c-asset-related-list>
+	</div>
+	<div class="slds-p-bottom_small">
+		<c-asset-related-list
+			columns="StateCodeColour__c, Name, RequestSignDate__c, ConfirmationDate__c, InsuranceType__c, DateUpdated__c, Status__c"
+			condition-assets="RecordType.DeveloperName = 'RiskLifeInsurance'"
+			list-name="Rizikové životní pojištění"
+			icon-name="standard:employee_asset"
+			record-id={recordId}
+		></c-asset-related-list>
+	</div>
+	<div class="slds-p-bottom_small">
+		<c-asset-related-list
+			columns="StateCodeColour__c, Name, RequestSignDate__c, LoanAmount__c, DateUpdated__c, Status__c"
+			condition-assets="RecordType.DeveloperName = 'Mortgages'"
+			list-name="Hypoteční úvěry"
+			icon-name="standard:investment_account"
+			record-id={recordId}
+		></c-asset-related-list>
+	</div>
+	<div class="slds-p-bottom_small">
+		<c-asset-related-list
+			columns="StateCodeColour__c, ProductType__c, Name, ProductCloseDate__c, CancellationDate__c, CancellationReason__c, DateUpdated__c, AmountRepayment__c, Status__c"
+			condition-assets="(RecordType.DeveloperName = 'PMO' OR RecordType.DeveloperName = 'InvestmentLifeInsurance')"
+			list-name="Pojistné produkty"
+			icon-name="standard:asset_action_source"
+			record-id={recordId}
+		></c-asset-related-list>
+	</div>
+	<div class="slds-p-bottom_small">
+		<c-asset-related-list
+			columns="StateCodeColour__c, Name, ProductCloseDate__c, DateUpdated__c, AmountRepayment__c, Status__c"
+			condition-assets="RecordType.DeveloperName = 'PensionProducts'"
+			list-name="Penzijní produkty"
+			icon-name="standard:maintenance_asset"
+			record-id={recordId}
+		></c-asset-related-list>
+	</div>
+	<div class="slds-p-bottom_small">
+		<c-asset-related-list
+			columns="StateCodeColour__c, Name, ProductType__c, ProductSubtype__c, ProductCloseDate__c, DateUpdated__c, Status__c"
+			condition-assets="RecordType.DeveloperName = 'CSOBCurrentAccount'"
+			list-name="Běžné a spořící účty"
+			icon-name=""
+			record-id={recordId}
+		></c-asset-related-list>
+	</div>
 </template>
