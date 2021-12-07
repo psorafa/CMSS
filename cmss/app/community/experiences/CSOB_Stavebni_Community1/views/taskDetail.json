@@ -19,15 +19,15 @@
     "type" : "region"
   }, {
     "components" : [ {
-		"componentAttributes": {
-			"recordId": "{!recordId}"
-		},
-		"componentName": "c:externalLinks",
-		"id": "98a59f88-8203-434d-a4b7-05ce6d7e0620",
-		"renderPriority": "HIGH",
-		"renditionMap": {},
-		"type": "component"
-	}, {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "c:externalLinks",
+      "id" : "98a59f88-8203-434d-a4b7-05ce6d7e0620",
+      "renderPriority" : "HIGH",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
       "componentAttributes" : {
         "tabsetConfig" : {
           "UUID" : "1115f0da-624d-4701-8340-f86e85b83f8f",
