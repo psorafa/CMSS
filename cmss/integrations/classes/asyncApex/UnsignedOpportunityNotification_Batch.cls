@@ -30,7 +30,8 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 					Account.PersonEmail,
 					Account.FirstName,
 					Account.LastName,
-					Account.PortfolioMngmtC__c
+					Account.PortfolioMngmtC__c,
+					OriginalAsset__r.Name
 				FROM Opportunity
 				WHERE
 					Category__c = '7'
@@ -43,8 +44,6 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 
 	public void execute(Database.BatchableContext jobId, List<Opportunity> opportunities) {
 		try {
-			Map<Id, ClientZone__c> associatedClientZones = getAssociatedClientZones(opportunities);
-
 			for (Opportunity opportunity : opportunities) {
 				Integer numberOfDaysFromOppCreation = opportunity.CreatedDateTime__c.date().daysBetween(actualDate);
 				if (VALID_DAYS_FROM_CREATION.contains(numberOfDaysFromOppCreation)) {
@@ -54,10 +53,7 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 							UNSIGNED_CONTRACT_TEMPLATE,
 							opportunity.Account.PersonEmail,
 							new Map<String, String>{
-								'ContractNumber__c' => '' +
-								String.valueOf(
-									associatedClientZones?.get(opportunity.AccountId)?.get('ContractNumber__c')
-								)
+								'ContractNumber__c' => '' + String.valueOf(opportunity?.OriginalAsset__r?.Name)
 							}
 						);
 						userNotificationHandler.handle();
@@ -70,10 +66,7 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 							new Map<String, String>{
 								'ORG_URL' => URL.getSalesforceBaseUrl().toExternalForm(),
 								'CreatedDateTime__c' => opportunity.CreatedDateTime__c.format('dd. MM. yyyy'),
-								'ContractNumber__c' => '' +
-								String.valueOf(
-									associatedClientZones?.get(opportunity.AccountId)?.get('ContractNumber__c')
-								)
+								'ContractNumber__c' => '' + String.valueOf(opportunity?.OriginalAsset__r?.Name)
 							}
 						);
 						ownerNotificationHandler.handle();
@@ -86,26 +79,6 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 		} finally {
 			Logger.saveLogs();
 		}
-	}
-
-	private Map<Id, ClientZone__c> getAssociatedClientZones(List<Opportunity> opportunities) {
-		List<Id> accountIds = new List<Id>();
-		for (Opportunity opportunity : opportunities) {
-			accountIds.add(opportunity.AccountId);
-		}
-
-		Map<Id, ClientZone__c> accountsToClientZones = new Map<Id, ClientZone__c>();
-		List<ClientZone__c> clientZones = [
-			SELECT ContractNumber__c, Account__c
-			FROM ClientZone__c
-			WHERE Account__c IN :accountIds
-		];
-
-		for (ClientZone__c zone : clientZones) {
-			accountsToClientZones.put(zone.Account__c, zone);
-		}
-
-		return accountsToClientZones;
 	}
 
 	public void finish(Database.BatchableContext jobId) {
