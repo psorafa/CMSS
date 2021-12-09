@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Property_and_liability_insurance</fullName>
+    <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
     <columns>PersonalIdentificationNr__c</columns>
     <columns>ACCOUNT.NAME</columns>
