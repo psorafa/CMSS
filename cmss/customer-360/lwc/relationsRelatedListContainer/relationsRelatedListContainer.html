@@ -1,24 +1,14 @@
 <template>
-    <div class="slds-p-bottom_small">
-        <c-filterable-related-list 
-            record-id={recordId}
-            child-object-name="AccountRelation__c"
-            parent-field-name="Account__c"
-            columns="Name, RelatedAccount__c, RelatedAccountRole__c, ValidFrom__c, ValidTo__c, SystemId__c"
-            list-name="Osobní vztahy"
-            condition="IsActive__c = true"
-            icon-name="standard:person_account">
-        </c-filterable-related-list>
-    </div>
-    <div class="slds-p-bottom_small">
-        <c-filterable-related-list 
-            record-id={recordId}
-            child-object-name="AssetAccountRelation__c"
-            parent-field-name="Account__c"
-            columns="Name, Asset__c, ProductType__c, RelationType__c, ValidFrom__c, SystemId__c"
-            list-name="Vedlejší role klienta na smlouvách"
-            condition=""
-            icon-name="standard:employee_asset">
-        </c-filterable-related-list>
-    </div>
+	<div class="slds-p-bottom_small">
+		<c-filterable-related-list
+			record-id={recordId}
+			child-object-name="AccountRelation__c"
+			parent-field-name="Account__c"
+			columns="Name, RelatedAccount__c, RelatedAccountRole__c, ValidFrom__c, ValidTo__c, SystemId__c"
+			list-name="Osobní vztahy"
+			condition="IsActive__c = true"
+			icon-name="standard:person_account"
+		>
+		</c-filterable-related-list>
+	</div>
 </template>

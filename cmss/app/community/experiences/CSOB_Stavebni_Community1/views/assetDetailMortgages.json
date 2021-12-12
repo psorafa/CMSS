@@ -61,6 +61,22 @@
       }, {
         "components" : [ {
           "componentAttributes" : {
+            "fieldLabels" : "Název vztahu, Jméno klienta, Typ vztahu, Vyvazován, Platnost od, Platnost do,  Datum úpravy",
+            "fieldsToDisplay" : "Name, Account__c, RelationType__c, IsReleased__c, ValidFrom__c, ValidTo__c,  DateUpdated__c",
+            "iconName" : "standard:asset_relationship",
+            "label" : "Klienti navázaní na smlouvu",
+            "recordId" : "{!recordId}",
+            "relationPrimaryLookupField" : "Asset__c",
+            "relationSecondaryLookupField" : "Account__c",
+            "relationshipObjectName" : "AssetAccountRelation__c",
+            "sharingEnabled" : true
+          },
+          "componentName" : "c:relatedListWithSharing",
+          "id" : "1b927e42-1403-42fd-a049-f5b0d8a75163",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
             "relatedListApiName" : "AssetAccountRelations__r",
             "relatedListComponentOverride" : "ADVGRID",
             "width" : "MEDIUM"

@@ -305,13 +305,6 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Account.NAME</fields>
-        <fields>AssetsProductType__c</fields>
-        <fields>RelationType__c</fields>
-        <relatedList>AssetAccountRelation__c.Asset__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>CreditContractNumber__c</fields>
         <fields>HouseholdRestrictedInBenefits__c</fields>
         <fields>HouseholdRestrictedAmount__c</fields>
@@ -355,7 +348,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h3O000000o85h</masterLabel>
+        <masterLabel>00h5E000001J56y</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

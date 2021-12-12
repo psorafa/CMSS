@@ -252,26 +252,38 @@
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
-                <name>childObjectName</name>
-                <value>AssetAccountRelation__c</value>
+                <name>fieldLabels</name>
+                <value>Název vztahu, Smlouva, Typ produktu,Typ vztahu, Vyvazován, Platnost od, Platnost do,  Datum úpravy</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>columns</name>
-                <value>Name, Asset__c, ProductType__c, RelationType__c, ValidFrom__c, SystemId__c</value>
+                <name>fieldsToDisplay</name>
+                <value>Name, Asset__c, AssetsProductType__c, RelationType__c, IsReleased__c, ValidFrom__c, ValidTo__c,  DateUpdated__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>iconName</name>
-                <value>standard:employee_asset</value>
+                <value>standard:asset_relationship</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>listName</name>
-                <value>Vedlejší role klienta na smlouvách</value>
+                <name>label</name>
+                <value>Smlouvy s vazbou na klienta</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>parentFieldName</name>
+                <name>relationPrimaryLookupField</name>
                 <value>Account__c</value>
             </componentInstanceProperties>
-            <componentName>filterableRelatedList</componentName>
+            <componentInstanceProperties>
+                <name>relationSecondaryLookupField</name>
+                <value>Asset__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationshipObjectName</name>
+                <value>AssetAccountRelation__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>sharingEnabled</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>relatedListWithSharing</componentName>
         </componentInstances>
         <name>Facet-91021b20-fca5-4cce-b38d-7f8c9f626ed0</name>
         <type>Facet</type>

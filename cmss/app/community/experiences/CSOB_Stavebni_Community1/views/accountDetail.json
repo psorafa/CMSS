@@ -158,6 +158,22 @@
           "id" : "1934fb46-47ee-4cb7-884c-218eb6634f09",
           "renditionMap" : { },
           "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "fieldLabels" : "Název vztahu, Smlouva, Typ produktu,Typ vztahu, Vyvazován, Platnost od, Platnost do,  Datum úpravy",
+            "fieldsToDisplay" : "Name, Asset__c, AssetsProductType__c, RelationType__c, IsReleased__c, ValidFrom__c, ValidTo__c,  DateUpdated__c",
+            "iconName" : "standard:asset_relationship",
+            "label" : "Smlouvy s vazbou na klienta",
+            "recordId" : "{!recordId}",
+            "relationPrimaryLookupField" : "Account__c",
+            "relationSecondaryLookupField" : "Asset__c",
+            "relationshipObjectName" : "AssetAccountRelation__c",
+            "sharingEnabled" : true
+          },
+          "componentName" : "c:relatedListWithSharing",
+          "id" : "6f65101f-8532-444c-a8b5-061539861a9d",
+          "renditionMap" : { },
+          "type" : "component"
         } ],
         "id" : "b10b6be0-9722-43e2-acee-92a4f0deee2e",
         "regionLabel" : "Vztahy",
@@ -272,15 +288,15 @@
     "type" : "region"
   }, {
     "components" : [ {
-		"componentAttributes": {
-			"recordId": "{!recordId}"
-		},
-		"componentName": "c:externalLinks",
-		"id": "6bac2893-7b9f-48b2-b38e-8034b8c62264",
-		"renderPriority": "HIGH",
-		"renditionMap": {},
-		"type": "component"
-	}, {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "c:externalLinks",
+      "id" : "6bac2893-7b9f-48b2-b38e-8034b8c62264",
+      "renderPriority" : "HIGH",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
       "componentAttributes" : {
         "recordId" : "{!recordId}"
       },

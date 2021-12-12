@@ -112,6 +112,41 @@
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
+                <name>fieldLabels</name>
+                <value>Název vztahu, Jméno klienta, Typ vztahu, Vyvazován, Platnost od, Platnost do,  Datum úpravy</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>fieldsToDisplay</name>
+                <value>Name, Account__c, RelationType__c, IsReleased__c, ValidFrom__c, ValidTo__c,  DateUpdated__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>standard:asset_relationship</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>label</name>
+                <value>Klienti navázaní na smlouvu</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationPrimaryLookupField</name>
+                <value>Asset__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationSecondaryLookupField</name>
+                <value>Account__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationshipObjectName</name>
+                <value>AssetAccountRelation__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>sharingEnabled</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>relatedListWithSharing</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>
                 <value>ADVGRID</value>
             </componentInstanceProperties>

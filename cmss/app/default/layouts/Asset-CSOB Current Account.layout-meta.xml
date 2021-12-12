@@ -231,16 +231,6 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Account.NAME</fields>
-        <fields>RelationType__c</fields>
-        <fields>ProductId__c</fields>
-        <fields>YearInsurance__c</fields>
-        <fields>ValidFrom__c</fields>
-        <fields>ValidTo__c</fields>
-        <relatedList>AssetAccountRelation__c.Asset__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>CreditContractNumber__c</fields>
         <fields>HouseholdRestrictedInBenefits__c</fields>
         <fields>HouseholdRestrictedAmount__c</fields>
