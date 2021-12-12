@@ -2,6 +2,7 @@ import { LightningElement, track, api, wire } from 'lwc';
 import getIntegrationSettings from '@salesforce/apex/ExternalLinksController.getIntegrationSettings';
 import getClientGlobalId from '@salesforce/apex/ExternalLinksController.getClientGlobalId';
 import getObjectApiName from '@salesforce/apex/ExternalLinksController.getObjectApiName';
+import LogoImg from '@salesforce/resourceUrl/LogoImg';
 
 export default class ExternalLinks extends LightningElement {
 	@api objectApiName;
@@ -14,6 +15,9 @@ export default class ExternalLinks extends LightningElement {
 	integrationSettings;
 
 	@track showModal = false;
+
+	nel = LogoImg + '/LogoImg/NEL_logo.PNG';
+	zeus = LogoImg + '/LogoImg/ZEUS_logo.PNG';
 
 	get baseUrls() {
 		return this.integrationSettings.data;
@@ -78,7 +82,7 @@ export default class ExternalLinks extends LightningElement {
 			this.baseUrls.CasselBaseUrl__c +
 				'/cas/login?domain=cmss&service=' +
 				this.baseUrls.ZeusBaseUrl__c +
-				'/zeus-rest/redirect;ZEUS;_blank',
+				'/zeus-rest/redirect',
 			'_blank'
 		);
 	}
