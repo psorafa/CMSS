@@ -40,6 +40,9 @@ public without sharing class RelatedListWithSharingController {
 				if (objName == 'Account__c' || objName == 'Asset__c') {
 					objName = objName.replace('__c', '');
 				}
+				if (objName == 'RelatedAccount__c') {
+					ObjName = 'Account';
+				}
 				fieldName = lookupFieldDivision[lookupFieldDivision.size() - 1];
 			}
 

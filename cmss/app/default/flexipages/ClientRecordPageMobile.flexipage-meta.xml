@@ -225,30 +225,38 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>childObjectName</name>
-                <value>AccountRelation__c</value>
+                <name>fieldLabels</name>
+                <value>Název, Vztah k osobě, Typ vztahu, Klientská zóna, Platnost od, Platnost do, Datum aktualizace</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>columns</name>
-                <value>Name, RelatedAccount__c, RelatedAccountRole__c, ValidFrom__c, ValidTo__c, SystemId__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>condition</name>
-                <value>IsActive__c = true</value>
+                <name>fieldsToDisplay</name>
+                <value>Name, RelatedAccount__c, RelatedAccountRole__c, ClientZoneID__c, ValidFrom__c, ValidTo__c, DateUpdated__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>iconName</name>
                 <value>standard:person_account</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>listName</name>
+                <name>label</name>
                 <value>Osobní vztahy</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>parentFieldName</name>
+                <name>relationPrimaryLookupField</name>
                 <value>Account__c</value>
             </componentInstanceProperties>
-            <componentName>filterableRelatedList</componentName>
+            <componentInstanceProperties>
+                <name>relationSecondaryLookupField</name>
+                <value>RelatedAccount__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationshipObjectName</name>
+                <value>AccountRelation__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>sharingEnabled</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>relatedListWithSharing</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>

@@ -23,7 +23,7 @@ public class ColumnDTOsBuilder {
 
 			List<String> lookupFieldDivision = fieldName.split('\\.');
 			if (lookupFieldDivision.size() > 1) {
-				objName = lookupFieldDivision[lookupFieldDivision.size() - 2].replace('__c', '__r');
+				objName = lookupFieldDivision[lookupFieldDivision.size() - 2].replace('__r', '__c');
 				fieldName = lookupFieldDivision[lookupFieldDivision.size() - 1];
 			}
 
