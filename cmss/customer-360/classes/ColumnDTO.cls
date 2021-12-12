@@ -16,6 +16,7 @@ public class ColumnDTO {
 		@AuraEnabled public String year;
 		@AuraEnabled public String hour;
 		@AuraEnabled public String minute;
+		@AuraEnabled public String variant;
 	}
 
 	public class LabelDTO {

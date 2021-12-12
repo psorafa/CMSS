@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>        
+        <target>lightningCommunity__Default</target>
+        <target>lightningCommunity__Page</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage, lightning__AppPage">
+            <property name="label" label= "Label" type="String"/>
+            <property name="sharingEnabled" label= "Sharing Enabled" type="Boolean" default="true" />
+            <property name="relationshipObjectName" label= "Relationship Object Name" type="String" description="Eg. AccountRelation__c"/>
+            <property name="relationPrimaryLookupField" label= "Relation Primary Lookup Field" type="String" description="For AccountRelation__c it would be Account__c"/>
+            <property name="relationSecondaryLookupField" label= "Relation Secondary Lookup Field" type="String" description="For AccountRelation__c it would be RelatedAccount__c"/>
+            <property name="fieldsToDisplay" label= "Fields To Display" type="String" description="Fields separated by comma"/>
+            <property name="fieldLabels" label= "Field Labels" type="String" description="Field labels separated by comma in requested order"/>
+            <property name="iconName" label= "Icon Name" type="String" default="standard:asset_relationship"/>
+            <supportedFormFactors>
+                <supportedFormFactor type="Small" />
+                <supportedFormFactor type="Large" />
+            </supportedFormFactors>        
+        </targetConfig>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="recordId" label= "RecordId" type="String" default="{!recordId}"/>
+            <property name="label" label= "Label" type="String"/>
+            <property name="sharingEnabled" label= "Sharing Enabled" type="Boolean" default="true" />
+            <property name="relationshipObjectName" label= "Relationship Object Name" type="String" description="Eg. AccountRelation__c"/>
+            <property name="relationPrimaryLookupField" label= "Relation Primary Lookup Field" type="String" description="For AccountRelation__c it would be Account__c"/>
+            <property name="relationSecondaryLookupField" label= "Relation Secondary Lookup Field" type="String" description="For AccountRelation__c it would be RelatedAccount__c"/>
+            <property name="fieldsToDisplay" label= "Fields To Display" type="String" description="Fields separated by comma"/>
+            <property name="fieldLabels" label= "Field Labels" type="String" description="Field labels separated by comma in requested order"/>
+            <property name="iconName" label= "Icon Name" type="String" default="standard:asset_relationship"/>
+      </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

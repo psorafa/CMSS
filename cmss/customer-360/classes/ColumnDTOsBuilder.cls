@@ -11,17 +11,40 @@ public class ColumnDTOsBuilder {
 	private List<ColumnDTO> columns = new List<ColumnDTO>();
 
 	public ColumnDTOsBuilder(String sObjectName, List<String> fields) {
-		for (String fieldName : fields) {
-			fieldName = fieldName.trim();
-			DescribeFieldResult descr = SchemaUtil.describeField(sObjectName, fieldName);
+		this(sObjectName, fields, false);
+	}
+
+	public ColumnDTOsBuilder(String sObjectName, List<String> fields, Boolean referenceAsButton) {
+		for (String fieldWholeName : fields) {
+			fieldWholeName = fieldWholeName.trim();
+
+			String fieldName = fieldWholeName;
+			String objName = sObjectName;
+
+			List<String> lookupFieldDivision = fieldName.split('\\.');
+			if (lookupFieldDivision.size() > 1) {
+				objName = lookupFieldDivision[lookupFieldDivision.size() - 2];
+				fieldName = lookupFieldDivision[lookupFieldDivision.size() - 1];
+			}
+
+			DescribeFieldResult descr = SchemaUtil.describeField(objName, fieldName);
+
 			if (descr.getType() == DisplayType.REFERENCE) {
-				columns.add(buildLinkColumn(descr));
+				if (referenceAsButton) {
+					columns.add(buildButtonColumn(descr, fieldWholeName));
+				} else {
+					columns.add(buildLinkColumn(descr));
+				}
 			} else if (descr.getType() == DisplayType.DATE) {
 				columns.add(buildDateColumn(descr));
 			} else if (descr.getType() == DisplayType.DATETIME) {
 				columns.add(buildDatetimeColumn(descr));
 			} else if (descr.isNameField()) {
-				columns.add(buildSelfLinkColumn(descr));
+				if (referenceAsButton) {
+					columns.add(buildButtonColumn(descr, fieldWholeName));
+				} else {
+					columns.add(buildSelfLinkColumn(descr));
+				}
 			} else {
 				columns.add(buildColumn(descr));
 			}
@@ -55,7 +78,10 @@ public class ColumnDTOsBuilder {
 		col.hideDefaultActions = true;
 		col.typeAttributes = new ColumnDTO.TypeAttributesDTO();
 		col.typeAttributes.label = new ColumnDTO.LabelDTO();
-		col.typeAttributes.label.fieldName = relationshipName + '.' + SchemaUtil.getNameField(descr.getReferenceTo().get(0));
+		col.typeAttributes.label.fieldName =
+			relationshipName +
+			'.' +
+			SchemaUtil.getNameField(descr.getReferenceTo().get(0));
 		return col;
 	}
 
@@ -85,12 +111,24 @@ public class ColumnDTOsBuilder {
 		return col;
 	}
 
+	private ColumnDTO buildButtonColumn(DescribeFieldResult descr, String fieldWholeName) {
+		ColumnDTO col = new ColumnDTO();
+
+		col.label = descr.getLabel();
+		col.type = 'button';
+		col.typeAttributes = new ColumnDTO.TypeAttributesDTO();
+		col.typeAttributes.variant = 'base';
+		col.typeAttributes.label = new ColumnDTO.LabelDTO();
+		col.typeAttributes.label.fieldName = descr.getName() == fieldWholeName
+			? descr.getRelationshipName() + '.Name'
+			: fieldWholeName;
+		return col;
+	}
+
 	private String convertDisplayTypeToColumnType(DisplayType displayType) {
 		if (typesConversionMap.containsKey(displayType)) {
 			return typesConversionMap.get(displayType);
 		}
 		return 'text';
 	}
-
-
 }
