@@ -152,16 +152,17 @@
       }, {
         "components" : [ {
           "componentAttributes" : {
-            "fieldLabels" : "Název, Vztah k osobě, Typ vztahu, Klientská zóna, Platnost od, Platnost do, Datum aktualizace",
-            "fieldsToDisplay" : "Name, RelatedAccount__c, RelatedAccountRole__c, ClientZoneID__c, ValidFrom__c, ValidTo__c, DateUpdated__c",
-            "iconName" : "standard:person_account",
-            "label" : "Osobní vztahy",
-            "recordId" : "{!recordId}",
-            "relationPrimaryLookupField" : "Account__c",
-            "relationSecondaryLookupField" : "RelatedAccount__c",
-            "relationshipObjectName" : "AccountRelation__c",
-            "sharingEnabled" : true
-          },
+			"fieldLabels": "Název, Vztah k osobě, Typ vztahu, Klientská zóna, Platnost od, Platnost do, Datum aktualizace",
+			"fieldsToDisplay": "Name, RelatedAccount__c, RelatedAccountRole__c, ClientZoneID__c, ValidFrom__c, ValidTo__c, DateUpdated__c",
+				"iconName": "standard:person_account",
+				"condition": "IsActive=true",
+				"label": "Osobní vztahy",
+				"recordId": "{!recordId}",
+				"relationPrimaryLookupField": "Account__c",
+				"relationSecondaryLookupField": "RelatedAccount__c",
+				"relationshipObjectName": "AccountRelation__c",
+				"sharingEnabled": true
+			},
           "componentName" : "c:relatedListWithSharing",
           "id" : "940bdccf-e8d2-4eac-8fe2-6670d533152d",
           "renditionMap" : { },

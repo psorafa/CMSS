@@ -17,6 +17,7 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 	@api fieldsToDisplay = '';
 	@api fieldLabels = '';
 	@api iconName;
+	@api condition;
 
 	tableData;
 	tableColumns;
@@ -50,6 +51,7 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 			sObjectName: this.relationshipObjectName,
 			fieldsToShow: this.fieldsToDisplay.split(','),
 			condition:
+				' (' +
 				this.relationPrimaryLookupField +
 				" = '" +
 				this.recordId +
@@ -57,7 +59,8 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 				this.relationSecondaryLookupField +
 				" = '" +
 				this.recordId +
-				"'",
+				"') " +
+				(this.condition ? ' AND ' + this.condition : ''),
 			recordId: this.recordId,
 			primaryRelationField: this.relationPrimaryLookupField,
 			secondaryRelationField: this.relationSecondaryLookupField

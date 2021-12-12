@@ -231,6 +231,10 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>condition</name>
+                <value>IsActive__c = true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>fieldLabels</name>
                 <value>Název, Vztah k osobě, Typ vztahu, Klientská zóna, Platnost od, Platnost do, Datum aktualizace</value>
             </componentInstanceProperties>

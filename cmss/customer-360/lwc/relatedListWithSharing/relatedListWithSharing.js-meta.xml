@@ -18,6 +18,7 @@
             <property name="fieldsToDisplay" label= "Fields To Display" type="String" description="Fields separated by comma"/>
             <property name="fieldLabels" label= "Field Labels" type="String" description="Field labels separated by comma in requested order"/>
             <property name="iconName" label= "Icon Name" type="String" default="standard:asset_relationship"/>
+            <property name="condition" label= "Aditional condition" type="String" />
             <supportedFormFactors>
                 <supportedFormFactor type="Small" />
                 <supportedFormFactor type="Large" />
@@ -33,6 +34,7 @@
             <property name="fieldsToDisplay" label= "Fields To Display" type="String" description="Fields separated by comma"/>
             <property name="fieldLabels" label= "Field Labels" type="String" description="Field labels separated by comma in requested order"/>
             <property name="iconName" label= "Icon Name" type="String" default="standard:asset_relationship"/>
+            <property name="condition" label= "Aditional condition" type="String" />
       </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
