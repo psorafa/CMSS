@@ -67,10 +67,18 @@
           "type" : "component"
         }, {
           "componentAttributes" : {
-            "recordId" : "{!recordId}"
+            "fieldLabels" : "Navázaná smlouva,Typ produktu,Typ vztahu,Klient navázané smlouvy,Platnost od,Platnost do",
+            "fieldsToDisplay" : "RelatedAssetId, ProductTypeAssetId__c, RelationshipType, RelatedAsset.Account.Name, FromDate, ToDate",
+            "iconName" : "standard:asset_relationship",
+            "label" : "Navázané smlouvy",
+            "recordId" : "{!recordId}",
+            "relationPrimaryLookupField" : "AssetId",
+            "relationSecondaryLookupField" : "RelatedAssetId",
+            "relationshipObjectName" : "AssetRelationship",
+            "sharingEnabled" : true
           },
-          "componentName" : "c:relatedAssetsRelatedList",
-          "id" : "b82a6b10-3b83-4f87-a1f5-a44d2dd60ce3",
+          "componentName" : "c:relatedListWithSharing",
+          "id" : "f40f7db3-2aff-4bce-ad3c-ef4b020abf40",
           "renditionMap" : { },
           "type" : "component"
         }, {
