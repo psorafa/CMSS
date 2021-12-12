@@ -36,7 +36,10 @@ public without sharing class RelatedListWithSharingController {
 			List<String> lookupFieldDivision = fieldName.split('\\.');
 
 			if (lookupFieldDivision.size() > 1) {
-				objName = lookupFieldDivision[lookupFieldDivision.size() - 2].removeEnd('Id');
+				objName = lookupFieldDivision[lookupFieldDivision.size() - 2].removeEnd('Id').replace('__r', '__c');
+				if (objName == 'Account__c' || objName == 'Asset__c') {
+					objName = objName.replace('__c', '');
+				}
 				fieldName = lookupFieldDivision[lookupFieldDivision.size() - 1];
 			}
 
@@ -66,13 +69,19 @@ public without sharing class RelatedListWithSharingController {
 		List<String> aditionalFields = new List<String>();
 		aditionalFields.add(relationFieldName);
 		String accountfield = getAccountFieldName(getFieldTypeName(sObjectName, relationFieldName));
-		aditionalFields.add(relationFieldName.replace('__c', '__r').removeEnd('Id') + '.' + accountfield);
-		aditionalFields.add(
-			relationFieldName.replace('__c', '__r').removeEnd('Id') +
-			'.' +
-			accountfield.replace('__c', '__r').removeEnd('Id') +
-			'.Name'
-		);
+
+		if (accountfield == 'Id') {
+			aditionalFields.add(relationFieldName.replace('__c', '__r').removeEnd('Id') + '.' + accountfield);
+		} else {
+			aditionalFields.add(relationFieldName.replace('__c', '__r').removeEnd('Id') + '.' + accountfield);
+			aditionalFields.add(
+				relationFieldName.replace('__c', '__r').removeEnd('Id') +
+				'.' +
+				accountfield.replace('__c', '__r').removeEnd('Id') +
+				'.Name'
+			);
+		}
+
 		return aditionalFields;
 	}
 
@@ -118,6 +127,9 @@ public without sharing class RelatedListWithSharingController {
 	}
 
 	private static String getAccountFieldName(String sObjectTypeName) {
+		if (sObjectTypeName == 'Account') {
+			return 'Id';
+		}
 		String accountField;
 		try {
 			Map<String, Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe();

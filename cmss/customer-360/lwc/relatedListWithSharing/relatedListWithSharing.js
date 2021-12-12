@@ -40,6 +40,7 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 						});
 					}
 				}
+				console.log('columns: ', this.tableColumns);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -65,6 +66,7 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 				if (data) {
 					this.tableData = this.processData(data);
 				}
+				console.log('data: ', this.tableData);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -134,9 +136,12 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 		var clickedFieldName = splitedName.length === 1 ? splitedName[0] : splitedName[splitedName.length - 2];
 		clickedFieldName = clickedFieldName.endsWith('__r') ? clickedFieldName.replace('__r', '__c') : clickedFieldName;
 		splitedName.pop();
-		var objectRelation = splitedName.join('.');
+		var objectRelation = splitedName.join('.') + '';
 		if (objectRelation.endsWith('Asset') || objectRelation.endsWith('Account')) {
 			objectRelation = objectRelation + 'Id';
+		}
+		if (splitedName.length === 0) {
+			objectRelation = 'Id';
 		}
 		var clickedObjId = event.detail.row[objectRelation].replaceAll('/', '').replaceAll('\\', '');
 

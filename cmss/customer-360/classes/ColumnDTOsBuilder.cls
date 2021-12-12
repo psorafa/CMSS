@@ -23,7 +23,7 @@ public class ColumnDTOsBuilder {
 
 			List<String> lookupFieldDivision = fieldName.split('\\.');
 			if (lookupFieldDivision.size() > 1) {
-				objName = lookupFieldDivision[lookupFieldDivision.size() - 2];
+				objName = lookupFieldDivision[lookupFieldDivision.size() - 2].replace('__c', '__r');
 				fieldName = lookupFieldDivision[lookupFieldDivision.size() - 1];
 			}
 
@@ -119,7 +119,8 @@ public class ColumnDTOsBuilder {
 		col.typeAttributes = new ColumnDTO.TypeAttributesDTO();
 		col.typeAttributes.variant = 'base';
 		col.typeAttributes.label = new ColumnDTO.LabelDTO();
-		col.typeAttributes.label.fieldName = descr.getName() == fieldWholeName
+		col.typeAttributes.label.fieldName = descr.getName() == fieldWholeName &&
+			descr.getRelationshipName() != null
 			? descr.getRelationshipName() + '.Name'
 			: fieldWholeName;
 		return col;
