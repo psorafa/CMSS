@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
         <apexClass>APRD__ObjectDetailController</apexClass>
@@ -41,11 +41,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>SearchController</apexClass>
+        <apexClass>RelatedAssetsRelatedListController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>RelatedAssetsRelatedListController</apexClass>
+        <apexClass>SearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <description>CMSS uživatel centrály</description>
@@ -1872,6 +1872,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset.SubveneTotalSum__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset.Surname__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
