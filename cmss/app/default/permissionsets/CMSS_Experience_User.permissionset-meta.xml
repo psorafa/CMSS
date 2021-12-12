@@ -40,6 +40,10 @@
         <apexClass>RelatedAssetsRelatedListController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>RelatedListWithSharingController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>Uživatel Community</description>
     <fieldPermissions>
         <editable>false</editable>
