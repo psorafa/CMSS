@@ -28,23 +28,12 @@ public without sharing class RelatedListWithSharingController {
 
 	private static Set<String> convertFields(List<String> fieldsList, String sObjectName) {
 		Set<String> fieldsSet = new Set<String>();
+
 		for (String fieldWholeName : fieldsList) {
 			fieldWholeName = fieldWholeName.trim();
 
-			String fieldName = fieldWholeName;
-			String objName = sObjectName.removeEnd('Id');
-			List<String> lookupFieldDivision = fieldName.split('\\.');
-
-			if (lookupFieldDivision.size() > 1) {
-				objName = lookupFieldDivision[lookupFieldDivision.size() - 2].removeEnd('Id').replace('__r', '__c');
-				if (objName == 'Account__c' || objName == 'Asset__c') {
-					objName = objName.replace('__c', '');
-				}
-				if (objName == 'RelatedAccount__c') {
-					ObjName = 'Account';
-				}
-				fieldName = lookupFieldDivision[lookupFieldDivision.size() - 1];
-			}
+			String fieldName = convertFieldName(fieldWholeName);
+			String objName = convertObjectName(fieldWholeName, sObjectName);
 
 			DescribeFieldResult descr = SchemaUtil.describeField(objName, fieldName);
 			if (descr.getType() == DisplayType.REFERENCE && fieldWholeName == fieldName) {
@@ -58,6 +47,34 @@ public without sharing class RelatedListWithSharingController {
 			}
 		}
 		return fieldsSet;
+	}
+
+	private static String convertFieldName(String fieldWholeName) {
+		String resultFieldName = fieldWholeName;
+		List<String> lookupFieldDivision = fieldWholeName.split('\\.');
+
+		if (lookupFieldDivision.size() > 1) {
+			resultFieldName = lookupFieldDivision[lookupFieldDivision.size() - 1];
+		}
+		return resultFieldName;
+	}
+
+	private static String convertObjectName(String fieldName, String sObjectName) {
+		String resultObjectName = sObjectName.removeEnd('Id');
+		List<String> lookupFieldDivision = fieldName.split('\\.');
+
+		if (lookupFieldDivision.size() > 1) {
+			resultObjectName = lookupFieldDivision[lookupFieldDivision.size() - 2]
+				.removeEnd('Id')
+				.replace('__r', '__c');
+			if (resultObjectName == 'Account__c' || resultObjectName == 'RelatedAccount__c') {
+				resultObjectName = 'Account';
+			}
+			if (resultObjectName == 'Asset__c') {
+				resultObjectName = 'Asset';
+			}
+		}
+		return resultObjectName;
 	}
 
 	private static String prepareSOQL(String objectName, Set<String> fields, String condition) {
