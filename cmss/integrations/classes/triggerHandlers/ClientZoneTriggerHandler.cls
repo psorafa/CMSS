@@ -94,16 +94,18 @@ public class ClientZoneTriggerHandler extends TriggerHandler {
 		List<Account> accounts = new List<Account>();
 		Map<Id, Account> accountById = getAccountById(accountIds);
 		for (Id acc : accountIds) {
+			//continue when account shouldnt be changed
+			if (
+				clientZoneByAccountId.containsKey(acc) &&
+				clientZoneByAccountId.get(acc).Id == accountById.get(acc).ClientZonewithLatestAgreementDate__c &&
+				clientZoneByAccountId.get(acc).Role__c == accountById.get(acc).ClientZoneAccess__c
+			) {
+				continue;
+			}
 			Account a = new Account();
 			a.Id = acc;
 			if (clientZoneByAccountId.containsKey(acc)) {
 				Clientzone__c cz = clientZoneByAccountId.get(acc);
-				if (
-					cz.Id == accountById.get(acc).ClientZonewithLatestAgreementDate__c &&
-					cz.Role__c == accountById.get(acc).ClientZoneAccess__c
-				) {
-					continue;
-				}
 				a.ClientZonewithLatestAgreementDate__c = cz.Id;
 				a.ClientZoneAccess__c = cz.Role__c;
 			} else {
