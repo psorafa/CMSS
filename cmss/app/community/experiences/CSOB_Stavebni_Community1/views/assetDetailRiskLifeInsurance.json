@@ -67,10 +67,34 @@
           "type" : "component"
         }, {
           "componentAttributes" : {
-            "recordId" : "{!recordId}"
+            "fieldLabels" : "Navázaná smlouva,Typ produktu,Typ vztahu,Klient navázané smlouvy,Platnost od,Platnost do",
+            "fieldsToDisplay" : "RelatedAssetId, ProductTypeAssetId__c, RelationshipType, RelatedAsset.Account.Name, FromDate, ToDate",
+            "iconName" : "standard:asset_relationship",
+            "label" : "Navázané smlouvy",
+            "recordId" : "{!recordId}",
+            "relationPrimaryLookupField" : "AssetId",
+            "relationSecondaryLookupField" : "RelatedAssetId",
+            "relationshipObjectName" : "AssetRelationship",
+            "sharingEnabled" : true
           },
-          "componentName" : "c:relatedAssetsRelatedList",
-          "id" : "57619b6c-ea4e-4b54-8b07-757d470678bc",
+          "componentName" : "c:relatedListWithSharing",
+          "id" : "750ed4ff-b750-4aba-b278-0efbcd0e7f7c",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "fieldLabels" : "Název vztahu, Jméno klienta, Typ vztahu, Vyvazován, Platnost od, Platnost do,  Datum úpravy",
+            "fieldsToDisplay" : "Name, Account__c, RelationType__c, IsReleased__c, ValidFrom__c, ValidTo__c,  DateUpdated__c",
+            "iconName" : "standard:asset_relationship",
+            "label" : "Klienti navázaní na smlouvu",
+            "recordId" : "{!recordId}",
+            "relationPrimaryLookupField" : "Asset__c",
+            "relationSecondaryLookupField" : "Account__c",
+            "relationshipObjectName" : "AssetAccountRelation__c",
+            "sharingEnabled" : true
+          },
+          "componentName" : "c:relatedListWithSharing",
+          "id" : "d88c15da-e6c6-4d81-9bc8-9545ff390986",
           "renditionMap" : { },
           "type" : "component"
         }, {

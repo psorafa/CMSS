@@ -14,6 +14,7 @@ global class AccessShareSchedule implements Schedulable {
 	*****************************************************************************************************/
 	global void execute(System.SchedulableContext context) {
 		Database.executeBatch(new AccessShareBatch('Search'), 50);
+		Database.executeBatch(new AccessShareBatch('Reference'), 50);
 		// Database.executeBatch(new AccessShareBatch('Opportunity'), 50);
 		// Database.executeBatch(new AccessShareBatch('Task'), 50);
 		// Database.executeBatch(new AccessShareBatch('Owner'), 50);

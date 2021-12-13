@@ -380,13 +380,6 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Account.NAME</fields>
-        <fields>AssetsProductType__c</fields>
-        <fields>RelationType__c</fields>
-        <relatedList>AssetAccountRelation__c.Asset__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>DimaName__c</fields>
         <fields>DimaCode__c</fields>
         <fields>Status__c</fields>
@@ -409,7 +402,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1j000003GVPE</masterLabel>
+        <masterLabel>00h5E000001J51o</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

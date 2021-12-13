@@ -53,7 +53,39 @@
             </visibilityRule>
         </componentInstances>
         <componentInstances>
-            <componentName>relatedAssetsRelatedList</componentName>
+            <componentInstanceProperties>
+                <name>fieldLabels</name>
+                <value>Navázaná smlouva,Typ produktu,Typ vztahu,Klient navázané smlouvy,Platnost od,Platnost do</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>fieldsToDisplay</name>
+                <value>RelatedAssetId, ProductTypeAssetId__c, RelationshipType, RelatedAsset.Account.Name, FromDate, ToDate</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>standard:asset_relationship</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>label</name>
+                <value>Navázané smlouvy</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationPrimaryLookupField</name>
+                <value>AssetId</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationSecondaryLookupField</name>
+                <value>RelatedAssetId</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationshipObjectName</name>
+                <value>AssetRelationship</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>sharingEnabled</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>relatedListWithSharing</componentName>
             <visibilityRule>
                 <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
                 <criteria>
@@ -77,6 +109,41 @@
                     <rightValue>Risk Life Insurance</rightValue>
                 </criteria>
             </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>fieldLabels</name>
+                <value>Název vztahu, Jméno klienta, Typ vztahu, Vyvazován, Platnost od, Platnost do,  Datum úpravy</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>fieldsToDisplay</name>
+                <value>Name, Account__c, RelationType__c, IsReleased__c, ValidFrom__c, ValidTo__c,  DateUpdated__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>iconName</name>
+                <value>standard:asset_relationship</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>label</name>
+                <value>Klienti navázaní na smlouvu</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationPrimaryLookupField</name>
+                <value>Asset__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationSecondaryLookupField</name>
+                <value>Account__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationshipObjectName</name>
+                <value>AssetAccountRelation__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>sharingEnabled</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>relatedListWithSharing</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
