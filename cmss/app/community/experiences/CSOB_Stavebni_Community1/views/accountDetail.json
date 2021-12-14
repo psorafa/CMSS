@@ -155,7 +155,7 @@
 			"fieldLabels": "Název, Vztah k osobě, Typ vztahu, Klientská zóna, Platnost od, Platnost do, Datum aktualizace",
 			"fieldsToDisplay": "Name, RelatedAccount__c, RelatedAccountRole__c, ClientZoneID__c, ValidFrom__c, ValidTo__c, DateUpdated__c",
 				"iconName": "standard:person_account",
-				"condition": "IsActive=true",
+				"condition": "IsActive__c=true",
 				"label": "Osobní vztahy",
 				"recordId": "{!recordId}",
 				"relationPrimaryLookupField": "Account__c",
