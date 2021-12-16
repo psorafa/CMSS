@@ -62,10 +62,16 @@ export default class ExternalLinks extends LightningElement {
 		}
 	}
 	handleClickEUver(e) {
-		window.open(this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-euveru?&createNew=1', '_blank');
+		window.open(
+			this.baseUrls.NELBaseUrl__c + 'group/nel/sjednani-euveru?createNew=1&clientId=' + this.clientGlobalId,
+			'_blank'
+		);
 	}
 	handleClickEPrescore(e) {
-		window.open(this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-eprescore?&createNew=1', '_blank');
+		window.open(
+			this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-eprescore?createNew=1&clientId=' + this.clientGlobalId,
+			'_blank'
+		);
 	}
 	handleClickBeznyUcet(e) {
 		if (this.clientGlobalId) {
@@ -97,13 +103,16 @@ export default class ExternalLinks extends LightningElement {
 	}
 	handleClickOsobniUdaje(e) {
 		window.open(
-			this.baseUrls.NELBaseUrl__c + '/group/nel/detail-klienta?clientId=' + this.clientGlobalId,
+			this.baseUrls.NELBaseUrl__c + '/group/nel/detail-klienta?clientId=' + this.clientGlobalId + '&openUpdate=1',
 			'_blank'
 		);
 	}
 	handleClickKlientskaZona(e) {
 		window.open(
-			this.baseUrls.NELBaseUrl__c + '/group/nel/detail-klienta?clientId=' + this.clientGlobalId,
+			this.baseUrls.NELBaseUrl__c +
+				'group/nel/detail-klienta?clientId=' +
+				this.clientGlobalId +
+				'&openClientZone=1',
 			'_blank'
 		);
 	}
