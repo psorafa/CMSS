@@ -100,7 +100,14 @@ private class CaseMilestoneUtils_Test {
 			ComplaintLegitimacy__c = '4',
 			ThirtyDayPeriodOverReason__c = 'Reason'
 		);
-		insert new List<Case>{ c1WithResponseSent, c2WithResponseSent, c3WithConfirmationSent, c4WithConfirmationSent };
+		System.runAs(defaultCaseOwner) {
+			insert new List<Case>{
+				c1WithResponseSent,
+				c2WithResponseSent,
+				c3WithConfirmationSent,
+				c4WithConfirmationSent
+			};
+		}
 	}
 
 	@isTest
