@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>DrawnAmount__c</fullName>
-    <description>Celkový objem vyplacených segmentů z  ÚSS ve stavu Vyplaceno (výplaty z účtu SS + výplaty z účtu ÚSS)</description>
+    <description
+	>Celkový objem vyplacených segmentů z  ÚSS ve stavu Vyplaceno (výplaty z účtu SS + výplaty z účtu ÚSS)</description>
     <externalId>false</externalId>
     <label>Drawn Amount</label>
     <precision>14</precision>
     <required>false</required>
-    <scale>4</scale>
+    <scale>2</scale>
     <trackHistory>false</trackHistory>
     <type>Currency</type>
 </CustomField>

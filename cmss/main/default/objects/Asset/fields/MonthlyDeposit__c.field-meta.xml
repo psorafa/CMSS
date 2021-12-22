@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MonthlyDeposit__c</fullName>
     <description>&quot;Pro aktuální měsíc platný měsíční vklad, tj. částka, kterou se klient zavázal naspořit.
@@ -8,7 +8,7 @@ Pro SS se souvisejícím MÚ se jedná o tzv. dospořování, tj. výrazně siln
     <label>Monthly Deposit</label>
     <precision>14</precision>
     <required>false</required>
-    <scale>4</scale>
+    <scale>2</scale>
     <trackHistory>false</trackHistory>
     <type>Currency</type>
 </CustomField>
