@@ -3644,6 +3644,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.ActivityLink__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.Asset__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4800,6 +4805,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.ActivityDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.ActivityLink__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

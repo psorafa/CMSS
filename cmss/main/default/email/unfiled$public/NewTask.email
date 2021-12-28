@@ -1,13 +1,13 @@
 V CRM SalesForce máte novou aktivitu:
 
-Název: {!Task.Subject} {!Task.Link}
+Název: {!Task.Subject} {!Task.ActivityLink__c}
 
 Klient: {!Account.Name}
 
 Termín splnění aktivity: {!Task.ActivityDate}
 
 
-Pro zobrazení detailu aktivity klikněte na odkaz: {!Task.Link}
+Pro zobrazení detailu aktivity klikněte na odkaz: {!Task.ActivityLink__c}
 
  
 Tento e-mail je odeslán automaticky ze systému SalesForce.
