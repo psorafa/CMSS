@@ -45,11 +45,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>SearchController</apexClass>
+        <apexClass>RelatedListWithSharingController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>RelatedListWithSharingController</apexClass>
+        <apexClass>SearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <description>CMSS uživatel centrály</description>
@@ -3375,6 +3375,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.ActivityLink__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.ActivityTypeColor__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4371,6 +4376,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Task.ActivityDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.ActivityLink__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
