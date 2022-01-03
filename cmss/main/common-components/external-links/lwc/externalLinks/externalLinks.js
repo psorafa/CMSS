@@ -63,7 +63,7 @@ export default class ExternalLinks extends LightningElement {
 	}
 	handleClickEUver(e) {
 		window.open(
-			this.baseUrls.NELBaseUrl__c + 'group/nel/sjednani-euveru?createNew=1&clientId=' + this.clientGlobalId,
+			this.baseUrls.NELBaseUrl__c + '/group/nel/sjednani-euveru?createNew=1&clientId=' + this.clientGlobalId,
 			'_blank'
 		);
 	}
@@ -110,7 +110,7 @@ export default class ExternalLinks extends LightningElement {
 	handleClickKlientskaZona(e) {
 		window.open(
 			this.baseUrls.NELBaseUrl__c +
-				'group/nel/detail-klienta?clientId=' +
+				'/group/nel/detail-klienta?clientId=' +
 				this.clientGlobalId +
 				'&openClientZone=1',
 			'_blank'
