@@ -1,6 +1,6 @@
 {
   "activeBrandingSetId" : "683c2e76-3617-49a0-88d0-2eb174266833",
-  "customCSS" : "div[aria-label*=\"Klienti\"] .slds-button-group li:last-child{\n    display: none;\n}\ndiv[aria-label*=\"Accounts\"] .slds-button-group li:last-child{\n    display: none;\n}\ndiv[aria-label*=\"Smlouvy klientů\"] .slds-button-group li:last-child{\n    display: none;\n}\ndiv[aria-label*=\"Assets\"] .slds-button-group li:last-child{\n    display: none;\n}",
+  "customCSS" : "div[aria-label*=\"Klienti\"] .slds-button-group li:last-child{\n    display: none;\n}\ndiv[aria-label*=\"Accounts\"] .slds-button-group li:last-child{\n    display: none;\n}\ndiv[aria-label*=\"Smlouvy klientů\"] .slds-button-group li:last-child{\n    display: none;\n}\ndiv[aria-label*=\"Assets\"] .slds-button-group li:last-child{\n    display: none;\n}\n\n.forceRecordLayout .full.forcePageBlockSection h3\n{\n    font-weight: bold;\n}\n\n.forceRecordLayout .slds-form-element__label\n{\n    font-size: 0.845rem;\n    font-weight: bold;\n}\n\n.forceRecordLayout .slds-form-element__static\n{\n    font-size: 0.845rem;  \n}\n\n.forceRecordLayout .label.inputLabel\n{\n    font-size: 0.845rem !important;\n    font-weight: bold;\n}\n\n.forceRecordLayout .uiLabel-top.form-element__label.uiLabel\n{\n    font-size: 0.845rem;\n    font-weight: bold;\n}",
   "developerName" : "jepson",
   "id" : "625cdb57-eec7-40b4-a002-4cef7137a7a1",
   "label" : "Jepson",
