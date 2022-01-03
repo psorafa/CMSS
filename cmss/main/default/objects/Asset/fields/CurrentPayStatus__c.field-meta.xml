@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CurrentPayStatus__c</fullName>
     <description>&quot;Aktuální Stav plateb.
@@ -8,7 +8,7 @@ Tzn. nedoplatky na Stavu plateb jsou zobrazeny jako záporné číslo, přeplatk
     <label>Current Pay Status</label>
     <precision>14</precision>
     <required>false</required>
-    <scale>4</scale>
+    <scale>2</scale>
     <trackHistory>false</trackHistory>
     <type>Currency</type>
 </CustomField>
