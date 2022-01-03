@@ -4,11 +4,19 @@
     <name>TaskResult__c</name>
     <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation>Má zájem / Schůzka</translation>
+        <translation>Uzavřen obchod - uzavře pozitivně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Neplatné kontakty - uzavře negativně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>Odloženo na později</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation>Nemá zájem</translation>
+        <translation>Nemá zájem - uzavře negativně</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>3</masterLabel>
@@ -16,18 +24,26 @@
     </picklistValues>
     <picklistValues>
         <masterLabel>4</masterLabel>
-        <translation>Chyba dat</translation>
+        <translation>Chyba dat - uzavře negativně</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>5</masterLabel>
-        <translation>Naplánováno</translation>
+        <translation>Domluvená schůzka</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>6</masterLabel>
-        <translation>Úkol splněn</translation>
+        <translation>Úkol splněn - uzavře pozitivně</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>7</masterLabel>
-        <translation>Úkol nesplněn</translation>
+        <translation>Úkol nesplněn - uzavře negativně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>Uzavřen jiný obchod - uzavře pozitivně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9</masterLabel>
+        <translation>Proběhla schůzka/telefon - uzavře pozitivně</translation>
     </picklistValues>
 </CustomFieldTranslation>
