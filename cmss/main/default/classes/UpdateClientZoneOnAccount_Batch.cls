@@ -21,26 +21,33 @@ public class UpdateClientZoneOnAccount_Batch implements Database.Batchable<sObje
 	 * Batchable execute - process a block of Activities.
 	 */
 	public void execute(Database.BatchableContext jobId, List<Account> acc) {
-		List<Account> accountsToUpdate = new List<Account>();
-		for (Account a : acc) {
-			if (a.ClientZones__r.size() == 0) {
-				continue;
-			}
-			if (a.ClientZones__r[0].AgreementDate__c != null) {
-				a.ClientZoneAccess__c = a.ClientZones__r[0].Role__c;
-				accountsToUpdate.add(a);
-			}
-		}
-		if (accountsToUpdate.size() > 0) {
-			System.debug('Updating ' + accountsToUpdate.size() + ' accounts.');
-			List<Database.SaveResult> results = Database.update(accountsToUpdate, false);
-			for (Database.SaveResult result : results) {
-				if (!result.isSuccess()) {
-					for (Database.Error err : result.getErrors()) {
-						Logger.error('Erorr message: ' + err.getMessage() + ' Fields:' + err.getFields());
-					}
+		try {
+			List<Account> accountsToUpdate = new List<Account>();
+			for (Account a : acc) {
+				if (a.ClientZones__r.size() == 0) {
+					continue;
+				}
+				if (a.ClientZones__r[0].AgreementDate__c != null) {
+					a.ClientZoneAccess__c = a.ClientZones__r[0].Role__c;
+					accountsToUpdate.add(a);
 				}
 			}
+			if (accountsToUpdate.size() > 0) {
+				System.debug('Updating ' + accountsToUpdate.size() + ' accounts.');
+				List<Database.SaveResult> results = Database.update(accountsToUpdate, false);
+				for (Database.SaveResult result : results) {
+					if (!result.isSuccess()) {
+						for (Database.Error err : result.getErrors()) {
+							Logger.error('Erorr message: ' + err.getMessage() + ' Fields:' + err.getFields());
+						}
+					}
+				}
+				Logger.saveLogs();
+			}
+		} catch (Exception e) {
+			Logger.error('An unhandled exception thrown', e);
+			throw e;
+		} finally {
 			Logger.saveLogs();
 		}
 	}
