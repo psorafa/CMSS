@@ -42,7 +42,6 @@ public class UpdateClientZoneOnAccount_Batch implements Database.Batchable<sObje
 						}
 					}
 				}
-				Logger.saveLogs();
 			}
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
