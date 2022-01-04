@@ -972,11 +972,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IsPortalSelfRegistered</field>
-            <table>Campaign.Activities.UserAsOwner</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>FederationIdentifier</field>
             <table>Campaign.Activities.UserAsOwner</table>
         </columns>
