@@ -22,7 +22,7 @@
                 <displayUnits>Auto</displayUnits>
                 <gaugeMax>100.0</gaugeMax>
                 <gaugeMin>0.0</gaugeMin>
-                <groupingSortProperties/>
+                <groupingSortProperties />
                 <header>Počet přihlášených za posledních 7 dní</header>
                 <indicatorBreakpoint1>33.0</indicatorBreakpoint1>
                 <indicatorBreakpoint2>67.0</indicatorBreakpoint2>
@@ -166,7 +166,7 @@
                 <componentType>Metric</componentType>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
-                <groupingSortProperties/>
+                <groupingSortProperties />
                 <header>Počet aktivních účtů</header>
                 <indicatorBreakpoint1>33.0</indicatorBreakpoint1>
                 <indicatorBreakpoint2>67.0</indicatorBreakpoint2>
@@ -259,9 +259,8 @@
         <numberOfColumns>12</numberOfColumns>
         <rowHeight>36</rowHeight>
     </dashboardGridLayout>
-    <dashboardType>SpecifiedUser</dashboardType>
+    <dashboardType>LoggedInUser</dashboardType>
     <isGridLayout>true</isGridLayout>
-    <runningUser>test-chy2sxvznkxk@example.com</runningUser>
     <textColor>#000000</textColor>
     <title>User Adoption</title>
     <titleColor>#000000</titleColor>
