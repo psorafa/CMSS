@@ -33,7 +33,15 @@ public class UpdateClientZoneOnAccount_Batch implements Database.Batchable<sObje
 		}
 		if (accountsToUpdate.size() > 0) {
 			System.debug('Updating ' + accountsToUpdate.size() + ' accounts.');
-			update accountsToUpdate;
+			List<Database.SaveResult> results = Database.update(accountsToUpdate, false);
+			for (Database.SaveResult result : results) {
+				if (!result.isSuccess()) {
+					for (Database.Error err : result.getErrors()) {
+						Logger.error('Erorr message: ' + err.getMessage() + ' Fields:' + err.getFields());
+					}
+				}
+			}
+			Logger.saveLogs();
 		}
 	}
 	/**
