@@ -11,8 +11,10 @@ public class UpdateClientZoneOnAccount_Batch implements Database.Batchable<sObje
 						SELECT Id, AgreementDate__c, toLabel(Role__c)
 						FROM ClientZones__r
 						ORDER BY AgreementDate__c DESC NULLS LAST
+						LIMIT 1
 					)
 				FROM Account
+				WHERE Id IN (SELECT Account__c FROM ClientZone__c WHERE AgreementDate__c != NULL AND Role__c != NULL)
 			]
 		);
 	}
