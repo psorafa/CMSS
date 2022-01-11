@@ -41,7 +41,6 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 						});
 					}
 				}
-				console.log('columns: ', this.tableColumns);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -69,7 +68,6 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 				if (data) {
 					this.tableData = this.processData(data);
 				}
-				console.log('data: ', this.tableData);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -78,23 +76,10 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 
 	processData(jsonData) {
 		let parsedData = JSON.parse(jsonData);
+
 		if (parsedData) {
-			parsedData = parsedData.map((record) => {
-				if (record[this.relationSecondaryLookupField].replace('/', '') === this.recordId) {
-					const primaryValue = record[this.relationPrimaryLookupField.replace('Id', '')];
-					const primaryIdValue = record[this.relationPrimaryLookupField];
-					return {
-						...record,
-						[this.relationPrimaryLookupField.replace('Id', '')]:
-							record[this.relationSecondaryLookupField.replace('Id', '')],
-						[this.relationSecondaryLookupField.replace('Id', '')]: primaryValue,
-						[this.relationPrimaryLookupField]: record[this.relationSecondaryLookupField],
-						[this.relationSecondaryLookupField]: primaryIdValue
-					};
-				} else {
-					return record;
-				}
-			});
+			parsedData = this.switchPrimarySecondaryLookups(parsedData);
+
 			parsedData.forEach((record) => {
 				for (const fieldName in record) {
 					const value = record[fieldName];
@@ -112,7 +97,29 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 				+'/' + record.Id;
 			});
 		}
+
 		return parsedData;
+	}
+
+	switchPrimarySecondaryLookups(originalArray) {
+		let resultArray = [];
+		resultArray = originalArray.map((record) => {
+			if (record[this.relationSecondaryLookupField].replace('/', '') === this.recordId) {
+				const primaryValue = record[this.relationPrimaryLookupField.replace('Id', '').replace('__c', '__r')];
+				const primaryIdValue = record[this.relationPrimaryLookupField];
+				return {
+					...record,
+					[this.relationPrimaryLookupField.replace('Id', '').replace('__c', '__r')]:
+						record[this.relationSecondaryLookupField.replace('Id', '').replace('__c', '__r')],
+					[this.relationSecondaryLookupField.replace('Id', '').replace('__c', '__r')]: primaryValue,
+					[this.relationPrimaryLookupField]: record[this.relationSecondaryLookupField],
+					[this.relationSecondaryLookupField]: primaryIdValue
+				};
+			} else {
+				return record;
+			}
+		});
+		return resultArray;
 	}
 
 	flattenStructure(topObject, prefix, toBeFlattened) {
