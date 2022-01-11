@@ -10,6 +10,7 @@ public class UpdateClientZoneOnAccount_Batch implements Database.Batchable<sObje
 					(
 						SELECT Id, AgreementDate__c, toLabel(Role__c)
 						FROM ClientZones__r
+						WHERE AgreementDate__c != NULL AND Role__c != NULL
 						ORDER BY AgreementDate__c DESC NULLS LAST
 						LIMIT 1
 					)
@@ -29,10 +30,8 @@ public class UpdateClientZoneOnAccount_Batch implements Database.Batchable<sObje
 				if (a.ClientZones__r.size() == 0) {
 					continue;
 				}
-				if (a.ClientZones__r[0].AgreementDate__c != null) {
-					a.ClientZoneAccess__c = a.ClientZones__r[0].Role__c;
-					accountsToUpdate.add(a);
-				}
+				a.ClientZoneAccess__c = a.ClientZones__r[0].Role__c;
+				accountsToUpdate.add(a);
 			}
 			if (accountsToUpdate.size() > 0) {
 				System.debug('Updating ' + accountsToUpdate.size() + ' accounts.');
