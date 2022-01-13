@@ -644,12 +644,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <fieldPermissions>
-            <editable>true</editable>
-            <field>Account.CSOBSNonClient__c</field>
-            <readable>true</readable>
-        </fieldPermissions>
         <field>Account.ClientCase__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.CSOBSNonClient__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
