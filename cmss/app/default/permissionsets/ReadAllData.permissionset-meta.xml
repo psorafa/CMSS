@@ -1004,6 +1004,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Asset.Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Asset.CreateDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1234,6 +1239,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Asset.FreeAccount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Asset.GeneralInsuranceConditions__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1365,6 +1375,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset.IsSubvene__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset.LastActivityEndDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset.LastActivityStartDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
