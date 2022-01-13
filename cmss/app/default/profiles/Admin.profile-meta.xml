@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>standard__LightningSales</application>
         <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>
-        <classAccesses>
+    <classAccesses>
         <apexClass>AccessLogService</apexClass>
         <enabled>true</enabled>
-        </classAccesses>
+    </classAccesses>
     <classAccesses>
         <apexClass>AccessShareBatch</apexClass>
         <enabled>true</enabled>
-        </classAccesses>
+    </classAccesses>
     <classAccesses>
         <apexClass>AccessShareController</apexClass>
         <enabled>true</enabled>
-        </classAccesses>
+    </classAccesses>
     <classAccesses>
         <apexClass>AccessShareDTO</apexClass>
         <enabled>true</enabled>
-        </classAccesses>
+    </classAccesses>
     <classAccesses>
         <apexClass>AccessShareDao</apexClass>
         <enabled>true</enabled>
-        </classAccesses>
+    </classAccesses>
     <classAccesses>
         <apexClass>AccessShareSchedule</apexClass>
         <enabled>true</enabled>
-        </classAccesses>
+    </classAccesses>
     <classAccesses>
         <apexClass>FinancialOperationDataTypesService</apexClass>
         <enabled>true</enabled>
@@ -44,15 +44,15 @@
     <classAccesses>
         <apexClass>AccessShareScheduleTest</apexClass>
         <enabled>true</enabled>
-        </classAccesses>
+    </classAccesses>
     <classAccesses>
         <apexClass>AccessShareService</apexClass>
         <enabled>true</enabled>
-        </classAccesses>
+    </classAccesses>
     <classAccesses>
         <apexClass>AccessSharingUtils</apexClass>
         <enabled>true</enabled>
-        </classAccesses>
+    </classAccesses>
     <classAccesses>
         <apexClass>AccountConsolidationUtility</apexClass>
         <enabled>true</enabled>
@@ -604,6 +604,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.BankSegmentLastUpdate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.BankSegment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.BillingAddress</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -634,6 +644,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <fieldPermissions>
+            <editable>true</editable>
+            <field>Account.CSOBSNonClient__c</field>
+            <readable>true</readable>
+        </fieldPermissions>
         <field>Account.ClientCase__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -719,7 +734,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.CurrPreApprovedAmountValidFrom__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.CurrentAccountCount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.CurrPreApprovedAmountValidTo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.CurrentPreApprovedAmount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -809,6 +839,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.FuturePreApprovedAmountValidTo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.FuturePreApprovedAmountValidFrom__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.FuturePreApprovedAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.GDPRCase__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -820,6 +865,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.GlobalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.GroupSegmentLastUpdate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.GroupSegment__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -860,6 +915,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.IdCardValidTo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.IdentificationStateUpdated__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.IdentificationStateId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1040,6 +1105,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.PlaceOfBirth__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.PremiumConditions__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1357,7 +1427,7 @@
         <field>AQTask__e.RecordId__c</field>
         <readable>false</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>AccessShare__c.AccessTo__c</field>
         <readable>true</readable>
@@ -4142,11 +4212,11 @@
         <field>ConsolidationResult__c.SBID__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.AgentActivityType__c</field>
         <readable>true</readable>
-    </fieldPermissions>	
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.CommissionAccountBase__c</field>
@@ -6682,7 +6752,7 @@
         <object>MailServiceNotification__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-        <objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
