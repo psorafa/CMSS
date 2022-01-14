@@ -44,7 +44,7 @@
                 <componentName>APRD:objectDetails</componentName>
                 <identifier>APRD_objectDetails</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.EmployeeNumber}</leftValue>
                         <operator>NE</operator>
@@ -54,6 +54,11 @@
                         <leftValue>{!Record.CommissionAccountNr__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>&apos;&apos;</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>CMSS User</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -75,7 +80,7 @@
                 <componentName>APRD:objectDetails</componentName>
                 <identifier>APRD_objectDetails2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR (2 AND 3)</booleanFilter>
+                    <booleanFilter>1 OR (2 AND 3) AND 4</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.CommissionAccountNr__c}</leftValue>
                         <operator>NE</operator>
@@ -90,6 +95,52 @@
                         <leftValue>{!Record.EmployeeNumber}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>&apos;&apos;</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>CMSS User</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>configName</name>
+                    <value>CMSSUser</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objName</name>
+                    <value>User</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>profileNames</name>
+                    <value>System Administrator</value>
+                </componentInstanceProperties>
+                <componentName>APRD:objectDetails</componentName>
+                <identifier>APRD_objectDetails1</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR (2 AND 3) AND 4</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.CommissionAccountNr__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>&apos;&apos;</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.CommissionAccountNr__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>&apos;&apos;</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.EmployeeNumber}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>&apos;&apos;</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>CMSS User</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
