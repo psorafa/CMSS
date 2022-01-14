@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CurrPreApprovedAmountValidFrom__c</fullName>
+    <description>Platnost od aktuální částky</description>
+    <externalId>false</externalId>
+    <label>Current Pre Approved Amount Valid From</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Date</type>
+</CustomField>

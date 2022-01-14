@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IdentificationStateUpdated__c</fullName>
+    <description>Datum aktualizace stavu identifikace</description>
+    <externalId>false</externalId>
+    <label>Identification State Updated</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Date</type>
+</CustomField>
