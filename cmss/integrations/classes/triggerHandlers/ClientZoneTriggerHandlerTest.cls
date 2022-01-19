@@ -8,13 +8,13 @@ public class ClientZoneTriggerHandlerTest {
 			new ClientZone__c(
 				AgreementDate__c = Date.Today().addDays(-10),
 				Account__c = account.Id,
-				Role__c = 'Limited'
+				Role__c = 'Omezený přístup'
 			)
 		);
 		insert clientZone1;
 
 		ClientZone__c clientZone2 = TestDataFactory.getClientZone(
-			new ClientZone__c(AgreementDate__c = Date.Today(), Account__c = account.Id, Role__c = 'No Access')
+			new ClientZone__c(AgreementDate__c = Date.Today(), Account__c = account.Id, Role__c = 'Bez přístupu')
 		);
 
 		Test.startTest();
