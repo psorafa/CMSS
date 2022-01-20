@@ -3,43 +3,43 @@
     <label>Úroveň přístupu</label>
     <name>Role__c</name>
     <picklistValues>
-        <masterLabel>Full Access</masterLabel>
-        <translation>Plný přístup</translation>
+        <masterLabel>Bez přístupu</masterLabel>
+        <translation><!-- Bez přístupu --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Limited</masterLabel>
-        <translation>Omezený přístup</translation>
+        <masterLabel>Dohoda o klientské zóně</masterLabel>
+        <translation><!-- Dohoda o klientské zóně --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>No Access</masterLabel>
-        <translation>Bez přístupu</translation>
+        <masterLabel>MojeLiška</masterLabel>
+        <translation><!-- MojeLiška --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Pre-verified User</masterLabel>
-        <translation>Ověřený klient před akceptací</translation>
+        <masterLabel>Omezený přístup</masterLabel>
+        <translation><!-- Omezený přístup --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Self-registration</masterLabel>
-        <translation>Samoregistrace</translation>
+        <masterLabel>Ověřený klient před akceptací</masterLabel>
+        <translation><!-- Ověřený klient před akceptací --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Self-registration Verified Contacts</masterLabel>
-        <translation>Samoregistrace - ověřený email</translation>
+        <masterLabel>Plný přístup</masterLabel>
+        <translation><!-- Plný přístup --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>User Agreement</masterLabel>
-        <translation>Dohoda o klientské zóně</translation>
+        <masterLabel>Samoregistrace</masterLabel>
+        <translation><!-- Samoregistrace --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Verified User</masterLabel>
-        <translation>MojeLiška</translation>
+        <masterLabel>Samoregistrace - ověřený email</masterLabel>
+        <translation><!-- Samoregistrace - ověřený email --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>kz_csob_id</masterLabel>
-        <translation>Spárován s ČSOB ID pro sjednání smlouvy o KZ</translation>
+        <masterLabel>Spárován s ČSOB ID pro sjednání dodatku ke sml. o KZ</masterLabel>
+        <translation><!-- Spárován s ČSOB ID pro sjednání dodatku ke sml. o KZ --></translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>kz_csob_id_ammendment</masterLabel>
-        <translation>Spárován s ČSOB ID pro sjednání dodatku ke sml. o KZ</translation>
+        <masterLabel>Spárován s ČSOB ID pro sjednání smlouvy o KZ</masterLabel>
+        <translation><!-- Spárován s ČSOB ID pro sjednání smlouvy o KZ --></translation>
     </picklistValues>
 </CustomFieldTranslation>
