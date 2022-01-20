@@ -68,7 +68,7 @@
         }, {
           "componentAttributes" : {
             "fieldLabels" : "Navázaná smlouva,Typ produktu,Typ vztahu,Klient navázané smlouvy,Platnost od,Platnost do",
-            "fieldsToDisplay" : "RelatedAssetId, ProductTypeAssetId__c, RelationshipType, RelatedAsset.Account.Name, FromDate, ToDate",
+            "fieldsToDisplay" : "RelatedAssetId, ProductTypeRelatedAsset__c, RelationshipType, RelatedAsset.Account.Name, FromDate, ToDate",
             "iconName" : "standard:asset_relationship",
             "label" : "Navázané smlouvy",
             "recordId" : "{!recordId}",

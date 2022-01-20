@@ -32,7 +32,7 @@ public class RelatedListWithSharingControllerTest {
 		Asset testAsset = [SELECT Id FROM Asset WHERE Name = 'testAsset 1'][0];
 		List<string> listOfFields = new List<string>{
 			'RelatedAssetId',
-			'ProductTypeAssetId__c',
+			'ProductTypeRelatedAsset__c',
 			'RelationshipType',
 			'RelatedAsset.Account.Name',
 			'FromDate',
@@ -49,7 +49,7 @@ public class RelatedListWithSharingControllerTest {
 
 		List<AssetRelationship> expectedData = [
 			SELECT
-				ProductTypeAssetId__c,
+				ProductTypeRelatedAsset__c,
 				AssetId,
 				RelatedAssetId,
 				RelationshipType,
