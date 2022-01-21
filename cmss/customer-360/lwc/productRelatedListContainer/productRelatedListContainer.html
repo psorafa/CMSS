@@ -38,7 +38,7 @@
 	</div>
 	<div class="slds-p-bottom_small">
 		<c-asset-related-list
-			columns="StateCodeColour__c, ProductType__c, Name, ProductCloseDate__c, CancellationDate__c, CancellationReason__c, DateUpdated__c, AmountRepayment__c, Status__c"
+			columns="StateCodeColour__c, ProductType__c, Name, ProductCloseDate__c, CancellationDate__c, CancellationReason__c, DateUpdated__c, AmountRepayment__c, Premium__c, Status__c"
 			condition-assets="(RecordType.DeveloperName = 'PMO' OR RecordType.DeveloperName = 'InvestmentLifeInsurance')"
 			list-name="Pojistné produkty"
 			icon-name="standard:asset_action_source"
@@ -58,7 +58,7 @@
 		<c-asset-related-list
 			columns="StateCodeColour__c, Name, ProductType__c, ProductSubtype__c, ProductCloseDate__c, DateUpdated__c, Status__c"
 			condition-assets="RecordType.DeveloperName = 'CSOBCurrentAccount'"
-			list-name="Běžné a spořící účty"
+			list-name="Produkty ČSOB"
 			icon-name=""
 			record-id={recordId}
 		></c-asset-related-list>

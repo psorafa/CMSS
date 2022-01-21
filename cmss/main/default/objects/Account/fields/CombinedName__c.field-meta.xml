@@ -4,8 +4,8 @@
     <description>Combine the important information to be shown in the pinned part of compact layout.</description>
     <externalId>false</externalId>
     <formula>IF( IsPersonAccount = true,
-
-IF( ISBLANK( PersonTitle ), &quot;&quot;, PersonTitle &amp; &quot; &quot; ) &amp; FirstName &amp; &quot; &quot; &amp; LastName &amp; &quot; &quot; &amp; BLANKVALUE( Suffix , &quot;&quot; ) &amp; &quot;, RČ: &quot; &amp; PersonalIdentificationNr__c &amp; &quot;, tel.: &quot; &amp; Phone
+IF( ISBLANK( PersonTitle ), &quot;&quot;, PersonTitle &amp; &quot; &quot; ) &amp; FirstName &amp; &quot; &quot; &amp; LastName &amp; &quot; &quot; &amp; BLANKVALUE( Suffix , &quot;&quot; ) &amp; &quot;, RČ: &quot; &amp; PersonalIdentificationNr__c &amp; &quot;, tel.: &quot; &amp; Phone &amp; 
+IF ( CSOBSNonClient__c = true, &quot;      &quot; &amp; IMAGE (&quot;/resource/CSOBBankLogo&quot;, &quot;Neklient/Prospekt&quot;, 24, 24), &quot;&quot; )
 ,
 Name &amp; &quot;, IČO: &quot; &amp; CompanyRegistrationNumber__c &amp; &quot;, tel.: &quot; &amp; Phone)</formula>
     <label>Combined Name</label>

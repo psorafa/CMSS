@@ -2,9 +2,11 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Offers__c</fullName>
     <externalId>false</externalId>
-    <formula>&quot;předschválený limit: &quot; &amp;  TEXT(PreapprovedLimit__c) &amp; &quot; Kč&quot; &amp; BR() &amp; 
-&quot;dostupná nezajištěná částka: &quot; &amp; TEXT(AmountOffer__c) &amp; &quot; Kč&quot; &amp; BR() &amp;
-&quot;sazba meziúvěru: &quot; &amp; TEXT(InterestRateInterimLoan__c) &amp; &quot; %&quot;</formula>
+    <formula>&quot;Předschválený limit: &quot; &amp;  TEXT(PreapprovedLimit__c) &amp; IF( ISBLANK( PreapprovedLimit__c ),&quot;&quot;,&quot; Kč&quot;) &amp; BR() &amp; 
+&quot;Dostupná nezajištěná částka MÚ: &quot; &amp; TEXT(AmountOffer__c) &amp; IF( ISBLANK( AmountOffer__c ),&quot;&quot;,&quot; Kč&quot;) &amp; &quot; / &quot; &amp; TEXT(InterestRateInterimLoan__c) &amp; IF( ISBLANK( InterestRateInterimLoan__c ),&quot;&quot;,&quot; %&quot;) &amp; BR() &amp;
+&quot;Aktuální předschválená částka SÚ: &quot; &amp;  TEXT( CurrentPreApprovedAmount__c ) &amp; IF( ISBLANK( CurrentPreApprovedAmount__c ),&quot;&quot;,&quot; Kč&quot;) &amp; BR() &amp;
+&quot;Budoucí předschválená částka SÚ: &quot; &amp; TEXT( FuturePreApprovedAmount__c ) &amp; IF( ISBLANK( FuturePreApprovedAmount__c ),&quot;&quot;,&quot; Kč&quot;) &amp; BR() &amp;
+&quot;Podmínky premium: &quot; &amp;  IF( PremiumConditions__c = true, &quot;Ano&quot;, &quot;Ne&quot;)</formula>
     <label>Offers</label>
     <required>false</required>
     <type>Text</type>
