@@ -3,6 +3,10 @@
     <label>Podtyp produktu</label>
     <name>ProductSubtype__c</name>
     <picklistValues>
+        <masterLabel>0000</masterLabel>
+        <translation>Úvěrový případ</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1001</masterLabel>
         <translation>Stavební úvěr</translation>
     </picklistValues>
@@ -35,8 +39,48 @@
         <translation>HUF 100</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>11007</masterLabel>
-        <translation>nedefinováno</translation>
+        <masterLabel>120641320</masterLabel>
+        <translation>Kontokorent</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>120641330</masterLabel>
+        <translation>Provozní úvěr pro firmy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12064671</masterLabel>
+        <translation>Bezúčelová půjčka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12064682</masterLabel>
+        <translation>Kontokorent pro firmy a podnik.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12064688</masterLabel>
+        <translation>Půjčka po ruce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12064713</masterLabel>
+        <translation>Restruktur. spotřebitelský úvěr</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>120647740</masterLabel>
+        <translation>Půjčka na bydlení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12064793</masterLabel>
+        <translation>Konsolidace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12064817</masterLabel>
+        <translation>Účelová půjčka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>120648330</masterLabel>
+        <translation>Úvěr pro firmy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12064841</masterLabel>
+        <translation>Kontokorenty</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>13060001</masterLabel>
@@ -99,16 +143,112 @@
         <translation>nerozlišeno</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>13062999</masterLabel>
-        <translation>Internetové bankovnictví</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>13063000</masterLabel>
         <translation>nerozlišeno</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>13063008</masterLabel>
         <translation>Červené konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13063408</masterLabel>
+        <translation>Červené konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064200</masterLabel>
+        <translation>Běžný účet v cizí měně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064351</masterLabel>
+        <translation>Ostatní účty v CZK</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064400</masterLabel>
+        <translation>Běžný účet v CZK</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>130644001</masterLabel>
+        <translation>První konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>130644018</masterLabel>
+        <translation>Základní účet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064402</masterLabel>
+        <translation>Běžné účty pro firmy a podnikatele</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064419</masterLabel>
+        <translation>Premium konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064421</masterLabel>
+        <translation>Aktivní konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064491</masterLabel>
+        <translation>Privátní konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064492</masterLabel>
+        <translation>Prémiový účet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064493</masterLabel>
+        <translation>Junior konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064494</masterLabel>
+        <translation>Podnikatelský účet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064495</masterLabel>
+        <translation>Privátní TOP konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064496</masterLabel>
+        <translation>Osobní konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064498</masterLabel>
+        <translation>Studentské konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064500</masterLabel>
+        <translation>Ostatní běžné účty</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064505</masterLabel>
+        <translation>Ostatní běžné účty v CZK</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064507</masterLabel>
+        <translation>Duo Profit</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064515</masterLabel>
+        <translation>Spořicí účet v cizí měně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064522</masterLabel>
+        <translation>Spořicí účet v CZK</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064529</masterLabel>
+        <translation>ČSOB Spořicí účet Top</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064530</masterLabel>
+        <translation>ČSOB Spořicí účet pro podnikatele v CZK</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064572</masterLabel>
+        <translation>Spořicí účet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13064598</masterLabel>
+        <translation>Spořicí investiční účet</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>13067000</masterLabel>
