@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CSOBCurrentAccount</fullName>
     <active>true</active>
+    <compactLayoutAssignment>CSOB_Current_Account_Compact_Layout</compactLayoutAssignment>
     <description>ČSOB účty</description>
     <label>CSOB Current Account</label>
     <picklistValues>
