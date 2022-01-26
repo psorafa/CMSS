@@ -73,7 +73,7 @@ public without sharing class CustomerSearchController {
 		return finalResults;
 	}
 
-	private static List<Account> getRelevantAccount(List<Account> accounts) {
+	public static List<Account> getRelevantAccount(List<Account> accounts) {
 		List<Account> accountWithFalseCSOBSNonClient = new List<Account>();
 		List<Account> accountWithTrueCSOBSNonClient = new List<Account>();
 		for (Account acc : accounts) {
