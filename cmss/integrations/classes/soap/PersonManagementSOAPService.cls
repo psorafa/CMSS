@@ -21,8 +21,6 @@ public class PersonManagementSOAPService {
 			'BasicTypesService'
 		};
 
-		private void AddHeader(DOM.XmlNode header) {
-		}
 		private DOM.XmlNode populateDoc(DOM.Document doc) {
 			String env = 'http://schemas.xmlsoap.org/soap/envelope/';
 			String v10 = 'http://service.cmss.cz/person/PersonManagementService/v10';
