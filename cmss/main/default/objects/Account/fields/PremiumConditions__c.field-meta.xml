@@ -3,7 +3,7 @@
     <fullName>PremiumConditions__c</fullName>
     <description>Podmínky Premium</description>
     <externalId>false</externalId>
-    <formula>1=1</formula>
+    <formula>IF(ISPICKVAL(BankSegment__c, &quot;125384&quot;), true, false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Premium Conditions</label>
     <type>Checkbox</type>
