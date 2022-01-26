@@ -7,7 +7,8 @@
 import { LightningElement, track, wire, api } from 'lwc';
 import findRecords from '@salesforce/apex/CustomerSearchController.findRecords';
 import assignSearchAccess from '@salesforce/apex/CustomerSearchController.assignSearchAccess';
-
+import searchCSOBNonClient from '@salesforce/apex/PersonManagementController.searchCSOBNonClient';
+import updateCSOBNonClient from '@salesforce/apex/PersonManagementController.updateCSOBNonClient';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
 
@@ -169,16 +170,41 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 				.then(data => {
 					this.searchResults = data;
 					if (!data) {
-						throw new Error('no data');
+						searchCSOBNonClient({
+							birthNumber: this.inputBirthNumber,
+							lastName: this.inputLastName
+						})
+							.then(result => {
+								if (result == null) {
+									throw new Error('no data');
+								} else {
+									updateCSOBNonClient({
+										serializedUpdatePersonCSOBDataRequest: this.result
+									})
+										.then(() => {
+											this.recordId = JSON.parse(result).Account.Id;
+											return assignSearchAccess({
+												accountId: this.recordId
+											});
+										})
+										.then(() => {
+											this.navigateToRecordPage(this.recordId);
+										});
+								}
+							})
+							.catch(e => {
+								this.handleErrors(e);
+							});
+					} else {
+						this.recordId = data[0].recordId;
+						return assignSearchAccess({
+							accountId: this.recordId
+						}).then(() => {
+							this.navigateToRecordPage(this.recordId);
+						});
 					}
-					this.recordId = data[0].recordId;
-					return assignSearchAccess({
-						accountId: this.recordId
-					});
 				})
-				.then(() => {
-					this.navigateToRecordPage(this.recordId);
-				})
+
 				.catch(error => {
 					this.handleErrors(error);
 				});
@@ -247,11 +273,5 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 		assignSearchAccess({
 			accountId: accountId
 		});
-		// .then(() => {
-		// 	console.log('access assign successful');
-		// })
-		// .catch(error => {
-		// 	console.log('access assign unsuccessful');
-		// });
 	}
 }
