@@ -41,6 +41,47 @@ private class PersonManagementControllerTest {
 	}
 
 	@IsTest
+	static void searchCSOBNonClientEmptyResponseTest() {
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+			200,
+			'OK',
+			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns4:SearchCSOBSNonClientResponse xmlns:ns4=\"http://service.cmss.cz/person/PersonManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\" xmlns:ns3=\"http://service.cmss.cz/person/SB-ClientInfoService/v10\"><ns2:responseHeader></ns2:responseHeader><ns4:responseBody><ns4:jsonResponse>' +
+			'</ns4:jsonResponse></ns4:responseBody></ns4:SearchCSOBSNonClientResponse></soapenv:Body></soapenv:Envelope>',
+			null,
+			null
+		);
+		Test.setMock(HttpCalloutMock.class, fakeResponse);
+		Test.startTest();
+
+		String result = PersonManagementController.searchCSOBNonClient('000000', 'None');
+		Test.stopTest();
+
+		System.assertEquals(null, result);
+	}
+
+	@IsTest
+	static void searchCSOBNonClientExceptionTest() {
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+			200,
+			'OK',
+			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns4:SearchCSOBSNonClientResponse xmlns:ns4=\"http://service.cmss.cz/person/PersonManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\" xmlns:ns3=\"http://service.cmss.cz/person/SB-ClientInfoService/v10\"><ns2:responseHeader></ns2:responseHeader><ns4:responseBody><ns4:jsonResponse>' +
+			'reallyweirdresponse' +
+			'</ns4:jsonResponse></ns4:responseBody></ns4:SearchCSOBSNonClientResponse></soapenv:Body></soapenv:Envelope>',
+			null,
+			null
+		);
+		Test.setMock(HttpCalloutMock.class, fakeResponse);
+		Test.startTest();
+
+		try {
+			String result = PersonManagementController.searchCSOBNonClient('000000', '???');
+		} catch (Exception e) {
+			System.assert(e instanceof IntegrationException);
+		}
+		Test.stopTest();
+	}
+
+	@IsTest
 	static void updateCSOBNonClientTest() {
 		String serializedUpdateRequest =
 			'{"UpdatePersonCSOBDataRequest":{' +
@@ -59,6 +100,26 @@ private class PersonManagementControllerTest {
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		Test.startTest();
 		PersonManagementController.updateCSOBNonClient(serializedUpdateRequest);
+		Test.stopTest();
+	}
+
+	@IsTest
+	static void updateCSOBNonClientExceptionTest() {
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+			500,
+			'OK',
+			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns4:UpdateCSOBNonClientResponse xmlns:ns4=\"http://service.cmss.cz/person/PersonManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\" xmlns:ns3=\"http://service.cmss.cz/person/SB-ClientInfoService/v10\"><ns2:responseHeader></ns2:responseHeader><ns4:responseBody><ns4:successful><Successful>true</Successful>weidresponse</ns4:successful></ns4:responseBody></ns4:UpdateCSOBNonClientResponse></soapenv:Body></soapenv:Envelope>',
+			null,
+			null
+		);
+		Test.setMock(HttpCalloutMock.class, fakeResponse);
+		Test.startTest();
+
+		try {
+			PersonManagementController.updateCSOBNonClient('serializedUpdateRequest');
+		} catch (Exception e) {
+			System.assert(e instanceof IntegrationException);
+		}
 		Test.stopTest();
 	}
 }
