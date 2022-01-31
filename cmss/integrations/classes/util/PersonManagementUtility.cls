@@ -3,22 +3,15 @@ public class PersonManagementUtility {
 		String cleanPersonCSOBDataResponse = personCSOBDataResponse.trim();
 
 		Map<String, Object> cObjMap = (Map<String, Object>) JSON.deserializeUntyped(cleanPersonCSOBDataResponse);
-		String getPersonCSOBDataResponse = JSON.serialize(cObjMap.get('getPersonCSOBDataResponse'))
-			.trim()
-			.replaceAll('"1"', '"true"') //REMOVE and notify about
-			.replaceAll('0121j000000sHpkAAE', '0121x000003Jqg7AAC') //REMOVE
-			.replaceAll('0121j000001SPk1AAG', '0121x000003JrH2AAK') //REMOVE
-			.replaceAll('0121j000001SPk6AAG', '0121x000003JrH2AAK') //REMOVE
-			.replaceFirst('81200287128166', '81200287128167') //REMOVE and notify about - duplicated external Id
-			.replaceFirst('81200285904328', '81200285904329'); //REMOVE and notify about - duplicated external Id
-
+		String getPersonCSOBDataResponse = JSON.serialize(cObjMap.get('getPersonCSOBDataResponse')).trim();
 		getPersonCSOBDataResponse = prepareDataForDeserialization(getPersonCSOBDataResponse);
-
 		GetPersonCSOBDataResponse deserializedResponse = (GetPersonCSOBDataResponse) JSON.deserialize(
 			getPersonCSOBDataResponse,
 			GetPersonCSOBDataResponse.class
 		);
-
+		if (deserializedResponse == null) {
+			return null;
+		}
 		GetPersonCSOBDataResponse insertedEntities = insertCSOBPersonEntities(deserializedResponse);
 		UpdatePersonCSOBDataRequest updateRequest = buildUpdateRequest(insertedEntities);
 
