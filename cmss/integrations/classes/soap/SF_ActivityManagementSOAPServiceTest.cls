@@ -12,6 +12,16 @@ private class SF_ActivityManagementSOAPServiceTest {
 
 		SF_ActivityManagementSOAPService.ActivityRequestType request = new SF_ActivityManagementSOAPService.ActivityRequestType();
 		SF_ActivityManagementSOAPService.ActivityType actType = new SF_ActivityManagementSOAPService.ActivityType();
+        SOAPCommonTypes.CommonHeader header = new SOAPCommonTypes.CommonHeader();
+        header.userId = '7200';
+        header.messageId = null;
+        header.timestamp = Datetime.now();
+        header.correlationId = null;
+        header.sourceSystem = '45';
+        header.physicalSource = null;
+        header.targetSystem ='ESB';
+        header.conversationIdValue = null;
+        header.conversationIdName = null;
         actType.type = '1';
         actType.describe = getDummyLongText();
         actType.direction = '0';
@@ -43,7 +53,7 @@ private class SF_ActivityManagementSOAPServiceTest {
         actType.validFrom = Date.today();
 
         request.requestBody = actType;
-
+        request.requestHeader = header;
 		Test.startTest();
 		SF_ActivityManagementSOAPService.ActivityManagementResponseType response = SF_ActivityManagementSOAPService.createActivity(request);
 		Test.stopTest();
@@ -51,7 +61,7 @@ private class SF_ActivityManagementSOAPServiceTest {
 		System.assert(response.isFault == false, JSON.serializePretty(response.fault));
 		Task queriedTask = [
 			SELECT
-				Id, Type, Description, CallDirectionCode__c, InternalAttendee__c, Phone__c, ActivityDate, Status, 
+				Id, Type, Description, CallDirectionCode__c,Source__c, InternalAttendee__c, Phone__c, ActivityDate, Status, 
                 Subject, ValidTo__c, Result__c, OwnerId, UpdatedBy__c, Author__c, WhatId,
                 Email__c, IsVisibleForNel__c, OpportunityExternalId__c, Location__c, PlannedToDate__c, WebLink__c, City__c,
                 HouseNumber__c, PostCode__c, Street__c, IsKZMessage__c, IsRead__c, WhoId, ValidFrom__c
@@ -60,7 +70,7 @@ private class SF_ActivityManagementSOAPServiceTest {
         ];
         
         Account queriedAccount = [SELECT PersonContactId FROM Account WHERE Id =: account.Id];
-
+        System.assertEquals(queriedTask.Source__c, header.sourceSystem);
         System.assertEquals(queriedTask.Type, actType.type);
         System.assertEquals(queriedTask.Description, actType.describe);
         System.assertEquals(queriedTask.CallDirectionCode__c, actType.direction);
@@ -104,6 +114,16 @@ private class SF_ActivityManagementSOAPServiceTest {
 
 		SF_ActivityManagementSOAPService.ActivityRequestType request = new SF_ActivityManagementSOAPService.ActivityRequestType();
         SF_ActivityManagementSOAPService.ActivityType actType = new SF_ActivityManagementSOAPService.ActivityType();
+        SOAPCommonTypes.CommonHeader header = new SOAPCommonTypes.CommonHeader();
+        header.userId = '7200';
+        header.messageId = null;
+        header.timestamp = Datetime.now();
+        header.correlationId = null;
+        header.sourceSystem = '45';
+        header.physicalSource = null;
+        header.targetSystem ='ESB';
+        header.conversationIdValue = null;
+        header.conversationIdName = null;
         actType.id = task.ExternalId__c;
         actType.type = '1';
         actType.describe = getDummyLongText();
@@ -134,8 +154,9 @@ private class SF_ActivityManagementSOAPServiceTest {
         actType.isRead = true;
         actType.clientGlobalId = 'G111';
         actType.validFrom = Date.today();
-
+        
         request.requestBody = actType;
+        request.requestHeader = header;
 
 		Test.startTest();
 		SF_ActivityManagementSOAPService.ActivityManagementResponseType response = SF_ActivityManagementSOAPService.updateActivity(request);
@@ -144,7 +165,7 @@ private class SF_ActivityManagementSOAPServiceTest {
 		System.assert(response.isFault == false, JSON.serializePretty(response.fault));
 		Task queriedTask = [
 			SELECT
-				Id, Type, Description, CallDirectionCode__c, InternalAttendee__c, Phone__c, ActivityDate, Status, 
+				Id, Type, Description, CallDirectionCode__c,Source__c, InternalAttendee__c, Phone__c, ActivityDate, Status, 
                 Subject, ValidTo__c, Result__c, OwnerId, UpdatedBy__c, Author__c, WhatId,
                 Email__c, IsVisibleForNel__c, OpportunityExternalId__c, Location__c, PlannedToDate__c, WebLink__c, City__c,
                 HouseNumber__c, PostCode__c, Street__c, IsKZMessage__c, IsRead__c, WhoId, ValidFrom__c
@@ -155,6 +176,7 @@ private class SF_ActivityManagementSOAPServiceTest {
         Account queriedAccount = [SELECT PersonContactId FROM Account WHERE Id =: account.Id];
 
         System.assertEquals(queriedTask.Type, actType.type);
+        System.assertEquals(queriedTask.Source__c, header.sourceSystem);
         System.assertEquals(queriedTask.Description, actType.describe);
         System.assertEquals(queriedTask.CallDirectionCode__c, actType.direction);
         System.assertEquals(queriedTask.InternalAttendee__c, actType.oz);

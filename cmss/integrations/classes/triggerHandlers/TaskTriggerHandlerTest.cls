@@ -1,5 +1,10 @@
 @isTest
 class TaskTriggerHandlerTest {
+	@TestSetup
+	static void makeData() {
+		insert TestDataFactory.getIntegrationSettings();
+	}
+
 	@isTest
 	static void afterInsertTest() {
 		Account acc1 = TestDataFactory.getAccount(new Account());
@@ -17,14 +22,28 @@ class TaskTriggerHandlerTest {
 			Status = '1',
 			Type = '5',
 			IsVisibleInSelfService = false,
-			Description = 'Some text that is a bit longer than 30 characters.'
+			Description = 'Some text that is a bit longer than 30 characters.',
+			Source__c = '54'
 		);
+
+		CalloutServiceMockImpl fakeSuccessResponse = new CalloutServiceMockImpl(
+			200,
+			'OK',
+			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:sendEmailResponse xmlns:ns3=\"http://service.cmss.cz/mail\" xmlns:ns2=\"http://service.cmss.cz/datamodel/mailservice/sendemail\" xmlns:ns4=\"http://service.cmss.cz/fault\"></ns3:sendEmailResponse></soapenv:Body></soapenv:Envelope>',
+			null,
+			null
+		);
+		Test.setMock(HttpCalloutMock.class, fakeSuccessResponse);
 
 		Test.startTest();
 		insert task;
 		Test.stopTest();
 
-		task = [SELECT ActivityType__c, IsVisibleInSelfService, Summary__c FROM Task WHERE Id = :task.Id];
+		task = [
+			SELECT ActivityType__c, IsVisibleInSelfService, Summary__c, Source__c, Category__c
+			FROM Task
+			WHERE Id = :task.Id
+		];
 
 		System.assertEquals(accessShareSize + 1, AccessShareDao.getAllRecordsFromAccessShare().size());
 		System.assertEquals(accountShareSize + 1, AccountShareDao.getAllRecordsFromAccountShare().size());
@@ -32,6 +51,7 @@ class TaskTriggerHandlerTest {
 		System.assertEquals(true, task.IsVisibleInSelfService);
 		System.assertEquals(33, task.Summary__c.length());
 		System.assert(task.Summary__c.endsWith('...'));
+		System.assertEquals('1', task.Category__c);
 	}
 
 	@isTest
@@ -137,7 +157,6 @@ class TaskTriggerHandlerTest {
 			WHERE ToEmailAddress__c = 'invalid@testuser.cz'
 		];
 
-		insert TestDataFactory.getIntegrationSettings();
 		CalloutServiceMockImpl fakeSuccessResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
