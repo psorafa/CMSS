@@ -126,6 +126,10 @@
                 <behavior>Edit</behavior>
                 <field>LastActivityStartDate__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AccountGlobalID__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -135,6 +139,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>LastActivityEndDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CSOBElectronicBanking__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

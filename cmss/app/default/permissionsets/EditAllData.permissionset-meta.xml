@@ -762,6 +762,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.AccountGlobalID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.AccountId</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -943,6 +948,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.Bonus2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.CSOBElectronicBanking__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
