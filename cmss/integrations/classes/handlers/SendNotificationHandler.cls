@@ -59,9 +59,6 @@ public class SendNotificationHandler {
 
 				while (fieldRelation.size() > 1) {
 					String firstObj = fieldRelation.remove(0);
-					if (firstObj.contains('__r')) {
-						firstObj = firstObj.replace('__r', '__c');
-					}
 					childObject = childObject.getSobject(firstObj);
 				}
 
@@ -80,8 +77,60 @@ public class SendNotificationHandler {
 
 		return finalText;
 	}
+
 	@TestVisible
 	private void sendEmailNotificaton() {
 		mailService.sendEmail_Http(receiverEmail, senderEmail, emailSubject, emailBody);
+	}
+
+	public static void sendEmailNotificaton(String receiverEmail, String senderEmail, String subject, String body) {
+		MailSOAPService.MailServicePort mailServicePort = new MailSOAPService.MailServicePort();
+		mailServicePort.sendEmail_Http(receiverEmail, senderEmail, subject, body);
+	}
+
+	public static String getTextationFromTemplate(
+		SObject objectOfOrigin,
+		String templateText,
+		Map<String, String> specialVariablesMap
+	) {
+		String finalText = templateText;
+
+		while (finalText.contains('{!')) {
+			String fieldName = finalText.substringBetween('{!', '}');
+			if (specialVariablesMap != null && specialVariablesMap.keySet().contains(fieldName)) {
+				finalText = finalText.replace('{!' + fieldName + '}', specialVariablesMap.get(fieldName));
+			} else {
+				finalText = extractValueFromFieldInText(fieldName, objectOfOrigin, finalText);
+			}
+		}
+
+		return finalText;
+	}
+
+	@testVisible
+	private static String extractValueFromFieldInText(String fieldName, SObject objectOfOrigin, String text) {
+		String finalText = text;
+		List<String> fieldRelation = fieldName.split('\\.');
+		SObject childObject = objectOfOrigin;
+		while (fieldRelation.size() > 1) {
+			String firstObj = fieldRelation.remove(0);
+			childObject = childObject.getSobject(firstObj);
+		}
+		if (
+			childObject.getSobjectType()
+				.getDescribe()
+				.fields.getMap()
+				.keySet()
+				.contains(fieldRelation?.get(0)?.toLowercase())
+		) {
+			return finalText.replace(
+				'{!' +
+				fieldName +
+				'}',
+				String.valueOf('' + childObject.get(fieldRelation.get(0)))
+			);
+		} else {
+			return finalText.replace('{!' + fieldName + '}', '?');
+		}
 	}
 }

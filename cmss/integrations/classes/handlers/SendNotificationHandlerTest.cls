@@ -90,4 +90,57 @@ public class SendNotificationHandlerTest {
 		System.assert(handlerWithSpecialVars.emailBody.contains('Karel'));
 		System.assert(handlerWithSpecialVars.emailBody.contains('Novák'));
 	}
+
+	@IsTest
+	static void getTextationTest() {
+		User manager = TestDataFactory.getUser(new User(Email = 'managers@email.com'));
+		insert manager;
+
+		Account account = TestDataFactory.getPersonAccount(
+			new Account(
+				PersonEmail = 'karel@something.cz',
+				FirstName = 'Pišta',
+				LastName = 'Hufnágl',
+				PortfolioMngmtA__c = manager.Id
+			)
+		);
+		insert Account;
+
+		account = [
+			SELECT FirstName, LastName, PortfolioMngmtA__r.Email
+			FROM Account
+			WHERE PersonEmail = 'karel@something.cz'
+		];
+
+		String textTemplate = 'Proč jen si mě nešťastnou nevzal raději {!FirstName} {!LastName}?!? Managerův email je {!PortfolioMngmtA__r.Email}, to jen tak...';
+
+		String oneRelationVariableResult = SendNotificationHandler.extractValueFromFieldInText(
+			'PortfolioMngmtA__r.Email',
+			account,
+			textTemplate
+		);
+		String oneVariableResult = SendNotificationHandler.extractValueFromFieldInText(
+			'LastName',
+			account,
+			textTemplate
+		);
+		String fullResult = SendNotificationHandler.getTextationFromTemplate(
+			account,
+			textTemplate,
+			new Map<String, String>{ 'FirstName' => 'Franta' }
+		);
+
+		System.assertEquals(
+			'Proč jen si mě nešťastnou nevzal raději {!FirstName} {!LastName}?!? Managerův email je managers@email.com, to jen tak...',
+			oneRelationVariableResult
+		);
+		System.assertEquals(
+			'Proč jen si mě nešťastnou nevzal raději {!FirstName} Hufnágl?!? Managerův email je {!PortfolioMngmtA__r.Email}, to jen tak...',
+			oneVariableResult
+		);
+		System.assertEquals(
+			'Proč jen si mě nešťastnou nevzal raději Franta Hufnágl?!? Managerův email je managers@email.com, to jen tak...',
+			fullResult
+		);
+	}
 }

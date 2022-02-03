@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Service Activity Notification</name>
+    <style>none</style>
+    <subject>Nová aktivita - {!Subject}</subject>
+    <textOnly>Dobrý den,
+
+přiřadili jsme Vám v systému ČSOB Stavební spořitelny požadavek k vyřízení.
+
+Přihlaste se a systém Vás nasměruje na přehled všech požadavků v NEL.
+
+Děkujeme.
+
+Se srdečným pozdravem
+
+Vaše ČSOB Stavební spořitelna</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
