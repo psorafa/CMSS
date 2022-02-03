@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PhoneCall</fullName>
     <active>false</active>
@@ -340,6 +340,14 @@
             <fullName>3</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Status__c</picklist>
@@ -367,6 +375,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Fixation of a Loan</fullName>
             <default>false</default>
         </values>
@@ -380,6 +392,10 @@
         </values>
         <values>
             <fullName>Manager Task</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meeting</fullName>
             <default>false</default>
         </values>
         <values>
@@ -416,6 +432,53 @@
         </values>
         <values>
             <fullName>StSp Entitlement to a Loan</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TaskResult__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9</fullName>
             <default>false</default>
         </values>
     </picklistValues>

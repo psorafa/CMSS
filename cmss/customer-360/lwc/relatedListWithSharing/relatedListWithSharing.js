@@ -24,6 +24,15 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 	loading;
 
 	connectedCallback() {
+		let fieldsToQuery = this.fieldsToDisplay;
+		//Special case for AssetRelationship
+		if (this.relationshipObjectName === 'AssetRelationship') {
+			fieldsToQuery += ',ProductTypeAssetId__c';
+		}
+		//Special case for AccountRelation__c
+		if (this.relationshipObjectName === 'AccountRelation__c') {
+			fieldsToQuery += ',AccountRole__c';
+		}
 		getColumns({
 			objectName: this.relationshipObjectName,
 			fieldsToShow: this.fieldsToDisplay.split(',')
@@ -48,7 +57,7 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 
 		getData({
 			sObjectName: this.relationshipObjectName,
-			fieldsToShow: this.fieldsToDisplay.split(','),
+			fieldsToShow: fieldsToQuery.split(','),
 			condition:
 				' (' +
 				this.relationPrimaryLookupField +
@@ -107,19 +116,39 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 			if (record[this.relationSecondaryLookupField].replace('/', '') === this.recordId) {
 				const primaryValue = record[this.relationPrimaryLookupField.replace('Id', '').replace('__c', '__r')];
 				const primaryIdValue = record[this.relationPrimaryLookupField];
+				let specificValues = this.getSpecificValues(record);
 				return {
 					...record,
 					[this.relationPrimaryLookupField.replace('Id', '').replace('__c', '__r')]:
 						record[this.relationSecondaryLookupField.replace('Id', '').replace('__c', '__r')],
 					[this.relationSecondaryLookupField.replace('Id', '').replace('__c', '__r')]: primaryValue,
 					[this.relationPrimaryLookupField]: record[this.relationSecondaryLookupField],
-					[this.relationSecondaryLookupField]: primaryIdValue
+					[this.relationSecondaryLookupField]: primaryIdValue,
+					...specificValues
 				};
 			} else {
 				return record;
 			}
 		});
 		return resultArray;
+	}
+
+	getSpecificValues(record) {
+		if (record.hasOwnProperty('ProductTypeRelatedAsset__c')) {
+			//Special case for AssetRelationship
+			return {
+				ProductTypeAssetId__c: record['ProductTypeRelatedAsset__c'],
+				ProductTypeRelatedAsset__c: record['ProductTypeAssetId__c']
+			};
+		}
+		if (record.hasOwnProperty('RelatedAccountRole__c')) {
+			//Special case for AccountRelation__c
+			return {
+				AccountRole__c: record['RelatedAccountRole__c'],
+				RelatedAccountRole__c: record['AccountRole__c']
+			};
+		}
+		return {};
 	}
 
 	flattenStructure(topObject, prefix, toBeFlattened) {
@@ -141,19 +170,19 @@ export default class RelatedListWithSharing extends NavigationMixin(LightningEle
 	}
 
 	handleRowActions(event) {
-		var clickedFieldNameRaw = event.detail.action?.label?.fieldName;
-		var splitedName = clickedFieldNameRaw.split('.');
-		var clickedFieldName = splitedName.length === 1 ? splitedName[0] : splitedName[splitedName.length - 2];
+		let clickedFieldNameRaw = event.detail.action?.label?.fieldName;
+		let splitedName = clickedFieldNameRaw.split('.');
+		let clickedFieldName = splitedName.length === 1 ? splitedName[0] : splitedName[splitedName.length - 2];
 		clickedFieldName = clickedFieldName.endsWith('__r') ? clickedFieldName.replace('__r', '__c') : clickedFieldName;
 		splitedName.pop();
-		var objectRelation = splitedName.join('.') + '';
+		let objectRelation = splitedName.join('.') + '';
 		if (objectRelation.endsWith('Asset') || objectRelation.endsWith('Account')) {
 			objectRelation = objectRelation + 'Id';
 		}
 		if (splitedName.length === 0) {
 			objectRelation = 'Id';
 		}
-		var clickedObjId = event.detail.row[objectRelation].replaceAll('/', '').replaceAll('\\', '');
+		let clickedObjId = event.detail.row[objectRelation].replaceAll('/', '').replaceAll('\\', '');
 
 		this.loading = true;
 		shareRelatedAccount({ objectId: clickedObjId, sharingDisabled: !this.sharingEnabled })

@@ -4,18 +4,18 @@
         <field>Campaign.Activities.UserAsOwner$Name</field>
     </columns>
     <columns>
-        <field>Campaign.Activities$ActivityType__c</field>
+        <field>Campaign.Activities$Subject</field>
     </columns>
     <columns>
-        <field>Campaign.Activities$Subject</field>
+        <field>Campaign$Type</field>
     </columns>
     <filter>
         <criteriaItems>
-            <column>Campaign.Activities$ActivityType__c</column>
+            <column>Campaign$Type</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Microcampaign_</value>
+            <value>10</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
