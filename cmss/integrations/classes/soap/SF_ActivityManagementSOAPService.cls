@@ -1,22 +1,24 @@
 global with sharing class SF_ActivityManagementSOAPService {
-
 	webService static ActivityManagementResponseType createActivity(ActivityRequestType request) {
 		Savepoint sp = Database.setSavepoint();
 		Logger.debug('Incoming request', JSON.serialize(request));
 		try {
-            ActivityManagementResponseType response = 
-                (ActivityManagementResponseType) SOAPResponseFactory.constructResponse(
-                    ActivityManagementResponseType.class, 
-                    request.requestHeader
-            );
-			String result = TaskService.createTask(request.requestBody);
+			ActivityManagementResponseType response = (ActivityManagementResponseType) SOAPResponseFactory.constructResponse(
+				ActivityManagementResponseType.class,
+				request.requestHeader
+			);
+			String result = TaskService.createTask(request.requestBody, request.requestHeader);
 			response.responseBody = new ActivityManagementResponseBody(result);
 			Logger.debug('Returning success response', JSON.serialize(response));
 			return response;
 		} catch (SOAPCommonTypes.BusinessException e) {
 			Database.rollback(sp);
 			Logger.warn('Business error occurred', e);
-			ActivityManagementResponseType response = (ActivityManagementResponseType) SOAPResponseFactory.constructFaultResponse(ActivityManagementResponseType.class, request.requestHeader, e);
+			ActivityManagementResponseType response = (ActivityManagementResponseType) SOAPResponseFactory.constructFaultResponse(
+				ActivityManagementResponseType.class,
+				request.requestHeader,
+				e
+			);
 			Logger.debug('Returning error response', JSON.serialize(response));
 			return response;
 		} catch (Exception e) {
@@ -28,21 +30,24 @@ global with sharing class SF_ActivityManagementSOAPService {
 	}
 
 	webService static ActivityManagementResponseType updateActivity(ActivityRequestType request) {
-        Savepoint sp = Database.setSavepoint();
+		Savepoint sp = Database.setSavepoint();
 		Logger.debug('Incoming request', JSON.serialize(request));
 		try {
-			ActivityManagementResponseType response = 
-                (ActivityManagementResponseType) SOAPResponseFactory.constructResponse(
-                    ActivityManagementResponseType.class, 
-                    request.requestHeader
-            );
-			TaskService.updateTask(request.requestBody);
+			ActivityManagementResponseType response = (ActivityManagementResponseType) SOAPResponseFactory.constructResponse(
+				ActivityManagementResponseType.class,
+				request.requestHeader
+			);
+			TaskService.updateTask(request.requestBody, request.requestHeader);
 			Logger.debug('Returning success response', JSON.serialize(response));
 			return response;
 		} catch (SOAPCommonTypes.BusinessException e) {
 			Database.rollback(sp);
 			Logger.warn('Business error occurred', e);
-			ActivityManagementResponseType response = (ActivityManagementResponseType) SOAPResponseFactory.constructFaultResponse(ActivityManagementResponseType.class, request.requestHeader, e);
+			ActivityManagementResponseType response = (ActivityManagementResponseType) SOAPResponseFactory.constructFaultResponse(
+				ActivityManagementResponseType.class,
+				request.requestHeader,
+				e
+			);
 			Logger.debug('Returning error response', JSON.serialize(response));
 			return response;
 		} catch (Exception e) {
@@ -51,15 +56,15 @@ global with sharing class SF_ActivityManagementSOAPService {
 		} finally {
 			Logger.saveLogs();
 		}
-    }
-    
-    global class ActivityRequestType {
+	}
+
+	global class ActivityRequestType {
 		webService SOAPCommonTypes.CommonHeader requestHeader;
 		webService ActivityType requestBody;
 	}
 
 	global class ActivityType {
-        webService String id;
+		webService String id;
 		webService String personNumber;
 		webService String type;
 		webService String describe;
@@ -92,7 +97,7 @@ global with sharing class SF_ActivityManagementSOAPService {
 		webService Date validFrom;
 	}
 
-    global class ActivityManagementResponseType {
+	global class ActivityManagementResponseType {
 		webService SOAPCommonTypes.CommonHeader responseHeader;
 		webService Boolean isFault;
 		webService SOAPCommonTypes.Fault fault;

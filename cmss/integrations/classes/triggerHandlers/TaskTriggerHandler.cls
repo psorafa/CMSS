@@ -38,6 +38,9 @@ public class TaskTriggerHandler extends TriggerHandler {
 
 	public void updateTaskFields(List<Task> newTasks) {
 		for (Task task : newTasks) {
+			if (task.Source__c == '54') {
+				task.Category__c = '1';
+			}
 			if (task.Type != null) {
 				task.ActivityType__c = task.Type;
 			}
