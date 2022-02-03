@@ -43,7 +43,7 @@
         </filters>
         <filters>
             <field>DateSent__c</field>
-            <operator>EqualTo</operator>
+            <operator>LessThanOrEqualTo</operator>
             <value>
                 <elementReference>DateSent</elementReference>
             </value>
