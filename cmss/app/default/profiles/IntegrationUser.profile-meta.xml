@@ -4360,7 +4360,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>MailServiceNotification__c.ErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>MailServiceNotification__c.FromEmailAddress__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MailServiceNotification__c.NotSentDueToError__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5481,6 +5491,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Log__c-Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MailServiceNotification__c-MailServiceNotification Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>NonLifeInsurance__c-Non Life Insurance Layout</layout>

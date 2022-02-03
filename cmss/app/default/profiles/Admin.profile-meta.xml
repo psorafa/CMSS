@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>standard__LightningSales</application>
@@ -359,6 +359,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>LoggerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MailServiceNotificationsQueue</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MailServiceNotificationsQueueTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -5144,6 +5152,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>MailServiceNotification__c.ErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MailServiceNotification__c.NotSentDueToError__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>NonLifeInsurance__c.Agent__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6375,6 +6393,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Log__c-Log Layout</layout>
+    </layoutAssignments>
+        <layoutAssignments>
+        <layout>MailServiceNotification__c-MailServiceNotification Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>NonLifeInsurance__c-Non Life Insurance Layout</layout>

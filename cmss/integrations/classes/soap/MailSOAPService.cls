@@ -42,7 +42,7 @@ public class MailSOAPService {
 			return body;
 		}
 
-		public void sendEmail_Http(String Reciever, String Sender, String Subject, String Body) {
+		public HTTPResponse sendEmail_Http(String Reciever, String Sender, String Subject, String Body) {
 			DOM.Document doc = new DOM.Document();
 			DOM.XmlNode reqBody = populateDoc(doc);
 			DOM.XmlNode methodNode = reqBody.addChildElement('sendEmailRequest', serviceNamespace, 'mail');
@@ -55,6 +55,7 @@ public class MailSOAPService {
 			request_x.populateXmlNode(methodNode);
 
 			HttpRequest req = new HttpRequest();
+			req.setTimeout(20000);
 			req.setEndpoint(endpoint_x);
 			req.setMethod('POST');
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
@@ -69,6 +70,8 @@ public class MailSOAPService {
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
 			Dom.XmlNode sendEmailResponseNode = bodyNode.getChildElement('sendEmailResponse', serviceNamespace);
+			System.debug(res.getStatus());
+			return res;
 		}
 
 		public void sendEmailWithAttachments_Http(
