@@ -8,57 +8,46 @@ public class AQMessageService {
 	};
 
 	public static void handleInsert(List<SObject> records, SObjectType sObjectType) {
-		checkSObjectType(sObjectType);
-		if (!FeatureManagement.checkPermission('Bypass_AQ_Messaging')) {
-			AQMessagePublisher publisher = new AQMessagePublisher(
-				'CREATE',
-				sObjectType,
-				aqMessageTypes.get(sObjectType)
-			);
-			for (SObject record : records) {
-				publisher.addMessage(
-					record,
-					getDataMapForInsertedRecord(record, sObjectType)
-				);
-			}
-			publisher.publish();
-		}
+		handleCreateMessage('CREATE', records, null, sObjectType);
 	}
 
 	public static void handleUpdate(List<SObject> newRecords, Map<Id, SObject> oldRecordsMap, SObjectType sObjectType) {
-		checkSObjectType(sObjectType);
-		if (!FeatureManagement.checkPermission('Bypass_AQ_Messaging')) {
-			AQMessagePublisher publisher = new AQMessagePublisher(
-				'UPDATE',
-				sObjectType,
-				aqMessageTypes.get(sObjectType)
-			);
-			for (SObject newRecord : newRecords) {
-				publisher.addMessage(
-					newRecord,
-					getDataMapForUpdatedRecord(newRecord, oldRecordsMap.get(newRecord.Id), sObjectType)
-				);
-			}
-			publisher.publish();
-		}
+		handleCreateMessage('UPDATE', newRecords, oldRecordsMap, sObjectType);
 	}
 
 	public static void handleDelete(List<SObject> records, SObjectType sObjectType) {
+		handleCreateMessage('DELETE', records, null, sObjectType);
+	}
+
+	private static void handleCreateMessage(
+		String type,
+		List<SObject> records,
+		Map<Id, SObject> oldRecordsMap,
+		SObjectType sObjectType
+	) {
 		checkSObjectType(sObjectType);
 		if (!FeatureManagement.checkPermission('Bypass_AQ_Messaging')) {
-			AQMessagePublisher publisher = new AQMessagePublisher(
-				'DELETE',
-				sObjectType,
-				aqMessageTypes.get(sObjectType)
-			);
+			AQMessagePublisher publisher = new AQMessagePublisher(type, sObjectType, aqMessageTypes.get(sObjectType));
 			for (SObject record : records) {
-				publisher.addMessage(record);
+				if (type == 'DELETE') {
+					publisher.addMessage(record);
+				} else {
+					List<String> changedFields = null;
+					if (type == 'UPDATE') {
+						changedFields = getFieldsListForUpdatedRecord(
+							record,
+							oldRecordsMap.get(record.Id),
+							sObjectType
+						);
+					}
+					publisher.addMessage(record, getDataMapForNewRecord(record, sObjectType), changedFields);
+				}
 			}
 			publisher.publish();
 		}
 	}
 
-	private static Map<String, Object> getDataMapForInsertedRecord(SObject record, SObjectType sObjectType) {
+	private static Map<String, Object> getDataMapForNewRecord(SObject record, SObjectType sObjectType) {
 		Map<String, Object> dataMap = new Map<String, Object>();
 		for (SObjectField field : sObjectType.getDescribe().fields.getMap().values()) {
 			DescribeFieldResult describe = field.getDescribe();
@@ -69,19 +58,19 @@ public class AQMessageService {
 		return dataMap;
 	}
 
-	private static Map<String, Object> getDataMapForUpdatedRecord(
+	private static List<String> getFieldsListForUpdatedRecord(
 		SObject newRecord,
 		SObject oldRecord,
 		SObjectType sObjectType
 	) {
-		Map<String, Object> dataMap = new Map<String, Object>();
+		List<String> fieldsList = new List<String>();
 		for (SObjectField field : sObjectType.getDescribe().fields.getMap().values()) {
 			DescribeFieldResult describe = field.getDescribe();
 			if (describe.isAccessible() && newRecord.get(field) != oldRecord.get(field)) {
-				dataMap.put(describe.getName(), newRecord.get(field));
+				fieldsList.add(describe.getName());
 			}
 		}
-		return dataMap;
+		return fieldsList;
 	}
 
 	private static void checkSObjectType(SObjectType sObjectType) {
