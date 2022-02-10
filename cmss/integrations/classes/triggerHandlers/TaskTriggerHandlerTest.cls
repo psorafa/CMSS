@@ -179,4 +179,45 @@ class TaskTriggerHandlerTest {
 		System.assertEquals(resultNotification.ToEmailAddress__c, 'invalid@testuser.cz');
 		System.assert(resultNotification.Subject__c.endsWith('Do something'));
 	}
-}
+    
+    
+    
+    @isTest
+    static void inactiveTaskOwnerTest() {
+        User user = TestDataFactory.getUser(new User(IsActive = false));
+		insert user;
+        ContactInformation__c newCI = new ContactInformation__c(
+            Area__c = '3',
+            SubType__c = '3000001',
+            User__c = user.Id,
+            Email__c = 'testuser@test.com'
+        );
+        insert newCI;
+    	Task newTask = TestDataFactory.getTask(
+			new Task(
+				Subject = 'Do',
+				OwnerId = user.Id,
+				Category__c = '1',
+				IsVisibleForNel__c = true,
+				Status__c = '1'
+			)
+		);
+        		CalloutServiceMockImpl fakeSuccessResponse = new CalloutServiceMockImpl(
+			200,
+			'OK',
+			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:sendEmailResponse xmlns:ns3=\"http://service.cmss.cz/mail\" xmlns:ns2=\"http://service.cmss.cz/datamodel/mailservice/sendemail\" xmlns:ns4=\"http://service.cmss.cz/fault\"></ns3:sendEmailResponse></soapenv:Body></soapenv:Envelope>',
+			null,
+			null
+		);
+
+		Test.setMock(HttpCalloutMock.class, fakeSuccessResponse);
+        Test.startTest();
+		insert newTask;
+		Test.stopTest();
+            List<MailServiceNotification__c> notification = [
+			SELECT Id,ToEmailAddress__c
+			FROM MailServiceNotification__c
+            WHERE ToEmailAddress__c = 'testuser@test.com'
+		];
+		System.assertEquals(notification[0].ToEmailAddress__c, 'testuser@test.com');
+    }}

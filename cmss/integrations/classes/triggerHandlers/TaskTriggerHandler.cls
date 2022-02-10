@@ -110,7 +110,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 	@future
 	private static void createNewTaskNotifications(List<Id> taskIds) {
 		List<Task> serviceTasks = [
-			SELECT Id, OwnerId, Opportunity__r.Author__c, Owner.Email, Subject, CreatedById, Source__c
+			SELECT Id, OwnerId, Opportunity__r.Author__c, Owner.Email, Owner.IsActive, Subject, CreatedById, Source__c
 			FROM Task
 			WHERE
 				Id IN :taskIds
@@ -145,7 +145,27 @@ public class TaskTriggerHandler extends TriggerHandler {
 		];
 		List<MailServiceNotification__c> notifications = new List<MailServiceNotification__c>();
 		String linkToNel = IntegrationSettings__c.getOrgDefaults().NELBaseUrl__c + '/group/nel/prehled-op/aktivit';
+
+		Set<Id> inactiveOwnersIds = new Set<Id>();
 		for (Task task : tasksToNotifyAbout) {
+			if (!task.Owner.IsActive) {
+				inactiveOwnersIds.add(task.OwnerId);
+			}
+		}
+		Map<Id, String> emailByInactiveUserId = new Map<Id, String>();
+
+		for (ContactInformation__c ci : [
+			SELECT Email__c, User__c
+			FROM ContactInformation__c
+			WHERE Area__c = '3' AND SubType__c = '3000001' AND User__c IN :inactiveOwnersIds
+		]) {
+			emailByInactiveUserId.put(ci.User__c, ci.Email__c);
+		}
+
+		for (Task task : tasksToNotifyAbout) {
+			if (!task.Owner.IsActive && !emailByInactiveUserId.containsKey(task.OwnerId)) {
+				continue;
+			}
 			if (task.Opportunity__r?.Author__c != task.OwnerId || task.Source__c == '54') {
 				notifications.add(
 					createMailServiceNotification(
@@ -153,7 +173,8 @@ public class TaskTriggerHandler extends TriggerHandler {
 						task,
 						System.now(),
 						'noreply@csobstavebni-oz.cz',
-						new Map<String, String>{ 'LinkToNEL' => linkToNel }
+						new Map<String, String>{ 'LinkToNEL' => linkToNel },
+						emailByInactiveUserId
 					)
 				);
 			}
@@ -166,11 +187,14 @@ public class TaskTriggerHandler extends TriggerHandler {
 		Task task,
 		DateTime notificationDate,
 		String senderEmailAddress,
-		Map<String, String> specialValues
+		Map<String, String> specialValues,
+		Map<Id, String> emailByInactiveUserId
 	) {
 		MailServiceNotification__c newNotification = new MailServiceNotification__c();
 		newNotification.FromEmailAddress__c = senderEmailAddress;
-		newNotification.ToEmailAddress__c = task.Owner.Email;
+		newNotification.ToEmailAddress__c = task.Owner.IsActive
+			? task.Owner.Email
+			: emailByInactiveUserId.get(task.OwnerId);
 		newNotification.Body__c = SendNotificationHandler.getTextationFromTemplate(
 			task,
 			template.HtmlValue,
