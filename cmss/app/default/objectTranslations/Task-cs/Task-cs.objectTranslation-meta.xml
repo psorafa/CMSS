@@ -217,4 +217,8 @@
         <label>Úkol</label>
         <name>Task</name>
     </recordTypes>
+    <validationRules>
+        <errorMessage>Maximální povolená délka je méně než 20 znaků.</errorMessage>
+        <name>LimitPhoneToLessThan20Chars</name>
+    </validationRules>
 </CustomObjectTranslation>
