@@ -6,6 +6,9 @@
 private class CustomerSearchController_Test {
 	static Account personClient,
 		personClient2,
+		personClient3,
+		personClient4,
+		personClient5,
 		personProspect1,
 		personProspect2,
 		businessClient,
@@ -21,6 +24,24 @@ private class CustomerSearchController_Test {
 	static void testSetup() {
 		personClient = getPersonAccountNoInsert('Filoména', 'Fialková', '9011111111', null, '1');
 		personClient2 = getPersonAccountNoInsert('Andrej', 'Andrejovič', '8922222222', '11122233', '1');
+		personClient3 = new Account(
+			FirstName = 'Filoména',
+			LastName = 'Fialková',
+			PersonalIdentificationNr__c = '9011111111',
+			CSOBSNonClient__c = false
+		);
+		personClient4 = new Account(
+			FirstName = 'Filoména',
+			LastName = 'Fialková',
+			PersonalIdentificationNr__c = '9011111111',
+			CSOBSNonClient__c = true
+		);
+		personClient5 = new Account(
+			FirstName = 'Filoména',
+			LastName = 'Fialková',
+			PersonalIdentificationNr__c = '9011111111',
+			CSOBSNonClient__c = true
+		);
 		personProspect1 = getPersonAccountNoInsert('Rudolf', 'Rudý', '8833333333', null, '3');
 		personProspect2 = getPersonAccountNoInsert('Zuzana', 'Zelená', '8744444444', '87654321', '4');
 		businessClient = getBusinessAccountNoInsert('Brýle s.r.o.', '11122233', '1');
@@ -29,6 +50,9 @@ private class CustomerSearchController_Test {
 		insert new List<Account>{
 			personClient,
 			personClient2,
+			personClient3,
+			personClient4,
+			personClient5,
 			personProspect1,
 			personProspect2,
 			businessClient,
@@ -91,6 +115,31 @@ private class CustomerSearchController_Test {
 		System.assertEquals(personClient.Id, results.get(0).recordId, 'Record Id not as expected.');
 	}
 
+	@IsTest
+	static void findMoreThan1PersonAccountTestWithFalseCSOBSNonClient() {
+		testSetup();
+		List<Account> searchResults = new List<Account>();
+		SearchResults.add(personClient4);
+		SearchResults.add(personClient3);
+		System.assert(searchResults.size() > 1);
+		Test.startTest();
+		searchResults = CustomerSearchController.getRelevantAccount(searchResults);
+		Test.stopTest();
+		System.assert(searchResults.size() == 1);
+		System.assertEquals(searchResults[0].CSOBSNonClient__c, false);
+	}
+	@IsTest
+	static void findMoreThan1PersonAccountTestWithTrueCSOBSNonClient() {
+		testSetup();
+		List<Account> searchResults = new List<Account>();
+		SearchResults.add(personClient4);
+		SearchResults.add(personClient5);
+		System.assert(searchResults.size() > 1);
+		Test.startTest();
+		searchResults = CustomerSearchController.getRelevantAccount(searchResults);
+		Test.stopTest();
+		System.assertEquals(searchResults[0].CSOBSNonClient__c, true);
+	}
 	@IsTest
 	static void findRecordsTestPosBirthNumLeads() {
 		testSetup();

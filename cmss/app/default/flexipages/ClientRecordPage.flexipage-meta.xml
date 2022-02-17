@@ -118,11 +118,14 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>StateCodeColour__c, ProductType__c, Name, ProductCloseDate__c, CancellationDate__c, CancellationReason__c, DateUpdated__c, AmountRepayment__c, Status__c</value>
+                    <value>StateCodeColour__c, ProductType__c, Name, ProductCloseDate__c, CancellationDate__c, CancellationReason__c, DateUpdated__c, AmountRepayment__c, Premium__c, Status__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>conditionAssets</name>
                     <value>(RecordType.DeveloperName = &apos;PMO&apos; OR RecordType.DeveloperName = &apos;InvestmentLifeInsurance&apos;)</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>conditionRelations</name>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>iconName</name>
@@ -170,7 +173,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>listName</name>
-                    <value>Běžné a spořící účty</value>
+                    <value>Produkty ČSOB</value>
                 </componentInstanceProperties>
                 <componentName>assetRelatedList</componentName>
                 <identifier>assetRelatedList7</identifier>
@@ -250,7 +253,7 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>   
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>condition</name>
@@ -291,7 +294,7 @@
                 <componentName>relatedListWithSharing</componentName>
                 <identifier>relatedListWithSharing</identifier>
             </componentInstance>
-        </itemInstances> 
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>

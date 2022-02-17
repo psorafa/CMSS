@@ -11,14 +11,44 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>1</fullName>
+                <fullName>240</fullName>
                 <default>false</default>
-                <label>1</label>
+                <label>Skupinový klient (aktivní BÚ + další produkt ve skupině)</label>
             </value>
             <value>
-                <fullName>2</fullName>
+                <fullName>241</fullName>
                 <default>false</default>
-                <label>2</label>
+                <label>Skupinový klient (aktivní BÚ + další produkt ve skupině))</label>
+            </value>
+            <value>
+                <fullName>242</fullName>
+                <default>false</default>
+                <label>S neaktivním BÚ a s dalším produktem ve skupině</label>
+            </value>
+            <value>
+                <fullName>243</fullName>
+                <default>false</default>
+                <label>Bez BÚ a s dalším produktem ve skupině</label>
+            </value>
+            <value>
+                <fullName>244</fullName>
+                <default>false</default>
+                <label>S aktivním BÚ a bez dalšího produktu ve skupině</label>
+            </value>
+            <value>
+                <fullName>245</fullName>
+                <default>false</default>
+                <label>S neaktivním BÚ a bez dalšího produktu ve skupině</label>
+            </value>
+            <value>
+                <fullName>246</fullName>
+                <default>false</default>
+                <label>Bez BÚ a s depozitním produktem ve skupině</label>
+            </value>
+            <value>
+                <fullName>247</fullName>
+                <default>false</default>
+                <label>Bez BÚ a s dalším produktem ve skupině.</label>
             </value>
         </valueSetDefinition>
     </valueSet>

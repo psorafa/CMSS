@@ -679,7 +679,7 @@ public class CommonMessageService {
 			'conversationIdValue', s_ns0, 'string', '0', '1', 'false'
 		};
 		private transient String[] correlationId_type_info = new String[]{
-			'correlationId', s_ns0, 'string', '0', '1', 'false'
+			'correlationId', s_ns0, 'string', '1', '1', 'false'
 		};
 		private transient String[] messageId_type_info = new String[]{
 			'messageId', s_ns0, 'string', '1', '1', 'false'
@@ -708,7 +708,9 @@ public class CommonMessageService {
 		public RequestHeader() {
 			this.timestamp = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
 			this.timestamp = this.timestamp.substring(0, this.timestamp.length() - 2) + ':00';
-			this.messageId = UUIDUtil.generateUUID();
+            String commonId = UUIDUtil.generateUUID();
+			this.messageId = commonId;
+			this.correlationId = commonId;
 			this.sourceSystem = IntegrationSettings__c.getOrgDefaults().SourceSystem__c;
 			this.targetSystem = IntegrationSettings__c.getOrgDefaults().TargetSystem__c;
 			this.physicalSource = Url.getSalesforceBaseUrl().toExternalForm();

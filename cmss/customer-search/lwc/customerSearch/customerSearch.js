@@ -7,7 +7,8 @@
 import { LightningElement, track, wire, api } from 'lwc';
 import findRecords from '@salesforce/apex/CustomerSearchController.findRecords';
 import assignSearchAccess from '@salesforce/apex/CustomerSearchController.assignSearchAccess';
-
+import searchCSOBNonClient from '@salesforce/apex/PersonManagementController.searchCSOBNonClient';
+import updateCSOBNonClient from '@salesforce/apex/PersonManagementController.updateCSOBNonClient';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
 
@@ -166,23 +167,46 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 			findRecords({
 				searchCriteria: searchCriteria
 			})
-				.then(data => {
+				.then((data) => {
 					this.searchResults = data;
-					if (!data) {
-						throw new Error('no data');
-					}
-					this.recordId = data[0].recordId;
-					return assignSearchAccess({
-						accountId: this.recordId
-					});
+					return data;
 				})
+				.then((data) => this.dataProcessing(data))
+				.then(() =>
+					assignSearchAccess({
+						accountId: this.recordId
+					})
+				)
 				.then(() => {
 					this.navigateToRecordPage(this.recordId);
 				})
-				.catch(error => {
+				.catch((error) => {
 					this.handleErrors(error);
 				});
 		}
+	}
+
+	dataProcessing(data) {
+		if (!data) {
+			return searchCSOBNonClient({
+				birthNumber: this.inputBirthNumber,
+				lastName: this.inputLastName
+			})
+				.then((result) => {
+					if (!result || result === 'null') {
+						throw new Error('no data');
+					} else {
+						updateCSOBNonClient({
+							serializedUpdatePersonCSOBDataRequest: result
+						});
+					}
+					return result;
+				})
+				.then((result) => {
+					this.recordId = JSON.parse(result).Account.Id;
+				});
+		}
+		this.recordId = data[0].recordId;
 	}
 
 	handleErrors(error) {
@@ -199,7 +223,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	isSearchCriteriaOk() {
 		let ok = true;
 		let inputFields = this.template.querySelectorAll('lightning-input');
-		inputFields.forEach(field => {
+		inputFields.forEach((field) => {
 			if (!field.checkValidity()) {
 				ok = false;
 			}
@@ -247,11 +271,5 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 		assignSearchAccess({
 			accountId: accountId
 		});
-		// .then(() => {
-		// 	console.log('access assign successful');
-		// })
-		// .catch(error => {
-		// 	console.log('access assign unsuccessful');
-		// });
 	}
 }

@@ -58,7 +58,9 @@ public without sharing class CustomerSearchController {
 		if (validateInputs()) {
 			String query = getQueryString();
 			List<SObject> searchResults = String.isNotBlank(query) ? runSosl(query) : new List<SObject>();
-
+			if (searchResults.size() > 1 && searchResults.getSObjectType() == Account.sObjectType) {
+				searchResults = getRelevantAccount(searchResults);
+			}
 			if (!searchResults.isEmpty()) {
 				finalResults = getFilteredResults(searchResults);
 			}
@@ -71,6 +73,21 @@ public without sharing class CustomerSearchController {
 		return finalResults;
 	}
 
+	public static List<Account> getRelevantAccount(List<Account> accounts) {
+		List<Account> accountWithFalseCSOBSNonClient = new List<Account>();
+		List<Account> accountWithTrueCSOBSNonClient = new List<Account>();
+		for (Account acc : accounts) {
+			if (acc.CSOBSNonClient__c == false) {
+				accountWithFalseCSOBSNonClient.add(acc);
+			} else {
+				accountWithTrueCSOBSNonClient.add(acc);
+			}
+		}
+		if (accountWithFalseCSOBSNonClient.size() > 0) {
+			return accountWithFalseCSOBSNonClient;
+		}
+		return accountWithTrueCSOBSNonClient;
+	}
 	@AuraEnabled
 	public static void assignSearchAccess(String accountId) {
 		User currentUser = UserDao.getUserById(UserInfo.getUserId());
@@ -135,7 +152,7 @@ public without sharing class CustomerSearchController {
 	@TestVisible
 	private static final String ACCOUNT_OBJECT_STRING =
 		ACCOUNT_SOBJECT +
-		'(Id,PersonalIdentificationNr__c,CompanyRegistrationNumber__c,Name,FirstName,LastName,BillingCity,BillingPostalCode, IsPersonAccount, PersonEmail, CompanyEmail__c, GlobalId__c WHERE ';
+		'(Id,PersonalIdentificationNr__c,CompanyRegistrationNumber__c,Name,FirstName,LastName,BillingCity,BillingPostalCode, IsPersonAccount, PersonEmail,CSOBSNonClient__c, CompanyEmail__c, GlobalId__c WHERE ';
 	@TestVisible
 	private static final String LEAD_OBJECT_STRING =
 		LEAD_SOBJECT + '(Id,FirstName,LastName,Name,Email,PersonalIdentificationNr__c,City,PostalCode)';

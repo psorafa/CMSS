@@ -95,6 +95,10 @@
             <section>AML Data</section>
         </sections>
         <sections>
+            <label>ČSOB data</label>
+            <section>CSOB Data</section>
+        </sections>
+        <sections>
             <label>Osobní informace</label>
             <section>Personal Information</section>
         </sections>
@@ -116,21 +120,36 @@
         </sections>
     </layouts>
     <quickActions>
+        <aspect>Master</aspect>
         <label>Sjednat produkt</label>
         <name>ArrangeContract</name>
     </quickActions>
     <quickActions>
+        <aspect>Master</aspect>
         <label>Nová příležitost</label>
         <name>CreateOpportunity</name>
     </quickActions>
     <quickActions>
+        <aspect>Master</aspect>
         <label>Nová aktivita</label>
         <name>NewActivity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create New Event --></label>
+        <name>NewEvent</name>
     </quickActions>
     <recordTypes>
         <label><!-- Business Account --></label>
         <name>Business_Account</name>
     </recordTypes>
+    <recordTypes>
+        <label><!-- Community Account --></label>
+        <name>CommunityAccount</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Create_Tasks --></label>
+        <name>Create_Tasks</name>
+    </webLinks>
     <webLinks>
         <label>Registrovat volání</label>
         <name>RegisterCall</name>
