@@ -56,8 +56,8 @@ public class DeleteClientZoneNotification_BatchTest {
 		account2.LastName = 'Novák';
 		insert new List<Account>{ account1, account2 };
 
-		account1.GlobalId__c = account1.Id;
-		account2.GlobalId__c = account2.Id;
+		account1.GlobalId__c = account1.GlobalId__c;
+		account2.GlobalId__c = account2.GlobalId__c;
 
 		update new List<Account>{ account1, account2 };
 

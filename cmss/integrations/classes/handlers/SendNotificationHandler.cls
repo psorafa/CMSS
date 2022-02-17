@@ -20,7 +20,6 @@ public class SendNotificationHandler {
 		this.emailTemplateDevName = emailTemplateDevName;
 		this.receiverEmail = receiverEmail;
 		this.specialVariableValues = specialVariableValues;
-		this.mailService = new MailSOAPService.MailServicePort();
 	}
 
 	public SendNotificationHandler(sObject onObject, String emailTemplateDevName, String receiverEmail) {
@@ -80,7 +79,14 @@ public class SendNotificationHandler {
 
 	@TestVisible
 	private void sendEmailNotificaton() {
-		mailService.sendEmail_Http(receiverEmail, senderEmail, emailSubject, emailBody);
+        MailServiceNotification__c newNotification = new MailServiceNotification__c();
+		newNotification.ToEmailAddress__c = receiverEmail;
+        newNotification.FromEmailAddress__c = senderEmail;
+	    newNotification.Subject__c = emailSubject;
+        newNotification.Body__c = emailBody;
+        newNotification.SendAfter__c = System.today();
+        newNotification.NotSentDueToError__c = true;
+        insert newNotification;
 	}
 
 	public static void sendEmailNotificaton(String receiverEmail, String senderEmail, String subject, String body) {

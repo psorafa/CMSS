@@ -35,14 +35,14 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 			for (ClientZone__c record : recordList) {
 				accountToClientZoneMap.put(record.Account__c, record);
 			}
-			Map<Id, AccountRelation__c> validAccountRelations = getAssociatedAccounts(accountToClientZoneMap.keySet());
-			Map<Id, Task> associatedTasks = getAssociatedTasks(accountToClientZoneMap.keySet());
+			Map<Id, AccountRelation__c> associatedAccounts = getAssociatedAccounts(accountToClientZoneMap.keySet());
+			Map<Id, Asset> associatedAssets = getAssociatedAssets(accountToClientZoneMap.keySet());
 			Map<Id, Opportunity> associatedOpportunities = getAssociatedOpportunities(accountToClientZoneMap.keySet());
 
 			clientZonesToUpdate = processClientZones(
 				accountToClientZoneMap,
-				validAccountRelations,
-				associatedTasks,
+				associatedAccounts,
+				associatedAssets,
 				associatedOpportunities
 			);
 		} catch (Exception e) {
@@ -56,15 +56,15 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 
 	private List<ClientZone__c> processClientZones(
 		Map<Id, ClientZone__c> accountToClientZoneMap,
-		Map<Id, AccountRelation__c> validAccountRelations,
-		Map<Id, Task> associatedTasks,
+		Map<Id, AccountRelation__c> associatedAccounts,
+		Map<Id, Asset> associatedAssets,
 		Map<Id, Opportunity> associatedOpportunities
 	) {
 		List<ClientZone__c> clientZonesToUpdate = new List<ClientZone__c>();
 		for (ClientZone__c clientZone : accountToClientZoneMap.values()) {
 			if (
-				!validAccountRelations.containsKey(clientZone.Account__c) ||
-				!associatedTasks.containsKey(clientZone.Account__c) ||
+				!associatedAccounts.containsKey(clientZone.Account__c) &&
+				!associatedAssets.containsKey(clientZone.Account__c) &&
 				!associatedOpportunities.containsKey(clientZone.Account__c)
 			) {
 				if (
@@ -101,59 +101,60 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 
 	private Map<Id, AccountRelation__c> getAssociatedAccounts(Set<Id> accountIds) {
 		List<AccountRelation__c> accountRelations = [
-			SELECT GlobalId__c, RelatedGlobalId__c, AccountRole__c
+			SELECT GlobalId__c, Account__c, RelatedAccount__c, RelatedGlobalId__c, AccountRole__c
 			FROM AccountRelation__c
-			WHERE (GlobalId__c IN :accountIds OR RelatedGlobalId__c IN :accountIds) AND AccountRole__c = '1501'
+			WHERE
+				(Account__c IN :accountIds
+				OR RelatedAccount__c IN :accountIds)
+				AND (AccountRole__c = '1501'
+				OR AccountRole__c = '1503')
 		];
 
 		Map<Id, AccountRelation__c> associatedAccounts = new Map<Id, AccountRelation__c>();
-		Map<Id, Id> otherToOriginalAccountIds = new Map<Id, Id>();
 
 		for (AccountRelation__c relation : accountRelations) {
-			if (relation.GlobalId__c != null && accountIds.contains(relation.GlobalId__c)) {
-				associatedAccounts.put(relation.GlobalId__c, relation);
-				if (relation.RelatedGlobalId__c != null) {
-					otherToOriginalAccountIds.put(relation.RelatedGlobalId__c, relation.GlobalId__c);
-				}
+			if (relation.GlobalId__c != null) {
+				associatedAccounts.put(relation.Account__c, relation);
 			}
-			if (relation.RelatedGlobalId__c != null && accountIds.contains(relation.RelatedGlobalId__c)) {
-				associatedAccounts.put(relation.RelatedGlobalId__c, relation);
-				if (relation.GlobalId__c != null) {
-					otherToOriginalAccountIds.put(relation.GlobalId__c, relation.RelatedGlobalId__c);
-				}
+			if (relation.RelatedGlobalId__c != null) {
+				associatedAccounts.put(relation.RelatedAccount__c, relation);
 			}
 		}
 
-		List<Asset> otherAccountAssets = [
-			SELECT Id, AccountId, Active__c
-			FROM Asset
-			WHERE AccountId IN :otherToOriginalAccountIds.keySet() AND Active__c = TRUE
-		];
-
-		Map<Id, AccountRelation__c> validAssociatedAccounts = new Map<Id, AccountRelation__c>();
-		for (Asset asset : otherAccountAssets) {
-			Id originalAccountId = otherToOriginalAccountIds.get(asset.AccountId);
-			validAssociatedAccounts.put(originalAccountId, associatedAccounts.get(originalAccountId));
-		}
-
-		return validAssociatedAccounts;
+		return associatedAccounts;
 	}
 
-	private Map<Id, Task> getAssociatedTasks(Set<Id> accountIds) {
-		List<Task> tasks = [SELECT WhoId, Type FROM Task WHERE WhoId IN :accountIds AND Type = '5'];
-
-		Map<Id, Task> associatedTasks = new Map<Id, Task>();
-		for (Task task : tasks) {
-			associatedTasks.put(task.WhoId, task);
+	private Map<Id, Asset> getAssociatedAssets(Set<Id> accountIds) {
+		List<Asset> assets = [
+			SELECT Id, AccountId
+			FROM Asset
+			WHERE
+				AccountId IN :accountIds
+				AND StateCode__c = '1'
+				AND ProductType__c = '11'
+				AND AccountId IN (
+					SELECT Account__c
+					FROM AssetAccountRelation__c
+					WHERE RelationType__c = '1' OR RelationType__c = '3' OR RelationType__c = '4'
+				)
+		];
+		Map<Id, Asset> associatedAssets = new Map<Id, Asset>();
+		for (Asset asset : assets) {
+			associatedAssets.put(asset.AccountId, asset);
 		}
-		return associatedTasks;
+		return associatedAssets;
 	}
 
 	private Map<Id, Opportunity> getAssociatedOpportunities(Set<Id> accountIds) {
 		List<Opportunity> opportunities = [
 			SELECT AccountId
 			FROM Opportunity
-			WHERE AccountId IN :accountIds AND IsClosed = FALSE
+			WHERE
+				AccountId IN :accountIds
+				AND IsClosed = FALSE
+				AND (Category__c = '5'
+				OR Category__c = '6'
+				OR Category__c = '7')
 		];
 
 		Map<Id, Opportunity> associatedOpportunities = new Map<Id, Opportunity>();
