@@ -110,7 +110,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 	@future
 	private static void createNewTaskNotifications(List<Id> taskIds) {
 		List<Task> serviceTasks = [
-			SELECT Id, OwnerId, Opportunity__r.Author__c, Owner.Email, Owner.IsActive, Subject, CreatedById, Source__c
+			SELECT Id, OwnerId, Owner.Email, Owner.IsActive, Subject, CreatedById, Source__c
 			FROM Task
 			WHERE
 				Id IN :taskIds
@@ -121,7 +121,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 		];
 
 		List<Task> otherTasks = [
-			SELECT Id, OwnerId, Opportunity__r.Author__c, Owner.Email, Subject, CreatedById, Source__c
+			SELECT Id, OwnerId, Owner.Email, Subject, CreatedById, Source__c
 			FROM Task
 			WHERE
 				Id IN :taskIds
@@ -166,7 +166,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 			if (!task.Owner.IsActive && !emailByInactiveUserId.containsKey(task.OwnerId)) {
 				continue;
 			}
-			if (task.Opportunity__r?.Author__c != task.OwnerId || task.Source__c == '54') {
+			if (task.CreatedById != task.OwnerId || task.Source__c == '54') {
 				notifications.add(
 					createMailServiceNotification(
 						template,
