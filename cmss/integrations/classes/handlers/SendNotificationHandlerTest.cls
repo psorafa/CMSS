@@ -106,11 +106,7 @@ public class SendNotificationHandlerTest {
 		);
 		insert Account;
 
-		account = [
-			SELECT FirstName, LastName, PortfolioMngmtA__r.Email
-			FROM Account
-			WHERE PersonEmail = 'karel@something.cz'
-		];
+		account = [SELECT FirstName, LastName, PortfolioMngmtA__r.Email FROM Account WHERE LastName = 'Hufnágl'];
 
 		String textTemplate = 'Proč jen si mě nešťastnou nevzal raději {!FirstName} {!LastName}?!? Managerův email je {!PortfolioMngmtA__r.Email}, to jen tak...';
 
