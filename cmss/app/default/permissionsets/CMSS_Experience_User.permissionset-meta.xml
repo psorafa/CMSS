@@ -2002,6 +2002,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Asset.TariffHelp__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Asset.Tariff__c</field>
         <readable>true</readable>
     </fieldPermissions>
