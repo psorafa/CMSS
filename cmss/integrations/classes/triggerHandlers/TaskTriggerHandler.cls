@@ -65,13 +65,24 @@ public class TaskTriggerHandler extends TriggerHandler {
 			sendNewTaskNotificationEmails(tasksToNotifyAbout);
 		}
 	}
-
+	private static Set<Id> getIntegrationUserIds() {
+		Set<Id> integrationUserIds = new Set<Id>();
+		for (User u : [SELECT Id, Profile.Name FROM User WHERE Profile.Name = 'IntegrationUser']) {
+			integrationUserIds.add(u.Id);
+		}
+		return integrationUserIds;
+	}
 	public void sendDelegatedTaskNotifications(List<SObject> newTasks, Map<Id, SObject> oldTasksMap) {
+		Set<Id> integrationUserIds = getIntegrationUserIds();
 		List<Id> potentialTasksToNotifyAbout = new List<Id>();
 		List<Id> tasksToNotifyAbout = new List<Id>();
 
 		for (Task task : (List<Task>) newTasks) {
-			if (task.OwnerId != ((Task) oldTasksMap.get(task.Id)).OwnerId) {
+			if (
+				task.OwnerId != ((Task) oldTasksMap.get(task.Id)).OwnerId &&
+				!integrationUserIds.contains(task.LastModifiedById) &&
+				task.isClosed == false
+			) {
 				potentialTasksToNotifyAbout.add(task.Id);
 			}
 		}
@@ -121,7 +132,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 		];
 
 		List<Task> otherTasks = [
-			SELECT Id, OwnerId, Owner.Email, Subject, CreatedById, Source__c
+			SELECT Id, OwnerId, Owner.Email, Subject, CreatedById, Source__c, isClosed, LastModifiedById
 			FROM Task
 			WHERE
 				Id IN :taskIds
