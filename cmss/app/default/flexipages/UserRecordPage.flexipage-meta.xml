@@ -58,7 +58,7 @@
                     <criteria>
                         <leftValue>{!$User.Profile.Name}</leftValue>
                         <operator>NE</operator>
-                        <rightValue>CMSS User</rightValue>
+                        <rightValue>CMSS User, CMSS Experience User</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -99,7 +99,7 @@
                     <criteria>
                         <leftValue>{!$User.Profile.Name}</leftValue>
                         <operator>NE</operator>
-                        <rightValue>CMSS User</rightValue>
+                        <rightValue>CMSS User, CMSS Experience User</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -140,7 +140,7 @@
                     <criteria>
                         <leftValue>{!$User.Profile.Name}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>CMSS User</rightValue>
+                        <rightValue>CMSS User, CMSS Experience User</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
