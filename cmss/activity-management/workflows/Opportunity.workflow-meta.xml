@@ -7,7 +7,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/DelegatedOpportunity</template>
     </alerts>
     <alerts>
@@ -17,7 +17,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/NewOpportunity</template>
     </alerts>
     <rules>

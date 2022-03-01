@@ -11,7 +11,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaim12DaysAfterReceivedDatePayments</template>
     </alerts>
     <alerts>
@@ -25,7 +25,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaim16DaysAfterReceivedDatePayments</template>
     </alerts>
     <alerts>
@@ -35,7 +35,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaim25DaysAfterReceivedDate</template>
     </alerts>
     <alerts>
@@ -49,7 +49,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaim31DaysAfterReceivedDate</template>
     </alerts>
     <alerts>
@@ -59,7 +59,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaim6DaysAfterReceivedDate</template>
     </alerts>
     <alerts>
@@ -70,7 +70,7 @@
             <recipient>ClientOmbudsman</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaimDetailPriority10</template>
     </alerts>
     <alerts>
@@ -81,7 +81,7 @@
             <recipient>ClientOmbudsman</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaimDetailPriority1</template>
     </alerts>
     <alerts>
@@ -92,7 +92,7 @@
             <recipient>ClientOmbudsman</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaimDetailPriority2</template>
     </alerts>
     <alerts>
@@ -103,7 +103,7 @@
             <recipient>ClientOmbudsman</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaimDetailPriority3</template>
     </alerts>
     <alerts>
@@ -114,7 +114,7 @@
             <recipient>ClientOmbudsman</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaimDetailPriority4</template>
     </alerts>
     <alerts>
@@ -125,7 +125,7 @@
             <recipient>ClientOmbudsman</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaimDetailPriority5</template>
     </alerts>
     <alerts>
@@ -136,7 +136,7 @@
             <recipient>ClientOmbudsman</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaimDetailPriority9</template>
     </alerts>
     <alerts>
@@ -147,7 +147,7 @@
             <recipient>ClientOmbudsman</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaimInstitutionType</template>
     </alerts>
     <alerts>
@@ -157,7 +157,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaimOwnerChanged</template>
     </alerts>
     <alerts>
@@ -168,7 +168,7 @@
             <recipient>ClientOmbudsman</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/ClientClaimRepeatedComplaint</template>
     </alerts>
     <alerts>
@@ -178,7 +178,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/GDPR20DaysAfterReceivedDate</template>
     </alerts>
     <alerts>
@@ -188,7 +188,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/GDPR25DaysAfterReceivedDate</template>
     </alerts>
     <alerts>
@@ -198,7 +198,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/GDPROwnerChanged</template>
     </alerts>
     <rules>
