@@ -36,7 +36,7 @@
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText</identifier>
                 <visibilityRule>
-                    <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+                    <booleanFilter>(1 OR 2) AND 3 AND 4</booleanFilter>
                     <criteria>
                         <leftValue>{!$Permission.CustomPermission.ClaimCaseManager}</leftValue>
                         <operator>EQUAL</operator>
@@ -51,6 +51,11 @@
                         <leftValue>{!Record.CaseTypeSummary__c}</leftValue>
                         <operator>LT</operator>
                         <rightValue>1</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Type}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>3</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
