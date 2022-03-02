@@ -62,8 +62,8 @@
     <dynamicChoiceSets>
         <name>eventType</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>Type</picklistField>
         <picklistObject>Event</picklistObject>
     </dynamicChoiceSets>
@@ -130,7 +130,7 @@
         <inputAssignments>
             <field>Subject</field>
             <value>
-                <elementReference>eventSubjectFormula</elementReference>
+                <elementReference>eventSubjectName</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -213,15 +213,21 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <name>eventTypeScreen</name>
-            <choiceReferences>eventType</choiceReferences>
+            <name>eventSubjectName</name>
             <dataType>String</dataType>
             <defaultValue>
-                <stringValue>Meeting</stringValue>
+                <elementReference>eventSubjectFormula</elementReference>
             </defaultValue>
-            <fieldText>Typ události</fieldText>
-            <fieldType>DropdownBox</fieldType>
+            <fieldText>Název</fieldText>
+            <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>eventDescription</name>
+            <dataType>String</dataType>
+            <fieldText>Popis</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
         </fields>
         <fields>
             <name>eventStartScreen</name>
@@ -229,7 +235,7 @@
             <defaultValue>
                 <elementReference>eventStartTime</elementReference>
             </defaultValue>
-            <fieldText>Začátek</fieldText>
+            <fieldText>Čas od</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
         </fields>
@@ -239,16 +245,9 @@
             <defaultValue>
                 <elementReference>eventEndTime</elementReference>
             </defaultValue>
-            <fieldText>Konec</fieldText>
+            <fieldText>Čas do</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>eventDescription</name>
-            <dataType>String</dataType>
-            <fieldText>Informace o události</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
         </fields>
         <nextOrFinishButtonLabel>Uložit</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
