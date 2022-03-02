@@ -141,7 +141,7 @@ export default class ExternalLinks extends LightningElement {
 		window.open('https://insign.cmss.is2.cloud/anmelden', '_blank');
 	}
 	handleClickKontakty(e) {
-		window.open('https://itweboz.csobstavebni.cz/transfer/NEL/Kontakty%204_2021%20CSOBS.htm', '_blank');
+		window.open('https://itweboz.csobstavebni.cz/transfer/NEL/Kontakty%20v%20NeL.htm', '_blank');
 	}
 	handleClickNovaModelovaHhypoteka(e) {
 		window.open('https://portal.hypotecnibanka.cz/informatorium/login', '_blank');
