@@ -187,12 +187,12 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	}
 
 	dataProcessing(data) {
-		if (!data) {
+		if (!data || data[0].accessToRecord == false) {
 			return searchCSOBNonClient({
 				birthNumber: this.inputBirthNumber,
 				lastName: this.inputLastName
 			})
-				.then((result) => {
+				.then(result => {
 					if (!result || result === 'null') {
 						throw new Error('no data');
 					} else {
@@ -202,11 +202,12 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 					}
 					return result;
 				})
-				.then((result) => {
+				.then(result => {
 					this.recordId = JSON.parse(result).Account.Id;
 				});
+		} else {
+			this.recordId = data[0].recordId;
 		}
-		this.recordId = data[0].recordId;
 	}
 
 	handleErrors(error) {
