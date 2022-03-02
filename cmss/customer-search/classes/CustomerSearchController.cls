@@ -88,6 +88,17 @@ public without sharing class CustomerSearchController {
 		}
 		return accountWithTrueCSOBSNonClient;
 	}
+
+	private static Boolean isActualUserAdmin() {
+		Id actualUserProfileId = UserInfo.getProfileId();
+		String actualUserProfileName = [SELECT Name FROM Profile WHERE Id = :actualUserProfileId].Name;
+		return actualUserProfileName == 'System Administrator';
+	}
+
+	private static String getHiddenRecordsOwnerUserId() {
+		Id hiddenRecordsOwnerId = [SELECT Id FROM User WHERE Name = 'Hidden Records Owner'].Id;
+		return hiddenRecordsOwnerId;
+	}
 	@AuraEnabled
 	public static void assignSearchAccess(String accountId) {
 		User currentUser = UserDao.getUserById(UserInfo.getUserId());
@@ -152,7 +163,7 @@ public without sharing class CustomerSearchController {
 	@TestVisible
 	private static final String ACCOUNT_OBJECT_STRING =
 		ACCOUNT_SOBJECT +
-		'(Id,PersonalIdentificationNr__c,CompanyRegistrationNumber__c,Name,FirstName,LastName,BillingCity,BillingPostalCode, IsPersonAccount, PersonEmail,CSOBSNonClient__c, CompanyEmail__c, GlobalId__c WHERE ';
+		'(Id,PersonalIdentificationNr__c,CompanyRegistrationNumber__c,Name,FirstName,LastName,BillingCity,BillingPostalCode, IsPersonAccount, PersonEmail,CSOBSNonClient__c, CompanyEmail__c, AccountStatus__c,OwnerId, GlobalId__c WHERE ';
 	@TestVisible
 	private static final String LEAD_OBJECT_STRING =
 		LEAD_SOBJECT + '(Id,FirstName,LastName,Name,Email,PersonalIdentificationNr__c,City,PostalCode)';
@@ -210,6 +221,9 @@ public without sharing class CustomerSearchController {
 
 	@TestVisible
 	private static List<SearchResultDTO> getFilteredResults(List<SObject> searchResults) {
+		Boolean isAdminUser = isActualUserAdmin();
+		String hiddenRecordsOwnerUserId = getHiddenRecordsOwnerUserId();
+		Boolean accessToRecord = true;
 		List<SearchResultDTO> filteredResults = new List<SearchResultDTO>();
 		if (searchResults != null && !searchResults.isEmpty()) {
 			String sObjectType = String.valueOf(searchResults.get(0).getSObjectType());
@@ -219,11 +233,20 @@ public without sharing class CustomerSearchController {
 						(String.isNotBlank(birthNumber) && birthNumber == accountResult.PersonalIdentificationNr__c) ||
 						(String.isNotBlank(compRegNum) && compRegNum == accountResult.CompanyRegistrationNumber__c)
 					) {
+						if (
+							accountResult.AccountStatus__c == '5' &&
+							(accountResult.OwnerId == hiddenRecordsOwnerUserId) &&
+							!isAdminUser
+						) {
+							accessToRecord = false;
+						}
+
 						String email = accountResult.isPersonAccount
 							? accountResult.PersonEmail
 							: accountResult.CompanyEmail__c;
 						filteredResults.add(
 							new SearchResultDTO(
+								accessToRecord,
 								accountResult.Id,
 								null,
 								accountResult.Name,
@@ -250,6 +273,7 @@ public without sharing class CustomerSearchController {
 							: assetResult.Account.CompanyEmail__c;
 						filteredResults.add(
 							new SearchResultDTO(
+								null,
 								assetResult.AccountId,
 								assetResult.Id,
 								assetResult.Account.Name,
@@ -273,6 +297,7 @@ public without sharing class CustomerSearchController {
 					) {
 						filteredResults.add(
 							new SearchResultDTO(
+								null,
 								leadResult.Id,
 								null,
 								leadResult.Name,
