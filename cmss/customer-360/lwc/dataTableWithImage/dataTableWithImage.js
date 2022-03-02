@@ -18,7 +18,9 @@ export default class DataTableWithImage extends LightningDatatable {
 
 	scanForImageData() {
 		var textColumns = this.columns.filter((column) => column.type === 'text').map((column) => column.fieldName);
-
+		this.columns = this.columns.map((column) =>
+			column.fieldName === 'StateCodeColour__c' ? { ...column, initialWidth: 50 } : column
+		);
 		this.data = this.data.map((fieldData) => {
 			var updatedField = {
 				...fieldData

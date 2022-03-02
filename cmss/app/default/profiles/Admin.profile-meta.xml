@@ -1667,6 +1667,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.CampaignMember__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.CancellationDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
