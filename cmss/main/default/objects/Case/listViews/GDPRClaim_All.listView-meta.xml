@@ -15,9 +15,9 @@
     <columns>ReceivingConfirmationDate__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>IsClientClaim__c</field>
+        <field>CASES.TYPE</field>
         <operation>equals</operation>
-        <value>0</value>
+        <value>3</value>
     </filters>
     <label>GDPR podání - všechna</label>
 </ListView>
