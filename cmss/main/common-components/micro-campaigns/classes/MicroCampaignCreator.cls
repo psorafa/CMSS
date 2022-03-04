@@ -82,6 +82,9 @@ public with sharing class MicroCampaignCreator {
 		for (Account acc : accounts) {
 			ownerIds.add(acc.OwnerId);
 		}
+		if (assignedUser != null) {
+			ownerIds.add(assignedUser);
+		}
 		List<User> owners = [SELECT Id, UserRoleId FROM User WHERE Id IN :ownerIds];
 		for (User owner : owners) {
 			usersToRoleIds.put(owner.Id, owner.UserRoleId);
