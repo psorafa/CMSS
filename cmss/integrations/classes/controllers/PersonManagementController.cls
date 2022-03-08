@@ -1,4 +1,4 @@
-public class PersonManagementController {
+public without sharing class PersonManagementController {
 	@AuraEnabled
 	public static String searchCSOBNonClient(String birthNumber, String lastName) {
 		try {
