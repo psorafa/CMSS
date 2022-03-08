@@ -15,7 +15,7 @@ import { NavigationMixin } from 'lightning/navigation';
 import ACCOUNT_OBJECT from '@salesforce/schema/Account';
 import ASSET_OBJECT from '@salesforce/schema/Asset';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
-
+import helpText from '@salesforce/label/c.helpTextForCustomerSearchComponent';
 import clientIdentificationTitle from '@salesforce/label/c.ClientIdentification';
 import lastNamePlaceholder from '@salesforce/label/c.InputPlaceholderLastName';
 import birthNrPlaceholder from '@salesforce/label/c.InputPlaceholderBirthNumber';
@@ -63,6 +63,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 		nameMissingMessage,
 		errorLabel,
 		noRecordsFound,
+		helpText,
 		invalidValuesMessage
 	};
 
@@ -167,11 +168,11 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 			findRecords({
 				searchCriteria: searchCriteria
 			})
-				.then((data) => {
+				.then(data => {
 					this.searchResults = data;
 					return data;
 				})
-				.then((data) => this.dataProcessing(data))
+				.then(data => this.dataProcessing(data))
 				.then(() =>
 					assignSearchAccess({
 						accountId: this.recordId
@@ -180,7 +181,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 				.then(() => {
 					this.navigateToRecordPage(this.recordId);
 				})
-				.catch((error) => {
+				.catch(error => {
 					this.handleErrors(error);
 				});
 		}
@@ -224,7 +225,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	isSearchCriteriaOk() {
 		let ok = true;
 		let inputFields = this.template.querySelectorAll('lightning-input');
-		inputFields.forEach((field) => {
+		inputFields.forEach(field => {
 			if (!field.checkValidity()) {
 				ok = false;
 			}
