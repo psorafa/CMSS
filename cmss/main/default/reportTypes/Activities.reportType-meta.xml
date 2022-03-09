@@ -476,7 +476,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account.Age__c</field>
+            <field>Account.PersonAge__c</field>
             <table>Activity</table>
         </columns>
         <columns>
@@ -556,7 +556,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Account.Birthday__c</field>
+            <field>Account.PersonBirthday__c</field>
             <table>Activity</table>
         </columns>
         <columns>

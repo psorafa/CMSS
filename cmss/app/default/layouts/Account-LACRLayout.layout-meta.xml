@@ -40,6 +40,10 @@
                 <behavior>Edit</behavior>
                 <field>CompanyEmail__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>City__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

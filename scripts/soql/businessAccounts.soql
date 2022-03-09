@@ -1,6 +1,6 @@
 SELECT Id, Name, Salutation, Suffix, 
     BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry,  
-    PersonEmail, Phone, AccountStatus__c, Age__c, AmountOffer__c, Birthdate__c, CompanyEmail__c, CompanyEndDate__c, 
+    PersonEmail, Phone, AccountStatus__c, AmountOffer__c, Birthdate__c, CompanyEmail__c, CompanyEndDate__c, 
     CompanyRegistrationNumber__c, CsId__c, DataSource__c, DateOfCreation__c, DateOfDeath__c, 
     DateOfRegistration__c, DateOfStayFrom__c, DateOfStayUntil__c, DateUpdated__c, Education__c, ExternalId__c, 
     FirstCsProductDate__c, FirstProductStartDate__c, FirstSbProductDate__c, Gender__c, GlobalId__c, HasCsProduct__c, 
