@@ -129,11 +129,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Birthday__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.BuildingSavingsCount__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -150,6 +145,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.CSOBSNonClient__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.City__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -550,6 +550,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Ownership</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.PersonAge__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.PersonBirthday__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
