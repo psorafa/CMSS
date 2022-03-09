@@ -2,7 +2,7 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>BirthdaysIn30Days</fullName>
     <booleanFilter>1 AND (2 OR 3)</booleanFilter>
-    <columns>Age__c</columns>
+    <columns>PersonAge__c</columns>
     <columns>ACCOUNT.NAME</columns>
     <columns>ACCOUNT.PHONE1</columns>
     <columns>PC_EMAIL</columns>
