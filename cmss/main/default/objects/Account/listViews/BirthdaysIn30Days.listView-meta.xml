@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>BirthdaysIn30Days</fullName>
-    <booleanFilter>(1 OR 2) AND 3</booleanFilter>
-    <columns>Birthday__c</columns>
+    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
     <columns>Age__c</columns>
     <columns>ACCOUNT.NAME</columns>
     <columns>ACCOUNT.PHONE1</columns>
@@ -15,19 +14,19 @@
     <columns>GlobalId__c</columns>
     <filterScope>Mine</filterScope>
     <filters>
-        <field>Birthday__c</field>
+        <field>ACCOUNT.RECORDTYPE</field>
         <operation>equals</operation>
-        <value>NEXT_N_DAYS:30</value>
+        <value>PersonAccount.PersonAccount</value>
     </filters>
     <filters>
-        <field>Birthday__c</field>
+        <field>PersonBirthday__c</field>
         <operation>equals</operation>
         <value>TODAY</value>
     </filters>
     <filters>
-        <field>ACCOUNT.RECORDTYPE</field>
+        <field>PersonBirthday__c</field>
         <operation>equals</operation>
-        <value>PersonAccount.PersonAccount</value>
+        <value>NEXT_N_DAYS:30</value>
     </filters>
     <label>Narozeniny v budoucích 30 dnech</label>
 </ListView>
