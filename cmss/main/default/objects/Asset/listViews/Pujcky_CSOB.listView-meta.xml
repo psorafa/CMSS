@@ -17,5 +17,10 @@
         <operation>equals</operation>
         <value>12</value>
     </filters>
+    <filters>
+        <field>ASSET.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset.CSOBCurrentAccount</value>
+    </filters>
     <label>ČSOB Půjčky</label>
 </ListView>
