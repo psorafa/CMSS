@@ -5,16 +5,7 @@ public class UpdateCampaignMemberOnAsset_Batch implements Database.Batchable<sOb
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
 		return Database.getQueryLocator(
 			[
-				SELECT
-					Id,
-					AccountId,
-					ProductCloseDate__c,
-					ProductType__c,
-					(
-						SELECT Id, Name, Account__c, CampaignEndDate__c, CampaignStartDate__c, Product__c
-						FROM CampaignMembers__r
-						ORDER BY CampaignStartDate__c DESC NULLS LAST
-					)
+				SELECT Id, AccountId, ProductCloseDate__c, ProductType__c
 				FROM Asset
 				WHERE
 					AccountId IN (
@@ -29,13 +20,20 @@ public class UpdateCampaignMemberOnAsset_Batch implements Database.Batchable<sOb
 
 	public void execute(Database.BatchableContext jobId, List<Asset> assets) {
 		try {
+			Set<Id> allAccountIdsFromAssets = new Set<Id>();
+			for (Asset asset : assets) {
+				allAccountIdsFromAssets.add(asset.AccountId);
+			}
+			List<CampaignMember__c> allCampaignMembers = [
+				SELECT Id, Name, Account__c, CampaignEndDate__c, CampaignStartDate__c, Product__c
+				FROM CampaignMember__c
+				WHERE Account__c IN :allAccountIdsFromAssets
+				ORDER BY CampaignStartDate__c DESC NULLS LAST
+			];
 			List<Asset> assetsToUpdate = new List<Asset>();
 			for (Asset a : assets) {
-				if (a.CampaignMembers__r.size() == 0) {
-					continue;
-				}
 				List<CampaignMember__c> campaignMembersToProceed = new List<CampaignMember__c>();
-				for (CampaignMember__c cm : a.CampaignMembers__r) {
+				for (CampaignMember__c cm : allCampaignMembers) {
 					if (
 						a.ProductCloseDate__c > cm.CampaignStartDate__c &&
 						a.ProductCloseDate__c < cm.CampaignEndDate__c + 30
