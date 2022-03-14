@@ -34,7 +34,7 @@ public class UpdateCampaignMemberOnAsset_Batch implements Database.Batchable<sOb
 			for (Asset a : assets) {
 				List<CampaignMember__c> campaignMembersToProceed = new List<CampaignMember__c>();
 				for (CampaignMember__c cm : allCampaignMembers) {
-					if (
+					if ( a.AccountId == cm.Account__c &&
 						a.ProductCloseDate__c > cm.CampaignStartDate__c &&
 						a.ProductCloseDate__c < cm.CampaignEndDate__c + 30
 					) {
