@@ -62,6 +62,10 @@
                 <behavior>Readonly</behavior>
                 <field>DaysOfComplaintSolving__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Type</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -481,7 +485,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>true</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1X000001sPH5</masterLabel>
+        <masterLabel>00h1j000003sreN</masterLabel>
         <sizeX>3</sizeX>
         <sizeY>2</sizeY>
         <summaryLayoutItems>
