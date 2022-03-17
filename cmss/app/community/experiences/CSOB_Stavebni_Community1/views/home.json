@@ -1,213 +1,198 @@
 {
-    "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
-    "componentName" : "siteforce:sldsTwoCol84Layout",
-    "id" : "66be39cf-813b-49f0-abb6-b9ca503bd421",
-    "label" : "Home",
-    "regions" : [ {
-      "id" : "8ace0fca-c471-44c9-82d4-8a82040b3eca",
-      "regionName" : "header",
-      "type" : "region"
-    }, {
-      "components" : [ {
-        "componentAttributes" : {
-          "tabsetConfig" : {
-            "UUID" : "db1d8bc7-7db3-4ca2-86d9-8a49c9a65004",
-            "activeTab" : "",
-            "tabs" : [ {
-              "UUID" : "235edbaf-5d03-4817-bd66-17cabba52f5b",
-              "allowGuestUser" : false,
-              "locked" : false,
-              "seedComponents" : [ ],
-              "tabKey" : "2",
-              "tabName" : "Přehled"
-            }, {
-              "UUID" : "28f5194d-b03d-4141-9254-d0873bccfdce",
-              "allowGuestUser" : false,
-              "locked" : false,
-              "seedComponents" : [ ],
-              "tabKey" : "1",
-              "tabName" : "Kalendář"
-            } ],
-            "useOverflowMenu" : false
-          }
-        },
-        "componentName" : "forceCommunity:tabset",
-        "id" : "db1d8bc7-7db3-4ca2-86d9-8a49c9a65004",
-        "regions" : [ {
-          "components" : [ {
-            "componentAttributes" : {
-              "height" : "1100",
-              "recordId" : "01Z3X0000013XZcUAM"
-            },
-            "componentName" : "forceCommunity:dashboard",
-            "id" : "42c02c4a-58f1-4729-ba88-9c0e57de1f0c",
-            "renditionMap" : { },
-            "type" : "component"
-          } ],
-          "id" : "235edbaf-5d03-4817-bd66-17cabba52f5b",
-          "regionLabel" : "Přehled",
-          "regionName" : "2",
-          "renditionMap" : { },
-          "type" : "region"
-        }, {
-          "components" : [ {
-            "componentAttributes" : {
-              "showCreateNewCalendar" : true,
-              "showOtherCalendars" : false,
-              "showSidebar" : true
-            },
-            "componentName" : "forceCommunity:calendar",
-            "id" : "2c1499dd-ca45-495f-8fee-c46e5ccef2d5",
-            "renditionMap" : { },
-            "type" : "component"
-          } ],
-          "id" : "28f5194d-b03d-4141-9254-d0873bccfdce",
-          "regionLabel" : "Kalendář",
-          "regionName" : "1",
-          "renditionMap" : { },
-          "type" : "region"
-        } ],
-        "renderPriority" : "NEUTRAL",
-        "renditionMap" : { },
-        "type" : "component"
-      } ],
-      "id" : "b79bd9a3-5675-4bd4-9a83-670d33512510",
-      "regionName" : "content",
-      "type" : "region"
-    }, {
-      "id" : "89d3e976-8149-464f-96ce-afe865e5a575",
-      "regionName" : "footer",
-      "type" : "region"
-    }, {
-      "components" : [ {
-        "componentAttributes" : {
-          "customHeadTags" : "",
-          "description" : "",
-          "title" : "Home"
-        },
-        "componentName" : "forceCommunity:seoAssistant",
-        "id" : "a53132e3-4b1e-48f1-a07c-de26503ba44a",
-        "renditionMap" : { },
-        "type" : "component"
-      } ],
-      "id" : "b2108e53-7cd6-4981-a8b6-9a588f9d8198",
-      "regionName" : "sfdcHiddenRegion",
-      "type" : "region"
-    }, {
-      "components" : [ {
-        "componentAttributes" : {
-          "richTextValue" : "<p><b style=\"color: rgb(8, 151, 234);\">Novinky a odkazy</b></p><p><span style=\"color: rgb(107, 109, 112);\">&nbsp;</span></p><p><b style=\"color: black;\">Vítejte v novém CRM</b></p><p><span style=\"color: rgb(107, 109, 112);\">Právě jsme nasadili první fázi</span></p><p><span style=\"color: rgb(107, 109, 112);\">CRM pro manažery a OZ ČSOB Stavební spořitelny. Budeme rádi, pokud systém bude</span></p><p><span style=\"color: rgb(107, 109, 112);\">užitečný pro Vaši práci, na dalších vylepšeních stále pracujeme.</span></p><p><span style=\"color: rgb(107, 109, 112);\">&nbsp;</span></p><p><b style=\"color: rgb(8, 151, 234);\">Podpora</b></p><p><span style=\"color: rgb(107, 109, 112);\">V případě problémů využijte</span></p><p><span style=\"color: rgb(107, 109, 112);\">prosím následující kanály:</span></p><ul><li><b>Pomoc:&nbsp;</b><a href=\"https://csobstavebni.lightning.force.com/visualEditor/crm_podpora@csobstavebni.cz\" rel=\"noopener noreferrer\" target=\"_blank\">crm_podpora@csobstavebni.cz</a></li><li><b>Podpora (nevím, jak na to):&nbsp;</b>225 222 222</li><li><b>Helpdesk (nefunguje to):</b>&nbsp;225 225 333</li></ul><p><b style=\"color: rgb(8, 151, 234);\">Zpětná vazba</b></p><p><span style=\"color: rgb(107, 109, 112);\">Budeme rádi za Vaši zpětnou</span></p><p><span style=\"color: rgb(107, 109, 112);\">vazbu - náměty, připomínky a chyby&nbsp;</span><b style=\"color: rgb(107, 109, 112);\">můžete hlásit přes formulá</b><span style=\"color: rgb(107, 109, 112);\">ř -&nbsp;</span><a href=\"https://forms.gle/utGKuF6dK1Lq2bhh6\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(107, 109, 112);\">odkaz</a></p><p><span style=\"color: rgb(107, 109, 112);\">&nbsp;</span></p><p><span style=\"color: rgb(107, 109, 112);\">Seznam námětů, chyb a</span></p><p><span style=\"color: rgb(107, 109, 112);\">připomínek z pilotního provozu, na kterých pracujeme -&nbsp;</span><a href=\"https://docs.google.com/spreadsheets/d/1F5roxQBSNls0CEmg5VyJvNfimIwGej7iBCrqr0mJEAw/edit#gid=2090414318\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(107, 109, 112);\">odkaz</a></p>"
-        },
-        "componentName" : "forceCommunity:richTextInline",
-        "id" : "5b4bf658-6f6b-4447-95f5-9b793871d6cc",
-        "renderPriority" : "HIGHEST",
-        "renditionMap" : { },
-        "type" : "component"
-      }, {
-        "componentAttributes" : {
-          "chatterGroupId" : "0F93X000000Yk7xSAC",
-          "maxNumberOfItems" : 3
-        },
-        "componentName" : "c:pinnedFeedDisplay",
-        "id" : "23f8efae-4a01-4097-9236-d2a4287dc501",
-        "renderPriority" : "HIGHEST",
-        "renditionMap" : { },
-        "type" : "component"
-      }, {
-        "componentAttributes" : { },
-        "componentName" : "c:externalLinks",
-        "id" : "59b6d9a4-1761-4859-9d2b-45ebdd40e12f",
-        "renderPriority" : "HIGH",
-        "renditionMap" : { },
-        "type" : "component"
-      }, {
-        "componentAttributes" : {
-          "enableInlineEdit" : true,
-          "filterName" : "00B3X00000Ete6OUAR",
-          "layout" : "COMPACT",
-          "pageSize" : 4,
-          "scope" : "Task",
-          "showActionBar" : true,
-          "showChartsPanel" : true,
-          "showDisplay" : "showall",
-          "showFilterPanel" : true,
-          "showImageIcon" : true,
-          "showManualRefreshButton" : true,
-          "showObjectName" : true,
-          "showPinnedList" : true,
-          "showSearchBar" : true
-        },
-        "componentName" : "forceCommunity:objectHome",
-        "id" : "821af24d-c189-430b-951e-617cf2372719",
-        "renderPriority" : "HIGHEST",
-        "renditionMap" : { },
-        "type" : "component"
-      }, {
-        "componentAttributes" : {
-          "actions" : [ {
-            "isPublic" : true,
-            "name" : "NewTask"
+  "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
+  "componentName" : "siteforce:sldsTwoCol84Layout",
+  "id" : "66be39cf-813b-49f0-abb6-b9ca503bd421",
+  "label" : "Home",
+  "regions" : [ {
+    "id" : "8ace0fca-c471-44c9-82d4-8a82040b3eca",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "tabsetConfig" : {
+          "UUID" : "db1d8bc7-7db3-4ca2-86d9-8a49c9a65004",
+          "activeTab" : "",
+          "tabs" : [ {
+            "UUID" : "235edbaf-5d03-4817-bd66-17cabba52f5b",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "2",
+            "tabName" : "Přehled"
           }, {
-            "isPublic" : true,
-            "name" : "NewOpportunity"
+            "UUID" : "28f5194d-b03d-4141-9254-d0873bccfdce",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "1",
+            "tabName" : "Kalendář"
           } ],
-          "label" : "Nová Aktivita / Příležitost"
-        },
-        "componentName" : "forceCommunity:createRecordButton",
-        "id" : "f1f96391-81ee-4cb8-8fc4-243500ba91c6",
-        "renderPriority" : "HIGHEST",
+          "useOverflowMenu" : false
+        }
+      },
+      "componentName" : "forceCommunity:tabset",
+      "id" : "db1d8bc7-7db3-4ca2-86d9-8a49c9a65004",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "height" : "1100",
+            "recordId" : "01Z3X0000013XZcUAM"
+          },
+          "componentName" : "forceCommunity:dashboard",
+          "id" : "42c02c4a-58f1-4729-ba88-9c0e57de1f0c",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "235edbaf-5d03-4817-bd66-17cabba52f5b",
+        "regionLabel" : "Přehled",
+        "regionName" : "2",
         "renditionMap" : { },
-        "type" : "component"
+        "type" : "region"
       }, {
-        "componentAttributes" : {
-          "enableInlineEdit" : true,
-          "filterName" : "00B3X00000F20kGUAR",
-          "layout" : "COMPACT",
-          "pageSize" : 4,
-          "scope" : "Asset",
-          "showActionBar" : true,
-          "showChartsPanel" : true,
-          "showDisplay" : "showall",
-          "showFilterPanel" : true,
-          "showImageIcon" : true,
-          "showManualRefreshButton" : true,
-          "showObjectName" : true,
-          "showPinnedList" : true,
-          "showSearchBar" : true
-        },
-        "componentName" : "forceCommunity:objectHome",
-        "id" : "61b8c37e-21bc-416a-ab02-464a2ee1b07c",
-        "renderPriority" : "HIGHEST",
+        "components" : [ {
+          "componentAttributes" : {
+            "showCreateNewCalendar" : true,
+            "showOtherCalendars" : false,
+            "showSidebar" : true
+          },
+          "componentName" : "forceCommunity:calendar",
+          "id" : "2c1499dd-ca45-495f-8fee-c46e5ccef2d5",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "28f5194d-b03d-4141-9254-d0873bccfdce",
+        "regionLabel" : "Kalendář",
+        "regionName" : "1",
         "renditionMap" : { },
-        "type" : "component"
-      }, {
-        "componentAttributes" : {
-          "enableInlineEdit" : true,
-          "filterName" : "00B3X00000Exio1UAB",
-          "layout" : "COMPACT",
-          "pageSize" : 4,
-          "scope" : "Account",
-          "showActionBar" : true,
-          "showChartsPanel" : true,
-          "showDisplay" : "showall",
-          "showFilterPanel" : true,
-          "showImageIcon" : true,
-          "showManualRefreshButton" : true,
-          "showObjectName" : true,
-          "showPinnedList" : true,
-          "showSearchBar" : true
-        },
-        "componentName" : "forceCommunity:objectHome",
-        "id" : "5a954d72-d747-483d-937e-0309545ee2e0",
-        "renderPriority" : "HIGHEST",
-        "renditionMap" : { },
-        "type" : "component"
+        "type" : "region"
       } ],
-      "id" : "11f9982a-a798-4885-942e-705ad3a81e43",
-      "regionName" : "sidebar",
-      "type" : "region"
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
     } ],
-    "themeLayoutType" : "Home",
-    "type" : "view",
-    "viewType" : "home"
-  }
+    "id" : "b79bd9a3-5675-4bd4-9a83-670d33512510",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "89d3e976-8149-464f-96ce-afe865e5a575",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Home"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "a53132e3-4b1e-48f1-a07c-de26503ba44a",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "b2108e53-7cd6-4981-a8b6-9a588f9d8198",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "richTextValue" : "<p><b style=\"color: rgb(8, 151, 234);\">Novinky a odkazy</b></p><p><span style=\"color: rgb(107, 109, 112);\">&nbsp;</span></p><p><b style=\"color: black;\">Vítejte v novém CRM</b></p><p><span style=\"color: rgb(107, 109, 112);\">Právě jsme nasadili první fázi</span></p><p><span style=\"color: rgb(107, 109, 112);\">CRM pro manažery a OZ ČSOB Stavební spořitelny. Budeme rádi, pokud systém bude</span></p><p><span style=\"color: rgb(107, 109, 112);\">užitečný pro Vaši práci, na dalších vylepšeních stále pracujeme.</span></p><p><span style=\"color: rgb(107, 109, 112);\">&nbsp;</span></p><p><b style=\"color: rgb(8, 151, 234);\">Podpora</b></p><p><span style=\"color: rgb(107, 109, 112);\">V případě problémů využijte</span></p><p><span style=\"color: rgb(107, 109, 112);\">prosím následující kanály:</span></p><ul><li><b>Pomoc:&nbsp;</b><a href=\"https://csobstavebni.lightning.force.com/visualEditor/crm_podpora@csobstavebni.cz\" rel=\"noopener noreferrer\" target=\"_blank\">crm_podpora@csobstavebni.cz</a></li><li><b>Podpora (nevím, jak na to):&nbsp;</b>225 222 222</li><li><b>Helpdesk (nefunguje to):</b>&nbsp;225 225 333</li></ul><p><b style=\"color: rgb(8, 151, 234);\">Zpětná vazba</b></p><p><span style=\"color: rgb(107, 109, 112);\">Budeme rádi za Vaši zpětnou</span></p><p><span style=\"color: rgb(107, 109, 112);\">vazbu - náměty, připomínky a chyby&nbsp;</span><b style=\"color: rgb(107, 109, 112);\">můžete hlásit přes formulá</b><span style=\"color: rgb(107, 109, 112);\">ř -&nbsp;</span><a href=\"https://forms.gle/utGKuF6dK1Lq2bhh6\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(107, 109, 112);\">odkaz</a></p><p><span style=\"color: rgb(107, 109, 112);\">&nbsp;</span></p><p><span style=\"color: rgb(107, 109, 112);\">Seznam námětů, chyb a</span></p><p><span style=\"color: rgb(107, 109, 112);\">připomínek z pilotního provozu, na kterých pracujeme -&nbsp;</span><a href=\"https://docs.google.com/spreadsheets/d/1F5roxQBSNls0CEmg5VyJvNfimIwGej7iBCrqr0mJEAw/edit#gid=2090414318\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(107, 109, 112);\">odkaz</a></p>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "5b4bf658-6f6b-4447-95f5-9b793871d6cc",
+      "renderPriority" : "HIGHEST",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "chatterGroupId" : "0F93X000000Yk7xSAC",
+        "maxNumberOfItems" : 3
+      },
+      "componentName" : "c:pinnedFeedDisplay",
+      "id" : "23f8efae-4a01-4097-9236-d2a4287dc501",
+      "renderPriority" : "HIGHEST",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : { },
+      "componentName" : "c:externalLinks",
+      "id" : "59b6d9a4-1761-4859-9d2b-45ebdd40e12f",
+      "renderPriority" : "HIGH",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "enableInlineEdit" : true,
+        "filterName" : "00B3X00000Ete6OUAR",
+        "layout" : "COMPACT",
+        "pageSize" : 4,
+        "scope" : "Task",
+        "showActionBar" : true,
+        "showChartsPanel" : true,
+        "showDisplay" : "showall",
+        "showFilterPanel" : true,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : true,
+        "showObjectName" : true,
+        "showPinnedList" : true,
+        "showSearchBar" : true
+      },
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "821af24d-c189-430b-951e-617cf2372719",
+      "renderPriority" : "HIGHEST",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "actions" : [ {
+          "isPublic" : true,
+          "name" : "NewTask"
+        }, {
+          "isPublic" : true,
+          "name" : "NewOpportunity"
+        } ],
+        "label" : "Nová Aktivita / Příležitost"
+      },
+      "componentName" : "forceCommunity:createRecordButton",
+      "id" : "f1f96391-81ee-4cb8-8fc4-243500ba91c6",
+      "renderPriority" : "HIGHEST",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "enableInlineEdit" : true,
+        "filterName" : "00B3X00000F20kGUAR",
+        "layout" : "COMPACT",
+        "pageSize" : 4,
+        "scope" : "Asset",
+        "showActionBar" : true,
+        "showChartsPanel" : true,
+        "showDisplay" : "showall",
+        "showFilterPanel" : true,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : true,
+        "showObjectName" : true,
+        "showPinnedList" : true,
+        "showSearchBar" : true
+      },
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "61b8c37e-21bc-416a-ab02-464a2ee1b07c",
+      "renderPriority" : "HIGHEST",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : { },
+      "componentName" : "c:calendarSyncStatus",
+      "id" : "e8f2c80b-5a31-457a-8159-6ca8daa7f226",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "11f9982a-a798-4885-942e-705ad3a81e43",
+    "regionName" : "sidebar",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Home",
+  "type" : "view",
+  "viewType" : "home"
+}

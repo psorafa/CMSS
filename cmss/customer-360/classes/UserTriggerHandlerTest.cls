@@ -7,6 +7,36 @@ private class UserTriggerHandlerTest {
 	}
 
 	@IsTest
+	static void relatedUserCalendarSettingsDeletedTest() {
+		User oldUser = TestDataFactory.getUser(new User());
+		oldUser.IsActive = true;
+		insert oldUser;
+
+		User newUser = oldUser.clone(true, true);
+		newUser.IsActive = false;
+
+		UserCalendarSetting__c setting = new UserCalendarSetting__c();
+		setting.User__c = oldUser.Id;
+		insert setting;
+		Id idOfSetting = setting.Id;
+
+		Map<Id, User> oldMap = new Map<Id, User>();
+		oldMap.put(oldUser.Id, oldUser);
+		Map<Id, User> newMap = new Map<Id, User>();
+		newMap.put(newUser.Id, newUser);
+
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(200, 'OK', null, null, null);
+		Test.setMock(HttpCalloutMock.class, fakeResponse);
+
+		Test.startTest();
+		UserTriggerHandler.checkChangeForActiveAndDeleteRelatedCalendarSettings(oldMap, newMap);
+		Test.stopTest();
+
+		List<UserCalendarSetting__c> settings = [SELECT Id FROM UserCalendarSetting__c WHERE Id = :idOfSetting];
+		System.assert(settings.isEmpty());
+	}
+
+	@IsTest
 	static void contactInfoUpdatedTest() {
 		Profile adminProfile = [SELECT id, Name FROM Profile WHERE name = 'System Administrator'].get(0);
 		UserRole userRole = [SELECT Id FROM UserRole WHERE Name = 'TestRole'];

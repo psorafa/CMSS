@@ -1,14 +1,16 @@
 public with sharing class Logger {
-
 	private static String defaultLogLevel = 'debug';
-    private static final String transactionId = getUUID();
+	private static final String transactionId = getUUID();
 	private static Integer defaultLogLevelNumber = 4;
 	private static final String DEBUG_LEVEL = 'debug';
 	private static final String INFO_LEVEL = 'info';
 	private static final String WARN_LEVEL = 'warn';
 	private static final String ERROR_LEVEL = 'error';
 	private static final Map<String, Integer> logLevelNumberMap = new Map<String, Integer>{
-			DEBUG_LEVEL => 4, INFO_LEVEL => 3, WARN_LEVEL => 2, ERROR_LEVEL => 1
+		DEBUG_LEVEL => 4,
+		INFO_LEVEL => 3,
+		WARN_LEVEL => 2,
+		ERROR_LEVEL => 1
 	};
 
 	private static List<LogEvent__e> logEventsToPublish = new List<LogEvent__e>();
@@ -99,13 +101,16 @@ public with sharing class Logger {
 
 	private static void createLogEvent(String logLevel, String message, Exception ex, String payload) {
 		LogEvent__e logEvent = new LogEvent__e();
-        logEvent.TransactionId__c = transactionId;
-		logEvent.Message__c = message;
+		logEvent.TransactionId__c = transactionId;
+		logEvent.Message__c = message.length() > 255 ? message.left(255) : message;
 		if (ex != null) {
 			DmlException outerException = new DmlException(ex);
-			logEvent.Exception__c = ex.getMessage() + '\n' + outerException.getStackTraceString().substringAfter('Caused by');
+			logEvent.Exception__c =
+				ex.getMessage() +
+				'\n' +
+				outerException.getStackTraceString().substringAfter('Caused by');
 		}
-		logEvent.Payload__c = payload;
+		logEvent.Payload__c = (payload != null && payload.length() > 131072) ? payload.left(131072) : payload;
 		logEvent.Level__c = logLevel;
 		String stackTraceMethod = new DmlException().getStackTraceString();
 		stackTraceMethod = stackTraceMethod.substringAfter('\n');
@@ -118,26 +123,32 @@ public with sharing class Logger {
 	}
 
 	public static void saveLogs() {
-        List<Database.SaveResult> results = EventBus.publish(logEventsToPublish);
-        logEventsToPublish.clear();
+		List<Database.SaveResult> results = EventBus.publish(logEventsToPublish);
+		logEventsToPublish.clear();
 		for (Database.SaveResult sr : results) {
 			if (!sr.isSuccess()) {
 				for (Database.Error err : sr.getErrors()) {
-					System.debug('Error publishing log events: ' +
-							err.getStatusCode() +
-							' - ' +
-							err.getMessage());
+					System.debug('Error publishing log events: ' + err.getStatusCode() + ' - ' + err.getMessage());
 				}
 			}
 		}
-    }
-    
-    private static String getUUID()  {
-        Blob b = Crypto.generateAesKey(128);
-        String h = EncodingUtil.convertToHex(b);
-        String guid = h.substring(0,8)+ '-' + h.substring(8,12) + '-' + h.substring(12,16) + '-' + h.substring(16,20) + '-' + h.substring(20);
-        return guid;
-    }
+	}
+
+	private static String getUUID() {
+		Blob b = Crypto.generateAesKey(128);
+		String h = EncodingUtil.convertToHex(b);
+		String guid =
+			h.substring(0, 8) +
+			'-' +
+			h.substring(8, 12) +
+			'-' +
+			h.substring(12, 16) +
+			'-' +
+			h.substring(16, 20) +
+			'-' +
+			h.substring(20);
+		return guid;
+	}
 
 	public static String serializeHttpRequest(HttpRequest request) {
 		Map<String, Object> dataMap = new Map<String, Object>();

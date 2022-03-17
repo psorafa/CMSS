@@ -1,0 +1,132 @@
+{
+  "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
+  "componentName" : "siteforce:dynamicLayout",
+  "id" : "5130077c-63a0-492a-a8cc-3f86cc659220",
+  "label" : "calendar",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "d3d5b779-4cc5-43e8-a611-0d78c4a9280a",
+          "columns" : [ {
+            "UUID" : "98a5a2c8-219c-40e0-8779-0a4165285524",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "aeaabf64-f4ce-4fb9-862a-3f8e2b3ac3dd",
+            "columnKey" : "95028",
+            "columnName" : "Column 2",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "49f38f24-651b-4f94-b09c-14fc299cb342",
+            "columnKey" : "84ead",
+            "columnName" : "Column 3",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "d3d5b779-4cc5-43e8-a611-0d78c4a9280a",
+      "regions" : [ {
+        "id" : "98a5a2c8-219c-40e0-8779-0a4165285524",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "id" : "aeaabf64-f4ce-4fb9-862a-3f8e2b3ac3dd",
+        "regionLabel" : "Column 2",
+        "regionName" : "95028",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:calendarSyncStatus",
+          "id" : "df7f99dd-dce4-4ca1-9627-b2a2e7175fff",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "49f38f24-651b-4f94-b09c-14fc299cb342",
+        "regionLabel" : "Column 3",
+        "regionName" : "84ead",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "d8aa8542-f460-49b1-a5a6-7327ccef74bf",
+          "columns" : [ {
+            "UUID" : "d18ace32-6261-4dec-80ca-092b1bcd71bc",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "d8aa8542-f460-49b1-a5a6-7327ccef74bf",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "showCreateNewCalendar" : true,
+            "showOtherCalendars" : true,
+            "showSidebar" : true
+          },
+          "componentName" : "forceCommunity:calendar",
+          "id" : "3b7b576b-2b17-4066-8251-885278dc5b6d",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "d18ace32-6261-4dec-80ca-092b1bcd71bc",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "da2d3b38-330a-4441-9b46-9c3fdc5a8ccc",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "calendar"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "7f09021f-e57a-4aa3-be28-2ee169e33e56",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "32b1db50-411f-41f7-af2f-cdc07b4a2fd0",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-calendar"
+}
