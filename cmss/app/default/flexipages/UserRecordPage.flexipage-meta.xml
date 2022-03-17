@@ -44,7 +44,7 @@
                 <componentName>APRD:objectDetails</componentName>
                 <identifier>APRD_objectDetails</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.EmployeeNumber}</leftValue>
                         <operator>NE</operator>
@@ -58,7 +58,12 @@
                     <criteria>
                         <leftValue>{!$User.Profile.Name}</leftValue>
                         <operator>NE</operator>
-                        <rightValue>CMSS User, CMSS Experience User</rightValue>
+                        <rightValue>CMSS Experience User</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>CMSS User</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -80,7 +85,7 @@
                 <componentName>APRD:objectDetails</componentName>
                 <identifier>APRD_objectDetails2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR (2 AND 3) AND 4</booleanFilter>
+                    <booleanFilter>(1 OR 2) AND 3 AND 4 AND 5</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.CommissionAccountNr__c}</leftValue>
                         <operator>NE</operator>
@@ -99,7 +104,12 @@
                     <criteria>
                         <leftValue>{!$User.Profile.Name}</leftValue>
                         <operator>NE</operator>
-                        <rightValue>CMSS User, CMSS Experience User</rightValue>
+                        <rightValue>CMSS Experience User</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>CMSS User</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -121,7 +131,7 @@
                 <componentName>APRD:objectDetails</componentName>
                 <identifier>APRD_objectDetails1</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR (2 AND 3) AND 4</booleanFilter>
+                    <booleanFilter>(1 OR 2) AND 3 AND (4 OR 5)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.CommissionAccountNr__c}</leftValue>
                         <operator>NE</operator>
@@ -140,7 +150,12 @@
                     <criteria>
                         <leftValue>{!$User.Profile.Name}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>CMSS User, CMSS Experience User</rightValue>
+                        <rightValue>CMSS Experience User</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>CMSS User</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
