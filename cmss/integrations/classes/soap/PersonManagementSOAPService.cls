@@ -62,6 +62,7 @@ public class PersonManagementSOAPService {
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/PersonManagementService/v10/coupleDocument');
 			req.setBodyDocument(doc);
+			req.setTimeout(120000);
 			Http http = new Http();
 			HTTPResponse res = http.send(req);
 			Dom.Document responseDoc = res.getBodyDocument();
@@ -100,6 +101,7 @@ public class PersonManagementSOAPService {
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/PersonManagementService/v10/createClient');
 			req.setBodyDocument(doc);
+			req.setTimeout(120000);
 			Http http = new Http();
 			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			HTTPResponse res = http.send(req);
@@ -144,6 +146,7 @@ public class PersonManagementSOAPService {
 				'http://service.cmss.cz/person/PersonManagementService/v10/createPersonRelation'
 			);
 			req.setBodyDocument(doc);
+			req.setTimeout(120000);
 			Http http = new Http();
 			HTTPResponse res = http.send(req);
 			Dom.Document responseDoc = res.getBodyDocument();
@@ -186,6 +189,7 @@ public class PersonManagementSOAPService {
 				'http://service.cmss.cz/person/PersonManagementService/v10/getReservedGlobalId'
 			);
 			req.setBodyDocument(doc);
+			req.setTimeout(120000);
 			Http http = new Http();
 			HTTPResponse res = http.send(req);
 			Dom.Document responseDoc = res.getBodyDocument();
@@ -224,6 +228,7 @@ public class PersonManagementSOAPService {
 				'http://service.cmss.cz/person/PersonManagementService/v10/searchCSOBSNonClient'
 			);
 			req.setBodyDocument(doc);
+			req.setTimeout(120000);
 			Http http = new Http();
 			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			HTTPResponse res = http.send(req);
@@ -268,6 +273,7 @@ public class PersonManagementSOAPService {
 				'http://service.cmss.cz/person/PersonManagementService/v10/searchPersonByIdNumber'
 			);
 			req.setBodyDocument(doc);
+			req.setTimeout(120000);
 			Http http = new Http();
 			HTTPResponse res = http.send(req);
 			Dom.Document responseDoc = res.getBodyDocument();
@@ -307,6 +313,7 @@ public class PersonManagementSOAPService {
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/PersonManagementService/v10/updateClient');
 			req.setBodyDocument(doc);
+			req.setTimeout(120000);
 			Http http = new Http();
 			HTTPResponse res = http.send(req);
 			Dom.Document responseDoc = res.getBodyDocument();
@@ -349,6 +356,7 @@ public class PersonManagementSOAPService {
 				'http://service.cmss.cz/person/PersonManagementService/v10/updateCommunications'
 			);
 			req.setBodyDocument(doc);
+			req.setTimeout(120000);
 			Http http = new Http();
 			HTTPResponse res = http.send(req);
 			Dom.Document responseDoc = res.getBodyDocument();
@@ -387,6 +395,7 @@ public class PersonManagementSOAPService {
 				'http://service.cmss.cz/person/PersonManagementService/v10/updateCSOBNonClient'
 			);
 			req.setBodyDocument(doc);
+			req.setTimeout(120000);
 			Http http = new Http();
 			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			HTTPResponse res = http.send(req);
@@ -428,6 +437,7 @@ public class PersonManagementSOAPService {
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/PersonManagementService/v10/validateClient');
 			req.setBodyDocument(doc);
+			req.setTimeout(120000);
 			Http http = new Http();
 			HTTPResponse res = http.send(req);
 			Dom.Document responseDoc = res.getBodyDocument();
