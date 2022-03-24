@@ -39,7 +39,7 @@ public class ClientZoneTriggerHandler extends TriggerHandler {
 		List<ClientZone__c> clientZones = new List<ClientZone__c>();
 		for (ClientZone__c cz : newClientZoneById.values()) {
 			if (
-				cz.AgreementDate__c != oldClientZoneById.get(cz.Id).AgreementDate__c ||
+				cz.CreatedDate != oldClientZoneById.get(cz.Id).CreatedDate ||
 				cz.Role__c != oldClientZoneById.get(cz.Id).Role__c
 			) {
 				clientZones.add(cz);
@@ -61,12 +61,12 @@ public class ClientZoneTriggerHandler extends TriggerHandler {
 	private static Map<Id, ClientZone__c> getLatestClientZoneByAccountId(Set<Id> accountIds) {
 		Map<Id, ClientZone__c> latestClientZoneByAccountId = new Map<Id, ClientZone__c>();
 		for (ClientZone__c czItem : [
-			SELECT Id, AgreementDate__c, toLabel(Role__c), Account__c
+			SELECT Id, CreatedDate, toLabel(Role__c), Account__c
 			FROM ClientZone__c
 			WHERE Account__c IN :accountIds
 		]) {
 			if (latestClientZoneByAccountId.containsKey(czItem.Account__c)) {
-				if (latestClientZoneByAccountId.get(czItem.Account__c).AgreementDate__c < czItem.AgreementDate__c) {
+				if (latestClientZoneByAccountId.get(czItem.Account__c).CreatedDate < czItem.CreatedDate) {
 					latestClientZoneByAccountId.put(czItem.Account__c, czItem);
 				}
 			} else {

@@ -3,7 +3,7 @@
     <fullName>ClientZonewithLatestAgreementDate__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Client Zone with Latest Agreement Date</label>
+    <label>Client Zone with Latest Created Date</label>
     <referenceTo>ClientZone__c</referenceTo>
     <relationshipLabel>Accounts</relationshipLabel>
     <relationshipName>Accounts</relationshipName>
