@@ -6,14 +6,14 @@ public class UpdateClientZoneOnAccount_BatchTest {
 		insert account;
 		ClientZone__c clientZone1 = TestDataFactory.getClientZone(
 			new ClientZone__c(
-				AgreementDate__c = Date.Today().addDays(-10),
+				CreatedDate = Date.Today().addDays(-10),
 				Account__c = account.Id,
 				Role__c = 'Omezený přístup'
 			)
 		);
 		insert clientZone1;
 		ClientZone__c clientZone2 = TestDataFactory.getClientZone(
-			new ClientZone__c(AgreementDate__c = Date.Today(), Account__c = account.Id, Role__c = 'Bez přístupu')
+			new ClientZone__c(CreatedDate = Date.Today(), Account__c = account.Id, Role__c = 'Bez přístupu')
 		);
 		insert clientZone2;
 		UpdateClientZoneOnAccount_Batch batch = new UpdateClientZoneOnAccount_Batch();
