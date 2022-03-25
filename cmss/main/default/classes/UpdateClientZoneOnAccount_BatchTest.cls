@@ -5,17 +5,17 @@ public class UpdateClientZoneOnAccount_BatchTest {
 		Account account = TestDataFactory.getAccount(new Account());
 		insert account;
 		ClientZone__c clientZone1 = TestDataFactory.getClientZone(
-			new ClientZone__c(
-				CreatedDate = Date.Today().addDays(-10),
-				Account__c = account.Id,
-				Role__c = 'Omezený přístup'
-			)
+			new ClientZone__c(Account__c = account.Id, Role__c = 'Omezený přístup')
 		);
 		insert clientZone1;
+		Test.setCreatedDate(clientZone1.Id, Date.Today().addDays(-10));
+
 		ClientZone__c clientZone2 = TestDataFactory.getClientZone(
-			new ClientZone__c(CreatedDate = Date.Today(), Account__c = account.Id, Role__c = 'Bez přístupu')
+			new ClientZone__c(Account__c = account.Id, Role__c = 'Bez přístupu')
 		);
 		insert clientZone2;
+		Test.setCreatedDate(clientZone2.Id, Date.Today());
+
 		UpdateClientZoneOnAccount_Batch batch = new UpdateClientZoneOnAccount_Batch();
 
 		Test.startTest();
