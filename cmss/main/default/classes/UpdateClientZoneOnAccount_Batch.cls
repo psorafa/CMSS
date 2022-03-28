@@ -3,21 +3,15 @@ public class UpdateClientZoneOnAccount_Batch implements Database.Batchable<sObje
 	 * Batchable start - do the query.
 	 */
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
-		return Database.getQueryLocator(
-			[
-				SELECT
-					Id,
-					(
-						SELECT Id, CreatedDate, toLabel(Role__c)
-						FROM ClientZones__r
-						WHERE CreatedDate != NULL AND Role__c != NULL
-						ORDER BY CreatedDate DESC NULLS LAST
-						LIMIT 1
-					)
-				FROM Account
-				WHERE Id IN (SELECT Account__c FROM ClientZone__c WHERE CreatedDate != NULL AND Role__c != NULL)
-			]
-		);
+		String queryString =
+			'SELECT Id, (' +
+			'SELECT Id, CreatedDate, toLabel(Role__c) ' +
+			'FROM ClientZones__r ' +
+			'ORDER BY CreatedDate DESC ' +
+			'LIMIT 1) FROM Account ' +
+			'WHERE Id IN (SELECT Account__c FROM ClientZone__c)';
+
+		return Database.getQueryLocator(queryString);
 	}
 
 	/**
