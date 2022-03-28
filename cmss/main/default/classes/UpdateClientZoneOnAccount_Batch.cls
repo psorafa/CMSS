@@ -8,8 +8,7 @@ public class UpdateClientZoneOnAccount_Batch implements Database.Batchable<sObje
 			'SELECT Id, CreatedDate, toLabel(Role__c) ' +
 			'FROM ClientZones__r ' +
 			'ORDER BY CreatedDate DESC ' +
-			'LIMIT 1) FROM Account ' +
-			'WHERE Id IN (SELECT Account__c FROM ClientZone__c)';
+			'LIMIT 1) FROM Account';
 
 		return Database.getQueryLocator(queryString);
 	}
