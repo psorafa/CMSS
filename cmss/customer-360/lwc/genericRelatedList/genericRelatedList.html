@@ -23,14 +23,12 @@
 		<div class="slds-card__body">
 			<lightning-spinner if:true={loading}></lightning-spinner>
 			<template if:true={anyData} class="slds-m-left_small slds-m-bottom_small">
-				<c-data-table-with-image
-					class="slds-max-medium-table_stacked"
+				<lightning-datatable
 					key-field="Id"
 					data={records}
 					columns={colsData}
 					hide-checkbox-column="true"
-					column-widths-mode="auto"
-				></c-data-table-with-image>
+				></lightning-datatable>
 			</template>
 			<template if:true={error}>
 				<pre>{error}</pre>
