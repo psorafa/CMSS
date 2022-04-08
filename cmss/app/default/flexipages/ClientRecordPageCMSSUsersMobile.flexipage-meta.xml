@@ -31,7 +31,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>StateCodeColour__c, Name, ProductType__c, ProductCloseDate__c, Tariff__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c, HasLoanCaseRelatedAsset__c, Status__c</value>
+                    <value>StateCodeCheckbox__c, Name, ProductType__c, ProductCloseDate__c, Tariff__c, TargetAmount__c, CurrentBalance__c, EvaluationNumber__c, IsSubvene__c, ContractConditions__c, HasLoanCaseRelatedAsset__c, Status__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>conditionAssets</name>
@@ -56,7 +56,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>StateCodeColour__c, Name, RequestSignDate__c, CreditAmount__c, CurrentBalance__c, Status__c</value>
+                    <value>StateCodeCheckbox__c, Name, RequestSignDate__c, CreditAmount__c, CurrentBalance__c, Status__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>conditionAssets</name>
@@ -74,7 +74,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>StateCodeColour__c, Name, RequestSignDate__c, ConfirmationDate__c, InsuranceType__c, DateUpdated__c, Status__c</value>
+                    <value>StateCodeCheckbox__c, Name, RequestSignDate__c, ConfirmationDate__c, InsuranceType__c, DateUpdated__c, Status__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>conditionAssets</name>
@@ -96,7 +96,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>StateCodeColour__c, Name, RequestSignDate__c, LoanAmount__c, DateUpdated__c, Status__c</value>
+                    <value>StateCodeCheckbox__c, Name, RequestSignDate__c, LoanAmount__c, DateUpdated__c, Status__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>conditionAssets</name>
@@ -118,7 +118,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>StateCodeColour__c, ProductType__c, Name, ProductCloseDate__c, CancellationDate__c, CancellationReason__c, DateUpdated__c, AmountRepayment__c, Status__c</value>
+                    <value>StateCodeCheckbox__c, ProductType__c, Name, ProductCloseDate__c, CancellationDate__c, CancellationReason__c, DateUpdated__c, AmountRepayment__c, Status__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>conditionAssets</name>
@@ -140,7 +140,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>StateCodeColour__c, Name, ProductCloseDate__c, DateUpdated__c, AmountRepayment__c, Status__c</value>
+                    <value>StateCodeCheckbox__c, Name, ProductCloseDate__c, DateUpdated__c, AmountRepayment__c, Status__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>conditionAssets</name>
@@ -162,7 +162,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>StateCodeColour__c, Name, ProductType__c, ProductSubtype__c, ProductCloseDate__c, DateUpdated__c</value>
+                    <value>StateCodeCheckbox__c, Name, ProductType__c, ProductSubtype__c, ProductCloseDate__c, DateUpdated__c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>conditionAssets</name>
