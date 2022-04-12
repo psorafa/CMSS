@@ -310,15 +310,27 @@
                 <field>CurrentAccountCount__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ValidPreApprovedAmount__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CurrentPreApprovedAmount__c</field>
+                <field>CurrPreApprovedAmountValidFrom__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrPreApprovedAmountValidTo__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FuturePreApprovedAmountValidFrom__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FuturePreApprovedAmountValidTo__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FuturePreApprovedAmount__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -334,16 +346,18 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CurrPreApprovedAmountValidFrom__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CurrPreApprovedAmountValidTo__c</field>
+                <field>CurrentPreApprovedAmount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FuturePreApprovedAmountValidTo__c</field>
+                <field>FuturePreApprovedAmount__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
