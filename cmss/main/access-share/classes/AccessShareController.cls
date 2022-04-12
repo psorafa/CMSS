@@ -116,6 +116,7 @@ public without sharing class AccessShareController {
 			for (Task task : taskList) {
 				if (usersMap.get(task.OwnerId)?.IsActive == true) {
 					String accId;
+                    Date dt;
 					if (task.AccountId != null) {
 						accId = task.AccountId;
 					} else if (task.WhatId != null && assetMap.get(task.WhatId) != null) {
@@ -123,10 +124,23 @@ public without sharing class AccessShareController {
 					} else {
 						continue;
 					}
+                   
+                    if(task.ActivityDate != null){
+                        dt = task.ActivityDate;
+                    }else if (task.ValidTo__c != null){
+                        dt  = task.ValidTo__c;
+                    }
+                    else if(task.PlannedToDate__c != null ){
+                        dt = task.PlannedToDate__c.date();
+                    }
+                    else{
+                        dt = System.today().addDays(7);
+                    } 
+                    
 					AccessShareController.addAccessShareDtoToSet(
 						usersMap.get(task.OwnerId),
 						accId,
-						task.ActivityDate.addDays(1),
+					    dt,
 						task.Id,
 						AccessShareDtos
 					);
