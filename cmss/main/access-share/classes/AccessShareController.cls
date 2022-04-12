@@ -123,12 +123,10 @@ public without sharing class AccessShareController {
 					} else {
 						continue;
 					}
-
 					AccessShareController.addAccessShareDtoToSet(
 						usersMap.get(task.OwnerId),
 						accId,
-						// task.ActivityDate.addDays(1), //TODO proc to tam neni?
-						System.today().addDays(1),
+						task.ActivityDate.addDays(1),
 						task.Id,
 						AccessShareDtos
 					);
