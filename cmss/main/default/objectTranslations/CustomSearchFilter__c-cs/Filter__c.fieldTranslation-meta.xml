@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Filter --></label>
+    <name>Filter__c</name>
+    <picklistValues>
+        <masterLabel>&lt;</masterLabel>
+        <translation><!-- &lt; --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>&lt;=</masterLabel>
+        <translation><!-- &lt;= --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>=</masterLabel>
+        <translation><!-- = --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>&gt;</masterLabel>
+        <translation><!-- &gt; --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>&gt;=</masterLabel>
+        <translation><!-- &gt;= --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>N/A</masterLabel>
+        <translation><!-- N/A --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>contains</masterLabel>
+        <translation>obsahuje</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>end with</masterLabel>
+        <translation>končí na</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>exact match</masterLabel>
+        <translation>rovná se</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>start with</masterLabel>
+        <translation>začíná na</translation>
+    </picklistValues>
+</CustomFieldTranslation>

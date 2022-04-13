@@ -149,13 +149,121 @@
         <label>Převést všechny klienty čpú</label>
         <name>TransferAllClients</name>
     </customLabels>
-    <customTabs>
-        <label>Identifikace klienta</label>
-        <name>ClientIdentification</name>
-    </customTabs>
+    <customLabels>
+        <name>NameAndSurname</name>
+        <label>Jméno a příjmení</label>
+    </customLabels>
+    <customLabels>
+        <name>AgentActivityType</name>
+        <label>Typ činnosti</label>
+    </customLabels>
+    <customLabels>
+        <name>AssetSearchType</name>
+        <label>Vyhledávání nad smlouvami</label>
+    </customLabels>
+    <customLabels>
+        <name>AccountSearchType</name>
+        <label>Vyhledávání nad klienty</label>
+    </customLabels>
+    <customLabels>
+        <name>SelectedConfiguration</name>
+        <label>Zvolená konfigurace</label>
+    </customLabels>
+    <customLabels>
+        <name>UserHierarchyFilter</name>
+        <label>Filter podle uživatelů</label>
+    </customLabels>
+    <customLabels>
+        <name>AdditionFilterParams</name>
+        <label>Dodatečné paramentry filteru</label>
+    </customLabels>
+    <customLabels>
+        <name>From</name>
+        <label>Od</label>
+    </customLabels>
+    <customLabels>
+        <name>To</name>
+        <label>Do</label>
+    </customLabels>
+    <customLabels>
+        <name>ValidateErrorTitle</name>
+        <label>Neplatný požadavek</label>
+    </customLabels>
+    <customLabels>
+        <name>InvalidRequestMissingRequiredParameters</name>
+        <label>Musí být vybraný typ a zvolená základní konfigurace.</label>
+    </customLabels>
+    <customLabels>
+        <name>SearchSectionTitle</name>
+        <label>Výběr filtrovacích kritérií</label>
+    </customLabels>
+    <customLabels>
+        <name>DataSectionTitle</name>
+        <label>Výsledek hledání</label>
+    </customLabels>
+    <customLabels>
+        <name>CreateMicroCampaignButtonTitle</name>
+        <label>Vytvořit mikro kampaň</label>
+    </customLabels>
+    <customLabels>
+        <name>CreateMicroCampaignModalWindowTitle</name>
+        <label>Vytvoření nové mikro kampaně / tasků</label>
+    </customLabels>
+    <customLabels>
+        <name>RecordsPerPageInputTitle</name>
+        <label>Počet záznamů na stránku</label>
+    </customLabels>
+    <customLabels>
+        <name>TotalRecordsCountLabel</name>
+        <label>Celkový počet výsledků</label>
+    </customLabels>
+    <customLabels>
+        <name>NoDataLoaded</name>
+        <label>Nejsou žádná data k zobrazení.</label>
+    </customLabels>
+    <customLabels>
+        <name>NextPageButtonTitle</name>
+        <label>Další stránka</label>
+    </customLabels>
+    <customLabels>
+        <name>PrevPageButtonTitle</name>
+        <label>Předchozí stránka</label>
+    </customLabels>
+    <customLabels>
+        <name>FillRequiredFieldsMessage</name>
+        <label>Vyplňte všechna povinná pole</label>
+    </customLabels>
+    <customLabels>
+        <name>CreateRecords</name>
+        <label>Vytvořit záznamy</label>
+    </customLabels>
+    <customLabels>
+        <name>CloseModalWindow</name>
+        <label>Zavřít</label>
+    </customLabels>
+    <customLabels>
+        <name>CancelButtonTitle</name>
+        <label>Zrušit</label>
+    </customLabels>
+    <customLabels>
+        <name>UnsupportedObjectType</name>
+        <label>Nepodporovaný typ objektu</label>
+    </customLabels>
+    <customLabels>
+        <name>RecordSuccessfullyCreated</name>
+        <label>Požadavek na vytvoření záznamů byl úspěšný. Data budou vytvořena v krátkém okamžiku - jedná se o dávkový proces.</label>
+    </customLabels>
+    <customLabels>
+        <name>LoadingProductTypesError</name>
+        <label>Typy produktů nebylo možné načíst - prosím kontaktujte administrátora.</label>
+    </customLabels>
     <customTabs>
         <label>Identifikace klienta</label>
         <name>Customer_Search</name>
+    </customTabs>
+    <customTabs>
+        <label>Detailní vyhledávání</label>
+        <name>DetailedCustomSearch</name>
     </customTabs>
     <flowDefinitions>
         <flows />

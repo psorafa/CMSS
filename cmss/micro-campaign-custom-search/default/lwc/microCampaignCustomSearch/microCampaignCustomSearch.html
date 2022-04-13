@@ -1,0 +1,170 @@
+<template>
+	<lightning-spinner if:true={loading}></lightning-spinner>
+	<lightning-card>
+		<lightning-accordion
+			allow-multiple-sections-open
+			class="detailed-search-accordion"
+			active-section-name={section}
+			onsectiontoggle={handleSectionToggle}
+		>
+			<lightning-accordion-section name="configuration" label={labels.LBL_SEARCH_SECTION_TITLE}>
+				<lightning-tabset if:true={availableTypes}>
+					<template for:each={availableTypes} for:item="typeItem">
+						<lightning-tab
+							onactive={handleSelectProduct}
+							key={typeItem.value}
+							label={typeItem.label}
+							data-object={typeItem.objectType}
+							data-product={typeItem.value}
+						>
+							<div class="slds-grid slds-wrap">
+								<div class="slds-col slds-size_1-of-2">
+									<c-custom-search-select-base-configuration
+										object-type={typeItem.objectType}
+										product-name={typeItem.value}
+										onselectconfiguration={handleSelectConfiguration}
+									></c-custom-search-select-base-configuration>
+								</div>
+								<div class="slds-col slds-size_1-of-2">
+									<c-user-hierarchy-tree-component
+										onuserhierarchyselection={handleUserHierarchySelectionChange}
+									></c-user-hierarchy-tree-component>
+								</div>
+								<div class="slds-col slds-size_1-of-1">
+									<c-custom-search-dynamic-filter
+										object-type={typeItem.objectType}
+										product-name={typeItem.value}
+										onupdatefilter={handleUpdateFilterConditions}
+									></c-custom-search-dynamic-filter>
+								</div>
+							</div>
+
+							<div class="slds-grid slds-grid_align-center">
+								<lightning-button
+									disabled={isRequestNotValid}
+									variant="brand"
+									label={labels.LBL_SearchButton}
+									title={labels.LBL_SearchButton}
+									onclick={handleSubmitSearch}
+									icon-name="utility:search"
+									class="slds-p-around_xxx-small"
+								>
+								</lightning-button>
+							</div>
+						</lightning-tab>
+					</template>
+				</lightning-tabset>
+			</lightning-accordion-section>
+
+			<lightning-accordion-section name="data" label={labels.LBL_DATA_SECTION_TITLE}>
+				<template if:false={isTableVisible}>
+					{labels.LBL_NO_DATA_TITLE}
+				</template>
+				<template if:true={isTableVisible}>
+					<div class="slds-grid slds-grid_align-center create-campaign-button">
+						<lightning-button
+							disabled={isRowNotSelected}
+							variant="brand"
+							label={labels.LBL_CREATE_CAMPAIGN_BUTTON_TITLE}
+							title={labels.LBL_CREATE_CAMPAIGN_BUTTON_TITLE}
+							onclick={handleShowCreateMicroCampaign}
+							icon-name="utility:new"
+							class="slds-p-around_xxx-small"
+						>
+						</lightning-button>
+					</div>
+					<div class="slds-grid">
+						<div class="slds-size_1-of-6">
+							<lightning-combobox
+								class="slds-form-element_horizontal"
+								name="selectRecordPerPage"
+								label={labels.LBL_RECORDS_PER_PAGE_TITLE}
+								value={recordsPerPage}
+								placeholder={recordsPerPage}
+								options={comboBoxOptions}
+								onchange={handleComboBoxChange}
+							>
+							</lightning-combobox>
+						</div>
+						<lightning-button-group class="slds-grid_align-center slds-size_2-of-3">
+							<lightning-button-icon
+								icon-name="utility:chevronleft"
+								onclick={handlePagePrevChange}
+								disabled={isPrevPageDisabled}
+								variant="brand"
+								alternative-text={labels.LBL_PREV_PAGE_TITLE}
+							></lightning-button-icon>
+							<lightning-button disabled="true" label={paginationInfo}></lightning-button>
+							<lightning-button-icon
+								variant="brand"
+								alternative-text={labels.LBL_NEXT_PAGE_TITLE}
+								disabled={isNextPageDisabled}
+								icon-name="utility:chevronright"
+								onclick={handlePageNextChange}
+							></lightning-button-icon>
+						</lightning-button-group>
+						<div class="slds-size_1-of-6">
+							{labels.LBL_TOTAL_RECORDS_COUNT_LABEL}: {totalRecordsCount}
+						</div>
+					</div>
+					<lightning-datatable
+						key-field="Id"
+						columns={outputTableColumns}
+						data={outputTableData}
+						onrowselection={handleSelectedRows}
+						selected-rows={selectedAccountIds}
+					></lightning-datatable>
+				</template>
+			</lightning-accordion-section>
+		</lightning-accordion>
+	</lightning-card>
+
+	<!-- Modal -->
+	<template if:true={isModalOpen}>
+		<section
+			role="dialog"
+			tabindex="-1"
+			aria-labelledby="modal-heading-01"
+			aria-modal="true"
+			aria-describedby="modal-content-id-1"
+			class="slds-modal slds-fade-in-open"
+		>
+			<div class="slds-modal__container">
+				<header class="slds-modal__header">
+					<button
+						class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+						title={labels.LBL_CLOSE_MODAL_WINDOW_TITLE}
+						onclick={closeModal}
+					>
+						<lightning-icon
+							icon-name="utility:close"
+							alternative-text={labels.LBL_CLOSE_MODAL_WINDOW_TITLE}
+							variant="inverse"
+							size="small"
+						></lightning-icon>
+						<span class="slds-assistive-text">{labels.LBL_CLOSE_MODAL_WINDOW_TITLE}</span>
+					</button>
+					<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+						{labels.LBL_CREATE_CAMPAIGN_MODAL_TITLE}
+					</h2>
+					<span class="slds-text-color_error slds-p-around_medium" if:true={dataInvalid}>
+						{labels.LBL_FILL_REQUIRED_FIELDS_MESSAGE}
+					</span>
+				</header>
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<c-create-micro-campaign-form onchange={handleFormChange}></c-create-micro-campaign-form>
+				</div>
+				<footer class="slds-modal__footer">
+					<button class="slds-button slds-button_neutral" onclick={closeModal} title={labels.LBL_CANCEL_BUTTON_TITLE}>{labels.LBL_CANCEL_BUTTON_TITLE}</button>
+					<lightning-button
+						variant="brand"
+						label={labels.LBL_CREATE_NEW_RECORDS_BUTTON_TITLE}
+						onclick={handleCreateClick}
+						disabled={dataInvalid}
+					></lightning-button>
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</template>
+</template>

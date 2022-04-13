@@ -91,7 +91,7 @@ public with sharing class MicroCampaignCreator {
 		}
 	}
 
-	private boolean isAssigneeSubordinate(Id userId) {
+	private Boolean isAssigneeSubordinate(Id userId) {
 		Id actualUserRoleId = UserInfo.getUserRoleId();
 		if (actualUserProfileName == 'System Administrator') {
 			return true;

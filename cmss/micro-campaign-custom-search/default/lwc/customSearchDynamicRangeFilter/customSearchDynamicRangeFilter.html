@@ -1,0 +1,17 @@
+<template>
+	<fieldset class="slds-text-align_center">
+		<legend>{label}</legend>
+		<c-custom-search-dynamic-single-filter
+			label={labels.from}
+			filter-values={filterValues}
+			input-type={inputType}
+			onfieldchange={handleFromChange}
+		></c-custom-search-dynamic-single-filter>
+		<c-custom-search-dynamic-single-filter
+			label={labels.to}
+			filter-values={filterValues}
+			input-type={inputType}
+			onfieldchange={handleToChange}
+		></c-custom-search-dynamic-single-filter>
+	</fieldset>
+</template>

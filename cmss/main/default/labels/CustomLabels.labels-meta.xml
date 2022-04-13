@@ -307,4 +307,220 @@
         <shortDescription>YouDoNotHavePermissionToDeleteTask</shortDescription>
         <value>You do not have permissions to delete tasks, that you didn't create.</value>
     </labels>
+    <labels>
+        <fullName>NameAndSurname</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NameAndSurname</shortDescription>
+        <value>Name and Surname</value>
+    </labels>
+    <labels>
+        <fullName>AgentActivityType</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AgentActivityType</shortDescription>
+        <value>Agent Activity Type</value>
+    </labels>
+    <labels>
+        <fullName>AssetSearchType</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AssetSearchType</shortDescription>
+        <value>Asset Search</value>
+    </labels>
+    <labels>
+        <fullName>AccountSearchType</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AccountSearchType</shortDescription>
+        <value>Account Search</value>
+    </labels>
+    <labels>
+        <fullName>SelectedConfiguration</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SelectedConfiguration</shortDescription>
+        <value>Selected Configuration</value>
+    </labels>
+    <labels>
+        <fullName>UserHierarchyFilter</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UserHierarchyFilter</shortDescription>
+        <value>User Hierarchy Filter</value>
+    </labels>
+    <labels>
+        <fullName>AdditionFilterParams</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AdditionFilterParams</shortDescription>
+        <value>Addition Filter Params</value>
+    </labels>
+    <labels>
+        <fullName>From</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From</shortDescription>
+        <value>From</value>
+    </labels>
+    <labels>
+        <fullName>To</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To</shortDescription>
+        <value>To</value>
+    </labels>
+    <labels>
+        <fullName>ValidateErrorTitle</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ValidateErrorTitle</shortDescription>
+        <value>Request is not valid</value>
+    </labels>
+    <labels>
+        <fullName>InvalidRequestMissingRequiredParameters</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>InvalidRequestMissingRequiredParameters</shortDescription>
+        <value>Type or configuration is not selected.</value>
+    </labels>
+    <labels>
+        <fullName>SearchSectionTitle</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SearchSectionTitle</shortDescription>
+        <value>Search Filter</value>
+    </labels>
+    <labels>
+        <fullName>DataSectionTitle</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DataSectionTitle</shortDescription>
+        <value>Data Results</value>
+    </labels>
+    <labels>
+        <fullName>CreateMicroCampaignButtonTitle</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CreateMicroCampaignButtonTitle</shortDescription>
+        <value>Create Micro Campaign</value>
+    </labels>
+    <labels>
+        <fullName>CreateMicroCampaignModalWindowTitle</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CreateMicroCampaignModalWindowTitle</shortDescription>
+        <value>Create Micro Campaign and tasks</value>
+    </labels>
+    <labels>
+        <fullName>CreateRecords</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CreateRecords</shortDescription>
+        <value>Create records</value>
+    </labels>
+    <labels>
+        <fullName>CloseModalWindow</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CloseModalWindow</shortDescription>
+        <value>Close modal window</value>
+    </labels>
+    <labels>
+        <fullName>CancelButtonTitle</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CancelButtonTitle</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>RecordsPerPageInputTitle</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordsPerPageInputTitle</shortDescription>
+        <value>Records per page</value>
+    </labels>
+    <labels>
+        <fullName>TotalRecordsCountLabel</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TotalRecordsCountLabel</shortDescription>
+        <value>Total records</value>
+    </labels>
+    <labels>
+        <fullName>NoDataLoaded</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NoDataLoaded</shortDescription>
+        <value>There are no data to display</value>
+    </labels>
+    <labels>
+        <fullName>NextPageButtonTitle</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NextPageButtonTitle</shortDescription>
+        <value>Next page</value>
+    </labels>
+    <labels>
+        <fullName>PrevPageButtonTitle</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PrevPageButtonTitle</shortDescription>
+        <value>Previous page</value>
+    </labels>
+    <labels>
+        <fullName>FillRequiredFieldsMessage</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FillRequiredFieldsMessage</shortDescription>
+        <value>Fill All Required Fields</value>
+    </labels>
+    <labels>
+        <fullName>UnsupportedObjectType</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UnsupportedObjectType</shortDescription>
+        <value>Unsupported object type</value>
+    </labels>
+    <labels>
+        <fullName>RecordSuccessfullyCreated</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordSuccessfullyCreated</shortDescription>
+        <value>Request to create records was successful. Record will be created in few seconds - it is a bulk process.</value>
+    </labels>
+    <labels>
+        <fullName>LoadingProductTypesError</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LoadingProductTypesError</shortDescription>
+        <value>Product types were not load successfully. Please contact administrator.</value>
+    </labels>
 </CustomLabels>

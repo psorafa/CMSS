@@ -1,0 +1,12 @@
+<template>
+	<lightning-card title={labels.LBL_SelectedConfiguration}>
+		<lightning-datatable
+			key-field="id"
+			data={data}
+			columns={columns}
+			onrowselection={handleRowSelect}
+			max-row-selection="1"
+		>
+		</lightning-datatable>
+	</lightning-card>
+</template>

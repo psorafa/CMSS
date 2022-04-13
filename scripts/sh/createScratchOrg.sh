@@ -4,7 +4,7 @@
 
 #   1: Org Alias to setup - default "cmss"
 #   2: Expiry days for the Scratch Org - default 10
-#   3: Scratch Org Defnition File path - defualt "conf/project-scratch-def.json"
+#   3: Scratch Org Definition File path - default "conf/project-scratch-def.json"
 #   4: Dev Hub Alias - optional, uses local default if blank
 
 set -e
@@ -23,6 +23,9 @@ then
 else
     sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF --targetdevhubusername  $DEVHUB --setdefaultusername
 fi
+
+# open deployment status page
+sfdx force:org:open -u $ALIAS -p /lightning/setup/DeployStatus/home
 
 #install packages
 sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wait 8 -u $ALIAS
