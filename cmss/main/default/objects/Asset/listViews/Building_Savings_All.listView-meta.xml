@@ -14,6 +14,7 @@
     <columns>ContractConditions__c</columns>
     <columns>ClosingAgentId__c</columns>
     <columns>PortfolioMgmtA__c</columns>
+    <columns>CommissionAccountBase__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>ASSET.RECORDTYPE</field>
