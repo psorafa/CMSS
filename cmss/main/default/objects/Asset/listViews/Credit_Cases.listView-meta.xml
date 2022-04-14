@@ -3,9 +3,9 @@
     <fullName>Credit_Cases</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
     <columns>Surname__c</columns>
     <columns>PersonalIdentificationNr__c</columns>
-    <columns>ACCOUNT.NAME</columns>
     <columns>RequestSignDate__c</columns>
     <columns>CreditAmount__c</columns>
     <columns>RemainingDraw__c</columns>
@@ -21,8 +21,8 @@
     </filters>
     <filters>
         <field>ProductCloseDate__c</field>
-        <operation>greaterOrEqual</operation>
-        <value>LAST_MONTH</value>
+        <operation>equals</operation>
+        <value>LAST_N_DAYS:30</value>
     </filters>
-    <label>Úvěrové případy</label>
+    <label>*Úvěrové případy za posledních 30d</label>
 </ListView>

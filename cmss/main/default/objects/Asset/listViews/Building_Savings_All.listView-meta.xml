@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Building_Savings</fullName>
+    <fullName>Building_Savings_All</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
     <columns>ACCOUNT.NAME</columns>
@@ -20,10 +20,5 @@
         <operation>equals</operation>
         <value>Asset.BuildingSavings</value>
     </filters>
-    <filters>
-        <field>ProductCloseDate__c</field>
-        <operation>equals</operation>
-        <value>LAST_N_DAYS:30</value>
-    </filters>
-    <label>*Stavební spoření za posledních 30d</label>
+    <label>*Stavební spoření</label>
 </ListView>

@@ -3,18 +3,16 @@
     <fullName>ContractsWithAnUnfulfilledCommissionCondition</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
     <columns>Surname__c</columns>
     <columns>PersonalIdentificationNr__c</columns>
-    <columns>ACCOUNT.NAME</columns>
     <columns>ProductCloseDate__c</columns>
     <columns>Tariff__c</columns>
     <columns>TargetAmount__c</columns>
     <columns>CurrentBalance__c</columns>
-    <columns>EvaluationNumber__c</columns>
     <columns>ContractConditions__c</columns>
     <columns>ClosingAgentId__c</columns>
     <columns>PortfolioMgmtA__c</columns>
-    <columns>CommissionAccountBase__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>CommissionDate__c</field>
@@ -30,5 +28,5 @@
         <operation>equals</operation>
         <value>Asset.BuildingSavings,Asset.CreditCases</value>
     </filters>
-    <label>Smlouvy s nesplněnou podmínkou provize</label>
+    <label>*SS s nesplněnou podmínkou provize</label>
 </ListView>

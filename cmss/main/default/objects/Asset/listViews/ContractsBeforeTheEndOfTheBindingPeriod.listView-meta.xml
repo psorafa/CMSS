@@ -3,9 +3,9 @@
     <fullName>ContractsBeforeTheEndOfTheBindingPeriod</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
     <columns>Surname__c</columns>
     <columns>PersonalIdentificationNr__c</columns>
-    <columns>ACCOUNT.NAME</columns>
     <columns>ProductCloseDate__c</columns>
     <columns>Tariff__c</columns>
     <columns>TargetAmount__c</columns>
@@ -17,14 +17,24 @@
     <columns>CommissionAccountBase__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>ProductCloseDate__c</field>
-        <operation>lessThan</operation>
-        <value>N_DAYS_AGO:1826</value>
+        <field>BindingPeriodDate__c</field>
+        <operation>greaterThan</operation>
+        <value>TODAY</value>
     </filters>
     <filters>
         <field>ASSET.RECORDTYPE</field>
         <operation>equals</operation>
         <value>Asset.BuildingSavings</value>
     </filters>
-    <label>Smlouvy před koncem vázací doby</label>
+    <filters>
+        <field>BindingPeriodDate__c</field>
+        <operation>lessOrEqual</operation>
+        <value>NEXT_N_MONTHS:6</value>
+    </filters>
+    <filters>
+        <field>HasMURelatedAsset__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>*Smlouvy před koncem vázací doby</label>
 </ListView>

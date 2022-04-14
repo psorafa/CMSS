@@ -4,10 +4,13 @@
     <columns>SUBJECT</columns>
     <columns>TYPE</columns>
     <columns>WHO_NAME</columns>
-    <columns>WHAT_NAME</columns>
     <columns>DUE_DATE</columns>
-    <columns>Result__c</columns>
-    <columns>Opportunity__c</columns>
+    <columns>WHAT_NAME</columns>
+    <columns>TaskResult__c</columns>
+    <columns>Email__c</columns>
+    <columns>Phone__c</columns>
+    <columns>Location__c</columns>
+    <columns>STATUS</columns>
     <columns>CORE.USERS.FULL_NAME</columns>
     <filterScope>Team</filterScope>
     <filters>
@@ -22,8 +25,8 @@
     </filters>
     <filters>
         <field>ValidFrom__c</field>
-        <operation>greaterOrEqual</operation>
-        <value>LAST_MONTH</value>
+        <operation>equals</operation>
+        <value>LAST_90_DAYS</value>
     </filters>
-    <label>Otevřené - po termínu za poslední měsíc</label>
+    <label>*Zpožděné otevřené aktivity</label>
 </ListView>

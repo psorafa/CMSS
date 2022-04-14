@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Building_Savings</fullName>
+    <fullName>Credit_Cases_All</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
     <columns>ACCOUNT.NAME</columns>
     <columns>Surname__c</columns>
     <columns>PersonalIdentificationNr__c</columns>
-    <columns>ProductCloseDate__c</columns>
-    <columns>Tariff__c</columns>
-    <columns>TargetAmount__c</columns>
-    <columns>CurrentBalance__c</columns>
-    <columns>EvaluationNumber__c</columns>
-    <columns>ContractConditions__c</columns>
+    <columns>RequestSignDate__c</columns>
+    <columns>CreditAmount__c</columns>
+    <columns>RemainingDraw__c</columns>
+    <columns>Status__c</columns>
     <columns>ClosingAgentId__c</columns>
     <columns>PortfolioMgmtA__c</columns>
+    <columns>CommissionAccountBase__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>ASSET.RECORDTYPE</field>
         <operation>equals</operation>
-        <value>Asset.BuildingSavings</value>
+        <value>Asset.CreditCases</value>
     </filters>
-    <filters>
-        <field>ProductCloseDate__c</field>
-        <operation>equals</operation>
-        <value>LAST_N_DAYS:30</value>
-    </filters>
-    <label>*Stavební spoření za posledních 30d</label>
+    <label>*Úvěrové případy</label>
 </ListView>

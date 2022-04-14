@@ -3,9 +3,9 @@
     <fullName>Property_and_liability_insurance</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
     <columns>Surname__c</columns>
     <columns>PersonalIdentificationNr__c</columns>
-    <columns>ACCOUNT.NAME</columns>
     <columns>ProductCloseDate__c</columns>
     <columns>AmountRepayment__c</columns>
     <columns>Status__c</columns>
@@ -18,5 +18,5 @@
         <operation>equals</operation>
         <value>Asset.PMO</value>
     </filters>
-    <label>Pojištění majetku a odpovědnosti</label>
+    <label>*Pojištění majetku a odpovědnosti</label>
 </ListView>
