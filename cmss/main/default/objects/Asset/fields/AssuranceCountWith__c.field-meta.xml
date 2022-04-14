@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AssuranceCountWith__c</fullName>
+    <description>Počet zajištění - se zajištěním</description>
+    <externalId>false</externalId>
+    <label>Assurance Count With</label>
+    <summaryFilterItems>
+        <field>LoanAssurance__c.ReinsuranceType__c</field>
+        <operation>equals</operation>
+        <value>37</value>
+    </summaryFilterItems>
+    <summaryForeignKey>LoanAssurance__c.Asset__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>
