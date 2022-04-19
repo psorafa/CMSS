@@ -3,9 +3,9 @@
     <fullName>Pension_Insurrance</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
     <columns>Surname__c</columns>
     <columns>PersonalIdentificationNr__c</columns>
-    <columns>ACCOUNT.NAME</columns>
     <columns>ProductCloseDate__c</columns>
     <columns>MonthFeeParticipant__c</columns>
     <columns>EmployerContribution__c</columns>
@@ -19,5 +19,5 @@
         <operation>equals</operation>
         <value>Asset.PensionProducts</value>
     </filters>
-    <label>Penzijní připojištění</label>
+    <label>*Penzijní připojištění</label>
 </ListView>

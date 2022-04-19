@@ -3,9 +3,9 @@
     <fullName>CSOB_accounts</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
     <columns>Surname__c</columns>
     <columns>PersonalIdentificationNr__c</columns>
-    <columns>ACCOUNT.NAME</columns>
     <columns>ProductSubtype__c</columns>
     <columns>ProductCloseDate__c</columns>
     <columns>ClosingAgentId__c</columns>
@@ -22,5 +22,5 @@
         <operation>notEqual</operation>
         <value>12</value>
     </filters>
-    <label>ČSOB Účty</label>
+    <label>*ČSOB Účty</label>
 </ListView>

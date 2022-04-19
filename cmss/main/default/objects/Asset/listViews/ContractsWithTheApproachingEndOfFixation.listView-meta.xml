@@ -3,29 +3,22 @@
     <fullName>ContractsWithTheApproachingEndOfFixation</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
-    <columns>Surname__c</columns>
-    <columns>ProductSubtype__c</columns>
-    <columns>PersonalIdentificationNr__c</columns>
     <columns>ACCOUNT.NAME</columns>
+    <columns>Surname__c</columns>
+    <columns>PersonalIdentificationNr__c</columns>
     <columns>ProductCloseDate__c</columns>
     <columns>Tariff__c</columns>
-    <columns>TargetAmount__c</columns>
     <columns>CurrentBalance__c</columns>
+    <columns>NearestReFixationDate__c</columns>
     <columns>ContractConditions__c</columns>
     <columns>ClosingAgentId__c</columns>
-    <columns>NearestReFixationDate__c</columns>
     <columns>PortfolioMgmtA__c</columns>
     <columns>CommissionAccountBase__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>NearestReFixationDate__c</field>
-        <operation>greaterOrEqual</operation>
-        <value>TODAY</value>
-    </filters>
-    <filters>
-        <field>NearestReFixationDate__c</field>
-        <operation>lessOrEqual</operation>
-        <value>NEXT_N_DAYS:120</value>
+        <operation>equals</operation>
+        <value>NEXT_N_DAYS:365</value>
     </filters>
     <filters>
         <field>ProductSubtype__c</field>
@@ -37,5 +30,5 @@
         <operation>equals</operation>
         <value>Asset.CreditAndIntermediateLoan</value>
     </filters>
-    <label>Smlouvy s blížícím se koncem fixace</label>
+    <label>*Smlouvy s blížícím se koncem fixace</label>
 </ListView>

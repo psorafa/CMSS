@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Pujcky_CSOB</fullName>
+    <fullName>Loans_and_intermediate_loans_All</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
     <columns>ACCOUNT.NAME</columns>
     <columns>Surname__c</columns>
     <columns>PersonalIdentificationNr__c</columns>
-    <columns>ProductSubtype__c</columns>
-    <columns>ProductCloseDate__c</columns>
+    <columns>RequestSignDate__c</columns>
+    <columns>CreditAmount__c</columns>
+    <columns>Status__c</columns>
+    <columns>CurrentBalance__c</columns>
     <columns>ClosingAgentId__c</columns>
     <columns>PortfolioMgmtA__c</columns>
     <columns>CommissionAccountBase__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>ProductType__c</field>
-        <operation>equals</operation>
-        <value>12</value>
-    </filters>
-    <filters>
         <field>ASSET.RECORDTYPE</field>
         <operation>equals</operation>
-        <value>Asset.CSOBCurrentAccount</value>
+        <value>Asset.CreditAndIntermediateLoan</value>
     </filters>
-    <label>*ČSOB Půjčky</label>
+    <label>*Úvěry a meziúvěry</label>
 </ListView>

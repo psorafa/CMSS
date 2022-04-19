@@ -3,9 +3,9 @@
     <fullName>UnterminatedContractsWithSavings</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
     <columns>Surname__c</columns>
     <columns>PersonalIdentificationNr__c</columns>
-    <columns>ACCOUNT.NAME</columns>
     <columns>ProductCloseDate__c</columns>
     <columns>Tariff__c</columns>
     <columns>TargetAmount__c</columns>
@@ -30,5 +30,5 @@
         <operation>greaterThan</operation>
         <value>80</value>
     </filters>
-    <label>Nevypovězené smlouvy s naspořením</label>
+    <label>*Nevypovězené smlouvy s naspořením</label>
 </ListView>

@@ -3,15 +3,15 @@
     <fullName>Mortgages</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
     <columns>Surname__c</columns>
     <columns>PersonalIdentificationNr__c</columns>
-    <columns>ACCOUNT.NAME</columns>
     <columns>RequestSignDate__c</columns>
     <columns>ProductCloseDate__c</columns>
     <columns>LoanAmount__c</columns>
-    <columns>ClosingAgentId__c</columns>
     <columns>MortgageStatus__c</columns>
     <columns>Status__c</columns>
+    <columns>ClosingAgentId__c</columns>
     <columns>PortfolioMgmtA__c</columns>
     <columns>CommissionAccountBase__c</columns>
     <filterScope>Everything</filterScope>
@@ -20,5 +20,5 @@
         <operation>equals</operation>
         <value>Asset.Mortgages</value>
     </filters>
-    <label>Hypoteční úvěry</label>
+    <label>*Hypoteční úvěry</label>
 </ListView>

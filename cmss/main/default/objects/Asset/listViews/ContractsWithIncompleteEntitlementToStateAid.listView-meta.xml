@@ -3,17 +3,16 @@
     <fullName>ContractsWithIncompleteEntitlementToStateAid</fullName>
     <columns>StateCodeColour__c</columns>
     <columns>ASSET.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
     <columns>Surname__c</columns>
     <columns>PersonalIdentificationNr__c</columns>
-    <columns>ACCOUNT.NAME</columns>
     <columns>ProductCloseDate__c</columns>
     <columns>Tariff__c</columns>
     <columns>TargetAmount__c</columns>
     <columns>CurrentBalance__c</columns>
-    <columns>EvaluationNumber__c</columns>
+    <columns>SubveneBaseCurrentYear__c</columns>
     <columns>ContractConditions__c</columns>
     <columns>ClosingAgentId__c</columns>
-    <columns>SubveneBaseCurrentYear__c</columns>
     <columns>PortfolioMgmtA__c</columns>
     <columns>CommissionAccountBase__c</columns>
     <filterScope>Everything</filterScope>
@@ -27,5 +26,5 @@
         <operation>lessThan</operation>
         <value>20000</value>
     </filters>
-    <label>Smlouvy s neplným nárokem na SP</label>
+    <label>*Smlouvy se ZVSP méně než 20tis</label>
 </ListView>
