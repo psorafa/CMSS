@@ -41,13 +41,7 @@ private class GoogleCalendarSyncTest {
 	static void getAllEventsNotFoundTest() {
 		GoogleCalendarSyncService service = new GoogleCalendarSyncService();
 
-		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
-			404,
-			'Not found',
-			'"Body" : "null"',
-			null,
-			null
-		);
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(404, 'Not found', '"Body" : "null"', null, null);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		Test.startTest();
@@ -140,6 +134,25 @@ private class GoogleCalendarSyncTest {
 	}
 
 	@isTest
+	static void createEventFromTaskTest() {
+		GoogleCalendarSyncService service = new GoogleCalendarSyncService();
+
+		Task sfTask = new Task();
+
+		GoogleCalendarSyncUtility.GoogleEventDTO event = new GoogleCalendarSyncUtility.GoogleEventDTO();
+		event.id = '123456';
+
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(200, 'OK', JSON.serialize(event), null, null);
+		Test.setMock(HttpCalloutMock.class, fakeResponse);
+
+		GoogleCalendarSyncUtility.GoogleCalendarResponse resp = service.createEvent('google@calendar.id', sfTask);
+
+		System.assertEquals(resp.statusCode, 200);
+		System.assertEquals(resp.message, 'OK');
+		System.assertEquals(resp.newEventId, '123456');
+	}
+
+	@isTest
 	static void updateEventTest() {
 		GoogleCalendarSyncService service = new GoogleCalendarSyncService();
 
@@ -162,6 +175,33 @@ private class GoogleCalendarSyncTest {
 		GoogleCalendarSyncUtility.GoogleCalendarResponse resp = service.updateEvent(
 			'google@calendar.id',
 			sfEvent,
+			'697d2bkb35ei0m5hj53tg56d5v'
+		);
+
+		System.assertEquals(resp.statusCode, 200);
+		System.assertEquals(resp.message, 'OK');
+	}
+
+	@isTest
+	static void updateEventFromTaskTest() {
+		GoogleCalendarSyncService service = new GoogleCalendarSyncService();
+
+		Task task = new Task();
+
+		GoogleCalendarSyncUtility.GoogleEventDTO event = new GoogleCalendarSyncUtility.GoogleEventDTO();
+
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+			200,
+			'OK',
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(event), new List<string>{ 'start', 'end' }),
+			null,
+			null
+		);
+		Test.setMock(HttpCalloutMock.class, fakeResponse);
+
+		GoogleCalendarSyncUtility.GoogleCalendarResponse resp = service.updateEvent(
+			'google@calendar.id',
+			task,
 			'697d2bkb35ei0m5hj53tg56d5v'
 		);
 

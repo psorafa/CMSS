@@ -63,6 +63,62 @@ public class GoogleCalendarSyncUtility {
 		return googleEvent;
 	}
 
+	public static Task getSFTaskFromGoogleEvent(GoogleEventDTO googleEvent) {
+		Task task = new Task();
+
+		if (googleEvent.start_x?.dateTime_x != null && googleEvent.end_x?.dateTime_x != null) {
+			task.PlannedFromDate__c = getDateTimeFromGoogleFormat(googleEvent.start_x.dateTime_x);
+			task.PlannedToDate__c = getDateTimeFromGoogleFormat(googleEvent.end_x.dateTime_x);
+		} else {
+			task.ActivityDate = googleEvent.start_x.date_x;
+		}
+
+		task.Location__c = googleEvent.location;
+		task.GoogleId__c = googleEvent.id;
+
+		return task;
+	}
+
+	public static GoogleEventDTO getGoogleEventFromSFTask(Task task) {
+		GoogleEventDto googleEvent = new GoogleEventDto();
+
+		googleEvent.summary = task.Subject;
+		googleEvent.start_x = new GoogleDateDTO();
+		googleEvent.end_x = new GoogleDateDTO();
+		if (task.PlannedFromDate__c != null || task.PlannedToDate__c != null) {
+			if (task.PlannedFromDate__c == null) {
+				task.PlannedFromDate__c = task.PlannedToDate__c;
+			}
+			if (task.PlannedToDate__c == null) {
+				task.PlannedToDate__c = task.PlannedFromDate__c;
+			}
+			googleEvent.start_x.dateTime_x = task.PlannedFromDate__c.formatGMT('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
+			googleEvent.end_x.dateTime_x = task.PlannedToDate__c.formatGMT('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
+		} else {
+			googleEvent.start_x.date_x = task.ActivityDate;
+			googleEvent.end_x.date_x = task.ActivityDate;
+		}
+
+		googleEvent.description =
+			'Aktivita typu: ' +
+			task.Type +
+			'\nKe klientovi/klientům: ' +
+			task.AccountAlias__c +
+			'\nKategorie: ' +
+			task.Category__c +
+			'\nTyp produktu: ' +
+			task.ProductType__c +
+			'\nPro detail klikněte na odkaz: ' +
+			task.ActivityLink__c;
+
+		googleEvent.colorId = '2';
+
+		googleEvent.location = task.Location__c;
+		googleEvent.id = task.GoogleId__c;
+
+		return googleEvent;
+	}
+
 	public static Event updateSfEvent(Event sfEvent, GoogleEventDTO googleEvent) {
 		List<Schema.FieldSetMember> fields = SObjectType.Event.FieldSets.CalendarSyncFields.getFields();
 		Event updatedSfEvent = sfEvent;
@@ -87,6 +143,38 @@ public class GoogleCalendarSyncUtility {
 				return true;
 			}
 		}
+		return false;
+	}
+
+	public static Boolean taskDiffersInFields(Task sfTask, GoogleCalendarSyncUtility.GoogleEventDTO googleEventTask) {
+		List<Schema.FieldSetMember> fields = SObjectType.Task.FieldSets.CalendarSyncTaskFields.getFields();
+
+		Task googleToSfTask = getSFTaskFromGoogleEvent(googleEventTask);
+		googleToSfTask.OwnerId = sfTask.OwnerId;
+
+		for (Schema.FieldSetMember field : fields) {
+			if (sfTask.get(field.getFieldPath()) != googleToSfTask.get(field.getFieldPath())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static Boolean taskDiffersInFieldsFromGoogle(
+		Task sfTask,
+		GoogleCalendarSyncUtility.GoogleEventDTO googleEventTask
+	) {
+		List<Schema.FieldSetMember> fields = SObjectType.Task.FieldSets.CalendarSyncTaskFields.getFields();
+
+		Task googleToSfTask = getSFTaskFromGoogleEvent(googleEventTask);
+		if (
+			googleToSfTask.Location__c != sfTask.Location__c ||
+			googleToSfTask.PlannedFromDate__c != sfTask.PlannedFromDate__c ||
+			googleToSfTask.PlannedToDate__c != sfTask.PlannedToDate__c
+		) {
+			return true;
+		}
+
 		return false;
 	}
 

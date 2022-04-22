@@ -221,6 +221,55 @@ public class InitialCalendarSyncControllerTest {
 		}
 	}
 
+	@isTest
+	static void testMultipagedSyncFromGoogle() {
+		User u = TestDataFactory.getUser(new User());
+		insert u;
+		UserCalendarSetting__c setting = makeCalendarSetting(u.Id);
+		UserCalendarSettingTriggerHandler.shouldNotRunAfterInsertTrigger();
+		insert setting;
+		UserCalendarSettingTriggerHandler.shouldRunAfterInsertTrigger();
+
+		GoogleCalendarSyncUtility.GoogleEventRespDTO respFromGoogle = new GoogleCalendarSyncUtility.GoogleEventRespDTO();
+		respFromGoogle.nextPageToken = SYNC_TOKEN;
+		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{};
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+			404,
+			'Not found',
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			null,
+			null
+		);
+		Test.setMock(HttpCalloutMock.class, fakeResponse);
+		Test.startTest();
+		try {
+			InitialCalendarSyncController.sync(setting);
+		} catch (Exception calloutsLimitException) {
+			System.assertNotEquals(
+				null,
+				calloutsLimitException,
+				'GetGoogleEvents should be called repetively if the nextPageToken is filled'
+			);
+		}
+		Test.stopTest();
+	}
+
+	@isTest
+	static void insertNewSyncsTest() {
+		User u = TestDataFactory.getUser(new User());
+		insert u;
+		List<Event> events = makeUnsyncedEvents(u.Id);
+		List<Task> tasks = new List<Task>();
+		tasks.add(new Task(OwnerId = u.Id, Subject = 'New task'));
+
+		Test.startTest();
+		InitialCalendarSyncController.insertNewSyncs(events, tasks);
+		Test.stopTest();
+
+		List<EventSync__c> syncs = [SELECT Id FROM EventSync__c];
+		System.assertEquals(3, syncs.size());
+	}
+
 	public static UserCalendarSetting__c makeCalendarSetting(Id userId) {
 		UserCalendarSetting__c setting = new UserCalendarSetting__c();
 

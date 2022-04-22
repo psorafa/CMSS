@@ -133,11 +133,22 @@ public class GoogleCalendarSyncService {
 		return false;
 	}
 
+	public GoogleCalendarSyncUtility.GoogleCalendarResponse createEvent(String googleCalendarId, Task task) {
+		return sendCreateEventRequest(googleCalendarId, getGoogleEventToSendJSON(task, true));
+	}
+
 	public GoogleCalendarSyncUtility.GoogleCalendarResponse createEvent(String googleCalendarId, Event sfEvent) {
+		return sendCreateEventRequest(googleCalendarId, getGoogleEventToSendJSON(sfEvent, true));
+	}
+
+	private GoogleCalendarSyncUtility.GoogleCalendarResponse sendCreateEventRequest(
+		String googleCalendarId,
+		String bodyJson
+	) {
 		HttpRequest req = new HttpRequest();
 		String fullRoute = baseEndpoint + '/' + googleCalendarId + '/events';
 		req.setEndpoint(fullRoute);
-		req.setBody(getGoogleEventToSendJSON(sfEvent, true));
+		req.setBody(bodyJson);
 		req.setMethod('POST');
 		Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 		Http http = new Http();
@@ -156,13 +167,29 @@ public class GoogleCalendarSyncService {
 
 	public GoogleCalendarSyncUtility.GoogleCalendarResponse updateEvent(
 		String googleCalendarId,
+		Task task,
+		String googleEventId
+	) {
+		return sendUpdateRequest(googleCalendarId, getGoogleEventToSendJSON(task, false), googleEventId);
+	}
+
+	public GoogleCalendarSyncUtility.GoogleCalendarResponse updateEvent(
+		String googleCalendarId,
 		Event sfEvent,
+		String googleEventId
+	) {
+		return sendUpdateRequest(googleCalendarId, getGoogleEventToSendJSON(sfEvent, false), googleEventId);
+	}
+
+	private GoogleCalendarSyncUtility.GoogleCalendarResponse sendUpdateRequest(
+		String googleCalendarId,
+		String bodyJson,
 		String googleEventId
 	) {
 		HttpRequest req = new HttpRequest();
 		String fullRoute = baseEndpoint + '/' + googleCalendarId + '/events/' + googleEventId;
 		req.setEndpoint(fullRoute);
-		req.setBody(getGoogleEventToSendJson(sfEvent, false));
+		req.setBody(bodyJson);
 		req.setMethod('PATCH');
 		Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 		Http http = new Http();
@@ -194,6 +221,15 @@ public class GoogleCalendarSyncService {
 		Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
 		Logger.saveLogs();
 		return new GoogleCalendarSyncUtility.GoogleCalendarResponse(res.getStatusCode(), res.getStatus());
+	}
+
+	private String getGoogleEventToSendJSON(Task task, Boolean isNew) {
+		GoogleCalendarSyncUtility.GoogleEventDTO eventToGoogle = GoogleCalendarSyncUtility.getGoogleEventFromSFTask(
+			task
+		);
+		return GoogleCalendarSyncUtility.stripJsonNulls(
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(eventToGoogle), reservedKeywords)
+		);
 	}
 
 	private String getGoogleEventToSendJSON(Event sfEvent, Boolean isNew) {

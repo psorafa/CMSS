@@ -6,10 +6,13 @@ public with sharing class InitialCalendarSyncController {
 		List<Event> unsyncedEvents = new List<Event>();
 		Map<String, Event> syncedEventsByGoogleId = new Map<String, Event>();
 
+		List<Task> unsyncedTasks = new List<Task>();
+		Map<String, Task> syncedTasksByGoogleId = new Map<String, Task>();
+
 		Date cutoffDate = Date.today().addDays(-EVENT_DAY_OFFSET);
 		DateTime cutoffDateTime = DateTime.newInstance(cutoffDate.year(), cutoffDate.month(), cutoffDate.day());
 
-		List<Event> events = queryEvents(calendarSetting.OwnerId, cutoffDate, cutoffDateTime);
+		List<Event> events = queryEvents(calendarSetting.User__c, cutoffDate, cutoffDateTime);
 		for (Event event : events) {
 			if (event.GoogleId__c != null) {
 				syncedEventsByGoogleId.put(event.GoogleId__c, event);
@@ -17,7 +20,27 @@ public with sharing class InitialCalendarSyncController {
 				unsyncedEvents.add(event);
 			}
 		}
+		List<Task> tasks = queryTasks(calendarSetting.User__c, cutoffDate, cutoffDateTime);
+		for (Task task : tasks) {
+			if (task.GoogleId__c != null) {
+				syncedTasksByGoogleId.put(task.GoogleId__c, task);
+			} else {
+				unsyncedTasks.add(task);
+			}
+		}
+		List<GoogleCalendarSyncUtility.GoogleEventDTO> eventsFromGoogle = getEventsFromGoogle(
+			calendarSetting,
+			cutoffDateTime
+		);
+		processInitialSyncEvents(eventsFromGoogle, syncedEventsByGoogleId, syncedTasksByGoogleId, calendarSetting);
+		unsyncedEvents.addAll(syncedEventsByGoogleId.values());
+		insertNewSyncs(unsyncedEvents, unsyncedTasks);
+	}
 
+	private static List<GoogleCalendarSyncUtility.GoogleEventDTO> getEventsFromGoogle(
+		UserCalendarSetting__c calendarSetting,
+		DateTime cutoffDateTime
+	) {
 		GoogleCalendarSyncUtility.GoogleCalendarResponse response = syncService.getAllEvents(
 			calendarSetting.UserCalendarId__c,
 			null
@@ -34,7 +57,7 @@ public with sharing class InitialCalendarSyncController {
 			if (response.statusCode == 404) {
 				calendarSetting.SyncActive__c = false;
 				update calendarSetting;
-				return;
+				return null;
 			}
 			newCutoffedEvents = filterEventsAccordingToCutoffDateTime(response.googleEvents, cutoffDateTime);
 			if (newCutoffedEvents.size() + eventsFromGoogle.size() < 10000) {
@@ -42,16 +65,22 @@ public with sharing class InitialCalendarSyncController {
 			}
 		}
 
-		processInitialSyncEvents(eventsFromGoogle, syncedEventsByGoogleId, calendarSetting);
-
 		calendarSetting.SyncToken__c = response.nextSyncToken;
 		calendarSetting.SyncActive__c = true;
 		update calendarSetting;
-		unsyncedEvents.addAll(syncedEventsByGoogleId.values());
-		createEventSyncForEvents(unsyncedEvents);
+
+		return eventsFromGoogle;
 	}
 
-	private static void createEventSyncForEvents(List<Event> events) {
+	@TestVisible
+	private static void insertNewSyncs(List<Event> unsyncedEvents, List<Task> unsyncedTasks) {
+		List<EventSync__c> newSyncs = new List<EventSync__c>();
+		newSyncs.addAll(createEventSyncForEvents(unsyncedEvents));
+		newSyncs.addAll(createEventSyncForTasks(unsyncedTasks));
+		insert newSyncs;
+	}
+
+	private static List<EventSync__c> createEventSyncForEvents(List<Event> events) {
 		List<EventSync__c> eventSyncs = new List<EventSync__c>();
 
 		for (Event event : events) {
@@ -63,7 +92,17 @@ public with sharing class InitialCalendarSyncController {
 			eventSyncs.add(eventSync);
 		}
 
-		insert eventSyncs;
+		return eventSyncs;
+	}
+
+	private static List<EventSync__c> createEventSyncForTasks(List<Task> tasks) {
+		List<EventSync__c> eventSyncs = new List<EventSync__c>();
+
+		for (Task task : tasks) {
+			eventSyncs.add(createEventSyncToCreateTaskInGoogle(task));
+		}
+
+		return eventSyncs;
 	}
 
 	private static DateTime createCurrentCutoffDateTime() {
@@ -93,6 +132,7 @@ public with sharing class InitialCalendarSyncController {
 	private static void processInitialSyncEvents(
 		List<GoogleCalendarSyncUtility.GoogleEventDTO> eventsFromGoogle,
 		Map<String, Event> syncedEventsByGoogleId,
+		Map<String, Task> syncedTasksByGoogleId,
 		UserCalendarSetting__c calendarSetting
 	) {
 		List<Event> newEventsFromGoogle = new List<Event>();
@@ -100,29 +140,37 @@ public with sharing class InitialCalendarSyncController {
 		List<EventSync__c> updateSyncs = new List<EventSync__c>();
 
 		for (GoogleCalendarSyncUtility.GoogleEventDTO googleEvent : eventsFromGoogle) {
-			if (!syncedEventsByGoogleId.containsKey(googleEvent.id)) {
+			if (
+				!syncedEventsByGoogleId.containsKey(googleEvent.id) &&
+				!syncedTasksByGoogleId.containsKey(googleEvent.id)
+			) {
 				Event newEventFromGoogle = GoogleCalendarSyncUtility.getSFEventFromGoogleEvent(googleEvent, true);
 				newEventFromGoogle.OwnerId = calendarSetting.User__c;
 				newEventsFromGoogle.add(newEventFromGoogle);
 			} else {
-				Event sfEvent = syncedEventsByGoogleId.get(googleEvent.id);
-				syncedEventsByGoogleId.remove(googleEvent.id);
-				if (sfEvent.IsFromGoogle__c) {
-					if (
+				if (syncedTasksByGoogleId.containsKey(googleEvent.id)) {
+					Task sfTask = syncedTasksByGoogleId.get(googleEvent.id);
+					updateSyncs.add(createEventSyncToUpdateTaskInGoogle(sfTask));
+				} else {
+					Event sfEvent = syncedEventsByGoogleId.get(googleEvent.id);
+					syncedEventsByGoogleId.remove(googleEvent.id);
+					if (sfEvent.IsFromGoogle__c) {
+						if (
+							compareAndUpdateEvent(
+								GoogleCalendarSyncUtility.getSFEventFromGoogleEvent(googleEvent, true),
+								sfEvent
+							)
+						) {
+							updatedEventsFromGoogle.add(sfEvent);
+						}
+					} else if (
 						compareAndUpdateEvent(
-							GoogleCalendarSyncUtility.getSFEventFromGoogleEvent(googleEvent, true),
-							sfEvent
+							sfEvent,
+							GoogleCalendarSyncUtility.getSFEventFromGoogleEvent(googleEvent, false)
 						)
 					) {
-						updatedEventsFromGoogle.add(sfEvent);
+						updateSyncs.add(createEventSyncToUpdateEventInGoogle(sfEvent));
 					}
-				} else if (
-					compareAndUpdateEvent(
-						sfEvent,
-						GoogleCalendarSyncUtility.getSFEventFromGoogleEvent(googleEvent, false)
-					)
-				) {
-					updateSyncs.add(createEventSyncToUpdateEventInGoogle(sfEvent));
 				}
 			}
 		}
@@ -137,6 +185,26 @@ public with sharing class InitialCalendarSyncController {
 		eventSync.GoogleEventId__c = sfEvent.GoogleId__c == null ? null : sfEvent.GoogleId__c;
 		eventSync.SFEventId__c = sfEvent.Id;
 		eventSync.ChangeFromGoogle__c = false;
+		return eventSync;
+	}
+
+	private static EventSync__c createEventSyncToCreateTaskInGoogle(Task sfTask) {
+		EventSync__c eventSync = new EventSync__c();
+		eventSync.IsTask__c = true;
+		eventSync.GoogleEventId__c = null;
+		eventSync.SFTaskId__c = sfTask.Id;
+		eventSync.ChangeFromGoogle__c = false;
+		eventSync.IsNew__c = true;
+		return eventSync;
+	}
+
+	private static EventSync__c createEventSyncToUpdateTaskInGoogle(Task sfTask) {
+		EventSync__c eventSync = new EventSync__c();
+		eventSync.IsTask__c = true;
+		eventSync.GoogleEventId__c = sfTask.GoogleId__c;
+		eventSync.SFTaskId__c = sfTask.Id;
+		eventSync.ChangeFromGoogle__c = false;
+		eventSync.IsNew__c = false;
 		return eventSync;
 	}
 
@@ -155,6 +223,20 @@ public with sharing class InitialCalendarSyncController {
 		return changed;
 	}
 
+	private static List<Task> queryTasks(Id ownerId, Date cutoffDate, DateTime cutoffDateTime) {
+		List<FieldSetMember> fieldsToQuery = Schema.SobjectType.Task.fieldSets.CalendarSyncTaskFields.getFields();
+		String query = 'SELECT ';
+		for (FieldSetMember f : fieldsToQuery) {
+			query += f.getFieldPath() + ', ';
+		}
+		query +=
+			'Id, GoogleId__c, IsFromGoogle__c, ActivityLink__c ' +
+			'FROM Task ' +
+			'WHERE OwnerId = :ownerId ' +
+			'AND ActivityDate > :cutoffDate ORDER BY ActivityDate DESC LIMIT 50000';
+
+		return Database.query(query);
+	}
 	private static List<Event> queryEvents(Id ownerId, Date cutoffDate, DateTime cutoffDateTime) {
 		List<FieldSetMember> fieldsToQuery = Schema.SobjectType.Event.fieldSets.CalendarSyncFields.getFields();
 		String query = 'SELECT ';
@@ -163,11 +245,10 @@ public with sharing class InitialCalendarSyncController {
 		}
 		query +=
 			'Id, GoogleId__c, IsFromGoogle__c, ActivityLink__c ' +
-			'FROM EVENT ' +
+			'FROM Event ' +
 			'WHERE OwnerId = :ownerId ' +
 			'AND (ActivityDate > :cutoffDate OR StartDateTime > :cutoffDateTime) ORDER BY ActivityDate DESC LIMIT 50000';
 
-		System.debug(query);
 		return Database.query(query);
 	}
 }

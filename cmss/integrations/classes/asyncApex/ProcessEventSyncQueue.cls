@@ -1,12 +1,14 @@
 public without sharing class ProcessEventSyncQueue implements Queueable, Database.AllowsCallouts, Finalizer {
 	private List<Event> eventsToCreate;
 	private Map<Id, Event> eventsToUpdate;
+	private Map<Id, Task> tasksToUpdate;
 	private Map<Id, Event> eventsToDelete;
 	private Map<Id, UserCalendarSetting__c> calendarSettingsToUpdate;
 
 	public ProcessEventSyncQueue() {
 		this.eventsToCreate = new List<Event>();
 		this.eventsToUpdate = new Map<Id, Event>();
+		this.tasksToUpdate = new Map<Id, Task>();
 		this.eventsToDelete = new Map<Id, Event>();
 		this.calendarSettingsToUpdate = new Map<Id, UserCalendarSetting__c>();
 	}
@@ -38,19 +40,34 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			System.attachFinalizer(finalizer);
 
 			syncs = [
-				SELECT Id, ChangeFromGoogle__c, GoogleEventId__c, SFEventId__c, IsDeleted__c, IsNew__c, ResourceId__c
+				SELECT
+					Id,
+					ChangeFromGoogle__c,
+					GoogleEventId__c,
+					SFEventId__c,
+					IsDeleted__c,
+					IsNew__c,
+					ResourceId__c,
+					IsTask__c,
+					SFTaskId__c
 				FROM EventSync__c
 				LIMIT 50
 			];
 			Map<String, UserCalendarSetting__c> relatedSettings = getRelatedSettings(syncs);
-			Map<String, UserCalendarSetting__c> relatedSettingsBySFEventIds = getRelatedSettingsBySFEventIds(syncs);
+			Map<String, UserCalendarSetting__c> relatedSettingsBySFEventOrTaskIds = getRelatedSettingsBySFEventOrTaskIds(
+				syncs
+			);
 
 			GoogleCalendarSyncService port = new GoogleCalendarSyncService();
 			UserCalendarSetting__c actualSetting;
 			for (EventSync__c eventSync : syncs) {
-				actualSetting = eventSync.ResourceId__c == null
-					? relatedSettingsBySFEventIds.get(eventSync.SFEventId__c)
-					: relatedSettings.get(eventSync.ResourceId__c);
+				if (eventSync.ResourceId__c == null) {
+					actualSetting = eventSync.IsTask__c
+						? relatedSettingsBySFEventOrTaskIds.get(eventSync.SFTaskId__c)
+						: relatedSettingsBySFEventOrTaskIds.get(eventSync.SFEventId__c);
+				} else {
+					actualSetting = relatedSettings.get(eventSync.ResourceId__c);
+				}
 
 				if (actualSetting == null) {
 					Logger.error(
@@ -66,9 +83,17 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 				} else if (!eventSync.ChangeFromGoogle__c && eventSync.IsDeleted__c) {
 					processDeleteInSalesforce(eventSync, actualSetting, port);
 				} else if (!eventSync.ChangeFromGoogle__c && eventSync.IsNew__c) {
-					processNewInSalesforce(eventSync, actualSetting, port);
+					if (eventSync.IsTask__c) {
+						processNewTaskInSalesforce(eventSync, actualSetting, port);
+					} else {
+						processNewInSalesforce(eventSync, actualSetting, port);
+					}
 				} else if (!eventSync.ChangeFromGoogle__c && !eventSync.IsNew__c) {
-					processChangeInSalesforce(eventSync, actualSetting, port);
+					if (eventSync.IsTask__c) {
+						processChangedTaskInSalesforce(eventSync, actualSetting, port);
+					} else {
+						processChangeInSalesforce(eventSync, actualSetting, port);
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -80,6 +105,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			Database.delete(syncs, false);
 			insert eventsToCreate;
 			update eventsToUpdate.values();
+			update tasksToUpdate.values();
 			delete eventsToDelete.values();
 			update calendarSettingsToUpdate.values();
 		}
@@ -102,21 +128,34 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		return settingsByResourceId;
 	}
 
-	private Map<String, UserCalendarSetting__c> getRelatedSettingsBySFEventIds(List<EventSync__c> syncs) {
+	private Map<String, UserCalendarSetting__c> getRelatedSettingsBySFEventOrTaskIds(List<EventSync__c> syncs) {
 		List<String> eventsToSyncWithoutResourceId = new List<String>();
+		List<String> tasksToSyncWithoutResourceId = new List<String>();
 		for (EventSync__c sync : syncs) {
-			if (sync.ResourceId__c == null && sync.SFEventId__c != null) {
-				eventsToSyncWithoutResourceId.add(sync.SFEventId__c);
+			if (sync.ResourceId__c == null) {
+				if (sync.SFEventId__c != null) {
+					eventsToSyncWithoutResourceId.add(sync.SFEventId__c);
+				}
+				if (sync.SFTaskId__c != null) {
+					tasksToSyncWithoutResourceId.add(sync.SFTaskId__c);
+				}
 			}
 		}
 		List<Event> relatedSFEvents = new List<Event>(
 			[SELECT Id, OwnerId FROM Event WHERE Id IN :eventsToSyncWithoutResourceId]
+		);
+		List<Task> relatedSFTasks = new List<Task>(
+			[SELECT Id, OwnerId FROM Task WHERE Id IN :tasksToSyncWithoutResourceId]
 		);
 		Set<Id> ownerIds = new Set<Id>();
 
 		for (Event SFEvent : relatedSFEvents) {
 			ownerIds.add(SFEvent.OwnerId);
 		}
+		for (Task SFTask : relatedSFTasks) {
+			ownerIds.add(SFTask.OwnerId);
+		}
+
 		List<UserCalendarSetting__c> settings = [
 			SELECT Id, User__c, ResourceId__c, UserCalendarID__c, SyncToken__c
 			FROM UserCalendarSetting__c
@@ -126,11 +165,14 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		for (UserCalendarSetting__c setting : settings) {
 			settingsByUsers.put(setting.User__c, setting);
 		}
-		Map<String, UserCalendarSetting__c> settingsBySFEventId = new Map<String, UserCalendarSetting__c>();
+		Map<String, UserCalendarSetting__c> settingsBySFEventOrTaskId = new Map<String, UserCalendarSetting__c>();
 		for (Event event : relatedSFEvents) {
-			settingsBySFEventId.put(event.Id, settingsByUsers.get(event.OwnerId));
+			settingsBySFEventOrTaskId.put(event.Id, settingsByUsers.get(event.OwnerId));
 		}
-		return settingsBySFEventId;
+		for (Task task : relatedSFTasks) {
+			settingsBySFEventOrTaskId.put(task.Id, settingsByUsers.get(task.OwnerId));
+		}
+		return settingsBySFEventOrTaskId;
 	}
 
 	private void processGoogleSideChange(
@@ -144,8 +186,19 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		);
 		handleApiErrors(changedEventsResponse, calendarSetting);
 		if (changedEventsResponse.statusCode == 200) {
-			Map<String, Event> relatedEventsMap = getRelatedEventsMap(changedEventsResponse.googleEvents);
-			assortEventsFromGoogle(relatedEventsMap, changedEventsResponse.googleEvents, calendarSetting);
+			List<String> googleIds = new List<String>();
+			for (GoogleCalendarSyncUtility.GoogleEventDTO event : changedEventsResponse.googleEvents) {
+				googleIds.add(event.id);
+			}
+			Map<String, Event> relatedEventsMap = getRelatedEventsMap(googleIds);
+			Map<String, Task> relatedTasksMap = getRelatedTasksMap(googleIds);
+			assortEventsFromGoogle(
+				relatedEventsMap,
+				relatedTasksMap,
+				changedEventsResponse.googleEvents,
+				calendarSetting,
+				port
+			);
 
 			calendarSetting.SyncToken__c = changedEventsResponse.nextSyncToken;
 			this.calendarSettingsToUpdate.put(calendarSetting.Id, calendarSetting);
@@ -154,48 +207,65 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 
 	private void assortEventsFromGoogle(
 		Map<String, Event> relatedEventsMap,
+		Map<String, Task> relatedTasksMap,
 		List<GoogleCalendarSyncUtility.GoogleEventDTO> googleEvents,
-		UserCalendarSetting__c relatedSetting
+		UserCalendarSetting__c relatedSetting,
+		GoogleCalendarSyncService port
 	) {
 		for (GoogleCalendarSyncUtility.GoogleEventDTO googleChangedEvent : googleEvents) {
 			if (isTooOld(googleChangedEvent)) {
 				continue;
 			}
-			if (googleChangedEvent.status == 'cancelled') {
-				if (relatedEventsMap.get(googleChangedEvent.id) != null) {
-					Event relatedEvent = relatedEventsMap.get(googleChangedEvent.id);
-					this.eventsToDelete.put(relatedEvent.Id, relatedEvent);
+			if (relatedTasksMap.containsKey(googleChangedEvent.Id)) {
+				Task relatedSfTask = relatedTasksMap.get(googleChangedEvent.Id);
+				if (googleChangedEvent.status == 'cancelled') {
+					processNewTaskInSalesforce(new EventSync__c(SFTaskId__c = relatedSfTask.Id), relatedSetting, port);
+				} else if (GoogleCalendarSyncUtility.taskDiffersInFieldsFromGoogle(relatedSfTask, googleChangedEvent)) {
+					Task sfTaskFromGoogleEvent = GoogleCalendarSyncUtility.getSFTaskFromGoogleEvent(googleChangedEvent);
+					this.tasksToUpdate.put(
+						relatedSfTask.Id,
+						new Task(
+							Id = relatedSfTask.Id,
+							Location__c = sfTaskFromGoogleEvent.Location__c,
+							PlannedFromDate__c = sfTaskFromGoogleEvent.PlannedFromDate__c,
+							PlannedToDate__c = sfTaskFromGoogleEvent.PlannedToDate__c
+						)
+					);
 				}
-			} else if (relatedEventsMap.get(googleChangedEvent.id) == null) {
-				Event newEvent = GoogleCalendarSyncUtility.getSFEventFromGoogleEvent(googleChangedEvent, true);
-				newEvent.OwnerId = relatedSetting.User__c;
-				this.eventsToCreate.add(newEvent);
-			} else if (
-				GoogleCalendarSyncUtility.googleEventDiffersInFields(
-					relatedEventsMap.get(googleChangedEvent.id),
-					googleChangedEvent
-				)
-			) {
-				Event updatedEvent = GoogleCalendarSyncUtility.updateSfEvent(
-					relatedEventsMap.get(googleChangedEvent.id),
-					googleChangedEvent
-				);
-				this.eventsToUpdate.put(updatedEvent.Id, updatedEvent);
+			} else {
+				if (googleChangedEvent.status == 'cancelled') {
+					if (relatedEventsMap.get(googleChangedEvent.id) != null) {
+						Event relatedEvent = relatedEventsMap.get(googleChangedEvent.id);
+						this.eventsToDelete.put(relatedEvent.Id, relatedEvent);
+					}
+				} else if (relatedEventsMap.get(googleChangedEvent.id) == null) {
+					Event newEvent = GoogleCalendarSyncUtility.getSFEventFromGoogleEvent(googleChangedEvent, true);
+					newEvent.OwnerId = relatedSetting.User__c;
+					this.eventsToCreate.add(newEvent);
+				} else if (
+					GoogleCalendarSyncUtility.googleEventDiffersInFields(
+						relatedEventsMap.get(googleChangedEvent.id),
+						googleChangedEvent
+					)
+				) {
+					Event updatedEvent = GoogleCalendarSyncUtility.updateSfEvent(
+						relatedEventsMap.get(googleChangedEvent.id),
+						googleChangedEvent
+					);
+					this.eventsToUpdate.put(updatedEvent.Id, updatedEvent);
+				}
 			}
 		}
 	}
 
-	private Map<String, Event> getRelatedEventsMap(List<GoogleCalendarSyncUtility.GoogleEventDTO> googleEvents) {
-		List<String> eventGoogleIds = new List<String>();
-		for (GoogleCalendarSyncUtility.GoogleEventDTO event : googleEvents) {
-			eventGoogleIds.add(event.id);
-		}
+	private Map<String, Event> getRelatedEventsMap(List<String> googleIds) {
 		List<Event> relatedEvents = [
 			SELECT
 				Id,
 				Subject,
 				Description,
 				IsPrivate,
+				Location__c,
 				Location,
 				IsAllDayEvent,
 				StartDateTime,
@@ -209,7 +279,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 				ProductType__c,
 				ActivityLink__c
 			FROM Event
-			WHERE GoogleId__c IN :eventGoogleIds
+			WHERE GoogleId__c IN :googleIds
 		];
 
 		Map<String, Event> relatedEventsMap = new Map<String, Event>();
@@ -217,6 +287,50 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			relatedEventsMap.put(event.GoogleId__c, event);
 		}
 		return relatedEventsMap;
+	}
+
+	private Map<String, Task> getRelatedTasksMap(List<String> googleIds) {
+		List<Task> relatedTasks = [
+			SELECT
+				Subject,
+				GoogleId__c,
+				Location__c,
+				PlannedFromDate__c,
+				PlannedToDate__c,
+				ActivityDate,
+				Type,
+				AccountAlias__c,
+				Category__c,
+				ProductType__c,
+				ActivityLink__c
+			FROM Task
+			WHERE GoogleId__c IN :googleIds
+		];
+
+		Map<String, Task> relatedTasksMap = new Map<String, Task>();
+		for (Task task : relatedTasks) {
+			relatedTasksMap.put(task.GoogleId__c, task);
+		}
+		return relatedTasksMap;
+	}
+
+	private Task getTask(Id sfId) {
+		return [
+			SELECT
+				Subject,
+				GoogleId__c,
+				Location__c,
+				PlannedFromDate__c,
+				PlannedToDate__c,
+				ActivityDate,
+				Type,
+				AccountAlias__c,
+				Category__c,
+				ProductType__c,
+				ActivityLink__c
+			FROM Task
+			WHERE Id = :sfId
+		];
 	}
 
 	private void processDeleteInSalesforce(
@@ -240,6 +354,16 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 
 	private Boolean isTooOld(Event sfEvent) {
 		if (sfEvent.StartDateTime < System.now().addDays(-90) || sfEvent.ActivityDate < System.today().addDays(-90)) {
+			return true;
+		}
+		return false;
+	}
+
+	private Boolean isTooOld(Task sfTask) {
+		if (
+			sfTask.PlannedFromDate__c < System.today().addDays(-90) ||
+			sfTask.ActivityDate < System.today().addDays(-90)
+		) {
 			return true;
 		}
 		return false;
@@ -274,6 +398,24 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		handleApiErrors(response, calendarSetting);
 	}
 
+	private void processNewTaskInSalesforce(
+		EventSync__c eventSync,
+		UserCalendarSetting__c calendarSetting,
+		GoogleCalendarSyncService port
+	) {
+		Task sfTask = getTask(eventSync.SFTaskId__c);
+		if (isTooOld(sfTask)) {
+			return;
+		}
+		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.createEvent(
+			calendarSetting.UserCalendarID__c,
+			sfTask
+		);
+		sfTask.GoogleId__c = response.newEventId;
+		this.tasksToUpdate.put(sfTask.Id, sfTask);
+		handleApiErrors(response, calendarSetting);
+	}
+
 	private void processChangeInSalesforce(
 		EventSync__c eventSync,
 		UserCalendarSetting__c calendarSetting,
@@ -291,6 +433,23 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		handleApiErrors(response, calendarSetting);
 	}
 
+	private void processChangedTaskInSalesforce(
+		EventSync__c eventSync,
+		UserCalendarSetting__c calendarSetting,
+		GoogleCalendarSyncService port
+	) {
+		Task sfTask = getTask(eventSync.SFTaskId__c);
+		if (isTooOld(sfTask)) {
+			return;
+		}
+		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.updateEvent(
+			calendarSetting.UserCalendarID__c,
+			sfTask,
+			sfTask.GoogleId__c
+		);
+		handleApiErrors(response, calendarSetting);
+	}
+
 	private Event getEvent(String sfEventId) {
 		return [
 			SELECT
@@ -299,6 +458,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 				Description,
 				IsPrivate,
 				Location,
+				Location__c,
 				IsAllDayEvent,
 				StartDateTime,
 				ActivityDate,

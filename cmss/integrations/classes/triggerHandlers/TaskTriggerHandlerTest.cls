@@ -104,26 +104,26 @@ class TaskTriggerHandlerTest {
 		User u = TestDataFactory.getUserWithProfile(new User(), 'CMSS User');
 		insert u;
 
-        Task task = new Task(WhatId = acc1.Id, OwnerId = u.Id, ActivityDate = Date.today().addYears(1));
-        insert task;
+		Task task = new Task(WhatId = acc1.Id, OwnerId = u.Id, ActivityDate = Date.today().addYears(1));
+		insert task;
 
-        Exception expectedException;
+		Exception expectedException;
 
-        Test.startTest();
-            System.runAs(u) {
-                try {
-                    delete task;
-                } catch (Exception e) {
-                    expectedException = e;
-                }
-            }
-        Test.stopTest();
+		Test.startTest();
+		System.runAs(u) {
+			try {
+				delete task;
+			} catch (Exception e) {
+				expectedException = e;
+			}
+		}
+		Test.stopTest();
 
-        Task[] usersTasks = [SELECT Id FROM Task  WHERE OwnerId = :u.Id];
+		Task[] usersTasks = [SELECT Id FROM Task WHERE OwnerId = :u.Id];
 
 		System.assert(!usersTasks.isEmpty());
-        System.assert(expectedException.getMessage().contains(Label.YouDoNotHavePermissionToDeleteTask));
-	}    
+		System.assert(expectedException.getMessage().contains(Label.YouDoNotHavePermissionToDeleteTask));
+	}
 
 	@isTest
 	static void accountFieldsUpdatedTest() {
@@ -207,30 +207,22 @@ class TaskTriggerHandlerTest {
 		System.assertEquals(resultNotification.ToEmailAddress__c, 'invalid@testuser.cz');
 		System.assert(resultNotification.Subject__c.endsWith('Do something'));
 	}
-    
-    
-    
-    @isTest
-    static void inactiveTaskOwnerTest() {
-        User user = TestDataFactory.getUser(new User(IsActive = false));
+
+	@isTest
+	static void inactiveTaskOwnerTest() {
+		User user = TestDataFactory.getUser(new User(IsActive = false));
 		insert user;
-        ContactInformation__c newCI = new ContactInformation__c(
-            Area__c = '3',
-            SubType__c = '3000001',
-            User__c = user.Id,
-            Email__c = 'testuser@test.com'
-        );
-        insert newCI;
-    	Task newTask = TestDataFactory.getTask(
-			new Task(
-				Subject = 'Do',
-				OwnerId = user.Id,
-				Category__c = '1',
-				IsVisibleForNel__c = true,
-				Status__c = '1'
-			)
+		ContactInformation__c newCI = new ContactInformation__c(
+			Area__c = '3',
+			SubType__c = '3000001',
+			User__c = user.Id,
+			Email__c = 'testuser@test.com'
 		);
-        		CalloutServiceMockImpl fakeSuccessResponse = new CalloutServiceMockImpl(
+		insert newCI;
+		Task newTask = TestDataFactory.getTask(
+			new Task(Subject = 'Do', OwnerId = user.Id, Category__c = '1', IsVisibleForNel__c = true, Status__c = '1')
+		);
+		CalloutServiceMockImpl fakeSuccessResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
 			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:sendEmailResponse xmlns:ns3=\"http://service.cmss.cz/mail\" xmlns:ns2=\"http://service.cmss.cz/datamodel/mailservice/sendemail\" xmlns:ns4=\"http://service.cmss.cz/fault\"></ns3:sendEmailResponse></soapenv:Body></soapenv:Envelope>',
@@ -239,13 +231,87 @@ class TaskTriggerHandlerTest {
 		);
 
 		Test.setMock(HttpCalloutMock.class, fakeSuccessResponse);
-        Test.startTest();
+		Test.startTest();
 		insert newTask;
 		Test.stopTest();
-            List<MailServiceNotification__c> notification = [
-			SELECT Id,ToEmailAddress__c
+		List<MailServiceNotification__c> notification = [
+			SELECT Id, ToEmailAddress__c
 			FROM MailServiceNotification__c
-            WHERE ToEmailAddress__c = 'testuser@test.com'
+			WHERE ToEmailAddress__c = 'testuser@test.com'
 		];
 		System.assertEquals(notification[0].ToEmailAddress__c, 'testuser@test.com');
-    }}
+	}
+
+	@isTest
+	static void createEventSyncsTest() {
+		User user = TestDataFactory.getUser(new User(IsActive = false));
+		insert user;
+
+		UserCalendarSetting__c setting = new UserCalendarSetting__c();
+		setting.SyncActive__c = true;
+		setting.User__c = user.Id;
+		insert setting;
+
+		Account acc = TestDataFactory.getPersonAccount(new Account());
+		insert acc;
+		Task newTask = TestDataFactory.getTask(
+			new Task(
+				Subject = 'Do',
+				OwnerId = user.Id,
+				Category__c = '1',
+				IsVisibleForNel__c = true,
+				Status__c = '1',
+				WhatId = acc.Id,
+				GoogleId__c = '12345'
+			)
+		);
+		Test.startTest();
+		insert newTask;
+		Test.stopTest();
+
+		EventSync__c eventSync = [
+			SELECT Id, GoogleEventId__c, ChangeFromGoogle__c, IsNew__c, IsDeleted__c
+			FROM EventSync__c
+			WHERE GoogleEventId__c = '12345'
+		];
+		System.assertNotEquals(null, eventSync, 'Sync should have been created.');
+		System.assertEquals(newTask.GoogleId__c, eventSync.GoogleEventId__c, 'Google Id should be the same as in Task');
+		System.assertEquals(false, eventSync.IsDeleted__c, 'IsDeleted__c should be false for a new Task.');
+		System.assertEquals(false, eventSync.ChangeFromGoogle__c, 'ChangeFromGoogle__c should be false.');
+	}
+
+	@isTest
+	static void createEventSyncsSyncExistsTest() {
+		User user = TestDataFactory.getUser(new User(IsActive = false));
+		insert user;
+		Account acc = TestDataFactory.getPersonAccount(new Account());
+		insert acc;
+		Task newTask = TestDataFactory.getTask(
+			new Task(
+				Subject = 'Do',
+				OwnerId = user.Id,
+				Category__c = '1',
+				IsVisibleForNel__c = true,
+				Status__c = '1',
+				WhatId = acc.Id,
+				GoogleId__c = '12345'
+			)
+		);
+
+		EventSync__c sync = new EventSync__c();
+		sync.GoogleEventId__c = '12345';
+		sync.ChangeFromGoogle__c = true;
+		insert sync;
+
+		Test.startTest();
+		insert newTask;
+		Test.stopTest();
+
+		List<EventSync__c> eventSync = [
+			SELECT Id, GoogleEventId__c, ChangeFromGoogle__c
+			FROM EventSync__c
+			WHERE Id = :sync.Id
+		];
+		System.assertEquals(0, eventSync.size(), 'Old sync should be deleted.');
+	}
+}

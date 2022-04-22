@@ -4266,12 +4266,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>EventSync__c.IsTask__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>EventSync__c.ResourceId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>EventSync__c.SFEventId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EventSync__c.SFTaskId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

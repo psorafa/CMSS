@@ -137,6 +137,136 @@ class ProcessEventSyncQueueTest {
 	}
 
 	@isTest
+	static void updateTaskTest() {
+		Task task = new Task();
+		task.GoogleId__c = '12345';
+		insert task;
+
+		EventSync__c sync = new EventSync__c();
+		sync.ChangeFromGoogle__c = false;
+		sync.IsNew__c = false;
+		sync.IsDeleted__c = false;
+		sync.IsTask__c = true;
+		sync.ResourceId__c = '123456';
+		sync.SFTaskId__c = task.id;
+		insert sync;
+
+		GoogleCalendarSyncUtility.GoogleEventDTO google_event = new GoogleCalendarSyncUtility.GoogleEventDTO();
+		google_event.id = '12345';
+
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+			200,
+			'OK',
+			JSON.serialize(google_event),
+			null,
+			null
+		);
+		Test.setMock(HttpCalloutMock.class, fakeResponse);
+
+		Test.startTest();
+		System.enqueueJob(new ProcessEventSyncQueue());
+		Test.stopTest();
+
+		Integer syncSize = [SELECT COUNT() FROM EventSync__c];
+		System.assertEquals(0, syncSize);
+	}
+
+	@isTest
+	static void updateTaskFromGoogleTest() {
+		Account acc1 = TestDataFactory.getAccount(new Account());
+		insert acc1;
+
+		User u = TestDataFactory.getUser(new User(Username = 'another@user.com', AgentId__c = '456789'));
+		insert u;
+
+		Task task = new Task();
+		task.Location__c = 'Prague';
+		task.CallDurationInSeconds = 5;
+		task.GoogleId__c = '12345';
+		task.IsFromGoogle__c = true;
+		task.OwnerId = u.Id;
+		task.WhatId = acc1.Id;
+		insert task;
+
+		EventSync__c sync = new EventSync__c();
+		sync.ChangeFromGoogle__c = true;
+		sync.ResourceId__c = '12345';
+		insert sync;
+
+		GoogleCalendarSyncUtility.GoogleEventRespDTO respFromGoogle = new GoogleCalendarSyncUtility.GoogleEventRespDTO();
+		respFromGoogle.nextSyncToken = 'synctoken1235';
+
+		GoogleCalendarSyncUtility.GoogleEventDTO google_event = new GoogleCalendarSyncUtility.GoogleEventDTO();
+		google_event.id = '12345';
+		google_event.location = 'Not Prague';
+		google_event.summary = 'someSummary';
+		google_event.description = 'someDescription';
+		google_event.start_x = new GoogleCalendarSyncUtility.GoogleDateDTO();
+		google_event.start_x.dateTime_x = '2022-04-01T13:45:00+02:00';
+		google_event.end_x = new GoogleCalendarSyncUtility.GoogleDateDTO();
+		google_event.end_x.dateTime_x = '2022-04-02T13:45:00+02:00';
+
+		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{ google_event };
+
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+			200,
+			'OK',
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			null,
+			null
+		);
+		Test.setMock(HttpCalloutMock.class, fakeResponse);
+
+		Test.startTest();
+		System.enqueueJob(new ProcessEventSyncQueue());
+		Test.stopTest();
+
+		Integer syncSize = [SELECT COUNT() FROM EventSync__c];
+		System.assertEquals(0, syncSize);
+
+		Task updatedTask = [SELECT Location__c, CallDurationInSeconds FROM Task WHERE Id = :task.id];
+		System.assertEquals(google_event.location, updatedTask.Location__c);
+		System.assertEquals(5, updatedTask.CallDurationInSeconds, 'no change was expected');
+	}
+
+	@isTest
+	static void createTaskTest() {
+		Task task = new Task();
+		insert task;
+
+		EventSync__c sync = new EventSync__c();
+		sync.ChangeFromGoogle__c = false;
+		sync.IsNew__c = true;
+		sync.IsDeleted__c = false;
+		sync.IsTask__c = true;
+		sync.ResourceId__c = '12345';
+		sync.SFTaskId__c = task.id;
+		insert sync;
+
+		GoogleCalendarSyncUtility.GoogleEventDTO google_event = new GoogleCalendarSyncUtility.GoogleEventDTO();
+		google_event.id = '12345';
+
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+			200,
+			'OK',
+			JSON.serialize(google_event),
+			null,
+			null
+		);
+		Test.setMock(HttpCalloutMock.class, fakeResponse);
+
+		Test.startTest();
+		System.enqueueJob(new ProcessEventSyncQueue());
+		Test.stopTest();
+
+		Integer syncSize = [SELECT COUNT() FROM EventSync__c];
+		System.assertEquals(0, syncSize);
+
+		Task newTask = [SELECT GoogleId__c FROM Task WHERE Id = :task.id];
+		System.assertEquals('12345', newTask.GoogleId__c);
+	}
+
+	@isTest
 	static void coverApiErrors() {
 		ProcessEventSyncQueue queue = new ProcessEventSyncQueue();
 		UserCalendarSetting__c settings = [
