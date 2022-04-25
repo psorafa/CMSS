@@ -22,4 +22,15 @@
         <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/Community_Welcome_Internal_Users_1636379309677</template>
     </alerts>
+    <alerts>
+        <fullName>SuperAdmin_logged_in</fullName>
+        <ccEmails>petr_fronek@csobstavebni.cz</ccEmails>
+        <ccEmails>prokop_holy@csobstavebni.cz</ccEmails>
+        <ccEmails>crm_podpora@csobstavebni.cz</ccEmails>
+        <ccEmails>L2support@csobstavebni.cz</ccEmails>
+        <description>SuperAdmin logged in</description>
+        <protected>false</protected>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/SuperAdmin</template>
+    </alerts>
 </Workflow>
