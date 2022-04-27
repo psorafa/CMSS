@@ -12,6 +12,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	public override void beforeDelete() {
+        checkDeletePermission();
 		AQMessageService.handleDelete(Trigger.old, Task.SObjectType);
 		AccessShareController.removeTaskAccessBulk(Trigger.old);
 	}
@@ -320,4 +321,21 @@ public class TaskTriggerHandler extends TriggerHandler {
 		AccessShareController.removeTaskAccessBulk(removeAccessList);
 		AccessShareController.assignTaskAccessBulk(assignAccessList);
 	}
+
+    private void checkDeletePermission() {
+        Boolean isRestrictedUser = false;
+        User currentUser = [SELECT Id, Profile.Name FROM User WHERE Id =: UserInfo.getUserId()];
+
+        if (currentUser.Profile.Name == 'CMSS User' || currentUser.Profile.Name == 'CMSS Experience User' || currentUser.Profile.Name == 'CMSS Headquarters User') {
+            isRestrictedUser = true;
+        }
+
+        if (isRestrictedUser) {
+            for (sObject t : Trigger.old) {
+                if (t.get('CreatedById') != currentUser.Id) {
+                    t.addError(Label.YouDoNotHavePermissionToDeleteTask);
+                }
+            }
+        }
+    }
 }

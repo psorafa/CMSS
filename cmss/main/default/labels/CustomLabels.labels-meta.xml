@@ -299,4 +299,12 @@
         <shortDescription>YouDoNotHavePermissionToDeleteCases</shortDescription>
         <value>You do not have permissions to delete cases</value>
     </labels>
+    <labels>
+        <fullName>YouDoNotHavePermissionToDeleteTask</fullName>
+        <categories>TaskTriggerHandler</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>YouDoNotHavePermissionToDeleteTask</shortDescription>
+        <value>You do not have permissions to delete tasks, that you didn't create.</value>
+    </labels>
 </CustomLabels>

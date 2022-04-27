@@ -98,6 +98,34 @@ class TaskTriggerHandlerTest {
 	}
 
 	@isTest
+	static void beforeDeleteTestForRestrictedUser() {
+		Account acc1 = TestDataFactory.getAccount(new Account());
+		insert acc1;
+		User u = TestDataFactory.getUserWithProfile(new User(), 'CMSS User');
+		insert u;
+
+        Task task = new Task(WhatId = acc1.Id, OwnerId = u.Id, ActivityDate = Date.today().addYears(1));
+        insert task;
+
+        Exception expectedException;
+
+        Test.startTest();
+            System.runAs(u) {
+                try {
+                    delete task;
+                } catch (Exception e) {
+                    expectedException = e;
+                }
+            }
+        Test.stopTest();
+
+        Task[] usersTasks = [SELECT Id FROM Task  WHERE OwnerId = :u.Id];
+
+		System.assert(!usersTasks.isEmpty());
+        System.assert(expectedException.getMessage().contains(Label.YouDoNotHavePermissionToDeleteTask));
+	}    
+
+	@isTest
 	static void accountFieldsUpdatedTest() {
 		Account acc1 = TestDataFactory.getAccount(new Account());
 		acc1.OpenedActivityDate__c = null;

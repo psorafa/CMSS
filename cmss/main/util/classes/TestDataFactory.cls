@@ -126,7 +126,11 @@ public class TestDataFactory {
 	}
 
 	public static User getUser(User so) {
-		Id profileId = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id;
+        return getUserWithProfile(so, 'System Administrator');
+	}
+
+	public static User getUserWithProfile(User so, String profileName) {
+		Id profileId = [SELECT Id FROM Profile WHERE Name =: profileName].Id;
 		String username = 'user' + ++userCounter;
 		User template = new User(
 			LastName = username,
