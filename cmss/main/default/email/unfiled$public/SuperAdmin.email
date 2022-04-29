@@ -1,0 +1,6 @@
+<messaging:emailTemplate subject="Upozornění na přihlašení uživatele s profilem SuperAdmin" recipientType="User" relatedToType="User">
+<messaging:plainTextEmailBody >
+Dne {!relatedTo.LastLoginDate__c} došlo k přihlašení uživatele {!relatedTo.Username} do systému Salesforce.
+Tento e-mail je odeslán automaticky ze systému SalesForce.
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

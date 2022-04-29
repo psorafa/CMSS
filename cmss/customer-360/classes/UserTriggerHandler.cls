@@ -4,9 +4,10 @@ public class UserTriggerHandler extends TriggerHandler {
 	}
 
 	public override void afterUpdate() {
+        if (!System.isBatch()) {
 		updateCommunityUsersContacts(Trigger.newMap.keySet());
 	}
-
+    }
 	@TestVisible
 	@Future
 	private static void updateCommunityUsersContacts(Set<Id> userIds) {
