@@ -990,4 +990,22 @@
         </columns>
         <masterLabel>Activities (Assigned To)</masterLabel>
     </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UserNote__c</field>
+            <table>User.Activity$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsClosedPositive__c</field>
+            <table>User.Activity$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsClosedNegative__c</field>
+            <table>User.Activity$OwnerId</table>
+        </columns>
+        <masterLabel>Activities</masterLabel>
+    </sections>
 </ReportType>
