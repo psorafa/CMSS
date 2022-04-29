@@ -503,6 +503,21 @@
             <field>WebLink__c</field>
             <table>CampaignMember__c.Activities__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UserNote__c</field>
+            <table>CampaignMember__c.Activities__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsClosedPositive__c</field>
+            <table>CampaignMember__c.Activities__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsClosedNegative__c</field>
+            <table>CampaignMember__c.Activities__r</table>
+        </columns>
         <masterLabel>Activities</masterLabel>
     </sections>
 </ReportType>

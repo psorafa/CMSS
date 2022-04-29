@@ -3684,6 +3684,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.IsClosedNegative__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.IsClosedPositive__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.IsKZMessage__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3810,6 +3820,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.UpdatedBy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.UserNote__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4684,6 +4699,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Task.IsClosedNegative__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.IsClosedPositive__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Task.IsKZMessage__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4805,6 +4830,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.UpdatedBy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.UserNote__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

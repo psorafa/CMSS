@@ -416,6 +416,21 @@
             <field>ActivityLink__c</field>
             <table>Activity</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>UserNote__c</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsClosedPositive__c</field>
+            <table>Activity</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsClosedNegative__c</field>
+            <table>Activity</table>
+        </columns>
         <masterLabel>Activities</masterLabel>
     </sections>
     <sections>
