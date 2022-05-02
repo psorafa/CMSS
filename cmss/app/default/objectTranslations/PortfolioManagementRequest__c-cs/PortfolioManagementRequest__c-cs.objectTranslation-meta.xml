@@ -77,4 +77,8 @@
         <errorMessage>Vyplňte nového Portfolio Managera</errorMessage>
         <name>NewPortfolioManagerRequired</name>
     </validationRules>
+    <validationRules>
+        <errorMessage>Požadavek změny správy stavu nelze zadat do minulosti.</errorMessage>
+        <name>ValidFromCurrentOrFutureDate</name>
+    </validationRules>
 </CustomObjectTranslation>
