@@ -10,9 +10,24 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>TBD</fullName>
+                <fullName>Rozlišení</fullName>
                 <default>false</default>
-                <label>TBD</label>
+                <label>Rozlišení</label>
+            </value>
+            <value>
+                <fullName>Školení</fullName>
+                <default>false</default>
+                <label>Školení</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Návody</fullName>
+                <default>false</default>
+                <label>Návody</label>
             </value>
         </valueSetDefinition>
     </valueSet>
