@@ -955,11 +955,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>MonthlyPayment__c</field>
-            <table>CampaignMember__c.Assets__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>MortgageLength__c</field>
             <table>CampaignMember__c.Assets__r</table>
         </columns>

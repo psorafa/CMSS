@@ -3,7 +3,8 @@
     <fullName>AdditionalInformation__c</fullName>
     <externalId>false</externalId>
     <formula>&quot;Přístup do KZ: &quot; &amp; ClientZoneAccess__c &amp; BR() &amp;
-&quot;Datum příští aktualizace AML: &quot; &amp; IF(NOT(ISBLANK( NextAmlReviewDate__c )), TEXT(DAY(NextAmlReviewDate__c))&amp; &quot;.&quot; &amp; TEXT(MONTH(NextAmlReviewDate__c)) &amp; &quot;.&quot; &amp; TEXT(YEAR(NextAmlReviewDate__c)), &quot; &quot;)</formula>
+&quot;Datum příští aktualizace AML: &quot; &amp; IF(NOT(ISBLANK( NextAmlReviewDate__c )), TEXT(DAY(NextAmlReviewDate__c))&amp; &quot;.&quot; &amp; TEXT(MONTH(NextAmlReviewDate__c)) &amp; &quot;.&quot; &amp; TEXT(YEAR(NextAmlReviewDate__c)), &quot; &quot;) &amp; BR() &amp;
+&quot;Celkové měsíční výdaje: &quot; &amp; TEXT( MonthlyLoadSum__c ) &amp; IF( ISBLANK( MonthlyLoadSum__c),&quot;&quot;,&quot; Kč&quot;)</formula>
     <label>Additional Information</label>
     <required>false</required>
     <type>Text</type>

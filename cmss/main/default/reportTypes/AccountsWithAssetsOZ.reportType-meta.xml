@@ -1620,11 +1620,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>MonthlyPayment__c</field>
-            <table>Account.Assets</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>MortgageLength__c</field>
             <table>Account.Assets</table>
         </columns>
