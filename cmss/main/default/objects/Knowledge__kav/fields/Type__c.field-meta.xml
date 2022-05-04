@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Rozlišení</fullName>
+                <default>false</default>
+                <label>Rozlišení</label>
+            </value>
+            <value>
+                <fullName>Školení</fullName>
+                <default>false</default>
+                <label>Školení</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Návody</fullName>
+                <default>false</default>
+                <label>Návody</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
