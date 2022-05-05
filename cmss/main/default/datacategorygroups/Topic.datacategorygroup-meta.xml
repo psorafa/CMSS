@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCategoryGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <dataCategory>
+        <dataCategory>
+            <label>Building Savings</label>
+            <name>Building_Savings</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Credits</label>
+            <name>Credits</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Mortgages</label>
+            <name>Mortgages</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Our Life</label>
+                <name>Our_Life</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Investment Life Insurance</label>
+                <name>Investment_Life_Insurance</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Risk Life Insurance</label>
+                <name>Risk_Life_Insurance</name>
+            </dataCategory>
+            <dataCategory>
+                <label>PMO</label>
+                <name>PMO</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Car Insurance</label>
+                <name>Car_Insurance</name>
+            </dataCategory>
+            <label>Insurance</label>
+            <name>Insurance</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Pension Products</label>
+            <name>Pension_Products</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Plus Konto</label>
+                <name>Plus_Konto</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Premium Konto</label>
+                <name>Premium_Konto</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Saving Account</label>
+                <name>Saving_Account</name>
+            </dataCategory>
+            <dataCategory>
+                <label>CSOB ID</label>
+                <name>CSOB_ID</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Consumer Credit</label>
+                <name>Consumer_Credit</name>
+            </dataCategory>
+            <label>CSOB Products</label>
+            <name>Csob_Products</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Initiation and Operations</label>
+                <name>Initiation_and_Operations</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Termination</label>
+                <name>Termination</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Application Support</label>
+                <name>Application_Support</name>
+            </dataCategory>
+            <label>My Bank Journey</label>
+            <name>My_Bank_Journey</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Fulfillment of Objectives</label>
+                <name>Fulfillment_of_Objectives</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Competition Results</label>
+                <name>Competition_Results</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Managerial Activities</label>
+                <name>Managerial_Activities</name>
+            </dataCategory>
+            <label>Statistics and Evaluations</label>
+            <name>Statistics_and_Evaluations</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Commission System</label>
+                <name>Commission_System</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Benefits for Contractors</label>
+                <name>Benefits_for_Contractors</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Incentives and competitions</label>
+                <name>Incentives_and_competitions</name>
+            </dataCategory>
+            <label>Motivation and Remuneration</label>
+            <name>Motivation_and_Remuneration</name>
+        </dataCategory>
+        <label>All</label>
+        <name>All</name>
+    </dataCategory>
+    <label>Topic</label>
+    <objectUsage>
+        <object>KnowledgeArticleVersion</object>
+    </objectUsage>
+</DataCategoryGroup>

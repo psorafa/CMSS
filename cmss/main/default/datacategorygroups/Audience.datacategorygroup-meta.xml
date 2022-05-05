@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCategoryGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <dataCategory>
+        <dataCategory>
+            <label>CMSS Headquarter Users</label>
+            <name>CMSS_Headquarter_Users</name>
+        </dataCategory>
+        <dataCategory>
+            <label>CMSS Users</label>
+            <name>CMSS_Users</name>
+        </dataCategory>
+        <dataCategory>
+            <label>CMSS Experience Users</label>
+            <name>CMSS_Experience_Users</name>
+        </dataCategory>
+        <label>All</label>
+        <name>All</name>
+    </dataCategory>
+    <label>Audience</label>
+    <objectUsage>
+        <object>KnowledgeArticleVersion</object>
+    </objectUsage>
+</DataCategoryGroup>

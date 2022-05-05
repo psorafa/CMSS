@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>false</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Locative</caseType>
+        <plural>true</plural>
+        <value><!-- Knowledge --></value>
+    </caseValues>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>FAQ_Author</layout>
+        <sections>
+            <label>Článek</label>
+            <section>Article</section>
+        </sections>
+        <sections>
+            <label>Kanály</label>
+            <section>Channels</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Vlastnosti</label>
+            <section>Properties</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FAQ_Reader</layout>
+        <sections>
+            <label>Článek</label>
+            <section>Article</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Vlastnosti</label>
+            <section>Properties</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Info_Author</layout>
+        <sections>
+            <label>Článek</label>
+            <section>Article</section>
+        </sections>
+        <sections>
+            <label>Kanály</label>
+            <section>Channels</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Vlastnosti</label>
+            <section>Properties</section>
+        </sections>
+        <sections>
+            <label>Statistiky</label>
+            <section>Statistics</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Info_Reader</layout>
+        <sections>
+            <label>Článek</label>
+            <section>Article</section>
+        </sections>
+        <sections>
+            <label>Kanály</label>
+            <section>Channels</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Vlastnosti</label>
+            <section>Properties</section>
+        </sections>
+        <sections>
+            <label>Statistiky</label>
+            <section>Statistics</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Knowledge Layout_Author</layout>
+        <sections>
+            <label>Článek</label>
+            <section>Article</section>
+        </sections>
+        <sections>
+            <label>Kanály</label>
+            <section>Channels</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Vlastnosti</label>
+            <section>Properties</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Knowledge Layout_Reader</layout>
+        <sections>
+            <label>Článek</label>
+            <section>Article</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Vlastnosti</label>
+            <section>Properties</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Knowledge Name --></nameFieldLabel>
+    <recordTypes>
+        <label>Vyhodnocení</label>
+        <name>Evaluation</name>
+    </recordTypes>
+    <recordTypes>
+        <label>FAQ</label>
+        <name>FAQ</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Formuláře</label>
+        <name>Forms</name>
+    </recordTypes>
+    <recordTypes>
+        <label>INFO</label>
+        <name>INFO</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Metodika</label>
+        <name>Methodology</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Pravidla a podmínky</label>
+        <name>RulesAndConditions</name>
+    </recordTypes>
+</CustomObjectTranslation>

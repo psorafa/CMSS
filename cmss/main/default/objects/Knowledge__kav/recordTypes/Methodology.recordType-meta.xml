@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Methodology</fullName>
+    <active>true</active>
+    <label>Methodology</label>
+    <picklistValues>
+        <picklist>Audience__c</picklist>
+        <values>
+            <fullName>CMSS Experience Users</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CMSS Headquarter Users</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CMSS Users</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Category__c</picklist>
+        <values>
+            <fullName>Application Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Benefits for Contractors</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Building Savings</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CSOB ID</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CSOB Products</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Car Insurance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commission System</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competition Results</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consumer Credit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credits</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fulfillment of Objectives</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Incentives and competitions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Initiation and Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Insurance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Investment Life Insurance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Managerial Activities</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mortgages</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Motivation and Remuneration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>My Bank Journey</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Our Life</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PMO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pension Products</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Plus Konto</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Konto</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Risk Life Insurance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Saving Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Statistics and Evaluations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Termination</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>TBD</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
