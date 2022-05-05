@@ -584,7 +584,7 @@
         <editable>false</editable>
         <field>Account.Alias__c</field>
         <readable>true</readable>
-    </fieldPermissions>    
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AmountOffer__c</field>
@@ -1500,7 +1500,7 @@
         <field>Asset.AccountId</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Asset.AccountInformation__c</field>
         <readable>true</readable>
@@ -2380,7 +2380,7 @@
         <field>Asset.NumberofLoanCaseRelatedAssets__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Asset.OpenedActivityDate__c</field>
         <readable>true</readable>
@@ -7192,6 +7192,14 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>AssignPermissionSets</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>DelegatedTwoFactor</name>
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ManageInternalUsers</name>
