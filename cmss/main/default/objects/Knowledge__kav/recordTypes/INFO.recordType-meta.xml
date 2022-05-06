@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>INFO</fullName>
     <active>true</active>
+    <compactLayoutAssignment>INFOCompactLayout</compactLayoutAssignment>
     <label>INFO</label>
     <picklistValues>
         <picklist>Audience__c</picklist>
