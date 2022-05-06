@@ -3,6 +3,7 @@
     <externalCommunityUserIdentityVerif>false</externalCommunityUserIdentityVerif>
     <forceLogout>false</forceLogout>
     <profile>SuperAdmin</profile>
+    <requiredSessionLevel>HIGH_ASSURANCE</requiredSessionLevel>
     <sessionPersistence>false</sessionPersistence>
     <sessionTimeout>0</sessionTimeout>
     <sessionTimeoutWarning>false</sessionTimeoutWarning>
