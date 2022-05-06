@@ -126,11 +126,11 @@ public class TestDataFactory {
 	}
 
 	public static User getUser(User so) {
-        return getUserWithProfile(so, 'System Administrator');
+		return getUserWithProfile(so, 'System Administrator');
 	}
 
 	public static User getUserWithProfile(User so, String profileName) {
-		Id profileId = [SELECT Id FROM Profile WHERE Name =: profileName].Id;
+		Id profileId = [SELECT Id FROM Profile WHERE Name = :profileName].Id;
 		String username = 'user' + ++userCounter;
 		User template = new User(
 			LastName = username,
@@ -222,7 +222,7 @@ public class TestDataFactory {
 	public static PortfolioManagementRequest__c getPortfolioManagementRequest(PortfolioManagementRequest__c so) {
 		PortfolioManagementRequest__c template = new PortfolioManagementRequest__c(
 			PortfolioManChangeReason__c = '0',
-			ValidFrom__c = Datetime.now(),
+			ValidFrom__c = Datetime.now().addDays(1),
 			PortfolioManagementType__c = 'A',
 			BatchID__c = 'batchId0'
 		);

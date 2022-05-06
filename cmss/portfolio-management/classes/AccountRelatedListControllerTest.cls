@@ -63,7 +63,11 @@ private class AccountRelatedListControllerTest {
 
 		Test.startTest();
 		PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CommAccNr1', PortfolioManager__c = u.Id)
+			new PortfolioManagementRequest__c(
+				PortfolioManagerCPU__c = 'CommAccNr1',
+				PortfolioManager__c = u.Id,
+				ValidFrom__c = System.now().addDays(1)
+			)
 		);
 		AccountRelatedListController.createPortManRequestsForUsersClients(pmr, u2.Id, 'A');
 
@@ -72,7 +76,11 @@ private class AccountRelatedListControllerTest {
 		System.assertEquals(u.Id, pmrs[0].PortfolioManager__c);
 
 		PortfolioManagementRequest__c pmr2 = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CommAccNr2', PortfolioManager__c = u2.Id)
+			new PortfolioManagementRequest__c(
+				PortfolioManagerCPU__c = 'CommAccNr2',
+				PortfolioManager__c = u2.Id,
+				ValidFrom__c = System.now().addDays(1)
+			)
 		);
 		AccountRelatedListController.createPortManRequests(pmr2, new List<String>{ accs[0].Id, accs[1].Id });
 
