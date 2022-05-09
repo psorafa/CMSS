@@ -3,21 +3,21 @@
     <active>true</active>
     <dataCategory>
         <dataCategory>
-            <label>CMSS Headquarter Users</label>
+            <label>Centrála</label>
             <name>CMSS_Headquarter_Users</name>
         </dataCategory>
         <dataCategory>
-            <label>CMSS Users</label>
+            <label>Manažeři</label>
             <name>CMSS_Users</name>
         </dataCategory>
         <dataCategory>
-            <label>CMSS Experience Users</label>
+            <label>OZ</label>
             <name>CMSS_Experience_Users</name>
         </dataCategory>
-        <label>All</label>
+        <label>Všichni</label>
         <name>All</name>
     </dataCategory>
-    <label>Audience</label>
+    <label>Publikum</label>
     <objectUsage>
         <object>KnowledgeArticleVersion</object>
     </objectUsage>
