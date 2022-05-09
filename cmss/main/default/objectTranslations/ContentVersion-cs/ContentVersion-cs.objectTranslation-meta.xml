@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Files_Author</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Detaily</label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label>Vlastnosti</label>
+            <section>Properties</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Files_Reader</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Detaily</label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label>Vlastnosti</label>
+            <section>Properties</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

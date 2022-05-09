@@ -23,7 +23,14 @@
         "communitiesSettings": {
           "enableNetworksEnabled": true,
           "enableExternalAccHierPref": true
-        }
+        },
+    "knowledgeSettings": {
+        "enableKnowledge": true,
+        "enableLightningKnowledge": true,
+        "enableKnowledgeArticleTextHighlights": true,
+        "enableKnowledgeKeywordAutoComplete": true,
+        "enableKnowledgeTitleAutoComplete": true
+    }
 
 	}
 }
