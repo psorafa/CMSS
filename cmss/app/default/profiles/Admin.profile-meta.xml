@@ -584,7 +584,7 @@
         <editable>false</editable>
         <field>Account.Alias__c</field>
         <readable>true</readable>
-    </fieldPermissions>    
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AmountOffer__c</field>
@@ -1192,6 +1192,31 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.SmartFirstLogin__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.SmartLastLogin__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.SmartLoginIn92Days__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.SmartLoginLastYear__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.SmartSuccessLogin__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.StayType__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1505,7 +1530,7 @@
         <field>Asset.AccountId</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Asset.AccountInformation__c</field>
         <readable>true</readable>
@@ -2385,7 +2410,7 @@
         <field>Asset.NumberofLoanCaseRelatedAssets__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Asset.OpenedActivityDate__c</field>
         <readable>true</readable>
