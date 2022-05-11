@@ -15,6 +15,9 @@ public without sharing class CustomerSearchController {
 	private static final String ASSET_SOBJECT = 'Asset';
 	@TestVisible
 	private static final String LEAD_SOBJECT = 'Lead';
+	private static final Integer ASSET_IDENTIFICATION_TYPE = 6;
+	private static final Integer ACCOUNT_IDENTIFICATION_TYPE = 4;
+
 
 	//inputs from findRecords method
 	@TestVisible
@@ -105,6 +108,28 @@ public without sharing class CustomerSearchController {
 		String sObjectName = Utils.getObjectNameByRecordId(accountId);
 
 		AccessShareController.getSearchAccess(currentUser, accountId, sObjectName);
+	}
+
+	@AuraEnabled
+	public static Boolean riskDetectionCallout(Id accountId, SearchCriteriaDTO searchCriteria) {
+		Integer identificationType;
+		System.debug('riskDetectionCallout -searchCriteria: ' + searchCriteria);
+		if (searchCriteria.assetNumber != null) {
+			identificationType = ASSET_IDENTIFICATION_TYPE;
+		} else if (searchCriteria.compRegNum != null || searchCriteria.birthNumber != null) {
+			identificationType = ACCOUNT_IDENTIFICATION_TYPE;
+		} else {
+			throw new AuraHandledException(Label.UnsupportedIdentificationType);
+		}
+		RiskDetectionService service = new RiskDetectionService(accountId, identificationType, null);
+		RiskDetectionResponseDto riskDetectionResponseDto = service.callRiskDetectionService();
+		System.debug('risk detection service response: ' + riskDetectionResponseDto);
+		if (!riskDetectionResponseDto.isSuccess()) {
+			service.logoutUser();
+			return false;
+		}
+
+		return true;
 	}
 
 	/**

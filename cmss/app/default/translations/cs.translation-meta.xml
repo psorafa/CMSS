@@ -273,6 +273,14 @@
         <name>FieldsetNameIsWrong</name>
         <label>Fieldset API name není platný.</label>
     </customLabels>
+    <customLabels>
+        <name>UserDoesNotHaveAccessToNEL</name>
+        <label>Přístup do do NEL byl zablokován - budete odhlášení se Salesforce.</label>
+    </customLabels>
+    <customLabels>
+        <name>UnsupportedIdentificationType</name>
+        <label>Nepodporovaný typ identifikace - povolené je vyhledávání přes Klienta a Smlouvu klienta.</label>
+    </customLabels>
     <customTabs>
         <label>Identifikace klienta</label>
         <name>Customer_Search</name>

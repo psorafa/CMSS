@@ -555,4 +555,20 @@
         <shortDescription>FieldsetNameIsWrong</shortDescription>
         <value>Fieldset name is wrong.</value>
     </labels>
+    <labels>
+        <fullName>UserDoesNotHaveAccessToNEL</fullName>
+        <categories>RiskDetectionService</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UserDoesNotHaveAccessToNEL</shortDescription>
+        <value>User does not have access to NEL.</value>
+    </labels>
+    <labels>
+        <fullName>UnsupportedIdentificationType</fullName>
+        <categories>RiskDetectionService</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UnsupportedIdentificationType</shortDescription>
+        <value>Unsupported identification type - allowed Account or Asser.</value>
+    </labels>
 </CustomLabels>
