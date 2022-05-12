@@ -17,7 +17,8 @@ public class LoanAssetsServices {
             }
             return null;
         }catch(Exception ex){
-            if(ex.getLineNumber() == 7){
+            
+            if(ex.getLineNumber() == 80){
                 return 'Update erorr message: Nepodařilo se najít usera s tímto TipsterId__c';
             }else{
                 return 'Update erorr message: ' + ex.getMessage();}
@@ -76,7 +77,7 @@ public class LoanAssetsServices {
     }
     private static Asset getAsset(UpdateLoanAssetsFlowController.LoanDetailInfoResult result, String assetId){
         String personNumber = result.personNumber;
-        String userId = [Select Id from User WHERE CommissionAccountBase__c =: personNumber].Id;
+        String userId = [Select Id from User WHERE CommissionAccountBase__c =: personNumber LIMIT 1].Id;
         Asset asset = new Asset(Id = assetId);
         asset.CreditAmount__c = result.variableAmount;
         asset.PurposeOfUse__c = result.loanUsageCode;

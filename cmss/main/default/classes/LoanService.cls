@@ -39,7 +39,7 @@ public class LoanService {
 		private void AddHeader(DOM.XmlNode header){
 		}
 
-		public LoanServiceDataTypes.GetLoanDocumentsListResponseBodyType getLoanDocumentsList_Http(CommonMessageService.RequestHeader requestHeader, LoanServiceDataTypes.GetLoanDocumentsListRequestBodyType requestBody) {
+	/*	public LoanServiceDataTypes.GetLoanDocumentsListResponseBodyType getLoanDocumentsList_Http(CommonMessageService.RequestHeader requestHeader, LoanServiceDataTypes.GetLoanDocumentsListRequestBodyType requestBody) {
 			DOM.Document doc = new DOM.Document();
 			DOM.XmlNode body = populateDoc(doc);
 			DOM.XmlNode methodNode = body.addChildElement('dat:GetLoanDocumentsListRequest', null, null);			
@@ -47,6 +47,7 @@ public class LoanService {
 			request_x.populateXmlNode(methodNode);
 			
 			HttpRequest req = new HttpRequest();
+            system.debug('test +' + req.getEndpoint());
             req.setClientCertificateName('test12345');
 			req.setEndpoint(endpoint_x);
 			req.setMethod('POST');
@@ -68,7 +69,7 @@ public class LoanService {
 						
 			LoanServiceDataTypes.GetLoanDocumentsListResponseType response_x = new LoanServiceDataTypes.GetLoanDocumentsListResponseType(GetLoanDocumentsListResponseNode);
 			return response_x.responseBody;
-		}
+		}*/
  
 		public HTTPResponse loadPackagesList_Http(CommonMessageService.RequestHeader requestHeader, LoanServiceDataTypes.LoadPackagesListRequestBodyType requestBody) {
 			DOM.Document doc = new DOM.Document();
