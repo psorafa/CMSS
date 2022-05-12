@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="" icon-name="">
+
+            <template if:true={error}>{error}</template>
+            <template if:true={articleList} >
+                <lightning-layout>
+                    <lightning-layout-item >
+                        <div  class="slds-m-around_medium" style="overflow: hidden;height:100%;padding-bottom:40px;">       
+                            <div  class="slds-m-around_medium" style="overflow: hidden;height:100%;">
+                                <lightning-datatable
+                                        key-field="id"
+                                        data={articleList}
+                                        columns={columns}
+                                        hide-checkbox-column
+                                        >
+                                        
+                                </lightning-datatable>
+                            </div>    
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+    </lightning-card>
+</template>
