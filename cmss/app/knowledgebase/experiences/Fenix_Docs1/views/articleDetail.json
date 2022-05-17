@@ -1,0 +1,134 @@
+{
+  "appPageId" : "54c1a1c6-7f7d-4ebd-a9ef-34d2e60fd757",
+  "componentName" : "siteforce:sldsTwoCol84Layout",
+  "id" : "11560bc4-93d4-4467-96d2-744eb1170689",
+  "label" : "Article Detail",
+  "regions" : [ {
+    "id" : "ac441b5b-1087-4e63-adeb-6250e77c3373",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "uniqueNameOrId" : "{!urlName}"
+      },
+      "componentName" : "forceCommunity:breadcrumbs",
+      "id" : "33c1b1b7-eb81-467e-9c12-b775daba3871",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "bannerText" : "",
+        "bannerTextWithKnowledge" : "Prohlédněte si jiné <a href=\"javascript:void(0)\" class=\"headlineArticles\">články a materiály</a> v tomto tématu.",
+        "bannerTextWithoutKnowledge" : "",
+        "pageType" : "article",
+        "showSubTopics" : false,
+        "title" : "Name",
+        "uniqueNameOrId" : "{!urlName}"
+      },
+      "componentName" : "forceCommunity:headline",
+      "id" : "b1f1e745-f116-4330-a7e7-546199a809ed",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "forceCommunity:lwcRecordDetail",
+      "id" : "52efc47d-f522-4709-b8a2-eda542deff80",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "51bbf8fe-8b64-42f9-9a6a-a82a9b04a07a",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "richTextValue" : "<p> </p>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "c281fb15-29c2-47ce-a3e5-8dce699186b3",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "buttonAlignment" : "center",
+        "buttonBgColor" : "",
+        "buttonBgHoverColor" : "",
+        "buttonBorderColor" : "",
+        "buttonMaxWidth" : 85,
+        "buttonRadius" : 50,
+        "buttonTextColor" : "",
+        "buttonTextHoverColor" : "",
+        "recordId" : "{!recordId}",
+        "showNotificationMenu" : true
+      },
+      "componentName" : "forceCommunity:follow",
+      "id" : "0c94efc2-8bfa-445c-b8c4-902d25c63cdb",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "richTextValue" : "<p> </p>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "a39f10a7-94bb-4829-bbb4-c1d6f83a6170",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "numberOfArticles" : 5,
+        "title" : "Populární články v této oblasti",
+        "topicId" : "{!topicId}"
+      },
+      "componentName" : "selfService:topicTrendingArticles42",
+      "id" : "0d7c5adb-95c6-493d-ab33-1261ed2e89cd",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "relatedListApiName" : "AttachedContentDocuments",
+        "relatedListComponentOverride" : "CARD",
+        "width" : "MEDIUM"
+      },
+      "componentName" : "forceCommunity:responsiveRelatedListSingle",
+      "id" : "02ff9f20-9798-4979-8068-9f33f241182f",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "d6d687ad-9cb0-4515-a0af-058e886e1406",
+    "regionName" : "sidebar",
+    "type" : "region"
+  }, {
+    "id" : "48f23c75-3f25-42f2-8c5c-e6a01448ef09",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "{!Record.Summary}",
+        "title" : "{!Record._Title}"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "884a03dc-0102-40a1-b73f-27e96830b20c",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "296da21d-8173-4550-8f7b-a5dac6a51708",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "article"
+}

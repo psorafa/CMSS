@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ManagedTopics xmlns="http://soap.sforce.com/2006/04/metadata">
+    <managedTopic>
+        <fullName>Fenix Docs.Featured:Hypotéky</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Hypotéky</name>
+        <parentName/>
+        <position>2</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Featured:Moje cesta v bance</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Moje cesta v bance</name>
+        <parentName/>
+        <position>6</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Featured:Motivace a odměňování</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Motivace a odměňování</name>
+        <parentName/>
+        <position>8</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Featured:Penzijní produkty</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Penzijní produkty</name>
+        <parentName/>
+        <position>4</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Featured:Pojištění</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Pojištění</name>
+        <parentName/>
+        <position>3</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Featured:Produkty ČSOB</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Produkty ČSOB</name>
+        <parentName/>
+        <position>5</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Featured:Statistiky a vyhodnocení</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Statistiky a vyhodnocení</name>
+        <parentName/>
+        <position>7</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Featured:Stavební spoření</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Stavební spoření</name>
+        <parentName/>
+        <position>0</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Featured:Úvěry</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Úvěry</name>
+        <parentName/>
+        <position>1</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Aplikační podpora</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Aplikační podpora</name>
+        <parentName>Moje cesta v bance</parentName>
+        <position>2</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Autopojištění</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Autopojištění</name>
+        <parentName>Pojištění</parentName>
+        <position>4</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Hypotéky</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Hypotéky</name>
+        <parentName/>
+        <position>2</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Investiční životní pojištění</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Investiční životní pojištění</name>
+        <parentName>Pojištění</parentName>
+        <position>1</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Manažerská činnost</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Manažerská činnost</name>
+        <parentName>Statistiky a vyhodnocení</parentName>
+        <position>2</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Moje cesta v bance</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Moje cesta v bance</name>
+        <parentName/>
+        <position>6</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Motivace a odměňování</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Motivace a odměňování</name>
+        <parentName/>
+        <position>8</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Motivační akce a soutěže</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Motivační akce a soutěže</name>
+        <parentName>Motivace a odměňování</parentName>
+        <position>2</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Náš život</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Náš život</name>
+        <parentName>Pojištění</parentName>
+        <position>0</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Penzijní produkty</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Penzijní produkty</name>
+        <parentName/>
+        <position>4</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Plnění cílů</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Plnění cílů</name>
+        <parentName>Statistiky a vyhodnocení</parentName>
+        <position>0</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Plus konto</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Plus konto</name>
+        <parentName>Produkty ČSOB</parentName>
+        <position>0</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Pojištění</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Pojištění</name>
+        <parentName/>
+        <position>3</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Pojištění majetku a odpovědnosti</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Pojištění majetku a odpovědnosti</name>
+        <parentName>Pojištění</parentName>
+        <position>3</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Premium konto</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Premium konto</name>
+        <parentName>Produkty ČSOB</parentName>
+        <position>1</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Produkty ČSOB</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Produkty ČSOB</name>
+        <parentName/>
+        <position>5</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Provizní systém</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Provizní systém</name>
+        <parentName>Motivace a odměňování</parentName>
+        <position>0</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Rizikové životní pojištění</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Rizikové životní pojištění</name>
+        <parentName>Pojištění</parentName>
+        <position>2</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Spotřebitelský úvěr</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Spotřebitelský úvěr</name>
+        <parentName>Produkty ČSOB</parentName>
+        <position>4</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Spořicí účet</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Spořicí účet</name>
+        <parentName>Produkty ČSOB</parentName>
+        <position>2</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Statistiky a vyhodnocení</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Statistiky a vyhodnocení</name>
+        <parentName/>
+        <position>7</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Stavební spoření</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Stavební spoření</name>
+        <parentName/>
+        <position>0</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Ukončení činnosti</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Ukončení činnosti</name>
+        <parentName>Moje cesta v bance</parentName>
+        <position>1</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Výhody pro smluvní partnery</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Výhody pro smluvní partnery</name>
+        <parentName>Motivace a odměňování</parentName>
+        <position>1</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Výsledky soutěží</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Výsledky soutěží</name>
+        <parentName>Statistiky a vyhodnocení</parentName>
+        <position>1</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Zahájení a výkon činnost</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Zahájení a výkon činnost</name>
+        <parentName>Moje cesta v bance</parentName>
+        <position>0</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:Úvěry</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Úvěry</name>
+        <parentName/>
+        <position>1</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Fenix Docs.Navigational:ČSOB ID</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>ČSOB ID</name>
+        <parentName>Produkty ČSOB</parentName>
+        <position>3</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+</ManagedTopics>
