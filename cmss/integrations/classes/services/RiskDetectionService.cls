@@ -49,11 +49,11 @@ public without sharing class RiskDetectionService {
 	}
 
 	private RiskDetectionRequestDto prepareRequestBody() {
-		User currentUser = [SELECT Id, Email, LoginName__c FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1];
+		User currentUser = [SELECT Id, Email, LoginName__c, CommissionAccountBase__c FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1];
 		RiskDetectionRequestDto request = new RiskDetectionRequestDto();
 		request.userId = currentUser.LoginName__c;
 		request.userEmail = currentUser.Email;
-		request.cpu = Integer.valueOf(account.CommissionAccountBase__pc);
+		request.cpu = Integer.valueOf(currentUser.CommissionAccountBase__c);
 		request.globalId = Integer.valueOf(account.GlobalId__c);
 		request.identificationType = identificationType;
 		request.searchTerm = searchTerm;
