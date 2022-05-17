@@ -257,6 +257,22 @@
         <name>LoadingProductTypesError</name>
         <label>Typy produktů nebylo možné načíst - prosím kontaktujte administrátora.</label>
     </customLabels>
+    <customLabels>
+        <name>RelatedObjectIsWrong</name>
+        <label>Vybraný název objektu není validní.</label>
+    </customLabels>
+    <customLabels>
+        <name>FieldApiNameIsWrong</name>
+        <label>Field Api name není platný.</label>
+    </customLabels>
+    <customLabels>
+        <name>FilterConditionIsWrong</name>
+        <label>Filtrovací podmínka není validní.</label>
+    </customLabels>
+    <customLabels>
+        <name>FieldsetNameIsWrong</name>
+        <label>Fieldset API name není platný.</label>
+    </customLabels>
     <customTabs>
         <label>Identifikace klienta</label>
         <name>Customer_Search</name>

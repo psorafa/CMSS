@@ -25,6 +25,7 @@ import LBL_CANCEL_BUTTON_TITLE from '@salesforce/label/c.CancelButtonTitle';
 import LBL_UNSUPPORTED_OBJECT_TYPE_ERROR_MESSAGE from '@salesforce/label/c.UnsupportedObjectType';
 import LBL_RECORDS_CREATED_MESSAGE from '@salesforce/label/c.RecordSuccessfullyCreated';
 import LBL_LOAD_PRODUCT_TYPES_ERROR_MESSAGE from '@salesforce/label/c.LoadingProductTypesError';
+import LBL_NO_RECORDS from '@salesforce/label/c.NoRecordsFound';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
@@ -32,6 +33,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	selectedUserHierarchy = [];
 	filterConditionList = [];
 	selectedConfiguration;
+	selectedObjectType;
 	selectedProduct;
 	availableTypes;
 	section = ['configuration'];
@@ -42,7 +44,8 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		{ label: 100, value: 100 },
 		{ label: 200, value: 200 },
 		{ label: 500, value: 500 },
-		{ label: 1000, value: 1000 }
+		{ label: 1000, value: 1000 },
+		{ label: 2000, value: 2000 }
 	];
 
 	pageNumber = 1;
@@ -78,7 +81,8 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		if (data) {
 			this.availableTypes = data;
 		} else if (error) {
-			this.errorToastMessage(LBL_LOAD_PRODUCT_TYPES_ERROR_MESSAGE, error.message.body);
+			console.log(JSON.stringify(error));
+			this.errorToastMessage(LBL_LOAD_PRODUCT_TYPES_ERROR_MESSAGE, error.body.message);
 		}
 	}
 
@@ -86,19 +90,11 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		const newSelectProduct = event.target.dataset.product;
 		const newSelectObject = event.target.dataset.object;
 		if (newSelectProduct !== this.selectedProduct) {
-			const recordTypeFilter = {
-				fieldName: 'RecordType.DeveloperName',
-				objectName: newSelectObject,
-				productType: newSelectProduct,
-				dataType: 'Text',
-				filters: [{ type: '=', value: newSelectProduct }]
-			};
-
 			this.outputTableColumns = [];
-			this.filterConditionList = [recordTypeFilter];
 			this.selectedUserHierarchy = [];
 			this.selectedConfiguration = null;
 			this.selectedProduct = newSelectProduct;
+			this.selectedObjectType = newSelectObject;
 		}
 	}
 
@@ -120,28 +116,61 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	addSelectedUsersToFilter() {
 		let ownerFieldName = this.selectedConfiguration.OwnerFieldName__c;
-		let objectTypeName = this.selectedConfiguration.ObjectType__c;
-		let productTypeName = this.selectedConfiguration.ProductType__c;
-
 		if (this.selectedUserHierarchy.length > 0) {
-			const existingItem = this.filterConditionList.filter(
-				item =>
-					item.fieldName === ownerFieldName &&
-					item.objectName === objectTypeName &&
-					item.productType === productTypeName
-			);
+			let filters = [{ type: 'IN', value: "('" + this.selectedUserHierarchy.join("','") + "')" }];
+			this.addToFilter(ownerFieldName, filters, 'Array');
+		} else {
+			this.removeFilter(ownerFieldName);
+		}
+	}
 
-			if (existingItem.length >= 1) {
-				existingItem[0].filters = [{ type: 'IN', value: '(' + this.selectedUserHierarchy.join(',') + ')' }];
-			} else {
-				const newItem = {
-					fieldName: ownerFieldName,
-					objectName: objectTypeName,
-					productType: productTypeName,
-					filters: [{ type: 'IN', value: '(' + this.selectedUserHierarchy.join(',') + ')' }]
-				};
-				this.filterConditionList.push(newItem);
-			}
+	removeFilter(inputFieldName) {
+		const existingItem = this.filterConditionList.filter(
+			item =>
+				item.fieldName === inputFieldName &&
+				item.objectName === this.selectedObjectType &&
+				item.productType === this.selectedProduct
+		);
+
+		if (existingItem.length >= 1) {
+			this.filterConditionList = this.filterConditionList.reduce((acc, item) => {
+				if (
+					item.fieldName === inputFieldName &&
+					item.objectName === this.selectedObjectType &&
+					item.productType === this.selectedProduct
+				) {
+					this.filterConditionList.splice(this.filterConditionList.indexOf(item), 1);
+				}
+				return acc;
+			}, []);
+		}
+	}
+
+	addRecordTypeFilter() {
+		let recordTypeFieldName = 'RecordType.DeveloperName';
+		const filters = [{ type: '=', value: this.selectedProduct }];
+		this.addToFilter(recordTypeFieldName, filters, 'Text');
+	}
+
+	addToFilter(inputFieldName, filterValue, dataType) {
+		const existingItem = this.filterConditionList.filter(
+			item =>
+				item.fieldName === inputFieldName &&
+				item.objectName === this.selectedObjectType &&
+				item.productType === this.selectedProduct
+		);
+
+		if (existingItem.length >= 1) {
+			existingItem[0].filters = filterValue;
+		} else {
+			const recordTypeFilter = {
+				fieldName: inputFieldName,
+				objectName: this.selectedObjectType,
+				productType: this.selectedProduct,
+				dataType: dataType,
+				filters: filterValue
+			};
+			this.filterConditionList.push(recordTypeFilter);
 		}
 	}
 
@@ -151,6 +180,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			return;
 		}
 		this.addSelectedUsersToFilter();
+		this.addRecordTypeFilter();
 		this.loading = true;
 		const request = {
 			filterItemList: this.filterConditionList,
@@ -160,6 +190,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			pageSize: this.recordsPerPage
 		};
 
+		console.log('request: ' + JSON.stringify(request));
 		const currentSelectedAccountIds = this.selectedAccountIds;
 
 		searchResults({ dto: request })
@@ -167,6 +198,11 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 				this.outputTableData = response.data;
 				this.selectedAccountIds = currentSelectedAccountIds;
 				this.totalRecordsCount = response.totalCount;
+
+				if (this.totalRecordsCount < 1) {
+					this.toastMessage(null, '', LBL_NO_RECORDS);
+					return;
+				}
 
 				loadFieldsetDetail({
 					fieldsetName: this.selectedConfiguration.FieldsetName__c,
@@ -181,10 +217,14 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 						}
 					})
 					.catch(error => {
-						this.errorToastMessage('', error.message.body);
+						console.log(JSON.stringify(error));
+						this.errorToastMessage('', error.body.message);
 					});
 			})
-			.catch(error => this.errorToastMessage('', error.message.body))
+			.catch(error => {
+				console.log(JSON.stringify(error));
+				this.errorToastMessage('', error.body.message);
+			})
 			.finally(() => {
 				this.loading = false;
 			});
@@ -199,15 +239,15 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	}
 
 	errorToastMessage(title, message) {
-		this.toastMessage('error', title, message);
+		this.toastMessage('error', title, message, 'sticky');
 	}
 
-	toastMessage(variant, title, message) {
+	toastMessage(variant, title, message, mode) {
 		const evt = new ShowToastEvent({
 			variant: variant,
 			title: title,
 			message: message,
-			mode: 'sticky'
+			mode: mode
 		});
 		this.dispatchEvent(evt);
 	}
@@ -247,7 +287,8 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 				this.toastMessage('success', '', LBL_RECORDS_CREATED_MESSAGE);
 			})
 			.catch(error => {
-				this.errorToastMessage('', error.message.body);
+				console.log(JSON.stringify(error));
+				this.errorToastMessage('', error.body.message);
 			})
 			.finally(() => {
 				this.isModalOpen = false;
@@ -295,5 +336,13 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	get paginationInfo() {
 		return this.pageNumber + ' / ' + this.totalPageCount;
+	}
+
+	get filtersJson() {
+		return JSON.stringify(this.filterConditionList);
+	}
+
+	get selectedProductJson() {
+		return JSON.stringify(this.selectedProduct);
 	}
 }

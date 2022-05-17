@@ -5535,6 +5535,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.ManagerIds__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.MaidenName__c</field>
         <readable>false</readable>
     </fieldPermissions>

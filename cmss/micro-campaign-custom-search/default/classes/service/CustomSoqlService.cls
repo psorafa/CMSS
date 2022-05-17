@@ -6,10 +6,24 @@ public with sharing class CustomSoqlService {
 	}
 
 	public Integer getDataCountFromDbDto() {
-		String queryFields = 'COUNT(Id)';
+		String queryFields = 'COUNT()';
 		String query = prepareQuery(queryFields);
-		AggregateResult result = (AggregateResult) Database.query(query);
-		return (Integer) result.get('expr0');
+		return Database.countQuery(query);
+	}
+
+	public Set<Id> getAllAccountIdsDbDto() {
+		String queryFields = 'Id';
+		if (filterRequestDto.objectName.equals('Asset')) {
+			queryFields = 'AccountId';
+		}
+
+		Set<Id> accountIds = new Set<Id>();
+		String query = prepareQuery(queryFields);
+		for (SObject record : Database.query(query)) {
+			Id accountId = (Id) record.get(queryFields);
+			accountIds.add(accountId);
+		}
+		return accountIds;
 	}
 
 	public List<SObject> getDataFromDbDto() {
@@ -24,7 +38,7 @@ public with sharing class CustomSoqlService {
 			' LIMIT ' +
 			this.filterRequestDto.pageSize +
 			' OFFSET ' +
-			this.filterRequestDto.pageSize * (this.filterRequestDto.pageNumber-1);
+			this.filterRequestDto.pageSize * (this.filterRequestDto.pageNumber - 1);
 		System.debug('data query = ' + query);
 		return Database.query(query);
 	}
@@ -34,12 +48,16 @@ public with sharing class CustomSoqlService {
 		for (CustomSearchFilterRequestDto.CustomFilterItemDto filterItem : this.filterRequestDto.filterItemList) {
 			List<CustomSearchFilterRequestDto.FilterOptionDto> filters = filterItem.filters;
 			for (CustomSearchFilterRequestDto.FilterOptionDto filter : filters) {
-				customFilterString =
-					customFilterString +
-					getOperatorToSelectStatement(filterItem.fieldName, filter.type, filter.value, filterItem.dataType) +
-					' AND ';
+				if(filter != null) {
+					String newCondition = getOperatorToSelectStatement(
+							filterItem.fieldName,
+							filter.type,
+							filter.value,
+							filterItem.dataType
+					);
+					customFilterString += newCondition + ' AND ';
+				}
 			}
-			customFilterString = customFilterString.removeEndIgnoreCase(' AND ');
 		}
 		customFilterString = customFilterString.removeEndIgnoreCase(' AND ');
 		return 'SELECT ' +

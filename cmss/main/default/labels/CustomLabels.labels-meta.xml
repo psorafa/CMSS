@@ -523,4 +523,36 @@
         <shortDescription>LoadingProductTypesError</shortDescription>
         <value>Product types were not load successfully. Please contact administrator.</value>
     </labels>
+    <labels>
+        <fullName>RelatedObjectIsWrong</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelatedObjectIsWrong</shortDescription>
+        <value>Related Object is Wrong</value>
+    </labels>
+    <labels>
+        <fullName>FieldApiNameIsWrong</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FieldApiNameIsWrong</shortDescription>
+        <value>Field Api Name is Wrong.</value>
+    </labels>
+    <labels>
+        <fullName>FilterConditionIsWrong</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FilterConditionIsWrong</shortDescription>
+        <value>Filter Condition is Wrong.</value>
+    </labels>
+    <labels>
+        <fullName>FieldsetNameIsWrong</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FieldsetNameIsWrong</shortDescription>
+        <value>Fieldset name is wrong.</value>
+    </labels>
 </CustomLabels>

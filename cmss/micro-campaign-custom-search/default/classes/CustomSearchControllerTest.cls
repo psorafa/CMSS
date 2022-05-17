@@ -13,9 +13,10 @@ private class CustomSearchControllerTest {
 		insert user4;
 
 		CustomSearchFilter__c csf = new CustomSearchFilter__c(
-			FieldApiName__c = 'api',
+			FieldApiName__c = 'Name',
 			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('Text', 'CustomSearchFilter__c'),
 			RelatedObject__c = 'Account',
+			ProductType__c = 'PersonAccount',
 			Filter__c = 'contains'
 		);
 		insert csf;
@@ -30,7 +31,7 @@ private class CustomSearchControllerTest {
 			Test.stopTest();
 
 			System.assertEquals(UserInfo.getUserId(), result.get(0).userId);
-			System.assertEquals(2, result.get(0).children.size());
+			System.assertEquals(3, result.get(0).children.size());
 		}
 	}
 
@@ -42,7 +43,7 @@ private class CustomSearchControllerTest {
 		Test.stopTest();
 
 		System.assertEquals(user1.Id, result.get(0).userId);
-		System.assertEquals(2, result.get(0).children.size());
+		System.assertEquals(3, result.get(0).children.size());
 	}
 
 	@IsTest

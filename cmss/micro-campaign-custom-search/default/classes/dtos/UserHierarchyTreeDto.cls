@@ -1,6 +1,6 @@
 public class UserHierarchyTreeDto {
 	@AuraEnabled
-	public Id userId { get; set; }
+	public String userId { get; set; }
 
 	@AuraEnabled
 	public String name { get; set; }

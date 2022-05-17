@@ -5343,6 +5343,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.ManagerIds__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.PersonalIdentificationNumber__c</field>
         <readable>false</readable>
     </fieldPermissions>

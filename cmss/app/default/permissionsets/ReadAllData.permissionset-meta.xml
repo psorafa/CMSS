@@ -5463,6 +5463,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>User.ManagerIds__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>User.ManagerKP__c</field>
         <readable>true</readable>
     </fieldPermissions>

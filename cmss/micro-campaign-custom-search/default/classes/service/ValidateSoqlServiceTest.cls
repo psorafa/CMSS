@@ -18,13 +18,13 @@ private class ValidateSoqlServiceTest {
 		);
 
 		Test.startTest();
-
 		Database.SaveResult result = Database.insert(myCustomSearchConfiguration1, false);
+		Test.stopTest();
+
 		System.assert(!result.isSuccess());
 		System.assert(result.getErrors().size() > 0);
-		System.assertEquals(ValidateSoqlService.ERROR_FILTER, result.getErrors()[0].getMessage());
+		System.assertEquals(Label.FilterConditionIsWrong, result.getErrors()[0].getMessage());
 
-		Test.stopTest();
 	}
 	@IsTest
 	static void validateSoqlServiceTestfromCustomSearchCOnfOkFilter() {
@@ -43,7 +43,7 @@ private class ValidateSoqlServiceTest {
 	}
 
 	@IsTest
-	static void validateSoqlServiceTestfromCustomSearchCOnfUpdate() {
+	static void validateSoqlServiceTestFromCustomSearchOnUpdate() {
 		List<CustomSearchConfiguration__c> customSearchConfigurationList = [
 			SELECT FieldsetName__c, FilterCondition__c, ObjectType__c
 			FROM CustomSearchConfiguration__c
@@ -55,7 +55,7 @@ private class ValidateSoqlServiceTest {
 		List<Database.SaveResult> results = Database.update(customSearchConfigurationList, false);
 		System.assert(!results[0].isSuccess());
 		System.assert(results[0].getErrors().size() > 0);
-		System.assertEquals(ValidateSoqlService.ERROR_FILTER, results[0].getErrors()[0].getMessage());
+		System.assertEquals(Label.FilterConditionIsWrong, results[0].getErrors()[0].getMessage());
 
 		Test.stopTest();
 	}

@@ -43,7 +43,7 @@ public with sharing class FieldsetService {
 			.get(this.objectApiName)
 			.getDescribe();
 
-		Schema.FieldSet fieldSetObj = describeSObjectResult.FieldSets.getMap().get(this.fieldsetName);
+		Schema.FieldSet fieldSetObj = describeSObjectResult.fieldSets.getMap().get(this.fieldsetName);
 		if (fieldSetObj != null) {
 			return fieldSetObj.getFields();
 		}

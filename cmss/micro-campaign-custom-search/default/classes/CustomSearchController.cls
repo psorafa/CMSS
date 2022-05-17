@@ -24,9 +24,15 @@ public with sharing class CustomSearchController {
 	@AuraEnabled
 	public static CustomSearchFilterResponseDto searchResults(CustomSearchFilterRequestDto dto) {
 		CustomSoqlService service = new CustomSoqlService(dto);
-		List<SObject> data = service.getDataFromDbDto();
 		Integer countRecords = service.getDataCountFromDbDto();
+		List<SObject> data = service.getDataFromDbDto();
 		return new CustomSearchFilterResponseDto(data, countRecords);
+	}
+
+	@AuraEnabled
+	public static List<Id> getAllAccountId(CustomSearchFilterRequestDto dto) {
+		CustomSoqlService service = new CustomSoqlService(dto);
+		return new List<Id>(service.getAllAccountIdsDbDto());
 	}
 	@AuraEnabled(Cacheable=true)
 	public static List<CustomSearchConfiguration__c> loadBaseConfigurationList(
@@ -61,10 +67,10 @@ public with sharing class CustomSearchController {
 		} catch (Exception e) {
 			Logger.error('Error in micro-campaign creation', e);
 			throw new AuraHandledException(
-					'Unexpected exception: ' +
-							e.getMessage() +
-							'; transactionId: ' +
-							Logger.getTransactionId()
+				'Unexpected exception: ' +
+				e.getMessage() +
+				'; transactionId: ' +
+				Logger.getTransactionId()
 			);
 		} finally {
 			Logger.saveLogs();

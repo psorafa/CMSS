@@ -7,18 +7,11 @@ private class CustomSoqlServiceTest {
 
 		CustomSearchConfiguration__c myCustomSearchConfiguration = new CustomSearchConfiguration__c(
 			FieldsetName__c = 'Search_Component',
-			FILTERCONDITION__C = 'Name LIKE \'%s%\' ',
+			FilterCondition__c = 'Name LIKE \'%s%\' ',
 			ObjectType__c = 'Account'
 		);
 		insert myCustomSearchConfiguration;
 
-		CustomSearchFilter__c csf = new CustomSearchFilter__c(
-			FieldApiName__c = 'api',
-			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('Text', 'CustomSearchFilter__c'),
-			RelatedObject__c = 'Account',
-			Filter__c = 'contains'
-		);
-		insert csf;
 	}
 	@IsTest
 	static void getOperatorToSelectStatementTest() {
@@ -37,25 +30,42 @@ private class CustomSoqlServiceTest {
 	}
 
 	@IsTest
-	static void customSoqlServiceTestgetDataFromDbdto() {
-		CustomSearchFilterRequestDto mydto = new CustomSearchFilterRequestDto();
+	static void customSoqlServiceTestGetDataFromDbDto() {
+		CustomSearchFilterRequestDto myDto = prepareRequestDto();
+
+		Test.startTest();
+		CustomSearchFilterResponseDto my = CustomSearchController.searchResults(myDto);
+		Test.stopTest();
+
+		System.assertEquals(1, my.data.size());
+	}
+
+	@IsTest
+	static void loadAllAccountIdsTest() {
+		CustomSearchFilterRequestDto myDto = prepareRequestDto();
+
+		Test.startTest();
+		List<Id> ids = CustomSearchController.getAllAccountId(myDto);
+		Test.stopTest();
+
+		System.assertEquals(1, ids.size());
+	}
+
+	private static CustomSearchFilterRequestDto prepareRequestDto() {
 		CustomSearchConfiguration__c myCustomSearchConfiguration = [
-			SELECT FieldsetName__c, FilterCondition__c, ObjectType__c
-			FROM CustomSearchConfiguration__c
-			LIMIT 1
+				SELECT FieldsetName__c, FilterCondition__c, ObjectType__c
+				FROM CustomSearchConfiguration__c
+				LIMIT 1
 		];
 
-		mydto.configuration = myCustomSearchConfiguration;
-		mydto.objectName = 'Account';
-		List<CustomSearchFilterRequestDto.CustomFilterItemDto> myfilterItemList = new List<CustomSearchFilterRequestDto.CustomFilterItemDto>();
-		CustomSearchFilterRequestDto.CustomFilterItemDto myCustomFilterItemDto = new CustomSearchFilterRequestDto.CustomFilterItemDto();
-		CustomSearchFilterRequestDto.CustomFilterItemDto myCustomFilterItemDto2 = new CustomSearchFilterRequestDto.CustomFilterItemDto();
-		List<CustomSearchFilterRequestDto.CustomFilterItemDto> myCustomFilterItemDtoList = new List<CustomSearchFilterRequestDto.CustomFilterItemDto>();
+		CustomSearchFilterRequestDto myDto = new CustomSearchFilterRequestDto();
+		myDto.configuration = myCustomSearchConfiguration;
+		myDto.objectName = 'Account';
+		myDto.pageNumber = 1;
+		myDto.pageSize = 10;
 
-		myCustomFilterItemDto.objectName = 'Account';
-		myCustomFilterItemDto.fieldName = 'Name';
-		myCustomFilterItemDto.dataType = 'Text';
-		myCustomFilterItemDto.filters = new List<CustomSearchFilterRequestDto.FilterOptionDto>();
+		CustomSearchFilterRequestDto.CustomFilterItemDto myCustomFilterItemDto = new CustomSearchFilterRequestDto.CustomFilterItemDto();
+		List<CustomSearchFilterRequestDto.CustomFilterItemDto> myCustomFilterItemDtoList = new List<CustomSearchFilterRequestDto.CustomFilterItemDto>();
 
 		CustomSearchFilterRequestDto.FilterOptionDto filter1 = new CustomSearchFilterRequestDto.FilterOptionDto();
 		filter1.type = 'exact match';
@@ -64,18 +74,15 @@ private class CustomSoqlServiceTest {
 		filter2.type = 'contains';
 		filter2.value = 'Sport';
 
-		myCustomFilterItemDto.filters.add(filter1);
-		myCustomFilterItemDto.filters.add(filter2);
+		myCustomFilterItemDto.objectName = 'Account';
+		myCustomFilterItemDto.fieldName = 'Name';
+		myCustomFilterItemDto.dataType = 'Text';
+		myCustomFilterItemDto.filters = new List<CustomSearchFilterRequestDto.FilterOptionDto>{
+				filter1, filter2
+		};
 
 		myCustomFilterItemDtoList.add(myCustomFilterItemDto);
-		mydto.filterItemList = myCustomFilterItemDtoList;
-		System.debug(mydto);
-		Test.startTest();
-		CustomSoqlService service = new CustomSoqlService(mydto);
-		List<SObject> my = new List<SObject>();
-		my = service.getDataFromDbDto();
-		Test.stopTest();
-		system.System.debug(my);
-		System.assertEquals(1, my.size());
+		myDto.filterItemList = myCustomFilterItemDtoList;
+		return myDto;
 	}
 }

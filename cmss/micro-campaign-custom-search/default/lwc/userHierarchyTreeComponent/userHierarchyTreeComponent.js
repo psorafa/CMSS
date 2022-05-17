@@ -129,7 +129,14 @@ export default class UserHierarchyTreeComponent extends LightningElement {
 	}
 
 	fireSelectedRows() {
-		const selectEvent = new CustomEvent('userhierarchyselection', { detail: this.selectedRows });
+		const selectedRowsToEvent = [];
+		this.selectedRows.forEach(userId => {
+			const clearUserId = userId.replaceAll('_copy', '');
+			if (!selectedRowsToEvent.includes(clearUserId)) {
+				selectedRowsToEvent.push(clearUserId);
+			}
+		});
+		const selectEvent = new CustomEvent('userhierarchyselection', { detail: selectedRowsToEvent });
 		this.dispatchEvent(selectEvent);
 	}
 }

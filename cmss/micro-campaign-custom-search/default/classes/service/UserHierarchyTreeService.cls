@@ -35,16 +35,18 @@ public with sharing class UserHierarchyTreeService {
 		dto.userId = u.Id;
 		dto.name = u.Name;
 		dto.functionType = u.AgentActivityType__c;
-		dto.children = prepareRecord(dto, userMap);
+		dto.children = prepareRecord(u, userMap);
 		return dto;
 	}
 
-	private List<UserHierarchyTreeDto> prepareRecord(UserHierarchyTreeDto parentUser, Map<Id, List<User>> userMap) {
+	private List<UserHierarchyTreeDto> prepareRecord(User parentUser, Map<Id, List<User>> userMap) {
 		List<UserHierarchyTreeDto> result = null;
-		if (userMap.containsKey(parentUser.userId)) {
+		if (userMap.containsKey(parentUser.Id)) {
 			result = new List<UserHierarchyTreeDto>();
-			result.add(parentUser);
-			for (User user : userMap.get(parentUser.userId)) {
+			UserHierarchyTreeDto parentUserDto = userToDto(parentUser, new Map<Id, List<User>>());
+			parentUserDto.userId = parentUser.Id + '_copy';
+			result.add(parentUserDto);
+			for (User user : userMap.get(parentUser.Id)) {
 				UserHierarchyTreeDto dto = userToDto(user, userMap);
 				result.add(dto);
 			}
