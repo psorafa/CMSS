@@ -5,7 +5,7 @@ import KnowledgeFieldLabels from '@salesforce/apex/KnowledgeArticlesListControll
 import KnowledgeArticles from '@salesforce/apex/KnowledgeArticlesListController.getKnowledgeArticles';
 
 export default class KnowledgeArticleFilteredList extends NavigationMixin(LightningElement) {
-    @api topicId;
+    @api recordId;
     @api recordTypeName;
     @api arcticlesType;
 
@@ -35,7 +35,7 @@ export default class KnowledgeArticleFilteredList extends NavigationMixin(Lightn
         }        
     }
     
-    @wire(KnowledgeArticles, {topicId : '$topicId', recordTypeName : '$recordTypeName', arcticlesType : '$arcticlesType'})
+    @wire(KnowledgeArticles, {topicId : '$recordId', recordTypeName : '$recordTypeName', arcticlesType : '$arcticlesType'})
     wiredArticles({error, data}) {
         if (data) {
 
