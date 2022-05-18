@@ -24,7 +24,7 @@ public class EventTriggerHandlerTest {
 			FROM EventSync__c
 		];
 
-		System.assertEquals('LarAda80', eventAfterInsert.AccountAlias__c);
+		System.assertEquals('LarAda_80', eventAfterInsert.AccountAlias__c);
 		System.assertEquals(1, eventSycs.size());
 		System.assertEquals(null, eventSycs[0].GoogleEventId__c);
 		System.assertEquals(event.Id, eventSycs[0].SFEventId__c);
@@ -62,7 +62,7 @@ public class EventTriggerHandlerTest {
 			WHERE GoogleEventId__c = '1A2B3C4D5E6'
 		];
 
-		System.assertEquals('StaLon80', eventAfterInsert.AccountAlias__c);
+		System.assertEquals('StaLon_80', eventAfterInsert.AccountAlias__c);
 		System.assertEquals(1, eventSycs.size());
 		System.assertEquals(event.Id, eventSycs[0].SFEventId__c);
 		System.assertEquals(false, eventSycs[0].ChangeFromGoogle__c);

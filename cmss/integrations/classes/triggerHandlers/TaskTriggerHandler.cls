@@ -82,6 +82,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 			contactsToTasksToGetAlias.get(contact.Id).AccountAlias__c =
 				contact.Account?.LastName.left(3) +
 				contact.Account?.FirstName?.left(3) +
+				'_' +
 				String.valueOf(contact?.Account?.Birthdate__c?.year())?.right(2);
 		}
 	}

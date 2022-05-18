@@ -133,6 +133,7 @@ public class EventTriggerHandler extends TriggerHandler {
 				event.AccountAlias__c =
 					actualContact.Account?.LastName.left(3) +
 					actualContact.Account?.FirstName.left(3) +
+					'_' +
 					String.valueOf(actualContact.Account?.Birthdate__c?.year())?.right(2);
 			} else {
 				event.AccountAlias__c = '';
