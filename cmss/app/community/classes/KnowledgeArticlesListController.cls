@@ -11,15 +11,18 @@ public with sharing class KnowledgeArticlesListController {
 		List<Knowledge__kav> knowledgeArticlesList = new List<Knowledge__kav>();
 
 		if (topicId != '' && topicId != null) {
+			List<TopicAssignment> topAss = [SELECT EntityId FROM TopicAssignment WHERE TopicId = :topicId LIMIT 1000];
 			String knowledgeQuery =
 				'SELECT Id, Title, CMSSArticleNumber__c, ValidFrom__c, ValidTo__c, Priority__c, Author__c, CurrentlyValid__c, LastPublishedDate, RecordType.Name FROM Knowledge__kav ' +
-				'WHERE PublishStatus = \'Online\' AND Id in (SELECT EntityId FROM TopicAssignment WHERE TopicId = \'' +
-				topicId +
-				'\')' +
-				' AND RecordType.Name = ' +
-				'\'' +
-				recordTypeName +
-				'\' ';
+				'WHERE PublishStatus = \'Online\' AND Id in (';
+
+			for (TopicAssignment ta : topAss) {
+				knowledgeQuery += ' \'' + ta.EntityId + '\',';
+			}
+
+			knowledgeQuery = knowledgeQuery.removeEnd(',');
+
+			knowledgeQuery += ') AND RecordType.Name = ' + '\'' + recordTypeName + '\' ';
 
 			if (arcticlesType == 'Actual') {
 				knowledgeQuery += ' AND CurrentlyValid__c = true';
