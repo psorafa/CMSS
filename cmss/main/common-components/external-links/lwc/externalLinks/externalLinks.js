@@ -49,7 +49,7 @@ export default class ExternalLinks extends LightningElement {
 	}
 
 	handleClickNEL(e) {
-		window.open(this.baseUrls.NELBaseUrl__c, '_blank');
+		window.open(this.baseUrls.NELBaseUrl__c, '/group/nel');
 	}
 	handleClickStavebniSporeni(e) {
 		if (this.clientGlobalId) {
@@ -117,7 +117,7 @@ export default class ExternalLinks extends LightningElement {
 		);
 	}
 	handleClickAxigen(e) {
-		window.open('https://axigen.cmss-oz.cz', '_blank');
+        window.open('https://mail.csobstavebni-oz.cz/', '_blank');
 	}
 	handleClickExpo(e) {
 		window.open('https://expoplus.csobstavebni.cz/', '_blank');
@@ -159,7 +159,7 @@ export default class ExternalLinks extends LightningElement {
 		window.open('https://kalkulacka.csobstavebni.cz/', '_blank');
 	}
 	handleClickUloziste(e) {
-		window.open('https://csobstavebni.cz/uloziste', '_blank');
+        window.open('https://itweboz.csobstavebni.cz/knowledge-base-2/oz-install/', '_blank');
 	}
 	handleClickO2Family(e) {
 		window.open('https://www.o2family.cz/csob-stavebni/', '_blank');
@@ -175,5 +175,8 @@ export default class ExternalLinks extends LightningElement {
 	}
 	handleClickVernostniProgram(e) {
 		window.open('http://www.najdetesevevlastnim.cz/', '_blank');
-	}
+    }
+    handleClickTeamViewer(e) {
+        window.open('https://get.teamviewer.com/csobstavebni/', '_blank');
+    }
 }
