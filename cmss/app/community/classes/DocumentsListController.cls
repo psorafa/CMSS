@@ -5,12 +5,13 @@ public with sharing class DocumentsListController {
         List<ContentVersion> documentsList = new List<ContentVersion>();
 
         if (topicId != '' && topicId != null) {
-            String queryString = 'SELECT Id, Title, ValidFrom__c, ValidTo__c, Author__c, CurrentlyValid__c, LastModifiedDate, FileType, ContentSize, Type__c, ContentDocumentId FROM ContentVersion '
-                                    + 'WHERE ContentDocumentId in (SELECT EntityId FROM TopicAssignment WHERE TopicId = \'' + topicId + '\')'
-                                    + ' AND Type__c = ' + '\'' + documentType + '\''
-                                    + ' AND IsLatest = true ORDER BY LastModifiedDate';
-            System.debug('DocumentsListController::queryString::' + queryString);
-            documentsList = Database.query(queryString);
+            List<Id> entityIds = new List<Id>();
+            List<TopicAssignment> topAss = [SELECT EntityId FROM TopicAssignment WHERE TopicId =: topicId LIMIT 1000];
+            for (TopicAssignment ta : topAss) {
+                entityIds.add(ta.EntityId);
+            }
+            documentsList = [SELECT Id, Title, ValidFrom__c, ValidTo__c, Author__c, CurrentlyValid__c, LastModifiedDate, FileType, ContentSize, Type__c, ContentDocumentId FROM ContentVersion 
+                             WHERE ContentDocumentId in: entityIds AND Type__c =: documentType AND IsLatest = true ORDER BY LastModifiedDate];
         }
         return documentsList;
     }
