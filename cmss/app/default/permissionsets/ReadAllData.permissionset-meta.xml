@@ -513,6 +513,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.MonthlyLoadSum__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.NACE__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1668,7 +1673,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Asset.MonthlyPayment__c</field>
+        <field>Asset.MonthlyLoad__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4078,7 +4083,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.PersonalIdentificationNr__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.Phone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.PlannedFromDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

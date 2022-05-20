@@ -526,6 +526,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.MonthlyLoadSum__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.NACE__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1676,7 +1681,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset.MonthlyPayment__c</field>
+        <field>Asset.MonthlyLoad__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
