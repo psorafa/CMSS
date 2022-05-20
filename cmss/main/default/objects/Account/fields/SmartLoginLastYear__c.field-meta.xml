@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SmartLoginLastYear__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>SMART - přihlášení ke konci min. roku</description>
+    <externalId>false</externalId>
+    <label>Smart Login Last Year</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

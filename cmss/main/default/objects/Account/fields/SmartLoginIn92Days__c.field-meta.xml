@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SmartLoginIn92Days__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>SMART - přihlášení za poslední 3 měsíce</description>
+    <externalId>false</externalId>
+    <label>Smart Login In 92 Days</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>
