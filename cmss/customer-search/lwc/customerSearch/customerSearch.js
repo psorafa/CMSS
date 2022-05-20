@@ -7,6 +7,7 @@
 import { LightningElement, track, wire, api } from 'lwc';
 import findRecords from '@salesforce/apex/CustomerSearchController.findRecords';
 import assignSearchAccess from '@salesforce/apex/CustomerSearchController.assignSearchAccess';
+import riskDetectionCallout from '@salesforce/apex/CustomerSearchController.riskDetectionCallout';
 import searchCSOBNonClient from '@salesforce/apex/PersonManagementController.searchCSOBNonClient';
 import updateCSOBNonClient from '@salesforce/apex/PersonManagementController.updateCSOBNonClient';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -29,6 +30,7 @@ import invalidValuesMessage from '@salesforce/label/c.InputValuesNotValidMessage
 import searchButton from '@salesforce/label/c.SearchButton';
 import errorLabel from '@salesforce/label/c.Error';
 import noRecordsFound from '@salesforce/label/c.NoRecordsFound';
+import fraudDetectionSystemError from '@salesforce/label/c.UserDoesNotHaveAccessToNEL';
 
 const CLIENTS = 'CLIENTS';
 
@@ -146,7 +148,7 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 	//function triggered by onclick event of the search button
 	//calls the apex method to search the database providing the attributes from input fields
 	//on success shows the message that no record found or redirect to the record page (account or lead)
-	searchClient() {
+	searchClient(event) {
 		if (!this.inputBirthNumber && !this.inputCompRegNum && !this.inputAssetNumber) {
 			this.showToast('error', this.label.errorLabel, this.label.missingMessage);
 		} else if (this.inputBirthNumber && !this.inputFirstName && !this.inputLastName) {
@@ -179,7 +181,19 @@ export default class CustomerSearch extends NavigationMixin(LightningElement) {
 					})
 				)
 				.then(() => {
-					this.navigateToRecordPage(this.recordId);
+					riskDetectionCallout({
+						accountId: this.recordId,
+						searchCriteria: searchCriteria
+					}).then(isSuccess => {
+						if (!isSuccess) {
+							this.showToast('error', 'Error', fraudDetectionSystemError);
+							setTimeout(() => {
+								window.location.href = '/secur/logout.jsp';
+							}, 3000);
+						} else {
+							this.navigateToRecordPage(this.recordId);
+						}
+					});
 				})
 				.catch(error => {
 					this.handleErrors(error);
