@@ -584,7 +584,7 @@
         <editable>false</editable>
         <field>Account.Alias__c</field>
         <readable>true</readable>
-    </fieldPermissions>    
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AmountOffer__c</field>
@@ -4616,6 +4616,61 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchConfiguration__c.Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchConfiguration__c.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchConfiguration__c.FieldsetName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchConfiguration__c.FilterCondition__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchConfiguration__c.ObjectType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchConfiguration__c.OwnerFieldName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchConfiguration__c.ProductType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchFilter__c.FieldApiName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchFilter__c.Filter__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchFilter__c.ProductType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchFilter__c.RelatedObject__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Event.ActivityLink__c</field>
         <readable>true</readable>
@@ -6291,6 +6346,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>User.ManagerIds__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>User.ManagerKP__c</field>
         <readable>true</readable>
@@ -6506,6 +6566,28 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>CrossSellingClosure__c-Cross Selling Closure Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CustomSearchConfiguration__c-Custom Search Configuration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CustomSearchFilter__c-Custom Search Filter Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CustomSearchFilter__c-Custom Search Filter Layout</layout>
+        <recordType>CustomSearchFilter__c.Boolean</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CustomSearchFilter__c-Custom Search Filter Layout</layout>
+        <recordType>CustomSearchFilter__c.Date</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CustomSearchFilter__c-Custom Search Filter Layout</layout>
+        <recordType>CustomSearchFilter__c.Number</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CustomSearchFilter__c-Custom Search Filter Layout</layout>
+        <recordType>CustomSearchFilter__c.Text</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Event-Event Layout</layout>
@@ -6829,6 +6911,24 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>CustomSearchConfiguration__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>CustomSearchFilter__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>FinancialOperation__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -7119,6 +7219,26 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>CustomSearchFilter__c.Boolean</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>CustomSearchFilter__c.Date</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CustomSearchFilter__c.Number</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CustomSearchFilter__c.Text</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Opportunity.Editable</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -7174,6 +7294,18 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Customer_Search</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>CustomSearchConfiguration__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>CustomSearchFilter__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DetailedCustomSearch</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

@@ -1,0 +1,36 @@
+<template>
+	<fieldset class="slds-text-align_center" if:true={isText}>
+		<legend>{label}</legend>
+		<c-custom-search-dynamic-single-filter
+			label=""
+			filter-values={filterValues}
+			input-type={inputType}
+			onfieldchange={handleSingleFieldChange}
+		></c-custom-search-dynamic-single-filter>
+	</fieldset>
+	<c-custom-search-dynamic-range-filter
+		if:true={isDateOrNumber}
+		label={label}
+		filter-values={filterValues}
+		input-type={inputType}
+		field-name={fieldName}
+		object-type={objectType}
+		product-type={productType}
+		onfieldchange={handleRangeFieldChange}
+	></c-custom-search-dynamic-range-filter>
+	<fieldset class="slds-text-align_center" if:true={isBoolean}>
+		<legend>{label}</legend>
+		<div class="slds-grid">
+			<div class="slds-col slds-size_3-of-12">&nbsp;</div>
+			<div class="slds-col slds-size_6-of-12">
+				<lightning-input
+					type={inputType}
+					label=""
+					name={fieldName}
+					value={selectedValue}
+					onchange={handleBooleanChanged}
+				></lightning-input>
+			</div>
+		</div>
+	</fieldset>
+</template>

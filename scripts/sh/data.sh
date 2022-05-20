@@ -8,7 +8,7 @@ set -e
 
 ALIAS="${1}"
 
-mkdir scripts/apex/tmp -p
+mkdir -p scripts/apex/tmp
 
 TARGETPATH="scripts/apex/tmp"
 

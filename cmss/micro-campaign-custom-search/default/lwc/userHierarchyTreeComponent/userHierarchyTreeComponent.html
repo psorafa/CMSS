@@ -1,0 +1,14 @@
+<template>
+	<lightning-spinner if:true={loading}></lightning-spinner>
+	<div class="margin-left-right-1rem">
+		<lightning-card title={labels.LBL_UserHierarchyFilter}>
+			<lightning-tree-grid
+				columns={gridColumns}
+				data={gridData}
+				key-field="userId"
+				onrowselection={updateSelectedRows}
+				selected-rows={selectedRows}
+			></lightning-tree-grid>
+		</lightning-card>
+	</div>
+</template>

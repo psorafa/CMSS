@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Filter__c</fullName>
+    <externalId>false</externalId>
+    <label>Filter</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>&lt;</fullName>
+                <default>false</default>
+                <label>&lt;</label>
+            </value>
+            <value>
+                <fullName>&gt;</fullName>
+                <default>false</default>
+                <label>&gt;</label>
+            </value>
+            <value>
+                <fullName>&lt;=</fullName>
+                <default>false</default>
+                <label>&lt;=</label>
+            </value>
+            <value>
+                <fullName>&gt;=</fullName>
+                <default>false</default>
+                <label>&gt;=</label>
+            </value>
+            <value>
+                <fullName>=</fullName>
+                <default>false</default>
+                <label>=</label>
+            </value>
+            <value>
+                <fullName>exact match</fullName>
+                <default>false</default>
+                <label>exact match</label>
+            </value>
+            <value>
+                <fullName>contains</fullName>
+                <default>false</default>
+                <label>contains</label>
+            </value>
+            <value>
+                <fullName>start with</fullName>
+                <default>false</default>
+                <label>start with</label>
+            </value>
+            <value>
+                <fullName>end with</fullName>
+                <default>false</default>
+                <label>end with</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

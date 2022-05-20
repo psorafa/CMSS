@@ -51,6 +51,7 @@ sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/opportunity-m
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/portfolio-management/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/product-contract/
 sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/case-management/
+sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/micro-campaign-custom-search
 sfdx force:source:deploy --ignorewarnings --targetusername $ALIAS --sourcepath cmss/app/
 
 #run tests

@@ -1,0 +1,22 @@
+<template>
+	<div class="slds-form-element slds-form-element_horizontal">
+		<label class="slds-form-element__label" for="value">{label}</label>
+		<div class="slds-form-element__control">
+			<div class="slds-grid">
+				<select name="selectedFilterValue" onchange={handleFilterChange} class="slds-select" id="select-01">
+					<option value="">-Select-</option>
+					<template for:each={filterValues} for:item="item">
+						<option value={item.value} key={item.value}>{item.label}</option>
+					</template>
+				</select>
+				<input
+					type={inputType}
+					onkeyup={handleValueChange}
+					onchange={handleValueChange}
+					id="value"
+					class="slds-size_8-of-12 slds-input"
+				/>
+			</div>
+		</div>
+	</div>
+</template>

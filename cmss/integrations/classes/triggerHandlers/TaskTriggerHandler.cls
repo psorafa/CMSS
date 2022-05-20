@@ -18,10 +18,10 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	public override void afterInsert() {
-		handleAqMessagingInsertInFuture(Trigger.newMap.keySet());
 		handleInsertedTasksShares(Trigger.new);
 		handleUpdateAccountDateFields();
 		if (!System.isBatch()) {
+			handleAqMessagingInsertInFuture(Trigger.newMap.keySet());
 			createNewTaskNotifications(new List<Id>(Trigger.newMap.keySet()));
 		}
 	}

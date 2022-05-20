@@ -1,0 +1,20 @@
+<template>
+	<div class="margin-left-right-1rem">
+		<lightning-card title={labels.LBL_AdditionFilterParams}>
+			<div class="slds-grid slds-wrap">
+				<template for:each={customFilterItems} for:item="valueItem">
+					<div key={valueItem.fieldName} class="slds-col slds-size_1-of-3">
+						<c-custom-search-dynamic-filter-field
+							filter-values={valueItem.availableFilterList}
+							field-data-type={valueItem.dataType}
+							object-type={objectType}
+							field-name={valueItem.fieldName}
+							product-type={valueItem.productType}
+							onfieldchange={handleFieldChange}
+						></c-custom-search-dynamic-filter-field>
+					</div>
+				</template>
+			</div>
+		</lightning-card>
+	</div>
+</template>
