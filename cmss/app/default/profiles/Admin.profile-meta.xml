@@ -1668,6 +1668,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.ApprovedBy__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+        <fieldPermissions>
+        <editable>true</editable>
         <field>Asset.Arranged__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1709,6 +1714,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.AssignmentType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.AssumedPayoutDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2014,6 +2024,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.DisabilityPension__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.DocumentPlace__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
