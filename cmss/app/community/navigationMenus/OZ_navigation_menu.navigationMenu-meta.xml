@@ -46,6 +46,13 @@
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
+        <label>Kalendář</label>
+        <position>6</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/calendar</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
         <label>Aktivity</label>
         <position>7</position>
         <publiclyAvailable>false</publiclyAvailable>

@@ -72,6 +72,12 @@
                 <identifier>home_recentRecordContainer</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>calendarSyncStatus</componentName>
+                <identifier>c_calendarSyncStatus1</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>

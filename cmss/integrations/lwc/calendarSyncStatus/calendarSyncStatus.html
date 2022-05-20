@@ -1,0 +1,159 @@
+<template>
+	<template if:false={isSettingActive}>
+		<lightning-card>
+			<div slot="title" class="slds-align_absolute-center">
+				<a href="javascript:void(0)" onclick={handleOpenModal}>Nastavení synchronizace kalendářů</a>
+			</div>
+		</lightning-card>
+	</template>
+	<template if:true={isSettingActive}>
+		<lightning-card>
+			<div slot="title" class="slds-align_absolute-center">
+				<lightning-icon
+					class="slds-m-right_small"
+					icon-name="action:approval"
+					alternative-text="Approved"
+					size="xx-small"
+					title="Approved"
+				></lightning-icon>
+				<a href="javascript:void(0)" onclick={handleOpenModal}>Kalendáře synchronizovány</a>
+			</div>
+		</lightning-card>
+	</template>
+	<template if:true={showModal}>
+		<div role="dialog" class="slds-modal slds-fade-in-open">
+			<div class="slds-modal__container">
+				<header class="slds-modal__header">
+					<button
+						class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+						onclick={handleCloseModal}
+					>
+						<lightning-icon
+							icon-name="utility:close"
+							alternative-text="close"
+							variant="inverse"
+							size="small"
+						></lightning-icon>
+						<span class="slds-assistive-text">Close</span>
+					</button>
+					<h2 class="slds-text-heading_medium slds-hyphenate">Synchronizace s Google kalendářem</h2>
+				</header>
+				<div class="slds-modal__content slds-p-around_medium">
+					<div if:true={showSpinner} class="slds-spinner_container slds-is-relative">
+						<lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+					</div>
+					<template if:true={isSettingActive}>
+						<div>
+							<lightning-badge
+								class="slds-align_absolute-center slds-badge slds-theme_success slds-m-vertical_small"
+								label="Synchronizace Vašich kalendářů je aktivní"
+							></lightning-badge>
+						</div>
+						<lightning-input
+							type="text"
+							label="ID Google kalendáře"
+							onchange={handleInputChange}
+							value={userCalendarSetting.UserCalendarID__c}
+							disabled="true"
+						></lightning-input>
+						<div class="slds-align_absolute-center slds-text-align_center slds-m-around_medium">
+							Info: Iniciální synchronizace se může projevit maximálně za několik hodin. Pokud byla
+							synchronizace zahájena v posledních několika hodinách, mějte prosím strpení.
+						</div>
+						<button
+							class="slds-align_absolute-center slds-button slds-button_destructive slds-m-vertical_small"
+							onclick={handleCancelSync}
+						>
+							Deaktivovat synchronizaci
+						</button>
+					</template>
+					<template if:false={isSettingActive}>
+						<div>
+							<lightning-accordion
+								allow-multiple-sections-open
+								onsectiontoggle={handleHelpToggle}
+								active-section-name={activeHelpSections}
+							>
+								<lightning-accordion-section name="Help" label="Otevřít návod">
+									<lightning-card title="Nejprve ve svém Google kalendáři proveďte:">
+										<div class="slds-p-horizontal_small">
+											<ol class="slds-list_ordered">
+												<li>Jděte do "Nastavení a sdílení" u svého kalendáře</li>
+												<li>
+													V kolonce "Sdílení s konkrétními lidmi" přidejte
+													crmfenixtest@gmail.com s právy na úpravy
+												</li>
+												<li>Sjeďte na odstavec Integrovat kalendář</li>
+												<li>Zkopírujte ID kalendáře</li>
+											</ol>
+										</div>
+									</lightning-card>
+									<lightning-card title="Poté zde proveďte:">
+										<div class="slds-p-horizontal_small">
+											<ol class="slds-list_ordered">
+												<li>Do kolonky níže vložte ID kalendáře</li>
+												<li>
+													Klikněte na "Ověřit spojení" - tímto ověříte, jestli první krok
+													nasdílení kalendáře proběhl úspěšně
+												</li>
+												<li>
+													Pokud Ověření spojení proběhne úspěšně, můžete zahájit synchronizaci
+												</li>
+											</ol>
+										</div>
+									</lightning-card>
+								</lightning-accordion-section>
+							</lightning-accordion>
+						</div>
+						<lightning-input
+							type="text"
+							label="ID kalendáře (z Vašeho Google kalendáře)"
+							onchange={handleInputChange}
+							value={existingSettingId}
+							disabled={isConnectionValid}
+						></lightning-input>
+						<template if:false={isConnectionValid}>
+							<button
+								class="slds-align_absolute-center slds-button slds-button_neutral slds-m-vertical_small"
+								onclick={handleValidateCalendarId}
+								disabled={showSpinner}
+							>
+								Ověřit spojení
+							</button>
+						</template>
+						<template if:true={isConnectionInvalid}>
+							<lightning-badge
+								class="slds-align_absolute-center slds-badge slds-theme_error slds-m-vertical_small"
+								label="Spojení na straně Google kalendáře s tímto ID neexistuje"
+							></lightning-badge
+						></template>
+						<template if:true={isConnectionValid}>
+							<div>
+								<lightning-badge
+									class="
+										slds-align_absolute-center
+										slds-badge
+										slds-theme_success
+										slds-m-vertical_small
+									"
+									label="Kalendář je propojen na straně google"
+								></lightning-badge>
+							</div>
+							<button
+								class="slds-align_absolute-center slds-button slds-button_neutral slds-m-vertical_small"
+								onclick={handleSynchronize}
+								disabled={syncStarted}
+							>
+								Zahájit synchronizaci
+							</button>
+						</template>
+					</template>
+				</div>
+				<footer class="slds-modal__footer">
+					<button class="slds-button slds-button_neutral" onclick={handleCloseModal}>Zavřít</button>
+				</footer>
+			</div>
+		</div>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</template>
+</template>

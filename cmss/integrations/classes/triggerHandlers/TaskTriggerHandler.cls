@@ -2,19 +2,20 @@ public class TaskTriggerHandler extends TriggerHandler {
 	public override void beforeInsert() {
 		TaskService.setRecordType(Trigger.new);
 		IntegrationUtility.populateDefaultExternalId(Trigger.new);
-		updateTaskFields(Trigger.new);
+		updateTaskFields(null, Trigger.new);
 	}
 
 	public override void beforeUpdate() {
 		TaskService.setRecordType(Trigger.new);
 		IntegrationUtility.populateDefaultExternalId(Trigger.new);
-		updateTaskFields(Trigger.new);
+		updateTaskFields((Map<Id, Task>) Trigger.oldMap, Trigger.new);
 	}
 
 	public override void beforeDelete() {
-        checkDeletePermission();
+		checkDeletePermission();
 		AQMessageService.handleDelete(Trigger.old, Task.SObjectType);
 		AccessShareController.removeTaskAccessBulk(Trigger.old);
+		createEventSyncs((Map<Id, Task>) Trigger.oldMap, false, true);
 	}
 
 	public override void afterInsert() {
@@ -23,6 +24,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 		if (!System.isBatch()) {
 			handleAqMessagingInsertInFuture(Trigger.newMap.keySet());
 			createNewTaskNotifications(new List<Id>(Trigger.newMap.keySet()));
+			createEventSyncsFuture(Trigger.newMap.keySet(), true, false);
 		}
 	}
 
@@ -31,13 +33,17 @@ public class TaskTriggerHandler extends TriggerHandler {
 		handleUpdatedTasksShares(Trigger.old, Trigger.new);
 		handleUpdateAccountDateFields();
 		sendDelegatedTaskNotifications(Trigger.new, Trigger.oldMap);
+		if (!System.isBatch()) {
+			createEventSyncsFuture(Trigger.newMap.keySet(), false, false);
+		}
 	}
 
 	public override void afterUndelete() {
 		AQMessageService.handleInsert(Trigger.new, Task.SObjectType);
 	}
 
-	public void updateTaskFields(List<Task> newTasks) {
+	public void updateTaskFields(Map<Id, Task> oldTasksMap, List<Task> newTasks) {
+		Map<Id, Task> contactsToTasksToGetAlias = new Map<Id, Task>();
 		for (Task task : newTasks) {
 			if (task.Source__c == '54') {
 				task.Category__c = '1';
@@ -51,6 +57,33 @@ public class TaskTriggerHandler extends TriggerHandler {
 			if (task.Description != null) {
 				task.Summary__c = task.Description.length() > 30 ? task.Description.left(30) + '...' : task.Description;
 			}
+			if (oldTasksMap == null || oldTasksMap.get(task.Id).WhoId != task.WhoId) {
+				task.AccountAlias__c = '';
+				if (task.WhoId != null) {
+					contactsToTasksToGetAlias.put(task.WhoId, task);
+				}
+			}
+		}
+
+		if (contactsToTasksToGetAlias.size() > 0) {
+			completeAccountAliases(contactsToTasksToGetAlias);
+		}
+	}
+
+	private static void completeAccountAliases(Map<Id, Task> contactsToTasksToGetAlias) {
+		Map<Id, Contact> contactsMap = new Map<Id, Contact>(
+			[
+				SELECT Account.LastName, Account.FirstName, Account.Birthdate__c
+				FROM Contact
+				WHERE Id IN :contactsToTasksToGetAlias.keySet()
+			]
+		);
+		for (Contact contact : contactsMap.values()) {
+			contactsToTasksToGetAlias.get(contact.Id).AccountAlias__c =
+				contact.Account?.LastName.left(3) +
+				contact.Account?.FirstName?.left(3) +
+				'_' +
+				String.valueOf(contact?.Account?.Birthdate__c?.year())?.right(2);
 		}
 	}
 
@@ -147,6 +180,97 @@ public class TaskTriggerHandler extends TriggerHandler {
 
 		createMailServiceNotifications(serviceTasks);
 		sendNewTaskNotifications(otherTasks);
+	}
+
+	private static EventSync__c getEventSync(Task task, Boolean isNew, Boolean isDeleted) {
+		EventSync__c newEventSync = new EventSync__c();
+		newEventSync.IsTask__c = true;
+		newEventSync.GoogleEventId__c = task.GoogleId__c;
+		newEventSync.SFTaskId__c = task.Id;
+		newEventSync.ChangeFromGoogle__c = false;
+		newEventSync.IsNew__c = isNew;
+		newEventSync.IsDeleted__c = isDeleted;
+
+		return newEventSync;
+	}
+
+	@testVisible
+	private static void createEventSyncs(Map<Id, Task> tasksMap, Boolean isNew, Boolean isDeleted) {
+		List<String> googleIds = new List<String>();
+		List<Id> ownerIds = new List<Id>();
+		Map<String, Task> tasksToGoogleIds = new Map<String, Task>();
+		Map<Id, Task> tasksToCreateSyncsTo = tasksMap.clone();
+
+		for (Task task : tasksToCreateSyncsTo.values()) {
+			ownerIds.add(task.OwnerId);
+			if (String.isNotBlank(task.GoogleId__c)) {
+				googleIds.add(task.GoogleId__c);
+				tasksToGoogleIds.put(task.GoogleId__c, task);
+			}
+		}
+		Map<Id, UserCalendarSetting__c> calendarSettingsByOwnerIds = new Map<Id, UserCalendarSetting__c>();
+		calendarSettingsByOwnerIds = getSettingsByOwnerIds(ownerIds);
+		for (Task task : tasksToCreateSyncsTo.values()) {
+			if (!calendarSettingsByOwnerIds.containsKey(task.OwnerId)) {
+				tasksToCreateSyncsTo.remove(task.Id);
+			}
+		}
+		Set<Id> taskIds = tasksToCreateSyncsTo.keySet();
+		Map<Id, EventSync__c> existingSyncsMap = new Map<Id, EventSync__c>(
+			(List<EventSync__c>) Database.query(
+				'SELECT Id, SFTaskId__c, GoogleEventId__c, IsNew__c, IsDeleted__c, ChangeFromGoogle__c FROM EventSync__c ' +
+				'WHERE (GoogleEventId__c IN :googleIds OR SFTaskId__c IN :taskIds) ' +
+				(isDeleted ? ' AND IsDeleted__c = true' : '')
+			)
+		);
+
+		Set<Id> eventSyncsToPreserve = new Set<Id>();
+		for (EventSync__c existingSync : existingSyncsMap.values()) {
+			Task task;
+			task = tasksToCreateSyncsTo.get(existingSync.SFTaskId__c);
+			if (task == null) {
+				task = tasksToGoogleIds.get(existingSync.GoogleEventId__c);
+			}
+			if (task != null) {
+				if (!existingSync.ChangeFromGoogle__c && existingSync.IsNew__c) {
+					eventSyncsToPreserve.add(existingSync.Id);
+					tasksToCreateSyncsTo.remove(task.Id);
+				} else if (existingSync.ChangeFromGoogle__c || existingSync.IsDeleted__c) {
+					tasksToCreateSyncsTo.remove(task.Id);
+				}
+			}
+		}
+
+		existingSyncsMap.keySet().removeAll(eventSyncsToPreserve);
+		List<EventSync__c> syncsToCreate = new List<EventSync__c>();
+
+		for (Task task : tasksToCreateSyncsTo.values()) {
+			if ((isNew && task.GoogleId__c == null) || isDeleted || (!isNew && !isDeleted))
+				syncsToCreate.add(getEventSync(task, isNew, isDeleted));
+		}
+
+		insert syncsToCreate;
+		delete existingSyncsMap.values();
+	}
+
+	private static Map<Id, UserCalendarSetting__c> getSettingsByOwnerIds(List<Id> ownerIds) {
+		List<UserCalendarSetting__c> activeSettings = [
+			SELECT User__c, SyncActive__c
+			FROM UserCalendarSetting__c
+			WHERE User__c IN :ownerIds AND SyncActive__c = TRUE
+		];
+		Map<Id, UserCalendarSetting__c> settingsByOwnerIds = new Map<Id, UserCalendarSetting__c>();
+		for (UserCalendarSetting__c setting : activeSettings) {
+			settingsByOwnerIds.put(setting.User__c, setting);
+		}
+		return settingsByOwnerIds;
+	}
+
+	@testVisible
+	@future
+	private static void createEventSyncsFuture(Set<Id> taskIds, Boolean isTaskNew, Boolean isTaskDeleted) {
+		Map<Id, Task> tasksMap = new Map<Id, Task>([SELECT Id, GoogleId__c, OwnerId FROM Task WHERE Id IN :taskIds]);
+		createEventSyncs(tasksMap, isTaskNew, isTaskDeleted);
 	}
 
 	private static void createMailServiceNotifications(List<Task> tasksToNotifyAbout) {
@@ -301,7 +425,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 		Task[] assignAccessList = new List<Task>{};
 
 		ActivityExpirationConfig__mdt config = [SELECT FinalStatuses__c FROM ActivityExpirationConfig__mdt LIMIT 1];
-        List<String> closedStatuses = config.FinalStatuses__c.split(',');
+		List<String> closedStatuses = config.FinalStatuses__c.split(',');
 
 		for (Task newTask : (Task[]) newListSo) {
 			Task oldTask = (Task) Trigger.oldMap.get(newTask.Id);
@@ -322,20 +446,24 @@ public class TaskTriggerHandler extends TriggerHandler {
 		AccessShareController.assignTaskAccessBulk(assignAccessList);
 	}
 
-    private void checkDeletePermission() {
-        Boolean isRestrictedUser = false;
-        User currentUser = [SELECT Id, Profile.Name FROM User WHERE Id =: UserInfo.getUserId()];
+	private void checkDeletePermission() {
+		Boolean isRestrictedUser = false;
+		User currentUser = [SELECT Id, Profile.Name FROM User WHERE Id = :UserInfo.getUserId()];
 
-        if (currentUser.Profile.Name == 'CMSS User' || currentUser.Profile.Name == 'CMSS Experience User' || currentUser.Profile.Name == 'CMSS Headquarters User') {
-            isRestrictedUser = true;
-        }
+		if (
+			currentUser.Profile.Name == 'CMSS User' ||
+			currentUser.Profile.Name == 'CMSS Experience User' ||
+			currentUser.Profile.Name == 'CMSS Headquarters User'
+		) {
+			isRestrictedUser = true;
+		}
 
-        if (isRestrictedUser) {
-            for (sObject t : Trigger.old) {
-                if (t.get('CreatedById') != currentUser.Id) {
-                    t.addError(Label.YouDoNotHavePermissionToDeleteTask);
-                }
-            }
-        }
-    }
+		if (isRestrictedUser) {
+			for (sObject t : Trigger.old) {
+				if (t.get('CreatedById') != currentUser.Id) {
+					t.addError(Label.YouDoNotHavePermissionToDeleteTask);
+				}
+			}
+		}
+	}
 }

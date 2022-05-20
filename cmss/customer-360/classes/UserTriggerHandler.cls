@@ -4,10 +4,38 @@ public class UserTriggerHandler extends TriggerHandler {
 	}
 
 	public override void afterUpdate() {
-        if (!System.isBatch()) {
-		updateCommunityUsersContacts(Trigger.newMap.keySet());
+		if (!System.isBatch()) {
+			updateCommunityUsersContacts(Trigger.newMap.keySet());
+			checkChangeForActiveAndDeleteRelatedCalendarSettings(
+				(Map<Id, User>) Trigger.oldMap,
+				(Map<Id, User>) Trigger.newMap
+			);
+		}
 	}
-    }
+
+	@TestVisible
+	private static void checkChangeForActiveAndDeleteRelatedCalendarSettings(
+		Map<Id, User> oldMap,
+		Map<Id, User> newMap
+	) {
+		List<Id> userIds = new List<Id>();
+
+		for (User oldUser : oldMap.values()) {
+			User newUser = newMap.get(oldUser.Id);
+
+			if (oldUser.IsActive && !newUser.IsActive) {
+				userIds.add(oldUser.Id);
+			}
+		}
+
+		deleteRelatedUserCalendarSettings(userIds);
+	}
+
+	private static void deleteRelatedUserCalendarSettings(List<Id> userIds) {
+		List<UserCalendarSetting__c> settings = [SELECT Id FROM UserCalendarSetting__c WHERE User__c IN :userIds];
+		delete settings;
+	}
+
 	@TestVisible
 	@Future
 	private static void updateCommunityUsersContacts(Set<Id> userIds) {
