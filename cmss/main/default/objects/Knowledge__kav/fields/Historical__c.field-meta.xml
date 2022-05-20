@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Historical__c</fullName>
+    <externalId>false</externalId>
+    <formula>(ValidTo__c &lt; TODAY() &amp;&amp; ValidTo__c &gt; (TODAY() - 2 * 365))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Historical</label>
+    <type>Checkbox</type>
+</CustomField>

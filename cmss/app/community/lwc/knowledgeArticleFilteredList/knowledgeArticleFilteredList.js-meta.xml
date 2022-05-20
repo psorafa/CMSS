@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Knowledge Articles</masterLabel>
+    <description>Knowledge Articles Filtered List</description>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage,lightning__RecordPage,lightning__HomePage,lightningCommunity__Default">
+            <property name="recordId" type="String" label="Topic ID" default="{!recordId}" description="Topic Id" />
+            <property name="recordTypeName" type="String" label="Record Type Name" description="Name of Article Record Type" />
+            <property name="arcticlesType" type="String" label="Type of articles" description="Indicates wheter the component should show actual or historical articles" datasource="All,Actual,Historical" default="All" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

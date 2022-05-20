@@ -1,0 +1,82 @@
+{
+  "appPageId" : "54c1a1c6-7f7d-4ebd-a9ef-34d2e60fd757",
+  "componentName" : "siteforce:dynamicLayout",
+  "id" : "4e250666-2981-4ff7-90cc-56f4e25aa1fd",
+  "label" : "Methodology",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "0c8d1c6e-bf59-492d-a257-c3bdc7505905",
+          "columns" : [ {
+            "UUID" : "781968f6-ddc0-4f0e-926c-e144c0a5512f",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "0c8d1c6e-bf59-492d-a257-c3bdc7505905",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "enableInlineEdit" : true,
+            "filterName" : "00B1x000007KFG8EAO",
+            "layout" : "FULL",
+            "pageSize" : 25,
+            "scope" : "Knowledge__kav",
+            "showActionBar" : false,
+            "showChartsPanel" : false,
+            "showDisplay" : "grid",
+            "showFilterPanel" : true,
+            "showImageIcon" : true,
+            "showManualRefreshButton" : true,
+            "showObjectName" : true,
+            "showPinnedList" : true,
+            "showSearchBar" : true
+          },
+          "componentName" : "forceCommunity:objectHome",
+          "id" : "13ad16dd-c67c-4d71-b857-d2369c5c0491",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "781968f6-ddc0-4f0e-926c-e144c0a5512f",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "a0917c3d-46a9-48a9-9444-e0c7bd1b036b",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Methodology"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "81960ea2-6529-4389-abbb-44b1a3fcb40c",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "5d1fd1e7-36ae-4459-b121-796e6cc57b32",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-methodology"
+}

@@ -1,0 +1,70 @@
+{
+  "appPageId" : "54c1a1c6-7f7d-4ebd-a9ef-34d2e60fd757",
+  "componentName" : "siteforce:dynamicLayout",
+  "id" : "25b887f2-d9f1-4ec7-b70f-6a0b18d10476",
+  "label" : "File Libraries",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "5c623d75-3f79-4fcf-8e07-0101edb9cdae",
+          "columns" : [ {
+            "UUID" : "f62dba65-db9d-4eca-929d-aff25f79f316",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "5c623d75-3f79-4fcf-8e07-0101edb9cdae",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "librariesHeaderLabel" : "Libraries",
+            "showWorkspaceImage" : true
+          },
+          "componentName" : "forceCommunity:workspacesList",
+          "id" : "5da45adb-ba99-45b8-9fd3-262891ec3baf",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "f62dba65-db9d-4eca-929d-aff25f79f316",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "6f979cf7-28ce-4a28-b5d4-73f1abf981db",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "File Libraries"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "47c6092a-4bfc-469e-8f60-fa33b0ae50d2",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "5f2a7e4e-ec7e-4754-9a57-c81b5939de02",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-file-libraries"
+}

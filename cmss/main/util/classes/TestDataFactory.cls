@@ -4,6 +4,9 @@ public class TestDataFactory {
 	private static Integer opportunityCounter = 0;
 	private static Integer assetCounter = 0;
 	private static Integer userCounter = 0;
+	private static Integer articleCounter = 0;
+	private static Integer topicCounter = 0;
+	private static Integer ContentVersionCounter = 0;
 	private static Id personAccountRTId = [
 		SELECT Id
 		FROM RecordType
@@ -327,6 +330,53 @@ public class TestDataFactory {
 			insert a;
 			template.Asset__c = a.Id;
 		}
+		return template;
+	}
+
+	public static Knowledge__kav getKnowledgeArticle() {
+		return getKnowledgeArticle(new Knowledge__kav());
+	}
+
+	public static Knowledge__kav getKnowledgeArticle(Knowledge__kav so) {
+		Knowledge__kav template = new Knowledge__kav(
+			Title = 'Test article ' + ++articleCounter + ++articleCounter,
+			URLName = 'testArticle' + ++articleCounter
+		);
+		SObjectUtil.copyFields(so, template);
+		return template;
+	}
+
+	public static Topic getTopic() {
+		return getTopic(new Topic());
+	}
+
+	public static Topic getTopic(Topic so) {
+		Topic template = new Topic(Name = 'Test topic ' + ++topicCounter);
+		SObjectUtil.copyFields(so, template);
+		return template;
+	}
+
+	public static TopicAssignment getTopicAssignment() {
+		return getTopicAssignment(new TopicAssignment());
+	}
+
+	public static TopicAssignment getTopicAssignment(TopicAssignment so) {
+		TopicAssignment template = new TopicAssignment();
+		SObjectUtil.copyFields(so, template);
+		return template;
+	}
+
+	public static ContentVersion getContentVersion() {
+		return getContentVersion(new ContentVersion());
+	}
+
+	public static ContentVersion getContentVersion(ContentVersion so) {
+		ContentVersion template = new ContentVersion(
+			Title = 'Test ' + ++ContentVersionCounter,
+			PathOnClient = 'test' + ++ContentVersionCounter,
+			VersionData = EncodingUtil.base64Decode(EncodingUtil.urlEncode('Unit Test File Body', 'UTF-8'))
+		);
+		SObjectUtil.copyFields(so, template);
 		return template;
 	}
 }

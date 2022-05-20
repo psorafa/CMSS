@@ -2,7 +2,7 @@
 	"orgName": "CMSS",
 	"adminEmail": "nonsense@uinwertu.nroko",
 	"edition": "Enterprise",
-	"features": ["PersonAccounts", "FieldAuditTrail", "Communities", "PartnerCommunity"],
+	"features": ["PersonAccounts", "FieldAuditTrail", "Communities", "PartnerCommunity", "Knowledge", "ServiceCloud", "ServiceUser"],
 	"settings": {
 		"languageSettings": {
 			"enableEndUserLanguages": true,
@@ -23,7 +23,14 @@
         "communitiesSettings": {
           "enableNetworksEnabled": true,
           "enableExternalAccHierPref": true
-        }
+        },
+    "knowledgeSettings": {
+        "enableKnowledge": true,
+        "enableLightningKnowledge": true,
+        "enableKnowledgeArticleTextHighlights": true,
+        "enableKnowledgeKeywordAutoComplete": true,
+        "enableKnowledgeTitleAutoComplete": true
+    }
 
 	}
 }

@@ -1,0 +1,69 @@
+{
+  "appPageId" : "54c1a1c6-7f7d-4ebd-a9ef-34d2e60fd757",
+  "componentName" : "siteforce:dynamicLayout",
+  "id" : "4058bd73-d24f-41f7-99ae-4b9e0732c583",
+  "label" : "Useful Links",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "efbcbff8-2b96-4881-ac92-8e8ad0a7e7b1",
+          "columns" : [ {
+            "UUID" : "acde9a02-45b8-4e55-9a15-9d8b2fb0f49a",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "efbcbff8-2b96-4881-ac92-8e8ad0a7e7b1",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<p><b style=\"font-size: 16px; color: rgb(0, 41, 102);\">Užitečné odkazy</b></p><p><br></p><p>Odkaz 1</p><p>Odkaz 2</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "47f522e7-4b65-4ae3-ada7-0c45fa46d859",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "acde9a02-45b8-4e55-9a15-9d8b2fb0f49a",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "a36c4ab6-39ca-41c7-bd5a-69946cd1e08f",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Useful Links"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "81a98e0f-7bf6-4497-a8ab-2d21996b55b0",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "a91039dd-8fbc-4f6f-bc9a-9a03f38bca65",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-useful-links"
+}

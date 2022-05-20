@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>INFOCompactLayout</fullName>
+    <fields>Title</fields>
+    <fields>CMSSArticleNumber__c</fields>
+    <fields>RecordTypeId</fields>
+    <fields>VersionNumber</fields>
+    <fields>PublishStatus</fields>
+    <fields>ValidTo__c</fields>
+    <fields>OwnerId</fields>
+    <label>INFO Compact Layout</label>
+</CompactLayout>

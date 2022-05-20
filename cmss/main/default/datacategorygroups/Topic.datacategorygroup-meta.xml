@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCategoryGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <dataCategory>
+        <dataCategory>
+            <label>Stavební spoření</label>
+            <name>Building_Savings</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Úvěry</label>
+            <name>Credits</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Hypotéky</label>
+            <name>Mortgages</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Náš život</label>
+                <name>Our_Life</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Investiční životní pojištění</label>
+                <name>Investment_Life_Insurance</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Rizikové životní pojištění</label>
+                <name>Risk_Life_Insurance</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Pojištění majetku a odpovědnosti</label>
+                <name>PMO</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Autopojištění</label>
+                <name>Car_Insurance</name>
+            </dataCategory>
+            <label>Pojištění</label>
+            <name>Insurance</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Penzijní produkty</label>
+            <name>Pension_Products</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Plus konto</label>
+                <name>Plus_Konto</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Premium konto</label>
+                <name>Premium_Konto</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Spořicí účet</label>
+                <name>Saving_Account</name>
+            </dataCategory>
+            <dataCategory>
+                <label>ČSOB ID</label>
+                <name>CSOB_ID</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Spotřebitelský úvěr</label>
+                <name>Consumer_Credit</name>
+            </dataCategory>
+            <label>Produkty ČSOB</label>
+            <name>Csob_Products</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Zahájení a výkon činnosti</label>
+                <name>Initiation_and_Operations</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Ukončení činnosti</label>
+                <name>Termination</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Aplikační podpora</label>
+                <name>Application_Support</name>
+            </dataCategory>
+            <label>Moje cesta v bance</label>
+            <name>My_Bank_Journey</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Plnění cílů</label>
+                <name>Fulfillment_of_Objectives</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Výsledky soutěží</label>
+                <name>Competition_Results</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Manažerská činnost</label>
+                <name>Managerial_Activities</name>
+            </dataCategory>
+            <label>Statistiky a vyhodnocení</label>
+            <name>Statistics_and_Evaluations</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Provizní systém</label>
+                <name>Commission_System</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Výhody pro smluvní partnery</label>
+                <name>Benefits_for_Contractors</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Motivační akce a soutěže</label>
+                <name>Incentives_and_competitions</name>
+            </dataCategory>
+            <label>Motivace a odměňování</label>
+            <name>Motivation_and_Remuneration</name>
+        </dataCategory>
+        <label>Všechny oblasti</label>
+        <name>All</name>
+    </dataCategory>
+    <label>Oblast</label>
+    <objectUsage>
+        <object>KnowledgeArticleVersion</object>
+    </objectUsage>
+</DataCategoryGroup>

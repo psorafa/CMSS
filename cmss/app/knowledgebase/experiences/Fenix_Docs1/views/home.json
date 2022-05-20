@@ -1,0 +1,285 @@
+{
+  "appPageId" : "54c1a1c6-7f7d-4ebd-a9ef-34d2e60fd757",
+  "componentName" : "siteforce:dynamicLayout",
+  "id" : "9f014d00-1b75-45c7-a08d-21352c0d9925",
+  "label" : "Home",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "ece92d15-1d3c-48cf-a77b-04ad7812d7c0",
+          "columns" : [ {
+            "UUID" : "cc41f8dc-ed15-4ae1-a1d6-21f9a794d747",
+            "columnKey" : "e7a45",
+            "columnName" : "Column 2",
+            "columnWidth" : "8",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "bd61ac11-379f-43cb-bb6c-2132a68243e6",
+            "columnKey" : "1e7a9",
+            "columnName" : "Column 2",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "ece92d15-1d3c-48cf-a77b-04ad7812d7c0",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "maxWidth" : 100,
+            "overlayColor" : "rgba(0,0,0,0.4)",
+            "overlayHoverColor" : "",
+            "radius" : 4,
+            "showTitle" : false,
+            "textAlignment" : "center",
+            "textBgColor" : "rgba(1, 81, 138, 0.66)",
+            "textBgHoverColor" : "rgba(0,0,0,0)",
+            "textColor" : "",
+            "textHoverColor" : "",
+            "textPosition" : "bottom center",
+            "title" : "Featured Topics"
+          },
+          "componentName" : "forceTopic:featuredTopics",
+          "id" : "759db4c6-965b-40d1-aa36-2477acf0e2d5",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "cc41f8dc-ed15-4ae1-a1d6-21f9a794d747",
+        "regionLabel" : "Column 2",
+        "regionName" : "e7a45",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<p style=\"text-align: center;\"><br></p>\n<p><br></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/info\" rel=\"noopener noreferrer\" target=\"_self\"><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.Info.1}\" style=\"width: 297.469px; height: 199.125px;\"></a></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/info\" rel=\"noopener noreferrer\" target=\"_self\" style=\"font-size: 22px; color: rgb(0, 41, 102);\"><b>Kompletní seznam INFA</b></a></p>\n<p style=\"text-align: center;\"><span style=\"font-size: 22px;\">﻿</span></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/methodology\" rel=\"noopener noreferrer\" target=\"_self\"><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.Metodika.1}\" style=\"width: 296.888px; height: 197.4px;\"></a></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/methodology\" rel=\"noopener noreferrer\" target=\"_self\" style=\"color: rgb(0, 41, 102); font-size: 22px;\"><b>Kompletní seznam METODIK</b></a></p>\n<p><br></p>\n<p><br></p>\n<p style=\"text-align: center;\"><a href=\"https://www.csobstavební.cz/uloziste\" rel=\"noopener noreferrer\" target=\"_blank\"><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.Elko.1}\" style=\"width: 254.725px; height: 156.05px;\"></a></p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "c2447cfb-3b29-4b11-80a8-ef67c2a1c860",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "bd61ac11-379f-43cb-bb6c-2132a68243e6",
+        "regionLabel" : "Column 2",
+        "regionName" : "1e7a9",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "cbdf929c-6312-4932-8a96-28c73b72160f",
+          "columns" : [ {
+            "UUID" : "32d01516-5441-4da5-aef0-77960575109b",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "cbdf929c-6312-4932-8a96-28c73b72160f",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "forceCommunity:topicCatalog",
+          "id" : "b4eb87a1-d905-4112-9264-734e218777e4",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "32d01516-5441-4da5-aef0-77960575109b",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "331197e7-3e6d-4d88-84ef-ba546e793d06",
+          "columns" : [ {
+            "UUID" : "b92338c7-e37d-4923-9e34-a9e1a2d64adc",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "52321a20-ec8e-43f1-87b6-893a1dd98ca8",
+            "columnKey" : "4eb2b",
+            "columnName" : "Column 2",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "650163f6-5960-4bbd-95f3-288651806f99",
+            "columnKey" : "c0747",
+            "columnName" : "Column 3",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "331197e7-3e6d-4d88-84ef-ba546e793d06",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<p><b style=\"font-size: 18px;\">Top články dle jednotlivých oblastí</b></p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "15eb62ba-79f5-4f05-a264-0721b26842de",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "numberOfArticles" : 3,
+            "showTitle" : false,
+            "title" : "Top články",
+            "topicList" : [ {
+              "isPublic" : true,
+              "name" : "0TO1x0000005dbcGAA"
+            }, {
+              "isPublic" : true,
+              "name" : "0TO1x0000005dbdGAA"
+            }, {
+              "isPublic" : true,
+              "name" : "0TO1x0000005dbVGAQ"
+            } ]
+          },
+          "componentName" : "forceCommunity:topArticleList",
+          "id" : "529efa9b-77ec-40eb-ac93-fd2a9f9bf111",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "b92338c7-e37d-4923-9e34-a9e1a2d64adc",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<p><span style=\"font-size: 18px;\">&nbsp;&nbsp;</span>&nbsp;&nbsp;</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "4bd13f50-6a30-44dd-86fa-0c622cbfc149",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "numberOfArticles" : 3,
+            "showTitle" : false,
+            "title" : "Top články",
+            "topicList" : [ {
+              "isPublic" : true,
+              "name" : "0TO1x0000005dbZGAQ"
+            }, {
+              "isPublic" : true,
+              "name" : "0TO1x0000005dbYGAQ"
+            }, {
+              "isPublic" : true,
+              "name" : "0TO1x0000005dbaGAA"
+            } ]
+          },
+          "componentName" : "forceCommunity:topArticleList",
+          "id" : "53193a67-6f98-4f16-b955-c7b7694974a6",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "52321a20-ec8e-43f1-87b6-893a1dd98ca8",
+        "regionLabel" : "Column 2",
+        "regionName" : "4eb2b",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<p><span style=\"font-size: 18px;\">&nbsp;&nbsp;</span>&nbsp;&nbsp;</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "d7d0745d-b359-4297-a283-90eadeb30b02",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "numberOfArticles" : 5,
+            "showTitle" : false,
+            "title" : "Top články",
+            "topicList" : [ {
+              "isPublic" : true,
+              "name" : "0TO1x0000005dbWGAQ"
+            }, {
+              "isPublic" : true,
+              "name" : "0TO1x0000005dbbGAA"
+            }, {
+              "isPublic" : true,
+              "name" : "0TO1x0000005dbeGAA"
+            } ]
+          },
+          "componentName" : "forceCommunity:topArticleList",
+          "id" : "abec1350-bcca-46c6-9b3e-41479873cff0",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "650163f6-5960-4bbd-95f3-288651806f99",
+        "regionLabel" : "Column 3",
+        "regionName" : "c0747",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "d6980d69-860e-414b-9940-fc44453d2d2d",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Home"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "de85aea5-311c-47be-ab93-67736f3d3005",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "cf416244-288e-401b-9d69-9db3f672e008",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Home",
+  "type" : "view",
+  "viewType" : "home"
+}
