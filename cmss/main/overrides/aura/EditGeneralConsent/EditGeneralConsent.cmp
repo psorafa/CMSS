@@ -1,3 +1,0 @@
-<aura:component implements="flexipage:availableForRecordHome,lightning:actionOverride,force:hasRecordId">
-    <c:consentEditInput recordId="{!v.recordId}"/>
-</aura:component>
