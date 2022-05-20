@@ -6,6 +6,15 @@
   "regions" : [ {
     "components" : [ {
       "componentAttributes" : {
+        "uniqueNameOrId" : "{!topicId}"
+      },
+      "componentName" : "forceCommunity:breadcrumbs",
+      "id" : "97032ae1-d227-4eb1-b306-fde1082a864e",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
         "bannerText" : "",
         "bannerTextWithKnowledge" : "Explore other <a href=\"javascript:void(0)\" class=\"headlineArticles\">articles</a> and <a href=\"javascript:void(0)\" class=\"headlineDiscussions\">discussions</a> on this topic.",
         "bannerTextWithoutKnowledge" : "Explore other <a href=\"javascript:void(0)\" class=\"headlineDiscussions\">discussions</a> on this topic.",
@@ -19,6 +28,15 @@
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "richTextValue" : "<p>&nbsp;&nbsp;</p>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "adc64654-8246-4216-bfd1-e322c030827d",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
     } ],
     "id" : "3044986c-2ed4-4150-b071-3f1b816c4fd2",
     "regionName" : "header",
@@ -26,19 +44,14 @@
   }, {
     "components" : [ {
       "componentAttributes" : {
-        "buttonAlignment" : "center",
-        "buttonBgColor" : "",
-        "buttonBgHoverColor" : "",
-        "buttonBorderColor" : "",
-        "buttonMaxWidth" : 85,
-        "buttonRadius" : 50,
-        "buttonTextColor" : "",
-        "buttonTextHoverColor" : "",
-        "recordId" : "{!recordId}",
-        "showNotificationMenu" : true
+        "showArticles" : true,
+        "showFollowers" : false,
+        "showPosts" : false,
+        "showTalkingAbout" : true,
+        "topicId" : "{!recordId}"
       },
-      "componentName" : "forceCommunity:follow",
-      "id" : "b21a5046-a117-4e55-af25-bdd5021e5f25",
+      "componentName" : "forceCommunity:topicMetrics",
+      "id" : "a63e4cc5-822c-4ea1-b405-86f6fff15011",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
@@ -150,12 +163,34 @@
           "componentName" : "forceCommunity:tabset",
           "id" : "79cd14c0-678e-4507-b61e-9a0b393a4c12",
           "regions" : [ {
+            "components" : [ {
+              "componentAttributes" : {
+                "arcticlesType" : "All",
+                "recordId" : "{!recordId}",
+                "recordTypeName" : "Methodology"
+              },
+              "componentName" : "c:knowledgeArticleFilteredList",
+              "id" : "38fc1a0d-406e-4e95-9f5d-34f0b2f4fe76",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
             "id" : "5ac1cb8c-90f1-43e6-bc65-27cd9d933958",
             "regionLabel" : "Metodika",
             "regionName" : "1",
             "renditionMap" : { },
             "type" : "region"
           }, {
+            "components" : [ {
+              "componentAttributes" : {
+                "arcticlesType" : "All",
+                "recordId" : "{!recordId}",
+                "recordTypeName" : "RulesAndConditions"
+              },
+              "componentName" : "c:knowledgeArticleFilteredList",
+              "id" : "59e4cc46-b93e-47a7-b877-adf221cf2417",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
             "id" : "31829bda-1663-4b2a-93f4-ef75b7e4b4ee",
             "regionLabel" : "Pravidla a podmínky",
             "regionName" : "2",
@@ -171,6 +206,17 @@
         "renditionMap" : { },
         "type" : "region"
       }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "arcticlesType" : "All",
+            "recordId" : "{!recordId}",
+            "recordTypeName" : "Forms"
+          },
+          "componentName" : "c:knowledgeArticleFilteredList",
+          "id" : "f2c40086-4e97-49c2-8358-862bcc7cc2c1",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
         "id" : "154ed16a-2a83-4bef-8ae7-3a17f24e3eb2",
         "regionLabel" : "FORMULÁŘE",
         "regionName" : "3",
@@ -210,18 +256,48 @@
           "componentName" : "forceCommunity:tabset",
           "id" : "590df8a4-f448-4ccf-9ed1-53a77cd8c1c9",
           "regions" : [ {
+            "components" : [ {
+              "componentAttributes" : {
+                "documentType" : "Training",
+                "recordId" : "{!recordId}"
+              },
+              "componentName" : "c:contentDocumentFilteredList",
+              "id" : "a9df4ef5-13a7-46bc-818c-b60e9af91ec4",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
             "id" : "57b1599e-af45-4df8-8ceb-20af186af59f",
             "regionLabel" : "Školení",
             "regionName" : "1",
             "renditionMap" : { },
             "type" : "region"
           }, {
+            "components" : [ {
+              "componentAttributes" : {
+                "documentType" : "Guides",
+                "recordId" : "{!recordId}"
+              },
+              "componentName" : "c:contentDocumentFilteredList",
+              "id" : "818150ab-b9b5-47ed-8cc6-68ee7615616c",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
             "id" : "6a3ef022-97c4-42b8-8cdb-319cebebfb32",
             "regionLabel" : "Návody",
             "regionName" : "2",
             "renditionMap" : { },
             "type" : "region"
           }, {
+            "components" : [ {
+              "componentAttributes" : {
+                "documentType" : "Marketing",
+                "recordId" : "{!recordId}"
+              },
+              "componentName" : "c:contentDocumentFilteredList",
+              "id" : "d79b3ef3-9e0f-4971-80c5-0a3074c874ea",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
             "id" : "4d089a42-d87e-4bb6-be18-702d06a03eff",
             "regionLabel" : "Marketing",
             "regionName" : "3",
@@ -263,12 +339,34 @@
           "componentName" : "forceCommunity:tabset",
           "id" : "73631ae9-be62-4091-bb63-e2f924504c0c",
           "regions" : [ {
+            "components" : [ {
+              "componentAttributes" : {
+                "arcticlesType" : "Actual",
+                "recordId" : "{!recordId}",
+                "recordTypeName" : "Evaluation"
+              },
+              "componentName" : "c:knowledgeArticleFilteredList",
+              "id" : "104cffa1-c4eb-410c-b976-4988e6e562cb",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
             "id" : "b10d1dac-8b39-4996-bc97-62262d2674c9",
             "regionLabel" : "Aktuální",
             "regionName" : "1",
             "renditionMap" : { },
             "type" : "region"
           }, {
+            "components" : [ {
+              "componentAttributes" : {
+                "arcticlesType" : "Historical",
+                "recordId" : "{!recordId}",
+                "recordTypeName" : "Evaluation"
+              },
+              "componentName" : "c:knowledgeArticleFilteredList",
+              "id" : "ae44aa6c-b2d8-4b27-8cbe-9c8205141383",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
             "id" : "676b8c14-e576-4846-9cfd-914f3514f7ff",
             "regionLabel" : "Historie",
             "regionName" : "2",
@@ -310,12 +408,34 @@
           "componentName" : "forceCommunity:tabset",
           "id" : "a538f6c3-ca8a-4d58-bb44-d38871bca13c",
           "regions" : [ {
+            "components" : [ {
+              "componentAttributes" : {
+                "arcticlesType" : "Actual",
+                "recordId" : "{!recordId}",
+                "recordTypeName" : "INFO"
+              },
+              "componentName" : "c:knowledgeArticleFilteredList",
+              "id" : "937d0338-fb65-461d-b6b9-9715051b43e3",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
             "id" : "15eaf702-55cd-4b08-aac6-1bb1dca83b22",
             "regionLabel" : "Aktuální",
             "regionName" : "1",
             "renditionMap" : { },
             "type" : "region"
           }, {
+            "components" : [ {
+              "componentAttributes" : {
+                "arcticlesType" : "Historical",
+                "recordId" : "{!recordId}",
+                "recordTypeName" : "INFO"
+              },
+              "componentName" : "c:knowledgeArticleFilteredList",
+              "id" : "c6d931d3-fe34-41c2-aa90-1b3843281478",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
             "id" : "92efcde3-a40f-419c-9a4e-ad610b7534fd",
             "regionLabel" : "Historie",
             "regionName" : "2",
@@ -331,6 +451,17 @@
         "renditionMap" : { },
         "type" : "region"
       }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "arcticlesType" : "All",
+            "recordId" : "{!recordId}",
+            "recordTypeName" : "FAQ"
+          },
+          "componentName" : "c:knowledgeArticleFilteredList",
+          "id" : "c6241fac-198d-4f46-9ee2-559217736832",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
         "id" : "34bac7ef-6369-4ce4-8c1c-785844db7245",
         "regionLabel" : "FAQ",
         "regionName" : "ea276",
@@ -353,19 +484,6 @@
       },
       "componentName" : "selfService:topicTrendingArticles42",
       "id" : "a4149e27-6e6c-43ae-9d09-f755b87954a4",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
-      "componentAttributes" : {
-        "showArticles" : true,
-        "showFollowers" : true,
-        "showPosts" : true,
-        "showTalkingAbout" : true,
-        "topicId" : "{!recordId}"
-      },
-      "componentName" : "forceCommunity:topicMetrics",
-      "id" : "a63e4cc5-822c-4ea1-b405-86f6fff15011",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"

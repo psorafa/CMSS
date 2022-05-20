@@ -130,7 +130,7 @@
           "components" : [ {
             "componentAttributes" : {
               "navAlignment" : "right",
-              "navItemThreshold" : 5,
+              "navItemThreshold" : 8,
               "navigationMenuEditorRefresh" : "Default_Navigation1"
             },
             "componentName" : "forceCommunity:themeNav",
@@ -243,9 +243,9 @@
     "type" : "view"
   }, {
     "componentAttributes" : {
-      "fixedPageWidth" : 1440,
+      "fixedPageWidth" : 1567,
       "headerBgColor" : "rgba(28, 22, 28, 0.9)",
-      "isHeaderPinned" : false,
+      "isHeaderPinned" : true,
       "isHeroUnderHeader" : true,
       "isPageWidthFixed" : true,
       "showHeader" : true,
@@ -295,7 +295,7 @@
               "buttonTextColor" : "",
               "buttonTextHoverColor" : "",
               "customizableUserProfileMenuEditor" : "Default_User_Profile_Menu1",
-              "menuStyleSettings" : "{\"selectedMenuStyleSetting\":\"iconOnly\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
+              "menuStyleSettings" : "{\"selectedMenuStyleSetting\":\"iconAndName\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
             },
             "componentName" : "forceCommunity:customizableUserProfileMenu",
             "id" : "3f3d3860-8840-41ff-ab7b-dec74ad2cbaf",

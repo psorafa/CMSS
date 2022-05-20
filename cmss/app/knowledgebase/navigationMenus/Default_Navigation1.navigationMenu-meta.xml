@@ -4,8 +4,15 @@
     <containerType>Network</containerType>
     <label>Default Navigation</label>
     <navigationMenuItem>
-        <label>Užitečné odkazy</label>
+        <label>Dokumenty</label>
         <position>1</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/file-libraries</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Užitečné odkazy</label>
+        <position>2</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>/useful-links</target>
         <type>InternalLink</type>

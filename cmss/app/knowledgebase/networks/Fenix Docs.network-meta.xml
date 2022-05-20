@@ -28,6 +28,7 @@
     <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
     <networkMemberGroups>
+        <permissionSet>Knowledge_LSF_Permission_Set</permissionSet>
         <profile>admin</profile>
     </networkMemberGroups>
     <networkPageOverrides>
@@ -41,7 +42,7 @@
     <selfRegistration>false</selfRegistration>
     <sendWelcomeEmail>false</sendWelcomeEmail>
     <site>Fenix_Docs</site>
-    <status>UnderConstruction</status>
+    <status>Live</status>
     <tabs>
         <customTab>Knowledge__kav</customTab>
         <defaultTab>home</defaultTab>

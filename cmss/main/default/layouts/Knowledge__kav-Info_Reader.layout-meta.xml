@@ -33,9 +33,6 @@
                 <field>CurrentlyValid__c</field>
             </layoutItems>
             <layoutItems>
-                <field>PublishStatus</field>
-            </layoutItems>
-            <layoutItems>
                 <field>Priority__c</field>
             </layoutItems>
             <layoutItems>
@@ -56,9 +53,6 @@
             <layoutItems>
                 <field>AdditionalQuestionsAnswers__c</field>
             </layoutItems>
-            <layoutItems>
-                <field>Audience__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -69,65 +63,16 @@
         <label>Properties</label>
         <layoutColumns>
             <layoutItems>
-                <field>VersionNumber</field>
-            </layoutItems>
-            <layoutItems>
                 <field>UrlName</field>
             </layoutItems>
-            <layoutItems>
-                <field>LastModifiedById</field>
-            </layoutItems>
-            <layoutItems>
-                <field>CreatedById</field>
-            </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <field>ArticleCreatedDate</field>
-            </layoutItems>
-            <layoutItems>
-                <field>FirstPublishedDate</field>
-            </layoutItems>
-            <layoutItems>
-                <field>LastPublishedDate</field>
-            </layoutItems>
-            <layoutItems>
-                <field>OwnerId</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Channels</label>
-        <layoutColumns>
-            <layoutItems>
-                <field>IsVisibleInApp</field>
-            </layoutItems>
-            <layoutItems>
-                <field>IsVisibleInPrm</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>OneColumn</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>false</editHeading>
-        <label>Statistics</label>
-        <layoutColumns>
-            <layoutItems>
-                <field>ArticleTotalViewCount</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>OneColumn</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>false</editHeading>
         <label>Custom Links</label>
         <layoutColumns/>
         <layoutColumns/>

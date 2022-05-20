@@ -20,14 +20,15 @@
     </articleTypeChannelDisplay>
     <compactLayoutAssignment>KnowledgeCompactLayout</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <enableFeeds>true</enableFeeds>
+    <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <label>Knowledge</label>
     <pluralLabel>Knowledge</pluralLabel>
     <searchLayouts>
+        <customTabListAdditionalFields>TITLE</customTabListAdditionalFields>
         <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
-        <excludedStandardButtons>MassAssignKnowledgeArticleVersion</excludedStandardButtons>
         <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
+        <excludedStandardButtons>MassAssignKnowledgeArticleVersion</excludedStandardButtons>
         <searchResultsAdditionalFields>TITLE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CMSSArticleNumber__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Author__c</searchResultsAdditionalFields>

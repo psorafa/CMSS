@@ -106,6 +106,13 @@
             <componentInstance>
                 <componentName>assigntopics:ccp_assignTopicsUnscoped</componentName>
                 <identifier>assigntopics_ccp_assignTopicsUnscoped1</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!$Permission.StandardPermission.EditKnowledge}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>

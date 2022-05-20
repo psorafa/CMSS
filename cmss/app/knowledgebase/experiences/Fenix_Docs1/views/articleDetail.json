@@ -57,24 +57,6 @@
       "type" : "component"
     }, {
       "componentAttributes" : {
-        "buttonAlignment" : "center",
-        "buttonBgColor" : "",
-        "buttonBgHoverColor" : "",
-        "buttonBorderColor" : "",
-        "buttonMaxWidth" : 85,
-        "buttonRadius" : 50,
-        "buttonTextColor" : "",
-        "buttonTextHoverColor" : "",
-        "recordId" : "{!recordId}",
-        "showNotificationMenu" : true
-      },
-      "componentName" : "forceCommunity:follow",
-      "id" : "0c94efc2-8bfa-445c-b8c4-902d25c63cdb",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
-      "componentAttributes" : {
         "richTextValue" : "<p> </p>"
       },
       "componentName" : "forceCommunity:richTextInline",
