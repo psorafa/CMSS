@@ -19,7 +19,7 @@ public with sharing class ValidateSoqlService {
 			try {
 				Database.query(query);
 			} catch (System.QueryException e) {
-				csc.FilterCondition__c.addError(Label.FilterConditionIsWrong);
+				csc.FilterCondition__c.addError(Label.FilterConditionIsWrong + ', error: ' + e.getMessage());
 			}
 		}
 	}

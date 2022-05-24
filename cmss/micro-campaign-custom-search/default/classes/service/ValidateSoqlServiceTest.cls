@@ -4,8 +4,9 @@ private class ValidateSoqlServiceTest {
 	static void beforeTest() {
 		CustomSearchConfiguration__c myCustomSearchConfiguration = new CustomSearchConfiguration__c(
 			FieldsetName__c = 'Search_Component',
-			FilterCondition__c = 'Name LIKE \'%s%\' ',
-			ObjectType__c = 'Account'
+			FilterCondition__c = 'City__c LIKE \'%demo%\'',
+			ObjectType__c = 'Account',
+			ProductType__c = 'PersonAccount'
 		);
 		insert myCustomSearchConfiguration;
 	}
@@ -13,8 +14,9 @@ private class ValidateSoqlServiceTest {
 	static void validateSoqlServiceTestfromCustomSearchCOnfINsert() {
 		CustomSearchConfiguration__c myCustomSearchConfiguration1 = new CustomSearchConfiguration__c(
 			FieldsetName__c = 'Search_Component',
-			FilterCondition__c = 'Name LIKE \'%s%\' qqq',
-			ObjectType__c = 'Account'
+			FilterCondition__c = 'City__c LIKE \'%s%\' qqq',
+			ObjectType__c = 'Account',
+			ProductType__c = 'PersonAccount'
 		);
 
 		Test.startTest();
@@ -23,14 +25,14 @@ private class ValidateSoqlServiceTest {
 
 		System.assert(!result.isSuccess());
 		System.assert(result.getErrors().size() > 0);
-		System.assertEquals(Label.FilterConditionIsWrong, result.getErrors()[0].getMessage());
-
+		String errorMessage = result.getErrors()[0].getMessage();
+		System.assert(errorMessage.startsWith(Label.FilterConditionIsWrong), 'Error start with defined label');
 	}
 	@IsTest
 	static void validateSoqlServiceTestfromCustomSearchCOnfOkFilter() {
 		CustomSearchConfiguration__c myCustomSearchConfiguration2 = new CustomSearchConfiguration__c(
 			FieldsetName__c = 'Search_Component',
-			FilterCondition__c = 'Name LIKE \'%s%\' ',
+			FilterCondition__c = 'City__c LIKE \'%s%\' ',
 			ObjectType__c = 'Account'
 		);
 
@@ -49,13 +51,14 @@ private class ValidateSoqlServiceTest {
 			FROM CustomSearchConfiguration__c
 			LIMIT 1
 		];
-		customSearchConfigurationList[0].FilterCondition__c = 'Name LIKE \'%s%\' qqq';
+		customSearchConfigurationList[0].FilterCondition__c = 'City__c LIKE \'%s%\' qqq';
 		Test.startTest();
 
 		List<Database.SaveResult> results = Database.update(customSearchConfigurationList, false);
 		System.assert(!results[0].isSuccess());
 		System.assert(results[0].getErrors().size() > 0);
-		System.assertEquals(Label.FilterConditionIsWrong, results[0].getErrors()[0].getMessage());
+		String errorMessage = results[0].getErrors()[0].getMessage();
+		System.assert(errorMessage.startsWith(Label.FilterConditionIsWrong), 'Error start with defined label');
 
 		Test.stopTest();
 	}
