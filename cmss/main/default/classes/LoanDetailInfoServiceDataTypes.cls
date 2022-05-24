@@ -2,6 +2,53 @@
 	
 public class LoanDetailInfoServiceDataTypes {
 	private static final String s_ns0 = 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes';
+	public class AccountDetailType {
+		public BasicTypesService.AccountNumberType accountIdNumber;
+		public Long accountType;
+		// Restriction enumeration: 
+		public String interestRate;
+		private transient String[] accountIdNumber_type_info = new String[]{'accountIdNumber',s_ns0,'AccountNumberType','1','1','false'};
+		private transient String[] accountType_type_info = new String[]{'accountType',s_ns0,'CodeListItemIdType','1','1','false'};
+		private transient String[] interestRate_type_info = new String[]{'interestRate',s_ns0,'InterestRateType','0','1','false'};
+		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
+		private transient String[] field_order_type_info = new String[]{'accountIdNumber','accountType','interestRate'};
+		public AccountDetailType(){
+		}
+		public AccountDetailType(DOM.XmlNode responseNode){
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			DOM.XmlNode accountIdNumberNode = responseNode.getChildElement('accountIdNumber', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			if(accountIdNumberNode == null){
+				this.accountIdNumber = null;
+			} else{
+				BasicTypesService.AccountNumberType accountIdNumberObj = new BasicTypesService.AccountNumberType(accountIdNumberNode);
+				nodesParsed.add(accountIdNumberNode);
+				this.accountIdNumber = accountIdNumberObj;
+			}
+			//System.debug(this.accountIdNumber);			
+			DOM.XmlNode accountTypeNode = responseNode.getChildElement('accountType', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			this.accountType = (accountTypeNode == null) ? null : Long.valueOf(accountTypeNode.getText());
+			nodesParsed.add(accountTypeNode);
+			//System.debug(this.accountType);			
+			DOM.XmlNode interestRateNode = responseNode.getChildElement('interestRate', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			this.interestRate = (interestRateNode == null) ? null : interestRateNode.getText();
+			nodesParsed.add(interestRateNode);
+			//System.debug(this.interestRate);			
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode){
+			
+			BasicTypesService.AccountNumberType accountIdNumberObj = this.accountIdNumber;
+			Dom.XmlNode accountIdNumberNode = outerNode.addChildElement('accountIdNumber', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			if(accountIdNumberObj != null){
+				accountIdNumberObj.populateXmlNode(accountIdNumberNode);
+			}
+			Dom.XmlNode accountTypeNode = outerNode.addChildElement('accountType', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			if(this.accountType != null){
+				accountTypeNode.addTextNode(String.valueOf(this.accountType));
+			}
+			Dom.XmlNode interestRateNode = outerNode.addChildElement('interestRate', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			interestRateNode.addTextNode((this.interestRate == null) ? '' : this.interestRate);
+		}
+	}
 	public class GetLoanDetailInfoRequestBodyType {
 		public BasicTypesService.AccountNumberType loanIdNumber;
 		private transient String[] loanIdNumber_type_info = new String[]{'loanIdNumber',s_ns0,'AccountNumberType','1','1','false'};
@@ -24,7 +71,7 @@ public class LoanDetailInfoServiceDataTypes {
 		public void populateXmlNode(Dom.XmlNode outerNode){
 			
 			BasicTypesService.AccountNumberType loanIdNumberObj = this.loanIdNumber;
-			Dom.XmlNode loanIdNumberNode = outerNode.addChildElement('dat:loanIdNumber',null, null);
+			Dom.XmlNode loanIdNumberNode = outerNode.addChildElement('dat:loanIdNumber', null, null);
 			if(loanIdNumberObj != null){
 				loanIdNumberObj.populateXmlNode(loanIdNumberNode);
 			}
@@ -103,12 +150,10 @@ public class LoanDetailInfoServiceDataTypes {
 	public class GetLoanDetailInfoResponseType {
 		public CommonMessageService.ResponseHeader responseHeader;
 		private transient String[] responseHeader_type_info = new String[]{'responseHeader',s_ns0,'ResponseHeader','1','1','false'};
-		public CommonMessageService.ResponseHeader responseHeader_GetLoanDetailInfoResponseType;
-		private transient String[] responseHeader_GetLoanDetailInfoResponseType_type_info = new String[]{'responseHeader',s_ns0,'ResponseHeader','1','1','false'};
-		public LoanDetailInfoServiceDataTypes.GetLoanDetailInfoResponseBodyType responseBody;
+	    public LoanDetailInfoServiceDataTypes.GetLoanDetailInfoResponseBodyType responseBody;
 		private transient String[] responseBody_type_info = new String[]{'responseBody',s_ns0,'GetLoanDetailInfoResponseBodyType','1','1','false'};
 		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
-		private transient String[] field_order_type_info = new String[]{'responseHeader','responseHeader_GetLoanDetailInfoResponseType','responseBody'};
+		private transient String[] field_order_type_info = new String[]{'responseHeader','responseBody'};
 		public GetLoanDetailInfoResponseType(){
 		}
 		public GetLoanDetailInfoResponseType(DOM.XmlNode responseNode){
@@ -123,14 +168,7 @@ public class LoanDetailInfoServiceDataTypes {
 				this.responseHeader = responseHeaderObj;
 			}
 			//System.debug(this.responseHeader);			
-			DOM.XmlNode responseHeader_GetLoanDetailInfoResponseTypeNode = responseNode.getChildElement('responseHeader_GetLoanDetailInfoResponseType', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
-			if(responseHeader_GetLoanDetailInfoResponseTypeNode == null){
-				this.responseHeader_GetLoanDetailInfoResponseType = null;
-			} else{
-				CommonMessageService.ResponseHeader responseHeader_GetLoanDetailInfoResponseTypeObj = new CommonMessageService.ResponseHeader(responseHeader_GetLoanDetailInfoResponseTypeNode);
-				nodesParsed.add(responseHeader_GetLoanDetailInfoResponseTypeNode);
-				this.responseHeader_GetLoanDetailInfoResponseType = responseHeader_GetLoanDetailInfoResponseTypeObj;
-			}
+		
 			//System.debug(this.responseHeader_GetLoanDetailInfoResponseType);			
 			DOM.XmlNode responseBodyNode = responseNode.getChildElement('responseBody', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
 			if(responseBodyNode == null){
@@ -169,6 +207,42 @@ public class LoanDetailInfoServiceDataTypes {
 			debtSecurityTypeNode.addTextNode((this.debtSecurityType == null) ? '' : String.valueOf(this.debtSecurityType));
 			Dom.XmlNode acceptableValueNode = outerNode.addChildElement('acceptableValue', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			acceptableValueNode.addTextNode((this.acceptableValue == null) ? '' : this.acceptableValue);
+		}
+	}
+	public class ListOfAccountsType {
+		public LoanDetailInfoServiceDataTypes.AccountDetailType[] accountDetail;
+		private transient String[] accountDetail_type_info = new String[]{'accountDetail',s_ns0,'AccountDetailType','0','-1','false'};
+		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
+		private transient String[] field_order_type_info = new String[]{'accountDetail'};
+		public ListOfAccountsType(){
+		}
+		public ListOfAccountsType(DOM.XmlNode responseNode){
+			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			Dom.XmlNode[] accountDetailChildren = responseNode.getChildElements();
+			LoanDetailInfoServiceDataTypes.AccountDetailType[] accountDetailList = new List<LoanDetailInfoServiceDataTypes.AccountDetailType>();
+			if(accountDetailChildren == null || accountDetailChildren.size() == 0){
+				this.accountDetail = null;
+			} else{
+				for(DOM.XmlNode childNode : accountDetailChildren){
+					if(childNode.GetName() == 'accountDetail'){
+						LoanDetailInfoServiceDataTypes.AccountDetailType Obj = new LoanDetailInfoServiceDataTypes.AccountDetailType(childNode);
+						accountDetailList.Add(Obj);
+						nodesParsed.add(childNode);
+					}
+				}
+				this.accountDetail = accountDetailList;
+			}
+			//System.debug(this.accountDetail);			
+		}
+		public void populateXmlNode(Dom.XmlNode outerNode){
+			
+			LoanDetailInfoServiceDataTypes.AccountDetailType[] accountDetailObj = this.accountDetail;
+			if(accountDetailObj != null){
+				for(LoanDetailInfoServiceDataTypes.AccountDetailType element: accountDetailObj){
+					Dom.XmlNode accountDetailNode = outerNode.addChildElement('accountDetail', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+					element.populateXmlNode(accountDetailNode);
+				}
+			}			
 		}
 	}
 	public class ListOfIndemnityType {
@@ -244,7 +318,7 @@ public class LoanDetailInfoServiceDataTypes {
 		}
 	}
 	public class LoanDetailInfoType {
-		// Restriction enumeration: 
+			// Restriction enumeration: 
 		public Date signDate;
 		// Restriction enumeration: 
 		public Date receiptDate;
@@ -270,6 +344,20 @@ public class LoanDetailInfoServiceDataTypes {
 		public String loanUsage3Desc;
 		public LoanDetailInfoServiceDataTypes.ListOfIndemnityType listOfIndemnity;
 		public LoanDetailInfoServiceDataTypes.ListOfPaymentsType listOfPayments;
+		public LoanDetailInfoServiceDataTypes.ListOfAccountsType listOfAccounts;
+		public String aquisitionChannelCode;
+		public String loanCaseAdministrator;
+		public String establishmentTypeCode;
+		public String creditConditions;
+		// Restriction enumeration: 
+		public Date lastDrawdownReminder;
+		// Restriction enumeration: 
+		public Date lastChangeDate;
+		// Restriction enumeration: 
+		public String restObligAmount;
+		// Restriction enumeration: 
+		public Decimal requestedAmount;
+        public Date contractBeginDate;
 		private transient String[] signDate_type_info = new String[]{'signDate',s_ns0,'CommonDateType','0','1','false'};
 		private transient String[] receiptDate_type_info = new String[]{'receiptDate',s_ns0,'CommonDateType','0','1','false'};
 		private transient String[] approvalDate1_type_info = new String[]{'approvalDate1',s_ns0,'CommonDateType','0','1','false'};
@@ -289,8 +377,18 @@ public class LoanDetailInfoServiceDataTypes {
 		private transient String[] loanUsage3Desc_type_info = new String[]{'loanUsage3Desc',s_ns0,'DescriptionType','0','1','false'};
 		private transient String[] listOfIndemnity_type_info = new String[]{'listOfIndemnity',s_ns0,'ListOfIndemnityType','0','1','false'};
 		private transient String[] listOfPayments_type_info = new String[]{'listOfPayments',s_ns0,'ListOfPaymentsType','0','1','false'};
-		private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
-		private transient String[] field_order_type_info = new String[]{'signDate','receiptDate','approvalDate1','approvalDate2','acceptanceDate','signDateOwner','loanUsageCode','realEstateUsageCode','loanPlaceCode','personNumber','decisiveUserId','loanStateCode','variableAmount','originalLoanModeCode','currentLoanModeCode','loanUsage2Code','loanUsage3Desc','listOfIndemnity','listOfPayments'};
+		private transient String[] listOfAccounts_type_info = new String[]{'listOfAccounts',s_ns0,'ListOfAccountsType','0','1','false'};
+		private transient String[] aquisitionChannelCode_type_info = new String[]{'aquisitionChannelCode',s_ns0,'CommonNumberType','0','1','false'};
+		private transient String[] loanCaseAdministrator_type_info = new String[]{'loanCaseAdministrator',s_ns0,'DescriptionType','0','1','false'};
+		private transient String[] establishmentTypeCode_type_info = new String[]{'establishmentTypeCode',s_ns0,'CommonNumberType','0','1','false'};
+		private transient String[] creditConditions_type_info = new String[]{'creditConditions',s_ns0,'DescriptionType','0','1','false'};
+		private transient String[] lastDrawdownReminder_type_info = new String[]{'lastDrawdownReminder',s_ns0,'CommonDateType','0','1','false'};
+		private transient String[] lastChangeDate_type_info = new String[]{'lastChangeDate',s_ns0,'c','0','1','false'};
+		private transient String[] restObligAmount_type_info = new String[]{'restObligAmount',s_ns0,'MoneyAmountType','0','1','false'};
+		private transient String[] requestedAmount_type_info = new String[]{'requestedAmount',s_ns0,'MoneyAmountType','0','1','false'};
+		private transient String[] contractBeginDate_type_info = new String[]{'contractBeginDate',s_ns0,'CommonDateType','0','1','false'};
+        private transient String[] apex_schema_type_info = new String[]{s_ns0,'true','false'};
+		private transient String[] field_order_type_info = new String[]{'signDate','receiptDate','approvalDate1','approvalDate2','acceptanceDate','signDateOwner','loanUsageCode','realEstateUsageCode','loanPlaceCode','personNumber','decisiveUserId','loanStateCode','variableAmount','originalLoanModeCode','currentLoanModeCode','loanUsage2Code','loanUsage3Desc','listOfIndemnity','listOfPayments','listOfAccounts','aquisitionChannelCode','loanCaseAdministrator','establishmentTypeCode','creditConditions','lastDrawdownReminder','lastChangeDate','restObligAmount','requestedAmount'};
 		public LoanDetailInfoType(){
 		}
 		public LoanDetailInfoType(DOM.XmlNode responseNode){
@@ -321,8 +419,7 @@ public class LoanDetailInfoServiceDataTypes {
 			//System.debug(this.signDateOwner);			
 			DOM.XmlNode loanUsageCodeNode = responseNode.getChildElement('loanUsageCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
 			this.loanUsageCode = (loanUsageCodeNode == null) ? null : loanUsageCodeNode.getText();
-			nodesParsed.add(loanUsageCodeNode);
-			//System.debug(this.loanUsageCode);			
+			nodesParsed.add(loanUsageCodeNode);		
 			DOM.XmlNode realEstateUsageCodeNode = responseNode.getChildElement('realEstateUsageCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
 			this.realEstateUsageCode = (realEstateUsageCodeNode == null) ? null : Long.valueOf(realEstateUsageCodeNode.getText());
 			nodesParsed.add(realEstateUsageCodeNode);
@@ -333,20 +430,17 @@ public class LoanDetailInfoServiceDataTypes {
 			//System.debug(this.loanPlaceCode);			
 			DOM.XmlNode personNumberNode = responseNode.getChildElement('personNumber', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
 			this.personNumber = (personNumberNode == null) ? null : personNumberNode.getText();
-			nodesParsed.add(personNumberNode);
-			//System.debug(this.personNumber);			
+			nodesParsed.add(personNumberNode);			
 			DOM.XmlNode decisiveUserIdNode = responseNode.getChildElement('decisiveUserId', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
 			this.decisiveUserId = (decisiveUserIdNode == null) ? null : Long.valueOf(decisiveUserIdNode.getText());
 			nodesParsed.add(decisiveUserIdNode);
 			//System.debug(this.decisiveUserId);			
 			DOM.XmlNode loanStateCodeNode = responseNode.getChildElement('loanStateCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
 			this.loanStateCode = (loanStateCodeNode == null) ? null : loanStateCodeNode.getText();
-			nodesParsed.add(loanStateCodeNode);
-			//System.debug(this.loanStateCode);			
+			nodesParsed.add(loanStateCodeNode);		
 			DOM.XmlNode variableAmountNode = responseNode.getChildElement('variableAmount', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
 			this.variableAmount = (variableAmountNode == null) ? null : Decimal.valueOf(variableAmountNode.getText());
 			nodesParsed.add(variableAmountNode);
-			//System.debug(this.variableAmount);			
 			DOM.XmlNode originalLoanModeCodeNode = responseNode.getChildElement('originalLoanModeCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
 			this.originalLoanModeCode = (originalLoanModeCodeNode == null) ? null : Long.valueOf(originalLoanModeCodeNode.getText());
 			nodesParsed.add(originalLoanModeCodeNode);
@@ -357,8 +451,7 @@ public class LoanDetailInfoServiceDataTypes {
 			//System.debug(this.currentLoanModeCode);			
 			DOM.XmlNode loanUsage2CodeNode = responseNode.getChildElement('loanUsage2Code', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
 			this.loanUsage2Code = (loanUsage2CodeNode == null) ? null : loanUsage2CodeNode.getText();
-			nodesParsed.add(loanUsage2CodeNode);
-			//System.debug(this.loanUsage2Code);			
+			nodesParsed.add(loanUsage2CodeNode);			
 			DOM.XmlNode loanUsage3DescNode = responseNode.getChildElement('loanUsage3Desc', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
 			this.loanUsage3Desc = (loanUsage3DescNode == null) ? null : loanUsage3DescNode.getText();
 			nodesParsed.add(loanUsage3DescNode);
@@ -381,6 +474,50 @@ public class LoanDetailInfoServiceDataTypes {
 				this.listOfPayments = listOfPaymentsObj;
 			}
 			//System.debug(this.listOfPayments);			
+			DOM.XmlNode listOfAccountsNode = responseNode.getChildElement('listOfAccounts', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			if(listOfAccountsNode == null){
+				this.listOfAccounts = null;
+			} else{
+				LoanDetailInfoServiceDataTypes.ListOfAccountsType listOfAccountsObj = new LoanDetailInfoServiceDataTypes.ListOfAccountsType(listOfAccountsNode);
+				nodesParsed.add(listOfAccountsNode);
+				this.listOfAccounts = listOfAccountsObj;
+			}
+			//System.debug(this.listOfAccounts);			
+			DOM.XmlNode aquisitionChannelCodeNode = responseNode.getChildElement('aquisitionChannelCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			this.aquisitionChannelCode = (aquisitionChannelCodeNode == null) ? null : aquisitionChannelCodeNode.getText();
+			nodesParsed.add(aquisitionChannelCodeNode);
+			//System.debug(this.aquisitionChannelCode);			
+			DOM.XmlNode loanCaseAdministratorNode = responseNode.getChildElement('loanCaseAdministrator', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			this.loanCaseAdministrator = (loanCaseAdministratorNode == null) ? null : loanCaseAdministratorNode.getText();
+			nodesParsed.add(loanCaseAdministratorNode);
+			//System.debug(this.loanCaseAdministrator);			
+			DOM.XmlNode establishmentTypeCodeNode = responseNode.getChildElement('establishmentTypeCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			this.establishmentTypeCode = (establishmentTypeCodeNode == null) ? null : establishmentTypeCodeNode.getText();
+			nodesParsed.add(establishmentTypeCodeNode);
+			//System.debug(this.establishmentTypeCode);			
+			DOM.XmlNode creditConditionsNode = responseNode.getChildElement('creditConditions', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			this.creditConditions = (creditConditionsNode == null) ? null : creditConditionsNode.getText();
+			nodesParsed.add(creditConditionsNode);
+			//System.debug(this.creditConditions);			
+			DOM.XmlNode lastDrawdownReminderNode = responseNode.getChildElement('lastDrawdownReminder', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			this.lastDrawdownReminder = (lastDrawdownReminderNode == null) ? null : Date.valueOf(lastDrawdownReminderNode.getText());
+			nodesParsed.add(lastDrawdownReminderNode);
+			//System.debug(this.lastDrawdownReminder);			
+			DOM.XmlNode lastChangeDateNode = responseNode.getChildElement('lastChangeDate', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			this.lastChangeDate = (lastChangeDateNode == null) ? null : Date.valueOf(lastChangeDateNode.getText());
+			nodesParsed.add(lastChangeDateNode);
+			//System.debug(this.lastChangeDate);			
+			DOM.XmlNode restObligAmountNode = responseNode.getChildElement('restObligAmount', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			this.restObligAmount = (restObligAmountNode == null) ? null : restObligAmountNode.getText();
+			nodesParsed.add(restObligAmountNode);
+			//System.debug(this.restObligAmount);			
+			DOM.XmlNode requestedAmountNode = responseNode.getChildElement('requestedAmount', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			this.requestedAmount = (requestedAmountNode == null) ? null : Decimal.valueOf(requestedAmountNode.getText());
+			nodesParsed.add(requestedAmountNode);
+			//System.debug(this.requestedAmount);	
+			DOM.XmlNode contractBeginDateNode = responseNode.getChildElement('contractBeginDate', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
+			this.contractBeginDate = (contractBeginDateNode == null) ? null :  Date.valueOf(contractBeginDateNode.getText());
+			nodesParsed.add(contractBeginDateNode);		
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode){
 			Dom.XmlNode signDateNode = outerNode.addChildElement('signDate', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
@@ -396,17 +533,17 @@ public class LoanDetailInfoServiceDataTypes {
 			Dom.XmlNode signDateOwnerNode = outerNode.addChildElement('signDateOwner', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			signDateOwnerNode.addTextNode((this.signDateOwner == null) ? '' : String.valueOf(this.signDateOwner));
 			Dom.XmlNode loanUsageCodeNode = outerNode.addChildElement('loanUsageCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
-			loanUsageCodeNode.addTextNode((this.loanUsageCode == null) ? '' : this.loanUsageCode);
+			loanUsageCodeNode.addTextNode((this.loanUsageCode == null) ? '' : String.valueOf(this.loanUsageCode));
 			Dom.XmlNode realEstateUsageCodeNode = outerNode.addChildElement('realEstateUsageCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			realEstateUsageCodeNode.addTextNode((this.realEstateUsageCode == null) ? '' : String.valueOf(this.realEstateUsageCode));
 			Dom.XmlNode loanPlaceCodeNode = outerNode.addChildElement('loanPlaceCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			loanPlaceCodeNode.addTextNode((this.loanPlaceCode == null) ? '' : String.valueOf(this.loanPlaceCode));
 			Dom.XmlNode personNumberNode = outerNode.addChildElement('personNumber', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
-			personNumberNode.addTextNode((this.personNumber == null) ? '' : this.personNumber);
+			personNumberNode.addTextNode((this.personNumber == null) ? '' : String.valueOf(this.personNumber));
 			Dom.XmlNode decisiveUserIdNode = outerNode.addChildElement('decisiveUserId', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			decisiveUserIdNode.addTextNode((this.decisiveUserId == null) ? '' : String.valueOf(this.decisiveUserId));
 			Dom.XmlNode loanStateCodeNode = outerNode.addChildElement('loanStateCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
-			loanStateCodeNode.addTextNode((this.loanStateCode == null) ? '' : this.loanStateCode);
+			loanStateCodeNode.addTextNode((this.loanStateCode == null) ? '' : String.valueOf(this.loanStateCode));
 			Dom.XmlNode variableAmountNode = outerNode.addChildElement('variableAmount', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			variableAmountNode.addTextNode((this.variableAmount == null) ? '' : String.valueOf(this.variableAmount));
 			Dom.XmlNode originalLoanModeCodeNode = outerNode.addChildElement('originalLoanModeCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
@@ -414,7 +551,7 @@ public class LoanDetailInfoServiceDataTypes {
 			Dom.XmlNode currentLoanModeCodeNode = outerNode.addChildElement('currentLoanModeCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			currentLoanModeCodeNode.addTextNode((this.currentLoanModeCode == null) ? '' : String.valueOf(this.currentLoanModeCode));
 			Dom.XmlNode loanUsage2CodeNode = outerNode.addChildElement('loanUsage2Code', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
-			loanUsage2CodeNode.addTextNode((this.loanUsage2Code == null) ? '' : this.loanUsage2Code);
+			loanUsage2CodeNode.addTextNode((this.loanUsage2Code == null) ? '' : String.valueOf(this.loanUsage2Code));
 			Dom.XmlNode loanUsage3DescNode = outerNode.addChildElement('loanUsage3Desc', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			loanUsage3DescNode.addTextNode((this.loanUsage3Desc == null) ? '' : this.loanUsage3Desc);
 			
@@ -429,6 +566,30 @@ public class LoanDetailInfoServiceDataTypes {
 			if(listOfPaymentsObj != null){
 				listOfPaymentsObj.populateXmlNode(listOfPaymentsNode);
 			}
+			
+			LoanDetailInfoServiceDataTypes.ListOfAccountsType listOfAccountsObj = this.listOfAccounts;
+			Dom.XmlNode listOfAccountsNode = outerNode.addChildElement('listOfAccounts', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			if(listOfAccountsObj != null){
+				listOfAccountsObj.populateXmlNode(listOfAccountsNode);
+			}
+			Dom.XmlNode aquisitionChannelCodeNode = outerNode.addChildElement('aquisitionChannelCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			aquisitionChannelCodeNode.addTextNode((this.aquisitionChannelCode == null) ? '' : this.aquisitionChannelCode);
+			Dom.XmlNode loanCaseAdministratorNode = outerNode.addChildElement('loanCaseAdministrator', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			loanCaseAdministratorNode.addTextNode((this.loanCaseAdministrator == null) ? '' : this.loanCaseAdministrator);
+			Dom.XmlNode establishmentTypeCodeNode = outerNode.addChildElement('establishmentTypeCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			establishmentTypeCodeNode.addTextNode((this.establishmentTypeCode == null) ? '' : this.establishmentTypeCode);
+			Dom.XmlNode creditConditionsNode = outerNode.addChildElement('creditConditions', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			creditConditionsNode.addTextNode((this.creditConditions == null) ? '' : this.creditConditions);
+			Dom.XmlNode lastDrawdownReminderNode = outerNode.addChildElement('lastDrawdownReminder', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			lastDrawdownReminderNode.addTextNode((this.lastDrawdownReminder == null) ? '' : String.valueOf(this.lastDrawdownReminder));
+			Dom.XmlNode lastChangeDateNode = outerNode.addChildElement('lastChangeDate', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			lastChangeDateNode.addTextNode((this.lastChangeDate == null) ? '' : String.valueOf(this.lastChangeDate));
+			Dom.XmlNode restObligAmountNode = outerNode.addChildElement('restObligAmount', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			restObligAmountNode.addTextNode((this.restObligAmount == null) ? '' : String.valueOf(this.restObligAmount));
+			Dom.XmlNode requestedAmountNode = outerNode.addChildElement('requestedAmount', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			requestedAmountNode.addTextNode((this.requestedAmount == null) ? '' : String.valueOf(this.requestedAmount));
+            Dom.XmlNode contractBeginDateNode = outerNode.addChildElement('contractBeginDate', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
+			contractBeginDateNode.addTextNode((this.contractBeginDate == null) ? '' : String.valueOf(this.contractBeginDate));
 		}
 	}
 	public class PaymentsDetailType {
@@ -441,8 +602,8 @@ public class LoanDetailInfoServiceDataTypes {
 		public String payingSegmentAV;
 		public String payingSegmentRecipient;
 		private transient String[] payingSegmentPrefixNumber_type_info = new String[]{'payingSegmentPrefixNumber',s_ns0,'DescriptionType','0','1','false'};
-		private transient String[] payingSegmentNumber_type_info = new String[]{'payingSegmentNumber',s_ns0,'DescriptionType','1','1','false'};
-		private transient String[] payingSegmentBankCode_type_info = new String[]{'payingSegmentBankCode',s_ns0,'DescriptionType','1','1','false'};
+		private transient String[] payingSegmentNumber_type_info = new String[]{'payingSegmentNumber',s_ns0,'DescriptionType','0','1','false'};
+		private transient String[] payingSegmentBankCode_type_info = new String[]{'payingSegmentBankCode',s_ns0,'DescriptionType','0','1','false'};
 		private transient String[] payingSegmentConstaintSymbol_type_info = new String[]{'payingSegmentConstaintSymbol',s_ns0,'DescriptionType','0','1','false'};
 		private transient String[] payingSegmentVariableSymbol_type_info = new String[]{'payingSegmentVariableSymbol',s_ns0,'DescriptionType','0','1','false'};
 		private transient String[] payingSegmentSpecificSymbol_type_info = new String[]{'payingSegmentSpecificSymbol',s_ns0,'DescriptionType','0','1','false'};
@@ -491,13 +652,9 @@ public class LoanDetailInfoServiceDataTypes {
 			Dom.XmlNode payingSegmentPrefixNumberNode = outerNode.addChildElement('payingSegmentPrefixNumber', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			payingSegmentPrefixNumberNode.addTextNode((this.payingSegmentPrefixNumber == null) ? '' : this.payingSegmentPrefixNumber);
 			Dom.XmlNode payingSegmentNumberNode = outerNode.addChildElement('payingSegmentNumber', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
-			if(this.payingSegmentNumber != null){
-				payingSegmentNumberNode.addTextNode(this.payingSegmentNumber);
-			}
+			payingSegmentNumberNode.addTextNode((this.payingSegmentNumber == null) ? '' : this.payingSegmentNumber);
 			Dom.XmlNode payingSegmentBankCodeNode = outerNode.addChildElement('payingSegmentBankCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
-			if(this.payingSegmentBankCode != null){
-				payingSegmentBankCodeNode.addTextNode(this.payingSegmentBankCode);
-			}
+			payingSegmentBankCodeNode.addTextNode((this.payingSegmentBankCode == null) ? '' : this.payingSegmentBankCode);
 			Dom.XmlNode payingSegmentConstaintSymbolNode = outerNode.addChildElement('payingSegmentConstaintSymbol', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			payingSegmentConstaintSymbolNode.addTextNode((this.payingSegmentConstaintSymbol == null) ? '' : this.payingSegmentConstaintSymbol);
 			Dom.XmlNode payingSegmentVariableSymbolNode = outerNode.addChildElement('payingSegmentVariableSymbol', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');

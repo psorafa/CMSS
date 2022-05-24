@@ -40,6 +40,7 @@ public class LoanServiceController {
             LoanServiceDataTypes.ListOfPackagesType response = responseBody.listOfPackages;
             
             List<UpdateLoanAssetsFlowController.LoadPackagesCalloutResult> resultList = new List<UpdateLoanAssetsFlowController.LoadPackagesCalloutResult>();
+            if(response.packagesItem != null ){
             for(LoanServiceDataTypes.PackagesItemType packagesItem : response.packagesItem){
                 UpdateLoanAssetsFlowController.LoadPackagesCalloutResult result = new UpdateLoanAssetsFlowController.LoadPackagesCalloutResult();
                 result.packageId = packagesItem.packageId;
@@ -49,8 +50,8 @@ public class LoanServiceController {
                 result.validFrom = packagesItem.validFrom;
                 result.validTo = packagesItem.validTo;
                 resultList.add(result);
-            }
-            return resultList;
+            }}
+                return resultList;
         } else{
             return null;
         }
