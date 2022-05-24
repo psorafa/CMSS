@@ -2,29 +2,33 @@
 private class CustomSoqlServiceTest {
 	@TestSetup
 	static void beforeTest() {
-		Account myAcc = new Account(Name = 'Sportisimo', VatNumber__c = 'CZ6397685965', NACE__c = 'AAA');
+		Account myAcc = new Account(
+			Name = 'Sportisimo',
+			City__c = 'Sportisimo',
+			VatNumber__c = 'CZ6397685965',
+			NACE__c = 'AAA'
+		);
 		insert myAcc;
 
 		CustomSearchConfiguration__c myCustomSearchConfiguration = new CustomSearchConfiguration__c(
 			FieldsetName__c = 'Search_Component',
-			FilterCondition__c = 'Name LIKE \'%s%\' ',
+			FilterCondition__c = 'City__c LIKE \'%s%\' ',
 			ObjectType__c = 'Account'
 		);
 		insert myCustomSearchConfiguration;
-
 	}
 	@IsTest
 	static void getOperatorToSelectStatementTest() {
 		Test.startTest();
-		String em = CustomSoqlService.getOperatorToSelectStatement('name', 'exact match', 'sport', 'Text');
-		String co = CustomSoqlService.getOperatorToSelectStatement('name', 'contains', 'sport', 'Text');
-		String sv = CustomSoqlService.getOperatorToSelectStatement('name', 'start with', 'sport', 'Text');
-		String ev = CustomSoqlService.getOperatorToSelectStatement('name', 'end with', 'sport', 'Text');
+		String em = CustomSoqlService.getOperatorToSelectStatement('city__c', 'exact match', 'sport', 'Text');
+		String co = CustomSoqlService.getOperatorToSelectStatement('city__c', 'contains', 'sport', 'Text');
+		String sv = CustomSoqlService.getOperatorToSelectStatement('city__c', 'start with', 'sport', 'Text');
+		String ev = CustomSoqlService.getOperatorToSelectStatement('city__c', 'end with', 'sport', 'Text');
 		String nm = CustomSoqlService.getOperatorToSelectStatement('VatNumber__c', '<=', '1234', 'number');
-		System.assertEquals(em, 'name = \'sport\'');
-		System.assertEquals(co, 'name LIKE \'%sport%\'');
-		System.assertEquals(sv, 'name LIKE \'sport%\'');
-		System.assertEquals(ev, 'name LIKE \'%sport\'');
+		System.assertEquals(em, 'city__c = \'sport\'');
+		System.assertEquals(co, 'city__c LIKE \'%sport%\'');
+		System.assertEquals(sv, 'city__c LIKE \'sport%\'');
+		System.assertEquals(ev, 'city__c LIKE \'%sport\'');
 		System.assertEquals(nm, 'VatNumber__c <= 1234');
 		Test.stopTest();
 	}
@@ -53,9 +57,9 @@ private class CustomSoqlServiceTest {
 
 	private static CustomSearchFilterRequestDto prepareRequestDto() {
 		CustomSearchConfiguration__c myCustomSearchConfiguration = [
-				SELECT FieldsetName__c, FilterCondition__c, ObjectType__c
-				FROM CustomSearchConfiguration__c
-				LIMIT 1
+			SELECT FieldsetName__c, FilterCondition__c, ObjectType__c
+			FROM CustomSearchConfiguration__c
+			LIMIT 1
 		];
 
 		CustomSearchFilterRequestDto myDto = new CustomSearchFilterRequestDto();
@@ -75,11 +79,9 @@ private class CustomSoqlServiceTest {
 		filter2.value = 'Sport';
 
 		myCustomFilterItemDto.objectName = 'Account';
-		myCustomFilterItemDto.fieldName = 'Name';
+		myCustomFilterItemDto.fieldName = 'City__c';
 		myCustomFilterItemDto.dataType = 'Text';
-		myCustomFilterItemDto.filters = new List<CustomSearchFilterRequestDto.FilterOptionDto>{
-				filter1, filter2
-		};
+		myCustomFilterItemDto.filters = new List<CustomSearchFilterRequestDto.FilterOptionDto>{ filter1, filter2 };
 
 		myCustomFilterItemDtoList.add(myCustomFilterItemDto);
 		myDto.filterItemList = myCustomFilterItemDtoList;

@@ -355,6 +355,11 @@
             <section>Vlastní odkazy</section>
         </sections>
     </layouts>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Načíst aktuální údaje</label>
+        <name>UpdateCreditCases</name>
+    </quickActions>
     <recordTypes>
         <description><!-- Stavební spoření --></description>
         <label>Stavební spoření</label>

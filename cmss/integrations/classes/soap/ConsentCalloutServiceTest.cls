@@ -1,6 +1,5 @@
 @IsTest
 private class ConsentCalloutServiceTest {
-
 	@TestSetup
 	static void insertCustomSettings() {
 		insert TestDataFactory.getIntegrationSettings();
@@ -15,38 +14,44 @@ private class ConsentCalloutServiceTest {
 			new Map<String, String>{
 				'EnableGeneralConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableGeneralConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableGeneralConsentResponse></soapenv:Body></soapenv:Envelope>',
 				'DisableGeneralConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:DisableGeneralConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>4e468a55-0d73-4fb5-af15-0696563f9af3</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:success><Successful>true</Successful></ns3:success></ns3:responseBody></ns3:DisableGeneralConsentResponse></soapenv:Body></soapenv:Envelope>',
-                'EnableChannelConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableChannelConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableChannelConsentResponse></soapenv:Body></soapenv:Envelope>',
+				'EnableChannelConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableChannelConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableChannelConsentResponse></soapenv:Body></soapenv:Envelope>',
 				'DisableChannelConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:DisableChannelConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:DisableChannelConsentResponse></soapenv:Body></soapenv:Envelope>'
 			},
-			null);
+			null
+		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		Consent__c c = TestDataFactory.getConsent(new Consent__c());
-        c.AllConsent__c = '2';
+		c.AllConsent__c = '2';
 
 		Test.startTest();
 		String response = GeneralConsentEnablement.enableGeneralConsents(c);
 		Test.stopTest();
 
 		System.assert(response == 'OK');
-        System.assert([SELECT Id FROM Consent__c].size() == 1);
+		System.assert([SELECT Id FROM Consent__c].size() == 1);
 
-        System.assert([
-            SELECT Id
-            FROM Log__c 
-            WHERE Message__c = 'Outgoing request' 
-                AND ClassMethodName__c = 'ConsentCalloutService.ConsentServicePort.disableGeneralConsent_Http'
-        ].size() > 0);
+		System.assert(
+			[
+				SELECT Id
+				FROM Log__c
+				WHERE
+					Message__c = 'Outgoing request'
+					AND ClassMethodName__c = 'ConsentCalloutService.ConsentServicePort.disableGeneralConsent_Http'
+			]
+			.size() > 0
+		);
 	}
 
-    @IsTest
+	@IsTest
 	static void testEnableGeneralConsentError() {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			500,
 			'Internal Server Error',
 			'<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><soapenv:Fault><faultcode>soapenv:Server</faultcode><faultstring>Připojení k CPE DB se nezdařilo</faultstring><detail><ns2:CMSSServiceFaultInfo xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01" xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes"><ns2:errorNumber>57101</ns2:errorNumber><ns2:faultHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>56bb5218-3421-4080-b42c-99ff9532d0c1</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-02-17T11:06:19.956+01:00</ns2:timestamp><ns2:userId>0051j000006IxpjAAC</ns2:userId></ns2:faultHeader><ns2:message>Připojení k CPE DB se nezdařilo</ns2:message><ns2:system>ESB</ns2:system></ns2:CMSSServiceFaultInfo></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>',
 			null,
-			null);
+			null
+		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		Consent__c c = TestDataFactory.getConsent(new Consent__c());
@@ -56,7 +61,7 @@ private class ConsentCalloutServiceTest {
 		Test.stopTest();
 
 		System.assert(response == 'Připojení k CPE DB se nezdařilo');
-        System.assert([SELECT Id FROM Consent__c].size() == 0);
+		System.assert([SELECT Id FROM Consent__c].size() == 0);
 	}
 
 	@IsTest
@@ -66,7 +71,8 @@ private class ConsentCalloutServiceTest {
 			'OK',
 			'<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableInternalConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableInternalConsentResponse></soapenv:Body></soapenv:Envelope>',
 			null,
-			null);
+			null
+		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		InternalConsent__c internalConsent = TestDataFactory.getInternalConsent(new InternalConsent__c());
@@ -79,44 +85,50 @@ private class ConsentCalloutServiceTest {
 		r.accountId = internalConsent.Account__c;
 
 		Test.startTest();
-		InternalConsentEnablement.Result[] response = InternalConsentEnablement.enableInternalConsents(new InternalConsentEnablement.Request[]{
-			r
-		});
+		InternalConsentEnablement.Result[] response = InternalConsentEnablement.enableInternalConsents(
+			new List<InternalConsentEnablement.Request>{ r }
+		);
 		Test.stopTest();
 
 		System.assert(response != null && response[0] != null);
 		System.assert(response[0].externalId.contains('E8FF097A-B0D4-4A19-BC37-3509B762FE3A'));
 	}
 
-    @IsTest
+	@IsTest
 	static void testProcessGeneralConsentOnUpdate() {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
 			null,
 			new Map<String, String>{
-                'EnableGeneralConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableGeneralConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableGeneralConsentResponse></soapenv:Body></soapenv:Envelope>',
+				'EnableGeneralConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableGeneralConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableGeneralConsentResponse></soapenv:Body></soapenv:Envelope>',
 				'DisableGeneralConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:DisableGeneralConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>4e468a55-0d73-4fb5-af15-0696563f9af3</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:success><Successful>true</Successful></ns3:success></ns3:responseBody></ns3:DisableGeneralConsentResponse></soapenv:Body></soapenv:Envelope>',
 				'EnableChannelConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableChannelConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableChannelConsentResponse></soapenv:Body></soapenv:Envelope>',
 				'DisableChannelConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:DisableChannelConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:DisableChannelConsentResponse></soapenv:Body></soapenv:Envelope>'
 			},
-			null);
+			null
+		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		Test.startTest();
 		Consent__c c = TestDataFactory.getConsent(new Consent__c());
 		insert c;
 
-        c.AllConsent__c = '2';
-        c.SMSConsent__c = '2';
+		c.AllConsent__c = '2';
+		c.SMSConsent__c = '2';
 		update c;
 		Test.stopTest();
 
-		System.assert([
-            SELECT Id
-            FROM Log__c 
-            WHERE Message__c = 'Outgoing request' AND ClassMethodName__c LIKE '%ConsentCalloutService.ConsentServicePort%'
-        ].size() == 6);
+		System.assert(
+			[
+				SELECT Id
+				FROM Log__c
+				WHERE
+					Message__c = 'Outgoing request'
+					AND ClassMethodName__c LIKE '%ConsentCalloutService.ConsentServicePort%'
+			]
+			.size() == 6
+		);
 	}
 
 	@IsTest
@@ -125,13 +137,14 @@ private class ConsentCalloutServiceTest {
 			200,
 			'OK',
 			null,
-			new Map<String, String>{               
-                'EnableGeneralConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableGeneralConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableGeneralConsentResponse></soapenv:Body></soapenv:Envelope>',
+			new Map<String, String>{
+				'EnableGeneralConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableGeneralConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableGeneralConsentResponse></soapenv:Body></soapenv:Envelope>',
 				'DisableGeneralConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:DisableGeneralConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>4e468a55-0d73-4fb5-af15-0696563f9af3</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:success><Successful>true</Successful></ns3:success></ns3:responseBody></ns3:DisableGeneralConsentResponse></soapenv:Body></soapenv:Envelope>',
 				'EnableChannelConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableChannelConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableChannelConsentResponse></soapenv:Body></soapenv:Envelope>',
 				'DisableChannelConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:DisableChannelConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:DisableChannelConsentResponse></soapenv:Body></soapenv:Envelope>'
 			},
-			null);
+			null
+		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		Test.startTest();
@@ -145,7 +158,11 @@ private class ConsentCalloutServiceTest {
 		update consents;
 		Test.stopTest();
 
-		List<Log__c> logs = [SELECT Message__c, Payload__c FROM Log__c WHERE Message__c = 'Outgoing request' OR Message__c = 'Incoming response'];
+		List<Log__c> logs = [
+			SELECT Message__c, Payload__c
+			FROM Log__c
+			WHERE Message__c = 'Outgoing request' OR Message__c = 'Incoming response'
+		];
 		System.assertEquals(400, logs.size());
 	}
 
@@ -159,12 +176,15 @@ private class ConsentCalloutServiceTest {
 				'EnableInternalConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:EnableInternalConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:EnableInternalConsentResponse></soapenv:Body></soapenv:Envelope>',
 				'DisableInternalConsentRequest' => '<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:DisableInternalConsentResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:consentGuid>E8FF097A-B0D4-4A19-BC37-3509B762FE3A</ns3:consentGuid></ns3:responseBody></ns3:DisableInternalConsentResponse></soapenv:Body></soapenv:Envelope>'
 			},
-			null);
+			null
+		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		Test.startTest();
 		List<InternalConsent__c> consents = TestDataFactory.getInternalConsents(100, new InternalConsent__c());
-		consents.addAll(TestDataFactory.getInternalConsents(100, new InternalConsent__c(InternalConsentValue__c = '2')));
+		consents.addAll(
+			TestDataFactory.getInternalConsents(100, new InternalConsent__c(InternalConsentValue__c = '2'))
+		);
 		insert consents;
 
 		for (Integer i = 0; i < consents.size(); i++) {
@@ -179,11 +199,16 @@ private class ConsentCalloutServiceTest {
 		System.assertEquals(200, logs2.size());
 	}
 
-	@IsTest static void coverGeneratedCodeTypes() {
+	@IsTest
+	static void coverGeneratedCodeTypes() {
 		//Test.setMock(WebServiceMock.class, new serviceCmssCzPersonConsentservicMockImpl());
 		new ConsentDataTypesService();
 		DOM.Document doc = new DOM.Document();
-		DOM.XmlNode mockNode = doc.createRootElement('Envelope', 'http://schemas.xmlsoap.org/soap/envelope/', 'soapenv');
+		DOM.XmlNode mockNode = doc.createRootElement(
+			'Envelope',
+			'http://schemas.xmlsoap.org/soap/envelope/',
+			'soapenv'
+		);
 		new CommonMessageService.CMSSBusinessLogicFaultInfo(mockNode);
 		new CommonMessageService.CMSSFaultInfo(mockNode);
 		new CommonMessageService.CMSSSecurityFaultInfo(mockNode);
@@ -243,7 +268,7 @@ private class ConsentCalloutServiceTest {
 		ConsentDataTypesService.DisableChannelConsentResponseBodyType Obj15 = new ConsentDataTypesService.DisableChannelConsentResponseBodyType();
 		Obj15.populateXmlNode(mockNode);
 		new ConsentDataTypesService.DisableChannelConsentResponseType();
-        ConsentDataTypesService.DisableGeneralConsentRequestBodyType Obj17 = new ConsentDataTypesService.DisableGeneralConsentRequestBodyType();
+		ConsentDataTypesService.DisableGeneralConsentRequestBodyType Obj17 = new ConsentDataTypesService.DisableGeneralConsentRequestBodyType();
 		Obj17.populateXmlNode(mockNode);
 		ConsentDataTypesService.DisableGeneralConsentRequestType Obj18 = new ConsentDataTypesService.DisableGeneralConsentRequestType();
 		Obj18.populateXmlNode(mockNode);
