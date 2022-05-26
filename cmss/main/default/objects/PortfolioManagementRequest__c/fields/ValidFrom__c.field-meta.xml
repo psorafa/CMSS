@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ValidFrom__c</fullName>
+    <defaultValue>NOW () + (1/24)</defaultValue>
     <description>Platnost od</description>
     <externalId>false</externalId>
     <label>Valid From</label>
