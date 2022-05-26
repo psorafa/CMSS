@@ -87,7 +87,7 @@ public class UpdateLoanAssetsFlowController {
 		public Date lastChangeDate;
 		public String restObligAmount;
 		public Decimal requestedAmount;
-        public Date contractBeginDate;
+        public Date signDateOwner;
     }
     
     

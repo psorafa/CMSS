@@ -53,8 +53,8 @@ public without sharing class LoanDetailInfoServiceController {
             result.lastDrawdownReminder = response.lastDrawdownReminder;  
             result.lastChangeDate = response.lastChangeDate;
             result.restObligAmount = response.restObligAmount;  
-            result.contractBeginDate = response.contractBeginDate;
             result.requestedAmount = response.requestedAmount;
+            result.signDateOwner = response.signDateOwner;
             return result;
         }else{
             return null;
