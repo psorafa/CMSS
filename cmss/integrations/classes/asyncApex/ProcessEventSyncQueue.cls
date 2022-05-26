@@ -371,9 +371,11 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 
 	private Boolean isTooOld(GoogleCalendarSyncUtility.GoogleEventDTO googleEvent) {
 		if (
+			(googleEvent.start_x?.dateTime_x != null &&
 			GoogleCalendarSyncUtility.getDateTimeFromGoogleFormat(googleEvent.start_x?.dateTime_x) <
-			System.now().addDays(-90) ||
-			googleEvent.start_x?.date_x < System.today().addDays(-90)
+			System.now().addDays(-90)) ||
+			(googleEvent.start_x?.date_x != null &&
+			googleEvent.start_x?.date_x < System.today().addDays(-90))
 		) {
 			return true;
 		}

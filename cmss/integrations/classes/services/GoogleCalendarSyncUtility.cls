@@ -182,9 +182,6 @@ public class GoogleCalendarSyncUtility {
 		List<Schema.FieldSetMember> fields = SObjectType.Event.FieldSets.CalendarSyncFields.getFields();
 		for (Schema.FieldSetMember field : fields) {
 			if (oldEvent.get(field.getFieldPath()) != newEvent.get(field.getFieldPath())) {
-				System.debug('oldEvent: ' + oldEvent);
-				System.debug('newEvent: ' + newEvent);
-				System.debug('different in field: ' + field.getFieldPath());
 				return true;
 			}
 		}
@@ -210,7 +207,9 @@ public class GoogleCalendarSyncUtility {
 		List<Integer> timeComponents = new List<integer>();
 		timeComponents.addAll(getDateComponents(googleDateOrDateTime.split('T')[0]));
 		if (googleDateOrDateTime.contains('T')) {
-			String timezoneCharacter = googleDateOrDateTime.contains('+') ? '+' : '.';
+			String timezoneCharacter = googleDateOrDateTime.contains('+')
+				? '+'
+				: googleDateOrDateTime.contains('.') ? '.' : 'Z';
 			timeComponents.addAll(getTimeComponents(googleDateOrDateTime.substringBetween('T', timezoneCharacter)));
 		} else {
 			timeComponents.add(0);
