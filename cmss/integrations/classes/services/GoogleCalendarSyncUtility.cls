@@ -81,8 +81,9 @@ public class GoogleCalendarSyncUtility {
 
 	public static GoogleEventDTO getGoogleEventFromSFTask(Task task) {
 		GoogleEventDto googleEvent = new GoogleEventDto();
-
-		googleEvent.summary = task.Subject;
+		googleEvent.summary = task.IsClosedNegative__c || task.IsClosedPositive__c
+			? 'Hotovo - Fénix: ' + task.Subject
+			: task.Subject;
 		googleEvent.start_x = new GoogleDateDTO();
 		googleEvent.end_x = new GoogleDateDTO();
 		if (task.PlannedFromDate__c != null || task.PlannedToDate__c != null) {
@@ -109,7 +110,8 @@ public class GoogleCalendarSyncUtility {
 			'\nTyp produktu: ' +
 			task.ProductType__c +
 			'\nPro detail klikněte na odkaz: ' +
-			task.ActivityLink__c;
+			task.ActivityLink__c +
+			'\nS aktivitou je potřeba pracovat v CRM Fénix, kde po jejím dokončení prosím zaznamejte i její výsledek.';
 
 		googleEvent.colorId = '2';
 
@@ -207,9 +209,14 @@ public class GoogleCalendarSyncUtility {
 		List<Integer> timeComponents = new List<integer>();
 		timeComponents.addAll(getDateComponents(googleDateOrDateTime.split('T')[0]));
 		if (googleDateOrDateTime.contains('T')) {
-			String timezoneCharacter = googleDateOrDateTime.contains('+')
-				? '+'
-				: googleDateOrDateTime.contains('.') ? '.' : 'Z';
+			String timezoneCharacter;
+			if (googleDateOrDateTime.contains('+')) {
+				timezoneCharacter = '+';
+			} else if (googleDateOrDateTime.contains('.')) {
+				timezoneCharacter = '.';
+			} else {
+				timezoneCharacter = 'Z';
+			}
 			timeComponents.addAll(getTimeComponents(googleDateOrDateTime.substringBetween('T', timezoneCharacter)));
 		} else {
 			timeComponents.add(0);

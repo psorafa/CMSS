@@ -27,5 +27,14 @@
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
+    <displayedFields>
+        <field>IsClosedNegative__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields><displayedFields>
+        <field>IsClosedPositive__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>    
     <label>Calendar Sync Task Fields</label>
 </FieldSet>
