@@ -115,7 +115,7 @@ public class LoanAssetsServices {
         asset.AcquisitionMethod__c = result.aquisitionChannelCode;
         asset.ClosureMethod__c = result.establishmentTypeCode;
         asset.LastChangeDate__c = result.lastChangeDate;
-        asset.ProductCloseDate__c = result.contractBeginDate;
+        asset.ProductCloseDate__c = result.signDateOwner;
         asset.CreditCondition__c = result.creditConditions;
         asset.RemainingDraw__c = restObligAmount;  
         asset.TotalRequiedAmount__c = result.requestedAmount;
