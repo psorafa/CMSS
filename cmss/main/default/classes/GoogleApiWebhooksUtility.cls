@@ -35,10 +35,18 @@ public without sharing class GoogleApiWebhooksUtility {
 			return;
 		}
 
-		EventSync__c eventSync = new EventSync__c();
-		eventSync.ResourceId__c = calendarId;
-		eventSync.ChangeFromGoogle__c = true;
-		insert eventSync;
+		List<EventSync__c> existingSyncForResource = [
+			SELECT ResourceId__c, ChangeFromGoogle__c
+			FROM EventSync__c
+			WHERE ResourceId__c = :calendarId AND ChangeFromGoogle__c = TRUE
+		];
+
+		if (existingSyncForResource.size() == 0) {
+			EventSync__c eventSync = new EventSync__c();
+			eventSync.ResourceId__c = calendarId;
+			eventSync.ChangeFromGoogle__c = true;
+			insert eventSync;
+		}
 
 		response.statusCode = 200;
 	}

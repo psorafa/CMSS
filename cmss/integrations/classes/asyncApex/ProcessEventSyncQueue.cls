@@ -1,14 +1,14 @@
 public without sharing class ProcessEventSyncQueue implements Queueable, Database.AllowsCallouts, Finalizer {
 	private List<Event> eventsToCreate;
 	private Map<Id, Event> eventsToUpdate;
-	private Map<Id, Task> tasksToUpdate;
+	private Map<String, Task> tasksToUpdate;
 	private Map<Id, Event> eventsToDelete;
 	private Map<Id, UserCalendarSetting__c> calendarSettingsToUpdate;
 
 	public ProcessEventSyncQueue() {
 		this.eventsToCreate = new List<Event>();
 		this.eventsToUpdate = new Map<Id, Event>();
-		this.tasksToUpdate = new Map<Id, Task>();
+		this.tasksToUpdate = new Map<String, Task>();
 		this.eventsToDelete = new Map<Id, Event>();
 		this.calendarSettingsToUpdate = new Map<Id, UserCalendarSetting__c>();
 	}
@@ -223,7 +223,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 				} else if (GoogleCalendarSyncUtility.taskDiffersInFieldsFromGoogle(relatedSfTask, googleChangedEvent)) {
 					Task sfTaskFromGoogleEvent = GoogleCalendarSyncUtility.getSFTaskFromGoogleEvent(googleChangedEvent);
 					this.tasksToUpdate.put(
-						relatedSfTask.Id,
+						googleChangedEvent.Id,
 						new Task(
 							Id = relatedSfTask.Id,
 							Location__c = sfTaskFromGoogleEvent.Location__c,
@@ -241,7 +241,9 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 				} else if (relatedEventsMap.get(googleChangedEvent.id) == null) {
 					Event newEvent = GoogleCalendarSyncUtility.getSFEventFromGoogleEvent(googleChangedEvent, true);
 					newEvent.OwnerId = relatedSetting.User__c;
-					this.eventsToCreate.add(newEvent);
+					if (!tasksToUpdate.containsKey(googleChangedEvent.id)) {
+						this.eventsToCreate.add(newEvent);
+					}
 				} else if (
 					GoogleCalendarSyncUtility.googleEventDiffersInFields(
 						relatedEventsMap.get(googleChangedEvent.id),
@@ -327,7 +329,9 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 				AccountAlias__c,
 				Category__c,
 				ProductType__c,
-				ActivityLink__c
+				ActivityLink__c,
+				IsClosedNegative__c,
+				IsClosedPositive__c
 			FROM Task
 			WHERE Id = :sfId
 		];
@@ -371,9 +375,11 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 
 	private Boolean isTooOld(GoogleCalendarSyncUtility.GoogleEventDTO googleEvent) {
 		if (
+			(googleEvent.start_x?.dateTime_x != null &&
 			GoogleCalendarSyncUtility.getDateTimeFromGoogleFormat(googleEvent.start_x?.dateTime_x) <
-			System.now().addDays(-90) ||
-			googleEvent.start_x?.date_x < System.today().addDays(-90)
+			System.now().addDays(-90)) ||
+			(googleEvent.start_x?.date_x != null &&
+			googleEvent.start_x?.date_x < System.today().addDays(-90))
 		) {
 			return true;
 		}
@@ -404,6 +410,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		GoogleCalendarSyncService port
 	) {
 		Task sfTask = getTask(eventSync.SFTaskId__c);
+		sfTask.GoogleId__c = null;
 		if (isTooOld(sfTask)) {
 			return;
 		}
@@ -412,7 +419,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			sfTask
 		);
 		sfTask.GoogleId__c = response.newEventId;
-		this.tasksToUpdate.put(sfTask.Id, sfTask);
+		this.tasksToUpdate.put(sfTask.GoogleId__c, sfTask);
 		handleApiErrors(response, calendarSetting);
 	}
 
@@ -422,7 +429,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		GoogleCalendarSyncService port
 	) {
 		Event sfEvent = getEvent(eventSync.SFEventId__c);
-		if (isTooOld(sfEvent)) {
+		if (isTooOld(sfEvent) || sfEvent.GoogleId__c == null) {
 			return;
 		}
 		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.updateEvent(
@@ -439,7 +446,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		GoogleCalendarSyncService port
 	) {
 		Task sfTask = getTask(eventSync.SFTaskId__c);
-		if (isTooOld(sfTask)) {
+		if (isTooOld(sfTask) || sfTask.GoogleId__c == null) {
 			return;
 		}
 		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.updateEvent(
@@ -451,29 +458,34 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 	}
 
 	private Event getEvent(String sfEventId) {
-		return [
-			SELECT
-				Id,
-				Subject,
-				Description,
-				IsPrivate,
-				Location,
-				Location__c,
-				IsAllDayEvent,
-				StartDateTime,
-				ActivityDate,
-				EndDateTime,
-				EndDate,
-				ShowAs,
-				GoogleId__c,
-				IsFromGoogle__c,
-				AccountAlias__c,
-				ProductType__c,
-				ActivityLink__c
-			FROM Event
-			WHERE Id = :sfEventId
-			LIMIT 1
-		];
+		try {
+			return [
+				SELECT
+					Id,
+					Subject,
+					Description,
+					IsPrivate,
+					Location,
+					Location__c,
+					IsAllDayEvent,
+					StartDateTime,
+					ActivityDate,
+					EndDateTime,
+					EndDate,
+					ShowAs,
+					GoogleId__c,
+					IsFromGoogle__c,
+					AccountAlias__c,
+					ProductType__c,
+					ActivityLink__c
+				FROM Event
+				WHERE Id = :sfEventId
+				LIMIT 1
+			];
+		} catch (QueryException e) {
+			Logger.error('No SF event was found with Id: ' + sfEventId, e);
+		}
+		return null;
 	}
 
 	@TestVisible
