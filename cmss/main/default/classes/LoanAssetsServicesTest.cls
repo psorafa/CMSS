@@ -46,7 +46,7 @@ public class LoanAssetsServicesTest {
         insert acc;
         Asset asset1 = new Asset(Name = '1200373701', AccountId = acc.Id);
         insert asset1;
-        LoanSurchargeDiscount__c lsd = new LoanSurchargeDiscount__c(Asset__c = asset1.Id, ExternalId__c = '940');
+        LoanSurchargeDiscount__c lsd = new LoanSurchargeDiscount__c(Asset__c = asset1.Id, SurchargeDiscountId__c = '940');
         insert lsd;
         UpdateLoanAssetsFlowController.Request request = new UpdateLoanAssetsFlowController.Request();
         request.assetId = asset1.Id;
@@ -66,7 +66,6 @@ public class LoanAssetsServicesTest {
         LoanAssetsServices.updateLoadPackages(result,request);
         Test.stopTest();
         LoanSurchargeDiscount__c lsdAfterUpdate = [SELECT SurchargeDiscountId__c,ValidTo__c,ValidFrom__c, SurchargeDiscountAmount__c FROM LoanSurchargeDiscount__c WHERE Id =: lsd.Id];
-        system.assertEquals(lsdAfterUpdate.SurchargeDiscountId__c , 'CS_PACKAGE');
         system.assertEquals(lsdAfterUpdate.ValidTo__c,null);
         system.assertEquals(lsdAfterUpdate.ValidFrom__c,date.newInstance(2019, 04, 05));
         system.assertEquals(lsdAfterUpdate.SurchargeDiscountAmount__c,-0.4);

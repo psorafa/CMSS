@@ -78,9 +78,8 @@ public class LoanAssetsServices {
         if (loanSurchargeDiscount.size() > 0 ){ 
             for(LoanSurchargeDiscount__c lsd : loanSurchargeDiscount){
                 for(UpdateLoanAssetsFlowController.LoadPackagesCalloutResult result: results){
-                    if(lsd.ExternalId__c == result.packageId){
-                        lsd.ExternalId__c = result.packageId;
-                        lsd.SurchargeDiscountId__c = result.packageType;
+                    if(lsd.SurchargeDiscountId__c == result.packageId){
+                        lsd.SurchargeDiscountId__c = result.packageId;
                         lsd.ValidTo__c = result.validTo;
                         lsd.ValidFrom__c = result.validFrom;
                         if(result.fee != null){
