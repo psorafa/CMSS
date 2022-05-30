@@ -48,7 +48,7 @@ public class LoanAssetsServices {
             
         }}
     
-        public static String  upsertLoanCaseDoc(List<UpdateLoanAssetsFlowController.LoanDocumentsCalloutResult> results,UpdateLoanAssetsFlowController.Request request){
+    public static String  upsertLoanCaseDoc(List<UpdateLoanAssetsFlowController.LoanDocumentsCalloutResult> results,UpdateLoanAssetsFlowController.Request request){
         try{
             String errorMessage;
             List<LoanCaseDoc__c> loanCaseDocsToUpdate = new   List<LoanCaseDoc__c>();
@@ -102,48 +102,56 @@ public class LoanAssetsServices {
     private static Asset getAsset(UpdateLoanAssetsFlowController.LoanDetailInfoResult result, String assetId){
         String personNumber = result.personNumber;
         String userId = [Select Id from User WHERE CommissionAccountBase__c =: personNumber LIMIT 1].Id;
-       Decimal restObligAmount = Decimal.valueOf(result.restObligAmount.replace(',', '.'));
-        Asset asset = new Asset(Id = assetId);
-        asset.CreditAmount__c = result.variableAmount;
-        asset.PurposeOfUse__c = result.loanUsageCode;
-        asset.PurposeOfUse2__c = result.loanUsage2Code;
-        asset.RequestSignDate__c = result.signDate;
-        asset.SecondDecissionDate__c = result.approvalDate2;
-        asset.Status__c = result.loanStateCode;
-        asset.TipsterId__c = userId;
-        asset.LastDrawdownReminder__c = result.lastDrawdownReminder;
-        asset.AcquisitionMethod__c = result.aquisitionChannelCode;
-        asset.ClosureMethod__c = result.establishmentTypeCode;
-        asset.LastChangeDate__c = result.lastChangeDate;
-        asset.ProductCloseDate__c = result.signDateOwner;
-        asset.CreditCondition__c = result.creditConditions;
-        asset.RemainingDraw__c = restObligAmount;  
-        asset.TotalRequiedAmount__c = result.requestedAmount;
-        asset.ActualSolver__c = result.loanCaseAdministrator;
-        return asset;
+        Decimal restObligAmount = Decimal.valueOf(result.restObligAmount.replace(',', '.'));
+        String status;
+        if (result.loanStateCode.length() == 1){
+            status = '1000'+ result.loanStateCode;
+        }
+        else if( result.loanStateCode.length() == 2){
+            status = '100'+ result.loanStateCode;
+        }
+    Asset asset = new Asset(Id = assetId);
+    asset.CreditAmount__c = result.variableAmount;
+    asset.PurposeOfUse__c = result.loanUsageCode;
+    asset.PurposeOfUse2__c = result.loanUsage2Code;
+    asset.RequestSignDate__c = result.signDate;
+    asset.SecondDecissionDate__c = result.approvalDate2;
+    asset.Status__c = status;
+    asset.TipsterId__c = userId;
+    asset.LastDrawdownReminder__c = result.lastDrawdownReminder;
+    asset.AcquisitionMethod__c = result.aquisitionChannelCode;
+    asset.ClosureMethod__c = result.establishmentTypeCode;
+    asset.LastChangeDate__c = result.lastChangeDate;
+    asset.ProductCloseDate__c = result.signDateOwner;
+    asset.CreditCondition__c = result.creditConditions;
+    asset.RemainingDraw__c = restObligAmount;  
+    asset.TotalRequiedAmount__c = result.requestedAmount;
+    asset.ActualSolver__c = result.loanCaseAdministrator;
+    
+    return asset;
+}
+
+private static List<LoanCaseDoc__c> getLoanCaseDoc(List<UpdateLoanAssetsFlowController.LoanDocumentsCalloutResult> results, String assetId){
+    
+    List<LoanCaseDoc__c> loanCaseDocToUpdate = new   List<LoanCaseDoc__c>();
+    String newText;        
+    for(UpdateLoanAssetsFlowController.LoanDocumentsCalloutResult result: results){
+        if (result.text.substring(0,1) == '-'){
+            newText = result.text.substring(1);
+        }else newText = result.text;
+        LoanCaseDoc__c lcd = new LoanCaseDoc__c();
+        lcd.Asset__c = assetId;
+        lcd.Group__c = result.group_x;
+        lcd.Phase__c = result.phase;
+        lcd.Number__c = result.number_x;
+        lcd.Status__c = result.status;
+        lcd.Text__c = newText;
+        lcd.ReceiveDate__c = result.incomingDate;
+        lcd.DueDate__c = result.tillWhenDate;
+        lcd.ExternalId__c = result.id;
+        loanCaseDocToUpdate.add(lcd);  
     }
     
-    private static List<LoanCaseDoc__c> getLoanCaseDoc(List<UpdateLoanAssetsFlowController.LoanDocumentsCalloutResult> results, String assetId){
-        
-        List<LoanCaseDoc__c> loanCaseDocToUpdate = new   List<LoanCaseDoc__c>();
-        String newText;        
-        for(UpdateLoanAssetsFlowController.LoanDocumentsCalloutResult result: results){
-                    if (result.text.substring(0,1) == '-'){
-                        newText = result.text.substring(1);
-                    }else newText = result.text;
-                    LoanCaseDoc__c lcd = new LoanCaseDoc__c();
-                    lcd.Asset__c = assetId;
-                    lcd.Group__c = result.group_x;
-                    lcd.Phase__c = result.phase;
-                    lcd.Number__c = result.number_x;
-                    lcd.Status__c = result.status;
-                    lcd.Text__c = newText;
-                    lcd.ReceiveDate__c = result.incomingDate;
-                    lcd.DueDate__c = result.tillWhenDate;
-                    lcd.ExternalId__c = result.id;
-                        loanCaseDocToUpdate.add(lcd);  
-                    }
-                
-            return loanCaseDocToUpdate;
-        }
-    }
+    return loanCaseDocToUpdate;
+}
+}
