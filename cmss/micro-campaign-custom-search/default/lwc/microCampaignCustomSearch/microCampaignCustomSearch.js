@@ -40,17 +40,8 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	isModalOpen = false;
 	selectedAccountIds = [];
 
-	comboBoxOptions = [
-		{ label: 100, value: 100 },
-		{ label: 200, value: 200 },
-		{ label: 500, value: 500 },
-		{ label: 1000, value: 1000 },
-		{ label: 2000, value: 2000 }
-	];
-
-	pageNumber = 1;
 	totalRecordsCount = 0;
-	recordsPerPage = this.comboBoxOptions[0].value;
+	recordsPerPage = 2000;
 
 	outputTableColumns = [];
 	outputTableData = [];
@@ -186,7 +177,6 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			filterItemList: this.filterConditionList,
 			configuration: this.selectedConfiguration,
 			objectName: this.selectedConfiguration.ObjectType__c,
-			pageNumber: this.pageNumber,
 			pageSize: this.recordsPerPage
 		};
 
@@ -197,7 +187,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			.then(response => {
 				this.outputTableData = response.data;
 				this.selectedAccountIds = currentSelectedAccountIds;
-				this.totalRecordsCount = response.totalCount;
+				this.totalRecordsCount = response.data.length;
 
 				if (this.totalRecordsCount < 1) {
 					this.toastMessage(null, '', LBL_NO_RECORDS);
@@ -304,38 +294,6 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	handleSectionToggle(event) {
 		this.section = event.detail.openSections;
-	}
-
-	handleComboBoxChange(event) {
-		this.recordsPerPage = event.detail.value;
-		this.pageNumber = 1;
-		this.handleSubmitSearch();
-	}
-
-	handlePageNextChange() {
-		this.pageNumber++;
-		this.handleSubmitSearch();
-	}
-
-	handlePagePrevChange() {
-		this.pageNumber--;
-		this.handleSubmitSearch();
-	}
-
-	get isPrevPageDisabled() {
-		return this.pageNumber === 1;
-	}
-
-	get isNextPageDisabled() {
-		return this.pageNumber === this.totalPageCount;
-	}
-
-	get totalPageCount() {
-		return Math.ceil(this.totalRecordsCount / this.recordsPerPage);
-	}
-
-	get paginationInfo() {
-		return this.pageNumber + ' / ' + this.totalPageCount;
 	}
 
 	get filtersJson() {
