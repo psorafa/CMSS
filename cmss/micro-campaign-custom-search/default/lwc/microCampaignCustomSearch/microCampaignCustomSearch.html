@@ -75,35 +75,6 @@
 					</div>
 					<div class="slds-grid">
 						<div class="slds-size_1-of-6">
-							<lightning-combobox
-								class="slds-form-element_horizontal"
-								name="selectRecordPerPage"
-								label={labels.LBL_RECORDS_PER_PAGE_TITLE}
-								value={recordsPerPage}
-								placeholder={recordsPerPage}
-								options={comboBoxOptions}
-								onchange={handleComboBoxChange}
-							>
-							</lightning-combobox>
-						</div>
-						<lightning-button-group class="slds-grid_align-center slds-size_2-of-3">
-							<lightning-button-icon
-								icon-name="utility:chevronleft"
-								onclick={handlePagePrevChange}
-								disabled={isPrevPageDisabled}
-								variant="brand"
-								alternative-text={labels.LBL_PREV_PAGE_TITLE}
-							></lightning-button-icon>
-							<lightning-button disabled="true" label={paginationInfo}></lightning-button>
-							<lightning-button-icon
-								variant="brand"
-								alternative-text={labels.LBL_NEXT_PAGE_TITLE}
-								disabled={isNextPageDisabled}
-								icon-name="utility:chevronright"
-								onclick={handlePageNextChange}
-							></lightning-button-icon>
-						</lightning-button-group>
-						<div class="slds-size_1-of-6">
 							{labels.LBL_TOTAL_RECORDS_COUNT_LABEL}: {totalRecordsCount}
 						</div>
 					</div>

@@ -6,9 +6,9 @@ public with sharing class CustomSoqlService {
 	}
 
 	public Integer getDataCountFromDbDto() {
-		String queryFields = 'COUNT()';
+		String queryFields = 'Id';
 		String query = prepareQuery(queryFields);
-		return Database.countQuery(query);
+		return Search.query(query).size();
 	}
 
 	public Set<Id> getAllAccountIdsDbDto() {
@@ -19,7 +19,12 @@ public with sharing class CustomSoqlService {
 
 		Set<Id> accountIds = new Set<Id>();
 		String query = prepareQuery(queryFields);
-		for (SObject record : Database.query(query)) {
+		System.debug('query: ' + query);
+		List<List<SObject>> soslRecords = Search.query(query);
+		System.debug('soslRecords: ' + soslRecords);
+		List<SObject> records = soslRecords.get(0);
+		System.debug('records: ' + records);
+		for (SObject record : records) {
 			Id accountId = (Id) record.get(queryFields);
 			accountIds.add(accountId);
 		}
@@ -33,55 +38,83 @@ public with sharing class CustomSoqlService {
 		);
 
 		String queryFields = getQueryFieldsFromFieldSetService(service);
-		String query =
-			prepareQuery(queryFields) +
-			' LIMIT ' +
-			this.filterRequestDto.pageSize +
-			' OFFSET ' +
-			this.filterRequestDto.pageSize * (this.filterRequestDto.pageNumber - 1);
+		String query = prepareQuery(queryFields);
 		System.debug('data query = ' + query);
-		return Database.query(query);
+		return Search.query(query).get(0);
+	}
+
+	public void validateQuery() {
+		String query = prepareQuery('Id');
+		System.debug('validation query = ' + query);
+		Search.query(query); // throws exception if query is invalid
 	}
 
 	private String prepareQuery(String queryFields) {
-		String customFilterString = '';
+		List<String> searchTermValues = this.getBaseQueryValues();
+		System.debug('searchTermValues = ' + searchTermValues);
+		List<String> customFilterConditionList = new List<String>();
 		for (CustomSearchFilterRequestDto.CustomFilterItemDto filterItem : this.filterRequestDto.filterItemList) {
 			List<CustomSearchFilterRequestDto.FilterOptionDto> filters = filterItem.filters;
 			for (CustomSearchFilterRequestDto.FilterOptionDto filter : filters) {
-				if(filter != null) {
+				if (filter != null) {
+					searchTermValues.add(filter.value);
 					String newCondition = getOperatorToSelectStatement(
-							filterItem.fieldName,
-							filter.type,
-							filter.value,
-							filterItem.dataType
+						filterItem.fieldName,
+						filter.type,
+						filter.value,
+						filterItem.dataType
 					);
-					customFilterString += newCondition + ' AND ';
+					customFilterConditionList.add(newCondition);
 				}
 			}
 		}
-		customFilterString = customFilterString.removeEndIgnoreCase(' AND ');
-		return 'SELECT ' +
+		String objectType = this.filterRequestDto.configuration.ObjectType__c;
+		String searchTerm = String.join(searchTermValues, ' OR ');
+		String baseCondition = this.filterRequestDto.configuration.FilterCondition__c;
+		Integer pageSize = this.filterRequestDto.pageSize;
+		Integer pageNumber = this.filterRequestDto.pageNumber;
+
+		String query =
+			'FIND {' +
+			searchTerm +
+			'} IN ALL FIELDS RETURNING ' +
+			objectType +
+			' (' +
 			queryFields +
-			' FROM ' +
-			this.filterRequestDto.configuration.ObjectType__c +
 			' WHERE ' +
-			this.filterRequestDto.configuration.FilterCondition__c +
-			' AND ' +
-			customFilterString;
+			baseCondition;
+
+		if (!customFilterConditionList.isEmpty()) {
+			query += ' AND ' + String.join(customFilterConditionList, ' AND ');
+		}
+		query += ' )';
+		query += ' LIMIT ' + pageSize;
+
+		return query;
+	}
+
+	private List<String> getBaseQueryValues() {
+		List<String> values = new List<String>();
+		String baseQuery = this.filterRequestDto.configuration.FilterCondition__c;
+		System.debug('baseQuery = ' + baseQuery);
+		List<String> groups = baseQuery.split('(AND|OR)');
+		System.debug('groups = ' + groups);
+		for (String groupItem : groups) {
+			String clearItem = groupItem.trim();
+			Integer lastSpace = clearItem.lastIndexOf(' ');
+			String value = clearItem.substring(lastSpace + 1);
+			String clearValue = value.replaceAll('\'', '').replaceAll('%', '*');
+			values.add(clearValue);
+		}
+		return values;
 	}
 
 	public static String getQueryFieldsFromFieldSetService(FieldsetService service) {
-		String queryFields = '';
-		List<String> fieldList = new List<String>();
-		fieldList = service.getFieldsetInfoToSoql();
+		List<String> fieldList = service.getFieldsetInfoToSoql();
+		String queryFields = String.join(fieldList, ',');
 
-		for (String queryField : fieldList) {
-			queryFields = queryFields + queryField + ',';
-		}
-		queryFields = queryFields.removeEndIgnoreCase(',');
-
-		if (Test.isRunningTest() && queryFields.length() == 0) {
-			queryFields = 'id ';
+		if (Test.isRunningTest() && fieldList.isEmpty()) {
+			queryFields = 'Id ';
 		}
 
 		return queryFields;
