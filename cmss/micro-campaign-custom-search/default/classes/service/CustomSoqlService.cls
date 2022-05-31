@@ -101,6 +101,10 @@ public with sharing class CustomSoqlService {
 		System.debug('groups = ' + groups);
 		for (String groupItem : groups) {
 			String clearItem = groupItem.trim();
+			if(clearItem.lastIndexOf(':') > 0) {
+				//exclude expression like NEXT_N_MONTHS:6
+				continue;
+			}
 			Integer lastSpace = clearItem.lastIndexOf(' ');
 			String value = clearItem.substring(lastSpace + 1);
 			String clearValue = value.replaceAll('\'', '').replaceAll('%', '*');
