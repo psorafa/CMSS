@@ -18,11 +18,9 @@ public class LoanAssetsServices {
             return null;
         }catch(Exception ex){
             
-            if(ex.getLineNumber() == 105){
-                return 'Update erorr message: Nepodařilo se najít usera s tímto TipsterId__c';
-            }else{
-                return 'Update erorr message: ' + ex.getMessage();}
-        }
+            
+          return 'Update erorr message: ' + ex.getMessage();}
+        
         
     }
     public static String  updateLoadPackages(List<UpdateLoanAssetsFlowController.LoadPackagesCalloutResult> results,UpdateLoanAssetsFlowController.Request request){
@@ -99,8 +97,7 @@ public class LoanAssetsServices {
         }return loanSurchargeDiscountToUpdate;
     }
     private static Asset getAsset(UpdateLoanAssetsFlowController.LoanDetailInfoResult result, String assetId){
-        String personNumber = result.personNumber;
-        String userId = [Select Id from User WHERE CommissionAccountBase__c =: personNumber LIMIT 1].Id;
+
         Decimal restObligAmount = Decimal.valueOf(result.restObligAmount.replace(',', '.'));
         String status;
         if (result.loanStateCode.length() == 1){
@@ -116,7 +113,6 @@ public class LoanAssetsServices {
     asset.RequestSignDate__c = result.signDate;
     asset.SecondDecissionDate__c = result.approvalDate2;
     asset.Status__c = status;
-    asset.TipsterId__c = userId;
     asset.LastDrawdownReminder__c = result.lastDrawdownReminder;
     asset.AcquisitionMethod__c = result.aquisitionChannelCode;
     asset.ClosureMethod__c = result.establishmentTypeCode;

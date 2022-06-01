@@ -11,8 +11,41 @@ public class LoanAssetsServicesTest {
 		insert acc;
 		Asset asset1 = new Asset(Name = '1200373701', AccountId = acc.Id);
 		insert asset1;
-		User u = TestDataFactory.getUserWithProfile(new User(CommissionAccountBase__c = '7200abc'), 'CMSS User');
-		insert u;
+
+		UpdateLoanAssetsFlowController.Request request = new UpdateLoanAssetsFlowController.Request();
+		request.assetId = asset1.Id;
+		QueueHttpMock mock = new QueueHttpMock();
+		HttpResponse res1 = new HttpResponse();
+		res1.setStatus('OK');
+		res1.setStatusCode(200);
+		res1.setBody(
+			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns4:GetLoanDetailInfoResponse xmlns:ns4=\"http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\" xmlns:ns3=\"http://service.cmss.cz/loan/SB-LoanDetailInfoService/v05\"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId>35dd2b14-9bcc-8596-49b5-397909cfdff0</ns2:correlationId><ns2:messageId>35dd2b14-9bcc-8596-49b5-397909cfdff0_resp</ns2:messageId><ns2:physicalSource>SBTESTWEB02.cmss.local</ns2:physicalSource><ns2:sourceSystem>StarBuild</ns2:sourceSystem><ns2:targetSystem>3</ns2:targetSystem><ns2:timestamp>2022-05-24T12:00:28.3595378+02:00</ns2:timestamp><ns2:userId>0051x00000A4jouAAB</ns2:userId></ns2:responseHeader><ns4:responseBody><ns4:loanDetailInfo><ns4:signDate>2019-03-20</ns4:signDate><ns4:receiptDate>2019-04-05</ns4:receiptDate><ns4:approvalDate1>2019-04-05</ns4:approvalDate1><ns4:approvalDate2>2019-04-05</ns4:approvalDate2><ns4:acceptanceDate>2019-04-05</ns4:acceptanceDate><ns4:signDateOwner>2019-04-26</ns4:signDateOwner><ns4:loanUsageCode>3</ns4:loanUsageCode><ns4:realEstateUsageCode>1</ns4:realEstateUsageCode><ns4:loanPlaceCode>3</ns4:loanPlaceCode><ns4:personNumber>7200abc</ns4:personNumber><ns4:decisiveUserId>212</ns4:decisiveUserId><ns4:loanStateCode>6</ns4:loanStateCode><ns4:variableAmount>3300000</ns4:variableAmount><ns4:originalLoanModeCode>2</ns4:originalLoanModeCode><ns4:currentLoanModeCode>2</ns4:currentLoanModeCode><ns4:loanUsage2Code>0</ns4:loanUsage2Code><ns4:loanUsage3Desc></ns4:loanUsage3Desc><ns4:listOfIndemnity><ns4:indemnityDetail><ns4:debtSecurityType>23</ns4:debtSecurityType><ns4:acceptableValue>840541,42</ns4:acceptableValue></ns4:indemnityDetail><ns4:indemnityDetail><ns4:debtSecurityType>37</ns4:debtSecurityType><ns4:acceptableValue>2459458,58</ns4:acceptableValue></ns4:indemnityDetail></ns4:listOfIndemnity><ns4:listOfPayments><ns4:paymentsDetail><ns4:payingSegmentPrefixNumber></ns4:payingSegmentPrefixNumber><ns4:payingSegmentNumber>2107517869</ns4:payingSegmentNumber><ns4:payingSegmentBankCode>2700</ns4:payingSegmentBankCode><ns4:payingSegmentConstaintSymbol>0558</ns4:payingSegmentConstaintSymbol><ns4:payingSegmentVariableSymbol></ns4:payingSegmentVariableSymbol><ns4:payingSegmentSpecificSymbol></ns4:payingSegmentSpecificSymbol><ns4:payingSegmentAV></ns4:payingSegmentAV><ns4:payingSegmentRecipient>AK Mach a Mrázik</ns4:payingSegmentRecipient></ns4:paymentsDetail></ns4:listOfPayments><ns4:listOfAccounts><ns4:accountDetail><ns4:accountIdNumber><basicNumber>1530886</basicNumber><checkNumber>9</checkNumber><endNumber>7</endNumber></ns4:accountIdNumber><ns4:accountType>2</ns4:accountType><ns4:interestRate>2,49</ns4:interestRate></ns4:accountDetail></ns4:listOfAccounts><ns4:aquisitionChannelCode>500</ns4:aquisitionChannelCode><ns4:establishmentTypeCode>8</ns4:establishmentTypeCode><ns4:creditConditions>12/2016</ns4:creditConditions><ns4:lastChangeDate>2019-09-24</ns4:lastChangeDate><ns4:restObligAmount>0,0</ns4:restObligAmount><ns4:requestedAmount>0</ns4:requestedAmount></ns4:loanDetailInfo></ns4:responseBody></ns4:GetLoanDetailInfoResponse></soapenv:Body></soapenv:Envelope>'
+		);
+		mock.addResponse(res1);
+		Test.setMock(HttpCalloutMock.class, mock);
+		UpdateLoanAssetsFlowController.LoanDetailInfoResult result = LoanDetailInfoServiceController.loanDetailInfoResult(
+			res1
+		);
+		Test.startTest();
+		LoanAssetsServices.updateLoanDetailInfo(result, request);
+		Test.stopTest();
+		Asset assetAfterUpdate = [
+			SELECT
+				CreditAmount__c,
+				PurposeOfUse__c,
+				PurposeOfUse2__c,
+				RequestSignDate__c,
+				SecondDecissionDate__c,
+				Status__c
+			FROM Asset
+			WHERE Id = :asset1.Id
+		];
+		system.assertEquals(assetAfterUpdate.CreditAmount__c, 3300000);
+		system.assertEquals(assetAfterUpdate.PurposeOfUse__c, '3');
+		system.assertEquals(assetAfterUpdate.PurposeOfUse2__c, '0');
+		system.assertEquals(assetAfterUpdate.RequestSignDate__c, date.newInstance(2019, 3, 20));
+		system.assertEquals(assetAfterUpdate.SecondDecissionDate__c, date.newInstance(2019, 4, 5));
+		system.assertEquals(assetAfterUpdate.Status__c, '6');
 
 		UpdateLoanAssetsFlowController.Request request = new UpdateLoanAssetsFlowController.Request();
 		request.assetId = asset1.Id;
