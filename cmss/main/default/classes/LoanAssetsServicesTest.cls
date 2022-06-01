@@ -48,7 +48,7 @@ public class LoanAssetsServicesTest {
 		system.assertEquals(assetAfterUpdate.PurposeOfUse2__c, '0');
 		system.assertEquals(assetAfterUpdate.RequestSignDate__c, date.newInstance(2019, 3, 20));
 		system.assertEquals(assetAfterUpdate.SecondDecissionDate__c, date.newInstance(2019, 4, 5));
-		system.assertEquals(assetAfterUpdate.Status__c, '6');
+		system.assertEquals(assetAfterUpdate.Status__c, '10006');
 		system.assertEquals(assetAfterUpdate.TipsterId__c, u.Id);
 	}
 
