@@ -78,7 +78,6 @@ public class UpdateLoanAssetsFlowController {
         public Date signDate;    
         public Date approvalDate2;
         public String loanStateCode;
-        public String personNumber;
         public String aquisitionChannelCode;
 		public String loanCaseAdministrator;
 		public String establishmentTypeCode;

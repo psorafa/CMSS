@@ -64,7 +64,6 @@ public class LoanDetailInfoServiceControllerTest {
         ldir.signDate = date.newInstance(2019, 03, 20);
         ldir.approvalDate2 = date.newInstance(2019, 04, 05);
         ldir.loanStateCode = '6';
-        ldir.personNumber = '7200';
         ldir.signDateOwner = date.newInstance(2019, 04, 26);
         
         return ldir.toString();

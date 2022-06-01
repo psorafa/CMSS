@@ -45,7 +45,6 @@ public without sharing class LoanDetailInfoServiceController {
             result.signDate = response.signDate;
             result.approvalDate2 = response.approvalDate2;
             result.loanStateCode = response.loanStateCode;
-            result.personNumber = response.personNumber;
             result.aquisitionChannelCode = response.aquisitionChannelCode ;
             result.loanCaseAdministrator = response.loanCaseAdministrator; 
             result.establishmentTypeCode = response.establishmentTypeCode;
