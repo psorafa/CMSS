@@ -112,22 +112,26 @@ private class ConsentCalloutServiceTest {
 
 		Test.startTest();
 		Consent__c c = TestDataFactory.getConsent(new Consent__c());
+		c.AllConsent__c = '1';
 		insert c;
 
-		c.AllConsent__c = '2';
 		c.SMSConsent__c = '2';
+		c.EmailConsent__c = '2';
+		c.PhoneConsent__c = '2';
+		c.PostConsent__c = '2';
 		update c;
 		Test.stopTest();
 
-		System.assert(
+		System.assertEquals(
+			6,
 			[
-				SELECT Id
-				FROM Log__c
-				WHERE
-					Message__c = 'Outgoing request'
-					AND ClassMethodName__c LIKE '%ConsentCalloutService.ConsentServicePort%'
-			]
-			.size() == 6
+					SELECT Id
+					FROM Log__c
+					WHERE
+						Message__c = 'Outgoing request'
+						AND ClassMethodName__c LIKE '%ConsentCalloutService.ConsentServicePort%'
+				]
+				.size()
 		);
 	}
 
@@ -154,6 +158,7 @@ private class ConsentCalloutServiceTest {
 		for (Consent__c c : consents) {
 			c.EmailConsent__c = '1';
 			c.SMSConsent__c = '2';
+			c.AllConsent__c = '2';
 		}
 		update consents;
 		Test.stopTest();
