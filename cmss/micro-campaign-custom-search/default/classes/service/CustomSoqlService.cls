@@ -57,7 +57,9 @@ public with sharing class CustomSoqlService {
 			List<CustomSearchFilterRequestDto.FilterOptionDto> filters = filterItem.filters;
 			for (CustomSearchFilterRequestDto.FilterOptionDto filter : filters) {
 				if (filter != null) {
-					searchTermValues.add(filter.value);
+					if (isValidSOSLSearchTermType(filterItem.dataType)) {
+						searchTermValues.add(filter.value);
+					}
 					String newCondition = getOperatorToSelectStatement(
 						filterItem.fieldName,
 						filter.type,
@@ -89,8 +91,12 @@ public with sharing class CustomSoqlService {
 		}
 		query += ' )';
 		query += ' LIMIT ' + pageSize;
-
+		System.debug('final query: ' + query);
 		return query;
+	}
+
+	private Boolean isValidSOSLSearchTermType(String dataType) {
+		return dataType == 'Text';
 	}
 
 	private List<String> getBaseQueryValues() {
@@ -101,7 +107,7 @@ public with sharing class CustomSoqlService {
 		System.debug('groups = ' + groups);
 		for (String groupItem : groups) {
 			String clearItem = groupItem.trim();
-			if(clearItem.lastIndexOf(':') > 0) {
+			if (clearItem.lastIndexOf(':') > 0) {
 				//exclude expression like NEXT_N_MONTHS:6
 				continue;
 			}
