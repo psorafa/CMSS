@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fullName>Evaluation_Draft</fullName>
     <columns>TITLE</columns>
     <columns>Keywords__c</columns>
@@ -9,7 +9,6 @@
     <columns>ValidTo__c</columns>
     <columns>CurrentlyValid__c</columns>
     <columns>VERSION_NUMBER</columns>
-    <columns>Author__c</columns>
     <columns>FIRST_PUBLISHED_DATE</columns>
     <columns>LAST_PUBLISHED_DATE</columns>
     <columns>OWNER_ID</columns>

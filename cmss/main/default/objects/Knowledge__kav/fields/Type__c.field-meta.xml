@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fullName>Type__c</fullName>
     <externalId>false</externalId>
     <label>Type</label>
@@ -10,9 +10,14 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>TBD</fullName>
+                <fullName>Info</fullName>
                 <default>false</default>
-                <label>TBD</label>
+                <label>Info</label>
+            </value>
+            <value>
+                <fullName>TI</fullName>
+                <default>false</default>
+                <label>TI</label>
             </value>
         </valueSetDefinition>
     </valueSet>

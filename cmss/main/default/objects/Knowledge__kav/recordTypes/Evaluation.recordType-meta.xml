@@ -17,6 +17,10 @@
             <fullName>CMSS Users</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Regional Manager</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Category__c</picklist>
@@ -134,31 +138,13 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Priority__c</picklist>
-        <values>
-            <fullName>1</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>2</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>Type__c</picklist>
         <values>
-            <fullName>TBD</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>WorkingStatus__c</picklist>
-        <values>
-            <fullName>Invalid</fullName>
+            <fullName>Info</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Valid</fullName>
+            <fullName>TI</fullName>
             <default>false</default>
         </values>
     </picklistValues>

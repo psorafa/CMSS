@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <articleTypeChannelDisplay>
         <articleTypeTemplates>
             <channel>App</channel>
@@ -27,14 +27,13 @@
     <searchLayouts>
         <customTabListAdditionalFields>TITLE</customTabListAdditionalFields>
         <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
-        <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
         <excludedStandardButtons>MassAssignKnowledgeArticleVersion</excludedStandardButtons>
+        <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
         <searchResultsAdditionalFields>TITLE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CMSSArticleNumber__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Author__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ValidFrom__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ValidTo__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Priority__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CurrentlyValid__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>LAST_PUBLISHED_DATE</searchResultsAdditionalFields>
     </searchLayouts>
