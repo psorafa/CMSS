@@ -84,7 +84,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 					processDeleteInSalesforce(eventSync, actualSetting, port);
 				} else if (!eventSync.ChangeFromGoogle__c && eventSync.IsNew__c) {
 					if (eventSync.IsTask__c) {
-						processNewTaskInSalesforce(eventSync, actualSetting, port);
+						processNewTaskInSalesforce(eventSync, actualSetting, port, false);
 					} else {
 						processNewInSalesforce(eventSync, actualSetting, port);
 					}
@@ -219,7 +219,12 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			if (relatedTasksMap.containsKey(googleChangedEvent.Id)) {
 				Task relatedSfTask = relatedTasksMap.get(googleChangedEvent.Id);
 				if (googleChangedEvent.status == 'cancelled') {
-					processNewTaskInSalesforce(new EventSync__c(SFTaskId__c = relatedSfTask.Id), relatedSetting, port);
+					processNewTaskInSalesforce(
+						new EventSync__c(SFTaskId__c = relatedSfTask.Id),
+						relatedSetting,
+						port,
+						true
+					);
 				} else if (GoogleCalendarSyncUtility.taskDiffersInFieldsFromGoogle(relatedSfTask, googleChangedEvent)) {
 					Task sfTaskFromGoogleEvent = GoogleCalendarSyncUtility.getSFTaskFromGoogleEvent(googleChangedEvent);
 					this.tasksToUpdate.put(
@@ -407,10 +412,15 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 	private void processNewTaskInSalesforce(
 		EventSync__c eventSync,
 		UserCalendarSetting__c calendarSetting,
-		GoogleCalendarSyncService port
+		GoogleCalendarSyncService port,
+		Boolean deletedInGoogle
 	) {
 		Task sfTask = getTask(eventSync.SFTaskId__c);
 		sfTask.GoogleId__c = null;
+		if (deletedInGoogle) {
+			sfTask.PlannedFromDate__c = null;
+			sfTask.PlannedToDate__c = null;
+		}
 		if (isTooOld(sfTask)) {
 			return;
 		}
