@@ -29,6 +29,11 @@ public with sharing class CustomSearchController {
 		return new CustomSearchFilterResponseDto(data, countRecords);
 	}
 
+	@AuraEnabled
+	public static List<Id> getAllAccountId(CustomSearchFilterRequestDto dto) {
+		CustomSoqlService service = new CustomSoqlService(dto);
+		return new List<Id>(service.getAllAccountIdsDbDto());
+	}
 	@AuraEnabled(Cacheable=true)
 	public static List<CustomSearchConfiguration__c> loadBaseConfigurationList(
 		String objectApiName,
