@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Visibility__c</fullName>
+    <externalId>false</externalId>
+    <label>Visibility</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>All</fullName>
+                <default>true</default>
+                <label>All</label>
+            </value>
+            <value>
+                <fullName>Branch Employee</fullName>
+                <default>false</default>
+                <label>Branch Employee</label>
+            </value>
+            <value>
+                <fullName>BO User</fullName>
+                <default>false</default>
+                <label>BO User</label>
+            </value>
+            <value>
+                <fullName>KC User</fullName>
+                <default>false</default>
+                <label>KC User</label>
+            </value>
+            <value>
+                <fullName>Bus Admin</fullName>
+                <default>false</default>
+                <label>Bus Admin</label>
+            </value>
+            <value>
+                <fullName>Data Admin</fullName>
+                <default>false</default>
+                <label>Data Admin</label>
+            </value>
+            <value>
+                <fullName>System Administrator</fullName>
+                <default>false</default>
+                <label>System Administrator</label>
+            </value>
+            <value>
+                <fullName>Správce systému</fullName>
+                <default>false</default>
+                <label>Správce systému</label>
+            </value>
+            <value>
+                <fullName>PBA User</fullName>
+                <default>false</default>
+                <label>PBA User</label>
+            </value>
+            <value>
+                <fullName>Back office</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Back office</label>
+            </value>
+            <value>
+                <fullName>Branch</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Branch</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>9</visibleLines>
+</CustomField>

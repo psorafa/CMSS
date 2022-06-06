@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Investment_Calculator_Config</fullName>
+    <active>true</active>
+    <label>Investment Calculator Config</label>
+    <picklistValues>
+        <picklist>Initial_State__c</picklist>
+        <values>
+            <fullName>Hidden</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Visible</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Input_Method_Detail__c</picklist>
+        <values>
+            <fullName>Cislo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Datum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Desetinne cislo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hidden</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Not_Standard</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Procento</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Text</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>SCUBE_Transaction_Type__c</picklist>
+        <values>
+            <fullName>SUBFLOW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SWITCH</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>System__c</picklist>
+        <values>
+            <fullName>CRIF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SCUBE</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Base</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Regular Investment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Supplement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Theme</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Visibility__c</picklist>
+        <values>
+            <fullName>All</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>BO User</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Branch Employee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bus Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>KC User</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>System Administrator</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

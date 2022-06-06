@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Výpověď o stavebním spoření</label>
+    <protected>false</protected>
+    <values>
+        <field>Biometric_Signature__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Data_ID__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Disable_Storing_To_JSK__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Fill_Barcode__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Label_CZ__c</field>
+        <value xsi:type="xsd:string">Výpověď o stavebním spoření</value>
+    </values>
+    <values>
+        <field>Label_EN__c</field>
+        <value xsi:type="xsd:string">Výpověď o stavebním spoření</value>
+    </values>
+    <values>
+        <field>Local_Upload__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Message_Before_Print__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Migration_Process__c</field>
+        <value xsi:type="xsd:string">CSOBS_contract_cancelation</value>
+    </values>
+    <values>
+        <field>Open_In_New_Window__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Order__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Pre_contract_document__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Template_Code__c</field>
+        <value xsi:type="xsd:string">VypovedSmlouvyOStavebnimSporeni</value>
+    </values>
+    <values>
+        <field>URL__c</field>
+        <value xsi:nil="true"/>
+    </values>
+</CustomMetadata>

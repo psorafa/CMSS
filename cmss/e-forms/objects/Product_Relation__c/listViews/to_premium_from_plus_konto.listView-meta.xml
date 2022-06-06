@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>to_premium_from_plus_konto</fullName>
+    <columns>From__c</columns>
+    <columns>To__c</columns>
+    <columns>Default_Name__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>NAME</columns>
+    <columns>Type__c</columns>
+    <columns>RECORDTYPE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>To__c</field>
+        <operation>equals</operation>
+        <value>Premium Konto</value>
+    </filters>
+    <filters>
+        <field>From__c</field>
+        <operation>equals</operation>
+        <value>Plus konto</value>
+    </filters>
+    <label>Migrace na premium z Plus konta</label>
+    <language>en_US</language>
+</ListView>

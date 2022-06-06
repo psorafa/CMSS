@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>fop_migration</fullName>
+    <columns>From__c</columns>
+    <columns>To__c</columns>
+    <columns>Default_Name__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>NAME</columns>
+    <columns>Type__c</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>Product_Config_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Product_Relation__c.FOP_Migration</value>
+    </filters>
+    <label>FOP !!!!!!!!§</label>
+    <language>en_US</language>
+</ListView>

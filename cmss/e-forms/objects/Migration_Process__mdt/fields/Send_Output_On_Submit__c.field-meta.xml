@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Output_On_Submit__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>SendOutput is called on submit button, not on Overview tab.
+(By default is SendOutput called on Overview tab).</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>SendOutput is called on submit button, not on Overview tab.</inlineHelpText>
+    <label>Send Output On Submit</label>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Hidden</fullName>
+                <default>true</default>
+                <label>Hidden</label>
+            </value>
+            <value>
+                <fullName>Input parameters</fullName>
+                <default>false</default>
+                <label>Input parameters</label>
+            </value>
+            <value>
+                <fullName>Select</fullName>
+                <default>false</default>
+                <label>Select</label>
+            </value>
+            <value>
+                <fullName>Conditionally shown</fullName>
+                <default>false</default>
+                <label>Conditionally shown</label>
+            </value>
+            <value>
+                <fullName>Formula</fullName>
+                <default>false</default>
+                <label>Formula</label>
+            </value>
+            <value>
+                <fullName>Checkbox</fullName>
+                <default>false</default>
+                <label>Checkbox</label>
+            </value>
+            <value>
+                <fullName>Calculated Select</fullName>
+                <default>false</default>
+                <label>Calculated Select</label>
+            </value>
+            <value>
+                <fullName>Input With Background Query</fullName>
+                <default>false</default>
+                <label>Input With Background Query</label>
+            </value>
+            <value>
+                <fullName>Select With Background Query</fullName>
+                <default>false</default>
+                <label>Select With Background Query</label>
+            </value>
+            <value>
+                <fullName>Multiple Input With Background Query</fullName>
+                <default>false</default>
+                <label>Multiple Input With Background Query</label>
+            </value>
+            <value>
+                <fullName>Input with SOQL</fullName>
+                <default>false</default>
+                <label>Input with SOQL</label>
+            </value>
+            <value>
+                <fullName>Multi Select</fullName>
+                <default>false</default>
+                <label>Multi Select</label>
+            </value>
+            <value>
+                <fullName>External Link</fullName>
+                <default>false</default>
+                <label>External Link</label>
+            </value>
+            <value>
+                <fullName>Base</fullName>
+                <default>false</default>
+                <label>Base</label>
+            </value>
+            <value>
+                <fullName>Supplement</fullName>
+                <default>false</default>
+                <label>Supplement</label>
+            </value>
+            <value>
+                <fullName>Theme</fullName>
+                <default>false</default>
+                <label>Theme</label>
+            </value>
+            <value>
+                <fullName>Regular Investment</fullName>
+                <default>false</default>
+                <label>Regular Investment</label>
+            </value>
+            <value>
+                <fullName>Date</fullName>
+                <default>false</default>
+                <label>Date</label>
+            </value>
+            <value>
+                <fullName>Textarea Input Parameter</fullName>
+                <default>false</default>
+                <label>Textarea Input Parameter</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>acc_migrs</fullName>
+    <columns>From__c</columns>
+    <columns>To__c</columns>
+    <columns>Default_Name__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>NAME</columns>
+    <columns>Type__c</columns>
+    <columns>RECORDTYPE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Product_Relation__c.Migration_Premium</value>
+    </filters>
+    <filters>
+        <field>From__c</field>
+        <operation>contains</operation>
+        <value>Plus</value>
+    </filters>
+    <label>Migrace premium</label>
+    <language>en_US</language>
+</ListView>

@@ -235,7 +235,8 @@ cmss/app/default/objectTranslations/User-cs/ResignationType__c.fieldTranslation-
 cmss/app/default/objectTranslations/User-cs/CooperationPartnerType__c.fieldTranslation-meta.xml
 
 # Case business processes blocked by picklist sync 
-cmss/main/default/objects/Case/businessProcesses
+cmss/main/default/objects/Case/businessProcesses/Client Claim.businessProcess-meta.xml
+cmss/main/default/objects/Case/businessProcesses/Client Consolidation.businessProcess-meta.xml
 
 # Keeping the file in code to save the configuration
 cmss/main/default/sites/googleApiWebhooks.site-meta.xml
