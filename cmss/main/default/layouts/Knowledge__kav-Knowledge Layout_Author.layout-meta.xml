@@ -16,9 +16,6 @@
                 <field>Type__c</field>
             </layoutItems>
             <layoutItems>
-                <field>Author__c</field>
-            </layoutItems>
-            <layoutItems>
                 <field>Audience__c</field>
             </layoutItems>
             <layoutItems>
@@ -37,9 +34,6 @@
             </layoutItems>
             <layoutItems>
                 <field>PublishStatus</field>
-            </layoutItems>
-            <layoutItems>
-                <field>Priority__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -112,7 +106,7 @@
     <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
-        <editHeading>false</editHeading>
+        <editHeading>true</editHeading>
         <label>Custom Links</label>
         <layoutColumns/>
         <layoutColumns/>

@@ -1,24 +1,18 @@
 <template>
-    <lightning-card title="" icon-name="">
-
+	<article class="slds-card">
+		<div class="slds-card__body">
             <template if:true={error}>{error}</template>
-            <template if:true={articleList} >
-                <lightning-layout>
-                    <lightning-layout-item >
-                        <div  class="slds-m-around_medium" style="overflow: hidden;height:100%;padding-bottom:40px;">       
-                            <div  class="slds-m-around_medium" style="overflow: hidden;height:100%;">
-                                <lightning-datatable
-                                        key-field="id"
-                                        data={articleList}
-                                        columns={columns}
-                                        hide-checkbox-column
-                                        >
-                                        
-                                </lightning-datatable>
-                            </div>    
-                        </div>
-                    </lightning-layout-item>
-                </lightning-layout>
+            <template if:true={articleList} class="slds-m-left_small slds-m-bottom_small">
+                <lightning-datatable
+                        key-field="id"
+                        data={articleList}
+                        columns={columns}
+                        class="myTable slds-is-relative slds-table_header-fixed_container slds-border_top"
+                        column-widths-mode="auto"
+                        hide-checkbox-column
+                >
+                </lightning-datatable>
             </template>
-    </lightning-card>
+        </div>
+    </article>
 </template>

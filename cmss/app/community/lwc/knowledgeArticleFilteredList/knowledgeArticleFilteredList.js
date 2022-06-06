@@ -26,7 +26,8 @@ export default class KnowledgeArticleFilteredList extends NavigationMixin(Lightn
 					fieldName: 'url',
 					type: 'url',
 					sortable: false,
-					typeAttributes: { label: { fieldName: 'Title' }, target: '_self' }
+					typeAttributes: { label: { fieldName: 'Title' }, target: '_self' }, 
+					wrapText: true
 				},
 				{
 					label: this.fieldData.cmssarticlenumber__c,
@@ -34,22 +35,27 @@ export default class KnowledgeArticleFilteredList extends NavigationMixin(Lightn
 					type: 'text',
 					sortable: false
 				},
-				{ label: this.fieldData.author__c, fieldName: 'Author__c', type: 'text', sortable: false },
-				{ label: this.fieldData.validfrom__c, fieldName: 'ValidFrom__c', type: 'date', sortable: false },
+				{ label: this.fieldData.additionalquestionsanswers__c, fieldName: 'AdditionalQuestionsAnswers__c', type: 'text', sortable: false, wrapText: true },
 				{ label: this.fieldData.validto__c, fieldName: 'ValidTo__c', type: 'date', sortable: false },
-				{ label: this.fieldData.priority__c, fieldName: 'Priority__c', type: 'text', sortable: false },
 				{
 					label: this.fieldData.currentlyvalid__c,
 					fieldName: 'CurrentlyValid__c',
 					type: 'boolean',
-					sortable: false
+					sortable: false, 
+					initialWidth: 50
 				},
-				{
-					label: this.fieldData.lastpublisheddate,
-					fieldName: 'LastPublishedDate',
-					type: 'date',
-					sortable: false
+				{ 
+					label: this.fieldData.type__c, 
+					fieldName: 'Type__c', 
+					type: 'text', 
+					sortable: false,
+					cellAttributes: {
+						class: {
+							fieldName: `format`
+						},
+					},
 				}
+					
 			];
 		} else {
 			this.error = JSON.stringify(error);
@@ -79,6 +85,7 @@ export default class KnowledgeArticleFilteredList extends NavigationMixin(Lightn
 				this[NavigationMixin.GenerateUrl](this.KnowledgePageRef).then((articleUrl) => {
 					myArticle = { ...article };
 					myArticle.url = articleUrl;
+					myArticle.format = myArticle.Type__c == 'Info' ? 'slds-text-color_success' : 'slds-text-color_default';
 					this.articleList.push(myArticle);
 					this.articleList = [...this.articleList];
 				});

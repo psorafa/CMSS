@@ -215,11 +215,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Author__c</field>
-            <table>Knowledge__ka.Knowledge__kav</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>CMSSArticleNumber__c</field>
             <table>Knowledge__ka.Knowledge__kav</table>
         </columns>
@@ -251,11 +246,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>OwnerIsCurrentUser__c</field>
-            <table>Knowledge__ka.Knowledge__kav</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Priority__c</field>
             <table>Knowledge__ka.Knowledge__kav</table>
         </columns>
         <columns>

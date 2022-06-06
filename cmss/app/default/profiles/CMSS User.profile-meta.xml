@@ -4655,11 +4655,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Knowledge__kav.Author__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Knowledge__kav.CMSSArticleNumber__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -4691,11 +4686,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Knowledge__kav.OwnerIsCurrentUser__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Knowledge__kav.Priority__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
