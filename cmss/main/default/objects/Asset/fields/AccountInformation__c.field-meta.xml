@@ -3,7 +3,7 @@
     <fullName>AccountInformation__c</fullName>
     <description>Informace o klientovi</description>
     <externalId>false</externalId>
-    <formula>&quot;Věk klienta: &quot; &amp; Age__c &amp; BR() &amp;
+    <formula>&quot;Věk klienta: &quot; &amp; TEXT(Age__c) &amp; BR() &amp;
 &quot;Město: &quot; &amp; AccountCity__c &amp; BR() &amp;
 &quot;PSČ: &quot; &amp;  AccountPostalCode__c</formula>
     <label>Account Information</label>
