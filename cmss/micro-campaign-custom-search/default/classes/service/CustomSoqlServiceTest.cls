@@ -36,13 +36,23 @@ private class CustomSoqlServiceTest {
 	@IsTest
 	static void customSoqlServiceTestGetDataFromDbDto() {
 		CustomSearchFilterRequestDto myDto = prepareRequestDto();
-		Account expectedAccount = [SELECT Id FROM Account LIMIT 1];
-		Test.setFixedSearchResults(new List<String>{expectedAccount.Id});
+
 		Test.startTest();
 		CustomSearchFilterResponseDto my = CustomSearchController.searchResults(myDto);
 		Test.stopTest();
 
 		System.assertEquals(1, my.data.size());
+	}
+
+	@IsTest
+	static void loadAllAccountIdsTest() {
+		CustomSearchFilterRequestDto myDto = prepareRequestDto();
+
+		Test.startTest();
+		List<Id> ids = CustomSearchController.getAllAccountId(myDto);
+		Test.stopTest();
+
+		System.assertEquals(1, ids.size());
 	}
 
 	private static CustomSearchFilterRequestDto prepareRequestDto() {

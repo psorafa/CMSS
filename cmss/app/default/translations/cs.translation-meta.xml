@@ -281,6 +281,10 @@
         <name>UnsupportedIdentificationType</name>
         <label>Nepodporovaný typ identifikace - povolené je vyhledávání přes Klienta a Smlouvu klienta.</label>
     </customLabels>
+    <customLabels>
+        <name>MaxRecordsExceeded</name>
+        <label>Výsledek hledání obsahuje velké množství záznamů. Prosím upřesněte filtery a hledání opakujte. Maximální povolený počet výsledků je </label>
+    </customLabels>
     <customTabs>
         <label>Identifikace klienta</label>
         <name>Customer_Search</name>

@@ -1,5 +1,6 @@
 import { LightningElement, wire } from 'lwc';
 import searchResults from '@salesforce/apex/CustomSearchController.searchResults';
+import countResults from '@salesforce/apex/CustomSearchController.countResults';
 import loadFieldsetDetail from '@salesforce/apex/CustomSearchController.loadFieldsetDetail';
 import loadTypeList from '@salesforce/apex/CustomSearchController.loadTypeList';
 import createMicroCampaign from '@salesforce/apex/CustomSearchController.createMicroCampaign';
@@ -26,6 +27,7 @@ import LBL_UNSUPPORTED_OBJECT_TYPE_ERROR_MESSAGE from '@salesforce/label/c.Unsup
 import LBL_RECORDS_CREATED_MESSAGE from '@salesforce/label/c.RecordSuccessfullyCreated';
 import LBL_LOAD_PRODUCT_TYPES_ERROR_MESSAGE from '@salesforce/label/c.LoadingProductTypesError';
 import LBL_NO_RECORDS from '@salesforce/label/c.NoRecordsFound';
+import LBL_MAX_RECORDS_EXCEEDED from '@salesforce/label/c.MaxRecordsExceeded';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
@@ -40,8 +42,17 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	isModalOpen = false;
 	selectedAccountIds = [];
 
+	comboBoxOptions = [
+		{ label: 100, value: 100 },
+		{ label: 200, value: 200 },
+		{ label: 500, value: 500 },
+		{ label: 1000, value: 1000 },
+		{ label: 2000, value: 2000 }
+	];
+
+	pageNumber = 1;
 	totalRecordsCount = 0;
-	recordsPerPage = 2000;
+	recordsPerPage = this.comboBoxOptions[0].value;
 
 	outputTableColumns = [];
 	outputTableData = [];
@@ -177,43 +188,52 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			filterItemList: this.filterConditionList,
 			configuration: this.selectedConfiguration,
 			objectName: this.selectedConfiguration.ObjectType__c,
+			pageNumber: this.pageNumber,
 			pageSize: this.recordsPerPage
 		};
 
 		console.log('request: ' + JSON.stringify(request));
 		const currentSelectedAccountIds = this.selectedAccountIds;
+		countResults({ dto: request })
+			.then(countResult => {
+				this.totalRecordsCount = countResult;
+				const maxAllowedRecordsCount = 10000;
+				if (countResult <= maxAllowedRecordsCount) {
+					searchResults({ dto: request })
+						.then(response => {
+							this.outputTableData = response.data;
+							this.selectedAccountIds = currentSelectedAccountIds;
+							this.totalRecordsCount = response.totalCount;
 
-		searchResults({ dto: request })
-			.then(response => {
-				this.outputTableData = response.data;
-				this.selectedAccountIds = currentSelectedAccountIds;
-				this.totalRecordsCount = response.data.length;
+							if (this.totalRecordsCount < 1) {
+								this.toastMessage(null, '', LBL_NO_RECORDS);
+								return;
+							}
 
-				if (this.totalRecordsCount < 1) {
-					this.toastMessage(null, '', LBL_NO_RECORDS);
-					return;
+							loadFieldsetDetail({
+								fieldsetName: this.selectedConfiguration.FieldsetName__c,
+								objectName: request.objectName
+							})
+								.then(colResponse => {
+									this.outputTableColumns = colResponse;
+									if (this.isTableVisible) {
+										this.section = ['data'];
+									} else {
+										this.section = ['configuration'];
+									}
+								})
+								.catch(error => {
+									console.log(JSON.stringify(error));
+									this.errorToastMessage('', error.body.message);
+								});
+						})
+						.catch(error => {
+							console.log(JSON.stringify(error));
+							this.errorToastMessage('', error.body.message);
+						});
+				} else {
+					this.errorToastMessage('', LBL_MAX_RECORDS_EXCEEDED + ' ' + maxAllowedRecordsCount);
 				}
-
-				loadFieldsetDetail({
-					fieldsetName: this.selectedConfiguration.FieldsetName__c,
-					objectName: request.objectName
-				})
-					.then(colResponse => {
-						this.outputTableColumns = colResponse;
-						if (this.isTableVisible) {
-							this.section = ['data'];
-						} else {
-							this.section = ['configuration'];
-						}
-					})
-					.catch(error => {
-						console.log(JSON.stringify(error));
-						this.errorToastMessage('', error.body.message);
-					});
-			})
-			.catch(error => {
-				console.log(JSON.stringify(error));
-				this.errorToastMessage('', error.body.message);
 			})
 			.finally(() => {
 				this.loading = false;
@@ -294,6 +314,38 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	handleSectionToggle(event) {
 		this.section = event.detail.openSections;
+	}
+
+	handleComboBoxChange(event) {
+		this.recordsPerPage = event.detail.value;
+		this.pageNumber = 1;
+		this.handleSubmitSearch();
+	}
+
+	handlePageNextChange() {
+		this.pageNumber++;
+		this.handleSubmitSearch();
+	}
+
+	handlePagePrevChange() {
+		this.pageNumber--;
+		this.handleSubmitSearch();
+	}
+
+	get isPrevPageDisabled() {
+		return this.pageNumber === 1;
+	}
+
+	get isNextPageDisabled() {
+		return this.pageNumber === this.totalPageCount;
+	}
+
+	get totalPageCount() {
+		return Math.ceil(this.totalRecordsCount / this.recordsPerPage);
+	}
+
+	get paginationInfo() {
+		return this.pageNumber + ' / ' + this.totalPageCount;
 	}
 
 	get filtersJson() {
