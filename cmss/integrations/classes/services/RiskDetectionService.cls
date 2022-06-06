@@ -33,12 +33,17 @@ public without sharing class RiskDetectionService {
 		req.setHeader('Content-Type', 'application/json');
 
 		Http http = new Http();
+		Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 		HttpResponse response = http.send(req);
-
+		Logger.debug('Incoming response', Logger.serializeHttpResponse(response));
+		Logger.saveLogs();
 		RiskDetectionResponseDto responseDto = new RiskDetectionResponseDto();
 		responseDto.statusCode = response.getStatusCode();
 		if (response.getStatusCode() == 200) {
-			RiskDetectionResponseDto.SuccessRiskDetectionResponseDto success = (RiskDetectionResponseDto.SuccessRiskDetectionResponseDto) JSON.deserialize(response.getBody(), RiskDetectionResponseDto.SuccessRiskDetectionResponseDto.class);
+			RiskDetectionResponseDto.SuccessRiskDetectionResponseDto success = (RiskDetectionResponseDto.SuccessRiskDetectionResponseDto) JSON.deserialize(
+				response.getBody(),
+				RiskDetectionResponseDto.SuccessRiskDetectionResponseDto.class
+			);
 			responseDto.success = success;
 		} else {
 			RiskDetectionResponseDto.ErrorRiskDetectionResponseDto errorDto = new RiskDetectionResponseDto.ErrorRiskDetectionResponseDto();
@@ -49,7 +54,12 @@ public without sharing class RiskDetectionService {
 	}
 
 	private RiskDetectionRequestDto prepareRequestBody() {
-		User currentUser = [SELECT Id, Email, LoginName__c, CommissionAccountBase__c FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1];
+		User currentUser = [
+			SELECT Id, Email, LoginName__c, CommissionAccountBase__c
+			FROM User
+			WHERE Id = :UserInfo.getUserId()
+			LIMIT 1
+		];
 		RiskDetectionRequestDto request = new RiskDetectionRequestDto();
 		request.userId = currentUser.LoginName__c;
 		request.userEmail = currentUser.Email;
