@@ -8,6 +8,7 @@ public with sharing class CustomSoqlService {
 	public Integer getDataCountFromDbDto() {
 		String queryFields = 'COUNT()';
 		String query = prepareQuery(queryFields);
+		System.debug('query: ' + query);
 		return Database.countQuery(query);
 	}
 
@@ -44,30 +45,36 @@ public with sharing class CustomSoqlService {
 	}
 
 	private String prepareQuery(String queryFields) {
-		String customFilterString = '';
+		List<String> customFilters = new List<String>();
 		for (CustomSearchFilterRequestDto.CustomFilterItemDto filterItem : this.filterRequestDto.filterItemList) {
 			List<CustomSearchFilterRequestDto.FilterOptionDto> filters = filterItem.filters;
-			for (CustomSearchFilterRequestDto.FilterOptionDto filter : filters) {
-				if(filter != null) {
-					String newCondition = getOperatorToSelectStatement(
+			if (filters != null && !filters.isEmpty()) {
+				for (CustomSearchFilterRequestDto.FilterOptionDto filter : filters) {
+					if (filter != null) {
+						String newCondition = getOperatorToSelectStatement(
 							filterItem.fieldName,
 							filter.type,
 							filter.value,
 							filterItem.dataType
-					);
-					customFilterString += newCondition + ' AND ';
+						);
+						customFilters.add(newCondition);
+					}
 				}
 			}
 		}
-		customFilterString = customFilterString.removeEndIgnoreCase(' AND ');
-		return 'SELECT ' +
+		String customFilterString = String.join(customFilters, ' AND ');
+		String baseQuery =
+			'SELECT ' +
 			queryFields +
 			' FROM ' +
 			this.filterRequestDto.configuration.ObjectType__c +
 			' WHERE ' +
-			this.filterRequestDto.configuration.FilterCondition__c +
-			' AND ' +
-			customFilterString;
+			this.filterRequestDto.configuration.FilterCondition__c;
+
+		if(!customFilters.isEmpty()) {
+			return baseQuery + ' AND ' + customFilterString;
+		}
+		return baseQuery;
 	}
 
 	public static String getQueryFieldsFromFieldSetService(FieldsetService service) {

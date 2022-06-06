@@ -173,6 +173,13 @@
         <value>No records found...</value>
     </labels>
     <labels>
+        <fullName>MaxRecordsExceeded</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Max Records Exceeded</shortDescription>
+        <value>Result contains more than allowed number of records - please use more parameters to get specified results. Maximum number of records is </value>
+    </labels>
+    <labels>
         <fullName>NoUserWithThisCPUFound</fullName>
         <language>en_US</language>
         <protected>false</protected>

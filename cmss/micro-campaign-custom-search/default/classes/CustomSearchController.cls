@@ -22,11 +22,31 @@ public with sharing class CustomSearchController {
 	}
 
 	@AuraEnabled
+	public static Integer countResults(CustomSearchFilterRequestDto dto) {
+		try {
+			CustomSoqlService service = new CustomSoqlService(dto);
+			return service.getDataCountFromDbDto();
+		} catch (Exception e) {
+			Logger.error('Error in CustomSearchController.searchResults creation', e);
+			throw new AuraHandledException(e.getMessage());
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
+	@AuraEnabled
 	public static CustomSearchFilterResponseDto searchResults(CustomSearchFilterRequestDto dto) {
-		CustomSoqlService service = new CustomSoqlService(dto);
-		Integer countRecords = service.getDataCountFromDbDto();
-		List<SObject> data = service.getDataFromDbDto();
-		return new CustomSearchFilterResponseDto(data, countRecords);
+		try {
+			CustomSoqlService service = new CustomSoqlService(dto);
+			Integer countRecords = service.getDataCountFromDbDto();
+			List<SObject> data = service.getDataFromDbDto();
+			return new CustomSearchFilterResponseDto(data, countRecords);
+		} catch (Exception e) {
+			Logger.error('Error in CustomSearchController.searchResults creation', e);
+			throw new AuraHandledException(e.getMessage());
+		} finally {
+			Logger.saveLogs();
+		}
 	}
 
 	@AuraEnabled
