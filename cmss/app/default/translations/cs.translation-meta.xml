@@ -285,6 +285,10 @@
         <name>MaxRecordsExceeded</name>
         <label>Výsledek hledání obsahuje velké množství záznamů. Prosím upřesněte filtery a hledání opakujte. Maximální povolený počet výsledků je </label>
     </customLabels>
+    <customLabels>
+        <name>SearchCommonError</name>
+        <label>Vyhledávání skončilo chybou. Prosíme opakujte akci. Pokud problém přetrvá kontaktujte podporu.</label>
+    </customLabels>
     <customTabs>
         <label>Identifikace klienta</label>
         <name>Customer_Search</name>

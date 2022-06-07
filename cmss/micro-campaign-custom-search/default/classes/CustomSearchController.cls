@@ -26,9 +26,12 @@ public with sharing class CustomSearchController {
 		try {
 			CustomSoqlService service = new CustomSoqlService(dto);
 			return service.getDataCountFromDbDto();
-		} catch (Exception e) {
-			Logger.error('Error in CustomSearchController.searchResults creation', e);
+		} catch (System.QueryException e) {
+			Logger.error('Error in CustomSearchController.searchResults countResults', e);
 			throw new AuraHandledException(e.getMessage());
+		} catch (Exception e) {
+			Logger.error('Error in CustomSearchController.searchResults countResults', e);
+			throw new AuraHandledException(Label.SearchCommonError);
 		} finally {
 			Logger.saveLogs();
 		}
@@ -41,9 +44,12 @@ public with sharing class CustomSearchController {
 			Integer countRecords = service.getDataCountFromDbDto();
 			List<SObject> data = service.getDataFromDbDto();
 			return new CustomSearchFilterResponseDto(data, countRecords);
-		} catch (Exception e) {
-			Logger.error('Error in CustomSearchController.searchResults creation', e);
+		} catch (System.QueryException e) {
+			Logger.error('Error in CustomSearchController.searchResults searchResults', e);
 			throw new AuraHandledException(e.getMessage());
+		} catch (Exception e) {
+			Logger.error('Error in CustomSearchController.searchResults searchResults', e);
+			throw new AuraHandledException(Label.SearchCommonError);
 		} finally {
 			Logger.saveLogs();
 		}
