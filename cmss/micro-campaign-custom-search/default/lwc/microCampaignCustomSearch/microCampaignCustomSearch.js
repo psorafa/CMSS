@@ -93,10 +93,12 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		const newSelectObject = event.target.dataset.object;
 		if (newSelectProduct !== this.selectedProduct) {
 			this.outputTableColumns = [];
+			this.totalRecordsCount = 0;
 			this.selectedUserHierarchy = [];
 			this.selectedConfiguration = null;
 			this.selectedProduct = newSelectProduct;
 			this.selectedObjectType = newSelectObject;
+			this.filterConditionList = [];
 		}
 	}
 
@@ -198,7 +200,10 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			.then(countResult => {
 				this.totalRecordsCount = countResult;
 				const maxAllowedRecordsCount = 10000;
-				if (countResult <= maxAllowedRecordsCount) {
+				if (countResult < 1) {
+					this.toastMessage(null, '', LBL_NO_RECORDS);
+					this.loading = false;
+				} else if (countResult <= maxAllowedRecordsCount) {
 					searchResults({ dto: request })
 						.then(response => {
 							this.outputTableData = response.data;
@@ -230,12 +235,18 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 						.catch(error => {
 							console.log(JSON.stringify(error));
 							this.errorToastMessage('', error.body.message);
+						})
+						.finally(() => {
+							this.loading = false;
 						});
 				} else {
 					this.errorToastMessage('', LBL_MAX_RECORDS_EXCEEDED + ' ' + maxAllowedRecordsCount);
+					this.loading = false;
 				}
 			})
-			.finally(() => {
+			.catch(error => {
+				console.log(JSON.stringify(error));
+				this.errorToastMessage('', error.body.message);
 				this.loading = false;
 			});
 	}
@@ -249,7 +260,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	}
 
 	errorToastMessage(title, message) {
-		this.toastMessage('error', title, message, 'sticky');
+		this.toastMessage('error', title, message, 'dismissable');
 	}
 
 	toastMessage(variant, title, message, mode) {
