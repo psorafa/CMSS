@@ -206,14 +206,25 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 				} else if (countResult <= maxAllowedRecordsCount) {
 					searchResults({ dto: request })
 						.then(response => {
-							this.outputTableData = response.data;
-							this.selectedAccountIds = currentSelectedAccountIds;
 							this.totalRecordsCount = response.totalCount;
 
 							if (this.totalRecordsCount < 1) {
 								this.toastMessage(null, '', LBL_NO_RECORDS);
 								return;
 							}
+							this.outputTableData = [];
+							response.data.forEach(item => {
+								let objectKeys = Object.keys(item);
+								objectKeys.forEach(key => {
+									const itemType = typeof item[key];
+									if (itemType === 'object') {
+										const newKey = key + '.Name';
+										item[newKey] = item[key].Name;
+									}
+								});
+								this.outputTableData.push(item);
+							});
+							this.selectedAccountIds = currentSelectedAccountIds;
 
 							loadFieldsetDetail({
 								fieldsetName: this.selectedConfiguration.FieldsetName__c,

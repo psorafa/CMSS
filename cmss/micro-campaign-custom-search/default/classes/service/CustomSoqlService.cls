@@ -77,18 +77,16 @@ public with sharing class CustomSoqlService {
 		return baseQuery;
 	}
 
-	public static String getQueryFieldsFromFieldSetService(FieldsetService service) {
-		String queryFields = '';
-		List<String> fieldList = new List<String>();
-		fieldList = service.getFieldsetInfoToSoql();
+	private String getQueryFieldsFromFieldSetService(FieldsetService service) {
 
-		for (String queryField : fieldList) {
-			queryFields = queryFields + queryField + ',';
+		Set<String> fieldList = service.getFieldsetInfoToSoql();
+		if (this.filterRequestDto.objectName.equals('Asset')) {
+			fieldList.add('AccountId');
 		}
-		queryFields = queryFields.removeEndIgnoreCase(',');
+		String queryFields = String.join(fieldList, ',');
 
 		if (Test.isRunningTest() && queryFields.length() == 0) {
-			queryFields = 'id ';
+			queryFields = 'Id ';
 		}
 
 		return queryFields;

@@ -6,9 +6,9 @@ public with sharing class FieldsetInfoDto {
 	@AuraEnabled
 	public String type { get; set; }
 
-	public FieldsetInfoDto(String fieldApiName, String fieldLabel) {
+	public FieldsetInfoDto(String fieldApiName, String fieldLabel, String type) {
 		this.fieldName = fieldApiName;
 		this.label = fieldLabel;
-		this.type = 'text';
+		this.type = type;
 	}
 }

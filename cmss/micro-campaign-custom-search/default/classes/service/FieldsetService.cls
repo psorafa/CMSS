@@ -10,12 +10,32 @@ public with sharing class FieldsetService {
 	public List<FieldsetInfoDto> getFieldsetInfo() {
 		List<FieldsetInfoDto> fieldsetInfo = new List<FieldsetInfoDto>();
 		List<FieldSetMember> fieldSetMembers = this.readFieldSet();
+
 		if (!fieldSetMembers.isEmpty()) {
 			for (FieldSetMember member : fieldSetMembers) {
 				SObjectField field = member.getSObjectField();
 				if (field != null) {
 					DescribeFieldResult fieldDescribe = field.getDescribe();
-					FieldsetInfoDto fieldInfo = new FieldsetInfoDto(fieldDescribe.getName(), fieldDescribe.getLabel());
+					String fieldName = member.getFieldPath();
+					DisplayType displayType = fieldDescribe.getType();
+					String displayTypeName = displayType.name();
+					String fieldLabel = member.getLabel();
+					List<SObjectType> sObjectTypes = fieldDescribe.getReferenceTo();
+
+					if (Schema.DisplayType.ID.equals(displayType) || Schema.DisplayType.REFERENCE.equals(displayType)) {
+						if (fieldDescribe.isCustom()) {
+							fieldName = fieldName.replaceAll('__c', '__r') + '.Name';
+						} else if (fieldName == 'ID') {
+							fieldName = 'Name';
+						} else {
+							fieldName = fieldName.replaceAll('Id', '') + '.Name';
+						}
+						if(!sObjectTypes.isEmpty()) {
+							fieldLabel = fieldLabel.replaceAll(' ID','');
+						}
+					}
+
+					FieldsetInfoDto fieldInfo = new FieldsetInfoDto(fieldName, fieldLabel, displayTypeName);
 					fieldsetInfo.add(fieldInfo);
 				}
 			}
@@ -23,15 +43,33 @@ public with sharing class FieldsetService {
 		return fieldsetInfo;
 	}
 
-	public List<String> getFieldsetInfoToSoql() {
-		List<String> fieldsetInfo = new List<String>();
+	public Set<String> getFieldsetInfoToSoql() {
+		Set<String> fieldsetInfo = new Set<String>();
 		List<FieldSetMember> fieldSetMembers = this.readFieldSet();
 		if (!fieldSetMembers.isEmpty()) {
 			for (FieldSetMember member : fieldSetMembers) {
 				SObjectField field = member.getSObjectField();
 				if (field != null) {
 					DescribeFieldResult fieldDescribe = field.getDescribe();
-					fieldsetInfo.add(fieldDescribe.getName());
+					String fieldName = member.getFieldPath();
+					DisplayType displayType = fieldDescribe.getType();
+					if (
+						Schema.DisplayType.PICKLIST.equals(displayType) ||
+						Schema.DisplayType.MULTIPICKLIST.equals(displayType)
+					) {
+						fieldName = 'toLabel(' + fieldName + ')';
+					}
+
+					if (Schema.DisplayType.ID.equals(displayType) || Schema.DisplayType.REFERENCE.equals(displayType)) {
+						if (fieldDescribe.isCustom()) {
+							fieldName = fieldName.replaceAll('__c', '__r') + '.Name';
+						} else if (fieldName == 'ID') {
+							fieldName = 'Name';
+						} else {
+							fieldName = fieldName.replaceAll('Id', '') + '.Name';
+						}
+					}
+					fieldsetInfo.add(fieldName);
 				}
 			}
 		}
