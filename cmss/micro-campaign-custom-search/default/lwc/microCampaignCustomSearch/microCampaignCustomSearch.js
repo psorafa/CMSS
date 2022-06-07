@@ -42,6 +42,10 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	isModalOpen = false;
 	selectedAccountIds = [];
 
+	defaultSortDirection = 'asc';
+	sortDirection = 'asc';
+	sortedBy;
+
 	comboBoxOptions = [
 		{ label: 100, value: 100 },
 		{ label: 200, value: 200 },
@@ -234,6 +238,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 									this.outputTableColumns = colResponse;
 									if (this.isTableVisible) {
 										this.section = ['data'];
+										this.sortedBy = this.outputTableColumns[0];
 									} else {
 										this.section = ['configuration'];
 									}
@@ -370,11 +375,29 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		return this.pageNumber + ' / ' + this.totalPageCount;
 	}
 
-	get filtersJson() {
-		return JSON.stringify(this.filterConditionList);
+	onHandleSort(event) {
+		const { fieldName: sortedBy, sortDirection } = event.detail;
+		const cloneData = [...this.outputTableData];
+
+		cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
+		this.outputTableData = cloneData;
+		this.sortDirection = sortDirection;
+		this.sortedBy = sortedBy;
 	}
 
-	get selectedProductJson() {
-		return JSON.stringify(this.selectedProduct);
+	sortBy(field, reverse, primer) {
+		const key = primer
+			? function(x) {
+					return primer(x[field]);
+			  }
+			: function(x) {
+					return x[field];
+			  };
+
+		return function(a, b) {
+			a = key(a);
+			b = key(b);
+			return reverse * ((a > b) - (b > a));
+		};
 	}
 }

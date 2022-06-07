@@ -35,7 +35,7 @@ public with sharing class FieldsetService {
 						}
 					}
 
-					FieldsetInfoDto fieldInfo = new FieldsetInfoDto(fieldName, fieldLabel, displayTypeName);
+					FieldsetInfoDto fieldInfo = new FieldsetInfoDto(fieldName, fieldLabel, displayTypeName, !fieldDescribe.isEncrypted());
 					fieldsetInfo.add(fieldInfo);
 				}
 			}
