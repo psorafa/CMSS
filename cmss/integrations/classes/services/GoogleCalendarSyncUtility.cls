@@ -11,6 +11,9 @@ public class GoogleCalendarSyncUtility {
 			}
 			sfEvent.Description +=
 				'Vytvořena dne: ' + getDateTimeFromGoogleFormat(googleEvent?.created)?.format('dd. MM. yyyy');
+			if (googleEvent?.recurrence != null) {
+				sfEvent.Description += '\n \n Pro opakující se událost nelze do CRM přenést všechny její výskyty';
+			}
 		}
 		sfEvent.IsPrivate = googleEvent.visibility == 'public' ? false : true;
 		sfEvent.Location = googleEvent.location;
@@ -305,6 +308,7 @@ public class GoogleCalendarSyncUtility {
 		public String eventType;
 		public String transparency;
 		public String colorId;
+		public List<String> recurrence;
 
 		public String created;
 		public String htmlLink;

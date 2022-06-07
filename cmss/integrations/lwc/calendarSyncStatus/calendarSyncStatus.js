@@ -2,6 +2,7 @@ import { LightningElement, api, wire } from 'lwc';
 import { createRecord, deleteRecord } from 'lightning/uiRecordApi';
 import getUserCalendarSetting from '@salesforce/apex/CalendarSyncStatusController.getUserCalendarSetting';
 import validateConnection from '@salesforce/apex/CalendarSyncStatusController.validateCalendarConnection';
+import getTechnicalUserMail from '@salesforce/apex/CalendarSyncStatusController.getTechnicalUserMail';
 import createWatch from '@salesforce/apex/CalendarSyncStatusController.createWatch';
 import actualUserId from '@salesforce/user/Id';
 
@@ -22,6 +23,7 @@ export default class CalendarSyncStatus extends LightningElement {
 	isConnectionValid = false;
 	isConnectionInvalid = false;
 	showSpinner = false;
+	technicalUserMail;
 
 	activeHelpSections = [];
 
@@ -32,6 +34,17 @@ export default class CalendarSyncStatus extends LightningElement {
 			this.existingSettingId = this.userCalendarSetting.UserCalendarID__c;
 			this.googleCalendarIdInput = this.userCalendarSetting.UserCalendarID__c;
 		}
+	}
+
+	@wire(getTechnicalUserMail, {})
+	retrieveTechnicalUserMail({ _, data }) {
+		if (data) {
+			this.technicalUserMail = JSON.parse(data);
+		}
+	}
+
+	get technicalUserMail() {
+		return this.technicalUserMail;
 	}
 
 	handleHelpToggle() {
