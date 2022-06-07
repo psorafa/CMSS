@@ -30,8 +30,8 @@ public with sharing class FieldsetService {
 						} else {
 							fieldName = fieldName.replaceAll('Id', '') + '.Name';
 						}
-						if(!sObjectTypes.isEmpty()) {
-							fieldLabel = fieldLabel.replaceAll(' ID','');
+						if (!sObjectTypes.isEmpty()) {
+							fieldLabel = fieldLabel.replaceAll(' ID', '');
 						}
 					}
 

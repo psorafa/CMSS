@@ -158,7 +158,13 @@
 					<c-create-micro-campaign-form onchange={handleFormChange}></c-create-micro-campaign-form>
 				</div>
 				<footer class="slds-modal__footer">
-					<button class="slds-button slds-button_neutral" onclick={closeModal} title={labels.LBL_CANCEL_BUTTON_TITLE}>{labels.LBL_CANCEL_BUTTON_TITLE}</button>
+					<button
+						class="slds-button slds-button_neutral"
+						onclick={closeModal}
+						title={labels.LBL_CANCEL_BUTTON_TITLE}
+					>
+						{labels.LBL_CANCEL_BUTTON_TITLE}
+					</button>
 					<lightning-button
 						variant="brand"
 						label={labels.LBL_CREATE_NEW_RECORDS_BUTTON_TITLE}

@@ -152,9 +152,10 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Custom Search Filter</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Custom Search Filter Name</label>
         <type>Text</type>
     </nameField>

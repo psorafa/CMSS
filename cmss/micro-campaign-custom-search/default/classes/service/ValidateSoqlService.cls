@@ -3,7 +3,7 @@ public with sharing class ValidateSoqlService {
 		for (CustomSearchConfiguration__c csc : inputList) {
 			FieldsetService service = new FieldsetService(csc.FieldsetName__c, csc.ObjectType__c);
 			Set<String> queryFields = service.getFieldsetInfoToSoql();
-			if (Test.isRunningTest()) {
+			if (Test.isRunningTest() && queryFields.isEmpty()) {
 				queryFields.add('Id');
 			}
 

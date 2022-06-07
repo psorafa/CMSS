@@ -71,23 +71,23 @@ public with sharing class CustomSoqlService {
 			' WHERE ' +
 			this.filterRequestDto.configuration.FilterCondition__c;
 
-		if(!customFilters.isEmpty()) {
+		if (!customFilters.isEmpty()) {
 			return baseQuery + ' AND ' + customFilterString;
 		}
 		return baseQuery;
 	}
 
 	private String getQueryFieldsFromFieldSetService(FieldsetService service) {
-
 		Set<String> fieldList = service.getFieldsetInfoToSoql();
 		if (this.filterRequestDto.objectName.equals('Asset')) {
 			fieldList.add('AccountId');
 		}
-		String queryFields = String.join(fieldList, ',');
 
-		if (Test.isRunningTest() && queryFields.length() == 0) {
-			queryFields = 'Id ';
+		if (Test.isRunningTest() && fieldList.isEmpty()) {
+			fieldList.add('Id');
 		}
+
+		String queryFields = String.join(new List<String>(fieldList), ',');
 
 		return queryFields;
 	}
