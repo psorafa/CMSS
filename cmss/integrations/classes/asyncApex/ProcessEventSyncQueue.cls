@@ -103,11 +103,11 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			Logger.saveLogs();
 
 			Database.delete(syncs, false);
-			insert eventsToCreate;
-			update eventsToUpdate.values();
-			update tasksToUpdate.values();
-			delete eventsToDelete.values();
-			update calendarSettingsToUpdate.values();
+			Database.insert(eventsToCreate, false);
+			Database.update(eventsToUpdate.values(), false);
+			Database.update(tasksToUpdate.values(), false);
+			Database.delete(eventsToDelete.values(), false);
+			Database.update(calendarSettingsToUpdate.values(), false);
 		}
 	}
 
@@ -185,7 +185,8 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			calendarSetting.SyncToken__c
 		);
 		handleApiErrors(changedEventsResponse, calendarSetting);
-		if (changedEventsResponse.statusCode == 200) {
+
+		if (changedEventsResponse.statusCode == 200 && changedEventsResponse.googleEvents != null) {
 			List<String> googleIds = new List<String>();
 			for (GoogleCalendarSyncUtility.GoogleEventDTO event : changedEventsResponse.googleEvents) {
 				googleIds.add(event.id);
@@ -330,10 +331,10 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 				PlannedFromDate__c,
 				PlannedToDate__c,
 				ActivityDate,
-				Type,
+				toLabel(Type),
 				AccountAlias__c,
-				Category__c,
-				ProductType__c,
+				toLabel(Category__c),
+				toLabel(ProductType__c),
 				ActivityLink__c,
 				IsClosedNegative__c,
 				IsClosedPositive__c
@@ -486,7 +487,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 					GoogleId__c,
 					IsFromGoogle__c,
 					AccountAlias__c,
-					ProductType__c,
+					toLabel(ProductType__c),
 					ActivityLink__c
 				FROM Event
 				WHERE Id = :sfEventId

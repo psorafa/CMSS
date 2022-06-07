@@ -1,5 +1,10 @@
 public without sharing class CalendarSyncStatusController {
 	@AuraEnabled(cacheable=true)
+	public static String getTechnicalUserMail() {
+		return JSON.serialize(GoogleCalendarSyncSettings__c.getOrgDefaults()?.GoogleTechnicalUser__c);
+	}
+
+	@AuraEnabled(cacheable=true)
 	public static UserCalendarSetting__c getUserCalendarSetting() {
 		UserCalendarSetting__c setting;
 		try {

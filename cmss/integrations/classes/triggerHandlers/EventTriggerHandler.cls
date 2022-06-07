@@ -131,8 +131,8 @@ public class EventTriggerHandler extends TriggerHandler {
 			if (relatedContactsMap.containsKey(event.WhoId)) {
 				actualContact = relatedContactsMap.get(event.WhoId);
 				event.AccountAlias__c =
-					actualContact.Account?.LastName.left(3) +
-					actualContact.Account?.FirstName.left(3) +
+					actualContact.Account?.LastName?.left(3) +
+					actualContact.Account?.FirstName?.left(3) +
 					'_' +
 					String.valueOf(actualContact.Account?.Birthdate__c?.year())?.right(2);
 			} else {
