@@ -42,6 +42,10 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	isModalOpen = false;
 	selectedAccountIds = [];
 
+	defaultSortDirection = 'asc';
+	sortDirection = 'asc';
+	sortedBy;
+
 	comboBoxOptions = [
 		{ label: 100, value: 100 },
 		{ label: 200, value: 200 },
@@ -93,10 +97,12 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		const newSelectObject = event.target.dataset.object;
 		if (newSelectProduct !== this.selectedProduct) {
 			this.outputTableColumns = [];
+			this.totalRecordsCount = 0;
 			this.selectedUserHierarchy = [];
 			this.selectedConfiguration = null;
 			this.selectedProduct = newSelectProduct;
 			this.selectedObjectType = newSelectObject;
+			this.filterConditionList = [];
 		}
 	}
 
@@ -198,17 +204,31 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			.then(countResult => {
 				this.totalRecordsCount = countResult;
 				const maxAllowedRecordsCount = 10000;
-				if (countResult <= maxAllowedRecordsCount) {
+				if (countResult < 1) {
+					this.toastMessage(null, '', LBL_NO_RECORDS);
+					this.loading = false;
+				} else if (countResult <= maxAllowedRecordsCount) {
 					searchResults({ dto: request })
 						.then(response => {
-							this.outputTableData = response.data;
-							this.selectedAccountIds = currentSelectedAccountIds;
 							this.totalRecordsCount = response.totalCount;
 
 							if (this.totalRecordsCount < 1) {
 								this.toastMessage(null, '', LBL_NO_RECORDS);
 								return;
 							}
+							this.outputTableData = [];
+							response.data.forEach(item => {
+								let objectKeys = Object.keys(item);
+								objectKeys.forEach(key => {
+									const itemType = typeof item[key];
+									if (itemType === 'object') {
+										const newKey = key + '.Name';
+										item[newKey] = item[key].Name;
+									}
+								});
+								this.outputTableData.push(item);
+							});
+							this.selectedAccountIds = currentSelectedAccountIds;
 
 							loadFieldsetDetail({
 								fieldsetName: this.selectedConfiguration.FieldsetName__c,
@@ -218,6 +238,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 									this.outputTableColumns = colResponse;
 									if (this.isTableVisible) {
 										this.section = ['data'];
+										this.sortedBy = this.outputTableColumns[0];
 									} else {
 										this.section = ['configuration'];
 									}
@@ -230,12 +251,18 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 						.catch(error => {
 							console.log(JSON.stringify(error));
 							this.errorToastMessage('', error.body.message);
+						})
+						.finally(() => {
+							this.loading = false;
 						});
 				} else {
 					this.errorToastMessage('', LBL_MAX_RECORDS_EXCEEDED + ' ' + maxAllowedRecordsCount);
+					this.loading = false;
 				}
 			})
-			.finally(() => {
+			.catch(error => {
+				console.log(JSON.stringify(error));
+				this.errorToastMessage('', error.body.message);
 				this.loading = false;
 			});
 	}
@@ -249,7 +276,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	}
 
 	errorToastMessage(title, message) {
-		this.toastMessage('error', title, message, 'sticky');
+		this.toastMessage('error', title, message, 'dismissable');
 	}
 
 	toastMessage(variant, title, message, mode) {
@@ -348,11 +375,29 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		return this.pageNumber + ' / ' + this.totalPageCount;
 	}
 
-	get filtersJson() {
-		return JSON.stringify(this.filterConditionList);
+	onHandleSort(event) {
+		const { fieldName: sortedBy, sortDirection } = event.detail;
+		const cloneData = [...this.outputTableData];
+
+		cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
+		this.outputTableData = cloneData;
+		this.sortDirection = sortDirection;
+		this.sortedBy = sortedBy;
 	}
 
-	get selectedProductJson() {
-		return JSON.stringify(this.selectedProduct);
+	sortBy(field, reverse, primer) {
+		const key = primer
+			? function(x) {
+					return primer(x[field]);
+			  }
+			: function(x) {
+					return x[field];
+			  };
+
+		return function(a, b) {
+			a = key(a);
+			b = key(b);
+			return reverse * ((a > b) - (b > a));
+		};
 	}
 }
