@@ -134,7 +134,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	removeFilter(inputFieldName) {
 		const existingItem = this.filterConditionList.filter(
-			item =>
+			(item) =>
 				item.fieldName === inputFieldName &&
 				item.objectName === this.selectedObjectType &&
 				item.productType === this.selectedProduct
@@ -162,7 +162,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	addToFilter(inputFieldName, filterValue, dataType) {
 		const existingItem = this.filterConditionList.filter(
-			item =>
+			(item) =>
 				item.fieldName === inputFieldName &&
 				item.objectName === this.selectedObjectType &&
 				item.productType === this.selectedProduct
@@ -201,15 +201,17 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		console.log('request: ' + JSON.stringify(request));
 		const currentSelectedAccountIds = this.selectedAccountIds;
 		countResults({ dto: request })
-			.then(countResult => {
+			.then((countResult) => {
 				this.totalRecordsCount = countResult;
 				const maxAllowedRecordsCount = 10000;
 				if (countResult < 1) {
 					this.toastMessage(null, '', LBL_NO_RECORDS);
+					this.outputTableColumns = [];
+					this.outputTableData = [];
 					this.loading = false;
 				} else if (countResult <= maxAllowedRecordsCount) {
 					searchResults({ dto: request })
-						.then(response => {
+						.then((response) => {
 							this.totalRecordsCount = response.totalCount;
 
 							if (this.totalRecordsCount < 1) {
@@ -217,9 +219,9 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 								return;
 							}
 							this.outputTableData = [];
-							response.data.forEach(item => {
+							response.data.forEach((item) => {
 								let objectKeys = Object.keys(item);
-								objectKeys.forEach(key => {
+								objectKeys.forEach((key) => {
 									const itemType = typeof item[key];
 									if (itemType === 'object') {
 										const newKey = key + '.Name';
@@ -234,7 +236,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 								fieldsetName: this.selectedConfiguration.FieldsetName__c,
 								objectName: request.objectName
 							})
-								.then(colResponse => {
+								.then((colResponse) => {
 									this.outputTableColumns = colResponse;
 									if (this.isTableVisible) {
 										this.section = ['data'];
@@ -243,12 +245,12 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 										this.section = ['configuration'];
 									}
 								})
-								.catch(error => {
+								.catch((error) => {
 									console.log(JSON.stringify(error));
 									this.errorToastMessage('', error.body.message);
 								});
 						})
-						.catch(error => {
+						.catch((error) => {
 							console.log(JSON.stringify(error));
 							this.errorToastMessage('', error.body.message);
 						})
@@ -260,7 +262,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 					this.loading = false;
 				}
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.log(JSON.stringify(error));
 				this.errorToastMessage('', error.body.message);
 				this.loading = false;
@@ -292,9 +294,9 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	handleSelectedRows(event) {
 		const selectedRows = event.detail.selectedRows;
 		if (this.selectedConfiguration.ObjectType__c === 'Account') {
-			this.selectedAccountIds = selectedRows.map(row => row.Id);
+			this.selectedAccountIds = selectedRows.map((row) => row.Id);
 		} else if (this.selectedConfiguration.ObjectType__c === 'Asset') {
-			this.selectedAccountIds = selectedRows.map(row => row.AccountId);
+			this.selectedAccountIds = selectedRows.map((row) => row.AccountId);
 		} else {
 			this.errorToastMessage('', LBL_UNSUPPORTED_OBJECT_TYPE_ERROR_MESSAGE);
 		}
@@ -323,7 +325,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			.then(() => {
 				this.toastMessage('success', '', LBL_RECORDS_CREATED_MESSAGE);
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.log(JSON.stringify(error));
 				this.errorToastMessage('', error.body.message);
 			})
@@ -387,14 +389,14 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	sortBy(field, reverse, primer) {
 		const key = primer
-			? function(x) {
+			? function (x) {
 					return primer(x[field]);
 			  }
-			: function(x) {
+			: function (x) {
 					return x[field];
 			  };
 
-		return function(a, b) {
+		return function (a, b) {
 			a = key(a);
 			b = key(b);
 			return reverse * ((a > b) - (b > a));
