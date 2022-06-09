@@ -1,28 +1,21 @@
 public with sharing class ValidateSoqlService {
 	public static void validateCustomSearchConfiguration(List<CustomSearchConfiguration__c> inputList) {
 		for (CustomSearchConfiguration__c csc : inputList) {
-			FieldsetService service = new FieldsetService(csc.FieldsetName__c, csc.ObjectType__c);
-			Set<String> queryFields = service.getFieldsetInfoToSoql();
-			if (Test.isRunningTest() && queryFields.isEmpty()) {
-				queryFields.add('Id');
-			}
-
-			if (queryFields.isEmpty()) {
+			if (String.isBlank(csc.FieldsetName__c)) {
 				csc.FieldsetName__c.addError(Label.FieldsetNameIsWrong);
 			}
-
-			CustomSearchFilterRequestDto request = new CustomSearchFilterRequestDto();
-			request.objectName = csc.ObjectType__c;
-			request.configuration = csc;
-			request.filterItemList = new List<CustomSearchFilterRequestDto.CustomFilterItemDto>();
-			request.pageNumber = 0;
-			request.pageSize = 1;
-
-			try {
-				CustomSoqlService customSoqlService = new CustomSoqlService(request);
-				customSoqlService.getDataCountFromDbDto();
-			} catch (System.QueryException e) {
-				csc.FilterCondition__c.addError(Label.FilterConditionIsWrong + ', error: ' + e.getMessage());
+			if (String.isBlank(csc.ObjectType__c)) {
+				csc.ObjectType__c.addError(Label.UnsupportedObjectType);
+			}
+			if (!String.isBlank(csc.ObjectType__c) && !String.isBlank(csc.FieldsetName__c)) {
+				FieldsetService service = new FieldsetService(csc.FieldsetName__c, csc.ObjectType__c);
+				Set<String> queryFields = service.getFieldsetInfoToSoql();
+				if (Test.isRunningTest() && queryFields.isEmpty()) {
+					queryFields.add('Id');
+				}
+				if (queryFields.isEmpty()) {
+					csc.FieldsetName__c.addError(Label.FieldsetNameIsWrong);
+				}
 			}
 		}
 	}
