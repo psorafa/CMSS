@@ -417,6 +417,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>LastInteractionDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>MonthlyLoadSum__c</field>
             </layoutItems>
         </layoutColumns>
