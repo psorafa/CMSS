@@ -85,7 +85,7 @@ public class UpdateLoanAssetsFlowController {
 		public Date lastDrawdownReminder;
 		public Date lastChangeDate;
 		public String restObligAmount;
-		public Decimal requestedAmount;
+		public String requestedAmount;
         public Date signDateOwner;
     }
     

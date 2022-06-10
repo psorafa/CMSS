@@ -356,7 +356,7 @@ public class LoanDetailInfoServiceDataTypes {
 		// Restriction enumeration: 
 		public String restObligAmount;
 		// Restriction enumeration: 
-		public Decimal requestedAmount;
+		public String requestedAmount;
         public Date contractBeginDate;
 		private transient String[] signDate_type_info = new String[]{'signDate',s_ns0,'CommonDateType','0','1','false'};
 		private transient String[] receiptDate_type_info = new String[]{'receiptDate',s_ns0,'CommonDateType','0','1','false'};
@@ -512,7 +512,7 @@ public class LoanDetailInfoServiceDataTypes {
 			nodesParsed.add(restObligAmountNode);
 			//System.debug(this.restObligAmount);			
 			DOM.XmlNode requestedAmountNode = responseNode.getChildElement('requestedAmount', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
-			this.requestedAmount = (requestedAmountNode == null) ? null : Decimal.valueOf(requestedAmountNode.getText());
+			this.requestedAmount = (requestedAmountNode == null) ? null : requestedAmountNode.getText();
 			nodesParsed.add(requestedAmountNode);
 			//System.debug(this.requestedAmount);	
 			DOM.XmlNode contractBeginDateNode = responseNode.getChildElement('contractBeginDate', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
@@ -587,7 +587,7 @@ public class LoanDetailInfoServiceDataTypes {
 			Dom.XmlNode restObligAmountNode = outerNode.addChildElement('restObligAmount', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			restObligAmountNode.addTextNode((this.restObligAmount == null) ? '' : String.valueOf(this.restObligAmount));
 			Dom.XmlNode requestedAmountNode = outerNode.addChildElement('requestedAmount', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
-			requestedAmountNode.addTextNode((this.requestedAmount == null) ? '' : String.valueOf(this.requestedAmount));
+			requestedAmountNode.addTextNode((this.requestedAmount == null) ? '' : this.requestedAmount);
             Dom.XmlNode contractBeginDateNode = outerNode.addChildElement('contractBeginDate', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', '');
 			contractBeginDateNode.addTextNode((this.contractBeginDate == null) ? '' : String.valueOf(this.contractBeginDate));
 		}

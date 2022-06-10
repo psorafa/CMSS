@@ -120,7 +120,11 @@ public class LoanAssetsServices {
     asset.ProductCloseDate__c = result.signDateOwner;
     asset.CreditCondition__c = result.creditConditions;
     asset.RemainingDraw__c = restObligAmount;  
-    asset.TotalRequiedAmount__c = result.requestedAmount;
+
+   if (result.requestedAmount != null) {
+			result.requestedAmount = result.requestedAmount.replace(',', '.');
+			asset.TotalRequiedAmount__c = Decimal.valueOf(result.requestedAmount);
+		}
     asset.ActualSolver__c = result.loanCaseAdministrator;
     
     return asset;
