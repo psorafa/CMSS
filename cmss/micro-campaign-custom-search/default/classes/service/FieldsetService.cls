@@ -35,7 +35,12 @@ public with sharing class FieldsetService {
 						}
 					}
 
-					FieldsetInfoDto fieldInfo = new FieldsetInfoDto(fieldName, fieldLabel, displayTypeName, !fieldDescribe.isEncrypted());
+					FieldsetInfoDto fieldInfo = new FieldsetInfoDto(
+						fieldName,
+						fieldLabel,
+						displayTypeName,
+						!fieldDescribe.isEncrypted()
+					);
 					fieldsetInfo.add(fieldInfo);
 				}
 			}
@@ -53,6 +58,9 @@ public with sharing class FieldsetService {
 					DescribeFieldResult fieldDescribe = field.getDescribe();
 					String fieldName = member.getFieldPath();
 					DisplayType displayType = fieldDescribe.getType();
+					if (fieldName.contains('Date')) {
+						fieldName = 'FORMAT(' + fieldName + ')';
+					}
 					if (
 						Schema.DisplayType.PICKLIST.equals(displayType) ||
 						Schema.DisplayType.MULTIPICKLIST.equals(displayType)
