@@ -58,7 +58,11 @@ public with sharing class FieldsetService {
 					DescribeFieldResult fieldDescribe = field.getDescribe();
 					String fieldName = member.getFieldPath();
 					DisplayType displayType = fieldDescribe.getType();
-					if (fieldName.contains('Date')) {
+
+					if (Schema.DisplayType.DATE.equals(displayType)) {
+						fieldName = 'FORMAT(' + fieldName + ')';
+					}
+					if (Schema.DisplayType.CURRENCY.equals(displayType)) {
 						fieldName = 'FORMAT(' + fieldName + ')';
 					}
 					if (
