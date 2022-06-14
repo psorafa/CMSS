@@ -17,6 +17,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CreateMicroCampaignController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CustomSearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -30,6 +34,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ExternalLinksController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FeedDisplayController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
