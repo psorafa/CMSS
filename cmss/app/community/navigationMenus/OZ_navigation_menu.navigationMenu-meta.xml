@@ -39,24 +39,24 @@
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
-        <label>Příležitosti</label>
-        <position>6</position>
-        <publiclyAvailable>false</publiclyAvailable>
-        <target>Opportunity</target>
-        <type>SalesforceObject</type>
-    </navigationMenuItem>
-    <navigationMenuItem>
         <label>Kalendář</label>
-        <position>7</position>
+        <position>6</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>/calendar</target>
         <type>InternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
         <label>Aktivity</label>
-        <position>8</position>
+        <position>7</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>Task</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Příležitosti</label>
+        <position>8</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Opportunity</target>
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
