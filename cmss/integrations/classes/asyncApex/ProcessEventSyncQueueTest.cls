@@ -176,7 +176,7 @@ class ProcessEventSyncQueueTest {
 		Account acc1 = TestDataFactory.getAccount(new Account());
 		insert acc1;
 
-		User u = TestDataFactory.getUser(new User(Username = 'another@user.com', AgentId__c = '456789'));
+		User u = TestDataFactory.getUser(new User(Username = 'another@usercmss.com.test', AgentId__c = '456789'));
 		insert u;
 
 		Task task = new Task();
