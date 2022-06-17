@@ -231,7 +231,7 @@ global class MigrationPremiumController {
     private static final String SHOW_ALL = 'All';
 
     // Private properties
-    private static Id accountId { get; set; }
+    private static String accountId { get; set; }
 
     private static User theUser {
         get {
@@ -879,6 +879,13 @@ global class MigrationPremiumController {
         system.debug('***XXX ' + migrationProcessName);
         system.debug('***XXX ' + ApexPages.currentPage().getParameters().get('accountId'));
         assetId = ApexPages.currentPage().getParameters().get('assetId');
+        if (String.isBlank(accountId) && String.isNotBlank(assetId)) {
+            List<Asset> al = [SELECT AccountId FROM Asset WHERE Id = :assetId];
+            if (!al.isEmpty()) {
+                accountId = al.get(0).AccountId;
+            }
+        }
+
         //verificationAssetId = ApexPages.currentPage().getParameters().get('ver_assetId');
         String caseId = ApexPages.currentPage().getParameters().get('caseId');
         caseIdFromPage = caseId;

@@ -2,11 +2,11 @@
  - Created by konvickaj on 19.05.2022.
  -->
 
-<aura:component description="openMigrationComponent" implements="force:hasRecordId,flexipage:availableForAllPageTypes,lightning:isUrlAddressable,force:lightningQuickAction,lightning:availableForFlowActions">
-<!--
+<aura:component controller="PcfSignpostController" description="openMigrationComponent" implements="force:hasRecordId,flexipage:availableForAllPageTypes,lightning:isUrlAddressable,force:lightningQuickAction,lightning:availableForFlowActions">
+    <!--
     <lightning:workspaceAPI aura:id="workspace" />
 -->
     <aura:attribute name="recordId" type="String" />
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <lightning:navigation aura:id="navService"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:navigation aura:id="navService" />
 </aura:component>

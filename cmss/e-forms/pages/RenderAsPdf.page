@@ -268,7 +268,87 @@
             .prevod_financnich_prostredku .first_page {
                 min-height: 26.3cm;
             }
+            /* ################## ŽÁDOST O ZMENU PODMINEK MU/U #################### */
 
+            .zadost_o_zmenu_podminek .first_page {
+                min-height: 26cm;
+                /* border: 1px red solid; */
+            }
+
+            .min_width_25 {
+                min-width: 25%;
+            }
+
+            .min_width_36 {
+                min-width: 36%;
+            }
+
+            .width_70 {
+                width: 70%;
+            }
+
+            .zadost_o_zmenu_podminek .margin_fix_right {
+                margin-right: 3%;
+            }
+
+            .zadost_o_zmenu_podminek .margin_fix_left {
+                margin-left: 28%;
+            }
+
+            .zadost_o_zmenu_podminek ul {
+                margin: 0px;
+                padding: 0px;
+                padding-left: 2em;
+            }
+
+            .zadost_o_zmenu_podminek .first_ol {
+                margin-left: 2em;
+            }
+
+            .no_margin {
+                margin: 0px;
+            }
+
+            .zadost_o_zmenu_podminek .second_page {
+                margin-top: 2em;
+                min-height: 28.5cm;
+                /* border: 1px solid red; */
+            }
+
+            .zadost_o_zmenu_podminek .alpha_list {
+                margin-left: 2em;
+            }
+            /* ################## PRIJETI PRIDELENI CILOVE CASTKY #################### */
+            .prijeti_prideleni_cilove_castky .first_page {
+                min-height: 26.5cm;
+            }
+            .prijeti_prideleni_cilove_castky .space_for_note{
+                margin-bottom: 10em;
+            }
+            /* ################## ZADOST O CERPANI FINANCNICH PROSTREDKU #################### */
+            .zadost_o_cerpani_financnich_prostredku .first_page {
+                min-height: 26.5cm;
+                /* border: 1px solid red; */
+            }
+            .zadost_o_cerpani_financnich_prostredku table{
+                border-top: 0px solid black;
+                width: 100%;
+                border-collapse: collapse;
+                border-style: hidden;
+            }
+            .zadost_o_cerpani_financnich_prostredku td, th{
+                border: 1px solid black;
+                text-align: center;
+            }
+            .zadost_o_cerpani_financnich_prostredku th{
+                width: 20%;
+            }
+            .width_48{
+                width:48%;
+            }
+            .zadost_o_cerpani_financnich_prostredku .top_label sup{
+                font-size: 0.7em;
+            }
         </style>
 
     </head>

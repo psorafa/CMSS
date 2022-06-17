@@ -1,0 +1,45 @@
+{
+  "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "id" : "72af9ec8-7693-461d-b766-e4310157432f",
+  "label" : "Eforms",
+  "regions" : [ {
+    "id" : "fc05b113-be73-4f37-8559-ecaed7272bce",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:migrationPremiumWrapper",
+      "id" : "0b5f3f10-c752-4bce-8259-48228e7d9ca8",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "182937c2-c1f2-4b09-b8cb-6aee2055e563",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "cb57353f-64ae-4232-8640-45aaa8afa556",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Eforms"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "ce75e60c-65ac-4bbf-9ff7-85ba889cbaf8",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "101adc31-b865-4db5-ad09-9c2ad8be28c5",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-eforms"
+}
