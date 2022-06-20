@@ -1,6 +1,32 @@
 @IsTest
 public class EventTriggerHandlerTest {
 	@IsTest
+	static void updateAccountDateFields() {
+		Account acc = TestDataFactory.getPersonAccount(
+			new Account(
+				FirstName = 'Larisa',
+				LastName = 'Larisa',
+				LastInteractionDate__c = null,
+				OpenedActivityDate__c = null
+			)
+		);
+		insert acc;
+		Test.startTest();
+		Event event = new Event(
+			WhatId = acc.Id,
+			StartDateTime = system.today() - 6,
+			EndDateTime = system.today() - 5,
+			Subject = 'Call'
+		);
+		insert event;
+		Test.stopTest();
+		Account account = [SELECT Id, LastInteractionDate__c, OpenedActivityDate__c FROM Account WHERE Id = :acc.Id];
+
+		System.assertEquals(account.LastInteractionDate__c, Date.valueOf(event.EndDateTime));
+		System.assertEquals(account.OpenedActivityDate__c, system.today() - 6);
+	}
+
+	@IsTest
 	static void insertTest() {
 		Account account = TestDataFactory.getPersonAccount(
 			new Account(FirstName = 'Ada', LastName = 'Larkin', Birthdate__c = Date.newInstance(1980, 1, 1))
