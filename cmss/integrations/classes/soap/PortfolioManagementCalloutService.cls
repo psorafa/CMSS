@@ -8,17 +8,17 @@ public class PortfolioManagementCalloutService {
 	public class ChangeCPEClientStateRequest {
 		public CommonMessageService.RequestHeader requestHeader;
 		private transient String[] requestHeader_type_info = new String[]{
-				'requestHeader', s_ns0, 'RequestHeader', '1', '1', 'false'
+			'requestHeader', s_ns0, 'RequestHeader', '1', '1', 'false'
 		};
 		public PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody requestBody;
 		private transient String[] requestBody_type_info = new String[]{
-				'requestBody', s_ns0, 'ChangeCPEClientStateRequestBody', '1', '1', 'false'
+			'requestBody', s_ns0, 'ChangeCPEClientStateRequestBody', '1', '1', 'false'
 		};
 		private transient String[] apex_schema_type_info = new String[]{
-				s_ns0, 'true', 'false'
+			s_ns0, 'true', 'false'
 		};
 		private transient String[] field_order_type_info = new String[]{
-				'requestHeader', 'requestBody'
+			'requestHeader', 'requestBody'
 		};
 		public ChangeCPEClientStateRequest(CommonMessageService.RequestHeader requestHeader, PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody requestBody) {
 			this.requestHeader = requestHeader;
@@ -41,18 +41,22 @@ public class PortfolioManagementCalloutService {
 	}
 	public class ChangeCPEClientStateRequestBody {
 		public String batchId;
+        public String commissionAccountNumberBase;
 		public PortfolioManagementCalloutService.ListOfClientsStatesType listOfClientStates;
 		private transient String[] batchId_type_info = new String[]{
-				'batchId', s_ns0, 'AlphanumericIdType', '1', '1', 'false'
+			'batchId', s_ns0, 'AlphanumericIdType', '1', '1', 'false'
 		};
+		private transient String[] commissionAccountNumber_type_info = new String[]{
+			'commissionAccountNumberBase', s_ns0, 'AlphanumericIdType', '1', '1', 'false'
+		};        
 		private transient String[] listOfClientStates_type_info = new String[]{
-				'listOfClientStates', s_ns0, 'ListOfClientsStatesType', '1', '1', 'false'
+			'listOfClientStates', s_ns0, 'ListOfClientsStatesType', '1', '1', 'false'
 		};
 		private transient String[] apex_schema_type_info = new String[]{
-				s_ns0, 'true', 'false'
+			s_ns0, 'true', 'false'
 		};
 		private transient String[] field_order_type_info = new String[]{
-				'batchId', 'listOfClientStates'
+			'batchId', 'commissionAccountNumber_type_info', 'listOfClientStates'
 		};
 		public ChangeCPEClientStateRequestBody() {
 		}
@@ -62,6 +66,11 @@ public class PortfolioManagementCalloutService {
 				batchIdNode.addTextNode(this.batchId);
 			}
 
+			Dom.XmlNode commissionAccountNumberNode = outerNode.addChildElement('commissionAccountNumberBase', 'http://service.cmss.cz/person/PortfolioManagementService/v10', 'v10');
+			if (this.commissionAccountNumberBase != null) {
+				commissionAccountNumberNode.addTextNode(this.commissionAccountNumberBase);
+			}
+
 			PortfolioManagementCalloutService.ListOfClientsStatesType listOfClientStatesObj = this.listOfClientStates;
 			Dom.XmlNode listOfClientStatesNode = outerNode.addChildElement('listOfClientStates', 'http://service.cmss.cz/person/PortfolioManagementService/v10', 'v10');
 			if (listOfClientStatesObj != null) {
@@ -69,22 +78,21 @@ public class PortfolioManagementCalloutService {
 			}
 		}
 	}
-
 	//Extends http://service.cmss.cz/common/CommonMessage/v01:ResponseMessage
 	public class ChangeCPEClientStateResponse {
 		public CommonMessageService.ResponseHeader responseHeader;
 		private transient String[] responseHeader_type_info = new String[]{
-				'responseHeader', s_ns0, 'ResponseHeader', '1', '1', 'false'
+			'responseHeader', s_ns0, 'ResponseHeader', '1', '1', 'false'
 		};
 		public PortfolioManagementCalloutService.ChangeCPEClientStateResponseBody responseBody;
 		private transient String[] responseBody_type_info = new String[]{
-				'responseBody', s_ns0, 'ChangeCPEClientStateResponseBody', '0', '1', 'false'
+			'responseBody', s_ns0, 'ChangeCPEClientStateResponseBody', '0', '1', 'false'
 		};
 		private transient String[] apex_schema_type_info = new String[]{
-				s_ns0, 'true', 'false'
+			s_ns0, 'true', 'false'
 		};
 		private transient String[] field_order_type_info = new String[]{
-				'responseHeader', 'responseBody'
+			'responseHeader', 'responseBody'
 		};
 		public ChangeCPEClientStateResponse(DOM.XmlNode responseNode) {
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
@@ -107,71 +115,123 @@ public class PortfolioManagementCalloutService {
 		}
 	}
 	public class ChangeCPEClientStateResponseBody {
-		public PortfolioManagementCalloutService.ChangeCPEClientStateResponseBody emptyElement;
-		private transient String[] emptyElement_type_info = new String[]{
-				'emptyElement', s_ns0, 'ChangeCPEClientStateResponseBody', '1', '1', 'false'
+		public PortfolioManagementCalloutService.ListOfRequestStatusesType listOfRequestStatuses;
+		private transient String[] listOfRequestStatuses_type_info = new String[]{
+			'listOfRequestStatuses', s_ns0, 'ListOfRequestStatusesType', '1', '1', 'false'
 		};
 		private transient String[] apex_schema_type_info = new String[]{
-				s_ns0, 'true', 'false'
+			s_ns0, 'true', 'false'
 		};
 		private transient String[] field_order_type_info = new String[]{
-				'emptyElement'
+			'listOfRequestStatuses'
 		};
 		public ChangeCPEClientStateResponseBody(DOM.XmlNode responseNode) {
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
-			DOM.XmlNode emptyElementNode = responseNode.getChildElement('emptyElement', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
-			if (emptyElementNode == null) {
-				this.emptyElement = null;
+			DOM.XmlNode listOfRequestStatusesTypeNode = responseNode.getChildElement('listOfRequestStatuses', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
+			if (listOfRequestStatusesTypeNode == null) {
+				this.listOfRequestStatuses = null;
 			} else {
-				PortfolioManagementCalloutService.ChangeCPEClientStateResponseBody emptyElementObj = new PortfolioManagementCalloutService.ChangeCPEClientStateResponseBody(emptyElementNode);
-				nodesParsed.add(emptyElementNode);
-				this.emptyElement = emptyElementObj;
-			}
-		}
-		public void populateXmlNode(Dom.XmlNode outerNode) {
-
-			PortfolioManagementCalloutService.ChangeCPEClientStateResponseBody emptyElementObj = this.emptyElement;
-			Dom.XmlNode emptyElementNode = outerNode.addChildElement('emptyElement', 'http://service.cmss.cz/person/PortfolioManagementService/v10', '');
-			if (emptyElementObj != null) {
-				emptyElementObj.populateXmlNode(emptyElementNode);
+				PortfolioManagementCalloutService.ListOfRequestStatusesType listOfRequestStatusesObj = new PortfolioManagementCalloutService.ListOfRequestStatusesType(listOfRequestStatusesTypeNode);
+				nodesParsed.add(listOfRequestStatusesTypeNode);
+				this.listOfRequestStatuses = listOfRequestStatusesObj;
 			}
 		}
 	}
+    public class ListOfRequestStatusesType {
+		public PortfolioManagementCalloutService.ListOfRequestStatusesItemType[] listOfRequestStatusesItem;
+		
+        private transient String[] listOfClientsStatesItem_type_info = new String[]{
+			'listOfRequestStatusesItem', s_ns0, 'ListOfRequestStatusesItemType', '1', '-1', 'false'
+		};
+		private transient String[] apex_schema_type_info = new String[]{
+			s_ns0, 'true', 'false'
+		};
+		private transient String[] field_order_type_info = new String[]{
+			'listOfRequestStatusesItem'
+		};
+        public ListOfRequestStatusesType(DOM.XmlNode listNode) {
+            Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+            Dom.XmlNode[] listOfRequestStatusesItemChildren = listNode.getChildElements();
+			PortfolioManagementCalloutService.ListOfRequestStatusesItemType[] listOfRequestStatusesItemList = new List<PortfolioManagementCalloutService.ListOfRequestStatusesItemType>();
+			if (listOfRequestStatusesItemChildren == null || listOfRequestStatusesItemChildren.size() == 0) {
+				this.listOfRequestStatusesItem = null;
+			} else {
+				for (DOM.XmlNode childNode : listOfRequestStatusesItemChildren) {
+					if (childNode.GetName() == 'listOfRequestStatusesItem') {
+						PortfolioManagementCalloutService.ListOfRequestStatusesItemType Obj = new PortfolioManagementCalloutService.ListOfRequestStatusesItemType(
+							childNode
+						);
+						listOfRequestStatusesItemList.Add(Obj);
+						nodesParsed.add(childNode);
+					}
+				}
+				this.listOfRequestStatusesItem = listOfRequestStatusesItemList;
+			}
+        }
+	}
+    public class ListOfRequestStatusesItemType {
+        public PortfolioManagementCalloutService.ListOfRequestStatusesItemType listOfRequestStatusesItem;
+        public String stateChangeRequestId;
+        public String requestStatus;
+        private transient String[] stateChangeRequestId_type_info = new String[]{
+			'stateChangeRequestId', s_ns0, 'AlphanumericIdType', '1', '1', 'false'
+		};
+        private transient String[] spS_C_type_info = new String[]{
+			'requestStatus', s_ns0, 'CommonNumberType', '0', '1', 'false'
+		};
+		private transient String[] apex_schema_type_info = new String[]{
+			s_ns0, 'true', 'false'
+		};
+		private transient String[] field_order_type_info = new String[]{
+			'stateChangeRequestId', 'requestStatus'
+		};
+        public ListOfRequestStatusesItemType(DOM.XmlNode itemNode) {
+            Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
+			DOM.XmlNode stateChangeRequestIdNode = itemNode.getChildElement('stateChangeRequestId', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
+			this.stateChangeRequestId = (stateChangeRequestIdNode == null) ? null : stateChangeRequestIdNode.getText();
+			nodesParsed.add(stateChangeRequestIdNode);
+			//System.debug(this.stateChangeRequestId);
+			DOM.XmlNode requestStatusNode = itemNode.getChildElement('requestStatus', 'http://service.cmss.cz/person/PortfolioManagementService/v10');
+			this.requestStatus = (requestStatusNode == null) ? null : requestStatusNode.getText();
+			nodesParsed.add(requestStatusNode);
+			//System.debug(this.requestStatus);            	
+        }
+    }
 	public class ListOfClientsStatesItemType {
 		public String stateChangeRequestId;
 		public String accountId;
 		public String stateChangeReason;
-		// Restriction enumeration:
+		// Restriction enumeration: 
 		public String validFrom;
 		public String portfolioManagementType;
 		public String spS_A;
 		public String spS_C;
 		private transient String[] stateChangeRequestId_type_info = new String[]{
-				'stateChangeRequestId', s_ns0, 'AlphanumericIdType', '1', '1', 'false'
+			'stateChangeRequestId', s_ns0, 'AlphanumericIdType', '1', '1', 'false'
 		};
 		private transient String[] accountId_type_info = new String[]{
-				'accountId', s_ns0, 'ClientGlobalIdType', '1', '1', 'false'
+			'accountId', s_ns0, 'ClientGlobalIdType', '1', '1', 'false'
 		};
 		private transient String[] stateChangeReason_type_info = new String[]{
-				'stateChangeReason', s_ns0, 'CodeListItemIdType', '1', '1', 'false'
+			'stateChangeReason', s_ns0, 'CodeListItemIdType', '1', '1', 'false'
 		};
 		private transient String[] validFrom_type_info = new String[]{
-				'validFrom', s_ns0, 'CommonDateType', '1', '1', 'false'
+			'validFrom', s_ns0, 'CommonDateType', '1', '1', 'false'
 		};
 		private transient String[] portfolioManagementType_type_info = new String[]{
-				'portfolioManagementType', s_ns0, 'AlphanumericIdType', '1', '1', 'false'
+			'portfolioManagementType', s_ns0, 'AlphanumericIdType', '1', '1', 'false'
 		};
 		private transient String[] spS_A_type_info = new String[]{
-				'spS_A', s_ns0, 'CommonNumberType', '0', '1', 'false'
+			'spS_A', s_ns0, 'CommonNumberType', '0', '1', 'false'
 		};
 		private transient String[] spS_C_type_info = new String[]{
-				'spS_C', s_ns0, 'CommonNumberType', '0', '1', 'false'
+			'spS_C', s_ns0, 'CommonNumberType', '0', '1', 'false'
 		};
 		private transient String[] apex_schema_type_info = new String[]{
-				s_ns0, 'true', 'false'
+			s_ns0, 'true', 'false'
 		};
 		private transient String[] field_order_type_info = new String[]{
-				'stateChangeRequestId', 'accountId', 'stateChangeReason', 'validFrom', 'portfolioManagementType', 'spS_A', 'spS_C'
+			'stateChangeRequestId', 'accountId', 'stateChangeReason', 'validFrom', 'portfolioManagementType', 'spS_A', 'spS_C'
 		};
 		public ListOfClientsStatesItemType() {
 		}
@@ -205,13 +265,13 @@ public class PortfolioManagementCalloutService {
 	public class ListOfClientsStatesType {
 		public PortfolioManagementCalloutService.ListOfClientsStatesItemType[] listOfClientsStatesItem;
 		private transient String[] listOfClientsStatesItem_type_info = new String[]{
-				'listOfClientsStatesItem', s_ns0, 'ListOfClientsStatesItemType', '1', '-1', 'false'
+			'listOfClientsStatesItem', s_ns0, 'ListOfClientsStatesItemType', '1', '-1', 'false'
 		};
 		private transient String[] apex_schema_type_info = new String[]{
-				s_ns0, 'true', 'false'
+			s_ns0, 'true', 'false'
 		};
 		private transient String[] field_order_type_info = new String[]{
-				'listOfClientsStatesItem'
+			'listOfClientsStatesItem'
 		};
 		public ListOfClientsStatesType() {
 		}
@@ -239,9 +299,9 @@ public class PortfolioManagementCalloutService {
 			envelope.setNamespace('v01', v01);
 			DOM.XmlNode header = envelope.addChildElement('Header', env, 'soapenv');
 			new SOAPCommonTypes.OutboundHttpHeader().addWssToHeader(
-					header,
-					IntegrationSettings__c.getOrgDefaults().EsbUsername__c,
-					IntegrationSettings__c.getOrgDefaults().EsbPassword__c
+				header,
+				IntegrationSettings__c.getOrgDefaults().EsbUsername__c,
+				IntegrationSettings__c.getOrgDefaults().EsbPassword__c
 			);
 			DOM.XmlNode body = envelope.addChildElement('Body', env, 'soapenv');
 			return body;
