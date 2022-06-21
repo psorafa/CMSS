@@ -24,8 +24,8 @@ public class PcfSignpostController {
 
     @AuraEnabled
     public static Boolean isPortalEnabled() {
-        return true;
-        // User u = [SELECT Id, IsPortalEnabled FROM User WHERE Id = :UserInfo.getUserId()];
-        // return u.IsPortalEnabled;
+//        return true;
+         User u = [SELECT Id, IsPortalEnabled FROM User WHERE Id = :UserInfo.getUserId()];
+         return u.IsPortalEnabled;
     }
 }
