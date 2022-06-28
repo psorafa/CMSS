@@ -2,7 +2,10 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ValidFromCurrentOrFutureDate</fullName>
     <active>true</active>
-    <errorConditionFormula>ValidFrom__c &lt;  NOW()</errorConditionFormula>
+    <errorConditionFormula>AND(
+ValidFrom__c &lt;  NOW(),
+$Profile.Name &lt;&gt; &quot;IntegrationUser&quot;
+)</errorConditionFormula>
     <errorDisplayField>ValidFrom__c</errorDisplayField>
     <errorMessage>Portfolio Management Request cannot be in the past.</errorMessage>
 </ValidationRule>
