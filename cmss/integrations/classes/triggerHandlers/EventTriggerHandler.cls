@@ -4,6 +4,7 @@ public class EventTriggerHandler extends TriggerHandler {
 	}
 
 	public override void afterInsert() {
+		handleUpdateAccountDateFields((List<Event>) Trigger.new);
 		List<Event> newInSF = filterNewInSfEvents((List<Event>) Trigger.new);
 		createEventSyncs(newInSF, true);
 	}
@@ -13,6 +14,7 @@ public class EventTriggerHandler extends TriggerHandler {
 	}
 
 	public override void afterUpdate() {
+		setEventAfterUpdate((Map<Id, Event>) Trigger.newMap, (Map<Id, Event>) Trigger.oldMap);
 		List<Event> changedEvents = filterUnchangedEvents((Map<Id, Event>) Trigger.oldMap, (List<Event>) Trigger.new);
 		createEventSyncs(changedEvents, false);
 	}
@@ -43,6 +45,60 @@ public class EventTriggerHandler extends TriggerHandler {
 
 	private void createEventSyncs(List<Event> events, Boolean isNew) {
 		createEventSyncs(events, isNew, false);
+	}
+
+	@TestVisible
+	private void setEventAfterUpdate(Map<Id, Event> newEventById, Map<Id, Event> oldEventById) {
+		List<Event> events = new List<Event>();
+		for (Event e : newEventById.values()) {
+			if (
+				e.ActivityDate != oldEventById.get(e.Id).ActivityDate ||
+				e.EndDateTime != oldEventById.get(e.Id).EndDateTime
+			) {
+				events.add(e);
+			}
+		}
+		if (events.size() > 0) {
+			handleUpdateAccountDateFields(events);
+		}
+	}
+
+	private void handleUpdateAccountDateFields(List<Event> events) {
+		List<Account> accountsToUpdate = new List<Account>();
+		Set<Id> accountIds = new Set<Id>();
+		for (Event e : events) {
+			accountIds.add(e.AccountId);
+		}
+
+		Map<Id, Event> eventWithAccount = new Map<Id, Event>(
+			[
+				SELECT AccountId, Account.LastInteractionDate__c, Account.OpenedActivityDate__c
+				FROM Event
+				WHERE AccountId IN :accountIds
+			]
+		);
+
+		for (Event e : events) {
+			Account actualAccount = eventWithAccount.get(e.Id)?.Account;
+			if (actualAccount == null) {
+				continue;
+			}
+			if (
+				e.ActivityDate < actualAccount?.OpenedActivityDate__c && e.ActivityDate > Date.today() ||
+				actualAccount?.OpenedActivityDate__c == null
+			) {
+				actualAccount.OpenedActivityDate__c = e?.ActivityDate;
+				accountsToUpdate.add(actualAccount);
+			}
+			if (
+				Date.valueOf(e?.EndDateTime) > actualAccount?.LastInteractionDate__c &&
+				Date.valueOf(e?.EndDateTime) <= Date.today() || actualAccount?.LastInteractionDate__c == null
+			) {
+				actualAccount.LastInteractionDate__c = Date.valueOf(e?.EndDateTime);
+				accountsToUpdate.add(actualAccount);
+			}
+		}
+		update (new List<Account>(new Set<Account>(accountsToUpdate)));
 	}
 
 	private void createEventSyncs(List<Event> events, Boolean isNew, Boolean isDeleted) {
