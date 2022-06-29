@@ -195,7 +195,9 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			configuration: this.selectedConfiguration,
 			objectName: this.selectedConfiguration.ObjectType__c,
 			pageNumber: this.pageNumber,
-			pageSize: this.recordsPerPage
+			pageSize: this.recordsPerPage,
+			sortBy: this.sortedBy?.fieldName,
+			sortDirection: this.sortDirection
 		};
 
 		console.log('request: ' + JSON.stringify(request));
@@ -379,12 +381,43 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	onHandleSort(event) {
 		const { fieldName: sortedBy, sortDirection } = event.detail;
-		const cloneData = [...this.outputTableData];
 
-		cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
-		this.outputTableData = cloneData;
-		this.sortDirection = sortDirection;
-		this.sortedBy = sortedBy;
+		const request = {
+			filterItemList: this.filterConditionList,
+			configuration: this.selectedConfiguration,
+			objectName: this.selectedConfiguration.ObjectType__c,
+			pageNumber: this.pageNumber,
+			pageSize: this.recordsPerPage,
+			sortBy: sortedBy,
+			sortDirection: sortDirection
+		};
+
+		searchResults({ dto: request }).then((response) => {
+			this.totalRecordsCount = response.totalCount;
+
+			if (this.totalRecordsCount < 1) {
+				this.toastMessage(null, '', LBL_NO_RECORDS);
+				return;
+			}
+			this.outputTableData = [];
+			response.data.forEach((item) => {
+				let objectKeys = Object.keys(item);
+				objectKeys.forEach((key) => {
+					const itemType = typeof item[key];
+					if (itemType === 'object') {
+						const newKey = key + '.Name';
+						item[newKey] = item[key].Name;
+					}
+				});
+				this.outputTableData.push(item);
+			});
+			const cloneData = [...this.outputTableData];
+
+			cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
+			this.outputTableData = cloneData;
+			this.sortDirection = sortDirection;
+			this.sortedBy = sortedBy;
+		});
 	}
 
 	sortBy(field, reverse, primer) {
