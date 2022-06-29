@@ -1,4 +1,4 @@
-spublic class PrecountAccountDataFromEventBatch implements Database.Batchable<sObject> {
+public class PrecountAccountDataFromEventBatch implements Database.Batchable<sObject> {
 	public Database.QueryLocator start(Database.BatchableContext bc) {
 		return Database.getQueryLocator(
 			[
