@@ -212,7 +212,21 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 					this.outputTableData = [];
 					this.loading = false;
 				} else if (countResult <= maxAllowedRecordsCount) {
-					searchResults({ dto: request })
+					loadFieldsetDetail({
+						fieldsetName: this.selectedConfiguration.FieldsetName__c,
+						objectName: request.objectName
+					})
+						.then((colResponse) => {
+							this.outputTableColumns = colResponse;
+							console.log('output table columns: ', this.outputTableColumns);
+							if (this.isTableVisible) {
+								this.section = ['data'];
+								this.sortedBy = this.outputTableColumns[0];
+							} else {
+								this.section = ['configuration'];
+							}
+						})
+						.then(() => searchResults({ dto: request }))
 						.then((response) => {
 							this.totalRecordsCount = response.totalCount;
 
@@ -233,24 +247,6 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 								this.outputTableData.push(item);
 							});
 							this.selectedAccountIds = currentSelectedAccountIds;
-
-							loadFieldsetDetail({
-								fieldsetName: this.selectedConfiguration.FieldsetName__c,
-								objectName: request.objectName
-							})
-								.then((colResponse) => {
-									this.outputTableColumns = colResponse;
-									if (this.isTableVisible) {
-										this.section = ['data'];
-										this.sortedBy = this.outputTableColumns[0];
-									} else {
-										this.section = ['configuration'];
-									}
-								})
-								.catch((error) => {
-									console.log(JSON.stringify(error));
-									this.errorToastMessage('', error.body.message);
-								});
 						})
 						.catch((error) => {
 							console.log(JSON.stringify(error));
@@ -411,10 +407,12 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 				});
 				this.outputTableData.push(item);
 			});
-			const cloneData = [...this.outputTableData];
+			if (this.outputTableData.find((column) => column[sortedBy]?.type !== 'DATE')) {
+				const cloneData = [...this.outputTableData];
 
-			cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
-			this.outputTableData = cloneData;
+				cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
+				this.outputTableData = cloneData;
+			}
 			this.sortDirection = sortDirection;
 			this.sortedBy = sortedBy;
 		});
