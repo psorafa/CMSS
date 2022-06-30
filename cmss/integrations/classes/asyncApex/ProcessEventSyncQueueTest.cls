@@ -1,5 +1,7 @@
 @isTest
 class ProcessEventSyncQueueTest {
+	private static String googleDate = System.today().year() + '-' + System.today().month() + '-';
+
 	@TestSetup
 	static void makeData() {
 		Event newEvent = new Event();
@@ -34,24 +36,25 @@ class ProcessEventSyncQueueTest {
 
 		GoogleCalendarSyncUtility.GoogleEventRespDTO respFromGoogle = new GoogleCalendarSyncUtility.GoogleEventRespDTO();
 		respFromGoogle.nextSyncToken = 'synctoken1235';
+
 		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{
 			createNewGoogleEvent(
-				'2022-04-01T13:45:00+02:00',
-				'2022-04-02T13:45:00+02:00',
+				googleDate + '01T13:45:00+02:00',
+				googleDate + '02T13:45:00+02:00',
 				'Úplně nový eventík',
 				'confirmed',
 				'eventId1'
 			),
 			createNewGoogleEvent(
-				'2022-04-01T13:45:00+02:00',
-				'2022-04-02T13:45:00+02:00',
+				googleDate + '01T13:45:00+02:00',
+				googleDate + '02T13:45:00+02:00',
 				'Odstraněný eventík',
 				'cancelled',
 				'eventId2'
 			),
 			createNewGoogleEvent(
-				'2022-04-01T13:45:00+02:00',
-				'2022-04-02T13:45:00+02:00',
+				googleDate + '01T13:45:00+02:00',
+				googleDate + '02T13:45:00+02:00',
 				'Existující eventík',
 				'confirmed',
 				'eventId3'
@@ -114,8 +117,8 @@ class ProcessEventSyncQueueTest {
 		eventSyncNewInSF.IsNew__c = true;
 		insert eventSyncNewInSF;
 		GoogleCalendarSyncUtility.GoogleEventDTO respEvent = createNewGoogleEvent(
-			'2022-04-01T13:45:00+02:00',
-			'2022-04-02T13:45:00+02:00',
+			googleDate + '01T13:45:00+02:00',
+			googleDate + '02T13:45:00+02:00',
 			'Nový event',
 			'confirmed',
 			'eventId4'
@@ -202,9 +205,9 @@ class ProcessEventSyncQueueTest {
 		google_event.summary = 'someSummary';
 		google_event.description = 'someDescription';
 		google_event.start_x = new GoogleCalendarSyncUtility.GoogleDateDTO();
-		google_event.start_x.dateTime_x = '2022-04-01T13:45:00+02:00';
+		google_event.start_x.dateTime_x = googleDate + '01T13:45:00+02:00';
 		google_event.end_x = new GoogleCalendarSyncUtility.GoogleDateDTO();
-		google_event.end_x.dateTime_x = '2022-04-02T13:45:00+02:00';
+		google_event.end_x.dateTime_x = googleDate + '02T13:45:00+02:00';
 
 		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{ google_event };
 
@@ -320,7 +323,7 @@ class ProcessEventSyncQueueTest {
 		googleEventDTO.end_x = new GoogleCalendarSyncUtility.GoogleDateDTO();
 		googleEventDTO.end_x.dateTime_x = endDateTime;
 		googleEventDTO.summary = summary;
-		googleEventDTO.created = '2022-04-01T10:29:58.000Z';
+		googleEventDTO.created = googleDate + '01T10:29:58.000Z';
 		googleEventDTO.status = status;
 		googleEventDTO.id = eventId;
 		return googleEventDTO;
