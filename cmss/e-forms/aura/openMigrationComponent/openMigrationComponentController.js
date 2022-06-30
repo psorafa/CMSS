@@ -7,8 +7,9 @@
         console.log('som tu: ', component.get("v.recordId"));
         var action = component.get("c.isPortalEnabled");
         action.setCallback(this, function(response) {
-            if (response.getReturnValue()) {
-                var navurl = 'https://eforms-csobstavebni.cs108.force.com/s/eforms?c__migrationLabel=Eformular&c__recId=' + component.get("v.recordId");
+            console.log(JSON.stringify(response.getReturnValue()));
+            if (response.getReturnValue() && response.getReturnValue().isPortalEnabled) {
+                var navurl = response.getReturnValue().urlPrefix + '/eforms?c__migrationLabel=Eformular&c__recId=' + component.get("v.recordId");
                 window.location = navurl;
             } else {
                 var navService = component.find("navService");

@@ -61,8 +61,8 @@ export default class pcfSignpost extends NavigationMixin(LightningElement) {
     navigateToMigrationWrapper(recId, migrationProcess, errorLabel, migrationLabel) {
         isPortalEnabled()
             .then(data => {
-                if (data) {
-                    var navurl = 'https://eforms-csobstavebni.cs108.force.com/s/eforms?c__migrationProcess=' + migrationProcess + '&c__migrationLabel=Eformular&c__recId=' + recId;
+                if (data && data.isPortalEnabled && data.urlPrefix) {
+                    var navurl = data.urlPrefix + '/eforms?c__migrationProcess=' + migrationProcess + '&c__migrationLabel=Eformular&c__recId=' + recId;
                     window.location = navurl;
                 } else {
                     this[NavigationMixin.Navigate]({

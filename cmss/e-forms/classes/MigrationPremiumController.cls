@@ -2252,8 +2252,9 @@ global class MigrationPremiumController {
     }
 
     @RemoteAction
-    global static CreateCaseWrapper prepareCaseForTemplate (String migrationProcessName, String pdfTemplateItemsJSON){ //, MigrationPremiumTypes.File barcodeFile) {
+    global static CreateCaseWrapper prepareCaseForTemplate (String migrationProcessName, String pdfTemplateItemsJSON, String accId){ //, MigrationPremiumTypes.File barcodeFile) {
         Case theCase = new Case();
+        theCase.AccountId = accId;
         theCase.Template__c = pdfTemplateItemsJSON;
         theCase.PCF_Unfinished__c = true;
         theCase.Type_of_Process__c = migrationProcessName;

@@ -23,9 +23,19 @@ public class PcfSignpostController {
     }
 
     @AuraEnabled
-    public static Boolean isPortalEnabled() {
-//        return true;
-         User u = [SELECT Id, IsPortalEnabled FROM User WHERE Id = :UserInfo.getUserId()];
-         return u.IsPortalEnabled;
+    public static CommunityWrapper isPortalEnabled() {
+        CommunityWrapper cw = new CommunityWrapper();
+        Site site = [SELECT Id FROM Site WHERE UrlPathPrefix = 's' LIMIT 1];
+        //cw.isPortalEnabled = true;
+        cw.isPortalEnabled = [SELECT Id, IsPortalEnabled FROM User WHERE Id = :UserInfo.getUserId()].IsPortalEnabled;
+        cw.urlPrefix = [SELECT SecureURL FROM SiteDetail WHERE DurableId =: site.Id].SecureUrl;
+        return cw;
+    }
+
+    public class CommunityWrapper {
+        @AuraEnabled
+        public Boolean isPortalEnabled;
+        @AuraEnabled
+        public String urlPrefix;
     }
 }

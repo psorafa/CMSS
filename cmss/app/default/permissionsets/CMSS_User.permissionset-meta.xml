@@ -5665,6 +5665,15 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
+        <object>Case</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>ClientZone__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
@@ -5996,6 +6005,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Case.PCF</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>CustomSearchFilter__c.Boolean</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -6089,6 +6102,10 @@
     </tabSettings>
     <tabSettings>
         <tab>standard-Campaign</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Case</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
