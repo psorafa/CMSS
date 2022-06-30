@@ -195,7 +195,9 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			configuration: this.selectedConfiguration,
 			objectName: this.selectedConfiguration.ObjectType__c,
 			pageNumber: this.pageNumber,
-			pageSize: this.recordsPerPage
+			pageSize: this.recordsPerPage,
+			sortBy: this.sortedBy?.fieldName,
+			sortDirection: this.sortDirection
 		};
 
 		console.log('request: ' + JSON.stringify(request));
@@ -210,7 +212,21 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 					this.outputTableData = [];
 					this.loading = false;
 				} else if (countResult <= maxAllowedRecordsCount) {
-					searchResults({ dto: request })
+					loadFieldsetDetail({
+						fieldsetName: this.selectedConfiguration.FieldsetName__c,
+						objectName: request.objectName
+					})
+						.then((colResponse) => {
+							this.outputTableColumns = colResponse;
+							console.log('output table columns: ', this.outputTableColumns);
+							if (this.isTableVisible) {
+								this.section = ['data'];
+								this.sortedBy = this.outputTableColumns[0];
+							} else {
+								this.section = ['configuration'];
+							}
+						})
+						.then(() => searchResults({ dto: request }))
 						.then((response) => {
 							this.totalRecordsCount = response.totalCount;
 
@@ -231,24 +247,6 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 								this.outputTableData.push(item);
 							});
 							this.selectedAccountIds = currentSelectedAccountIds;
-
-							loadFieldsetDetail({
-								fieldsetName: this.selectedConfiguration.FieldsetName__c,
-								objectName: request.objectName
-							})
-								.then((colResponse) => {
-									this.outputTableColumns = colResponse;
-									if (this.isTableVisible) {
-										this.section = ['data'];
-										this.sortedBy = this.outputTableColumns[0];
-									} else {
-										this.section = ['configuration'];
-									}
-								})
-								.catch((error) => {
-									console.log(JSON.stringify(error));
-									this.errorToastMessage('', error.body.message);
-								});
 						})
 						.catch((error) => {
 							console.log(JSON.stringify(error));
@@ -379,12 +377,45 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	onHandleSort(event) {
 		const { fieldName: sortedBy, sortDirection } = event.detail;
-		const cloneData = [...this.outputTableData];
 
-		cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
-		this.outputTableData = cloneData;
-		this.sortDirection = sortDirection;
-		this.sortedBy = sortedBy;
+		const request = {
+			filterItemList: this.filterConditionList,
+			configuration: this.selectedConfiguration,
+			objectName: this.selectedConfiguration.ObjectType__c,
+			pageNumber: this.pageNumber,
+			pageSize: this.recordsPerPage,
+			sortBy: sortedBy,
+			sortDirection: sortDirection
+		};
+
+		searchResults({ dto: request }).then((response) => {
+			this.totalRecordsCount = response.totalCount;
+
+			if (this.totalRecordsCount < 1) {
+				this.toastMessage(null, '', LBL_NO_RECORDS);
+				return;
+			}
+			this.outputTableData = [];
+			response.data.forEach((item) => {
+				let objectKeys = Object.keys(item);
+				objectKeys.forEach((key) => {
+					const itemType = typeof item[key];
+					if (itemType === 'object') {
+						const newKey = key + '.Name';
+						item[newKey] = item[key].Name;
+					}
+				});
+				this.outputTableData.push(item);
+			});
+			if (this.outputTableData.find((column) => column[sortedBy]?.type !== 'DATE')) {
+				const cloneData = [...this.outputTableData];
+
+				cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
+				this.outputTableData = cloneData;
+			}
+			this.sortDirection = sortDirection;
+			this.sortedBy = sortedBy;
+		});
 	}
 
 	sortBy(field, reverse, primer) {

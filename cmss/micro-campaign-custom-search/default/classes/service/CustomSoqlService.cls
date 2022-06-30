@@ -36,6 +36,9 @@ public with sharing class CustomSoqlService {
 		String queryFields = getQueryFieldsFromFieldSetService(service);
 		String query =
 			prepareQuery(queryFields) +
+			((this.filterRequestDto.sortBy != null)
+				? (' ORDER BY ' + this.filterRequestDto.sortBy + ' ' + this.filterRequestDto.sortDirection)
+				: '') +
 			' LIMIT ' +
 			this.filterRequestDto.pageSize +
 			' OFFSET ' +
