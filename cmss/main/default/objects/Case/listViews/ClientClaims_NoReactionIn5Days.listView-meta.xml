@@ -41,5 +41,10 @@
         <field>ReceivingConfirmationDate__c</field>
         <operation>equals</operation>
     </filters>
+     <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>Case.PCF</value>
+    </filters>
     <label>Stížnosti bez reakce do 5 pracovních dnů</label>
 </ListView>

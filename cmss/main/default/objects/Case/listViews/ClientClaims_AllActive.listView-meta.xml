@@ -27,5 +27,10 @@
         <operation>equals</operation>
         <value>1</value>
     </filters>
+     <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>Case.PCF</value>
+    </filters>
     <label>Klientská podání - všechna aktivní</label>
 </ListView>
