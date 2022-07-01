@@ -291,7 +291,7 @@ public class MigrationPremiumControllerTest {
         setupData();
         //Test.setMock(WebServiceMock.class, new DpaaSWebServiceMockImpl());
         Test.startTest();
-        MigrationPremiumController.CreateCaseWrapper theWrap = MigrationPremiumController.prepareCaseForTemplate('CSOBS_contract_cancelation', 'test');
+        MigrationPremiumController.CreateCaseWrapper theWrap = MigrationPremiumController.prepareCaseForTemplate('CSOBS_contract_cancelation', 'test', null);
         Test.stopTest();
         System.assert(theWrap.theCaseId != null);
     }
