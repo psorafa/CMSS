@@ -3,19 +3,21 @@ public with sharing class CaseService {
 	public static final String CASE_OWNER_MISSING_PERMISSION_ERR =
 		'Selected Owner doesn\'t have appropriate permission to handle this type of case.';
 
+    public static final String CASE_PCF_RECORDTYPE_ID = Schema.SObjectType.Case.getRecordTypeInfosByName().get('PCF').getRecordTypeId();
+
     public static void setGDPRAndClientCaseOnAccount(List<Case> newCaseList, Map<Id, Case> oldCases) {
         Set<Id> allCaseAccIds = new Set<Id>();
 
         if (oldCases == null) {
             for (Case c : newCaseList) {
-                if (c.AccountId != null) {
+                if (c.AccountId != null && c.RecordTypeId != CASE_PCF_RECORDTYPE_ID) {
                     allCaseAccIds.add(c.AccountId);
                 }
             }
         } else {
             for (Case newCase : newCaseList) {
                 Case oldCase = oldCases.get(newCase.Id);
-                if (newCase.AccountId != oldCase.AccountId) {
+                if (newCase.AccountId != oldCase.AccountId && newCase.RecordTypeId != CASE_PCF_RECORDTYPE_ID) {
                     if (newCase.AccountId != null) {
                         allCaseAccIds.add(newCase.AccountId);
                     }
@@ -23,7 +25,7 @@ public with sharing class CaseService {
                         allCaseAccIds.add(oldCase.AccountId);
                     }
                 }
-                if (newCase.Status != oldCase.Status) {
+                if (newCase.Status != oldCase.Status && newCase.RecordTypeId != CASE_PCF_RECORDTYPE_ID) {
                     if (newCase.AccountId != null) {
                         allCaseAccIds.add(newCase.AccountId);
                     }

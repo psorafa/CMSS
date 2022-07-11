@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sent_OutputType__c</fullName>
+    <description>OutputType dle Cap Gemini.
+Default: 80 
+(when not filled, 80 is sent)</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>OutputType dle Cap Gemini.
+Default: 80 
+(when not filled, 80 is sent)</inlineHelpText>
+    <label>Sent OutputType</label>
+    <required>false</required>
+    <type>TextArea</type>
+</CustomField>

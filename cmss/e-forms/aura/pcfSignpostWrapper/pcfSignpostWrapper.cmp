@@ -1,0 +1,6 @@
+<!--
+ - Created by lukas.krbec on 03.06.2022.
+ -->
+<aura:component description="assetMigrationWrapper" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId" >
+    <c:pcfSignpost recId="{!v.recordId}" onclose="{!c.close}"/>
+</aura:component>

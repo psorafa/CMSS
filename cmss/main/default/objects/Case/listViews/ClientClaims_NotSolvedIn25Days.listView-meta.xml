@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ClientClaims_NotSolvedIn25Days</fullName>
     <columns>CASES.CASE_NUMBER</columns>
@@ -35,6 +35,11 @@
     <filters>
         <field>ExtensionInfoSent__c</field>
         <operation>equals</operation>
+    </filters>
+     <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>Case.PCF</value>
     </filters>
     <label>Klientská podání - nevyřízená do 25 dnů</label>
 </ListView>

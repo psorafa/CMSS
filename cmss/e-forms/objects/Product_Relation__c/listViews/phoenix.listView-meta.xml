@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>phoenix</fullName>
+    <columns>From__c</columns>
+    <columns>To__c</columns>
+    <columns>Default_Name__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>NAME</columns>
+    <columns>RECORDTYPE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Product_Relation__c.FormOrder_Asset_Conf,Product_Relation__c.Exception_SA,Product_Relation__c.Exception_PA,Product_Relation__c.Exception</value>
+    </filters>
+    <label>phoenix</label>
+    <language>en_US</language>
+</ListView>

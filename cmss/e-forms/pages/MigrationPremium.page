@@ -1,0 +1,1229 @@
+<apex:page controller="MigrationPremiumController"
+           showHeader="false"
+           standardStylesheets="false"
+           sidebar="false"
+           applyHtmlTag="true"
+           applyBodyTag="true"
+           docType="html-5.0"
+           title="{!IF(isCzech,migrationProcessConfiguration.Title_CZ__c,migrationProcessConfiguration.Title_EN__c)}"
+           id="MigrationPremium">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <head>
+        <title>{!$Label.Migration_Premium}</title>
+        <apex:stylesheet value="{!URLFOR($Resource.SLDS, 'assets/styles/salesforce-lightning-design-system-vf.css')}"/>
+        <!--<apex:stylesheet value="{!URLFOR($Resource.select2CSS)}"/>-->
+        <apex:stylesheet value="{!URLFOR($Resource.MigrationPremium, 'default.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.alertifyjs, 'css/alertify.min.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.alertifyjs, 'css/themes/bootstrap.min.css')}" />
+
+    </head>
+    <body>
+    <!-- REQUIRED SLDS WRAPPER -->
+    <div class="slds" style="overflow:auto; background: #fff">
+        <div class="slds-notify_container" id="toast_notify"></div>
+        <!-- PRIMARY CONTENT WRAPPER -->
+        <div class="myapp" aria-hidden="false">
+            <div class="slds-page-header" role="banner">
+                <div class="slds-grid">
+                    <div class="slds-col slds-has-flexi-truncate">
+                        <div class="slds-media">
+                            <div class="slds-media__figure">
+                                <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, migrationProcessConfiguration.Icon_Path__c)}"></apex:image>
+                            </div>
+                            <div class="slds-media__body">
+                                <p class="slds-text-heading--label"></p>
+                                <div class="slds-grid">
+                                    <h1 class="slds-text-heading--medium slds-m-right--small slds-align-middle" title="Record Title" style="display: inline-block;">{!IF(isCzech, migrationProcessConfiguration.Title_CZ__c, migrationProcessConfiguration.Title_EN__c)}</h1>
+                                    <span id="clientName" class="slds-form-element__static">({!$Label.Client}: {!theAccount.Name})</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-tabs--scoped">
+                <div class="calculatorStatus">
+                    <ul class="slds-tabs--scoped__nav row" role="tablist">
+                        <li id="nav-product-settings" class="slds-tabs--scoped__item slds-active col" title="{!IF(isCzech, migrationProcessConfiguration.Configuration_Tab_CZ_Label__c, migrationProcessConfiguration.Configuration_Tab_EN_Label__c)}" role="presentation">
+                            <a class="" id="scopedTab0" href="#" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-scoped-1"
+                               onclick="selectScopedTab('nav-product-settings', 'content-configuration', 'nav-overview', 'content-overview');">{!IF(isCzech, migrationProcessConfiguration.Configuration_Tab_CZ_Label__c, migrationProcessConfiguration.Configuration_Tab_EN_Label__c)}</a>
+                        </li>
+                        <div class="dots">
+
+                        </div>
+                        <li id="nav-overview" class="slds-tabs--scoped__item col" title="{!IF(isCzech, migrationProcessConfiguration.Overview_Tab_CZ_Label__c, migrationProcessConfiguration.Overview_Tab_EN_Label__c)}" role="presentation">
+                            <a id="STab1" class="" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-2"
+                               onclick="/*selectScopedTab('nav-overview', 'content-overview', 'nav-product-settings', 'content-configuration');*/checkValues();">{!IF(isCzech, migrationProcessConfiguration.Overview_Tab_CZ_Label__c, migrationProcessConfiguration.Overview_Tab_EN_Label__c)}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="tab-scoped-1" class="slds-tabs--scoped__content slds-show" role="tabpanel" aria-labelledby="scopedTab0" style="border: 0px solid;">
+                    <div class="slds-grid">
+                        <apex:outputPanel rendered="{!NOT(migrationProcessConfiguration.Left_Panel_Hidator__c)}">
+                            <div class="slds-col slds-size--3-of-12 float-left">
+                                <div class="products-container">
+                                    <div class="slds-tree-container" role="application" id="newProduct">
+                                        <!--h4 class="slds-text-heading--label" id="treeheading">{!$Label.Products_in_Quote}</h4-->
+                                        <div class="h3-headline headline-new-products">
+                                            <h3 class="slds-text-heading--label" id="treeheading">{!IF(isCzech, migrationProcessConfiguration.Sidebar_Main_Title_CZ__c, migrationProcessConfiguration.Sidebar_Main_Title_EN__c)}</h3>
+                                            <apex:outputPanel rendered="{!NOT(savedConfiguration) && NOT(ISBLANK(migrationProcessConfiguration.New_Product_Button_SOQL__c))}">
+                                                <button class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" data-aljs="modal" data-aljs-show="modal-1"
+                                                        onclick="svg4everybody(); clearSelects();">
+                                                        <span class="block-btn-icon">
+                                                            <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'new.svg')}"></apex:image>
+                                                        </span>
+                                                    <span class="block-btn-text">{!$Label.New_Product}</span>
+                                                </button>
+                                            </apex:outputPanel>
+                                        </div>
+                                    </div>
+
+                                    <div class="slds-tree-container" role="application" id="assetProductsAdded">
+                                        <div id="selected-products">
+                                            <apex:repeat value="{!selectedItems.itemMap}" var="theItemKey">
+                                                        <span id="selected-product-{!selectedItems.itemMap[theItemKey].index}-{!selectedItems.itemMap[theItemKey].theProduct.Id}">
+                                                            <ul class="slds-tree" role="tree" aria-labelledby="treeheading" aria-activedescendant="tree0-node0">
+                                                                <li id="li-node-{!selectedItems.itemMap[theItemKey].index}" class="slds-tree__branch {!IF(selectedItems.itemMap[theItemKey].defaultSelected, 'chosenProduct', '')}" role="treeitem" aria-level="1" aria-expanded="true">
+
+                                                                    <apex:outputPanel rendered="{!selectedItems.itemMap[theItemKey].hasSubProducts}">
+                                                                        <div class="slds-tree__item" style="width: 100%;">
+                                                                                <a href="#" onclick="changePage({!selectedItems.itemMap[theItemKey].index});" id="assetProductLink{!selectedItems.lastIndex}" tabindex="-1" role="presentation">
+                                                                                <apex:outputText value="{!selectedItems.itemMap[theItemKey].theProduct.Name} - {!selectedItems.itemMap[theItemKey].theAsset.Account_Number__c}" rendered="{!selectedItems.itemMap[theItemKey].theAsset.Account_Number__c != null}"/>
+                                                                                <apex:outputText value="{!selectedItems.itemMap[theItemKey].theProduct.Name}" rendered="{!selectedItems.itemMap[theItemKey].theAsset.Account_Number__c = null}"/>
+                                                                                </a>
+                                                                                <button style="{!IF(savedConfiguration || ISBLANK(migrationProcessConfiguration.New_Subproduct_Button_SOQL__c), 'display: none', '')}" class="slds-button slds-button--icon-bare slds-m-right--x-smal" data-aljs="modal" data-aljs-show="modal-select-cards" onclick="addSubProductSetVariables('selected-product-{!selectedItems.itemMap[theItemKey].index}-{!selectedItems.itemMap[theItemKey].theProduct.Id}', '{!selectedItems.itemMap[theItemKey].index}', '{!selectedItems.itemMap[theItemKey].theProduct.Id}');">
+                                                                                    <span class="calc-btn-icon">
+                                                                                        <img id="productImage{!selectedItems.itemMap[theItemKey].theProduct.Id}-{!selectedItems.itemMap[theItemKey].theAsset.Id}" style="width: 28px; height: 28px;"
+                                                                                             src="{!URLFOR($Resource.AccountMainPageIcons2, 'card-add.svg')}"/>
+                                                                                        <!--<apex:image id="assetImage" value="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-plus.svg')}"></apex:image>-->
+                                                                                    </span>
+                                                                                </button>
+                                                                                <button style="{!IF((editMode != '1' && savedConfiguration == false && !migrationProcessConfiguration.Hide_Remove_Buttons__c), '', 'display: none;')}" class="slds-button slds-button--icon-bare slds-m-right--x-smal button-without-border" onClick="removeFromMigration('{!selectedItems.itemMap[theItemKey].theProduct.Id}', 'selected-product-{!selectedItems.itemMap[theItemKey].index}-{!selectedItems.itemMap[theItemKey].theProduct.Id}', 'transition-tab-{!selectedItems.itemMap[theItemKey].index}', '{!selectedItems.itemMap[theItemKey].index}', '{!selectedItems.itemMap[theItemKey].theAsset.Id}');">
+                                                                                    <span class="calc-btn-icon">
+                                                                                        <img id="assetMinus{!selectedItems.itemMap[theItemKey].theProduct.Id}" style="width: 28px; height: 28px;" src="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-minus.svg')}"/>
+                                                                                    </span>
+                                                                                </button>
+                                                                            <apex:repeat value="{!mapOfProducts}" var="oneObject">
+                                                                                <button style="{!IF((editMode == '1' && oneObject == selectedItems.itemMap[theItemKey].theAsset.Id && mapOfProducts[oneObject] == true && savedConfiguration == false && !migrationProcessConfiguration.Hide_Remove_Buttons__c), '', 'display: none;')}" class="slds-button slds-button--icon-bare slds-m-right--x-smal button-without-border" onClick="removeFromMigration('{!selectedItems.itemMap[theItemKey].theProduct.Id}', 'selected-product-{!selectedItems.itemMap[theItemKey].index}-{!selectedItems.itemMap[theItemKey].theProduct.Id}', 'transition-tab-{!selectedItems.itemMap[theItemKey].index}', '{!selectedItems.itemMap[theItemKey].index}', '{!selectedItems.itemMap[theItemKey].theAsset.Id}');">
+                                                                                    <span class="calc-btn-icon">
+                                                                                        <img id="assetMinus{!selectedItems.itemMap[theItemKey].theProduct.Id}" style="width: 28px; height: 28px;" src="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-minus.svg')}"/>
+                                                                                    </span>
+                                                                                </button>
+                                                                            </apex:repeat>
+                                                                        </div>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel rendered="{!NOT(selectedItems.itemMap[theItemKey].hasSubProducts)}">
+                                                                        <div class="slds-tree__item" style="width: 100%;">
+                                                                                <a href="#" onclick="changePage({!selectedItems.itemMap[theItemKey].index});" id="assetProductLink{!selectedItems.lastIndex}" tabindex="-1" role="presentation">
+                                                                                    <apex:outputText value="{!selectedItems.itemMap[theItemKey].theProduct.Name} - {!selectedItems.itemMap[theItemKey].theAsset.Account_Number__c}" rendered="{!selectedItems.itemMap[theItemKey].theAsset.Account_Number__c != null}"/>
+                                                                                    <apex:outputText value="{!selectedItems.itemMap[theItemKey].theProduct.Name}" rendered="{!selectedItems.itemMap[theItemKey].theAsset.Account_Number__c = null}"/>
+                                                                                </a>
+                                                                                <button style="{!IF((editMode != '1' && savedConfiguration == false && !migrationProcessConfiguration.Hide_Remove_Buttons__c), '', 'display: none;')}" class="slds-button slds-button--icon-bare slds-m-right--x-smal button-without-border" onClick="removeFromMigration('{!selectedItems.itemMap[theItemKey].theProduct.Id}', 'selected-product-{!selectedItems.itemMap[theItemKey].index}-{!selectedItems.itemMap[theItemKey].theProduct.Id}', 'transition-tab-{!selectedItems.itemMap[theItemKey].index}', '{!selectedItems.itemMap[theItemKey].index}', '{!selectedItems.itemMap[theItemKey].theAsset.Id}');">
+                                                                                    <span class="calc-btn-icon">
+                                                                                        <img id="assetMinus{!selectedItems.itemMap[theItemKey].theProduct.Id}" style="width: 28px; height: 28px;" src="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-minus.svg')}"/>
+                                                                                    </span>
+                                                                                </button>
+                                                                            <apex:repeat value="{!mapOfProducts}" var="oneObject">
+                                                                                <button style="{!IF((editMode == '1' && oneObject == selectedItems.itemMap[theItemKey].theAsset.Id && mapOfProducts[oneObject] == true && savedConfiguration == false && !migrationProcessConfiguration.Hide_Remove_Buttons__c), '', 'display: none;')}" class="slds-button slds-button--icon-bare slds-m-right--x-smal button-without-border" onClick="removeFromMigration('{!selectedItems.itemMap[theItemKey].theProduct.Id}', 'selected-product-{!selectedItems.itemMap[theItemKey].index}-{!selectedItems.itemMap[theItemKey].theProduct.Id}', 'transition-tab-{!selectedItems.itemMap[theItemKey].index}', '{!selectedItems.itemMap[theItemKey].index}', '{!selectedItems.itemMap[theItemKey].theAsset.Id}');">
+                                                                                    <span class="calc-btn-icon">
+                                                                                        <img id="assetMinus{!selectedItems.itemMap[theItemKey].theProduct.Id}" style="width: 28px; height: 28px;" src="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-minus.svg')}"/>
+                                                                                    </span>
+                                                                                </button>
+                                                                            </apex:repeat>
+                                                                        </div>
+                                                                    </apex:outputPanel>
+                                                                </li>
+                                                            </ul>
+
+                                                            <!--<apex:repeat value="{!mapOfProducts}" var="oneObject">
+
+                                                                        pcf: '{!pcfUnfinished}'
+                                                                        editMode: '{!editMode}'
+                                                                        oneObject: '{!oneObject}'
+                                                                        selectedItems.itemMap: '{!selectedItems.itemMap[theItemKey].theAsset.Id}'
+                                                                        boolean: '{!mapOfProducts[oneObject]}'
+                                                                                <div style="{!IF((pcfUnfinished || (editMode == '1' && oneObject == selectedItems.itemMap[theItemKey].theAsset.Id && mapOfProducts[oneObject])), '', 'display: none;')}">
+                                                                                    <span class="calc-btn-icon">
+                                                                                        <img id="assetMinus{!selectedItems.itemMap[theItemKey].theProduct.Id}" style="width: 28px; height: 28px;" src="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-minus.svg')}"/>
+                                                                                    </span>
+                                                                                </div>
+
+                                                                            </apex:repeat>-->
+                                                            <apex:repeat value="{!selectedItems.itemMap[theItemKey].childItemMap}" var="childItemKey">
+                                                                <ul id="{0}" aria-activedescendant="tree0-node0" aria-labelledby="treeheading" class="slds-tree" role="tree">
+                                                                    <li aria-expanded="true" aria-level="1" class="slds-tree__branch" id="tree0-node0{0}" role="treeitem">
+                                                                        <div class="slds-tree__item" style="width: 100%;">
+                                                                            <span class="tab-escape">
+                                                                                {!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].Name}&nbsp;-&nbsp;
+                                                                                {!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].theAsset.Account_Number__c}
+                                                                                <apex:outputPanel styleClass="tooltip-disponent" layout="block" rendered="{!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].dispatcher != null}">
+                                                                                    &nbsp;(disponent)
+                                                                                    <div class="tooltiptext">
+                                                                                        <div>
+                                                                                            <br />
+                                                                                            <p>
+                                                                                                <a href="" onclick="openItem('{!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].dispatcher.theId}');">
+                                                                                                {!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].dispatcher.Name}&nbsp;(CUID: {!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].dispatcher.cuid})&nbsp;
+                                                                                                    <img style="width: 20px; height: 20px;" src="{!URLFOR($Resource.AccountMainPageIcons2, 'new-window.svg')}"/>
+                                                                                                </a>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </apex:outputPanel>
+                                                                            </span>
+                                                                            <!-- ruseni produktu navazaneho assetu
+                                                                            <apex:outputPanel rendered="{!migrationProcessConfiguration.DeveloperName == 'Account_Cancellation' && selectedItems.itemMap[theItemKey].childItemMap[childItemKey].isMigrationCard}" style="width: 10px;">
+                                                                                <button id="productButton-{!selectedItems.itemMap[theItemKey].theProduct.Id}" class="slds-button slds-button--icon-bare slds-m-right--x-smal" data-parentid="productButton-{!selectedItems.itemMap[theItemKey].theProduct.Id}" data-productid="{!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].theProduct.Id}"
+                                                                                         onClick="addProductAndRender(this, '{!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].theProduct.Id}', '{!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].theProduct.Name}', '{!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].theAsset.Id}');"  style="{!IF(selectedItems.itemMap[theItemKey].childItemMap[childItemKey].isSelected, 'pointer-events: none;', '')}">
+                                                                                    <apex:outputPanel styleClass="calc-btn-icon" rendered="{!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].isSelected || selectedItems.itemMap[theItemKey].isSelected}">
+                                                                                        <img id="productImage{!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].theProduct.Id}" style="width: 28px; height: 28px;"
+                                                                                             src="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-plus-disabled.svg')}"/>
+                                                                                    </apex:outputPanel>
+                                                                                    <apex:outputPanel styleClass="calc-btn-icon" rendered="{!NOT(selectedItems.itemMap[theItemKey].childItemMap[childItemKey].isSelected || selectedItems.itemMap[theItemKey].childItemMap[childItemKey].isReadOnly || selectedItems.itemMap[theItemKey].isSelected)}">
+                                                                                        <img id="productImage{!selectedItems.itemMap[theItemKey].childItemMap[childItemKey].theProduct.Id}" style="width: 28px; height: 28px;"
+                                                                                             src="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-plus.svg')}"/>
+                                                                                    </apex:outputPanel>
+                                                                                </button>
+                                                                            </apex:outputPanel>
+                                                                            ruseni produktu navazaneho assetu -->
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </apex:repeat>
+                                                        </span>
+                                            </apex:repeat>
+                                        </div>
+                                    </div>
+                                </div>
+                                <apex:outputPanel layout="block" rendered="{!NOT(savedConfiguration) && migrationProcessConfiguration.Show_Current_Account_Products__c}" styleClass="products-container">
+                                    <div class="slds-tree-container" role="application" id="actualProductsList">
+                                        <!-- ALL ACCOUNT ASSETS / PRODUCTS -->
+                                        <h4 class="slds-text-heading--label" id="treeheading">{!$Label.Current_Account_Products}</h4>
+                                        <apex:repeat value="{!allItems.itemMap}" var="theItemKey">
+                                            <ul class="slds-tree" role="tree" aria-labelledby="treeheading" aria-activedescendant="tree0-node0">
+                                                <li id="" class="slds-tree__branch" role="treeitem" aria-level="1" aria-expanded="true">
+                                                    <div class="slds-tree__item" style="width: 100%; {!IF(allItems.itemMap[theItemKey].isReadOnly,'background-color: #eee;','')}">
+                                                        <a href="#" id="" tabindex="-1" role="presentation">
+                                                            <apex:outputText >{!allItems.itemMap[theItemKey].theProduct.Name}&nbsp;-&nbsp;{!allItems.itemMap[theItemKey].theAsset.Account_Number__c}</apex:outputText>
+                                                        </a>
+
+                                                        <button id="productButton-{!allItems.itemMap[theItemKey].theProduct.Id}-{!allItems.itemMap[theItemKey].theAsset.Id}" class="slds-button slds-button--icon-bare slds-m-right--x-smal"
+                                                                onClick="addProductAndRender(this, '{!allItems.itemMap[theItemKey].theProduct.Id}', '{!allItems.itemMap[theItemKey].theProduct.Name}', '{!allItems.itemMap[theItemKey].theAsset.Id}');"  style="{!IF(allItems.itemMap[theItemKey].isSelected, 'pointer-events: none;', '')}">
+                                                            <apex:outputPanel styleClass="calc-btn-icon" rendered="{!allItems.itemMap[theItemKey].isSelected}">
+                                                                <img id="productImage{!allItems.itemMap[theItemKey].theProduct.Id}-{!allItems.itemMap[theItemKey].theAsset.Id}" style="width: 28px; height: 28px;"
+                                                                     src="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-plus-disabled.svg')}"/>
+                                                                <!--<apex:image id="assetImage" value="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-plus.svg')}"></apex:image>-->
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel styleClass="calc-btn-icon" rendered="{!NOT(OR(allItems.itemMap[theItemKey].isSelected, allItems.itemMap[theItemKey].isReadOnly))}">
+                                                                <img id="productImage{!allItems.itemMap[theItemKey].theProduct.Id}-{!allItems.itemMap[theItemKey].theAsset.Id}" style="width: 28px; height: 28px;"
+                                                                     src="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-plus.svg')}"/>
+                                                                <!--<apex:image id="assetImage" value="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-plus.svg')}"></apex:image>-->
+                                                            </apex:outputPanel>
+                                                        </button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <apex:repeat value="{!allItems.itemMap[theItemKey].childItemMap}" var="childItemKey">
+                                                <ul id="{0}" aria-activedescendant="tree0-node0" aria-labelledby="treeheading" class="slds-tree" role="tree">
+                                                    <li aria-expanded="true" aria-level="1" class="slds-tree__branch" id="tree0-node0{0}" role="treeitem">
+                                                        <div class="slds-tree__item" style="width: 100%;">
+                                                                <span class="tab-escape">
+                                                                    {!allItems.itemMap[theItemKey].childItemMap[childItemKey].Name}&nbsp;-&nbsp;
+                                                                    {!allItems.itemMap[theItemKey].childItemMap[childItemKey].theAsset.Account_Number__c}
+                                                                    <apex:outputPanel styleClass="tooltip-disponent" layout="block" rendered="{!allItems.itemMap[theItemKey].childItemMap[childItemKey].dispatcher!= null}">
+                                                                        &nbsp;(disponent)
+                                                                        <div class="tooltiptext">
+                                                                            <div>
+                                                                                <br />
+                                                                                <p>
+                                                                                    <a href="" onclick="openItem('{!allItems.itemMap[theItemKey].childItemMap[childItemKey].dispatcher.theId}');">
+                                                                                    {!allItems.itemMap[theItemKey].childItemMap[childItemKey].dispatcher.Name}&nbsp;(CUID: {!allItems.itemMap[theItemKey].childItemMap[childItemKey].dispatcher.cuid})&nbsp;
+                                                                                        <img style="width: 20px; height: 20px;" src="{!URLFOR($Resource.AccountMainPageIcons2, 'new-window.svg')}"/>
+                                                                                    </a>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </apex:outputPanel>
+                                                            </span>
+                                                            <!-- ruseni produktu navazaneho assetu -->
+                                                            <apex:outputPanel rendered="{!migrationProcessConfiguration.DeveloperName == 'Account_Cancellation' && allItems.itemMap[theItemKey].childItemMap[childItemKey].isMigrationCard}" style="width: 10px;">
+                                                                <button id="productButton-{!allItems.itemMap[theItemKey].childItemMap[childItemKey].theProduct.Id}-{!allItems.itemMap[theItemKey].childItemMap[childItemKey].theAsset.Id}" class="slds-button slds-button--icon-bare slds-m-right--x-smal" data-parentid="productButton-{!allItems.itemMap[theItemKey].theProduct.Id}-{!allItems.itemMap[theItemKey].theAsset.Id}" data-productid="{!allItems.itemMap[theItemKey].childItemMap[childItemKey].theProduct.Id}" data-assetid="{!allItems.itemMap[theItemKey].childItemMap[childItemKey].theAsset.Id}"
+                                                                        onClick="addProductAndRender(this, '{!allItems.itemMap[theItemKey].childItemMap[childItemKey].theProduct.Id}', '{!allItems.itemMap[theItemKey].childItemMap[childItemKey].theProduct.Name}', '{!allItems.itemMap[theItemKey].childItemMap[childItemKey].theAsset.Id}');"  style="{!IF(allItems.itemMap[theItemKey].childItemMap[childItemKey].isSelected, 'pointer-events: none;', '')}">
+                                                                    <apex:outputPanel styleClass="calc-btn-icon" rendered="{!allItems.itemMap[theItemKey].childItemMap[childItemKey].isSelected || allItems.itemMap[theItemKey].isSelected}">
+                                                                        <img id="productImage{!allItems.itemMap[theItemKey].childItemMap[childItemKey].theProduct.Id}-{!allItems.itemMap[theItemKey].childItemMap[childItemKey].theAsset.Id}" style="width: 28px; height: 28px;"
+                                                                             src="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-plus-disabled.svg')}"/>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel styleClass="calc-btn-icon" rendered="{!NOT(allItems.itemMap[theItemKey].childItemMap[childItemKey].isSelected || allItems.itemMap[theItemKey].childItemMap[childItemKey].isReadOnly || allItems.itemMap[theItemKey].isSelected)}">
+                                                                        <img id="productImage{!allItems.itemMap[theItemKey].childItemMap[childItemKey].theProduct.Id}-{!allItems.itemMap[theItemKey].childItemMap[childItemKey].theAsset.Id}" style="width: 28px; height: 28px;"
+                                                                             src="{!URLFOR($Resource.AccountMainPageIcons2, 'calc-plus.svg')}"/>
+                                                                    </apex:outputPanel>
+                                                                </button>
+                                                            </apex:outputPanel>
+                                                            <!-- ruseni produktu navazaneho assetu -->
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </apex:repeat>
+                                        </apex:repeat>
+                                    </div>
+                                </apex:outputPanel>
+                                <br/>
+                            </div>
+                        </apex:outputPanel>
+                        <div id="content-configuration" class="slds-col slds-size--9-of-12 float-right slds-show">
+                            <form id="formCalc">
+                                <div class="slds-tabs--default" data-aljs="tabs">
+                                    <ul class="slds-tabs--default__nav" role="tablist">
+                                        <li class="slds-tabs--default__item slds-text-heading--label {!IF(migrationProcessConfiguration.Show_General_Subtab__c, '', 'slds-hide')}" title="Výběr produktů" role="presentation">
+                                            <a id="a-general-tab" class="slds-tabs--default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="product-settings-tab-0" data-aljs-show="product-settings-tab-0">
+                                                {!IF(isCzech, migrationProcessConfiguration.General_Subtab_CZ_Label__c, migrationProcessConfiguration.General_Subtab_EN_Label__c)}
+                                            </a>
+                                        </li>
+                                        <li class="slds-tabs--default__item slds-text-heading--label {!IF(migrationProcessConfiguration.Hide_Transition_Subtab__c, 'slds-hide', '')}" title="Výběr produktů" role="presentation">
+                                            <a id="a-transitions-tab" class="slds-tabs--default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="product-settings-tab-1" data-aljs-show="product-settings-tab-1">
+                                                {!IF(isCzech, migrationProcessConfiguration.Transition_Subtab_CZ_Label__c, migrationProcessConfiguration.Transition_Subtab_EN_Label__c)}
+                                            </a>
+                                        </li>
+                                        <li class="slds-tabs--default__item slds-text-heading--label {!IF(migrationProcessConfiguration.Show_Configuration_Subtab__c, '', 'slds-hide')}" title="Konfigurace" role="presentation">
+                                            <a id="a-configuraton-tab" class="slds-tabs--default__link" href="#" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-2" data-aljs-show="tab-default-2">
+                                                {!IF(isCzech, migrationProcessConfiguration.Configuration_Subtab_CZ_Label__c, migrationProcessConfiguration.Configuration_Subtab_EN_Label__c)}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div id="product-settings-tab-0" class="slds-tabs--default__content slds-hide" role="tabpanel">
+                                        <div id="general-product-parameter-table" class="slds-table table-exceptions" size="2">
+                                        </div>
+                                    </div>
+                                    <div id="product-settings-tab-1" class="slds-tabs--default__content slds-hide" role="tabpanel">
+                                        <!-- HERE WILL BE RENDERED PRODUCT TRANSITIONS -->
+                                    </div>
+                                    <div id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel">
+                                        <div id="product-parameter-table" class="slds-table table-exceptions" size="2">
+                                            <!-- *** SEKCE SE SOUHLASEM S ELEKTRONICKOU DISTRIBUCI DOKUMENTU PRO POJISTENI *** -->
+                                            <div id="doc-el-distrib-agreement" style="display: {!IF(showElDistribAgreement, 'block', 'none')};">
+                                                <h3 class="slds-section-title--divider section-title--margin section-main-title">Souhlas s výhradně elektronickou distribucí dokumentů k pojištění</h3>
+                                                <div class="slds-form--horizontal" style="text-align: left;">
+                                                    <div class="slds-form-element" style="margin-top: 16px;">
+                                                        <label class="slds-form-element__label" style="inline-block;">Souhlas s výhradně El. distribucí dokumentů</label>
+                                                        <div class="slds-form-element__control">
+                                                            <select id="doc-el-distrib-select" class="slds-select" onchange="propagateDocElDistribAgreement(this);">
+                                                                <option id="doc-el-distrib-opt-ok" value="ok">Souhlasí</option>
+                                                                <option id="doc-el-distrib-opt-nok" value="nok">Nesouhlasí</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="content-overview" class="slds-col slds-size--9-of-12 float-right slds-hide" style="min-height:  400px; ">
+                            <!--<apex:outputPanel rendered="{!finalStepValidation.isVisible}" layout="block" styleClass="slds-notify slds-notify&#45;&#45;alert slds-theme&#45;&#45;error">
+                                <span class="slds-assistive-text">Error</span>
+                                <apex:repeat value="{!finalStepValidation.messageList}" var="message">
+                                    <h2 id="alert-error&#45;&#45;errorMessage">{!message}</h2>
+                                </apex:repeat>
+                            </apex:outputPanel>-->
+
+                            <div id="cancel-validation-error-div" layout="block" class="slds-notify slds-notify--alert slds-theme--error" style="display: none;">
+                                <span class="slds-assistive-text">Error</span>
+                            </div>
+
+                            <div id="el-doc-dist-agr-error" class="slds-notify slds-notify--alert slds-theme--info" style="display: none;">
+                                <span class="slds-assistive-text">Info</span>
+                                <h2 id="alert-info--infoMessage">{!$Label.PCF_elDocDist_noAgreement}</h2>
+                            </div>
+                            <!--dedictvi-->
+                            <!--<div id="missing-elb-for-client-or-nonclient" layout="block" class="slds-notify slds-notify&#45;&#45;alert slds-theme&#45;&#45;error" style="display: none;">
+                                <span class="slds-assistive-text">Error</span>
+                                <h2 id="alert-error&#45;&#45;errorMessage">{!$Label.Heir_or_non_client_missing_elb}</h2>
+                            </div>-->
+                            <apex:outputPanel rendered="{!AND(pretermDocSwitch, NOT(savedConfiguration))}">
+                                <div class="preterm-documents float-left">
+                                    <div class="document-h2">PŘEDSMLUVNÍ DOKUMENTACE</div>
+                                    <div id="precontract-section" class="document-list">
+                                        <div id="preterm-doc-list-content">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="preterm-documents float-right">
+                                    <div class="document-h2">SMLUVNÍ DOKUMENTACE</div>
+                                    <div id="contract-section" class="document-list">
+                                        <div id="contract-doc-list-content">
+                                            <h2>&nbsp;</h2>
+                                            <ul>
+                                                <apex:repeat value="{!migrationProcessConfiguration.Document_Configurations__r}" var="document">
+                                                    <apex:outputPanel rendered="{!NOT(document.Pre_contract_document__c)}">
+                                                        <!--                                                        <li class="slds-dropdown__item {!IF(finalStepValErrSize > 1, 'printmsg', 'print-enabled')}" style="{!if(bioSigns,'overflow: auto;','')}">-->
+                                                        <!--                                                            <a href="#void" role="menuitem" onClick="generateIstsDocument('{!$RemoteAction.MigrationPremiumController.generateIstsDocument}', '{!document.Data_Id__c}', '{!document.Template_Code__c}', '{!document.Message_Before_Print__c}', '{!document.URL__c}', this, {!document.Open_In_New_Window__c}, {!document.Biometric_Signature__c});" style="{!if(bioSigns,'width: 90%; float: left; display: block;','')}">-->
+                                                        <!--                                                                <p class="slds-truncate" style="width: {!if(bioSigns,'90%; float: left;','100%;')}">-->
+                                                        <!--                                                                    {!document.Label_CZ__c}-->
+                                                        <!--                                                                    <div class="float-right">-->
+                                                        <!--                                                                        <svg class="print-ico {!IF(finalStepValErrSize > 1, 'nok-printer', 'printer')}">-->
+                                                        <!--                                                                            <use xlink:href="{!URLFOR($Resource.SLDS_283, '/icons/utility-sprite/svg/symbols.svg#print')}">-->
+                                                        <!--                                                                            </use>-->
+                                                        <!--                                                                        </svg>-->
+                                                        <!--                                                                    </div>-->
+                                                        <!--                                                                </p>-->
+                                                        <!--                                                            </a>-->
+                                                        <!--                                                            <span class="printmsg-text">{!$Label.PCF_Print_PreContract_First_Label}</span>-->
+
+                                                        <!--                                                            <div class="slds-form-element" style="{!if(document.Biometric_Signature__c,'', 'display:none;')} float: right; width: 10%; padding: 8px 12px;">-->
+                                                        <!--                                                                <div class="slds-form-element__control">-->
+                                                        <!--                                                                    <input id="bio-signature-doc-{!document.Data_ID__c}-{!document.Template_Code__c}" class="slds-checkbox tgl tgl-light" type="checkbox" disabled="disabled" /><label class="slds-form-element__static tgl-btn" for="bio-signature-doc-{!document.Data_ID__c}-{!document.Template_Code__c}"></label>-->
+                                                        <!--                                                                </div>-->
+                                                        <!--                                                            </div>-->
+                                                        <!--                                                        </li>-->
+                                                        <li class="slds-dropdown__item print-enabled" style="display:flex; ">
+                                                            <a href="#void" role="menuitem" onClick="renderPdf('{!document.Template_Code__c}', '{!document.Message_Before_Print__c}', '{!document.URL__c}', this, {!document.Open_In_New_Window__c});" style="flex-grow: 4;">
+                                                                <p class="slds-truncate" style="width: {!if(bioSigns,'90%; float: left;','100%;')}">
+                                                                    {!document.Label_CZ__c}
+                                                                <div class="float-right">
+                                                                    <svg class="print-ico printer">
+                                                                        <use xlink:href="{!URLFOR($Resource.SLDS_283, '/icons/utility-sprite/svg/symbols.svg#print')}">
+                                                                        </use>
+                                                                    </svg>
+                                                                </div>
+                                                                </p>
+                                                            </a>
+
+                                                            <div class="slds-form-element" style="{!if(document.Local_Upload__c,'', 'display:none;')}  width: 10%; padding: 8px 12px; cursor:pointer">
+                                                                <input type="file" class="slds-file-selector__input slds-assistive-text" accept="pdf" id="local-file-upload" aria-labelledby="file-selector-primary-label file-selector-secondary-label"/>
+
+                                                                <label for="local-file-upload" class="slds-form-element__control">
+                                                                    <svg id="local-file-upload-icon" class="local-upload-ico not-uploaded">
+                                                                        <use xlink:href="{!URLFOR($Resource.SLDS_283, '/icons/utility-sprite/svg/symbols.svg#upload')}">
+                                                                        </use>
+                                                                    </svg>
+                                                                </label>
+
+                                                            </div>
+                                                            <div class="slds-form-element" style="{!if(document.Biometric_Signature__c,'', 'display:none;')} width: 10%; padding: 8px 12px;">
+                                                                <div class="slds-form-element__control">
+                                                                    <input id="bio-signature-doc-{!document.Data_ID__c}-{!document.Template_Code__c}" class="slds-checkbox tgl tgl-light" type="checkbox" disabled="disabled" /><label class="slds-form-element__static tgl-btn" for="bio-signature-doc-{!document.Data_ID__c}-{!document.Template_Code__c}"></label>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <!--<div id="biometry-tablet-btn-div" style="{!if(bioSigns,'','display:none;')}">
+                                    <button id="biometry-tablet-btn" class="slds-button slds-button&#45;&#45;icon-bare slds-m-right&#45;&#45;x-small block-btn btn" style="float: right;" onClick="bioSignature();">
+                                        <span class="block-btn-icon">
+                                            <apex:image value="{!URLFOR($Resource.SLDS, 'assets/icons/utility/tablet_portrait.svg')}" style="filter: invert(.5) sepia(1) saturate(5) hue-rotate(175deg);"></apex:image>
+                                        </span>
+                                        <span id="submit-btn-txt" class="block-btn-text">Odeslat na tablet</span>
+                                    </button>
+                                </div>-->
+                                <div class="clear"></div>
+                                <div id="bo-note">
+                                    <div class="document-h2">Poznámka pro back office</div>
+                                    <apex:outputPanel styleClass="slds-form-element__control">
+                                        <textarea id="textarea-input-note" class="slds-textarea" placeholder=""></textarea>
+                                    </apex:outputPanel>
+                                </div>
+                                <div class="clear"></div>
+
+                                <apex:outputPanel layout="block" rendered="{!migrationProcessConfiguration.Show_File_Selector__c}" >
+                                    <div id="attachment-section">
+                                        <div class="document-h2">Seznam přiložených souborů</div>
+                                        <div id="attachedFilesContent">Zatím nebyl přiložen žádný soubor.</div>
+                                    </div>
+                                </apex:outputPanel>
+                                <div class="clear"></div>
+
+                                <div>
+                                    <input style="{!IF(migrationProcessConfiguration.Show_File_Selector__c, 'display: block;', 'display: none')}" type="file" class="slds-file-selector__input slds-assistive-text" accept="pdf" id="file-upload-input" aria-labelledby="file-selector-primary-label file-selector-secondary-label"/>
+                                    <label style="{!IF(migrationProcessConfiguration.Show_File_Selector__c, 'display: inline;', 'display: none')}" class="slds-file-selector__body" for="file-upload-input" id="file-selector-secondary-label">
+                                                    <span class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" style="margin-bottom: 15px !important">
+                                                        <span class="block-btn-icon">
+                                                            <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'upload.svg')}"></apex:image>
+                                                        </span>
+                                                        <span id="submit-btn-txt" class="block-btn-text">{!$Label.Attach_File}</span>
+                                                        <span id="submit-btn-checked" class="block-btn-icon" style="display: none;">
+                                                            &nbsp;
+                                                            <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                                        </span>
+                                                    </span>
+                                    </label>
+
+                                    <button id="submit-btn" class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" style="float: right;" onClick="return sendToBackOfficeAndCreateCase();">
+                                            <span class="block-btn-icon">
+                                                <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                            </span>
+                                        <span id="submit-btn-txt" class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Send_Label__c == '', 'inline-block;', 'none;')}">{!$Label.Migration_Premium_Submit}</span>
+                                        <span id="submit-btn-txt" class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Send_Label__c != '', 'inline-block;', 'none;')}">{!migrationProcessConfiguration.Button_Send_Label__c}</span>
+                                    </button>
+                                    <button id="submit-btn" style="display: {!IF(migrationProcessConfiguration.Save_for_Later__c, 'inline-block;', 'none;')}"  class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="return createSubmitButtonCase('draft');">
+                                        <span class="block-btn-icon">
+                                            <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                        </span>
+                                        <span id="submit-btn-txt" class="block-btn-text">{!$Label.Save_for_later}</span>
+                                    </button>
+                                    <button id="buttonAuth1" style="display: {!IF(migrationProcessConfiguration.Show_KC_Authenticator__c, 'inline-block;float: right;', 'none;')}" class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="return openAuthItem();">
+                                            <span class="block-btn-icon">
+                                                <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                            </span>
+                                        <span class="block-btn-text">{!$Label.Client_Auth_Label}</span>
+                                    </button>
+                                </div>
+
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!OR(NOT(pretermDocSwitch), savedConfiguration)}">
+                                <div class="note-finish-center">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="textarea-input-note">Poznámka pro back office</label>
+                                        <apex:outputPanel rendered="{!savedConfiguration}" styleClass="slds-form-element__control">
+                                            <textarea id="textarea-input-note" class="slds-textarea" placeholder="" disabled="true"></textarea>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(savedConfiguration)}" styleClass="slds-form-element__control">
+                                            <textarea id="textarea-input-note" class="slds-textarea" placeholder=""></textarea>
+                                        </apex:outputPanel>
+                                    </div>
+                                </div>
+                                <apex:outputPanel layout="block" rendered="{!NOT(savedConfiguration)}" styleClass="btn-group-finish-center">
+                                    <input style="{!IF(migrationProcessConfiguration.Show_File_Selector__c, 'display: block;', 'display: none')}" type="file" class="slds-file-selector__input slds-assistive-text" accept="pdf" id="file-upload-input" aria-labelledby="file-selector-primary-label file-selector-secondary-label"/>
+                                    <label style="{!IF(migrationProcessConfiguration.Show_File_Selector__c, 'display: inline;', 'display: none')}" class="slds-file-selector__body" for="file-upload-input" id="file-selector-secondary-label">
+                                                <span class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" style="margin-bottom: 15px !important">
+                                                    <span class="block-btn-icon">
+                                                        <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'upload.svg')}"></apex:image>
+                                                    </span>
+                                                    <span id="submit-btn-txt" class="block-btn-text">{!$Label.Attach_File}</span>
+                                                    <span id="submit-btn-checked" class="block-btn-icon" style="display: none;">
+                                                        &nbsp;
+                                                        <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                                    </span>
+                                                </span>
+                                    </label>
+                                    <button id="buttonAuth2" style="display: {!IF(migrationProcessConfiguration.Show_KC_Authenticator__c, 'inline-block;', 'none;')}" class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="return openAuthItem();">
+                                                <span class="block-btn-icon">
+                                                    <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                                </span>
+                                        <span class="block-btn-text">{!$Label.Client_Auth_Label}</span>
+                                    </button>
+                                    <!--<button style="display: {!IF(numOfDocumentsForPrint = 1, 'inline-block;', 'none;')}" class="slds-button slds-button&#45;&#45;icon-bare slds-m-right&#45;&#45;x-small block-btn btn" onClick="generateIstsDocument('{!$RemoteAction.MigrationPremiumController.generateIstsDocument}', '{!firstDataIdOfDmsDocument}', '{!firstTemplateCodeOfDmsDocument}', '{!firstMessageBeforePrint}', '{!firstUrlOfDmsDocument}', null);">
+                                                <span class="block-btn-icon">
+                                                    <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                                </span>
+                                        <span class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Generate_Label__c == '', 'inline-block;', 'none;')}">{!$Label.Migration_Premium_Print}</span>
+                                        <span class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Generate_Label__c != '', 'inline-block;', 'none;')}">{!migrationProcessConfiguration.Button_Generate_Label__c}</span>
+                                    </button>-->
+                                    <div style="display: {!IF(numOfDocumentsForPrint > 1, 'inline-block;', 'none;')}" class="slds-dropdown-trigger slds-dropdown-trigger--click slds-is-open" aria-expanded="false">
+                                        <button style="" class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="showHideButtonMenu();">
+                                            <span class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Generate_Label__c == '', 'inline-block;', 'none;')}">{!$Label.Migration_Premium_Print}</span>
+                                            <span class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Generate_Label__c != '', 'inline-block;', 'none;')}">{!migrationProcessConfiguration.Button_Generate_Label__c}</span>
+                                            <span class="block-btn-icon" style="margin-right: 0px;">
+                                                        <span class="block-btn-icon btn-icon-right">
+                                                            <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'symbol-down.svg')}"></apex:image>
+                                                        </span>
+                                                    </span>
+                                        </button>
+                                        <!--<div id="print-button-menu" class="slds-dropdown slds-dropdown&#45;&#45;left slds-dropdown&#45;&#45;medium" style="display: none; margin-top: -12px;">
+                                            <ul class="dropdown__list" role="menu">
+                                                <apex:repeat value="{!migrationProcessConfiguration.Document_Configurations__r}" var="document">
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="#void" role="menuitem" onClick="generateIstsDocument('{!$RemoteAction.MigrationPremiumController.generateIstsDocument}', '{!document.Data_Id__c}', '{!document.Template_Code__c}', '{!document.Message_Before_Print__c}', '{!document.URL__c}', this, {!document.Open_In_New_Window__c});">
+                                                            <p class="slds-truncate">{!document.Label_CZ__c}</p>
+                                                        </a>
+                                                    </li>
+                                                </apex:repeat>
+                                            </ul>
+                                        </div>-->
+                                    </div>
+                                    <button id="submit-btn" class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="return sendToBackOfficeAndCreateCase();">
+                                        <span class="block-btn-icon">
+                                            <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                        </span>
+                                        <span id="submit-btn-txt" class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Send_Label__c == '', 'inline-block;', 'none;')}">{!$Label.Migration_Premium_Submit}</span>
+                                        <span id="submit-btn-txt" class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Send_Label__c != '', 'inline-block;', 'none;')}">{!migrationProcessConfiguration.Button_Send_Label__c}</span>
+                                    </button>
+                                    <button id="submit-btn" style="display: {!IF(migrationProcessConfiguration.Save_for_Later__c, 'inline-block;', 'none;')}"  class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="return createSubmitButtonCase('draft');">
+                                        <span class="block-btn-icon">
+                                            <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                        </span>
+                                        <span id="submit-btn-txt" class="block-btn-text">{!$Label.Save_for_later}</span>
+                                    </button>
+                                    <div style="display: 'inline-block;'" class="slds-dropdown-trigger slds-dropdown-trigger--click slds-is-open" aria-expanded="false">
+                                        <button id="print-inv-btn" class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="return showInvPrintingMenu();" style="display: none;">
+                                            <span class="block-btn-icon">
+                                                <apex:image value="{!URLFOR($Resource.MigrationPremium, 'icons/print.svg')}"></apex:image>
+                                            </span>
+                                            <span id="print-inv-btn-txt" class="block-btn-text">{!$Label.Migration_Premium_Print_Investment}</span>
+                                            <span class="block-btn-icon" style="margin-right: 0px;">
+                                                <span class="block-btn-icon btn-icon-right">
+                                                    <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'symbol-down.svg')}"></apex:image>
+                                                </span>
+                                            </span>
+                                        </button>
+                                        <!--<div id="print-inv-button-menu" class="slds-dropdown slds-dropdown&#45;&#45;left slds-dropdown&#45;&#45;medium" style="display: none; margin-top: -12px;">
+                                            <ul class="dropdown__list" role="menu">
+                                                <li class="slds-dropdown__item">
+                                                    <a id="tpl1" href="#void" role="menuitem" onClick="printInvestment('tpl1');">
+                                                        <p class="slds-truncate">Investiční svět</p>
+                                                    </a>
+                                                </li>
+                                                <li class="slds-dropdown__item">
+                                                    <a id="tpl2" href="#void" role="menuitem" onClick="printInvestment('tpl2');">
+                                                        <p class="slds-truncate">Investiční start</p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>-->
+                                    </div>
+                                </apex:outputPanel>
+                                <apex:outputPanel layout="block" rendered="{!AND(savedConfiguration, ($Profile.Name == 'BO User' || $Profile.Name == 'Správce systému' || $Profile.Name == 'System Administrator' || $Profile.Name == 'Branch Employee'), (migrationProcessConfiguration.DeveloperName == 'Premium' || migrationProcessConfiguration.DeveloperName == 'Account_Cancellation'))}" styleClass="btn-group-finish-center">
+                                    <!--<button style="display: {!IF(numOfDocumentsForPrint = 1, 'inline-block;', 'none;')}" class="slds-button slds-button&#45;&#45;icon-bare slds-m-right&#45;&#45;x-small block-btn btn" onClick="generateIstsDocument('{!$RemoteAction.MigrationPremiumController.generateIstsDocument}', '{!firstDataIdOfDmsDocument}', '{!firstTemplateCodeOfDmsDocument}', '{!firstMessageBeforePrint}', {!firstUrlOfDmsDocument}', null);">
+                                                <span class="block-btn-icon">
+                                                    <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                                </span>
+                                        <span class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Generate_Label__c == '', 'inline-block;', 'none;')}">{!$Label.Migration_Premium_Print}</span>
+                                        <span class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Generate_Label__c != '', 'inline-block;', 'none;')}">{!migrationProcessConfiguration.Button_Generate_Label__c}</span>
+                                    </button>-->
+                                    <div style="display: {!IF(numOfDocumentsForPrint > 1, 'inline-block;', 'none;')}" class="slds-dropdown-trigger slds-dropdown-trigger--click slds-is-open" aria-expanded="false">
+                                        <button style="" class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="showHideButtonMenu();">
+                                            <span class="block-btn-text">{!$Label.Migration_Premium_Print}</span>
+                                            <span class="block-btn-icon" style="margin-right: 0px;">
+                                                        <span class="block-btn-icon btn-icon-right">
+                                                            <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'symbol-down.svg')}"></apex:image>
+                                                        </span>
+                                                    </span>
+                                        </button>
+                                        <!--<div id="print-button-menu" class="slds-dropdown slds-dropdown&#45;&#45;left slds-dropdown&#45;&#45;medium" style="display: none; margin-top: -12px;">
+                                            <ul class="dropdown__list" role="menu">
+                                                <apex:repeat value="{!migrationProcessConfiguration.Document_Configurations__r}" var="document">
+                                                    <li class="slds-dropdown__item">
+                                                        <a href="#void" role="menuitem" onClick="generateIstsDocument('{!$RemoteAction.MigrationPremiumController.generateIstsDocument}', '{!document.Data_Id__c}', '{!document.Template_Code__c}', '{!document.Message_Before_Print__c}', '{!document.URL__c}', this, {!document.Open_In_New_Window__c});">
+                                                            <p class="slds-truncate">{!document.Label_CZ__c}</p>
+                                                        </a>
+                                                    </li>
+                                                </apex:repeat>
+                                            </ul>
+                                        </div>-->
+                                    </div>
+                                </apex:outputPanel>
+                                <apex:outputPanel layout="block" rendered="{!migrationProcessConfiguration.Show_File_Selector__c}" >
+                                    <div class="attachments-header">Seznam přiložených souborů</div>
+                                    <div id="attachedFilesContent">Zatím nebyl přiložen žádný soubor.</div>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-1" style="width=680px;">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading--medium">Nový produkt</h2>
+                    <button class="slds-button slds-button--icon-inverse slds-modal__close" data-aljs-dismiss="modal" tabindex="-1">
+                        <svg aria-hidden="false" class="slds-button__icon">
+                            <use xlink:href="{!URLFOR($Resource.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </div>
+                <div class="slds-modal__content" id="modalWithLookup" style="height: 500px;">
+                    <div>
+                        <p>Vyberte nový produkt do nabídky.</p>
+                    </div>
+                    <select id="childProductOptions" class="slds-select js-example-basic-single" style="display: block; width=100%;" onChange="removeDisabled(this.value);">
+                        <option value="0">---Vyberte---</option>
+                        <apex:repeat value="{!productsTosHow}" var="selOptions">
+                            <option value="{!selOptions.Id}">{!selOptions.Name}</option>
+                        </apex:repeat>
+                    </select>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" data-aljs-dismiss="modal">Zpět</button>
+                    <button class="slds-button slds-button--neutral slds-button--brand" data-aljs-dismiss="modal"
+                            onclick="addProductAndRender(null, $('#childProductOptions option:selected').val(), $('#childProductOptions option:selected').text(), null);" id="OKLookup" disabled="disabled">OK
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-select-cards" style="width=680px;">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading--medium">Nová karta</h2>
+                    <button class="slds-button slds-button--icon-inverse slds-modal__close" data-aljs-dismiss="modal" tabindex="-1">
+                        <svg aria-hidden="false" class="slds-button__icon">
+                            <use xlink:href="{!URLFOR($Resource.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </div>
+                <div class="slds-modal__content" id="modalWithLookup">
+                    <div>
+                        <p>Vyberte nový produkt do nabídky.</p>
+                    </div>
+                    <br/>
+                    <select id="debetCardsOptions" class="slds-select js-example-basic-single" style="width=100%;" onChange="removeDisabledModalButton(this.value, 'modal-select-cards-ok-button');">
+                        <option value="0">---Vyberte---</option>
+                        <!--apex:repeat value="{!debetCardsList}" var="selOptions">
+                                    <option value="{!selOptions.Id}">{!selOptions.Name}</option>
+                                </apex:repeat-->
+                    </select>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" data-aljs-dismiss="modal">Zpět</button>
+                    <button class="slds-button slds-button--neutral slds-button--brand" data-aljs-dismiss="modal"
+                            onclick="addSubProductAndRender($('#debetCardsOptions option:selected').val(), $('#debetCardsOptions option:selected').text());" id="modal-select-cards-ok-button" disabled="disabled">OK
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div aria-hidden="true" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-waiting-dialog">
+            <div class="slds-modal__container">
+                <div class="slds-spinner--large" style="margin:0 auto;" id="modal-spinner">
+                    <img src="{!URLFOR($Resource.SLDS, 'assets/images/spinners/slds_spinner_inverse.gif')}" alt="Loading..."/>
+                </div>
+            </div>
+        </div>
+        <div aria-hidden="true" role="dialog" class="slds-modal slds-fade-in-open slds-hide" id="modal-attachment-loading">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading--medium">Nahrávání příloh</h2>
+                </div>
+                <div class="slds-modal__content" id="modalWithProgressBar">
+                    <div class="container">
+                        <h2 id="att-loaded">Dokončeno: 0%</h2>
+                        <div id="attachment-progressbar" style="background-color: lightskyblue; display: block; width:0%; height: 15px; border-radius: 3px; transition: width 1s;"></div>
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                    <!--<button class="slds-button slds-button&#45;&#45;neutral" data-aljs-dismiss="modal">Zpět</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <apex:form id="theForm">
+        <apex:inputHidden value="{!defaultNoteText}" id="noteContent"/>
+    </apex:form>
+    <apex:includeScript value="{!URLFOR($Resource.jQuery2)}"/>
+    <script>
+    $ = jQuery.noConflict();
+    </script>
+<!--
+    <apex:includeScript value="CrifButton, 'crifButton.js"/>
+-->
+    <apex:includeScript value="{!URLFOR($Resource.momentjs)}"/>
+    <apex:includeScript value="{!URLFOR($Resource.svg4everybody)}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQuery_Validator)}"/>
+    <apex:includeScript value="{!URLFOR($Resource.select2JS)}"/>
+    <apex:includeScript value="{!URLFOR($Resource.messagesCS)}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery_number_formatter)}"/>
+    <apex:includeScript value="/soap/ajax/36.0/connection.js"/>
+    <apex:includeScript value="/support/console/36.0/integration.js"/>
+    <apex:includeScript value="{!URLFOR($Resource.alertifyjs, 'alertify.min.js')}" />
+    <script src="{!URLFOR($Resource.aljs, '/jquery/jquery.aljs-init.min.js')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/jquery/jquery.aljs-modal.min.js')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/jquery/jquery.aljs-lookup.min.js')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/jquery/jquery.aljs-tabs.min.js')}"></script>
+    <script src="{!URLFOR($Resource.aljs, '/jquery/jquery.aljs-multi-select.min.js')}"></script>
+    <!--<script src=".aljs, '/jquery/jquery.aljs-d"></script>-->
+
+    <script src="{!URLFOR($Resource.LocalizedAljsJQueryDatePicker)}"/>
+    <script src="{!URLFOR($Resource.aljs, '/jquery/jquery.aljs-pill.min.js')}"></script>
+    <apex:includeScript value="{!URLFOR($Resource.Cleave, 'cleave.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.pdf417)}"/>
+    <apex:includeScript value="{!URLFOR($Resource.MigrationPremium, 'default.js')}"/>
+<!--
+    <apex:includeScript value Resource.OpenScube/>
+-->
+
+
+    <script type="text/javascript">
+                var productRelationMap;
+                $(document).ready(function() {
+                    /*sforce.console.addEventListener('MigrationPremiumGeneratedIstsDocument', function(result){
+                        console.log('result1: ' , result);
+                        var data = JSON.parse(result.message);
+                        if(configuration.printButtons[data.dmsType] !== undefined){
+                            configuration.printButtons[data.dmsType] = true;
+                            checkIfEnableSubmitButton();
+                        }
+                    });*/
+                    /*if(parent){
+                        window.addEventListener('message', function (result) {
+                            console.log('result2: ' , result.data);
+                            try {
+                                var data = JSON.parse(result.data);
+                                if(configuration.printButtons[data.dmsType] !== undefined) {
+                                    configuration.printButtons[data.dmsType] = true;
+                                    checkIfEnableSubmitButton();
+                                }
+                            } catch (error) {
+                                console.log('result2 catch');
+                            }
+                        });
+                    }*/
+
+                    window.$Label = window.$Label || {};
+                    /*$Label.Migration_Premium_No_Value = (Label.Migration_Premium_No_Value;
+                    $Label.Migration_Premium_No_Value_End = Label.Migration_Premium_No_Value_End;
+                    $Label.Migration_Premium_Not_Selected = Label.Migration_Premium_Not_Selected);
+                    $Label.Account_Cancel_Fill_Value = $Label.Account_Cancel_Fill_Value;*/
+                    $Label.Migration_Premium_Required_Fields = '{!($Label.Migration_Premium_Required_Fields)}';
+                    $Label.PCF_Default_Case_Sent_Msg = '{!($Label.PCF_Default_Case_Sent_Msg)}';
+                    //$Label.PCF_Saved_Cancellation_Config = Label.PCF_Saved_Cancellation_Config;
+                    $Label.PCF_Create_Case_Error_Msg = '{!($Label.PCF_Create_Case_Error_Msg)}';
+                    $Label.PCF_Attachment_Send_Err = '{!($Label.PCF_Attachment_Send_Err)}';
+                    //$Label.PCF_Case_Assignment_Error = Label.PCF_Case_Assignment_Error;
+                    //$Label.PCF_PreContract_Doc_Sent_To_ELB = Label.PCF_PreContract_Doc_Sent_To_ELB;
+                    //$Label.PCF_PreContract_Doc_Sent_To_Email = Label.PCF_PreContract_Doc_Sent_To_Emai;
+
+                    var submitButtonIsDisabled = {!requiredButtonMapIsNotEmpty};
+                    console.log('submitButtonIsDisabled: ' , submitButtonIsDisabled);
+                    if(submitButtonIsDisabled){
+                        $("#submit-btn").attr('disabled', 'disabled');
+                    }
+                    console.log('som tu');
+                    console.log('{!$Component.theForm.noteContent}');
+                    console.log('som tu');
+                    $("#textarea-input-note" ).change(function() {
+                        configuration.note = $(this).val();
+                    });
+                    $('body').modal({
+                        selector: '[data-aljs="modal"]'
+                    });
+                    $('[data-aljs="tabs"]').tabs();
+                    svg4everybody();
+                    configuration.savedConfiguration = {!savedConfiguration};
+                    configuration.productList = JSON.parse('{!JSENCODE(selectedItemsWrapperJSON)}');
+                    if('{!allItemsJSON}'){
+                       configuration.allItems = JSON.parse('{!JSENCODE(allItemsJSON)}');
+                    } else{
+                        configuration.allItems = '';
+                    }
+                    console.log('blah: ' ,{!savedConfiguration});
+                    console.log('blah2: ' ,configuration.allItems);
+                    console.log('pcfUnfinished: ' ,{!pcfUnfinished});
+                    if({!savedConfiguration || pcfUnfinished}){
+                        configuration.productRelations = JSON.parse('{!savedProductRelationsData}');
+                    }else{
+                        configuration.productRelations = JSON.parse('{!assetProductRelationMapJSON}');
+                    }
+                    console.log('1: ');
+                    //configuration.printButtons = JSON.parseprintButtonMapJSON;
+                    configuration.documents = JSON.parse('{!metadataDocumentsJSON}');
+
+                    //crifDefaults.cacheRemoteAction = $RemoteAction.MigrationPremiumController.storeJsonToCache;
+
+                    //migrationDefaults.urls.scube = linkToScube;
+                    //migrationDefaults.urls.crif = linkToCRIF;
+                    //migrationDefaults.urls.dmsfn = Setup.ISTS_Server_URL__c.ISTS_URL__c;
+                    migrationDefaults.urls.sf = '{!baseUrl}';
+                    configuration.accountId = '{!theAccount.Id}';
+                    configuration.oppId = '{!$CurrentPage.parameters.oppId}';
+                    //configuration.cuid = theAccount.CUID__c;
+                    configuration.accName = '{!JSENCODE(theAccount.FirstName)}';
+                    configuration.accSurname = '{!JSENCODE(theAccount.LastName)}';
+                    configuration.accBN = '{!theAccount.PersonalIdentificationNr__c}';
+                    configuration.userName = '{!userName}';
+                    //configuration.userOrgUnitId = userOrgUnitId;
+                    configuration.uniqueId = '{!uniqueId}';
+                    configuration.assetId = '{!assetId}';
+                    configuration.caseIdFromPage = '{!caseIdFromPage}';
+                    configuration.originalCaseId = '{!originalCaseId}';
+                    configuration.useAlreadyCreatedCase = {!migrationProcessConfiguration.Use_Already_Created_Case__c};
+                    configuration.editMode = '{!editMode}';
+                    configuration.migrationProcessId = '{!migrationProcessConfiguration.Id}';
+                    configuration.migrationProcessName = '{!migrationProcessConfiguration.DeveloperName}';
+                    configuration.migrationProcessTitle = {!isCzech} ? '{!migrationProcessConfiguration.Title_CZ__c}' : '{!migrationProcessConfiguration.Title_EN__c}';
+                    configuration.atLeastOneAttachmentIsRequired = {!migrationProcessConfiguration.At_Least_One_Attachment_Is_Required__c};
+                    configuration.selectedAssetMainElement = '{!selectedAssetMainElement}';
+                    configuration.selectedAssetChildElement = '{!selectedAssetChildElement}';
+                    configuration.caseMessage = '{!migrationProcessConfiguration.Case_Sent_Message__c}';
+                    //configuration.isWdeUser = isWdeUser;
+                    configuration.onSubmitStoreToJSK = {!migrationProcessConfiguration.Store_Last_Generated_Doc_To_JSK_OnSubmit__c};
+                    //configuration.cstProdMap = JSON.parsecstProdDocMapJSON;
+                    configuration.pretermDocSwitch = {!pretermDocSwitch};
+                    configuration.elDistribAgreementValue = {!elDistribAgreement};
+                    configuration.pcfUnfinished = {!pcfUnfinished};
+                    configuration.cancellatonValidation = {!cancellatonValidation};
+                    //configuration.isValid = isValid;
+                    configuration.mapOfReadOnlyProductsPerId = '{!mapOfReadOnlyProductsPerId}';
+                    //bagetta
+                    //configuration.sipoId = sipoId;
+                    //configuration.duchodId = duchodId;
+                    //configuration.datumPodaniId = datumPodaniId;
+                    //configuration.bagettaDateId = bagettaDateId;
+                    //bagetta
+                    configuration.doNotCreateACase = {!migrationProcessConfiguration.Do_Not_Create_a_Case__c};
+                    configuration.doNotLoadPretermDocFromCST = {!migrationProcessConfiguration.Do_Not_Load_PretermDoc_From_CST__c};
+                    configuration.sendOutputOnSubmit = {!migrationProcessConfiguration.Send_Output_On_Submit__c};
+                    configuration.sentOutputType = '{!migrationProcessConfiguration.Sent_OutputType__c}';
+                    migrationDefaults.images.minus = "{!URLFOR($Resource.AccountMainPageIcons2, 'calc-minus.svg')}"  + '?' + Math.random();;
+                    migrationDefaults.images.plus = "{!URLFOR($Resource.AccountMainPageIcons2, 'calc-plus.svg')}"  + '?' + Math.random();;
+                    migrationDefaults.images.disabledPlus = "{!URLFOR($Resource.AccountMainPageIcons2, 'calc-plus-disabled.svg')}"  + '?' + Math.random();
+                    migrationDefaults.images.card = "{!URLFOR($Resource.AccountMainPageIcons2, 'card-add.svg')}";
+                    migrationDefaults.images.up = "{!URLFOR($Resource.AccountMainPageIcons2, 'symbol-up.svg')}";
+                    migrationDefaults.images.down = "{!URLFOR($Resource.AccountMainPageIcons2, 'symbol-down.svg')}";
+                    migrationDefaults.images.left = "{!URLFOR($Resource.AccountMainPageIcons2, 'symbol-left.svg')}";
+                    migrationDefaults.images.right = "{!URLFOR($Resource.AccountMainPageIcons2, 'symbol-right.svg')}";
+                    migrationDefaults.images.newWindow = "{!URLFOR($Resource.AccountMainPageIcons2, 'new-window.svg')}";
+                    migrationDefaults.images.magnifier = "{!URLFOR($Resource.AccountMainPageIcons2, 'magnifier.svg')}";
+                    migrationDefaults.images.cancel = "{!URLFOR($Resource.AccountMainPageIcons2, 'cancel.svg')}";
+                    migrationDefaults.images.open = "{!URLFOR($Resource.AccountMainPageIcons2, 'open.svg')}";
+                    migrationDefaults.images.selectAll = "{!URLFOR($Resource.AccountMainPageIcons2, 'selectAll.svg')}";
+                    migrationDefaults.images.deselectAll = "{!URLFOR($Resource.AccountMainPageIcons2, 'deselectAll.svg')}";
+                    migrationDefaults.images.printer = "{!URLFOR($Resource.SLDS_283, '/icons/utility-sprite/svg/symbols.svg#print')}";
+                    migrationDefaults.images.printok = "{!URLFOR($Resource.SLDS_283, '/icons/action-sprite/svg/symbols.svg#approval')}";
+                    migrationDefaults.images.printnok = "{!URLFOR($Resource.SLDS_283, '/icons/action-sprite/svg/symbols.svg#close')}";
+                    migrationDefaults.remoteActions.getRelationsOfMigratedProduct = '{!$RemoteAction.MigrationPremiumController.getRelationsOfMigratedProduct}';
+                    migrationDefaults.remoteActions.getProductParameters = '{!$RemoteAction.MigrationPremiumController.getProductParameters}';
+                    migrationDefaults.remoteActions.createCase = '{!$RemoteAction.MigrationPremiumController.createCase}';
+                    migrationDefaults.remoteActions.checkDependencies = '{!$RemoteAction.MigrationPremiumController.checkDependencies}';
+                    migrationDefaults.remoteActions.getSubProductList = '{!$RemoteAction.MigrationPremiumController.getSubProductList}';
+                    //migrationDefaults.remoteActions.generateQuoteForPrinting = $RemoteAction.MigrationPremiumController.generateQuoteForPrinting;
+                    migrationDefaults.remoteActions.saveCaseAttachment = '{!$RemoteAction.MigrationPremiumController.saveCaseAttachment}';
+                    //migrationDefaults.remoteActions.sendOutput = $RemoteAction.MigrationPremiumController.sendOutput;
+                    //migrationDefaults.remoteActions.deactivateCreditCards = $RemoteAction.MigrationPremiumController.deactivateCreditCards};
+                    //migrationDefaults.remoteActions.getCancellationValidation = $RemoteAction.MigrationPremiumController.getCancellationValidation};
+                    //migrationDefaults.remoteActions.calculateBagettaDate = $RemoteAction.MigrationPremiumController.calculateBagettaDate;
+                    //migrationDefaults.remoteActions.storeToJSK = $RemoteAction.MigrationPremiumController.storeToJSK;
+                    migrationDefaults.remoteActions.updateOpp = '{!$RemoteAction.MigrationPremiumController.updateOpp}';
+                    //migrationDefaults.remoteActions.removeSelectedProducts = $RemoteAction.MigrationPremiumController.removeSelectedProducts};
+                    //migrationDefaults.remoteActions.checkHeritageCasesDraft = $RemoteAction.MigrationPremiumController.checkHeritageCasesDraft;
+                    //migrationDefaults.remoteActions.checkHeirsData = $RemoteAction.MigrationPremiumController.checkHeirsData;
+                    //migrationDefaults.remoteActions.checkElbValid = $RemoteAction.MigrationPremiumController.checkElbValid};
+                    //migrationDefaults.remoteActions.callSignBiometricEnvelope = RemoteAction.MigrationPremiumController.callSignBiometricEnvelope;
+                    //migrationDefaults.remoteActions.checkIfPpfDraft = RemoteAction.MigrationPremiumController.checkIfPpfDraft;
+                    //migrationDefaults.remoteActions.prepareCaseForTemplate = 'RemoteAction.MigrationPremiumController.prepareCaseForTemplate;
+                    migrationDefaults.labels.productParametersNotFound = '{!$Label.Product_Parameters_Not_Found}';
+                    //migrationDefaults.icalc.base = baseSt;
+                    //migrationDefaults.icalc.supplement = suplSt;
+                    //migrationDefaults.icalc.theme = themeSt;
+                    //migrationDefaults.icalc.regular_investment = reginvSt;
+                    //migrationDefaults.translations.base = typeTranslationMap[baseStr];
+                    //migrationDefaults.translations.supplement = typeTranslationMap[suplStr];
+                    //migrationDefaults.translations.theme = typeTranslationMap[themeStr];
+                    //migrationDefaults.translations.regular_investment = typeTranslationMap[reginvStr;
+                    //migrationDefaults.fsval.email = finalStepValEmail;
+                    //migrationDefaults.fsval.errSize =finalStepValErrSize;
+
+                    migrationDefaults.labels.pcfDraftSaved = '{!$Label.PCF_Draft_Saved}';
+                    //migrationDefaults.labels.pcfDraftSavedWithCard = Label.PCF_Draft_Saved_With_Cards;
+                    //migrationDefaults.labels.heritageDraftExists = Label.PCF_Draft_Already_Exists;
+                    //migrationDefaults.labels.ppfDraftExists = Label.PPF_Draft_Already_Exists;
+                    migrationDefaults.labels.pcfBioSignNoSelectedDoc = '{!$Label.PCF_BioSign_NoSelectedDoc}';
+                    //migrationDefaults.labels.pcfBioSignSendToTablet = Label.PCF_BioSign_SendToTablet;
+                    console.log('2: ');
+                    var defaultNoteText = $(document.getElementById('{!$Component.theForm.noteContent}')).val();
+                    if(defaultNoteText){
+                        configuration.note = defaultNoteText;
+                        $("#textarea-input-note" ).val(defaultNoteText);
+                    }
+                    /*
+                    if({!isCzech}){
+                        sforce.console.setTabTitle('{!migrationProcessConfiguration.Title_CZ__c}');
+                    }else{
+                        sforce.console.setTabTitle('{!migrationProcessConfiguration.Title_EN__c}');
+                    }
+                    */
+                    addMultipleProductTransitionHtml(true, '{!selectedItems.selectedRow}', configuration.productRelations);
+//                    if(sforce.console.isInConsole()){
+//                        sforce.console.addEventListener('MigrationPremiumGeneratedIstsDocument', generatedIstsDocument);
+//                    }
+                    if('{!migrationProcessConfiguration.Selected_Tab_Default__c}' === 'Configuration'){
+                        $('#a-configuraton-tab').click();
+                    }else if('{!migrationProcessConfiguration.Selected_Tab_Default__c}' === 'Transactions'){
+                        $('#a-transitions-tab').click();
+                    }else if('{!migrationProcessConfiguration.Selected_Tab_Default__c}' === 'General'){
+                        $('#a-general-tab').click();
+                    }
+                    console.log('3: ');
+                    //initButton();
+                    //loadRelations();
+                });
+
+                /*function initButton(){
+                    if.parameters.migration_process}' === 'Investment_Calculator'){
+                        $('#submit-btn').hide();
+                        $('#print-inv-btn').show();
+                    }
+                }
+
+                function loadRelations(){
+                    if('parameters.migration_process}' === 'Investment_Calculator'){
+                        Visualforce.remoting.Manager.invokeAction(
+                            on.MigrationPremiumController.getInvestmentRelations}',
+                            function(resultObject, event) {
+                                var amount = Page.parameters.amount}';
+                                var mainInput = $('[id^="GENERAL"]')[0];
+                                mainInput.value = amount;
+                                investmentRelations(resultObject);
+                            }
+                        );
+                    }
+                }*/
+
+                var assetsLocation = '{!URLFOR($Resource.SLDS)}';
+                $.aljsInit({
+                    assetsLocation: assetsLocation,
+                    scoped: true
+                });
+                console.log('4: ');
+                function openAuthItem(){
+                    var url = 'apex/AccountAuth?id={0}&authType=CommonRetail&markerId={1}'.format('{!theAccount.Id}', localStorage.getItem('WdeSelectedInteraction'));
+                    openItem(url);
+                    return false;
+                }
+
+                var IsVisiblePrintButtonMenu = false;
+                function showHideButtonMenu(){
+                    if(IsVisiblePrintButtonMenu){
+                        $('#print-button-menu').hide();
+                        IsVisiblePrintButtonMenu = false;
+                    }else{
+                        $('#print-button-menu').show();
+                        IsVisiblePrintButtonMenu = true;
+                    }
+                }
+                $('#print-button-menu').mouseleave(function() {
+                    $('#print-button-menu').hide();
+                    IsVisiblePrintButtonMenu = false;
+                });
+
+                var IsVisibleInvPrintingMenu = false;
+                function showInvPrintingMenu(){
+                    if(IsVisibleInvPrintingMenu) {
+                        $('#print-inv-button-menu').hide();
+                        IsVisibleInvPrintingMenu = false;
+                    } else {
+                        $('#print-inv-button-menu').show();
+                        IsVisibleInvPrintingMenu = true;
+                    }
+                }
+                $('#print-inv-button-menu').mouseleave(function() {
+                    $('#print-inv-button-menu').hide();
+                    IsVisibleInvPrintingMenu = false;
+                });
+                var menuConf = [{selector: '#print-inv-button-menu', visibleVar: 'IsVisibleInvPrintingMenu'}, {selector: '#print-button-menu', visibleVar: 'IsVisiblePrintButtonMenu'}];
+                $(document).mouseup(function(e) {
+                    menuConf.forEach(function(conf) {
+                        var container = $(conf.selector)
+                        // if the target of the click isn't the container nor a descendant of the container
+                        if (!container.is(e.target) && container.has(e.target).length === 0) {
+                            container.hide();
+                            window[conf.visibleVar] = false;
+                        }
+                    });
+                });
+
+                $("#file-upload-input").on('change',function(){
+                    var fileElement = $(this);
+                    // Is the browser IE?
+                    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+                    // If the browser is IE, add readAsBinaryString function and store the data
+                    if (isIE == true){
+                        if (FileReader.prototype.readAsBinaryString === undefined) {
+                            FileReader.prototype.readAsBinaryString = function (fileData) {
+                                var binary = "";
+                                var pt = this;
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    var bytes = new Uint8Array(reader.result);
+                                    var length = bytes.byteLength;
+                                    for (var i = 0; i < length; i++) {
+                                        binary += String.fromCharCode(bytes[i]);
+                                    }
+                                    //pt.result  - readonly so assign content to another property
+                                    pt.content = binary;
+                                    $(pt).trigger('onloadend');
+                                    addFile(fileData.name, window.btoa(pt.content), fileData.size);
+                                }
+                                reader.readAsArrayBuffer(fileData);
+                            }
+                        }
+                    }
+                    //var checkedIcon = $('#submit-btn-checked');
+                    if(fileElement.val()){
+                        var f = document.getElementById("file-upload-input").files[0];
+                        if(f){
+                            var r = new FileReader();
+                            r.onload = function(e) {
+                                var contents = e.target.result;
+                                addFile(f.name, window.btoa(contents), f.size);
+                                //configuration.fileData = window.btoa(contents);
+                                //configuration.fileName = f.name;
+                            }
+                            r.readAsBinaryString(f);
+                        }
+                        //checkedIcon.css('display', 'inline-block');
+                    }else{
+                        //checkedIcon.css('display', 'none');
+                    }
+                });
+
+                 $("#local-file-upload").on('change',function(){
+                    var fileElement = $(this);
+                    // Is the browser IE?
+                    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+                    // If the browser is IE, add readAsBinaryString function and store the data
+                    if (isIE == true){
+                        if (FileReader.prototype.readAsBinaryString === undefined) {
+                            FileReader.prototype.readAsBinaryString = function (fileData) {
+                                var binary = "";
+                                var pt = this;
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    var bytes = new Uint8Array(reader.result);
+                                    var length = bytes.byteLength;
+                                    for (var i = 0; i < length; i++) {
+                                        binary += String.fromCharCode(bytes[i]);
+                                    }
+                                    //pt.result  - readonly so assign content to another property
+                                    pt.content = binary;
+                                    $(pt).trigger('onloadend');
+                                    addFile(fileData.name, window.btoa(pt.content), fileData.size);
+                                }
+                                reader.readAsArrayBuffer(fileData);
+                            }
+                        }
+                    }
+                    if(fileElement.val()){
+                        let f = document.getElementById("local-file-upload").files[0];
+                        console.log(document.getElementById("local-file-upload").files[0]);
+                        if(f){
+
+                            let r = new FileReader();
+
+                            r.onload = function(e) {
+                                let contents = e.target.result;
+
+                                console.log(contents);
+                                let fdata = new FormData();
+                                fdata.append('PDFfile', contents);
+                                let metaData = createLocalFileMetaData(f);
+                                for(let key in metaData){
+                                    fdata.append(key, metaData[key]);
+                                }
+
+                                postLocalUploadedFile(fdata);
+
+                            }
+                            r.readAsBinaryString(f);
+                        }
+                        //checkedIcon.css('display', 'inline-block');
+                    }else{
+                        //checkedIcon.css('display', 'none');
+                    }
+                });
+                function postLocalUploadedFile(data){
+                    console.log(data)
+                    $('#modal-waiting-dialog').modal('show');
+
+                    let xhr = new XMLHttpRequest();
+                    let url = 'https://cb1b9d53-64a0-4c74-909a-6fcd9aa93295.mock.pstmn.io/set/file';
+//                    fetch(url, {
+//                        method: "post",
+//                        body: data
+//                    })
+                    xhr.open("POST", url, true);
+                    xhr.setRequestHeader("Content-type", "multipart/form-data");
+                    xhr.onreadystatechange = function() {
+                          if (this.readyState == 4) {
+                              const uploadIcon = document.getElementById("local-file-upload-icon");
+                              uploadIcon.classList = null;
+                              uploadIcon.classList.add("local-upload-ico");
+                              if(this.status == 200){
+                                 uploadIcon.classList.add("uploaded");
+                              }
+                              else{
+                                 uploadIcon.classList.add("error-uploaded");
+                              }
+                             console.log(this.responseText);
+                             $('#modal-waiting-dialog').modal('dismiss');
+                             document.getElementById("local-file-upload").value = null;
+                             console.log(document.getElementById("local-file-upload").files);
+                          }
+                        };
+                    xhr.send(data);
+
+                }
+                function createLocalFileMetaData(file){
+                        return metaData = {
+                                documentType: file.type,
+                                cuid: configuration.cuid,
+                                documentTitle: file.name,
+                                mineType: file.type,
+                                originType: 'originType',
+                                createChannel: 'createChannel',
+                                internalCreator: configuration.userName,
+                                createdBranch: configuration.userOrgUnitId,
+                                createdBrand: 'createdBrand',
+                                externalID: generateExternalId(),
+                            }
+                }
+                function generateExternalId(){
+                      let ID = "";
+                      let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                      for ( var i = 0; i < 20; i++ ) {
+                        ID += characters.charAt(Math.floor(Math.random() * 36));
+                      }
+                      return ID;
+                }
+                console.log('5: ');
+            </script>
+
+    <!--todo mate-->
+    <style>
+                .slds .slds-datepicker td > .slds-day{
+                    width: 25px;
+                    height: 25px;
+                    line-height: 25px;
+                    min-width: 25px;
+                }
+                .slds .slds-dropdown{
+                    max-width:265;
+                }
+                .slds-datepicker > .slds-form-element__control{
+                    width: 50%;
+                }
+                .slds .slds-datepicker td.slds-is-today > .slds-day{
+                    background: #a9cbff;
+                    background-color: rgb(169, 203, 255);
+                }
+                .slds .slds-table td.slds-is-selected{
+                    box-shadow: #f9f9f900 0 0 2px inset;
+                }
+                .slds .slds-table td.slds-is-selected:hover{
+                    box-shadow: #f9f9f900 0 0 2px inset;
+                }
+
+                .slds .slds-datepicker td:hover:not(.slds-disable-text) > .slds-day{
+                    background: #a9cbff;
+                    background-color: rgb(169, 203, 255);
+                }
+                .slds .slds-datepicker td:focus:not(.slds-disable-text) > .slds-day{
+                    background: #a9cbff;
+                    background-color: rgb(169, 203, 255);
+                }
+                .local-upload-ico {
+                    height: 20px !important;
+                    width: 20px !important;
+                    cursor: pointer;
+                }
+                .local-upload-ico.not-uploaded {
+                    fill: #0099cc;
+                }
+                 .local-upload-ico.uploaded {
+                    fill: #4fbe75;
+                }
+                .local-upload-ico.error-uploaded {
+                    fill: red;
+                }
+            </style>
+    </body>
+    </html>
+</apex:page>

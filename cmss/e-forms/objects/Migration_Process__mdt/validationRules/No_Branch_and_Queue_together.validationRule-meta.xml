@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Branch_and_Queue_together</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(NOT(ISBLANK(Case_Branch_Data_Id__c)),NOT(ISBLANK( Case_Queue_Name__c )))</errorConditionFormula>
+    <errorMessage>Nesmí být vyplněno zároveň Case_Branch_Data_Id a Case_Queue_Name.</errorMessage>
+</ValidationRule>

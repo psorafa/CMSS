@@ -1,0 +1,27 @@
+<!--
+ - Created by lukas.krbec on 03.06.2022.
+ -->
+
+<!-- Pcf Signpost -->
+<template>
+    <lightning-quick-action-panel header={labels.header} class="slds-spinner_container slds-is-relative" >
+        <div class="slds-grid slds-wrap"
+             if:true={loaded}>
+            <template for:each={processes} for:item="process">
+                <div key={process.developerName} class="slds-col slds-p-around_xx-small">
+
+                    <lightning-button label={process.title} name={process.developerName} variant="neutral"
+                                      onclick={handleChooseMigration}>
+                    </lightning-button>
+                </div>
+            </template>
+        </div>
+        <div if:false={loaded}>
+            <lightning-spinner variant="brand"
+                               alternative-text="Loading"
+                               size="medium"
+                               style="height: 100%;">
+            </lightning-spinner>
+        </div>
+    </lightning-quick-action-panel>
+</template>

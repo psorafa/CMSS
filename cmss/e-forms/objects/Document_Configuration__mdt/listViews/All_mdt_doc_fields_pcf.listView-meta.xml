@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_mdt_doc_fields_pcf</fullName>
+    <columns>MasterLabel</columns>
+    <columns>DeveloperName</columns>
+    <columns>NamespacePrefix</columns>
+    <columns>Data_ID__c</columns>
+    <columns>Template_Code__c</columns>
+    <columns>Migration_Process__c</columns>
+    <columns>Pre_contract_document__c</columns>
+    <columns>Label_CZ__c</columns>
+    <columns>Biometric_Signature__c</columns>
+    <columns>Order__c</columns>
+    <columns>Disable_Storing_To_JSK__c</columns>
+    <columns>Message_Before_Print__c</columns>
+    <columns>URL__c</columns>
+    <columns>Fill_Barcode__c</columns>
+    <columns>Open_In_New_Window__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Migration_Process__c</field>
+        <operation>contains</operation>
+        <value>PPP</value>
+    </filters>
+    <label>All Fields with PCF</label>
+    <language>en_US</language>
+</ListView>

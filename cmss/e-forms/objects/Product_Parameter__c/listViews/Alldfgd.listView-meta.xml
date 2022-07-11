@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alldfgd</fullName>
+    <columns>NAME</columns>
+    <columns>Algorithm_Mapping__c</columns>
+    <columns>Product__c</columns>
+    <columns>SOQL__c</columns>
+    <columns>Product_Parameter__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Parameter_Label__c</columns>
+    <columns>SOQL_Background_Query__c</columns>
+    <columns>Type__c</columns>
+    <columns>SOQL_Field_ID__c</columns>
+    <columns>SOQL_Field_Name__c</columns>
+    <columns>Field_API__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Field_API__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>All_TEST</label>
+    <language>cs</language>
+</ListView>

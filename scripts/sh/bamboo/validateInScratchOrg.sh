@@ -86,6 +86,7 @@ pushWithTimeout $ALIAS cmss/opportunity-management/
 pushWithTimeout $ALIAS cmss/portfolio-management/
 pushWithTimeout $ALIAS cmss/product-contract/
 pushWithTimeout $ALIAS cmss/case-management/
+pushWithTimeout $ALIAS cmss/e-forms/
 pushWithTimeout $ALIAS cmss/app/
 
 #run tests

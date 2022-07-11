@@ -1,0 +1,29 @@
+<!--
+ - Created by stanislav.vyhlidal on 11.02.2021.
+ -->
+
+<aura:component controller="MigrationPremiumController" implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes,lightning:isUrlAddressable,force:lightningQuickAction,lightning:availableForFlowActions" description="migrationPremiumWrapper">
+
+    <lightning:workspaceAPI aura:id="workspace" />
+    <aura:attribute name="oppId" type="String" />
+    <aura:attribute name="productId" type="String" />
+    <aura:attribute name="accountId" type="String" />
+    <aura:attribute name="assetId" type="String" />
+    <aura:attribute name="caseId" type="String" />
+    <aura:attribute name="originalCaseId" type="String" />
+    <aura:attribute name="amount" type="String" />
+    <aura:attribute name="migration_process" type="String" />
+    <aura:attribute name="migrationPremiumUrl" type="String" />
+    <aura:attribute name="openTime" type="String" />
+    <aura:attribute name="openTime2" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.doInit}" />
+
+    <!--
+        <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
+    -->
+    <lightning:navigation aura:id="navService" />
+    <!--<lightning:messageChannel type="RecordChanged__c"
+                              aura:id="recordChangedMessage"/>-->
+    <iframe name="migrationIframeName" aura:id="migrationIframe" id="migrationIframe2" src="{!v.migrationPremiumUrl}" width="100%" height="800px" frameBorder="0" />
+</aura:component>
