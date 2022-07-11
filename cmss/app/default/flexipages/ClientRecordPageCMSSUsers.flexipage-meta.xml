@@ -564,19 +564,19 @@
                             <value>CASES.CASE_NUMBER</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>NAME</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>CASES.SUBJECT</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CASES.PRIORITY</value>
+                            <value>ASSET.NAME</value>
                         </valueListItems>
                         <valueListItems>
                             <value>CASES.CREATED_DATE_DATE_ONLY</value>
                         </valueListItems>
                         <valueListItems>
                             <value>CASES.STATUS</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Type_of_process_translate__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>OWNER_NAME</value>

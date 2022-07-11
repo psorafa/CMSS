@@ -47,7 +47,6 @@
         } else {
             var openTime = new Date().getTime();
             var migrationPremiumUrl = '/apex/MigrationPremium?migration_process=' + migrationProcess + '&open_time=' + openTime;
-
             var action = component.get("c.getRecord");
             action.setParams({
                 recordId: recordId,
@@ -59,9 +58,6 @@
                 if (state === "SUCCESS") {
                     var returnedObject = response.getReturnValue();
                     console.log('returnedObject: ', returnedObject);
-                    if (!migrationProcess) {
-                        migrationPremiumUrl = '/apex/MigrationPremium?migration_process=CSOBS_contract_cancelation&open_time=' + openTime;
-                    }
                     if (recordId.startsWith('500')) {
                         if (returnedObject.objectStatus === '10') {
                             migrationPremiumUrl += '&caseId=' + recordId + '&edit=1' + '&accountId=' + returnedObject.objectId;

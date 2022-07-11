@@ -79,6 +79,13 @@
             "seedComponents" : [ ],
             "tabKey" : "d5dfe",
             "tabName" : "Správa Stavu"
+          }, {
+            "UUID" : "96f4b2a9-3d79-412e-8f42-a1994eba6232",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "cf305",
+            "tabName" : "E-formuláře"
           } ],
           "useOverflowMenu" : false
         }
@@ -266,6 +273,23 @@
         "id" : "a39f30a7-5afb-4800-a679-0e054e0bab16",
         "regionLabel" : "Správa Stavu",
         "regionName" : "d5dfe",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "relatedListApiName" : "Cases",
+            "relatedListComponentOverride" : "NONE",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "5b60263c-a1f7-4e65-a8e9-6d6d5caa0d8b",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "96f4b2a9-3d79-412e-8f42-a1994eba6232",
+        "regionLabel" : "E-formuláře",
+        "regionName" : "cf305",
         "renditionMap" : { },
         "type" : "region"
       } ],

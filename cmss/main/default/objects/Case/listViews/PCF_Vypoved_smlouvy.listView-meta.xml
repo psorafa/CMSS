@@ -3,20 +3,20 @@
     <fullName>PCF_Vypoved_smlouvy</fullName>
     <columns>CASES.CASE_NUMBER</columns>
     <columns>ACCOUNT.NAME</columns>
+    <columns>ASSET.NAME</columns>
     <columns>CASES.CREATED_DATE</columns>
-    <columns>ComplainerFirstName__c</columns>
+    <columns>Type_of_process_translate__c</columns>
     <columns>CASES.STATUS</columns>
     <columns>OWNER_NAME</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Type_of_Process__c</field>
-        <operation>contains</operation>
-        <value>CSOBS_contract_cancelation</value>
+        <operation>notEqual</operation>
     </filters>
     <filters>
         <field>CASES.STATUS</field>
         <operation>equals</operation>
         <value>12</value>
     </filters>
-    <label>PCF Výpověď smlouvy - dokončeno</label>
+    <label>E-formuláře - Dokončeno</label>
 </ListView>

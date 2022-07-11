@@ -889,6 +889,16 @@ global class MigrationPremiumController {
         //verificationAssetId = ApexPages.currentPage().getParameters().get('ver_assetId');
         String caseId = ApexPages.currentPage().getParameters().get('caseId');
         caseIdFromPage = caseId;
+        Case theCase;
+        if (String.isNotBlank(caseId)) {
+            theCase = [
+                SELECT Id, AccountId, Migration_Premium_Product_List_Conf__c, Migration_Premium_Product_Relations_Conf__c, Description, PCF_Unfinished__c, Type_of_Process__c
+                FROM Case
+                WHERE Id = :caseId
+                LIMIT 1
+            ];
+            migrationProcessName = theCase.Type_of_Process__c;
+        }
         originalCaseId = ApexPages.currentPage().getParameters().get('originalCaseId');
         //String productId = ApexPages.currentPage().getParameters().get('productId');
         System.debug(ApexPages.currentPage().getParameters());
@@ -1031,12 +1041,6 @@ global class MigrationPremiumController {
             system.debug('selectedItems.itemMap: ' + selectedItems.itemMap);
         } else */if (String.isNotBlank(caseId)) {
             system.debug('case');
-            Case theCase = [
-                    SELECT Id, AccountId, Migration_Premium_Product_List_Conf__c, Migration_Premium_Product_Relations_Conf__c, Description, PCF_Unfinished__c
-                    FROM Case
-                    WHERE Id = :caseId
-                    LIMIT 1
-            ];
             if (!theCase.PCF_Unfinished__c) {
                 if (editMode == '1') { pcfUnfinished = true;
                 } else {
@@ -1579,7 +1583,7 @@ global class MigrationPremiumController {
         return theCase;
     }
 
-    private static Case createCaseQueueFromMetadata(Migration_Process__mdt migrationProcessConfiguration, String accountId, String productListConf, String productRelationsConf/*, String selectedAssetMainElement, String selectedAssetChildElement*/, String elDocDistrib, String note, String assetId, String selectedProductRelationId, String lowestPriority, List<String> docIdList, String typeOfOperation/*, Boolean forVerification, String assetsForVerification*/) {
+    private static Case createCaseQueueFromMetadata(Migration_Process__mdt migrationProcessConfiguration, String accountId, String productListConf, String productRelationsConf/*, String selectedAssetMainElement, String selectedAssetChildElement*/, String elDocDistrib, String note, String assetId, String selectedProductRelationId, String lowestPriority, List<String> docIdList, String typeOfOperation, String pdfTemplateItemsJSON/*, Boolean forVerification, String assetsForVerification*/) {
         Case theCase = new Case();
         System.debug(accountId);
         theCase.AccountId = String.isNotBlank(accountId) ? accountId : null;
@@ -1605,6 +1609,9 @@ global class MigrationPremiumController {
         theCase.Description = note;
         //theCase.Receive_Date__c = Date.today();
         theCase.Type_of_Process__c = migrationProcessConfiguration.DeveloperName;
+        if (String.isNotBlank(pdfTemplateItemsJSON)) {
+            theCase.Template__c = pdfTemplateItemsJSON;
+        }
         /*theCase.Contains_Product_For_Verification__c = forVerification;
         theCase.Assets_For_Verification__c = assetsForVerification;*/
         //List<Asset> assetList = [SELECT Id,Product2.CST_Value_ID__c, Product2.Product__r.CST_Value_ID__c FROM Asset WHERE Id = :assetId];
@@ -2136,7 +2143,7 @@ global class MigrationPremiumController {
     @RemoteAction
     global static CreateCaseWrapper createCase(String accountId, String assetId, String productListConf, String productRelationsConf, String apiFields,
             String note, String generatedDocumentMapJSON, String selectedAssetMainElement, String exceptionDate, String exceptionType,
-            String selectedAssetChildElement, String migrationProcessConfigurationId, String elDocDistrib, String mobilityCourierBranch, String selectedProductRelationId, String lowestPriority, String caseIdFromUrl, String typeOfOperation, String editMode/*, Boolean forVerification, String assetsForVerification*/) {
+            String selectedAssetChildElement, String migrationProcessConfigurationId, String elDocDistrib, String mobilityCourierBranch, String selectedProductRelationId, String lowestPriority, String caseIdFromUrl, String typeOfOperation, String editMode, String pdfTemplateItemsJSON/*, Boolean forVerification, String assetsForVerification*/) {
         /*if (!Utils.isCreatableObject(Case.class.getName()) || !Utils.isUpdateableObject(Case.class.getName())) {
             return new CreateCaseWrapper(null, null, Label.NotSufficientPrivileges);
         }*/
@@ -2154,7 +2161,7 @@ global class MigrationPremiumController {
         if (migrationProcessConfiguration.Use_Already_Created_Case__c) {
             theCase = fillCaseFieldsForExistingCase(migrationProcessConfiguration, productListConf, productRelationsConf/*, selectedAssetMainElement, selectedAssetChildElement*/, elDocDistrib);
         } else {
-            theCase = createCaseQueueFromMetadata(migrationProcessConfiguration, accountId, productListConf, productRelationsConf, /*selectedAssetMainElement, selectedAssetChildElement, */elDocDistrib, note, assetId, selectedProductRelationId, lowestPriority, generatedDocumentMap.values(), typeOfOperation/*, forVerification, assetsForVerification*/);
+            theCase = createCaseQueueFromMetadata(migrationProcessConfiguration, accountId, productListConf, productRelationsConf, /*selectedAssetMainElement, selectedAssetChildElement, */elDocDistrib, note, assetId, selectedProductRelationId, lowestPriority, generatedDocumentMap.values(), typeOfOperation, pdfTemplateItemsJSON/*, forVerification, assetsForVerification*/);
         }
 /*
         if (String.isNotBlank(mobilityCourierBranch)) {
@@ -2251,18 +2258,18 @@ global class MigrationPremiumController {
         return new CreateCaseWrapper(theCase.Id);
     }
 
-    @RemoteAction
-    global static CreateCaseWrapper prepareCaseForTemplate (String migrationProcessName, String pdfTemplateItemsJSON, String accId){ //, MigrationPremiumTypes.File barcodeFile) {
-        Case theCase = new Case();
-        theCase.AccountId = accId;
-        theCase.Template__c = pdfTemplateItemsJSON;
-        theCase.PCF_Unfinished__c = true;
-        theCase.Type_of_Process__c = migrationProcessName;
-        theCase.RecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('PCF').getRecordTypeId();
-        insert theCase;
+    // @RemoteAction
+    // global static CreateCaseWrapper prepareCaseForTemplate (String migrationProcessName, String pdfTemplateItemsJSON, String accId){ //, MigrationPremiumTypes.File barcodeFile) {
+    //     Case theCase = new Case();
+    //     theCase.AccountId = accId;
+    //     theCase.Template__c = pdfTemplateItemsJSON;
+    //     theCase.PCF_Unfinished__c = true;
+    //     theCase.Type_of_Process__c = migrationProcessName;
+    //     theCase.RecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('PCF').getRecordTypeId();
+    //     insert theCase;
 
-        return new CreateCaseWrapper(theCase.Id);//, saveFile(barcodeFile, theCase.Id));
-    }
+    //     return new CreateCaseWrapper(theCase.Id);//, saveFile(barcodeFile, theCase.Id));
+    // }
 
     @AuraEnabled
     global static ReturnObjectWrapper getRecord (String recordId, String objectName) {
