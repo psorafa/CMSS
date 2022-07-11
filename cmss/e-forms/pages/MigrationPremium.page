@@ -898,7 +898,7 @@
                     //migrationDefaults.remoteActions.checkElbValid = $RemoteAction.MigrationPremiumController.checkElbValid};
                     //migrationDefaults.remoteActions.callSignBiometricEnvelope = RemoteAction.MigrationPremiumController.callSignBiometricEnvelope;
                     //migrationDefaults.remoteActions.checkIfPpfDraft = RemoteAction.MigrationPremiumController.checkIfPpfDraft;
-                    migrationDefaults.remoteActions.prepareCaseForTemplate = '{!$RemoteAction.MigrationPremiumController.prepareCaseForTemplate}';
+                    //migrationDefaults.remoteActions.prepareCaseForTemplate = 'RemoteAction.MigrationPremiumController.prepareCaseForTemplate;
                     migrationDefaults.labels.productParametersNotFound = '{!$Label.Product_Parameters_Not_Found}';
                     //migrationDefaults.icalc.base = baseSt;
                     //migrationDefaults.icalc.supplement = suplSt;
