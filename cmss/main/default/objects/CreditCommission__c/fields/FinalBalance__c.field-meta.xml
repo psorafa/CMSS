@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FinalBalance__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>Sum of Initial State, Increase and Decrease in Credit Portfolio</inlineHelpText>
     <label>Final Balance</label>
     <precision>18</precision>
     <required>false</required>
