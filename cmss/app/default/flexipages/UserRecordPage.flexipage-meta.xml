@@ -226,6 +226,39 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>childObjectName</name>
+                    <value>CreditCommission__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Name, InitialStateofCreditPortfolio__c, IncreaseinCreditPortfolio__c, DecreaseinCreditPortfolio__c, FinalBalance__c, FinalRate__c, RateChange__c, PUPRate__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>condition</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>standard:investment_account</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>listName</name>
+                    <value>Úvěrové provize</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldName</name>
+                    <value>OwnerId</value>
+                </componentInstanceProperties>
+                <componentName>filterableRelatedList</componentName>
+                <identifier>c_filterableRelatedList</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-e6c4c5a7-3e47-44b8-b683-520e8c11ce83</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>active</name>
                     <value>true</value>
                 </componentInstanceProperties>
@@ -271,6 +304,20 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>customTab3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-e6c4c5a7-3e47-44b8-b683-520e8c11ce83</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Úvěrové provize</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-0454c846-692c-4cb0-8174-6db2a6e9829c</name>

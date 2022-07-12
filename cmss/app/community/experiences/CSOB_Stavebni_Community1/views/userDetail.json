@@ -1,6 +1,6 @@
 {
   "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
-  "componentName" : "siteforce:sldsOneColLayout",
+  "componentName" : "siteforce:sldsTwoCol84Layout",
   "id" : "21e4ca27-a1dd-47cb-9304-ce21c58f4351",
   "label" : "User Detail",
   "regions" : [ {
@@ -10,29 +10,17 @@
   }, {
     "components" : [ {
       "componentAttributes" : {
-        "caseCreateLabel" : "Create Case",
-        "caseFilterName" : "AllOpenCases",
-        "caseHeaderLabel" : "My Cases",
-        "casesTabLabel" : "Cases",
-        "detailsTabLabel" : "Details",
-        "feedTabLabel" : "Feed",
         "knowledgeableAboutTitle" : "Knows About",
         "maxTopics" : 5,
-        "recognitionbuttonLabel" : "Give",
-        "relatedTabLabel" : "Related",
-        "showAllUpdates" : false,
-        "showBadges" : true,
         "showFullPhotoAsCircle" : true,
-        "showKnowledgeableAbout" : true,
-        "showRelatedList" : true,
+        "showKnowledgeableAbout" : false,
+        "showPhoto" : true,
         "showReputationInInfluenceCard" : false,
-        "showStats" : true,
-        "userBadgesTitle" : "Recognition Badges",
-        "userId" : "{!recordId}",
-        "userStatsTitle" : "Influence"
+        "showStats" : false,
+        "userId" : "{!recordId}"
       },
-      "componentName" : "forceCommunity:userRecordHome",
-      "id" : "4eced807-db11-477e-ada7-ffa44273189b",
+      "componentName" : "forceCommunity:userProfileBody",
+      "id" : "c83c8992-9ea9-4946-8b98-c2be50be576b",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
@@ -43,6 +31,21 @@
   }, {
     "id" : "fa025395-1386-4b0a-a5ce-4c17e65c9401",
     "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}",
+        "width" : "MEDIUM"
+      },
+      "componentName" : "forceCommunity:relatedRecords",
+      "id" : "5cc53f90-c5d8-4cfc-820e-8147f0014429",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "bad87e0a-6eca-4735-b62b-5c05567b72d2",
+    "regionName" : "sidebar",
     "type" : "region"
   } ],
   "themeLayoutType" : "Inner",

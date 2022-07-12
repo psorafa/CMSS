@@ -74,8 +74,15 @@
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
-        <label>Chatter</label>
+        <label>Ovládací panely</label>
         <position>11</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Dashboard</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Chatter</label>
+        <position>12</position>
         <publiclyAvailable>false</publiclyAvailable>
         <subMenu>
             <navigationMenuItem>

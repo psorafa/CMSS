@@ -501,6 +501,19 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description>Úvěrové provize</description>
+        <label>Úvěrové provize</label>
+        <name>CreditCommissions</name>
+        <sections>
+            <label>Úvěrové provize</label>
+            <name>Credit Commissions</name>
+        </sections>
+        <sections>
+            <label>Uživatel</label>
+            <name>User</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Opportunities and Activities --></description>
         <label><!-- Opportunities and Activities --></label>
         <name>OpportunitiesAndActivities</name>
