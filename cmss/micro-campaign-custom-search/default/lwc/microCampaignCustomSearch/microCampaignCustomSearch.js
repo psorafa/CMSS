@@ -103,6 +103,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			this.selectedProduct = newSelectProduct;
 			this.selectedObjectType = newSelectObject;
 			this.filterConditionList = [];
+			this.sortedBy = null;
 		}
 	}
 
@@ -120,6 +121,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	handleSelectConfiguration(event) {
 		this.selectedConfiguration = event.detail;
+		this.pageNumber = 1;
 	}
 
 	addSelectedUsersToFilter() {
@@ -190,13 +192,14 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		this.addSelectedUsersToFilter();
 		this.addRecordTypeFilter();
 		this.loading = true;
+
 		const request = {
 			filterItemList: this.filterConditionList,
 			configuration: this.selectedConfiguration,
 			objectName: this.selectedConfiguration.ObjectType__c,
 			pageNumber: this.pageNumber,
 			pageSize: this.recordsPerPage,
-			sortBy: this.sortedBy?.fieldName,
+			sortBy: this.sortedBy,
 			sortDirection: this.sortDirection
 		};
 
@@ -218,10 +221,8 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 					})
 						.then((colResponse) => {
 							this.outputTableColumns = colResponse;
-							console.log('output table columns: ', this.outputTableColumns);
 							if (this.isTableVisible) {
 								this.section = ['data'];
-								this.sortedBy = this.outputTableColumns[0];
 							} else {
 								this.section = ['configuration'];
 							}
@@ -377,7 +378,6 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	onHandleSort(event) {
 		const { fieldName: sortedBy, sortDirection } = event.detail;
-
 		const request = {
 			filterItemList: this.filterConditionList,
 			configuration: this.selectedConfiguration,
@@ -407,7 +407,13 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 				});
 				this.outputTableData.push(item);
 			});
-			if (this.outputTableData.find((column) => column[sortedBy]?.type !== 'DATE')) {
+
+			const sortedByColumn = this.outputTableColumns.find((column) => {
+				return column['fieldName'] === sortedBy;
+			});
+			const sortedByColumnType = 'type' in sortedByColumn ? sortedByColumn.type : null;
+
+			if (sortedByColumnType !== 'DATE') {
 				const cloneData = [...this.outputTableData];
 
 				cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
