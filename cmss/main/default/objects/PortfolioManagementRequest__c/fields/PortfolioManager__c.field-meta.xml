@@ -5,6 +5,16 @@
     <description>Požadovaný správce stavu</description>
     <externalId>false</externalId>
     <label>Portfolio Manager</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Zadejte aktivního obchodního zástupce.</errorMessage>
+        <filterItems>
+            <field>User.IsActive</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>User</referenceTo>
     <relationshipName>PortfolioManagementRequests</relationshipName>
     <required>false</required>
