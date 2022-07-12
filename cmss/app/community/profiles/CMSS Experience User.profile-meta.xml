@@ -3920,6 +3920,56 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CreditCommission__c.DecreaseInCreditPortfolio__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CreditCommission__c.FinalBalance__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CreditCommission__c.FinalRate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CreditCommission__c.IncreaseInCreditPortfolio__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CreditCommission__c.InitialStateOfCreditPortfolio__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CreditCommission__c.KnowledgeLinkImport__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CreditCommission__c.KnowledgeLink__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CreditCommission__c.PUPRate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CreditCommission__c.RateChange__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CreditCommission__c.User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CrossSellingClosure__c.AcquisitionMethod__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -5845,6 +5895,9 @@
         <layout>ContentVersion-Files_Reader</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CreditCommission__c-Credit Commission Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CrossSellingClosure__c-Cross Selling Closure Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -6987,6 +7040,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>ContactInformation__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>CreditCommission__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
