@@ -46,15 +46,6 @@
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
-        }, {
-          "componentAttributes" : {
-            "userId" : "{!recordId}"
-          },
-          "componentName" : "forceCommunity:userRelatedList",
-          "id" : "147f59ce-b368-47b3-8330-c464d4e4dc6d",
-          "renderPriority" : "NEUTRAL",
-          "renditionMap" : { },
-          "type" : "component"
         } ],
         "id" : "c491421f-6abc-45a2-af6a-5231afff07f0",
         "regionLabel" : "Column 1",
@@ -65,7 +56,7 @@
         "components" : [ {
           "componentAttributes" : {
             "recordId" : "{!CurrentUser.id}",
-            "width" : "MEDIUM"
+            "width" : "SMALL"
           },
           "componentName" : "forceCommunity:relatedRecords",
           "id" : "50dda934-0956-4079-a26c-746c0233dc9c",
