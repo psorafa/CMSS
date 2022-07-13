@@ -31,7 +31,7 @@ export default class AccountRelatedList extends LightningElement {
 	transferAllClients = false;
 	offset = 0;
 	accountCount;
-	billingCity;
+	city;
 	billingPostalCode;
 	isModalOpen = false;
 	isSaving = false;
@@ -49,10 +49,7 @@ export default class AccountRelatedList extends LightningElement {
 
 	get cityLabel() {
 		return (
-			(this.accountFieldLabels &&
-				this.accountFieldLabels.BillingCity &&
-				this.accountFieldLabels.BillingCity.label) ||
-			''
+			(this.accountFieldLabels && this.accountFieldLabels.City__c && this.accountFieldLabels.City__c.label) || ''
 		);
 	}
 
@@ -90,7 +87,7 @@ export default class AccountRelatedList extends LightningElement {
 					typeAttributes: { label: { fieldName: 'CombinedName__c' } }
 				},
 				{ label: data.fields.BillingStreet.label, fieldName: 'BillingStreet' },
-				{ label: data.fields.BillingCity.label, fieldName: 'BillingCity' },
+				{ label: data.fields.City__c.label, fieldName: 'City__c' },
 				{ label: data.fields.BillingPostalCode.label, fieldName: 'BillingPostalCode' },
 				{ label: data.fields.Phone.label, fieldName: 'Phone' },
 				{ label: data.fields.PersonEmail.label, fieldName: 'PersonEmail' },
@@ -118,7 +115,7 @@ export default class AccountRelatedList extends LightningElement {
 			this.tableElement.enableInfiniteLoading = false;
 			this.offset += recordsToShow;
 
-			this.handleGetAccounts(this.billingCity, this.billingPostalCode, recordsToShow, this.offset, (data) => {
+			this.handleGetAccounts(this.city, this.billingPostalCode, recordsToShow, this.offset, (data) => {
 				this.accountCount = data.accountCount;
 				const mappedData = data.accounts.map((item) => ({ ...item, NameUrl: '/' + item.Id }));
 				this.data = this.data.concat(mappedData);
@@ -136,7 +133,7 @@ export default class AccountRelatedList extends LightningElement {
 
 	handleSelectAll() {
 		this.isLoading = true;
-		this.handleGetAccounts(this.billingCity, this.billingPostalCode, 50000, 0, (data) => {
+		this.handleGetAccounts(this.city, this.billingPostalCode, 50000, 0, (data) => {
 			this.accountCount = data.accountCount;
 			this.selectedData = data.accounts.map((row) => row.Id);
 			this.isAllSelected = true;
@@ -175,13 +172,13 @@ export default class AccountRelatedList extends LightningElement {
 		this.isLoading = true;
 		this.offset = 0;
 
-		if (event.target.name === 'billingCity') {
-			this.billingCity = event.target.value ? '%' + event.target.value + '%' : '';
+		if (event.target.name === 'City__c') {
+			this.city = event.target.value ? '%' + event.target.value + '%' : '';
 		} else if (event.target.name === 'billingPostalCode') {
 			this.billingPostalCode = event.target.value ? '%' + event.target.value + '%' : '';
 		}
 
-		this.handleGetAccounts(this.billingCity, this.billingPostalCode, recordsToShow, this.offset, (data) => {
+		this.handleGetAccounts(this.city, this.billingPostalCode, recordsToShow, this.offset, (data) => {
 			this.accountCount = data.accountCount;
 			this.data = data.accounts.map((item) => ({ ...item, NameUrl: '/' + item.Id }));
 			this.setInfiniteLoading();
@@ -189,11 +186,11 @@ export default class AccountRelatedList extends LightningElement {
 		});
 	}
 
-	handleGetAccounts(billingCity, billingPostalCode, limit, offset, thenFunction) {
+	handleGetAccounts(city, billingPostalCode, limit, offset, thenFunction) {
 		getAccounts({
 			userId: this.recordId,
 			portManType: this.portManType,
-			billingCity: billingCity,
+			city: city,
 			billingPostalCode: billingPostalCode,
 			recordsToShow: limit,
 			offset: offset
