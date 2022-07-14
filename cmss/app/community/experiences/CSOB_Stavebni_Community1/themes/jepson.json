@@ -72,18 +72,18 @@
         "regions" : [ {
           "components" : [ {
             "componentAttributes" : {
-              "buttonBackgroundColor" : "",
-              "buttonBackgroundHoverColor" : "",
-              "buttonBorderColor" : "rgba(0, 0, 0, 0)",
-              "buttonBorderRadius" : 15,
-              "buttonText" : "Log in",
-              "buttonTextColor" : "",
-              "buttonTextHoverColor" : "",
+              "buttonBackgroundColor" : "inherit",
+              "buttonBackgroundHoverColor" : "inherit",
+              "buttonBorderColor" : "transparent",
+              "buttonBorderRadius" : 5,
+              "buttonText" : "Přihlásit se",
+              "buttonTextColor" : "#fff",
+              "buttonTextHoverColor" : "#0099de",
               "customizableUserProfileMenuEditor" : "Default_User_Profile_Menu",
-              "menuStyleSettings" : "{\"selectedMenuStyleSetting\":\"iconOnly\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
+              "menuStyleSettings" : "{\"selectedMenuStyleSetting\":\"iconAndName\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
             },
             "componentName" : "forceCommunity:customizableUserProfileMenu",
-            "id" : "cda02ef8-6fcb-44ae-883f-ef07f77e98d5",
+            "id" : "01a642a9-b920-4a5b-a3e7-77ae0c824bce",
             "renditionMap" : { },
             "type" : "component"
           } ],
@@ -273,18 +273,18 @@
         "regions" : [ {
           "components" : [ {
             "componentAttributes" : {
-              "buttonBackgroundColor" : "",
-              "buttonBackgroundHoverColor" : "",
-              "buttonBorderColor" : "rgba(0, 0, 0, 0)",
-              "buttonBorderRadius" : 15,
-              "buttonText" : "Log in",
-              "buttonTextColor" : "",
-              "buttonTextHoverColor" : "",
+              "buttonBackgroundColor" : "inherit",
+              "buttonBackgroundHoverColor" : "inherit",
+              "buttonBorderColor" : "transparent",
+              "buttonBorderRadius" : 5,
+              "buttonText" : "Přihlásit se",
+              "buttonTextColor" : "#fff",
+              "buttonTextHoverColor" : "#0099de",
               "customizableUserProfileMenuEditor" : "Default_User_Profile_Menu",
-              "menuStyleSettings" : "{\"selectedMenuStyleSetting\":\"iconOnly\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
+              "menuStyleSettings" : "{\"selectedMenuStyleSetting\":\"iconAndName\",\"selectedIconSetting\":\"userAvatar\",\"includeCompanyName\":false,\"selectedTextOrientationSetting\":\"right\"}"
             },
             "componentName" : "forceCommunity:customizableUserProfileMenu",
-            "id" : "95e623d6-fb20-4f0f-ab61-822f110909ec",
+            "id" : "8d647e1c-3e26-4372-9dab-bd05743bd493",
             "renditionMap" : { },
             "type" : "component"
           } ],

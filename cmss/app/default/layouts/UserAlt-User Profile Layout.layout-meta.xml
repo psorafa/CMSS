@@ -138,6 +138,13 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>InitialStateOfCreditPortfolio__c</fields>
+        <fields>FinalBalance__c</fields>
+        <fields>PUPRate__c</fields>
+        <relatedList>CreditCommission__c.User__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>Type__c</fields>
         <fields>Area__c</fields>
         <fields>Value__c</fields>
@@ -148,7 +155,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h5r000001Fg38</masterLabel>
+        <masterLabel>00h1x000004Yrd7</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
