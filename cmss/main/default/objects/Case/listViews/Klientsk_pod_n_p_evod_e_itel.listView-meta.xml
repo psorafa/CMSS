@@ -31,10 +31,14 @@
         <operation>equals</operation>
         <value>Martina Vršecká</value>
     </filters>
-     <filters>
+    <filters>
         <field>CASES.RECORDTYPE</field>
         <operation>notEqual</operation>
         <value>Case.PCF</value>
     </filters>
     <label>Klientská podání - převod řešitelů</label>
+    <sharedTo>
+        <role>X69_948011_mng</role>
+        <role>X69_948011_team</role>
+    </sharedTo>
 </ListView>

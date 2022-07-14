@@ -32,10 +32,14 @@
         <operation>lessThan</operation>
         <value>TODAY</value>
     </filters>
-     <filters>
+    <filters>
         <field>CASES.RECORDTYPE</field>
         <operation>notEqual</operation>
         <value>Case.PCF</value>
     </filters>
     <label>Klientská podání - všechna po termínu</label>
+    <sharedTo>
+        <role>X69_948011_mng</role>
+        <role>X69_948011_team</role>
+    </sharedTo>
 </ListView>
