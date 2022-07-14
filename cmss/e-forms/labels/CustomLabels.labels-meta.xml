@@ -497,6 +497,22 @@
         <value>Account Search</value>
     </labels>
     <labels>
+        <fullName>AllAccountsSelected</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AllAccountsSelected</shortDescription>
+        <value>All Records Selected</value>
+    </labels>
+    <labels>
+        <fullName>AllAccountsNotSelected</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AllAccountsNotSelected</shortDescription>
+        <value>Select All</value>
+    </labels>
+    <labels>
         <fullName>SelectedConfiguration</fullName>
         <categories>MicroCampaignCustomSearch</categories>
         <language>en_US</language>
@@ -623,6 +639,14 @@
         <protected>false</protected>
         <shortDescription>TotalRecordsCountLabel</shortDescription>
         <value>Total records</value>
+    </labels>
+    <labels>
+        <fullName>TotalRecordsSelectedLabel</fullName>
+        <categories>MicroCampaignCustomSearch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TotalRecordsSelectedLabel</shortDescription>
+        <value>Total records selected</value>
     </labels>
     <labels>
         <fullName>NoDataLoaded</fullName>

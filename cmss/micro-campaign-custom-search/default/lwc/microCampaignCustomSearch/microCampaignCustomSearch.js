@@ -4,6 +4,7 @@ import countResults from '@salesforce/apex/CustomSearchController.countResults';
 import loadFieldsetDetail from '@salesforce/apex/CustomSearchController.loadFieldsetDetail';
 import loadTypeList from '@salesforce/apex/CustomSearchController.loadTypeList';
 import createMicroCampaign from '@salesforce/apex/CustomSearchController.createMicroCampaign';
+import getAllAccountId from '@salesforce/apex/CustomSearchController.getAllAccountId';
 
 import LBL_AccountSearchType from '@salesforce/label/c.AccountSearchType';
 import LBL_AssetSearchType from '@salesforce/label/c.AssetSearchType';
@@ -18,6 +19,7 @@ import LBL_CREATE_CAMPAIGN_BUTTON_TITLE from '@salesforce/label/c.CreateMicroCam
 import LBL_CREATE_CAMPAIGN_MODAL_TITLE from '@salesforce/label/c.CreateMicroCampaignModalWindowTitle';
 import LBL_RECORDS_PER_PAGE_TITLE from '@salesforce/label/c.RecordsPerPageInputTitle';
 import LBL_TOTAL_RECORDS_COUNT_LABEL from '@salesforce/label/c.TotalRecordsCountLabel';
+import LBL_TOTAL_RECORDS_SELECTED_LABEL from '@salesforce/label/c.TotalRecordsSelectedLabel';
 import LBL_NO_DATA_TITLE from '@salesforce/label/c.NoDataLoaded';
 import LBL_FILL_REQUIRED_FIELDS_MESSAGE from '@salesforce/label/c.FillRequiredFieldsMessage';
 import LBL_CREATE_NEW_RECORDS_BUTTON_TITLE from '@salesforce/label/c.CreateRecords';
@@ -28,6 +30,8 @@ import LBL_RECORDS_CREATED_MESSAGE from '@salesforce/label/c.RecordSuccessfullyC
 import LBL_LOAD_PRODUCT_TYPES_ERROR_MESSAGE from '@salesforce/label/c.LoadingProductTypesError';
 import LBL_NO_RECORDS from '@salesforce/label/c.NoRecordsFound';
 import LBL_MAX_RECORDS_EXCEEDED from '@salesforce/label/c.MaxRecordsExceeded';
+import LBL_ALL_ACCOUNTS_SELECTED from '@salesforce/label/c.AllAccountsSelected';
+import LBL_ALL_ACCOUNTS_NOT_SELECTED from '@salesforce/label/c.AllAccountsNotSelected';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
@@ -41,6 +45,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	section = ['configuration'];
 	isModalOpen = false;
 	selectedAccountIds = [];
+	allAccountsSelected = false;
 
 	defaultSortDirection = 'asc';
 	sortDirection = 'asc';
@@ -73,13 +78,16 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		LBL_CREATE_CAMPAIGN_MODAL_TITLE,
 		LBL_RECORDS_PER_PAGE_TITLE,
 		LBL_TOTAL_RECORDS_COUNT_LABEL,
+		LBL_TOTAL_RECORDS_SELECTED_LABEL,
 		LBL_NO_DATA_TITLE,
 		LBL_NEXT_PAGE_BUTTON_TITLE,
 		LBL_PREV_PAGE_TITLE,
 		LBL_FILL_REQUIRED_FIELDS_MESSAGE,
 		LBL_CREATE_NEW_RECORDS_BUTTON_TITLE,
 		LBL_CLOSE_MODAL_WINDOW_TITLE,
-		LBL_CANCEL_BUTTON_TITLE
+		LBL_CANCEL_BUTTON_TITLE,
+		LBL_ALL_ACCOUNTS_SELECTED,
+		LBL_ALL_ACCOUNTS_NOT_SELECTED
 	};
 
 	@wire(loadTypeList)
@@ -109,6 +117,10 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	get isTypeSelected() {
 		return this.selectedConfiguration != null;
+	}
+
+	get totalRecordsSelected() {
+		return this.selectedAccountIds.length;
 	}
 
 	handleUserHierarchySelectionChange(event) {
@@ -276,6 +288,35 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		return this.outputTableColumns.length > 0;
 	}
 
+	handleSelectAll() {
+		if (this.allAccountsSelected) {
+			this.selectedAccountIds = [];
+			this.allAccountsSelected = false;
+		} else {
+			const request = {
+				filterItemList: this.filterConditionList,
+				configuration: this.selectedConfiguration,
+				objectName: this.selectedConfiguration.ObjectType__c,
+				pageNumber: this.pageNumber,
+				pageSize: this.recordsPerPage,
+				sortBy: this.sortedBy,
+				sortDirection: this.sortDirection
+			};
+
+			getAllAccountId({ dto: request })
+				.then((response) => {
+					console.log(response);
+					console.log(response.data);
+					this.selectedAccountIds = response;
+					this.allAccountsSelected = true;
+				})
+				.catch((error) => {
+					console.log(JSON.stringify(error));
+					this.errorToastMessage('', error.body.message);
+				});
+		}
+	}
+
 	errorToastMessage(title, message) {
 		this.toastMessage('error', title, message, 'dismissable');
 	}
@@ -294,11 +335,25 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		const selectedRows = event.detail.selectedRows;
 		if (this.selectedConfiguration.ObjectType__c === 'Account') {
 			this.selectedAccountIds = selectedRows.map((row) => row.Id);
+			this.allAccountsSelected =
+				this.selectedAccountIds.length === this.totalRecordsCount && this.totalRecordsCount !== 0;
 		} else if (this.selectedConfiguration.ObjectType__c === 'Asset') {
 			this.selectedAccountIds = selectedRows.map((row) => row.AccountId);
+			this.allAccountsSelected =
+				this.selectedAccountIds.length === this.totalRecordsCount && this.totalRecordsCount !== 0;
 		} else {
 			this.errorToastMessage('', LBL_UNSUPPORTED_OBJECT_TYPE_ERROR_MESSAGE);
 		}
+	}
+
+	get selectAllAccountsLabel() {
+		return this.allAccountsSelected
+			? this.labels.LBL_ALL_ACCOUNTS_SELECTED
+			: this.labels.LBL_ALL_ACCOUNTS_NOT_SELECTED;
+	}
+
+	get selectAllAccountsIcon() {
+		return this.allAccountsSelected ? 'utility:check' : 'utility:multi_select_checkbox';
 	}
 
 	get isRowNotSelected() {

@@ -166,6 +166,14 @@
         <label>Vyhledávání nad klienty</label>
     </customLabels>
     <customLabels>
+        <name>AllAccountsSelected</name>
+        <label>Vybrány všechny záznamy</label>
+    </customLabels>
+    <customLabels>
+        <name>AllAccountsNotSelected</name>
+        <label>Vybrat vše</label>
+    </customLabels>
+    <customLabels>
         <name>SelectedConfiguration</name>
         <label>Zvolená konfigurace</label>
     </customLabels>
@@ -216,6 +224,10 @@
     <customLabels>
         <name>TotalRecordsCountLabel</name>
         <label>Celkový počet výsledků</label>
+    </customLabels>
+    <customLabels>
+        <name>TotalRecordsSelectedLabel</name>
+        <label>Celkový počet vybraných záznamů</label>
     </customLabels>
     <customLabels>
         <name>NoDataLoaded</name>
