@@ -36,10 +36,14 @@
         <field>ExtensionInfoSent__c</field>
         <operation>equals</operation>
     </filters>
-     <filters>
+    <filters>
         <field>CASES.RECORDTYPE</field>
         <operation>notEqual</operation>
         <value>Case.PCF</value>
     </filters>
     <label>Klientská podání - nevyřízená do 25 dnů</label>
+    <sharedTo>
+        <role>X69_948011_mng</role>
+        <role>X69_948011_team</role>
+    </sharedTo>
 </ListView>
