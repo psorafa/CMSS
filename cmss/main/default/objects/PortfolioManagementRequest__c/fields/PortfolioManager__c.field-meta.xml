@@ -9,7 +9,7 @@
         <active>true</active>
         <errorMessage>Zadejte aktivního obchodního zástupce.</errorMessage>
         <filterItems>
-            <field>User.IsActive</field>
+            <field>User.IsAgentActive__c</field>
             <operation>equals</operation>
             <value>True</value>
         </filterItems>
