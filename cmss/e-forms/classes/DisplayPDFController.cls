@@ -37,7 +37,12 @@ public without sharing class DisplayPDFController {
         }
         System.debug('templateList: ' + templateList);
         if (!templateList.isEmpty()) {
-            Map<String, String> placeholderMap = buildPlaceholderMap((List<MigrationPremiumTypes.PdfTemplateItem>) JSON.deserialize(c[0].Template__c.unescapeHtml4(), List<MigrationPremiumTypes.PdfTemplateItem>.class));
+            Map<String, String> placeholderMap;
+            if (!c.isEmpty()) {
+                placeholderMap = buildPlaceholderMap((List<MigrationPremiumTypes.PdfTemplateItem>) JSON.deserialize(c[0].Template__c.unescapeHtml4(), List<MigrationPremiumTypes.PdfTemplateItem>.class));
+            } else {
+                placeholderMap = new Map<String, String>{'rndId' => generateRandomString(32)};
+            }
             String template = templateList.get(0).VersionData.toString();
             displayText = buildPdfData(template, placeholderMap);
         }
@@ -69,9 +74,20 @@ public without sharing class DisplayPDFController {
         //System.debug(pdfData);
         pdfData = pdfData.replaceAll('src="(?!\\/img)\\S*"', 'src="' + imgCheckBoxMap.get('unchecked') + '"');
         //System.debug(pdfData);
-        pdfData = pdfData.replaceAll('\\@\\@\\S+\\@\\@', '&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;');
+        pdfData = pdfData.replaceAll('\\@\\@\\S+\\@\\@', '&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;');
         //System.debug(pdfData);
         return pdfData;
+    }
+
+    @TestVisible
+    private static String generateRandomString(Integer len) {
+        final String chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
+        String randStr = '';
+        while (randStr.length() < len) {
+            Integer idx = Math.mod(Math.abs(Crypto.getRandomInteger()), chars.length());
+            randStr += chars.substring(idx, idx+1);
+        }
+        return randStr;
     }
 
 }

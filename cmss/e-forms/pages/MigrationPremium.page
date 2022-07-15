@@ -341,7 +341,7 @@
                                 <span class="slds-assistive-text">Error</span>
                                 <h2 id="alert-error&#45;&#45;errorMessage">{!$Label.Heir_or_non_client_missing_elb}</h2>
                             </div>-->
-                            <apex:outputPanel rendered="{!AND(pretermDocSwitch, NOT(savedConfiguration))}">
+                            <apex:outputPanel rendered="{!pretermDocSwitch}">
                                 <div class="preterm-documents float-left">
                                     <div class="document-h2">PŘEDSMLUVNÍ DOKUMENTACE</div>
                                     <div id="precontract-section" class="document-list">
@@ -424,59 +424,60 @@
                                         <span id="submit-btn-txt" class="block-btn-text">Odeslat na tablet</span>
                                     </button>
                                 </div>-->
-                                <div class="clear"></div>
-                                <div id="bo-note">
-                                    <div class="document-h2">Poznámka pro back office</div>
-                                    <apex:outputPanel styleClass="slds-form-element__control">
-                                        <textarea id="textarea-input-note" class="slds-textarea" placeholder=""></textarea>
-                                    </apex:outputPanel>
-                                </div>
-                                <div class="clear"></div>
+                                <apex:outputPanel rendered="{!NOT(savedConfiguration)}">
+                                    <div class="clear"></div>
+                                    <div id="bo-note">
+                                        <div class="document-h2">Poznámka pro back office</div>
+                                        <apex:outputPanel styleClass="slds-form-element__control">
+                                            <textarea id="textarea-input-note" class="slds-textarea" placeholder=""></textarea>
+                                        </apex:outputPanel>
+                                    </div>
+                                    <div class="clear"></div>
 
-                                <apex:outputPanel layout="block" rendered="{!migrationProcessConfiguration.Show_File_Selector__c}" >
-                                    <div id="attachment-section">
-                                        <div class="document-h2">Seznam přiložených souborů</div>
-                                        <div id="attachedFilesContent">Zatím nebyl přiložen žádný soubor.</div>
+                                    <apex:outputPanel layout="block" rendered="{!migrationProcessConfiguration.Show_File_Selector__c}" >
+                                        <div id="attachment-section">
+                                            <div class="document-h2">Seznam přiložených souborů</div>
+                                            <div id="attachedFilesContent">Zatím nebyl přiložen žádný soubor.</div>
+                                        </div>
+                                    </apex:outputPanel>
+                                    <div class="clear"></div>
+
+                                    <div>
+                                        <input style="{!IF(migrationProcessConfiguration.Show_File_Selector__c, 'display: block;', 'display: none')}" type="file" class="slds-file-selector__input slds-assistive-text" accept="pdf" id="file-upload-input" aria-labelledby="file-selector-primary-label file-selector-secondary-label"/>
+                                        <label style="{!IF(migrationProcessConfiguration.Show_File_Selector__c, 'display: inline;', 'display: none')}" class="slds-file-selector__body" for="file-upload-input" id="file-selector-secondary-label">
+                                                        <span class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" style="margin-bottom: 15px !important">
+                                                            <span class="block-btn-icon">
+                                                                <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'upload.svg')}"></apex:image>
+                                                            </span>
+                                                            <span id="submit-btn-txt" class="block-btn-text">{!$Label.Attach_File}</span>
+                                                            <span id="submit-btn-checked" class="block-btn-icon" style="display: none;">
+                                                                &nbsp;
+                                                                <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                                            </span>
+                                                        </span>
+                                        </label>
+
+                                        <button id="submit-btn" class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" style="float: right;" onClick="return sendToBackOfficeAndCreateCase();">
+                                                <span class="block-btn-icon">
+                                                    <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                                </span>
+                                            <span id="submit-btn-txt" class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Send_Label__c == '', 'inline-block;', 'none;')}">{!$Label.Migration_Premium_Submit}</span>
+                                            <span id="submit-btn-txt" class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Send_Label__c != '', 'inline-block;', 'none;')}">{!migrationProcessConfiguration.Button_Send_Label__c}</span>
+                                        </button>
+                                        <button id="submit-btn" style="display: {!IF(migrationProcessConfiguration.Save_for_Later__c, 'inline-block;', 'none;')}"  class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="return createSubmitButtonCase('draft');">
+                                            <span class="block-btn-icon">
+                                                <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                            </span>
+                                            <span id="submit-btn-txt" class="block-btn-text">{!$Label.Save_for_later}</span>
+                                        </button>
+                                        <button id="buttonAuth1" style="display: {!IF(migrationProcessConfiguration.Show_KC_Authenticator__c, 'inline-block;float: right;', 'none;')}" class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="return openAuthItem();">
+                                                <span class="block-btn-icon">
+                                                    <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
+                                                </span>
+                                            <span class="block-btn-text">{!$Label.Client_Auth_Label}</span>
+                                        </button>
                                     </div>
                                 </apex:outputPanel>
-                                <div class="clear"></div>
-
-                                <div>
-                                    <input style="{!IF(migrationProcessConfiguration.Show_File_Selector__c, 'display: block;', 'display: none')}" type="file" class="slds-file-selector__input slds-assistive-text" accept="pdf" id="file-upload-input" aria-labelledby="file-selector-primary-label file-selector-secondary-label"/>
-                                    <label style="{!IF(migrationProcessConfiguration.Show_File_Selector__c, 'display: inline;', 'display: none')}" class="slds-file-selector__body" for="file-upload-input" id="file-selector-secondary-label">
-                                                    <span class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" style="margin-bottom: 15px !important">
-                                                        <span class="block-btn-icon">
-                                                            <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'upload.svg')}"></apex:image>
-                                                        </span>
-                                                        <span id="submit-btn-txt" class="block-btn-text">{!$Label.Attach_File}</span>
-                                                        <span id="submit-btn-checked" class="block-btn-icon" style="display: none;">
-                                                            &nbsp;
-                                                            <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
-                                                        </span>
-                                                    </span>
-                                    </label>
-
-                                    <button id="submit-btn" class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" style="float: right;" onClick="return sendToBackOfficeAndCreateCase();">
-                                            <span class="block-btn-icon">
-                                                <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
-                                            </span>
-                                        <span id="submit-btn-txt" class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Send_Label__c == '', 'inline-block;', 'none;')}">{!$Label.Migration_Premium_Submit}</span>
-                                        <span id="submit-btn-txt" class="block-btn-text" style="display: {!IF(migrationProcessConfiguration.Button_Send_Label__c != '', 'inline-block;', 'none;')}">{!migrationProcessConfiguration.Button_Send_Label__c}</span>
-                                    </button>
-                                    <button id="submit-btn" style="display: {!IF(migrationProcessConfiguration.Save_for_Later__c, 'inline-block;', 'none;')}"  class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="return createSubmitButtonCase('draft');">
-                                        <span class="block-btn-icon">
-                                            <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
-                                        </span>
-                                        <span id="submit-btn-txt" class="block-btn-text">{!$Label.Save_for_later}</span>
-                                    </button>
-                                    <button id="buttonAuth1" style="display: {!IF(migrationProcessConfiguration.Show_KC_Authenticator__c, 'inline-block;float: right;', 'none;')}" class="slds-button slds-button--icon-bare slds-m-right--x-small block-btn btn" onClick="return openAuthItem();">
-                                            <span class="block-btn-icon">
-                                                <apex:image value="{!URLFOR($Resource.AccountMainPageIcons2, 'check.svg')}"></apex:image>
-                                            </span>
-                                        <span class="block-btn-text">{!$Label.Client_Auth_Label}</span>
-                                    </button>
-                                </div>
-
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!OR(NOT(pretermDocSwitch), savedConfiguration)}">
                                 <div class="note-finish-center">
