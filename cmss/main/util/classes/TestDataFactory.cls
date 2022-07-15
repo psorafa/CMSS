@@ -230,9 +230,11 @@ public class TestDataFactory {
 			BatchID__c = 'batchId0'
 		);
 		SObjectUtil.copyFields(so, template);
+		User u = getUser(new User());
+		u.IsAgentActive__c = true;
+		template.PortfolioManager__c = u.Id;
+		insert u;
 		if (template.PortfolioManagerCPU__c == null) {
-			User u = getUser(new User());
-			insert u;
 			template.PortfolioManagerCPU__c = u.CommissionAccountBase__c;
 		}
 		if (template.Account__c == null) {

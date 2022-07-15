@@ -42,8 +42,8 @@ private class AccountRelatedListControllerTest {
 
 	@IsTest
 	static void testCreatePortManRequests() {
-		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CommAccNr1'));
-		User u2 = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CommAccNr2'));
+		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CommAccNr1', IsAgentActive__c = true));
+		User u2 = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CommAccNr2', IsAgentActive__c = true));
 		insert new List<User>{ u, u2 };
 
 		Account[] accs = new List<Account>{
