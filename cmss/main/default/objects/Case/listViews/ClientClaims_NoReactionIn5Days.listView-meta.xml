@@ -47,4 +47,8 @@
         <value>Case.PCF</value>
     </filters>
     <label>Stížnosti bez reakce do 5 pracovních dnů</label>
+    <sharedTo>
+        <role>X69_948011_mng</role>
+        <role>X69_948011_team</role>
+    </sharedTo>
 </ListView>
