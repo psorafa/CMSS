@@ -11,31 +11,24 @@ private class PortfolioManagementCalloutServiceTest {
 		User u2 = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU1'));
 		insert new List<User>{ u, u2 };
 
-		String portfolioMngmntRequestId =
-			PortfolioManagementRequest__c.SObjectType.getDescribe().getKeyPrefix() + '0'.repeat(12);
-
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
-			200,
-			'OK',
-			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-			portfolioMngmntRequestId +
-			'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-			portfolioMngmntRequestId +
-			'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
-			null,
-			null
+				200,
+				'OK',
+				'<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:emptyElement></ns3:emptyElement></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
+				null,
+				null
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		Test.startTest();
 		PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0')
+				new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0', ValidFrom__c = System.now().addDays(1))
 		);
 		insert pmr;
 
 		PortfolioManagementRequest__c queriedPMR = [
-			SELECT PortfolioManager__c
-			FROM PortfolioManagementRequest__c
-			WHERE Id = :pmr.Id
+				SELECT PortfolioManager__c
+				FROM PortfolioManagementRequest__c
+				WHERE Id = :pmr.Id
 		];
 		System.assertEquals(u.Id, queriedPMR.PortfolioManager__c);
 
@@ -50,18 +43,18 @@ private class PortfolioManagementCalloutServiceTest {
 	@IsTest
 	static void testSetPortfolioManagerNotFound() {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
-			200,
-			'OK',
-			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>a0k1x00000AwCl9AAF</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>a0k1x00000AwCl9AAF</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
-			null,
-			null
+				200,
+				'OK',
+				'<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:emptyElement></ns3:emptyElement></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
+				null,
+				null
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(
-				PortfolioManagerCPU__c = '43429643927',
-				ValidFrom__c = System.now().addDays(1)
-			)
+				new PortfolioManagementRequest__c(
+						PortfolioManagerCPU__c = '43429643927',
+						ValidFrom__c = System.now().addDays(1)
+				)
 		);
 
 		try {
@@ -80,18 +73,26 @@ private class PortfolioManagementCalloutServiceTest {
 		Test.stopTest();
 
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
-			200,
-			'OK',
-			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>a0k1x00000AwCl9AAF</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>a0k1x00000AwCl9AAF</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
-			null,
-			null
+				200,
+				'OK',
+				'<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:emptyElement></ns3:emptyElement></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
+				null,
+				null
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(BatchID__c = 'uweih567', PortfolioManagerCPU__c = 'CPU0')
+				new PortfolioManagementRequest__c(
+						BatchID__c = 'uweih567',
+						PortfolioManagerCPU__c = 'CPU0',
+						ValidFrom__c = System.now().addDays(1)
+				)
 		);
 		PortfolioManagementRequest__c pmr2 = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(BatchID__c = '1kod983', PortfolioManagerCPU__c = 'CPU0')
+				new PortfolioManagementRequest__c(
+						BatchID__c = '1kod983',
+						PortfolioManagerCPU__c = 'CPU0',
+						ValidFrom__c = System.now().addDays(1)
+				)
 		);
 
 		try {
@@ -99,8 +100,8 @@ private class PortfolioManagementCalloutServiceTest {
 			System.assert(false, 'This assert should not be reached.');
 		} catch (DmlException e) {
 			System.assert(
-				e.getMessage().contains(PortfolioManagementRequestService.MULTIPLE_BATCH_IDS_ERR),
-				e.getMessage()
+					e.getMessage().contains(PortfolioManagementRequestService.MULTIPLE_BATCH_IDS_ERR),
+					e.getMessage()
 			);
 		}
 	}
@@ -110,23 +111,16 @@ private class PortfolioManagementCalloutServiceTest {
 		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0'));
 		insert new List<User>{ u };
 
-		String portfolioMngmntRequestId =
-			PortfolioManagementRequest__c.SObjectType.getDescribe().getKeyPrefix() + '0'.repeat(12);
-
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
-			200,
-			'OK',
-			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-			portfolioMngmntRequestId +
-			'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-			portfolioMngmntRequestId +
-			'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
-			null,
-			null
+				200,
+				'OK',
+				'<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3="http://service.cmss.cz/person/ConsentService/v01/datatypes" xmlns:ns2="http://service.cmss.cz/common/CommonMessage/v01"><ns2:responseHeader><ns2:conversationIdName></ns2:conversationIdName><ns2:conversationIdValue></ns2:conversationIdValue><ns2:correlationId></ns2:correlationId><ns2:messageId>db8f5bd1-a149-4971-bf1f-57aa87715431</ns2:messageId><ns2:physicalSource>WASTestCell</ns2:physicalSource><ns2:sourceSystem>ESB</ns2:sourceSystem><ns2:targetSystem>20</ns2:targetSystem><ns2:timestamp>2021-01-07T20:54:36.229+01:00</ns2:timestamp><ns2:userId>0053N00000452gpQAA</ns2:userId></ns2:responseHeader><ns3:responseBody><ns3:emptyElement>ok</ns3:emptyElement></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
+				null,
+				null
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0')
+				new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0', ValidFrom__c = System.now().addDays(1))
 		);
 		Test.startTest();
 		insert pmr;
@@ -134,15 +128,6 @@ private class PortfolioManagementCalloutServiceTest {
 
 		Log__c[] logs = [SELECT Payload__c FROM Log__c WHERE Message__c = 'Incoming response'];
 		System.assertEquals(1, logs.size());
-		System.assert(
-			logs[0]
-				.Payload__c.contains(
-					'<ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-					portfolioMngmntRequestId +
-					'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-					portfolioMngmntRequestId +
-					'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses>'
-				)
-		);
+		System.assert(logs[0].Payload__c.contains('<ns3:emptyElement>ok</ns3:emptyElement>'));
 	}
 }
