@@ -29,12 +29,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>eformsBlank</componentName>
-                <identifier>c_eformsBlank</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentInstanceProperties>
                     <name>decorate</name>
                     <value>true</value>
@@ -82,6 +76,12 @@
             <componentInstance>
                 <componentName>calendarSyncStatus</componentName>
                 <identifier>c_calendarSyncStatus1</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>eformsBlank</componentName>
+                <identifier>c_eformsBlank</identifier>
             </componentInstance>
         </itemInstances>
         <name>sidebar</name>
