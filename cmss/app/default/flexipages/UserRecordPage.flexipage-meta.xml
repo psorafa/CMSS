@@ -226,30 +226,19 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>childObjectName</name>
-                    <value>CreditCommission__c</value>
+                    <name>relatedListComponentOverride</name>
+                    <value>ADVGRID</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Name, InitialStateofCreditPortfolio__c, IncreaseinCreditPortfolio__c, DecreaseinCreditPortfolio__c, FinalBalance__c, FinalRate__c, RateChange__c, PUPRate__c</value>
+                    <name>rowsToDisplay</name>
+                    <value>10</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>condition</name>
+                    <name>showActionBar</name>
+                    <value>false</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>iconName</name>
-                    <value>standard:partners</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>listName</name>
-                    <value>Úvěrové provize</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>parentFieldName</name>
-                    <value>OwnerId</value>
-                </componentInstanceProperties>
-                <componentName>filterableRelatedList</componentName>
-                <identifier>c_filterableRelatedList</identifier>
+                <componentName>force:relatedListContainer</componentName>
+                <identifier>force_relatedListContainer</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-e6c4c5a7-3e47-44b8-b683-520e8c11ce83</name>
