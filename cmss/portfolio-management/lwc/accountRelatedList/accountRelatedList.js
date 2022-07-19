@@ -172,8 +172,8 @@ export default class AccountRelatedList extends LightningElement {
 		this.isLoading = true;
 		this.offset = 0;
 
-		if (event.target.name === 'City__c') {
-			this.city = event.target.value ? '%' + event.target.value + '%' : '';
+		if (event.target.name === 'city') {
+			this.city = event.target.value ? event.target.value : '';
 		} else if (event.target.name === 'billingPostalCode') {
 			this.billingPostalCode = event.target.value ? '%' + event.target.value + '%' : '';
 		}
