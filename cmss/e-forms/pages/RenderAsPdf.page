@@ -53,6 +53,18 @@
                 /* font-weight: bold; */
             }
 
+            .size_micro {
+                font-size: 4px;
+            }
+
+            .size_mini {
+                font-size: 6px;
+            }
+
+            .size_mini p {
+                font-size: 6px;
+            }
+
             .size_small {
                 font-size: 0.857em;
             }
@@ -236,7 +248,7 @@
                 padding-top: 0.5em;
             }
             .space_for_signature{
-                padding-top: 15em;
+                padding-top: 17em;
             }
             .note_predcasne_splaceni_uveru{
                 height: 13em;
@@ -324,9 +336,6 @@
             /* ################## PRIJETI PRIDELENI CILOVE CASTKY #################### */
             .prijeti_prideleni_cilove_castky .first_page {
                 min-height: 26.5cm;
-            }
-            .prijeti_prideleni_cilove_castky .space_for_note{
-                margin-bottom: 10em;
             }
             /* ################## ZADOST O CERPANI FINANCNICH PROSTREDKU #################### */
             .zadost_o_cerpani_financnich_prostredku .first_page {
