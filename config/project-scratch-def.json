@@ -4,6 +4,10 @@
 	"edition": "Enterprise",
 	"features": ["PersonAccounts", "FieldAuditTrail", "Communities", "PartnerCommunity", "Knowledge", "ServiceCloud", "ServiceUser"],
 	"settings": {
+    "chatterSettings": {
+      "enableChatter": true,
+      "enableOutOfOfficeEnabledPref":true
+    },
 		"languageSettings": {
 			"enableEndUserLanguages": true,
 			"enableTranslationWorkbench": true
