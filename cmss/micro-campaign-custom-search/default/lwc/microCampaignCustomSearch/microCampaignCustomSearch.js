@@ -260,6 +260,10 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 								this.outputTableData.push(item);
 							});
 							this.selectedAccountIds = currentSelectedAccountIds;
+							this.allAccountsSelected = this.totalRecordsCount === this.selectedAccountIds.length;
+							if (this.allAccountsSelected) {
+								this.selectedAccountIds = [];
+							}
 						})
 						.catch((error) => {
 							console.log(JSON.stringify(error));
@@ -305,8 +309,6 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 			getAllAccountId({ dto: request })
 				.then((response) => {
-					console.log(response);
-					console.log(response.data);
 					this.selectedAccountIds = response;
 					this.allAccountsSelected = true;
 				})
