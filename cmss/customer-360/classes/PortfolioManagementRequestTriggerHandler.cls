@@ -1,10 +1,7 @@
 public with sharing class PortfolioManagementRequestTriggerHandler extends TriggerHandler {
 
-    public static final String DEFAULT_REQUEST_STATUS = '4';
-
 	public override void beforeInsert() {
 		PortfolioManagementRequestService.setPortfolioManager(Trigger.new, null);
-        setDefaultRequestStatus(Trigger.new);
 		setBatchIds(Trigger.new);
 	}
 
@@ -33,10 +30,4 @@ public with sharing class PortfolioManagementRequestTriggerHandler extends Trigg
 			request.BatchID__c = EncodingUtil.base64Encode(hash);
 		}
 	}
-
-    private static void setDefaultRequestStatus(List<PortfolioManagementRequest__c> requests) {
-        for (PortfolioManagementRequest__c request : requests) {
-            request.RequestStatus__c = DEFAULT_REQUEST_STATUS;
-        }
-    }
 }
