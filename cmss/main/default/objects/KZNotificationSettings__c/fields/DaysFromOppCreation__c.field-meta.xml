@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DaysFromOppCreation__c</fullName>
+    <defaultValue>&apos;2,7&apos;</defaultValue>
+    <description>Days from opportunity creation to wait for sending a notification about an unsigned contract to the client. Can be more values separated by comma.</description>
+    <externalId>false</externalId>
+    <label>Days From Opp Creation</label>
+    <length>56</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

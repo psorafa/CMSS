@@ -5,10 +5,10 @@
     <encodingKey>UTF-8</encodingKey>
     <name>Unfinished Contract Notification</name>
     <style>none</style>
-    <subject>Nedokončená Smlouva o stavebním spoření v KZ, klient {!Account.FirstName} {!Account.LastName}, {!Id}</subject>
+    <subject>Nedokončená Smlouva o stavebním spoření v KZ, klient {!Account.FirstName} {!Account.LastName}</subject>
     <textOnly>Dobrý den,
 
-klient ve Vaší správě stavu {!Account.LastName} {!Account.FirstName}, nedokončil ve své Klientské zóně dne {!CreatedDateTime__c} sjednání Smlouvy o stavebním spoření číslo {!ContractNumber__c}. Prosím kontaktujte klienta za účelem ověření požadavku na sjednání smlouvy a případné pomoci s dokončením procesu sjednání. Další informace naleznete zde: &lt;a href=&apos;{!ORG_URL}/{!Id}&apos;&gt;{!Id}&lt;/a&gt;.
+klient ve Vaší správě stavu {!Account.LastName} {!Account.FirstName}, nedokončil ve své Klientské zóně dne {!CreatedDateTime__c} sjednání Smlouvy o stavebním spoření. Prosím kontaktujte klienta za účelem ověření požadavku na sjednání smlouvy a případné pomoci s dokončením procesu sjednání. Další informace naleznete  &lt;a href=&apos;{!ORG_URL}/{!Account.Id}&apos;&gt;zde&lt;/a&gt;.
 
 S přáním příjemného dne
 
