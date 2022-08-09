@@ -4,8 +4,21 @@
 
 public without sharing class DisplayPDFController {
     public String displayText {get; set;}
+    public String displayNote {get; set;}
     //public String displayBar {get; set;}
-    private static final Map<String, String> imgCheckBoxMap = new Map<String, String>{'checked' => '/img/checkbox_checked.gif', 'unchecked' => '/img/checkbox_unchecked.gif'};
+    private static Map<String, String> imgCheckBoxMap {
+        get {
+            if (imgCheckBoxMap == null) {
+                imgCheckBoxMap = new Map<String, String>{'checked' => '/img/checkbox_checked.gif', 'unchecked' => '/img/checkbox_unchecked.gif'};
+                List<StaticResource> srList = [SELECT Id, SystemModstamp FROM StaticResource WHERE Name = 'Checkbox_checked_x'];
+                if (!srList.isEmpty()) {
+                    imgCheckBoxMap.put('checked', '/resource/' + String.valueOf(srList.get(0).SystemModstamp.getTime()) + '/Checkbox_checked_x');
+                }
+            }
+            return imgCheckBoxMap;
+        }
+        set;
+    }
 
     private static Map<String, String> checkboxTranslationMap {
         get {
@@ -27,7 +40,13 @@ public without sharing class DisplayPDFController {
         // displayBar = EncodingUtil.urlDecode(String.escapeSingleQuotes(
         //         ApexPages.currentPage().getParameters().get('displayBar')), 'UTF-8');
         // system.debug(displayBar);
-
+        Map<String, Document_Configuration__mdt> docConfs = Document_Configuration__mdt.getAll();
+        for (Document_Configuration__mdt docConf : docConfs.values()) {
+            if (docConf.Template_Code__c == templateTitle) {
+                displayNote = docConf.Template_Header_Note__c;
+                break;
+            }
+        }
         List<Case> c = [SELECT Id, Template__c FROM Case WHERE id = :caseId];
         List<ContentVersion> templateList = new List<ContentVersion>();
         if(Test.isRunningTest()){
@@ -72,7 +91,7 @@ public without sharing class DisplayPDFController {
             System.debug('replacing: ' + placeholder + ' by: ' + placeholderMap.get(placeholder));
         }
         //System.debug(pdfData);
-        pdfData = pdfData.replaceAll('src="(?!\\/img)\\S*"', 'src="' + imgCheckBoxMap.get('unchecked') + '"');
+        pdfData = pdfData.replaceAll('src="(?!(\\/img|\\/resource))\\S*"', 'src="' + imgCheckBoxMap.get('unchecked') + '"');
         //System.debug(pdfData);
         pdfData = pdfData.replaceAll('\\@\\@\\S+\\@\\@', '&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;');
         //System.debug(pdfData);

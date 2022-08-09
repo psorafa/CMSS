@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Template_Header_Note__c</fullName>
+    <description>The note appears in a rectangle in the template header. The text is centered. It is possible to insert a string &lt;br/&gt; into the text to jump to a new line. The height and width of the text is limited. Checks the appearance of the pdf when changing the parameter.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>The note appears in a rectangle in the template header. The text is centered. It is possible to insert a string &lt;br/&gt; into the text to jump to a new line. The height and width of the text is limited. Checks the appearance of the pdf when changing the parameter</inlineHelpText>
+    <label>Template Header Note</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>
