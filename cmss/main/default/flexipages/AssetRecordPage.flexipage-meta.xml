@@ -17,6 +17,16 @@
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
+                            <value>Asset.UpdateCreditCases</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.ProductType__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>0</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
                             <value>FeedItem.TextPost</value>
                         </valueListItems>
                         <valueListItems>
