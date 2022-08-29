@@ -4899,6 +4899,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CustomSearchConfiguration__c.DisplayOrder__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CustomSearchConfiguration__c.FieldsetName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4920,6 +4925,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CustomSearchConfiguration__c.ProductType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CustomSearchFilter__c.DisplayOrder__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

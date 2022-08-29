@@ -1,0 +1,17 @@
+.filter-with-label__container {
+	display: inline-grid;
+	margin: 5px;
+	grid-template-columns: 50px auto;
+}
+
+.filter-with-label__label {
+	justify-self: end;
+	grid-row-start: 1;
+	grid-column-start: 1;
+	grid-column-end: 1;
+}
+
+.filter-with-label__filter {
+	grid-row-start: 1;
+	grid-column-start: 2;
+}

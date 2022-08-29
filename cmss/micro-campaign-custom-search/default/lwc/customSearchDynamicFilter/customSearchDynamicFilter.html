@@ -3,7 +3,7 @@
 		<lightning-card title={labels.LBL_AdditionFilterParams}>
 			<div class="slds-grid slds-wrap">
 				<template for:each={customFilterItems} for:item="valueItem">
-					<div key={valueItem.fieldName} class="slds-col slds-size_1-of-3">
+					<div key={valueItem.fieldName} class="slds-col slds-size_1-of-3 slds-p-around_x-small">
 						<c-custom-search-dynamic-filter-field
 							filter-values={valueItem.availableFilterList}
 							field-data-type={valueItem.dataType}

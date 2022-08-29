@@ -74,9 +74,11 @@ public with sharing class CustomSearchController {
 				FieldsetName__c,
 				ObjectType__c,
 				ProductType__c,
-				OwnerFieldName__c
+				OwnerFieldName__c,
+				DisplayOrder__c
 			FROM CustomSearchConfiguration__c
 			WHERE ObjectType__c = :objectApiName AND ProductType__c = :productName AND Active__c = TRUE
+			ORDER BY DisplayOrder__c ASC NULLS LAST
 		];
 	}
 
