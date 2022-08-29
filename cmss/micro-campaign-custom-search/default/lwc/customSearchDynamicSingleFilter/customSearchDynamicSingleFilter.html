@@ -1,7 +1,10 @@
 <template>
-	<div class="slds-form-element slds-form-element_horizontal">
-		<label class="slds-form-element__label" for="value">{label}</label>
-		<div class="slds-form-element__control">
+	<div class="slds-form-element filter-with-label__container">
+		<div class="filter-with-label__label">
+			<label class="slds-form-element__label" for="value">{label}</label>
+		</div>
+
+		<div class="slds-form-element__control filter-with-label__filter">
 			<div class="slds-grid">
 				<select name="selectedFilterValue" onchange={handleFilterChange} class="slds-select" id="select-01">
 					<option value="">-Select-</option>

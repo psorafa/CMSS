@@ -20,17 +20,14 @@
 	></c-custom-search-dynamic-range-filter>
 	<fieldset class="slds-text-align_center" if:true={isBoolean}>
 		<legend>{label}</legend>
-		<div class="slds-grid">
-			<div class="slds-col slds-size_3-of-12">&nbsp;</div>
-			<div class="slds-col slds-size_6-of-12">
-				<lightning-input
-					type={inputType}
-					label=""
-					name={fieldName}
-					value={selectedValue}
-					onchange={handleBooleanChanged}
-				></lightning-input>
-			</div>
+		<div class="slds-grid slds-grid_align-center slds-m-around_xx-small">
+			<lightning-input
+				type={inputType}
+				label=""
+				name={fieldName}
+				value={selectedValue}
+				onchange={handleBooleanChanged}
+			></lightning-input>
 		</div>
 	</fieldset>
 </template>
