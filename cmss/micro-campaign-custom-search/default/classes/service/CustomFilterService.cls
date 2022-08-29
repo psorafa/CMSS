@@ -9,9 +9,16 @@ public with sharing class CustomFilterService {
 	}
 	public List<CustomFilterItemDto> getCustomFilterMap() {
 		List<CustomSearchFilter__c> customFilterList = [
-			SELECT ProductType__c, FieldApiName__c, RecordType.DeveloperName, RelatedObject__c, Filter__c
+			SELECT
+				ProductType__c,
+				FieldApiName__c,
+				RecordType.DeveloperName,
+				RelatedObject__c,
+				Filter__c,
+				DisplayOrder__c
 			FROM CustomSearchFilter__c
 			WHERE RelatedObject__c = :objectType AND ProductType__c = :productType
+			ORDER BY DisplayOrder__c ASC NULLS LAST
 		];
 
 		Map<Id, CustomSearchFilter__c> customFilterLabelMap = new Map<Id, CustomSearchFilter__c>(

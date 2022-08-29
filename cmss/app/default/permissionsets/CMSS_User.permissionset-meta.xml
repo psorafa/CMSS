@@ -3611,6 +3611,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CustomSearchFilter__c.DisplayOrder__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CustomSearchFilter__c.FieldApiName__c</field>
         <readable>true</readable>
     </fieldPermissions>
