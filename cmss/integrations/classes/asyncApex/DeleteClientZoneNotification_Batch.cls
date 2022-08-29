@@ -2,12 +2,16 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 	private DateTime actualDate;
 	private Integer daysBeforeFirstNotification;
 	private Integer daysBetweenNotificationAndDeletion;
+	private Boolean isKZSettingsLoaded = false;
 	private final String CANCELATION_TEMPLATE_NAME = 'ClientZoneCancelationNotification';
 
 	public DeleteClientZoneNotification_Batch() {
 		KZNotificationSettings__c KZSettings = KZNotificationSettings__c.getOrgDefaults();
-		this.daysBeforeFirstNotification = (Integer) KZSettings.DaysFromKZCreation__c;
-		this.daysBetweenNotificationAndDeletion = (Integer) KZSettings.DaysBetweenNotificationAndDeletion__c;
+		if (KZSettings != null) {
+			isKZSettingsLoaded = true;
+		}
+		this.daysBeforeFirstNotification = (Integer) KZSettings?.DaysFromKZCreation__c;
+		this.daysBetweenNotificationAndDeletion = (Integer) KZSettings?.DaysBetweenNotificationAndDeletion__c;
 		this.actualDate = System.now();
 	}
 
@@ -37,6 +41,9 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 
 	public void execute(Database.BatchableContext jobId, List<ClientZone__c> recordList) {
 		List<ClientZone__c> clientZonesToUpdate = new List<ClientZone__c>();
+		if (!this.isKZSettingsLoaded) {
+			return;
+		}
 		try {
 			Map<Id, ClientZone__c> accountToClientZoneMap = new Map<Id, ClientZone__c>();
 			for (ClientZone__c record : recordList) {
@@ -83,10 +90,13 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 				Date clientZoneCheckDate = clientZone.SignatureDate__c != null
 					? clientZone.SignatureDate__c
 					: clientZone.ModifiedDate__c?.date();
+
+				Integer daysBeforeFirstNotificationIncrement = -1 * (this.daysBeforeFirstNotification);
+				Integer daysBetweenNotificationAndDeletionIncrement = -1 * (this.daysBetweenNotificationAndDeletion);
 				if (
 					clientZone.CancelationNotificationSentDate__c == null &&
-					clientZoneCheckDate < actualDate.addDays(-(this.daysBeforeFirstNotification)) &&
-					clientZoneCheckDate > actualDate.addDays(-(this.daysBeforeFirstNotification) -15)
+					clientZoneCheckDate < actualDate.addDays(daysBeforeFirstNotificationIncrement) &&
+					clientZoneCheckDate > actualDate.addDays(daysBeforeFirstNotificationIncrement - 15)
 				) {
 					sendNotification(clientZone);
 					clientZone.CancelationNotificationSentDate__c = System.now();
@@ -94,9 +104,9 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 				} else if (
 					clientZone.CancelationNotificationSentDate__c != null &&
 					clientZone.CancelationNotificationSentDate__c <
-					actualDate.addDays(-(this.daysBetweenNotificationAndDeletion)) &&
+					actualDate.addDays(daysBetweenNotificationAndDeletionIncrement) &&
 					clientZone.CancelationNotificationSentDate__c >
-					actualDate.addDays(-(this.daysBetweenNotificationAndDeletion) -15)
+					actualDate.addDays(daysBetweenNotificationAndDeletionIncrement - 15)
 				) {
 					CancelCZContractHandler handler = new CancelCZContractHandler(clientZone);
 					handler.handle();
