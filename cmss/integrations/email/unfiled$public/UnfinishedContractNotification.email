@@ -58,11 +58,11 @@
             <div style="color:#333333; font-size:14px; font-family:arial; line-height: 16.8px;">
 
                 <p>Dobrý den,</p>
-				<p>klient ve Vaší správě stavu {!Account.LastName} {!Account.FirstName} nedokončil ve své Klientské zóně dne {!CreatedDateTime__c} sjednání Smlouvy o stavebním spoření číslo {!ContractNumber__c}.</p>
+				<p>klient ve Vaší správě stavu {!Account.LastName} {!Account.FirstName} nedokončil ve své Klientské zóně dne {!CreatedDateTime__c} sjednání Smlouvy o stavebním spoření.</p>
 				<p>Prosím kontaktujte klienta za účelem ověření požadavku na sjednání smlouvy a případné pomoci s dokončením procesu sjednání.
 				<br> Další informace naleznete 
 				<a
-				href="{!ORG_URL}/{!Id}" target="_blank"
+				href="{!ORG_URL}/{!Account.Id}" target="_blank"
 				style="color:#0297ca; font-size:14px; font-family:arial; line-height: 16.8px; text-decoration: underline;"><strong>zde: {!Id}</strong></a>
 				  </p>
 				<p>S přáním příjemného dne</p> 

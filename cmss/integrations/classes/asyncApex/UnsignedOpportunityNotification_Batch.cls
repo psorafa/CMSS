@@ -1,15 +1,25 @@
 public without sharing class UnsignedOpportunityNotification_Batch implements Database.Batchable<sObject>, Database.AllowsCallouts, Schedulable {
 	private Date actualDate;
 	private DateTime createdDateLimit;
+	private Set<Integer> validDaysFromCreation;
+	private Integer validDaysFromCreationForOZ;
 
-	static final Set<Integer> VALID_DAYS_FROM_CREATION = new Set<Integer>{ 2, 7 };
 	static final String UNFINISHED_CONTRACT_TEMPLATE = 'UnfinishedContractNotification';
 	static final String UNSIGNED_CONTRACT_TEMPLATE = 'UnsignedContractNotification';
 
 	public UnsignedOpportunityNotification_Batch() {
+		KZNotificationSettings__c KZSettings = KZNotificationSettings__c.getOrgDefaults();
+		this.validDaysFromCreationForOZ = (Integer) KZSettings.DaysFromOppCreationOZ__c;
+		this.validDaysFromCreation = new Set<Integer>();
+		for (String value : KZSettings.DaysFromOppCreation__c.split(',')) {
+			this.validDaysFromCreation.add(Integer.valueOf(value));
+		}
+
 		this.actualDate = System.today();
-		List<Integer> sortedList = new List<Integer>(VALID_DAYS_FROM_CREATION);
+		List<Integer> sortedList = new List<Integer>(this.validDaysFromCreation);
+		sortedList.add(this.validDaysFromCreationForOZ);
 		sortedList.sort();
+		System.debug('list of days: ' + sortedList);
 		Integer dayLimit = sortedList[sortedList.size() - 1];
 		this.createdDateLimit = this.actualDate.addDays(-dayLimit - 2);
 	}
@@ -46,31 +56,32 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 		try {
 			for (Opportunity opportunity : opportunities) {
 				Integer numberOfDaysFromOppCreation = opportunity.CreatedDateTime__c.date().daysBetween(actualDate);
-				if (VALID_DAYS_FROM_CREATION.contains(numberOfDaysFromOppCreation)) {
-					if (opportunity?.Account?.PersonEmail != null) {
-						SendNotificationHandler userNotificationHandler = new SendNotificationHandler(
-							opportunity,
-							UNSIGNED_CONTRACT_TEMPLATE,
-							opportunity.Account.PersonEmail,
-							new Map<String, String>{
-								'ContractNumber__c' => '' + String.valueOf(opportunity?.OriginalAsset__r?.Name)
-							}
-						);
-						userNotificationHandler.handle();
-					}
-					if (opportunity?.Owner?.Email != null && opportunity.Account.PortfolioMngmtC__c == null) {
-						SendNotificationHandler ownerNotificationHandler = new SendNotificationHandler(
-							opportunity,
-							UNFINISHED_CONTRACT_TEMPLATE,
-							opportunity.Owner.Email,
-							new Map<String, String>{
-								'ORG_URL' => URL.getSalesforceBaseUrl().toExternalForm(),
-								'CreatedDateTime__c' => opportunity.CreatedDateTime__c.format('dd. MM. yyyy'),
-								'ContractNumber__c' => '' + String.valueOf(opportunity?.OriginalAsset__r?.Name)
-							}
-						);
-						ownerNotificationHandler.handle();
-					}
+				if (
+					this.validDaysFromCreation.contains(numberOfDaysFromOppCreation) &&
+					opportunity?.Account?.PersonEmail != null
+				) {
+					SendNotificationHandler userNotificationHandler = new SendNotificationHandler(
+						opportunity,
+						UNSIGNED_CONTRACT_TEMPLATE,
+						opportunity.Account.PersonEmail
+					);
+					userNotificationHandler.handle();
+				}
+				if (
+					numberOfDaysFromOppCreation == this.validDaysFromCreationForOZ &&
+					opportunity?.Owner?.Email != null &&
+					opportunity.Account.PortfolioMngmtC__c == null
+				) {
+					SendNotificationHandler ownerNotificationHandler = new SendNotificationHandler(
+						opportunity,
+						UNFINISHED_CONTRACT_TEMPLATE,
+						opportunity.Owner.Email,
+						new Map<String, String>{
+							'ORG_URL' => URL.getSalesforceBaseUrl().toExternalForm(),
+							'CreatedDateTime__c' => opportunity.CreatedDateTime__c.format('dd. MM. yyyy')
+						}
+					);
+					ownerNotificationHandler.handle();
 				}
 			}
 		} catch (Exception e) {

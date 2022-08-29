@@ -36,7 +36,7 @@ public class UnsignedOppNotification_BatchTest {
 	}
 
 	@TestSetup
-	static void makeDaprepareTestData() {
+	static void makeData() {
 		RecordType personAccountRecordType = [
 			SELECT Id
 			FROM RecordType
@@ -44,6 +44,10 @@ public class UnsignedOppNotification_BatchTest {
 		];
 
 		insert TestDataFactory.getIntegrationSettings();
+
+		User user = TestDataFactory.getUser(new User());
+		user.Email = 'user@invalid.test2';
+		insert user;
 
 		Account account1 = new Account();
 		account1.RecordType = personAccountRecordType;
@@ -57,6 +61,7 @@ public class UnsignedOppNotification_BatchTest {
 		opportunity.StageName = '1';
 		opportunity.AccountId = account1.Id;
 		opportunity.Name = 'Test opportunity';
+		opportunity.Owner = user;
 		opportunity.CloseDate = Date.valueOf(System.now().addDays(15));
 		opportunity.CreatedDateTime__c = Date.valueOf(System.now().addDays(-2));
 		insert opportunity;
@@ -65,6 +70,11 @@ public class UnsignedOppNotification_BatchTest {
 		clientZone.ContractNumber__c = '1234';
 		clientZone.Account__c = account1.Id;
 		insert clientZone;
+
+		KZNotificationSettings__c settings = new KZNotificationSettings__c();
+		settings.DaysFromOppCreationOZ__c = 2;
+		settings.DaysFromOppCreation__c = '1,2';
+		insert settings;
 	}
 
 	@isTest
