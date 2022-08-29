@@ -78,6 +78,11 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 					);
 					continue;
 				}
+				if (actualSetting.User__r.IsActive == false) {
+					actualSetting.SyncActive__c = false;
+					calendarSettingsToUpdate.put(actualSetting.Id, actualSetting);
+					continue;
+				}
 				if (eventSync.ChangeFromGoogle__c) {
 					processGoogleSideChange(eventSync, actualSetting, port);
 				} else if (!eventSync.ChangeFromGoogle__c && eventSync.IsDeleted__c) {
@@ -117,7 +122,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			resourceIds.add(sync.ResourceId__c);
 		}
 		List<UserCalendarSetting__c> settings = [
-			SELECT Id, User__c, ResourceId__c, UserCalendarID__c, SyncToken__c
+			SELECT Id, User__c, ResourceId__c, UserCalendarID__c, SyncToken__c, User__r.IsActive
 			FROM UserCalendarSetting__c
 			WHERE ResourceId__c IN :resourceIds
 		];
@@ -157,7 +162,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		}
 
 		List<UserCalendarSetting__c> settings = [
-			SELECT Id, User__c, ResourceId__c, UserCalendarID__c, SyncToken__c
+			SELECT Id, User__c, ResourceId__c, UserCalendarID__c, SyncToken__c, User__r.IsActive
 			FROM UserCalendarSetting__c
 			WHERE User__c IN :ownerIds
 		];

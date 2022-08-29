@@ -10,7 +10,7 @@ public class UpdateUserCalendarSettings_Batch implements Database.Batchable<sObj
 	}
 
 	public void execute(SchedulableContext context) {
-		Database.executeBatch(this, 50);
+		Database.executeBatch(this, 10);
 	}
 
 	public void execute(Database.BatchableContext jobId, List<UserCalendarSetting__c> calendarSettings) {
@@ -24,20 +24,16 @@ public class UpdateUserCalendarSettings_Batch implements Database.Batchable<sObj
 					userCalendarSetting.WatchId__c,
 					userCalendarSetting.ResourceId__c
 				);
-				if (resp1.statusCode == 200) {
-					GoogleCalendarSyncService.WatchResponse resp2 = service.createWatch(
-						userCalendarSetting.UserCalendarId__c,
-						((Long) ((Datetime) System.Today().addMonths(1)).getTime()),
-						pushNotificationsSiteUrl
-					);
-					if (resp2.id != null) {
-						userCalendarSetting.WatchExpirationDateTime__c = DateTime.newInstance(resp2.expiration);
-						userCalendarSetting.WatchId__c = resp2.id;
-						userCalendarSettingsToUpdate.add(userCalendarSetting);
-					}
-				} else {
-					Logger.error('Status code wrong ' + resp1.statusCode + ' ' + resp1.message);
-					throw new StatusCodeException('Status code wrong ' + resp1.statusCode + ' ' + resp1.message);
+				GoogleCalendarSyncService.WatchResponse resp2 = service.createWatch(
+					userCalendarSetting.UserCalendarId__c,
+					((Long) ((Datetime) System.Today().addMonths(1)).getTime()),
+					pushNotificationsSiteUrl
+				);
+
+				if (resp2.id != null) {
+					userCalendarSetting.WatchExpirationDateTime__c = DateTime.newInstance(resp2.expiration);
+					userCalendarSetting.WatchId__c = resp2.id;
+					userCalendarSettingsToUpdate.add(userCalendarSetting);
 				}
 			}
 			if (userCalendarSettingsToUpdate.size() > 0) {
