@@ -91,6 +91,7 @@ public class GoogleCalendarSyncService {
 		Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 		Http http = new Http();
 		HTTPResponse res = http.send(req);
+		Logger.debug('Outgoing request', Logger.serializeHttpResponse(res));
 		return processGetResponse(res);
 	}
 

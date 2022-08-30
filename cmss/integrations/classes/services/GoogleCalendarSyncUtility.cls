@@ -25,7 +25,7 @@ public class GoogleCalendarSyncUtility {
 		} else {
 			sfEvent.IsAllDayEvent = true;
 			sfEvent.ActivityDate = googleEvent.start_x?.date_x;
-			sfEvent.EndDateTime = googleEvent.end_x?.date_x;
+			sfEvent.EndDateTime = googleEvent.end_x?.date_x?.addDays(-1);
 		}
 		sfEvent.ShowAs = googleEvent.transparency == 'opaque' ? 'Busy' : 'Free';
 		sfEvent.GoogleId__c = googleEvent.id;
