@@ -95,8 +95,7 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 				Integer daysBetweenNotificationAndDeletionIncrement = -1 * (this.daysBetweenNotificationAndDeletion);
 				if (
 					clientZone.CancelationNotificationSentDate__c == null &&
-					clientZoneCheckDate < actualDate.addDays(daysBeforeFirstNotificationIncrement) &&
-					clientZoneCheckDate > actualDate.addDays(daysBeforeFirstNotificationIncrement - 15)
+					clientZoneCheckDate < actualDate.addDays(daysBeforeFirstNotificationIncrement)
 				) {
 					sendNotification(clientZone);
 					clientZone.CancelationNotificationSentDate__c = System.now();
@@ -189,7 +188,7 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 		List<Asset> assets = [
 			SELECT Id, AccountId
 			FROM Asset
-			WHERE AccountId IN :accountIds AND StateCode__c = '1' AND (ProductType__c = '9' OR ProductType__c = '9')
+			WHERE AccountId IN :accountIds AND StateCode__c = '1' AND (ProductType__c = '9' OR ProductType__c = '0')
 		];
 
 		Map<Id, Asset> associatedAssets = new Map<Id, Asset>();

@@ -1,8 +1,8 @@
 public class SendNotificationHandler {
 	private sObject onObject;
 	private String emailTemplateDevName;
-	private MailSOAPService.MailServicePort mailService;
 
+	private Boolean disableMailSending;
 	private String senderEmail = 'noreply@csobstavebni.cz';
 	private String receiverEmail;
 	private String emailSubject;
@@ -20,13 +20,16 @@ public class SendNotificationHandler {
 		this.emailTemplateDevName = emailTemplateDevName;
 		this.receiverEmail = receiverEmail;
 		this.specialVariableValues = specialVariableValues;
+		KZNotificationSettings__c KZSettings = KZNotificationSettings__c.getOrgDefaults();
+		this.disableMailSending = !KZSettings.SendNotifications__c;
 	}
 
 	public SendNotificationHandler(sObject onObject, String emailTemplateDevName, String receiverEmail) {
 		this.onObject = onObject;
 		this.emailTemplateDevName = emailTemplateDevName;
 		this.receiverEmail = receiverEmail;
-		this.mailService = new MailSOAPService.MailServicePort();
+		KZNotificationSettings__c KZSettings = KZNotificationSettings__c.getOrgDefaults();
+		this.disableMailSending = !KZSettings.SendNotifications__c;
 	}
 
 	public void handle() {
@@ -79,14 +82,14 @@ public class SendNotificationHandler {
 
 	@TestVisible
 	private void sendEmailNotificaton() {
-        MailServiceNotification__c newNotification = new MailServiceNotification__c();
+		MailServiceNotification__c newNotification = new MailServiceNotification__c();
 		newNotification.ToEmailAddress__c = receiverEmail;
-        newNotification.FromEmailAddress__c = senderEmail;
-	    newNotification.Subject__c = emailSubject;
-        newNotification.Body__c = emailBody;
-        newNotification.SendAfter__c = System.today();
-        newNotification.NotSentDueToError__c = true;
-        insert newNotification;
+		newNotification.FromEmailAddress__c = senderEmail;
+		newNotification.Subject__c = emailSubject;
+		newNotification.Body__c = emailBody;
+		newNotification.SendAfter__c = System.today();
+		newNotification.NotSentDueToError__c = this.disableMailSending;
+		insert newNotification;
 	}
 
 	public static void sendEmailNotificaton(String receiverEmail, String senderEmail, String subject, String body) {
