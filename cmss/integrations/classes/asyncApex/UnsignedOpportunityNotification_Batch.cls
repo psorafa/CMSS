@@ -23,7 +23,7 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 		Integer dayLimit = sortedList[sortedList.size() - 1];
 		this.createdDateLimit = this.actualDate.addDays(-dayLimit - 2);
 
-		Logger.debug('KZ Setting: ' + JSON.serialize(KZSettings));
+		Logger.debug('KZ Setting: ' + JSON.serialize(KZSettings) + ' + numbers of days: ' + sortedList);
 		Logger.saveLogs();
 	}
 
