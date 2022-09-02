@@ -22,6 +22,9 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 		System.debug('list of days: ' + sortedList);
 		Integer dayLimit = sortedList[sortedList.size() - 1];
 		this.createdDateLimit = this.actualDate.addDays(-dayLimit - 2);
+
+		Logger.debug('KZ Setting: ' + JSON.serialize(KZSettings));
+		Logger.saveLogs();
 	}
 
 	public void execute(SchedulableContext sc) {
