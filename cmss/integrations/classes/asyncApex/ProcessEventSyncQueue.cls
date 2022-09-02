@@ -403,7 +403,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		GoogleCalendarSyncService port
 	) {
 		Event sfEvent = getEvent(eventSync.SFEventId__c);
-		if (isTooOld(sfEvent)) {
+		if (sfEvent != null && isTooOld(sfEvent)) {
 			return;
 		}
 		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.createEvent(
@@ -427,7 +427,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			sfTask.PlannedFromDate__c = null;
 			sfTask.PlannedToDate__c = null;
 		}
-		if (isTooOld(sfTask)) {
+		if (sfTask != null && isTooOld(sfTask)) {
 			return;
 		}
 		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.createEvent(
@@ -445,7 +445,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		GoogleCalendarSyncService port
 	) {
 		Event sfEvent = getEvent(eventSync.SFEventId__c);
-		if (isTooOld(sfEvent) || sfEvent.GoogleId__c == null) {
+		if (sfEvent != null && isTooOld(sfEvent) || sfEvent.GoogleId__c == null) {
 			return;
 		}
 		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.updateEvent(
@@ -462,7 +462,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		GoogleCalendarSyncService port
 	) {
 		Task sfTask = getTask(eventSync.SFTaskId__c);
-		if (isTooOld(sfTask) || sfTask.GoogleId__c == null) {
+		if ((sfTask != null && isTooOld(sfTask)) || sfTask.GoogleId__c == null) {
 			return;
 		}
 		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.updateEvent(
