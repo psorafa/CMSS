@@ -55,6 +55,11 @@
         <default>false</default>
         <label>16</label>
     </customValue>
+    <customValue>
+        <fullName>17</fullName>
+        <default>false</default>
+        <label>17</label>
+    </customValue>
     <description>0 = Úvěrový případ
 1 = Úvěr
 2 = Meziúvěr
@@ -65,7 +70,8 @@
 13 = ČSOB Účty
 14 = Penzijní produkty
 15 = Životní pojištění
-16 = Pojištění majetku a odpovědnosti</description>
+16 = Pojištění majetku a odpovědnosti
+17 = Autopojištění</description>
     <masterLabel>Product Type</masterLabel>
     <sorted>false</sorted>
 </GlobalValueSet>
