@@ -15,7 +15,6 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 			this.validDaysFromCreation.add(Integer.valueOf(value));
 		}
 
-		this.actualDate = System.today();
 		List<Integer> sortedList = new List<Integer>(this.validDaysFromCreation);
 		sortedList.add(this.validDaysFromCreationForOZ);
 		sortedList.sort();
@@ -56,6 +55,8 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 	}
 
 	public void execute(Database.BatchableContext jobId, List<Opportunity> opportunities) {
+		this.actualDate = System.today();
+		System.debug('Actual date: ' + this.actualDate);
 		try {
 			for (Opportunity opportunity : opportunities) {
 				Integer numberOfDaysFromOppCreation = opportunity.CreatedDateTime__c.date().daysBetween(actualDate);
