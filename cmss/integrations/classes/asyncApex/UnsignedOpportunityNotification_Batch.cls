@@ -1,4 +1,4 @@
-public without sharing class UnsignedOpportunityNotification_Batch implements Database.Batchable<sObject>, Database.AllowsCallouts, Schedulable {
+public without sharing class UnsignedOpportunityNotification_Batch implements Database.Batchable<sObject>, Database.AllowsCallouts, Schedulable, Database.Stateful {
 	private Date actualDate;
 	private Integer dayLimit;
 	private DateTime createdDateLimit;
@@ -32,7 +32,7 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 		System.debug('Actual date: ' + this.actualDate);
 		Integer minusDayLimit = -1 * this.dayLimit;
 		this.createdDateLimit = this.actualDate.addDays(minusDayLimit - 2);
-		System.debug('Created Date Limit: ' + this.actualDate);
+		System.debug('Created Date Limit: ' + this.createdDateLimit);
 
 		return Database.getQueryLocator(
 			[
@@ -60,6 +60,17 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 	public void execute(Database.BatchableContext jobId, List<Opportunity> opportunities) {
 		try {
 			for (Opportunity opportunity : opportunities) {
+				System.debug('opportunity.CreatedDateTime__c: ' + opportunity.CreatedDateTime__c);
+				System.debug('opportunity.CreatedDateTime__c.date(): ' + opportunity.CreatedDateTime__c.date());
+				System.debug('this.actualDate: ' + this.actualDate);
+				System.debug(
+					'opportunity.CreatedDateTime__c.date().daysBetween(this.actualDate): ' +
+					opportunity.CreatedDateTime__c.date().daysBetween(this.actualDate)
+				);
+
+				System.debug('this.validDaysFromCreation: ' + this.validDaysFromCreation);
+				System.debug('this.validDaysFromCreationForOZ: ' + this.validDaysFromCreationForOZ);
+
 				Integer numberOfDaysFromOppCreation = opportunity.CreatedDateTime__c.date()
 					.daysBetween(this.actualDate);
 				if (
