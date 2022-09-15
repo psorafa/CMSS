@@ -1,5 +1,6 @@
 public with sharing class InitialCalendarSyncController {
 	public static final Integer EVENT_DAY_OFFSET = 90;
+	public static final Integer MAX_GOOGLE_EVENTS = 5000;
 	private static final GoogleCalendarSyncService syncService = new GoogleCalendarSyncService();
 
 	public static void sync(UserCalendarSetting__c calendarSetting) {
@@ -60,16 +61,23 @@ public with sharing class InitialCalendarSyncController {
 				return null;
 			}
 			newCutoffedEvents = filterEventsAccordingToCutoffDateTime(response.googleEvents, cutoffDateTime);
-			if (newCutoffedEvents.size() + eventsFromGoogle.size() < 10000) {
+			if (newCutoffedEvents.size() + eventsFromGoogle.size() < 100000) {
 				eventsFromGoogle.addAll(newCutoffedEvents);
 			}
 		}
-
+		eventsFromGoogle.sort(); //sorts DESC by event start date
+		List<GoogleCalendarSyncUtility.GoogleEventDTO> slicedEvents = new List<GoogleCalendarSyncUtility.GoogleEventDTO>();
+		for (Integer i = 0; i < eventsFromGoogle.size(); i++) {
+			if (i > MAX_GOOGLE_EVENTS) {
+				continue;
+			}
+			slicedEvents.add(eventsFromGoogle[i]);
+		}
 		calendarSetting.SyncToken__c = response.nextSyncToken;
 		calendarSetting.SyncActive__c = true;
 		update calendarSetting;
 
-		return eventsFromGoogle;
+		return slicedEvents;
 	}
 
 	@TestVisible
@@ -233,7 +241,7 @@ public with sharing class InitialCalendarSyncController {
 			'Id, GoogleId__c, IsFromGoogle__c, ActivityLink__c ' +
 			'FROM Task ' +
 			'WHERE OwnerId = :ownerId ' +
-			'AND ActivityDate > :cutoffDate ORDER BY ActivityDate DESC LIMIT 50000';
+			'AND ActivityDate > :cutoffDate ORDER BY ActivityDate DESC LIMIT 20000';
 
 		return Database.query(query);
 	}
@@ -247,7 +255,7 @@ public with sharing class InitialCalendarSyncController {
 			'Id, GoogleId__c, IsFromGoogle__c, ActivityLink__c ' +
 			'FROM Event ' +
 			'WHERE OwnerId = :ownerId ' +
-			'AND (ActivityDate > :cutoffDate OR StartDateTime > :cutoffDateTime) ORDER BY ActivityDate DESC LIMIT 50000';
+			'AND (ActivityDate > :cutoffDate OR StartDateTime > :cutoffDateTime) ORDER BY ActivityDate DESC LIMIT 20000';
 
 		return Database.query(query);
 	}
