@@ -12,10 +12,6 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 		}
 		this.daysBeforeFirstNotification = (Integer) KZSettings?.DaysFromKZCreation__c;
 		this.daysBetweenNotificationAndDeletion = (Integer) KZSettings?.DaysBetweenNotificationAndDeletion__c;
-		this.actualDate = System.now();
-
-		Logger.debug('KZ Setting: ' + JSON.serialize(KZSettings));
-		Logger.saveLogs();
 	}
 
 	public void execute(SchedulableContext sc) {
@@ -43,6 +39,9 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 	}
 
 	public void execute(Database.BatchableContext jobId, List<ClientZone__c> recordList) {
+		this.actualDate = System.now();
+		System.debug('Actual date: ' + this.actualDate);
+
 		List<ClientZone__c> clientZonesToUpdate = new List<ClientZone__c>();
 		if (!this.isKZSettingsLoaded) {
 			return;
