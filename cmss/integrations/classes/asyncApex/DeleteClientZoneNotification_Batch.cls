@@ -170,9 +170,6 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 			FROM AssetAccountRelation__c
 			WHERE
 				Account__c IN :accountIds
-				AND (RelationType__c = '1'
-				OR RelationType__c = '3'
-				OR RelationType__c = '4')
 				AND Asset__r.StateCode__c = '1'
 				AND (Asset__r.ProductType__c = '0'
 				OR Asset__r.ProductType__c = '9')
@@ -204,7 +201,13 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 		List<Opportunity> opportunities = [
 			SELECT AccountId
 			FROM Opportunity
-			WHERE AccountId IN :accountIds AND (Category__c = '5' OR Category__c = '6' OR Category__c = '7')
+			WHERE
+				AccountId IN :accountIds
+				AND (Category__c = '5'
+				OR Category__c = '6'
+				OR Category__c = '7')
+				AND StageName != '3'
+				AND StageName != '5'
 		];
 
 		Map<Id, Opportunity> associatedOpportunities = new Map<Id, Opportunity>();
