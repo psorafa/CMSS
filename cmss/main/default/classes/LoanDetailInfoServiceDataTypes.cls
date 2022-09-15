@@ -439,7 +439,7 @@ public class LoanDetailInfoServiceDataTypes {
 			this.loanStateCode = (loanStateCodeNode == null) ? null : loanStateCodeNode.getText();
 			nodesParsed.add(loanStateCodeNode);		
 			DOM.XmlNode variableAmountNode = responseNode.getChildElement('variableAmount', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
-			this.variableAmount = (variableAmountNode == null) ? null : Decimal.valueOf(variableAmountNode.getText());
+			this.variableAmount = (variableAmountNode == null) ? null : Decimal.valueOf(variableAmountNode.getText().replace(',', '.'));
 			nodesParsed.add(variableAmountNode);
 			DOM.XmlNode originalLoanModeCodeNode = responseNode.getChildElement('originalLoanModeCode', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes');
 			this.originalLoanModeCode = (originalLoanModeCodeNode == null) ? null : Long.valueOf(originalLoanModeCodeNode.getText());
