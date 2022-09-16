@@ -298,7 +298,7 @@ public class GoogleCalendarSyncUtility {
 		public String nextPageToken;
 	}
 
-	public class GoogleEventDTO {
+	public class GoogleEventDTO implements Comparable {
 		public String summary;
 		public String description;
 		public String visibility;
@@ -315,6 +315,30 @@ public class GoogleCalendarSyncUtility {
 		public String id;
 		public String status;
 		public List<GoogleAttendeeDTO> attendees;
+
+		public Integer compareTo(Object compareTo) {
+			GoogleEventDTO compareToEvent = (GoogleEventDTO) compareTo;
+			Date actualDate;
+			Date compareToDate;
+
+			if (this.start_x.date_x != null) {
+				actualDate = this.start_x.date_x;
+			} else if (this.start_x.dateTime_x != null) {
+				actualDate = getDateTimeFromGoogleFormat(this.start_x.dateTime_x)?.date();
+			}
+			if (compareToEvent.start_x.date_x != null) {
+				compareToDate = compareToEvent.start_x.date_x;
+			} else if (compareToEvent.start_x.dateTime_x != null) {
+				compareToDate = getDateTimeFromGoogleFormat(compareToEvent.start_x.dateTime_x)?.date();
+			}
+			if (actualDate == null) {
+				return 1;
+			}
+			if (compareToDate == null) {
+				return -1;
+			}
+			return actualDate < compareToDate ? 1 : -1;
+		}
 	}
 
 	public class GoogleAttendeeDTO {
