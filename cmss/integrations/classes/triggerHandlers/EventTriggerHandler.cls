@@ -65,16 +65,16 @@ public class EventTriggerHandler extends TriggerHandler {
 
 	private void handleUpdateAccountDateFields(List<Event> events) {
 		List<Account> accountsToUpdate = new List<Account>();
-		Set<Id> accountIds = new Set<Id>();
+		Set<Id> eventIds = new Set<Id>();
 		for (Event e : events) {
-			accountIds.add(e.AccountId);
+			eventIds.add(e.Id);
 		}
 
 		Map<Id, Event> eventWithAccount = new Map<Id, Event>(
 			[
 				SELECT AccountId, Account.LastInteractionDate__c, Account.OpenedActivityDate__c
 				FROM Event
-				WHERE AccountId IN :accountIds
+				WHERE Id IN :eventIds
 			]
 		);
 
