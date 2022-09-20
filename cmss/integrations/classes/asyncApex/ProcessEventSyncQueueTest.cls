@@ -69,15 +69,27 @@ class ProcessEventSyncQueueTest {
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		List<Event> eventsBefore = [SELECT Id, Subject FROM Event];
+
+		ApexClass queueClass = [SELECT Id FROM ApexClass WHERE Name = 'ProcessEventSyncQueue'];
+		Integer enqueuedJobsCount = [
+			SELECT COUNT()
+			FROM AsyncApexJob
+			WHERE ApexClassId = :queueClass.Id AND Status IN ('Processing', 'Preparing', 'Queued')
+		];
+
 		Test.startTest();
-		System.enqueueJob(new ProcessEventSyncQueue());
+		if (enqueuedJobsCount == 0) {
+			System.enqueueJob(new ProcessEventSyncQueue());
+		}
 		Test.stopTest();
 
 		List<Event> eventsAfter = [SELECT Id, Subject FROM Event];
 		Event changedEvent = [SELECT Id, Subject FROM Event WHERE GoogleId__c = 'eventId3'];
 
-		System.assertEquals(eventsBefore.size(), eventsAfter.size());
-		System.assertEquals(changedEvent.Subject, 'Existující eventík');
+		if (enqueuedJobsCount >= 0) {
+			System.assertEquals(eventsBefore.size(), eventsAfter.size());
+			System.assertEquals(changedEvent.Subject, 'Existující eventík');
+		}
 	}
 
 	@isTest
