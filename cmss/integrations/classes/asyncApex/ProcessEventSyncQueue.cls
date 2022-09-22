@@ -36,8 +36,10 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 	public void execute(QueueableContext context) {
 		List<EventSync__c> syncs;
 		try {
-			ProcessEventSyncQueue finalizer = new ProcessEventSyncQueue();
-			System.attachFinalizer(finalizer);
+			if (!Test.isRunningTest()) {
+				ProcessEventSyncQueue finalizer = new ProcessEventSyncQueue();
+				System.attachFinalizer(finalizer);
+			}
 
 			syncs = [
 				SELECT
@@ -403,7 +405,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		GoogleCalendarSyncService port
 	) {
 		Event sfEvent = getEvent(eventSync.SFEventId__c);
-		if (sfEvent != null && isTooOld(sfEvent)) {
+		if (sfEvent == null || (sfEvent != null && isTooOld(sfEvent))) {
 			return;
 		}
 		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.createEvent(
@@ -427,7 +429,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			sfTask.PlannedFromDate__c = null;
 			sfTask.PlannedToDate__c = null;
 		}
-		if (sfTask != null && isTooOld(sfTask)) {
+		if (sfTask == null || (sfTask != null && isTooOld(sfTask))) {
 			return;
 		}
 		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.createEvent(
@@ -445,7 +447,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		GoogleCalendarSyncService port
 	) {
 		Event sfEvent = getEvent(eventSync.SFEventId__c);
-		if (sfEvent != null && isTooOld(sfEvent) || sfEvent.GoogleId__c == null) {
+		if (sfEvent == null || (sfEvent != null && isTooOld(sfEvent)) || sfEvent.GoogleId__c == null) {
 			return;
 		}
 		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.updateEvent(
@@ -462,7 +464,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		GoogleCalendarSyncService port
 	) {
 		Task sfTask = getTask(eventSync.SFTaskId__c);
-		if ((sfTask != null && isTooOld(sfTask)) || sfTask.GoogleId__c == null) {
+		if (sfTask == null || (sfTask != null && isTooOld(sfTask)) || sfTask.GoogleId__c == null) {
 			return;
 		}
 		GoogleCalendarSyncUtility.GoogleCalendarResponse response = port.updateEvent(

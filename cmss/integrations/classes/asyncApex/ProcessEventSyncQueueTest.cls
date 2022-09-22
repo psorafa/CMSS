@@ -70,26 +70,16 @@ class ProcessEventSyncQueueTest {
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		List<Event> eventsBefore = [SELECT Id, Subject FROM Event];
 
-		ApexClass queueClass = [SELECT Id FROM ApexClass WHERE Name = 'ProcessEventSyncQueue'];
-		Integer enqueuedJobsCount = [
-			SELECT COUNT()
-			FROM AsyncApexJob
-			WHERE ApexClassId = :queueClass.Id AND Status IN ('Processing', 'Preparing', 'Queued')
-		];
-
 		Test.startTest();
-		if (enqueuedJobsCount == 0) {
-			System.enqueueJob(new ProcessEventSyncQueue());
-		}
+		ProcessEventSyncQueue processQueue = new ProcessEventSyncQueue();
+		processQueue.execute((QueueableContext) null);
 		Test.stopTest();
 
 		List<Event> eventsAfter = [SELECT Id, Subject FROM Event];
 		Event changedEvent = [SELECT Id, Subject FROM Event WHERE GoogleId__c = 'eventId3'];
 
-		if (enqueuedJobsCount >= 0) {
-			System.assertEquals(eventsBefore.size(), eventsAfter.size());
-			System.assertEquals(changedEvent.Subject, 'Existující eventík');
-		}
+		System.assertEquals(eventsBefore.size(), eventsAfter.size());
+		System.assertEquals(changedEvent.Subject, 'Existující eventík');
 	}
 
 	@isTest
@@ -102,7 +92,8 @@ class ProcessEventSyncQueueTest {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(200, 'OK', '', null, null);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		Test.startTest();
-		System.enqueueJob(new ProcessEventSyncQueue());
+		ProcessEventSyncQueue processQueue = new ProcessEventSyncQueue();
+		processQueue.execute((QueueableContext) null);
 		Test.stopTest();
 	}
 
@@ -117,7 +108,8 @@ class ProcessEventSyncQueueTest {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(200, 'OK', '', null, null);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		Test.startTest();
-		System.enqueueJob(new ProcessEventSyncQueue());
+		ProcessEventSyncQueue processQueue = new ProcessEventSyncQueue();
+		processQueue.execute((QueueableContext) null);
 		Test.stopTest();
 	}
 
@@ -144,7 +136,8 @@ class ProcessEventSyncQueueTest {
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		Test.startTest();
-		System.enqueueJob(new ProcessEventSyncQueue());
+		ProcessEventSyncQueue processQueue = new ProcessEventSyncQueue();
+		processQueue.execute((QueueableContext) null);
 		Test.stopTest();
 		Event event = [SELECT Id FROM Event WHERE GoogleId__c = 'eventId4' LIMIT 1];
 
@@ -179,7 +172,8 @@ class ProcessEventSyncQueueTest {
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		Test.startTest();
-		System.enqueueJob(new ProcessEventSyncQueue());
+		ProcessEventSyncQueue processQueue = new ProcessEventSyncQueue();
+		processQueue.execute((QueueableContext) null);
 		Test.stopTest();
 
 		Integer syncSize = [SELECT COUNT() FROM EventSync__c];
@@ -233,7 +227,8 @@ class ProcessEventSyncQueueTest {
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		Test.startTest();
-		System.enqueueJob(new ProcessEventSyncQueue());
+		ProcessEventSyncQueue processQueue = new ProcessEventSyncQueue();
+		processQueue.execute((QueueableContext) null);
 		Test.stopTest();
 
 		Integer syncSize = [SELECT COUNT() FROM EventSync__c];
@@ -271,7 +266,8 @@ class ProcessEventSyncQueueTest {
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		Test.startTest();
-		System.enqueueJob(new ProcessEventSyncQueue());
+		ProcessEventSyncQueue processQueue = new ProcessEventSyncQueue();
+		processQueue.execute((QueueableContext) null);
 		Test.stopTest();
 
 		Integer syncSize = [SELECT COUNT() FROM EventSync__c];
