@@ -53,7 +53,7 @@ public class EventTriggerHandler extends TriggerHandler {
 		for (Event e : newEventById.values()) {
 			if (
 				e.ActivityDate != oldEventById.get(e.Id).ActivityDate ||
-				e.EndDateTime != oldEventById.get(e.Id).EndDateTime
+					e.EndDateTime != oldEventById.get(e.Id).EndDateTime
 			) {
 				events.add(e);
 			}
@@ -71,11 +71,11 @@ public class EventTriggerHandler extends TriggerHandler {
 		}
 
 		Map<Id, Event> eventWithAccount = new Map<Id, Event>(
-			[
-				SELECT AccountId, Account.LastInteractionDate__c, Account.OpenedActivityDate__c
-				FROM Event
-				WHERE Id IN :eventIds
-			]
+		[
+			SELECT AccountId, Account.LastInteractionDate__c, Account.OpenedActivityDate__c
+			FROM Event
+			WHERE Id IN :eventIds
+		]
 		);
 
 		for (Event e : events) {
@@ -85,14 +85,14 @@ public class EventTriggerHandler extends TriggerHandler {
 			}
 			if (
 				e.ActivityDate < actualAccount?.OpenedActivityDate__c && e.ActivityDate > Date.today() ||
-				actualAccount?.OpenedActivityDate__c == null
+					actualAccount?.OpenedActivityDate__c == null
 			) {
 				actualAccount.OpenedActivityDate__c = e?.ActivityDate;
 				accountsToUpdate.add(actualAccount);
 			}
 			if (
 				Date.valueOf(e?.EndDateTime) > actualAccount?.LastInteractionDate__c &&
-				Date.valueOf(e?.EndDateTime) <= Date.today() || actualAccount?.LastInteractionDate__c == null
+					Date.valueOf(e?.EndDateTime) <= Date.today() || actualAccount?.LastInteractionDate__c == null
 			) {
 				actualAccount.LastInteractionDate__c = Date.valueOf(e?.EndDateTime);
 				accountsToUpdate.add(actualAccount);
@@ -140,7 +140,7 @@ public class EventTriggerHandler extends TriggerHandler {
 	private List<EventSync__c> getSyncsToDelete(Boolean isDeleted, Set<String> googleIds) {
 		String query =
 			'SELECT Id, GoogleEventId__c FROM EventSync__c WHERE GoogleEventId__c IN :googleIds AND ' +
-			(isDeleted ? 'IsDeleted__c = true' : 'ChangeFromGoogle__c = true');
+				(isDeleted ? 'IsDeleted__c = true' : 'ChangeFromGoogle__c = true');
 		List<EventSync__c> syncsToDelete = Database.query(query);
 		return syncsToDelete;
 	}
@@ -188,9 +188,9 @@ public class EventTriggerHandler extends TriggerHandler {
 				actualContact = relatedContactsMap.get(event.WhoId);
 				event.AccountAlias__c =
 					actualContact.Account?.LastName?.left(3) +
-					actualContact.Account?.FirstName?.left(3) +
-					'_' +
-					String.valueOf(actualContact.Account?.Birthdate__c?.year())?.right(2);
+						actualContact.Account?.FirstName?.left(3) +
+						'_' +
+						String.valueOf(actualContact.Account?.Birthdate__c?.year())?.right(2);
 			} else {
 				event.AccountAlias__c = '';
 			}

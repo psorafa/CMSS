@@ -43,24 +43,24 @@ public without sharing class PortfolioManagementRequestService {
 	private static void changeCPEClientStateFuture(Set<Id> pmrIds, String batchId) {
 		try {
 			PortfolioManagementRequest__c[] pmrs = [
-					SELECT Account__c, Account__r.GlobalId__c, PortfolioManChangeReason__c, ValidFrom__c, PortfolioManagementType__c, PortfolioManager__r.CommissionAccountBase__c
-					FROM PortfolioManagementRequest__c
-					WHERE Id IN :pmrIds
+				SELECT Account__c, Account__r.GlobalId__c, PortfolioManChangeReason__c, ValidFrom__c, PortfolioManagementType__c, PortfolioManager__r.CommissionAccountBase__c
+				FROM PortfolioManagementRequest__c
+				WHERE Id IN :pmrIds
 			];
 
-            User runningUser = [SELECT Id, CommissionAccountBase__c FROM User WHERE Id =: UserInfo.getUserId()];
-            String commissionAccountNumber = runningUser.CommissionAccountBase__c;
+			User runningUser = [SELECT Id, CommissionAccountBase__c FROM User WHERE Id = :UserInfo.getUserId()];
+			String commissionAccountNumber = runningUser.CommissionAccountBase__c;
 
 			PortfolioManagementCalloutService.ListOfClientsStatesType clientStates = new PortfolioManagementCalloutService.ListOfClientsStatesType();
-			clientStates.listOfClientsStatesItem = new PortfolioManagementCalloutService.ListOfClientsStatesItemType[]{ };
+			clientStates.listOfClientsStatesItem = new PortfolioManagementCalloutService.ListOfClientsStatesItemType[]{};
 
 			for (PortfolioManagementRequest__c pmr : pmrs) {
 				if (pmr.PortfolioManager__r.CommissionAccountBase__c != null &&
-						pmr.Account__c != null &&
-						pmr.PortfolioManChangeReason__c != null &&
-						pmr.ValidFrom__c != null &&
-						pmr.PortfolioManagementType__c != null
-						) {
+					pmr.Account__c != null &&
+					pmr.PortfolioManChangeReason__c != null &&
+					pmr.ValidFrom__c != null &&
+					pmr.PortfolioManagementType__c != null
+				) {
 
 					PortfolioManagementCalloutService.ListOfClientsStatesItemType item = new PortfolioManagementCalloutService.ListOfClientsStatesItemType();
 					item.stateChangeRequestId = pmr.Id;
@@ -85,23 +85,23 @@ public without sharing class PortfolioManagementRequestService {
 			PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody body = new PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody();
 			body.batchId = batchId;
 			body.listOfClientStates = clientStates;
-            body.commissionAccountNumberBase = commissionAccountNumber;
+			body.commissionAccountNumberBase = commissionAccountNumber;
 
 			PortfolioManagementCalloutService.PortfolioManagementServicePort stub = new PortfolioManagementCalloutService.PortfolioManagementServicePort();
 			PortfolioManagementCalloutService.ChangeCPEClientStateResponseBody response = stub.changeCPEClientState_Http(header, body);
 
-            if (response != null && response.listOfRequestStatuses != null && response.listOfRequestStatuses.listOfRequestStatusesItem != null) {
-                List<PortfolioManagementRequest__c> pmrToUpdate = new List<PortfolioManagementRequest__c>();
-                for (PortfolioManagementCalloutService.ListOfRequestStatusesItemType responseItem : response.listOfRequestStatuses.listOfRequestStatusesItem) {
-                    PortfolioManagementRequest__c pmr = new PortfolioManagementRequest__c(Id = responseItem.stateChangeRequestId, RequestStatus__c = responseItem.requestStatus);
-                    pmrToUpdate.add(pmr);
-                }
-                if (!pmrToUpdate.isEmpty() && !Test.isRunningTest()) {
-                    update pmrToUpdate;
-                }
-            } else {
-                Logger.error('Invalid response!');
-            }
+			if (response != null && response.listOfRequestStatuses != null && response.listOfRequestStatuses.listOfRequestStatusesItem != null) {
+				List<PortfolioManagementRequest__c> pmrToUpdate = new List<PortfolioManagementRequest__c>();
+				for (PortfolioManagementCalloutService.ListOfRequestStatusesItemType responseItem : response.listOfRequestStatuses.listOfRequestStatusesItem) {
+					PortfolioManagementRequest__c pmr = new PortfolioManagementRequest__c(Id = responseItem.stateChangeRequestId, RequestStatus__c = responseItem.requestStatus);
+					pmrToUpdate.add(pmr);
+				}
+				if (!pmrToUpdate.isEmpty() && !Test.isRunningTest()) {
+					update pmrToUpdate;
+				}
+			} else {
+				Logger.error('Invalid response!');
+			}
 
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);

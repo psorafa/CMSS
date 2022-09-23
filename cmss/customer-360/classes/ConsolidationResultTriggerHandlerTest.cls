@@ -10,7 +10,7 @@ private class ConsolidationResultTriggerHandlerTest {
 		Account a2 = TestDataFactory.getAccount(new Account(
 			GlobalId__c = 'G2'
 		));
-		insert new List<Account> {
+		insert new List<Account>{
 			a1, a2
 		};
 		Test.startTest();

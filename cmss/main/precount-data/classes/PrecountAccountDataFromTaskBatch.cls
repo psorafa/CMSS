@@ -1,17 +1,17 @@
 global class PrecountAccountDataFromTaskBatch implements Database.Batchable<sObject> {
 	global Database.QueryLocator start(Database.BatchableContext bc) {
 		return Database.getQueryLocator(
-			[
-				SELECT
-					ActivityDate,
-					CompletedDateTime,
-					AccountId,
-					Status,
-					Account.OpenedActivityDate__c,
-					Account.LastInteractionDate__c
-				FROM Task
-				WHERE AccountId != NULL
-			]
+		[
+			SELECT
+				ActivityDate,
+				CompletedDateTime,
+				AccountId,
+				Status,
+				Account.OpenedActivityDate__c,
+				Account.LastInteractionDate__c
+			FROM Task
+			WHERE AccountId != NULL
+		]
 		);
 	}
 
@@ -25,8 +25,8 @@ global class PrecountAccountDataFromTaskBatch implements Database.Batchable<sObj
 				: task.Account;
 			if (
 				task?.CompletedDateTime?.date() <= Date.today() &&
-				(task?.CompletedDateTime > actualAccount?.LastInteractionDate__c ||
-				actualAccount?.LastInteractionDate__c == null)
+					(task?.CompletedDateTime > actualAccount?.LastInteractionDate__c ||
+						actualAccount?.LastInteractionDate__c == null)
 			) {
 				actualAccount.LastInteractionDate__c = (Date) task?.CompletedDateTime.date();
 				accountsToUpdate.put(actualAccount.Id, actualAccount);
@@ -34,7 +34,7 @@ global class PrecountAccountDataFromTaskBatch implements Database.Batchable<sObj
 
 			if (
 				task.ActivityDate >= Date.today() && (task.Status == '1' || task.Status == '2') &&
-				task.ActivityDate < actualAccount?.OpenedActivityDate__c || actualAccount?.OpenedActivityDate__c == null
+					task.ActivityDate < actualAccount?.OpenedActivityDate__c || actualAccount?.OpenedActivityDate__c == null
 			) {
 				actualAccount.OpenedActivityDate__c = task?.ActivityDate;
 				accountsToUpdate.put(actualAccount.Id, actualAccount);

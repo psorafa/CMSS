@@ -2,19 +2,19 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 	private static final Map<String, Set<String>> VALID_STATUSES_BY_RECORD_TYPE_ID = new Map<String, Set<String>>{
 		Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName()
 			.get('CreditCases')
-			.getRecordTypeId() => new Set<String>{ '10003', '10005', '10006' },
+			.getRecordTypeId() => new Set<String>{'10003', '10005', '10006'},
 		Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName()
 			.get('BuildingSavings')
-			.getRecordTypeId() => new Set<String>{ '11001', '11008' },
+			.getRecordTypeId() => new Set<String>{'11001', '11008'},
 		Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName()
 			.get('PensionProducts')
-			.getRecordTypeId() => new Set<String>{ '2010', '2011' },
+			.getRecordTypeId() => new Set<String>{'2010', '2011'},
 		Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName()
 			.get('RiskLifeInsurance')
-			.getRecordTypeId() => new Set<String>{ '4010', '4021' },
+			.getRecordTypeId() => new Set<String>{'4010', '4021'},
 		Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName()
 			.get('Mortgages')
-			.getRecordTypeId() => new Set<String>{ '7061' },
+			.getRecordTypeId() => new Set<String>{'7061'},
 		Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName().get('PMO').getRecordTypeId() => new Set<String>{
 			'8001'
 		}
@@ -35,11 +35,11 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 	public void handleUpdateAccountDateFields() {
 		Set<Account> accountsToUpdate = new Set<Account>();
 		Map<Id, Asset> assetWithAccount = new Map<Id, Asset>(
-			[
-				SELECT AccountId, Account.LastInteractionDate__c, Account.AssetLastCloseDate__c
-				FROM Asset
-				WHERE Id IN :Trigger.newMap.keySet()
-			]
+		[
+			SELECT AccountId, Account.LastInteractionDate__c, Account.AssetLastCloseDate__c
+			FROM Asset
+			WHERE Id IN :Trigger.newMap.keySet()
+		]
 		);
 
 		for (Asset newAsset : (Asset[]) Trigger.new) {
@@ -50,18 +50,18 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 			}
 			if (
 				newAsset.ProductCloseDate__c != oldAsset?.ProductCloseDate__c &&
-				newAsset.ProductCloseDate__c <= Date.today()
+					newAsset.ProductCloseDate__c <= Date.today()
 			) {
 				if (
 					newAsset.ProductCloseDate__c > actualAssetAccount?.LastInteractionDate__c ||
-					actualAssetAccount?.LastInteractionDate__c == null
+						actualAssetAccount?.LastInteractionDate__c == null
 				) {
 					actualAssetAccount.LastInteractionDate__c = newAsset.ProductCloseDate__c;
 					accountsToUpdate.add(actualAssetAccount);
 				}
 				if (
 					newAsset.ProductCloseDate__c > actualAssetAccount?.AssetLastCloseDate__c ||
-					actualAssetAccount?.AssetLastCloseDate__c == null
+						actualAssetAccount?.AssetLastCloseDate__c == null
 				) {
 					actualAssetAccount.AssetLastCloseDate__c = newAsset.ProductCloseDate__c;
 					accountsToUpdate.add(actualAssetAccount);
@@ -73,21 +73,21 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 	}
 
 	private static void filterAndPairWithOpp(List<Asset> newAssetsList, Map<Id, Asset> oldAssetsMap) {
-		Set<String> irrelevantProductTypes = new Set<String>{ '1', '2' };
+		Set<String> irrelevantProductTypes = new Set<String>{'1', '2'};
 
 		List<Asset> filteredAssetsList = new List<Asset>();
 
 		for (Asset asset : newAssetsList) {
 			if (
 				!irrelevantProductTypes.contains(asset.ProductType__c) &&
-				String.isNotEmpty(asset.ClosingAgentId__c) &&
-				(isAssetStatusActive(asset) ||
-				((asset.ProductType__c == '13' && asset.Status__c == '0000') ||
-				(asset.ProductType__c == '15' &&
-				asset.Status__c == '8001'))) &&
-				(oldAssetsMap == null || !isAssetStatusActive(oldAssetsMap.get(asset.Id))) && //if record is new or just activated
-				asset.ProductCloseDate__c >= System.today() - 30 &&
-				asset.CreatedDate >= System.today() - 1
+					String.isNotEmpty(asset.ClosingAgentId__c) &&
+					(isAssetStatusActive(asset) ||
+						((asset.ProductType__c == '13' && asset.Status__c == '0000') ||
+							(asset.ProductType__c == '15' &&
+								asset.Status__c == '8001'))) &&
+					(oldAssetsMap == null || !isAssetStatusActive(oldAssetsMap.get(asset.Id))) && //if record is new or just activated
+					asset.ProductCloseDate__c >= System.today() - 30 &&
+					asset.CreatedDate >= System.today() - 1
 			) {
 				filteredAssetsList.add(asset);
 			}
@@ -106,7 +106,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 		Map<Id, Opportunity> oppsToUpsertbyIds = new Map<Id, Opportunity>();
 		List<Opportunity> oppsToUpsert = new List<Opportunity>();
 
-		Set<String> irrelevantCategories = new Set<String>{ '5', '6', '7' };
+		Set<String> irrelevantCategories = new Set<String>{'5', '6', '7'};
 
 		List<Opportunity> oppsToCheck = [
 			SELECT
@@ -140,12 +140,12 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 		);
 
 		Map<Id, RecordType> recordtypesByIds = new Map<Id, RecordType>(
-			[
-				//can't use schema because we need Description
-				SELECT Id, Name, DeveloperName, Description
-				FROM RecordType
-				WHERE SobjectType = 'Asset'
-			]
+		[
+			//can't use schema because we need Description
+			SELECT Id, Name, DeveloperName, Description
+			FROM RecordType
+			WHERE SobjectType = 'Asset'
+		]
 		);
 
 		for (Asset asset : assetsList) {
@@ -153,11 +153,11 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 			for (Opportunity opp : oppsToCheck) {
 				if (
 					opp.AccountId == asset.AccountId &&
-					opp.OwnerId == asset.ClosingAgentId__c &&
-					opp.ProductType__c == asset.ProductType__c &&
-					asset.ProductCloseDate__c >= opp.ValidFrom__c &&
-					opp.ValidTo__c != null &&
-					asset.ProductCloseDate__c <= opp.ValidTo__c.addDays(30)
+						opp.OwnerId == asset.ClosingAgentId__c &&
+						opp.ProductType__c == asset.ProductType__c &&
+						asset.ProductCloseDate__c >= opp.ValidFrom__c &&
+						opp.ValidTo__c != null &&
+						asset.ProductCloseDate__c <= opp.ValidTo__c.addDays(30)
 				) {
 					Opportunity foundOpp = addOpportunityInfo(
 						opp,
@@ -212,7 +212,7 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 			? 'Příležitost automaticky založena při vzniku smlouvy'
 			: opp.Description;
 		opp.DueDate__c = opp.DueDate__c == null ? System.today() : opp.DueDate__c;
-		List<String> oppNameList = new List<String>{ recordTypedescription, asset.Name };
+		List<String> oppNameList = new List<String>{recordTypedescription, asset.Name};
 		opp.Name = String.isEmpty(opp.Name) ? String.join(oppNameList, ' ') : opp.Name;
 		opp.OriginalAsset__c = String.isEmpty(opp.OriginalAsset__c) ? asset.Id : opp.OriginalAsset__c;
 		opp.ProductType__c = opp.ProductType__c == null ? recordTypedescription : opp.ProductType__c;
@@ -249,12 +249,12 @@ public with sharing class AssetTriggerHandler extends TriggerHandler {
 	private static Double getOppAmount(Asset asset) {
 		if (
 			asset.RecordTypeId ==
-			Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName().get('BuildingSavings').getRecordTypeId()
+				Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName().get('BuildingSavings').getRecordTypeId()
 		) {
 			return asset.TargetAmount__c;
 		} else if (
 			asset.RecordTypeId ==
-			Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName().get('CreditCases').getRecordTypeId()
+				Schema.SObjectType.Asset.getRecordTypeInfosByDeveloperName().get('CreditCases').getRecordTypeId()
 		) {
 			return asset.CreditAmount__c;
 		}

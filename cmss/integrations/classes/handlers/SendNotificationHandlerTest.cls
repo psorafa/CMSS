@@ -123,7 +123,7 @@ public class SendNotificationHandlerTest {
 		String fullResult = SendNotificationHandler.getTextationFromTemplate(
 			account,
 			textTemplate,
-			new Map<String, String>{ 'FirstName' => 'Franta' }
+			new Map<String, String>{'FirstName' => 'Franta'}
 		);
 
 		System.assertEquals(

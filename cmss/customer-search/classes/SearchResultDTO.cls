@@ -1,5 +1,5 @@
 public with sharing class SearchResultDTO {
-    @AuraEnabled
+	@AuraEnabled
 	public Boolean accessToRecord { get; set; }
 	@AuraEnabled
 	public String recordId { get; set; }
@@ -25,7 +25,7 @@ public with sharing class SearchResultDTO {
 	public String sObjectType { get; set; }
 
 	public SearchResultDTO(
-        Boolean accessToRecord,
+		Boolean accessToRecord,
 		String recordId,
 		String childRecordId,
 		String name,
@@ -38,7 +38,7 @@ public with sharing class SearchResultDTO {
 		String globalId,
 		String sObjectType
 	) {
-        this.accessToRecord = accessToRecord;
+		this.accessToRecord = accessToRecord;
 		this.recordId = recordId;
 		this.childRecordId = childRecordId;
 		this.name = name;

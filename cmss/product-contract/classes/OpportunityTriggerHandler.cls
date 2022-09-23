@@ -32,11 +32,11 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 	public void handleUpdateAccountDateFields() {
 		Set<Account> accountsToUpdate = new Set<Account>();
 		Map<Id, Opportunity> opportunityWithAccount = new Map<Id, Opportunity>(
-			[
-				SELECT AccountId, Account.LastInteractionDate__c, Account.OpenedOpportunityDate__c
-				FROM Opportunity
-				WHERE Id IN :Trigger.newMap.keySet()
-			]
+		[
+			SELECT AccountId, Account.LastInteractionDate__c, Account.OpenedOpportunityDate__c
+			FROM Opportunity
+			WHERE Id IN :Trigger.newMap.keySet()
+		]
 		);
 
 		for (Opportunity newOpportunity : (Opportunity[]) Trigger.new) {
@@ -49,9 +49,9 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 			}
 			if (
 				newOpportunity.LastModifiedDate != oldOpportunity?.LastModifiedDate &&
-				newOpportunity.LastModifiedDate.date() <= Date.today() &&
-				(newOpportunity.LastModifiedDate > actualOpportunityAccount?.LastInteractionDate__c ||
-				actualOpportunityAccount?.LastInteractionDate__c == null)
+					newOpportunity.LastModifiedDate.date() <= Date.today() &&
+					(newOpportunity.LastModifiedDate > actualOpportunityAccount?.LastInteractionDate__c ||
+						actualOpportunityAccount?.LastInteractionDate__c == null)
 			) {
 				actualOpportunityAccount.LastInteractionDate__c = (Date) newOpportunity.LastModifiedDate.date();
 				accountsToUpdate.add(actualOpportunityAccount);
@@ -59,12 +59,12 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 
 			if (
 				newOpportunity.CloseDate != oldOpportunity?.CloseDate &&
-				newOpportunity.CloseDate > Date.today() &&
-				(newOpportunity.StageName == '1' ||
-				newOpportunity.StageName == '2' ||
-				newOpportunity.StageName == '3') &&
-				(newOpportunity.CloseDate < actualOpportunityAccount?.OpenedOpportunityDate__c ||
-				actualOpportunityAccount?.OpenedOpportunityDate__c == null)
+					newOpportunity.CloseDate > Date.today() &&
+					(newOpportunity.StageName == '1' ||
+						newOpportunity.StageName == '2' ||
+						newOpportunity.StageName == '3') &&
+					(newOpportunity.CloseDate < actualOpportunityAccount?.OpenedOpportunityDate__c ||
+						actualOpportunityAccount?.OpenedOpportunityDate__c == null)
 			) {
 				actualOpportunityAccount.OpenedOpportunityDate__c = newOpportunity.CloseDate;
 				accountsToUpdate.add(actualOpportunityAccount);
@@ -83,7 +83,7 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 		List<Opportunity> assignAccessList = new List<Opportunity>();
 		List<Opportunity> removeAccessList = new List<Opportunity>();
 
-		List<String> closedLostOppStages = new List<String>{ '4', '5', '7' };
+		List<String> closedLostOppStages = new List<String>{'4', '5', '7'};
 
 		for (Opportunity opp : oppList) {
 			Opportunity oldOpp = oldOpps.get(opp.Id);

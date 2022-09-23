@@ -5,7 +5,7 @@ public class PersonManagementSOAPService {
 	public class PersonManagementServicePort {
 		public String endpoint_x =
 			IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c +
-			'/PersonManagementServiceWeb_v10/PersonManagementService';
+				'/PersonManagementServiceWeb_v10/PersonManagementService';
 		public Map<String, String> inputHttpHeaders_x;
 		public Map<String, String> outputHttpHeaders_x;
 		public String clientCertName_x;

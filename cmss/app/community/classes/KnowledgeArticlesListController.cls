@@ -14,7 +14,7 @@ public with sharing class KnowledgeArticlesListController {
 			List<TopicAssignment> topAss = [SELECT EntityId FROM TopicAssignment WHERE TopicId = :topicId LIMIT 1000];
 			String knowledgeQuery =
 				'SELECT Id, Title, CMSSArticleNumber__c, ValidTo__c, Type__c, AdditionalQuestionsAnswers__c, CurrentlyValid__c, LastPublishedDate, RecordType.Name FROM Knowledge__kav ' +
-				'WHERE PublishStatus = \'Online\' AND Id in (';
+					'WHERE PublishStatus = \'Online\' AND Id in (';
 
 			for (TopicAssignment ta : topAss) {
 				knowledgeQuery += ' \'' + ta.EntityId + '\',';

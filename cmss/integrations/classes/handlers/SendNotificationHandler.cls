@@ -67,8 +67,8 @@ public class SendNotificationHandler {
 				if (childObject?.get(fieldRelation?.get(0)) != null) {
 					finalText = finalText.replace(
 						'{!' +
-						fieldName +
-						'}',
+							fieldName +
+							'}',
 						String.valueOf(childObject.get(fieldRelation.get(0)))
 					);
 				} else {
@@ -134,8 +134,8 @@ public class SendNotificationHandler {
 		) {
 			return finalText.replace(
 				'{!' +
-				fieldName +
-				'}',
+					fieldName +
+					'}',
 				String.valueOf('' + childObject.get(fieldRelation.get(0)))
 			);
 		} else {

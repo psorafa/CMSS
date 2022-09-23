@@ -22,7 +22,7 @@ private class CaseMilestoneUtils_Test {
 			Name = 'Default',
 			AccountId = acc.Id,
 			SlaProcessId = [SELECT Id FROM SlaProcess WHERE Name = 'claim management' LIMIT 1]
-			.Id,
+				.Id,
 			StartDate = Date.today().addDays(-100),
 			EndDate = Date.today().addDays(20000)
 		);
@@ -33,27 +33,27 @@ private class CaseMilestoneUtils_Test {
 			ReceivingConfirmationMilestoneName__c = 'Odeslání potvrzení o přijetí podání',
 			ResponseSentMilestoneName__c = 'Odeslání odpovědi na podání'
 		);
-        insert csEntitlement;
-        
-        User defaultCaseOwner = TestDataFactory.getUser(new User());
-        insert defaultCaseOwner;
-        
-        List<PermissionSet> permSets = [
-            SELECT Id 
-            FROM PermissionSet 
-            WHERE Name = 'GDPRCaseManager' OR Name = 'ClientOmbudsman' OR Name = 'CaseManager'
-            ORDER BY Name
-        ];
-        System.runAs(defaultCaseOwner) {
-            PermissionSetAssignment psa1 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[0].Id);
-            PermissionSetAssignment psa2 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[1].Id);
-            PermissionSetAssignment psa3 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[2].Id);
-            insert new List<PermissionSetAssignment>{ psa1, psa2, psa3 };
-        }
+		insert csEntitlement;
+
+		User defaultCaseOwner = TestDataFactory.getUser(new User());
+		insert defaultCaseOwner;
+
+		List<PermissionSet> permSets = [
+			SELECT Id
+			FROM PermissionSet
+			WHERE Name = 'GDPRCaseManager' OR Name = 'ClientOmbudsman' OR Name = 'CaseManager'
+			ORDER BY Name
+		];
+		System.runAs(defaultCaseOwner) {
+			PermissionSetAssignment psa1 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[0].Id);
+			PermissionSetAssignment psa2 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[1].Id);
+			PermissionSetAssignment psa3 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[2].Id);
+			insert new List<PermissionSetAssignment>{psa1, psa2, psa3};
+		}
 
 		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
 		c1WithResponseSent = new Case(
-            OwnerId = defaultCaseOwner.Id,
+			OwnerId = defaultCaseOwner.Id,
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Date.today().addDays(-50),
 			Origin = '1',
@@ -65,7 +65,7 @@ private class CaseMilestoneUtils_Test {
 			ThirtyDayPeriodOverReason__c = 'Reason'
 		);
 		c2WithResponseSent = new Case(
-            OwnerId = defaultCaseOwner.Id,
+			OwnerId = defaultCaseOwner.Id,
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Date.today().addDays(-10),
 			Origin = '1',
@@ -77,7 +77,7 @@ private class CaseMilestoneUtils_Test {
 			ThirtyDayPeriodOverReason__c = 'Reason'
 		);
 		c3WithConfirmationSent = new Case(
-            OwnerId = defaultCaseOwner.Id,
+			OwnerId = defaultCaseOwner.Id,
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Date.today().addDays(-3),
 			Origin = '1',
@@ -89,7 +89,7 @@ private class CaseMilestoneUtils_Test {
 			ThirtyDayPeriodOverReason__c = 'Reason'
 		);
 		c4WithConfirmationSent = new Case(
-            OwnerId = defaultCaseOwner.Id,
+			OwnerId = defaultCaseOwner.Id,
 			RecordTypeId = clientClaimRTId,
 			ReceivedDate__c = Date.today().addDays(-3),
 			Origin = '1',
@@ -138,9 +138,9 @@ private class CaseMilestoneUtils_Test {
 					completionDate,
 					cm.CompletionDate,
 					'Case Milestone Completion Date not as expected for Case Id: ' +
-					cm.CaseId +
-					' and Milestone Type: ' +
-					cm.MilestoneType.Name
+						cm.CaseId +
+						' and Milestone Type: ' +
+						cm.MilestoneType.Name
 				);
 			} else {
 				System.assertEquals(false, cm.IsCompleted, 'Case Milestone should NOT be completed yet.');
@@ -148,9 +148,9 @@ private class CaseMilestoneUtils_Test {
 					null,
 					cm.CompletionDate,
 					'Case Milestone Completion Date should be not filled for for Case Id: ' +
-					cm.CaseId +
-					' and Milestone Type: ' +
-					cm.MilestoneType.Name
+						cm.CaseId +
+						' and Milestone Type: ' +
+						cm.MilestoneType.Name
 				);
 			}
 		}
@@ -180,8 +180,8 @@ private class CaseMilestoneUtils_Test {
 		for (CaseMilestone cm : caseMilestones) {
 			if (
 				csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name &&
-				(c1WithResponseSent.Id == cm.CaseId ||
-				c2WithResponseSent.Id == cm.CaseId)
+					(c1WithResponseSent.Id == cm.CaseId ||
+						c2WithResponseSent.Id == cm.CaseId)
 			) {
 				System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed');
 				if (c1WithResponseSent.Id == cm.CaseId) {
@@ -203,9 +203,9 @@ private class CaseMilestoneUtils_Test {
 					null,
 					cm.CompletionDate,
 					'Case Milestone Completion Date should be not filled for for Case Id: ' +
-					cm.CaseId +
-					' and Milestone Type: ' +
-					cm.MilestoneType.Name
+						cm.CaseId +
+						' and Milestone Type: ' +
+						cm.MilestoneType.Name
 				);
 			}
 		}
@@ -235,8 +235,8 @@ private class CaseMilestoneUtils_Test {
 		for (CaseMilestone cm : caseMilestones) {
 			if (
 				csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name &&
-				(c3WithConfirmationSent.Id == cm.CaseId ||
-				c4WithConfirmationSent.Id == cm.CaseId)
+					(c3WithConfirmationSent.Id == cm.CaseId ||
+						c4WithConfirmationSent.Id == cm.CaseId)
 			) {
 				System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed');
 				if (c3WithConfirmationSent.Id == cm.CaseId) {
@@ -258,9 +258,9 @@ private class CaseMilestoneUtils_Test {
 					null,
 					cm.CompletionDate,
 					'Case Milestone Completion Date should be not filled for for Case Id: ' +
-					cm.CaseId +
-					' and Milestone Type: ' +
-					cm.MilestoneType.Name
+						cm.CaseId +
+						' and Milestone Type: ' +
+						cm.MilestoneType.Name
 				);
 			}
 		}

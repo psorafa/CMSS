@@ -35,25 +35,25 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 		System.debug('Created Date Limit: ' + this.createdDateLimit);
 
 		return Database.getQueryLocator(
-			[
-				SELECT
-					Category__c,
-					StageName,
-					CreatedDateTime__c,
-					Owner.Email,
-					AccountId,
-					Account.PersonEmail,
-					Account.FirstName,
-					Account.LastName,
-					Account.PortfolioMngmtC__c,
-					OriginalAsset__r.Name
-				FROM Opportunity
-				WHERE
-					Category__c = '7'
-					AND (StageName = '1'
-					OR StageName = '2')
-					AND CreatedDateTime__c > :this.createdDateLimit
-			]
+		[
+			SELECT
+				Category__c,
+				StageName,
+				CreatedDateTime__c,
+				Owner.Email,
+				AccountId,
+				Account.PersonEmail,
+				Account.FirstName,
+				Account.LastName,
+				Account.PortfolioMngmtC__c,
+				OriginalAsset__r.Name
+			FROM Opportunity
+			WHERE
+				Category__c = '7'
+				AND (StageName = '1'
+				OR StageName = '2')
+				AND CreatedDateTime__c > :this.createdDateLimit
+		]
 		);
 	}
 
@@ -65,7 +65,7 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 				System.debug('this.actualDate: ' + this.actualDate);
 				System.debug(
 					'opportunity.CreatedDateTime__c.date().daysBetween(this.actualDate): ' +
-					opportunity.CreatedDateTime__c.date().daysBetween(this.actualDate)
+						opportunity.CreatedDateTime__c.date().daysBetween(this.actualDate)
 				);
 
 				System.debug('this.validDaysFromCreation: ' + this.validDaysFromCreation);
@@ -75,7 +75,7 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 					.daysBetween(this.actualDate);
 				if (
 					this.validDaysFromCreation.contains(numberOfDaysFromOppCreation) &&
-					opportunity?.Account?.PersonEmail != null
+						opportunity?.Account?.PersonEmail != null
 				) {
 					SendNotificationHandler userNotificationHandler = new SendNotificationHandler(
 						opportunity,
@@ -86,8 +86,8 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 				}
 				if (
 					numberOfDaysFromOppCreation == this.validDaysFromCreationForOZ &&
-					opportunity?.Owner?.Email != null &&
-					opportunity.Account.PortfolioMngmtC__c == null
+						opportunity?.Owner?.Email != null &&
+						opportunity.Account.PortfolioMngmtC__c == null
 				) {
 					SendNotificationHandler ownerNotificationHandler = new SendNotificationHandler(
 						opportunity,

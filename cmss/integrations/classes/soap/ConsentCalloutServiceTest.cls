@@ -39,7 +39,7 @@ private class ConsentCalloutServiceTest {
 					Message__c = 'Outgoing request'
 					AND ClassMethodName__c = 'ConsentCalloutService.ConsentServicePort.disableGeneralConsent_Http'
 			]
-			.size() > 0
+				.size() > 0
 		);
 	}
 
@@ -86,7 +86,7 @@ private class ConsentCalloutServiceTest {
 
 		Test.startTest();
 		InternalConsentEnablement.Result[] response = InternalConsentEnablement.enableInternalConsents(
-			new List<InternalConsentEnablement.Request>{ r }
+			new List<InternalConsentEnablement.Request>{r}
 		);
 		Test.stopTest();
 
@@ -125,12 +125,12 @@ private class ConsentCalloutServiceTest {
 		System.assertEquals(
 			6,
 			[
-					SELECT Id
-					FROM Log__c
-					WHERE
-						Message__c = 'Outgoing request'
-						AND ClassMethodName__c LIKE '%ConsentCalloutService.ConsentServicePort%'
-				]
+				SELECT Id
+				FROM Log__c
+				WHERE
+					Message__c = 'Outgoing request'
+					AND ClassMethodName__c LIKE '%ConsentCalloutService.ConsentServicePort%'
+			]
 				.size()
 		);
 	}

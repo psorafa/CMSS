@@ -14,7 +14,7 @@ private class AccessLogServiceTest {
 
 		insert accessShare;
 
-		AccessLogService.insertAccessLogsFromShares(new List<AccessShare__c>{ accessShare });
+		AccessLogService.insertAccessLogsFromShares(new List<AccessShare__c>{accessShare});
 
 		List<Access_Log__c> accessLogs = [
 			SELECT Id, AccessTo__c, RequestedBy__c, StartDate__c, ExpirationDate__c

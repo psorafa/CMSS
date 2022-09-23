@@ -20,21 +20,21 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
 		return Database.getQueryLocator(
-			[
-				SELECT
-					Id,
-					ClosedBy__c,
-					Role__c,
-					Status__c,
-					Account__c,
-					Email__c,
-					CreatedDate,
-					CancelationNotificationSentDate__c,
-					ModifiedDate__c,
-					SignatureDate__c
-				FROM ClientZone__c
-				WHERE ClosedBy__c = NULL AND (Role__c = '7' OR Role__c = '9') AND Status__c = '1'
-			]
+		[
+			SELECT
+				Id,
+				ClosedBy__c,
+				Role__c,
+				Status__c,
+				Account__c,
+				Email__c,
+				CreatedDate,
+				CancelationNotificationSentDate__c,
+				ModifiedDate__c,
+				SignatureDate__c
+			FROM ClientZone__c
+			WHERE ClosedBy__c = NULL AND (Role__c = '7' OR Role__c = '9') AND Status__c = '1'
+		]
 		);
 	}
 
@@ -85,9 +85,9 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 		for (ClientZone__c clientZone : accountToClientZoneMap.values()) {
 			if (
 				!associatedAccounts.containsKey(clientZone.Account__c) &&
-				!associatedAssets.containsKey(clientZone.Account__c) &&
-				!associatedOpportunities.containsKey(clientZone.Account__c) &&
-				!associatedAssetRelations.containsKey(clientZone.Account__c)
+					!associatedAssets.containsKey(clientZone.Account__c) &&
+					!associatedOpportunities.containsKey(clientZone.Account__c) &&
+					!associatedAssetRelations.containsKey(clientZone.Account__c)
 			) {
 				Date clientZoneCheckDate = clientZone.SignatureDate__c != null
 					? clientZone.SignatureDate__c
@@ -97,17 +97,17 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 				Integer daysBetweenNotificationAndDeletionIncrement = -1 * (this.daysBetweenNotificationAndDeletion);
 				if (
 					clientZone.CancelationNotificationSentDate__c == null &&
-					clientZoneCheckDate < actualDate.addDays(daysBeforeFirstNotificationIncrement)
+						clientZoneCheckDate < actualDate.addDays(daysBeforeFirstNotificationIncrement)
 				) {
 					sendNotification(clientZone);
 					clientZone.CancelationNotificationSentDate__c = System.now();
 					clientZonesToUpdate.add(clientZone);
 				} else if (
 					clientZone.CancelationNotificationSentDate__c != null &&
-					clientZone.CancelationNotificationSentDate__c <
-					actualDate.addDays(daysBetweenNotificationAndDeletionIncrement) &&
-					clientZone.CancelationNotificationSentDate__c >
-					actualDate.addDays(daysBetweenNotificationAndDeletionIncrement - 15)
+						clientZone.CancelationNotificationSentDate__c <
+							actualDate.addDays(daysBetweenNotificationAndDeletionIncrement) &&
+						clientZone.CancelationNotificationSentDate__c >
+							actualDate.addDays(daysBetweenNotificationAndDeletionIncrement - 15)
 				) {
 					CancelCZContractHandler handler = new CancelCZContractHandler(clientZone);
 					handler.handle();
@@ -123,7 +123,7 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 				clientZone,
 				CANCELATION_TEMPLATE_NAME,
 				clientZone.Email__c,
-				new Map<String, String>{ 'CANCELATION_DATE' => actualDate.addDays(14).format('dd. MM. yyyy') }
+				new Map<String, String>{'CANCELATION_DATE' => actualDate.addDays(14).format('dd. MM. yyyy')}
 			);
 			handler.handle();
 		}

@@ -63,12 +63,12 @@ public class DeleteClientZoneNotification_BatchTest {
 		account3.LastName = 'Novák';
 		account3.GlobalId__c = '87654';
 
-		insert new List<Account>{ account1, account2, account3 };
+		insert new List<Account>{account1, account2, account3};
 
 		account1.GlobalId__c = account1.GlobalId__c;
 		account2.GlobalId__c = account2.GlobalId__c;
 
-		update new List<Account>{ account1, account2 };
+		update new List<Account>{account1, account2};
 
 		ClientZone__c clientZone1 = new ClientZone__c();
 		clientZone1.ClosedBy__c = null;
@@ -96,7 +96,7 @@ public class DeleteClientZoneNotification_BatchTest {
 		clientZone3.ModifiedDate__c = System.now().addDays(-2);
 		clientZone3.CancelationNotificationSentDate__c = System.now().addDays(-35);
 
-		insert new List<ClientZone__c>{ clientZone1, clientZone2, clientZone3 };
+		insert new List<ClientZone__c>{clientZone1, clientZone2, clientZone3};
 
 		Test.setCreatedDate(clientZone1.ID, System.now().addDays(-16));
 		Test.setCreatedDate(clientZone2.ID, System.now().addDays(-50));

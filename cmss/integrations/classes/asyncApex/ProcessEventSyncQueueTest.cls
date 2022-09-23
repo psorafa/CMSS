@@ -13,7 +13,7 @@ class ProcessEventSyncQueueTest {
 		eventToDelete.GoogleId__c = 'eventId2';
 		eventToDelete.StartDateTime = system.today();
 		eventToDelete.EndDateTime = system.today() + 5;
-		insert new List<Event>{ newEvent, eventToDelete };
+		insert new List<Event>{newEvent, eventToDelete};
 
 		User testUser = TestDataFactory.getUser(new User());
 		insert testUser;
@@ -63,7 +63,7 @@ class ProcessEventSyncQueueTest {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{'start', 'end'}),
 			null,
 			null
 		);
@@ -215,12 +215,12 @@ class ProcessEventSyncQueueTest {
 		google_event.end_x = new GoogleCalendarSyncUtility.GoogleDateDTO();
 		google_event.end_x.dateTime_x = googleDate + '02T13:45:00+02:00';
 
-		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{ google_event };
+		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{google_event};
 
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{'start', 'end'}),
 			null,
 			null
 		);

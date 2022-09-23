@@ -20,9 +20,9 @@ global with sharing class SOAPCommonTypes {
 			String now = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
 			usernameToken.addChildElement('Created', wsse, 'wsu').addTextNode(now.substring(0, now.length() - 2) + ':00');
 		}
-            public void addWssToHeader1(DOM.XmlNode header, String username, String password) {
+		public void addWssToHeader1(DOM.XmlNode header, String username, String password) {
 			String wsse = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd';
-            String wsu = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd';
+			String wsu = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd';
 			String pwdType = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText';
 			String encodingType = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary';
 			DOM.XmlNode security = header.addChildElement('Security', wsse, 'wsse');
@@ -38,7 +38,7 @@ global with sharing class SOAPCommonTypes {
 			nonce.setAttribute('EncodingType', encodingType);
 			nonce.addTextNode(generateNonce());
 			String now = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
-			usernameToken.addChildElement('wsu:Created', null , null).addTextNode(now.substring(0, now.length() - 2) + ':00');
+			usernameToken.addChildElement('wsu:Created', null, null).addTextNode(now.substring(0, now.length() - 2) + ':00');
 		}
 
 		private String generateNonce() {

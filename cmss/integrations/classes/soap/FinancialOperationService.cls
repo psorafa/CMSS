@@ -4,7 +4,7 @@ public without sharing class FinancialOperationService {
 	public class FinancialOperationServicePort {
 		public String endpoint_x =
 			IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c +
-			'/FinancialOperationServiceWeb_v05/FinancialOperationService';
+				'/FinancialOperationServiceWeb_v05/FinancialOperationService';
 		public Map<String, String> inputHttpHeaders_x;
 		public Map<String, String> outputHttpHeaders_x;
 		private transient String[] ns_map_type_info = new List<String>{

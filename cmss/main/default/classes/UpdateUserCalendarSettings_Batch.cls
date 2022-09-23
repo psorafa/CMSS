@@ -5,7 +5,7 @@ public class UpdateUserCalendarSettings_Batch implements Database.Batchable<sObj
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
 		String queryString =
 			'SELECT  Id, WatchExpirationDateTime__c, WatchId__c, ResourceId__c, UserCalendarID__c ' +
-			'FROM UserCalendarSetting__c WHERE WatchExpirationDateTime__c <= NEXT_N_WEEKS:2';
+				'FROM UserCalendarSetting__c WHERE WatchExpirationDateTime__c <= NEXT_N_WEEKS:2';
 		return Database.getQueryLocator(queryString);
 	}
 

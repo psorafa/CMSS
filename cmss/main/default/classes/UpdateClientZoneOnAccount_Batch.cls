@@ -15,13 +15,13 @@ public class UpdateClientZoneOnAccount_Batch implements Database.Batchable<sObje
 		try {
 			Set<Id> accountIds = (new Map<Id, Account>(acc)).keySet();
 			Map<Id, Account> accountsWithClientZones = new Map<Id, Account>(
-				[
-					SELECT
-						Id,
-						(SELECT Id, CreatedDate, toLabel(Role__c) FROM ClientZones__r ORDER BY CreatedDate DESC LIMIT 1)
-					FROM Account
-					WHERE Id IN :accountIds
-				]
+			[
+				SELECT
+					Id,
+					(SELECT Id, CreatedDate, toLabel(Role__c) FROM ClientZones__r ORDER BY CreatedDate DESC LIMIT 1)
+				FROM Account
+				WHERE Id IN :accountIds
+			]
 			);
 
 			List<Account> accountsToUpdate = new List<Account>();

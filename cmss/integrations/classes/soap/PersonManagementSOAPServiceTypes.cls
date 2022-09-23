@@ -228,7 +228,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'dateLastUpdate',
 			'subType',
@@ -890,7 +890,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'personNumber',
 			'firstName',
@@ -1747,7 +1747,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'personNumber',
 			'firstName',
@@ -2709,7 +2709,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'clientGlobalId',
 			'firstName',
@@ -3457,8 +3457,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'requestHeader', 'requestBody'};
 		public CoupleDocumentRequest() {
 		}
 		public CoupleDocumentRequest(
@@ -3531,7 +3531,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'globalId',
 			'documentUID',
@@ -3634,7 +3634,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'responseHeader',
 			'responseHeader_CoupleDocumentResponse',
@@ -3699,8 +3699,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'successful' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'successful'};
 		public CoupleDocumentResponseBody() {
 		}
 		public CoupleDocumentResponseBody(DOM.XmlNode responseNode) {
@@ -3751,8 +3751,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'requestHeader', 'requestBody'};
 		public CreateClientRequest() {
 		}
 		public CreateClientRequest(
@@ -3805,8 +3805,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'clientInfo', 'listOfCommunications' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'clientInfo', 'listOfCommunications'};
 		public CreateClientRequestBody() {
 		}
 		public CreateClientRequestBody(DOM.XmlNode responseNode) {
@@ -3890,7 +3890,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'responseHeader',
 			'responseHeader_CreateClientResponse',
@@ -4010,7 +4010,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'personNumber',
 			'globalId',
@@ -4165,8 +4165,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'requestHeader', 'requestBody'};
 		public CreatePersonRelationRequest() {
 		}
 		public CreatePersonRelationRequest(
@@ -4210,8 +4210,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'personRelation' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'personRelation'};
 		public CreatePersonRelationRequestBody() {
 		}
 		public CreatePersonRelationRequestBody(DOM.XmlNode responseNode) {
@@ -4271,7 +4271,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'responseHeader',
 			'responseHeader_CreatePersonRelationResponse',
@@ -4336,8 +4336,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'createPersonRelationResponseInfo' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'createPersonRelationResponseInfo'};
 		public CreatePersonRelationResponseBody() {
 		}
 		public CreatePersonRelationResponseBody(DOM.XmlNode responseNode) {
@@ -4379,8 +4379,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'relationId' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'relationId'};
 		public CreatePersonRelationResponseInfoType() {
 		}
 		public CreatePersonRelationResponseInfoType(DOM.XmlNode responseNode) {
@@ -4432,7 +4432,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'dateOfStayFrom',
 			'dateOfStayUntil',
@@ -4537,7 +4537,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'cardType',
 			'dateOfStayFrom',
@@ -4641,8 +4641,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'requestHeader', 'requestBody'};
 		public GetReservedGlobalIdRequest() {
 		}
 		public GetReservedGlobalIdRequest(
@@ -4704,7 +4704,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'firstName',
 			'lastName',
@@ -4793,7 +4793,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'responseHeader',
 			'responseHeader_GetReservedGlobalIdResponse',
@@ -4858,8 +4858,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'globalId' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'globalId'};
 		public GetReservedGlobalIdResponseBody() {
 		}
 		public GetReservedGlobalIdResponseBody(DOM.XmlNode responseNode) {
@@ -4948,7 +4948,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'authority',
 			'number_x',
@@ -5105,7 +5105,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'companyID',
 			'companyName',
@@ -5314,7 +5314,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'dateLastUpdate',
 			'contactType',
@@ -5556,8 +5556,8 @@ public class PersonManagementSOAPServiceTypes {
 			'-1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'listOfCommunicationsItem' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'listOfCommunicationsItem'};
 		public ListOfCommunicationsType() {
 		}
 		public ListOfCommunicationsType(DOM.XmlNode responseNode) {
@@ -5706,7 +5706,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'birthDate',
 			'city',
@@ -5907,8 +5907,8 @@ public class PersonManagementSOAPServiceTypes {
 			'-1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'listOfPersonsItem' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'listOfPersonsItem'};
 		public ListOfPersonsType() {
 		}
 		public ListOfPersonsType(DOM.XmlNode responseNode) {
@@ -6021,7 +6021,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'sourceCustomerId',
 			'sourceContactId',
@@ -6179,8 +6179,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'requestHeader', 'requestBody'};
 		public SearchCSOBSNonClientRequest() {
 		}
 		public SearchCSOBSNonClientRequest(
@@ -6225,7 +6225,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'personalIdentificationNumber',
 			'lastName'
@@ -6294,7 +6294,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'responseHeader',
 			'responseHeader_SearchCSOBSNonClientResponse',
@@ -6359,8 +6359,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'jsonResponse' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'jsonResponse'};
 		public SearchCSOBSNonClientResponseBody() {
 		}
 		public SearchCSOBSNonClientResponseBody(DOM.XmlNode responseNode) {
@@ -6403,8 +6403,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'requestHeader', 'requestBody'};
 		public SearchPersonByIdNumberRequest() {
 		}
 		public SearchPersonByIdNumberRequest(
@@ -6466,7 +6466,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'personalIdentityNumber',
 			'externalId',
@@ -6551,7 +6551,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'responseHeader',
 			'responseHeader_SearchPersonByIdNumberResponse',
@@ -6616,8 +6616,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'listOfPersons' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'listOfPersons'};
 		public SearchPersonByIdNumberResponseBody() {
 		}
 		public SearchPersonByIdNumberResponseBody(DOM.XmlNode responseNode) {
@@ -6778,7 +6778,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'dateLastUpdate',
 			'phone',
@@ -7012,8 +7012,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'requestHeader', 'requestBody'};
 		public UpdateClientRequest() {
 		}
 		public UpdateClientRequest(
@@ -7075,7 +7075,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'clientDetail',
 			'listOfCommunications',
@@ -7179,7 +7179,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'responseHeader',
 			'responseHeader_UpdateClientResponse',
@@ -7281,7 +7281,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'success',
 			'riskClass',
@@ -7412,8 +7412,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'requestHeader', 'requestBody'};
 		public UpdateCommunicationsRequest() {
 		}
 		public UpdateCommunicationsRequest(
@@ -7466,8 +7466,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'personNumber', 'listOfCommunications' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'personNumber', 'listOfCommunications'};
 		public UpdateCommunicationsRequestBody() {
 		}
 		public UpdateCommunicationsRequestBody(DOM.XmlNode responseNode) {
@@ -7543,7 +7543,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'responseHeader',
 			'responseHeader_UpdateCommunicationsResponse',
@@ -7617,8 +7617,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'success', 'listOfCommunications' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'success', 'listOfCommunications'};
 		public UpdateCommunicationsResponseBody() {
 		}
 		public UpdateCommunicationsResponseBody(DOM.XmlNode responseNode) {
@@ -7693,8 +7693,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'requestHeader', 'requestBody'};
 		public UpdateCSOBNonClientRequest() {
 		}
 		public UpdateCSOBNonClientRequest(
@@ -7730,8 +7730,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'jsonRequest' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'jsonRequest'};
 		public UpdateCSOBNonClientRequestBody() {
 		}
 		public UpdateCSOBNonClientRequestBody(DOM.XmlNode responseNode) {
@@ -7783,7 +7783,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'responseHeader',
 			'responseHeader_UpdateCSOBNonClientResponse',
@@ -7848,8 +7848,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'successful' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'successful'};
 		public UpdateCSOBNonClientResponseBody() {
 		}
 		public UpdateCSOBNonClientResponseBody(DOM.XmlNode responseNode) {
@@ -7900,8 +7900,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'requestHeader', 'requestBody'};
 		public ValidateClientRequest() {
 		}
 		public ValidateClientRequest(
@@ -7954,8 +7954,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'clientDetail', 'listOfCommunications' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'clientDetail', 'listOfCommunications'};
 		public ValidateClientRequestBody() {
 		}
 		public ValidateClientRequestBody(DOM.XmlNode responseNode) {
@@ -8039,7 +8039,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'responseHeader',
 			'responseHeader_ValidateClientResponse',
@@ -8104,8 +8104,8 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'success' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'success'};
 		public ValidateClientResponseBody() {
 		}
 		public ValidateClientResponseBody(DOM.XmlNode responseNode) {
@@ -8275,7 +8275,7 @@ public class PersonManagementSOAPServiceTypes {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'dateLastUpdate',
 			'value',

@@ -20,12 +20,12 @@ public without sharing class SearchController {
 		returningQuery = objectName + ' ( Id, ' + String.join(fields, ',') + condition;
 		String query =
 			'FIND :searchKeyword IN ALL FIELDS RETURNING ' +
-			returningQuery +
-			' LIMIT ' +
-			String.valueOf(MAX_NUMBER_OF_QUERIED_OBJS) +
-			' OFFSET ' +
-			String.valueOf(offset) +
-			')';
+				returningQuery +
+				' LIMIT ' +
+				String.valueOf(MAX_NUMBER_OF_QUERIED_OBJS) +
+				' OFFSET ' +
+				String.valueOf(offset) +
+				')';
 		System.debug('Query ' + query);
 		List<List<SObject>> searchRecords = Search.query(query);
 		return searchRecords.get(0);
@@ -62,8 +62,8 @@ public without sharing class SearchController {
 			}
 			if (
 				subordinateUsers.size() > 4 ||
-				queriedObjects.size() < MAX_NUMBER_OF_QUERIED_OBJS ||
-				limitCounter >= 10
+					queriedObjects.size() < MAX_NUMBER_OF_QUERIED_OBJS ||
+					limitCounter >= 10
 			) {
 				doQuery = false;
 			} else {

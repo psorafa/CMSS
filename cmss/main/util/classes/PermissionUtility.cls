@@ -39,7 +39,7 @@ public with sharing class PermissionUtility {
 		List<DescribeFieldResult> fieldDescribes = new List<DescribeFieldResult>();
 		Map<String, Object> converted = (Map<String, Object>) JSON.deserializeUntyped(JSON.serialize(so));
 		for (String fieldName : converted.keySet()) {
-			System.debug('fieldName: '+ fieldName);
+			System.debug('fieldName: ' + fieldName);
 			if (fields.containsKey(fieldName)) {
 				fieldDescribes.add(fields.get(fieldName).getDescribe());
 			}
@@ -49,7 +49,7 @@ public with sharing class PermissionUtility {
 
 	@AuraEnabled(Cacheable=true)
 	public static Boolean checkUserCRUD(String objectName, String operation) {
-		DescribeSObjectResult result = Schema.describeSObjects(new List<String>{ objectName }).get(0);
+		DescribeSObjectResult result = Schema.describeSObjects(new List<String>{objectName}).get(0);
 		if (operation == 'insert') {
 			return result.isCreateable();
 		}

@@ -29,8 +29,8 @@ public without sharing class AccessShareService {
 				accountShareHelper.addToMapsList(
 					accShareMap,
 					'' +
-					accountShare.UserOrGroupId +
-					accountShare.AccountId,
+						accountShare.UserOrGroupId +
+						accountShare.AccountId,
 					accountShare
 				);
 			}
@@ -56,12 +56,12 @@ public without sharing class AccessShareService {
 				accessShareHelper.addToMapsList(
 					accessShareMap,
 					accessShare.RequestedBy__c +
-					',' +
-					accessShare.AccessTo__c +
-					',' +
-					accessShare.Type__c +
-					',' +
-					accessShare.Reason__c,
+						',' +
+						accessShare.AccessTo__c +
+						',' +
+						accessShare.Type__c +
+						',' +
+						accessShare.Reason__c,
 					accessShare
 				);
 			}
@@ -76,12 +76,12 @@ public without sharing class AccessShareService {
 			]) {
 				String key =
 					origShare.RequestedBy__c +
-					',' +
-					origShare.AccessTo__c +
-					',' +
-					origShare.Type__c +
-					',' +
-					origShare.Reason__c;
+						',' +
+						origShare.AccessTo__c +
+						',' +
+						origShare.Type__c +
+						',' +
+						origShare.Reason__c;
 				AccessShare__c[] duplicateShares = accessShareMap.remove(key);
 			}
 
@@ -131,9 +131,9 @@ public without sharing class AccessShareService {
 	) {
 		if (
 			accessShareDtoRemoves != null &&
-			accessShareDtoRemoves != null &&
-			!accessShares.isEmpty() &&
-			!accessShares.isEmpty()
+				accessShareDtoRemoves != null &&
+				!accessShares.isEmpty() &&
+				!accessShares.isEmpty()
 		) {
 			try {
 				List<AccessShare__c> accessShareToBeDeleted = new List<AccessShare__c>();
@@ -141,11 +141,11 @@ public without sharing class AccessShareService {
 					for (Integer i = 0; i < accessShares.size(); i++) {
 						if (
 							accessShares[i].AccessTo__c == accessShareDtoRemove.AccountId &&
-							accessShares[i].RequestedBy__c == accessShareDtoRemove.userId
+								accessShares[i].RequestedBy__c == accessShareDtoRemove.userId
 						) {
 							if (
 								accessShares[i].Type__c == type &&
-								accessShares[i].Reason__c == accessShareDtoRemove.reason
+									accessShares[i].Reason__c == accessShareDtoRemove.reason
 							) {
 								accessShareToBeDeleted.add(accessShares[i]);
 								accessShares.remove(i--);
@@ -160,8 +160,8 @@ public without sharing class AccessShareService {
 				for (AccessShareDTO.Remove accessShareDtoRemove : accessShareDtoRemoves) {
 					if (
 						accessShareDtoRemove.toBeDeleted &&
-						accessShareDtoRemove.isManual &&
-						accessShareDtoRemove.accountShare.Id != null
+							accessShareDtoRemove.isManual &&
+							accessShareDtoRemove.accountShare.Id != null
 					) {
 						accountShareToBeDeleted.add(accessShareDtoRemove.accountShare);
 					}

@@ -5,8 +5,8 @@ private class PortfolioManagementRequestTrigHanTest {
 		insert TestDataFactory.getIntegrationSettings();
 	}
 
-    @isTest
-    static void testSetDefaultRequestStatus() {
+	@isTest
+	static void testSetDefaultRequestStatus() {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
@@ -21,8 +21,8 @@ private class PortfolioManagementRequestTrigHanTest {
 		request1 = [SELECT RequestStatus__c FROM PortfolioManagementRequest__c WHERE Id = :request1.Id];
 
 		System.assertNotEquals(null, request1.RequestStatus__c);
-		System.assertEquals('4', request1.RequestStatus__c);        
-    }
+		System.assertEquals('4', request1.RequestStatus__c);
+	}
 
 	@IsTest
 	static void testSetBatchId_single() {
@@ -72,7 +72,7 @@ private class PortfolioManagementRequestTrigHanTest {
 			new PortfolioManagementRequest__c(BatchID__c = 'test', ValidFrom__c = System.now().addDays(1))
 		);
 		Test.startTest();
-		insert new List<PortfolioManagementRequest__c>{ r1, r2, r3 };
+		insert new List<PortfolioManagementRequest__c>{r1, r2, r3};
 		Test.stopTest();
 		List<PortfolioManagementRequest__c> requests = [SELECT BatchID__c FROM PortfolioManagementRequest__c];
 		System.assertNotEquals(null, requests.get(0).BatchID__c);
@@ -101,7 +101,7 @@ private class PortfolioManagementRequestTrigHanTest {
 		);
 		Test.startTest();
 		try {
-			insert new List<PortfolioManagementRequest__c>{ r1, r2, r3 };
+			insert new List<PortfolioManagementRequest__c>{r1, r2, r3};
 		} catch (DmlException e) {
 			System.assert(e.getMessage().contains('BatchID__c is required in bulk insert'), e.getMessage());
 		}

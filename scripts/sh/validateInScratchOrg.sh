@@ -18,6 +18,8 @@ DAYS=${5-1}
 
 #cleanup when done
 function finish {
+    # revert changes to forceignore
+    cp scripts/sh/ignores/.forceignore_sandbox .forceignore
     # remove scratch org
     echo "Deleting scratch org..."
     sfdx force:org:delete --targetusername $ALIAS --noprompt
@@ -39,6 +41,10 @@ fi
 sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wait 8 -u $ALIAS
 sfdx force:package:install --package 04t5p000000eegF -r --publishwait 3 --wait 8 -u $ALIAS
 sfdx force:package:install --package 04t1U000003Bnj3QAC -r --publishwait 3 --wait 8 -u $ALIAS
+
+# set forceignore to scratch org compatible
+cp scripts/sh/ignores/.forceignore_SO .forceignore
+
 #push source
 echo "Validating source deploy sequence..."
 sfdx force:source:deploy --ignorewarnings --targetusername $ALIAS --sourcepath cmss/main/

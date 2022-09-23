@@ -8,8 +8,8 @@ private class SF_PersonManagementSOAPServiceTest {
 	private static String clientGlobalId = '0123456789';
 	private static String clientExternalId = '1234567890';
 	private static Date birthDate = Date.today().addYears(-20);
-    private static String gender = 'male';
-    private static String citizenship = '3';
+	private static String gender = 'male';
+	private static String citizenship = '3';
 	private static Boolean isPoliticallyExposed = false;
 	private static Boolean isResident = false;
 
@@ -56,8 +56,8 @@ private class SF_PersonManagementSOAPServiceTest {
 		System.assertEquals(clientGlobalId, account.GlobalId__c);
 		System.assertEquals(clientExternalId, account.ExternalId__c);
 		System.assertEquals(birthDate, account.Birthdate__c);
-        System.assertEquals(gender, account.Gender__c);
-        System.assertEquals(citizenship, account.Nationality__c);
+		System.assertEquals(gender, account.Gender__c);
+		System.assertEquals(citizenship, account.Nationality__c);
 		System.assertEquals(isPoliticallyExposed, account.IsPoliticallyExposed__c);
 		System.assertEquals(isResident, account.IsResident__c);
 
@@ -156,7 +156,7 @@ private class SF_PersonManagementSOAPServiceTest {
 		System.assertEquals('Record already exists: Client - Global ID: ' + clientGlobalId, response.fault.message);
 	}
 
-    @IsTest
+	@IsTest
 	static void createClient_alreadyExistsByExternalId() {
 		insert new Account(
 			Name = 'existing',
@@ -196,8 +196,8 @@ private class SF_PersonManagementSOAPServiceTest {
 		requestBody.client.clientGlobalId = clientGlobalId;
 		requestBody.client.externalId = clientExternalId;
 		requestBody.client.birthDate = birthDate;
-        requestBody.client.gender = gender;
-        requestBody.client.citizenship = citizenship;
+		requestBody.client.gender = gender;
+		requestBody.client.citizenship = citizenship;
 		requestBody.client.spSa = 'spsA';
 		requestBody.client.spSc = 'spsC';
 		requestBody.client.isPoliticallyExposed = isPoliticallyExposed;

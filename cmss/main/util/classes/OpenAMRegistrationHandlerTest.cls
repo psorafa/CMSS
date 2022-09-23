@@ -21,7 +21,7 @@ private class OpenAMRegistrationHandlerTest {
 	@IsTest
 	static void testCreateUser_glow() {
 		User u = TestDataFactory.getUser(new User(
-				GlowID__c = 'test0001'
+			GlowID__c = 'test0001'
 		));
 		insert u;
 

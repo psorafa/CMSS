@@ -53,17 +53,17 @@ private class PersonManagementUtilityTest {
 	static void removeEmptyDateFieldsTest() {
 		String json =
 			'[{"Name":"Account 1","Birthdate__c":"1960-04-21","DateOfDeletion__c":"",' +
-			'"Assets":[{"Name":"Asset1","DueDate__c":"","ValidTo__c":""}]},' +
-			'{"Name":"Account 2","Birthdate__c":""}]';
+				'"Assets":[{"Name":"Asset1","DueDate__c":"","ValidTo__c":""}]},' +
+				'{"Name":"Account 2","Birthdate__c":""}]';
 
 		String expectedResultForAsset =
 			'[{"Name":"Account 1","Birthdate__c":"1960-04-21","DateOfDeletion__c":"",' +
-			'"Assets":[{"Name":"Asset1"}]},' +
-			'{"Name":"Account 2","Birthdate__c":""}]';
+				'"Assets":[{"Name":"Asset1"}]},' +
+				'{"Name":"Account 2","Birthdate__c":""}]';
 		String expectedResultForAccount =
 			'[{"Name":"Account 1","Birthdate__c":"1960-04-21",' +
-			'"Assets":[{"Name":"Asset1","DueDate__c":"","ValidTo__c":""}]},' +
-			'{"Name":"Account 2"}]';
+				'"Assets":[{"Name":"Asset1","DueDate__c":"","ValidTo__c":""}]},' +
+				'{"Name":"Account 2"}]';
 
 		String resultForAssetFields = PersonManagementUtility.removeEmptyDateFields(json, 'Asset');
 		String resultForAccountFields = PersonManagementUtility.removeEmptyDateFields(json, 'Account');
@@ -76,10 +76,10 @@ private class PersonManagementUtilityTest {
 	static void insertPersonCSOBDataTest() {
 		String serializedInput =
 			'{"getPersonCSOBDataResponse":{' +
-			'"Account":{"Name":"Account 1","Birthdate__c":"1960-04-21","DateOfDeletion__c":"","ExternalId__c":"987654"},' +
-			'"Asset":[{"Name":"Asset1","DueDate__c":"","ValidTo__c":"","ExternalId__c":"234567"},{"Name":"Asset2","ExternalId__c":"123456"}],' +
-			'"ContactInformation":[{"Name":"Contact Information 1","ExternalId__c":"3456789"}]' +
-			'}}';
+				'"Account":{"Name":"Account 1","Birthdate__c":"1960-04-21","DateOfDeletion__c":"","ExternalId__c":"987654"},' +
+				'"Asset":[{"Name":"Asset1","DueDate__c":"","ValidTo__c":"","ExternalId__c":"234567"},{"Name":"Asset2","ExternalId__c":"123456"}],' +
+				'"ContactInformation":[{"Name":"Contact Information 1","ExternalId__c":"3456789"}]' +
+				'}}';
 
 		PersonManagementUtility.UpdatePersonCSOBDataRequest resultUpdateRequest;
 		Test.startTest();

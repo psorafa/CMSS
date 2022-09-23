@@ -13,7 +13,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 		CaseService.populateUserLookupsFromCPU(Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 	}
 
-    public override void afterInsert() {
+	public override void afterInsert() {
 		CaseService.setGDPRAndClientCaseOnAccount((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 	}
 
@@ -22,43 +22,43 @@ public class CaseTriggerHandler extends TriggerHandler {
 		Map<Id, Case> oldMap = (Map<Id, Case>) Trigger.oldMap;
 
 		handleMilestoneCompletion(newList, oldMap);
-        handleMilestoneForCloseCases(newList);
-        CaseService.setGDPRAndClientCaseOnAccount((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
+		handleMilestoneForCloseCases(newList);
+		CaseService.setGDPRAndClientCaseOnAccount((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 	}
 
 	public override void beforeDelete() {
 		preventDeletion(Trigger.old);
 	}
 
-    public override void afterDelete() {
+	public override void afterDelete() {
 		CaseService.setGDPRAndClientCaseOnAccount((List<Case>) Trigger.old, null);
 	}
 
 	// ***************************** handlers and helping methods***************************************** //
 
-    /**
+	/**
 	 * @author petr bartonicek
 	 * @description check if the any case is closed, if yes close the milestones
 	 * @param newList is Trigger.New reference
 	 */
-    private void handleMilestoneForCloseCases(List<Case> newList) {
-        ClientClaimEntitlement__c csEntitlementInfo = ClientClaimEntitlement__c.getOrgDefaults();
-        Set<Id> relevantCaseIdsToCloseMilestone = new Set<Id>();
-        
-        for (Case newCase : newList) {
-            if(newCase.IsClosed == true) {
-                relevantCaseIdsToCloseMilestone.add(newCase.Id);
-            }
-        }
-        
-        if(!relevantCaseIdsToCloseMilestone.isEmpty() && csEntitlementInfo != null) {
-            //String responseMilestoneName = csEntitlementInfo.ResponseSentMilestoneName__c;
-            String confirmMilestoneName = csEntitlementInfo.ReceivingConfirmationMilestoneName__c;
-            List<String> milestonesNames = new List<String>{confirmMilestoneName};
-           	CaseMilestoneUtils.closeMilestones(relevantCaseIdsToCloseMilestone, milestonesNames);    
-        }
-    }
-    
+	private void handleMilestoneForCloseCases(List<Case> newList) {
+		ClientClaimEntitlement__c csEntitlementInfo = ClientClaimEntitlement__c.getOrgDefaults();
+		Set<Id> relevantCaseIdsToCloseMilestone = new Set<Id>();
+
+		for (Case newCase : newList) {
+			if (newCase.IsClosed == true) {
+				relevantCaseIdsToCloseMilestone.add(newCase.Id);
+			}
+		}
+
+		if (!relevantCaseIdsToCloseMilestone.isEmpty() && csEntitlementInfo != null) {
+			//String responseMilestoneName = csEntitlementInfo.ResponseSentMilestoneName__c;
+			String confirmMilestoneName = csEntitlementInfo.ReceivingConfirmationMilestoneName__c;
+			List<String> milestonesNames = new List<String>{confirmMilestoneName};
+			CaseMilestoneUtils.closeMilestones(relevantCaseIdsToCloseMilestone, milestonesNames);
+		}
+	}
+
 	/**
 	 * @author andrea olexova
 	 * @description method to handle completion of relevant case milestones when particulat updates to cases occur
@@ -100,7 +100,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 				newCase.ResponseSentDate__c != null &&
 				oldCase != null &&
 				oldCase.ResponseSentDate__c != newCase.ResponseSentDate__c
-			) {
+		) {
 			return true;
 		} else if (
 			ACTION_COMPLETE_CONFIRMATION_MILESTONE == actionName && newCase.IsClientClaim__c &&
@@ -108,7 +108,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 				newCase.ReceivingConfirmationDate__c != null &&
 				oldCase != null &&
 				oldCase.ReceivingConfirmationDate__c != newCase.ReceivingConfirmationDate__c
-			) {
+		) {
 			return true;
 		}
 		return false;

@@ -31,9 +31,9 @@ private class MicroCampaignCreatorTest {
 		Account a1 = TestDataFactory.getPersonAccount(new Account());
 		Account a2 = TestDataFactory.getPersonAccount(new Account());
 		Account a3 = TestDataFactory.getAccount(new Account());
-		insert new List<Account>{ a1, a2, a3 };
+		insert new List<Account>{a1, a2, a3};
 
-		List<Id> ids = new List<Id>{ a1.Id, a2.Id, a3.Id };
+		List<Id> ids = new List<Id>{a1.Id, a2.Id, a3.Id};
 
 		Campaign campaignTemplate = getCampaignTemplate();
 		Task taskTemplate = getTaskTemplate();
@@ -148,7 +148,7 @@ private class MicroCampaignCreatorTest {
 	static void testBehaviorWithAssetsIds() {
 		Account a1 = TestDataFactory.getPersonAccount(new Account());
 		Account a2 = TestDataFactory.getPersonAccount(new Account());
-		insert new List<Account>{ a1, a2 };
+		insert new List<Account>{a1, a2};
 
 		Asset ass1 = TestDataFactory.getAsset(new Asset(AccountId = a1.Id));
 		Asset ass2 = TestDataFactory.getAsset(new Asset(AccountId = a2.Id));
@@ -157,9 +157,9 @@ private class MicroCampaignCreatorTest {
 				AccountId = a2.Id // second asset for same account
 			)
 		);
-		insert new List<Asset>{ ass1, ass2, ass3 };
+		insert new List<Asset>{ass1, ass2, ass3};
 
-		List<Id> ids = new List<Id>{ ass1.Id, ass2.Id, ass3.Id };
+		List<Id> ids = new List<Id>{ass1.Id, ass2.Id, ass3.Id};
 
 		Campaign campaignTemplate = new Campaign();
 		campaignTemplate.Name = 'Test Campaign';

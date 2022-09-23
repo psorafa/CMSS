@@ -36,8 +36,7 @@ public class AccountTriggerHandler extends TriggerHandler {
 			SELECT Id
 			FROM RecordType
 			WHERE SobjectType = 'Account' AND Name = 'Community Account'
-		]
-		.Id;
+		].Id;
 		for (Account a : accounts) {
 			if (a.RecordTypeId == communityRecordType) {
 				continue;

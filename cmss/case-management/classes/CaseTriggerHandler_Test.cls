@@ -265,7 +265,7 @@ private class CaseTriggerHandler_Test {
 				} else if (
 					csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name ||
 						csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name
-					) {
+				) {
 					System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed');
 					if (csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name) {
 						System.assertEquals(

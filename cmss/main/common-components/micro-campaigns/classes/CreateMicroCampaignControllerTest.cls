@@ -3,17 +3,17 @@ private class CreateMicroCampaignControllerTest {
 
 	@IsTest
 	static void testGetPicklistValues() {
-        Schema.SObjectType convertToObj = Schema.getGlobalDescribe().get('Account');
-        Schema.DescribeSObjectResult res = convertToObj.getDescribe();
-        Schema.DescribeFieldResult fieldResult = res.fields.getMap().get('AccountStatus__c').getDescribe();
-        List<CreateMicroCampaignController.PicklistEntry> pickListValuesList = new List<CreateMicroCampaignController.PicklistEntry>();
-        List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
-        for( Schema.PicklistEntry pickListVal : ple){
+		Schema.SObjectType convertToObj = Schema.getGlobalDescribe().get('Account');
+		Schema.DescribeSObjectResult res = convertToObj.getDescribe();
+		Schema.DescribeFieldResult fieldResult = res.fields.getMap().get('AccountStatus__c').getDescribe();
+		List<CreateMicroCampaignController.PicklistEntry> pickListValuesList = new List<CreateMicroCampaignController.PicklistEntry>();
+		List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
+		for (Schema.PicklistEntry pickListVal : ple) {
 			CreateMicroCampaignController.PicklistEntry entry = new CreateMicroCampaignController.PicklistEntry();
-            entry.label = pickListVal.getLabel();
-            entry.value = pickListVal.getValue();
-            pickListValuesList.add(entry);
-        }
+			entry.label = pickListVal.getLabel();
+			entry.value = pickListVal.getValue();
+			pickListValuesList.add(entry);
+		}
 
 		Test.startTest();
 		List<CreateMicroCampaignController.PicklistEntry> entries = CreateMicroCampaignController.getPicklistValues('Account', 'AccountStatus__c');
@@ -29,7 +29,7 @@ private class CreateMicroCampaignControllerTest {
 		insert a1;
 
 		CreateMicroCampaignController.InputData data = new CreateMicroCampaignController.InputData();
-		data.ids = new List<Id>{ a1.Id };
+		data.ids = new List<Id>{a1.Id};
 		data.campaign = new CreateMicroCampaignController.InputCampaign();
 		data.campaign.name = 'test campaign';
 		data.campaign.description = 'test description';
@@ -56,10 +56,13 @@ private class CreateMicroCampaignControllerTest {
 		System.assertEquals(campaign.Id, result.campaignId);
 
 		Account a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account];
-		Task t = [SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-			Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
-			Location__c, Phone__c
-		FROM Task WHERE WhoId = :a.PersonContactId];
+		Task t = [
+			SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
+				Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
+				Location__c, Phone__c
+			FROM Task
+			WHERE WhoId = :a.PersonContactId
+		];
 
 		System.assertEquals(data.task.dueDate, t.ActivityDate);
 		System.assertEquals(data.task.category, t.Category__c);
@@ -79,20 +82,20 @@ private class CreateMicroCampaignControllerTest {
 		System.assertEquals(a.Phone, t.Phone__c);
 	}
 
-    @isTest
-	static void testPrepareCampaignTemplateWithExistingCampaign(){
-		
+	@isTest
+	static void testPrepareCampaignTemplateWithExistingCampaign() {
+
 		Campaign existingCampaign = new Campaign();
-        existingCampaign.Name = 'Existing Campaign';
+		existingCampaign.Name = 'Existing Campaign';
 		insert existingCampaign;
 
 		CreateMicroCampaignController.InputCampaign input = new CreateMicroCampaignController.InputCampaign();
 		input.id = existingCampaign.Id;
-		
-        Test.startTest();
-        Campaign retrievedCampaign = CreateMicroCampaignController.prepareCampaignTemplate(input);
-        Test.stopTest();
 
-        System.assertEquals(existingCampaign, retrievedCampaign);
+		Test.startTest();
+		Campaign retrievedCampaign = CreateMicroCampaignController.prepareCampaignTemplate(input);
+		Test.stopTest();
+
+		System.assertEquals(existingCampaign, retrievedCampaign);
 	}
 }

@@ -16,13 +16,13 @@ class UserCalendarSettingTriggerHandlerTest {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{'start', 'end'}),
 			null,
 			null
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		Test.startTest();
-		UserCalendarSettingTriggerHandler.initialEventSync(new List<UserCalendarSetting__c>{ setting });
+		UserCalendarSettingTriggerHandler.initialEventSync(new List<UserCalendarSetting__c>{setting});
 		Test.stopTest();
 
 		setting = [SELECT Id, SyncToken__c, SyncActive__c FROM UserCalendarSetting__c WHERE Id = :setting.Id];
@@ -48,7 +48,7 @@ class UserCalendarSettingTriggerHandlerTest {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{'start', 'end'}),
 			null,
 			null
 		);
@@ -60,7 +60,7 @@ class UserCalendarSettingTriggerHandlerTest {
 		];
 		delete eventSyncsBefore;
 		Test.startTest();
-		UserCalendarSettingTriggerHandler.initialEventSync(new List<UserCalendarSetting__c>{ setting });
+		UserCalendarSettingTriggerHandler.initialEventSync(new List<UserCalendarSetting__c>{setting});
 		Test.stopTest();
 
 		List<EventSync__c> eventSyncs = [

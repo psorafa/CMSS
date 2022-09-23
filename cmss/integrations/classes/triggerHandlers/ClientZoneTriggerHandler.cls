@@ -40,7 +40,7 @@ public class ClientZoneTriggerHandler extends TriggerHandler {
 		for (ClientZone__c cz : newClientZoneById.values()) {
 			if (
 				cz.CreatedDate != oldClientZoneById.get(cz.Id).CreatedDate ||
-				cz.Role__c != oldClientZoneById.get(cz.Id).Role__c
+					cz.Role__c != oldClientZoneById.get(cz.Id).Role__c
 			) {
 				clientZones.add(cz);
 			}
@@ -97,8 +97,8 @@ public class ClientZoneTriggerHandler extends TriggerHandler {
 			//continue when account shouldnt be changed
 			if (
 				clientZoneByAccountId.containsKey(acc) &&
-				clientZoneByAccountId.get(acc).Id == accountById.get(acc).ClientZonewithLatestAgreementDate__c &&
-				clientZoneByAccountId.get(acc).Role__c == accountById.get(acc).ClientZoneAccess__c
+					clientZoneByAccountId.get(acc).Id == accountById.get(acc).ClientZonewithLatestAgreementDate__c &&
+					clientZoneByAccountId.get(acc).Role__c == accountById.get(acc).ClientZoneAccess__c
 			) {
 				continue;
 			}

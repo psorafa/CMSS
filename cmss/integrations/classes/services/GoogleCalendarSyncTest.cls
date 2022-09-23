@@ -16,12 +16,12 @@ private class GoogleCalendarSyncTest {
 		event.created = '2022-04-01T10:29:58.000Z';
 		event.status = 'confirmed';
 		event.id = '697d2bkb35ei0m5hj53tg56d5v';
-		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{ event };
+		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{event};
 
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{'start', 'end'}),
 			null,
 			null
 		);
@@ -90,12 +90,12 @@ private class GoogleCalendarSyncTest {
 		event.created = '2022-04-01T10:29:58.000Z';
 		event.status = 'confirmed';
 		event.id = '697d2bkb35ei0m5hj53tg56d5v';
-		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{ event };
+		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{event};
 
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{'start', 'end'}),
 			null,
 			null
 		);
@@ -166,7 +166,7 @@ private class GoogleCalendarSyncTest {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(event), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(event), new List<string>{'start', 'end'}),
 			null,
 			null
 		);
@@ -193,7 +193,7 @@ private class GoogleCalendarSyncTest {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(event), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(event), new List<string>{'start', 'end'}),
 			null,
 			null
 		);
