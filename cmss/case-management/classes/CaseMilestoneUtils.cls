@@ -21,8 +21,8 @@ public with sharing class CaseMilestoneUtils {
 		}
 	}
 
-    public static void closeMilestones(Set<Id> caseIds, List<String> milestoneNames) {
-        List<CaseMilestone> caseMilestones = [
+	public static void closeMilestones(Set<Id> caseIds, List<String> milestoneNames) {
+		List<CaseMilestone> caseMilestones = [
 			SELECT
 				Id,
 				CompletionDate,
@@ -33,13 +33,13 @@ public with sharing class CaseMilestoneUtils {
 		];
 
 		if (!caseMilestones.isEmpty()) {
-            for (CaseMilestone cm : caseMilestones) {
-                cm.CompletionDate = Date.Today();
-            }
-            update caseMilestones;
+			for (CaseMilestone cm : caseMilestones) {
+				cm.CompletionDate = Date.Today();
+			}
+			update caseMilestones;
 		}
-    }
-    
+	}
+
 	private static void updateMilestones(List<CaseMilestone> caseMilestones, Datetime completionDate) {
 		List<CaseMilestone> cmsToUpdate = new List<CaseMilestone>();
 		ClientClaimEntitlement__c csEntitlementInfo = ClientClaimEntitlement__c.getOrgDefaults();
@@ -54,8 +54,8 @@ public with sharing class CaseMilestoneUtils {
 
 				if (
 					String.isNotBlank(confirmMilestoneName) &&
-					confirmMilestoneName == cm.MilestoneType.Name &&
-					cm.Case.ReceivingConfirmationDate__c != null
+						confirmMilestoneName == cm.MilestoneType.Name &&
+						cm.Case.ReceivingConfirmationDate__c != null
 				) {
 					Date newCompletionDate = cm.Case.ReceivingConfirmationDate__c;
 					Time newCompletionTime = newCompletionDate == Date.today()
@@ -64,8 +64,8 @@ public with sharing class CaseMilestoneUtils {
 					cm.CompletionDate = Datetime.newInstance(newCompletionDate, newCompletionTime);
 				} else if (
 					String.isNotBlank(responseMilestoneName) &&
-					responseMilestoneName == cm.MilestoneType.Name &&
-					cm.Case.ResponseSentDate__c != null
+						responseMilestoneName == cm.MilestoneType.Name &&
+						cm.Case.ResponseSentDate__c != null
 				) {
 					Date newCompletionDate = cm.Case.ResponseSentDate__c;
 					Time newCompletionTime = newCompletionDate == Date.today()

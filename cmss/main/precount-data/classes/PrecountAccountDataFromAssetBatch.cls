@@ -1,11 +1,11 @@
 global class PrecountAccountDataFromAssetBatch implements Database.Batchable<sObject> {
 	global Database.QueryLocator start(Database.BatchableContext bc) {
 		return Database.getQueryLocator(
-			[
-				SELECT ProductCloseDate__c, AccountId, Account.AssetLastCloseDate__c, Account.LastInteractionDate__c
-				FROM Asset
-				WHERE AccountId != NULL
-			]
+		[
+			SELECT ProductCloseDate__c, AccountId, Account.AssetLastCloseDate__c, Account.LastInteractionDate__c
+			FROM Asset
+			WHERE AccountId != NULL
+		]
 		);
 	}
 
@@ -21,14 +21,14 @@ global class PrecountAccountDataFromAssetBatch implements Database.Batchable<sOb
 			if (asset.ProductCloseDate__c <= Date.today()) {
 				if (
 					asset.ProductCloseDate__c > actualAccount?.LastInteractionDate__c ||
-					actualAccount?.LastInteractionDate__c == null
+						actualAccount?.LastInteractionDate__c == null
 				) {
 					actualAccount.LastInteractionDate__c = asset.ProductCloseDate__c;
 					accountsToUpdate.put(actualAccount.Id, actualAccount);
 				}
 				if (
 					asset.ProductCloseDate__c > actualAccount?.AssetLastCloseDate__c ||
-					actualAccount?.AssetLastCloseDate__c == null
+						actualAccount?.AssetLastCloseDate__c == null
 				) {
 					actualAccount.AssetLastCloseDate__c = asset.ProductCloseDate__c;
 					accountsToUpdate.put(actualAccount.Id, actualAccount);

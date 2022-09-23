@@ -22,11 +22,11 @@ public with sharing class CustomFilterService {
 		];
 
 		Map<Id, CustomSearchFilter__c> customFilterLabelMap = new Map<Id, CustomSearchFilter__c>(
-			[
-				SELECT Id, toLabel(ProductType__c)
-				FROM CustomSearchFilter__c
-				WHERE RelatedObject__c = :objectType AND ProductType__c = :productType
-			]
+		[
+			SELECT Id, toLabel(ProductType__c)
+			FROM CustomSearchFilter__c
+			WHERE RelatedObject__c = :objectType AND ProductType__c = :productType
+		]
 		);
 
 		List<CustomFilterItemDto> dtoItemList = new List<CustomFilterItemDto>();

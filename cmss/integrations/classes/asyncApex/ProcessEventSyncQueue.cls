@@ -19,14 +19,14 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			Datetime TimeInTwoMinutes = System.now().addMinutes(2);
 			String cronExpression =
 				'0 ' +
-				String.valueOf(TimeInTwoMinutes.minute()) +
-				' ' +
-				String.valueOf(TimeInTwoMinutes.hour()) +
-				' ' +
-				String.valueOf(TimeInTwoMinutes.day()) +
-				' ' +
-				String.valueOf(TimeInTwoMinutes.month()) +
-				' ?';
+					String.valueOf(TimeInTwoMinutes.minute()) +
+					' ' +
+					String.valueOf(TimeInTwoMinutes.hour()) +
+					' ' +
+					String.valueOf(TimeInTwoMinutes.day()) +
+					' ' +
+					String.valueOf(TimeInTwoMinutes.month()) +
+					' ?';
 			if (!GoogleCalendarSyncUtility.isQueableRunning()) {
 				System.schedule('ProcessEventSyncQueue - aditional queue', cronExpression, scheduleNext);
 			}
@@ -72,9 +72,9 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 				if (actualSetting == null) {
 					Logger.error(
 						'UserCalendarSetting does not exist for sync with params: ' +
-						eventSync +
-						' with actual setting: ' +
-						actualSetting
+							eventSync +
+							' with actual setting: ' +
+							actualSetting
 					);
 					continue;
 				}
@@ -377,7 +377,7 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 	private Boolean isTooOld(Task sfTask) {
 		if (
 			sfTask.PlannedFromDate__c < System.today().addDays(-90) ||
-			sfTask.ActivityDate < System.today().addDays(-90)
+				sfTask.ActivityDate < System.today().addDays(-90)
 		) {
 			return true;
 		}
@@ -387,10 +387,10 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 	private Boolean isTooOld(GoogleCalendarSyncUtility.GoogleEventDTO googleEvent) {
 		if (
 			(googleEvent.start_x?.dateTime_x != null &&
-			GoogleCalendarSyncUtility.getDateTimeFromGoogleFormat(googleEvent.start_x?.dateTime_x) <
-			System.now().addDays(-90)) ||
-			(googleEvent.start_x?.date_x != null &&
-			googleEvent.start_x?.date_x < System.today().addDays(-90))
+				GoogleCalendarSyncUtility.getDateTimeFromGoogleFormat(googleEvent.start_x?.dateTime_x) <
+					System.now().addDays(-90)) ||
+				(googleEvent.start_x?.date_x != null &&
+					googleEvent.start_x?.date_x < System.today().addDays(-90))
 		) {
 			return true;
 		}
@@ -529,8 +529,8 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 			//Calendar not found - has no access to user's calendar
 			Logger.error(
 				'User calendar couldn\'t be reached by the technical User; user probably disconnected his calendar' +
-				' on Google Calendar side or changed Calendar Id - disconnecting calendar for user with Id: ' +
-				calendarSetting.User__c
+					' on Google Calendar side or changed Calendar Id - disconnecting calendar for user with Id: ' +
+					calendarSetting.User__c
 			);
 			calendarSetting.SyncActive__c = false;
 			calendarSettingsToUpdate.put(calendarSetting.Id, calendarSetting);
@@ -544,9 +544,9 @@ public without sharing class ProcessEventSyncQueue implements Queueable, Databas
 		if (responseFromService.statusCode > 400) {
 			Logger.error(
 				'Unknown error code returned from Google API: ' +
-				responseFromService.statusCode +
-				' for request from User with Id ' +
-				calendarSetting.User__c
+					responseFromService.statusCode +
+					' for request from User with Id ' +
+					calendarSetting.User__c
 			);
 		}
 	}

@@ -129,7 +129,7 @@ public with sharing class InitialCalendarSyncController {
 		for (GoogleCalendarSyncUtility.GoogleEventDTO event : googleEvents) {
 			if (
 				event.start_x?.date_x > cutoffDateTime ||
-				GoogleCalendarSyncUtility.getDateTimeFromGoogleFormat(event.start_x?.dateTime_x) > cutoffDateTime
+					GoogleCalendarSyncUtility.getDateTimeFromGoogleFormat(event.start_x?.dateTime_x) > cutoffDateTime
 			) {
 				filtered.add(event);
 			}
@@ -150,7 +150,7 @@ public with sharing class InitialCalendarSyncController {
 		for (GoogleCalendarSyncUtility.GoogleEventDTO googleEvent : eventsFromGoogle) {
 			if (
 				!syncedEventsByGoogleId.containsKey(googleEvent.id) &&
-				!syncedTasksByGoogleId.containsKey(googleEvent.id)
+					!syncedTasksByGoogleId.containsKey(googleEvent.id)
 			) {
 				Event newEventFromGoogle = GoogleCalendarSyncUtility.getSFEventFromGoogleEvent(googleEvent, true);
 				newEventFromGoogle.OwnerId = calendarSetting.User__c;
@@ -239,9 +239,9 @@ public with sharing class InitialCalendarSyncController {
 		}
 		query +=
 			'Id, GoogleId__c, IsFromGoogle__c, ActivityLink__c ' +
-			'FROM Task ' +
-			'WHERE OwnerId = :ownerId ' +
-			'AND ActivityDate > :cutoffDate ORDER BY ActivityDate DESC LIMIT 20000';
+				'FROM Task ' +
+				'WHERE OwnerId = :ownerId ' +
+				'AND ActivityDate > :cutoffDate ORDER BY ActivityDate DESC LIMIT 20000';
 
 		return Database.query(query);
 	}
@@ -253,9 +253,9 @@ public with sharing class InitialCalendarSyncController {
 		}
 		query +=
 			'Id, GoogleId__c, IsFromGoogle__c, ActivityLink__c ' +
-			'FROM Event ' +
-			'WHERE OwnerId = :ownerId ' +
-			'AND (ActivityDate > :cutoffDate OR StartDateTime > :cutoffDateTime) ORDER BY ActivityDate DESC LIMIT 20000';
+				'FROM Event ' +
+				'WHERE OwnerId = :ownerId ' +
+				'AND (ActivityDate > :cutoffDate OR StartDateTime > :cutoffDateTime) ORDER BY ActivityDate DESC LIMIT 20000';
 
 		return Database.query(query);
 	}

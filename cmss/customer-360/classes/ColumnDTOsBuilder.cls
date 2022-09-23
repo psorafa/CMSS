@@ -80,8 +80,8 @@ public class ColumnDTOsBuilder {
 		col.typeAttributes.label = new ColumnDTO.LabelDTO();
 		col.typeAttributes.label.fieldName =
 			relationshipName +
-			'.' +
-			SchemaUtil.getNameField(descr.getReferenceTo().get(0));
+				'.' +
+				SchemaUtil.getNameField(descr.getReferenceTo().get(0));
 		return col;
 	}
 

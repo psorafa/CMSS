@@ -1,17 +1,17 @@
 public class PrecountAccountDataFromEventBatch implements Database.Batchable<sObject> {
 	public Database.QueryLocator start(Database.BatchableContext bc) {
 		return Database.getQueryLocator(
-			[
-				SELECT
-					ActivityDate,
-					EndDate,
-					EndDateTime,
-					AccountId,
-					Account.OpenedActivityDate__c,
-					Account.LastInteractionDate__c
-				FROM Event
-				WHERE AccountId != NULL
-			]
+		[
+			SELECT
+				ActivityDate,
+				EndDate,
+				EndDateTime,
+				AccountId,
+				Account.OpenedActivityDate__c,
+				Account.LastInteractionDate__c
+			FROM Event
+			WHERE AccountId != NULL
+		]
 		);
 	}
 
@@ -25,7 +25,7 @@ public class PrecountAccountDataFromEventBatch implements Database.Batchable<sOb
 				: event.Account;
 			if (
 				Date.valueOf(event?.EndDateTime) > actualAccount?.LastInteractionDate__c &&
-				Date.valueOf(event?.EndDateTime) <= Date.today() || actualAccount?.LastInteractionDate__c == null
+					Date.valueOf(event?.EndDateTime) <= Date.today() || actualAccount?.LastInteractionDate__c == null
 			) {
 				actualAccount.LastInteractionDate__c = Date.valueOf(event?.EndDateTime);
 				accountsToUpdate.put(actualAccount.Id, actualAccount);
@@ -33,7 +33,7 @@ public class PrecountAccountDataFromEventBatch implements Database.Batchable<sOb
 
 			if (
 				event.ActivityDate < actualAccount?.OpenedActivityDate__c && event.ActivityDate > Date.today() ||
-				actualAccount?.OpenedActivityDate__c == null
+					actualAccount?.OpenedActivityDate__c == null
 			) {
 				actualAccount.OpenedActivityDate__c = event?.ActivityDate;
 				accountsToUpdate.put(actualAccount.Id, actualAccount);

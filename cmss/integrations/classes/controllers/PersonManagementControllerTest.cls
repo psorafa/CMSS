@@ -14,12 +14,12 @@ private class PersonManagementControllerTest {
 			200,
 			'OK',
 			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns4:SearchCSOBSNonClientResponse xmlns:ns4=\"http://service.cmss.cz/person/PersonManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\" xmlns:ns3=\"http://service.cmss.cz/person/SB-ClientInfoService/v10\"><ns2:responseHeader></ns2:responseHeader><ns4:responseBody><ns4:jsonResponse>' +
-			'{"getPersonCSOBDataResponse":{' +
-			'"Account":{"Name":"Account 1","Birthdate__c":"1960-04-21","DateOfDeletion__c":"","ExternalId__c":"987654"},' +
-			'"Asset":[{"Name":"Asset1","DueDate__c":"","ValidTo__c":"","ExternalId__c":"234567"},{"Name":"Asset2","ExternalId__c":"123456"}],' +
-			'"ContactInformation":[{"Name":"Contact Information 1","ExternalId__c":"3456789"}]' +
-			'}}' +
-			'</ns4:jsonResponse></ns4:responseBody></ns4:SearchCSOBSNonClientResponse></soapenv:Body></soapenv:Envelope>',
+				'{"getPersonCSOBDataResponse":{' +
+				'"Account":{"Name":"Account 1","Birthdate__c":"1960-04-21","DateOfDeletion__c":"","ExternalId__c":"987654"},' +
+				'"Asset":[{"Name":"Asset1","DueDate__c":"","ValidTo__c":"","ExternalId__c":"234567"},{"Name":"Asset2","ExternalId__c":"123456"}],' +
+				'"ContactInformation":[{"Name":"Contact Information 1","ExternalId__c":"3456789"}]' +
+				'}}' +
+				'</ns4:jsonResponse></ns4:responseBody></ns4:SearchCSOBSNonClientResponse></soapenv:Body></soapenv:Envelope>',
 			null,
 			null
 		);
@@ -46,7 +46,7 @@ private class PersonManagementControllerTest {
 			200,
 			'OK',
 			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns4:SearchCSOBSNonClientResponse xmlns:ns4=\"http://service.cmss.cz/person/PersonManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\" xmlns:ns3=\"http://service.cmss.cz/person/SB-ClientInfoService/v10\"><ns2:responseHeader></ns2:responseHeader><ns4:responseBody><ns4:jsonResponse>' +
-			'</ns4:jsonResponse></ns4:responseBody></ns4:SearchCSOBSNonClientResponse></soapenv:Body></soapenv:Envelope>',
+				'</ns4:jsonResponse></ns4:responseBody></ns4:SearchCSOBSNonClientResponse></soapenv:Body></soapenv:Envelope>',
 			null,
 			null
 		);
@@ -65,8 +65,8 @@ private class PersonManagementControllerTest {
 			200,
 			'OK',
 			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns4:SearchCSOBSNonClientResponse xmlns:ns4=\"http://service.cmss.cz/person/PersonManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\" xmlns:ns3=\"http://service.cmss.cz/person/SB-ClientInfoService/v10\"><ns2:responseHeader></ns2:responseHeader><ns4:responseBody><ns4:jsonResponse>' +
-			'reallyweirdresponse' +
-			'</ns4:jsonResponse></ns4:responseBody></ns4:SearchCSOBSNonClientResponse></soapenv:Body></soapenv:Envelope>',
+				'reallyweirdresponse' +
+				'</ns4:jsonResponse></ns4:responseBody></ns4:SearchCSOBSNonClientResponse></soapenv:Body></soapenv:Envelope>',
 			null,
 			null
 		);
@@ -85,10 +85,10 @@ private class PersonManagementControllerTest {
 	static void updateCSOBNonClientTest() {
 		String serializedUpdateRequest =
 			'{"UpdatePersonCSOBDataRequest":{' +
-			'"Account":{},' +
-			'"Asset":[],' +
-			'"ContactInformation":[]' +
-			'}}';
+				'"Account":{},' +
+				'"Asset":[],' +
+				'"ContactInformation":[]' +
+				'}}';
 
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,

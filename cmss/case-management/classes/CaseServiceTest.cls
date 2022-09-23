@@ -73,7 +73,7 @@ private class CaseServiceTest {
 			insert customSettingsValue;
 
 			Test.startTest();
-			insert new List<Case>{ newClientCase, newGDPRCase };
+			insert new List<Case>{newClientCase, newGDPRCase};
 			Test.stopTest();
 
 			NumericalSeriesSettings__c newIssuedClaimID = [
@@ -230,9 +230,9 @@ private class CaseServiceTest {
 		}
 	}
 
-    @IsTest
+	@IsTest
 	static void testSetGDPRAndClientCaseOnAccount() {
-        User user = TestDataFactory.getUser(new User(AgentId__c = 'UA18439'));
+		User user = TestDataFactory.getUser(new User(AgentId__c = 'UA18439'));
 		insert user;
 
 		List<PermissionSet> permSets = [
@@ -244,74 +244,74 @@ private class CaseServiceTest {
 		PermissionSetAssignment psa1 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[0].Id);
 		PermissionSetAssignment psa2 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[1].Id);
 		PermissionSetAssignment psa3 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[2].Id);
-        PermissionSetAssignment psa4 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[3].Id);
+		PermissionSetAssignment psa4 = new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permSets[3].Id);
 		insert new List<PermissionSetAssignment>{
 			psa1, psa2, psa3, psa4
 		};
 
 		Test.startTest();
 		System.runAs(user) {
-            Account a = TestDataFactory.getAccount();
-            insert a;
-            Case cas = TestDataFactory.getCase(
-                new Case(
-                    AccountId = a.Id,
-                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
-                        .get('NewClientClaim')
-                        .getRecordTypeId(),
-                    Status = '1'
-            ));
-            Case cas2 = TestDataFactory.getCase(
-                new Case(
-                    AccountId = a.Id,
-                    RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
-                        .get('GDPR')
-                        .getRecordTypeId(),
-                    Status = '1'
-            ));
-            insert new List<Case>{ cas, cas2 };
+			Account a = TestDataFactory.getAccount();
+			insert a;
+			Case cas = TestDataFactory.getCase(
+				new Case(
+					AccountId = a.Id,
+					RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+						.get('NewClientClaim')
+						.getRecordTypeId(),
+					Status = '1'
+				));
+			Case cas2 = TestDataFactory.getCase(
+				new Case(
+					AccountId = a.Id,
+					RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+						.get('GDPR')
+						.getRecordTypeId(),
+					Status = '1'
+				));
+			insert new List<Case>{cas, cas2};
 
-            Account acc = [SELECT GDPRCase__c, ClientCase__c FROM Account LIMIT 1];
-            System.assert(acc.ClientCase__c == '1');
-            System.assert(acc.GDPRCase__c == '1');
+			Account acc = [SELECT GDPRCase__c, ClientCase__c FROM Account LIMIT 1];
+			System.assert(acc.ClientCase__c == '1');
+			System.assert(acc.GDPRCase__c == '1');
 
-            Account a2 = TestDataFactory.getAccount();
-            insert a2;
+			Account a2 = TestDataFactory.getAccount();
+			insert a2;
 
-            cas.AccountId = a2.Id;
-            update cas;
+			cas.AccountId = a2.Id;
+			update cas;
 
-            Account[] accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY GlobalId__c ASC];
-            System.assert(accs.size() == 2);
-            System.assert(accs[0].ClientCase__c == '0');
-            System.assert(accs[0].GDPRCase__c == '1');
-            System.assert(accs[1].ClientCase__c == '1');
-            System.assert(accs[1].GDPRCase__c == '0');
+			Account[] accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY GlobalId__c ASC];
+			System.assert(accs.size() == 2);
+			System.assert(accs[0].ClientCase__c == '0');
+			System.assert(accs[0].GDPRCase__c == '1');
+			System.assert(accs[1].ClientCase__c == '1');
+			System.assert(accs[1].GDPRCase__c == '0');
 
-            CaseType__c caseType = TestDataFactory.getCaseType(
-                new CaseType__c(
-                    Case__c = cas.Id
-            ));
-            insert caseType;
-            cas.ResponseSentDate__c = Date.today();
-            cas.Status = '2';
-            update cas;
+			CaseType__c caseType = TestDataFactory.getCaseType(
+				new CaseType__c(
+					Case__c = cas.Id
+				));
+			insert caseType;
+			cas.ResponseSentDate__c = Date.today();
+			cas.Status = '2';
+			update cas;
 
-            accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY GlobalId__c ASC];
-            System.assert(accs.size() == 2);
-            System.assert(accs[0].ClientCase__c == '0');
-            System.assert(accs[0].GDPRCase__c == '1');
-            System.assert(accs[1].ClientCase__c == '0');
-            System.assert(accs[1].GDPRCase__c == '0');
+			accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY GlobalId__c ASC];
+			System.assert(accs.size() == 2);
+			System.assert(accs[0].ClientCase__c == '0');
+			System.assert(accs[0].GDPRCase__c == '1');
+			System.assert(accs[1].ClientCase__c == '0');
+			System.assert(accs[1].GDPRCase__c == '0');
 
-            delete cas2;
-            accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY GlobalId__c ASC];
-            System.assert(accs.size() == 2);
-            System.assert(accs[0].ClientCase__c == '0');
-            System.assert(accs[0].GDPRCase__c == '0');
-            System.assert(accs[1].ClientCase__c == '0');
-            System.assert(accs[1].GDPRCase__c == '0');
-        }
-        Test.stopTest();
-    }
+			delete cas2;
+			accs = [SELECT GDPRCase__c, ClientCase__c FROM Account ORDER BY GlobalId__c ASC];
+			System.assert(accs.size() == 2);
+			System.assert(accs[0].ClientCase__c == '0');
+			System.assert(accs[0].GDPRCase__c == '0');
+			System.assert(accs[1].ClientCase__c == '0');
+			System.assert(accs[1].GDPRCase__c == '0');
+		}
+		Test.stopTest();
+	}
 }

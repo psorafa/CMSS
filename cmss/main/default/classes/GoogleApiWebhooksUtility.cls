@@ -27,9 +27,9 @@ public without sharing class GoogleApiWebhooksUtility {
 			System.debug(
 				LoggingLevel.DEBUG,
 				'Request Token does not correspond to User Settings Token. Token in request: ' +
-				token +
-				', token in setting: ' +
-				setting.WatchId__c
+					token +
+					', token in setting: ' +
+					setting.WatchId__c
 			);
 			response.statusCode = 401;
 			return;

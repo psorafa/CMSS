@@ -64,7 +64,7 @@ private class CustomerSearchController_Test {
 		asset2 = new Asset(Name = '2222222222', AccountId = personClient2.Id);
 		asset3 = new Asset(Name = '3333333333', AccountId = businessClient.Id);
 		asset4 = new Asset(Name = '4444444444', AccountId = businessClient2.Id);
-		insert new List<Asset>{ asset1, asset2, asset3, asset4 };
+		insert new List<Asset>{asset1, asset2, asset3, asset4};
 
 		lead1 = new Lead(FirstName = 'Aneta', LastName = 'Antonínová', PersonalIdentificationNr__c = '1234567890');
 		insert lead1;
@@ -226,14 +226,14 @@ private class CustomerSearchController_Test {
 	@IsTest
 	static void getFilteredResultsTestAsset() {
 		testSetup();
-		List<SObject> sObjects = new List<SObject>{ asset1, asset2, asset3 };
+		List<SObject> sObjects = new List<SObject>{asset1, asset2, asset3};
 		CustomerSearchController.assetNumber = asset2.Name.substring(0, 6);
 		Test.startTest();
 		List<SearchResultDTO> filteredResults = CustomerSearchController.getFilteredResults(sObjects);
 		Test.stopTest();
 		System.assert(
 			filteredResults != null &&
-			filteredResults.size() == 1,
+				filteredResults.size() == 1,
 			'Not expected results size or null results: ' + filteredResults
 		);
 		System.assertEquals(
@@ -261,7 +261,7 @@ private class CustomerSearchController_Test {
 		Test.stopTest();
 		System.assert(
 			filteredResults != null &&
-			filteredResults.size() == 2,
+				filteredResults.size() == 2,
 			'Not expected results size or null results: ' + filteredResults
 		);
 		System.assertEquals(
@@ -271,12 +271,12 @@ private class CustomerSearchController_Test {
 		);
 		System.assert(
 			(businessClient.Id == filteredResults.get(0).recordId ||
-			personClient2.Id == filteredResults.get(0).recordId),
+				personClient2.Id == filteredResults.get(0).recordId),
 			'Record Id not as expected.'
 		);
 		System.assert(
 			(businessClient.Id == filteredResults.get(1).recordId ||
-			personClient2.Id == filteredResults.get(1).recordId),
+				personClient2.Id == filteredResults.get(1).recordId),
 			'Record Id not as expected.'
 		);
 	}
@@ -284,7 +284,7 @@ private class CustomerSearchController_Test {
 	@IsTest
 	static void getFilteredResultsTestLead() {
 		testSetup();
-		List<SObject> sObjects = new List<SObject>{ lead1 };
+		List<SObject> sObjects = new List<SObject>{lead1};
 		CustomerSearchController.birthNumber = lead1.PersonalIdentificationNr__c;
 		CustomerSearchController.lastName = lead1.LastName;
 		Test.startTest();
@@ -292,7 +292,7 @@ private class CustomerSearchController_Test {
 		Test.stopTest();
 		System.assert(
 			filteredResults != null &&
-			filteredResults.size() == 1,
+				filteredResults.size() == 1,
 			'Not expected results size or null results: ' + filteredResults
 		);
 		System.assertEquals(
@@ -308,13 +308,13 @@ private class CustomerSearchController_Test {
 		testSetup();
 		String expectedQueryString =
 			'FIND \'' +
-			personClient.PersonalIdentificationNr__c +
-			'\'' +
-			' IN ALL FIELDS RETURNING ' +
-			ACCOUNT_OBJECT_STRING +
-			'IsPersonAccount = true AND AccountStatus__c = \'1\' AND LastName =\'' +
-			personClient.LastName +
-			'\')';
+				personClient.PersonalIdentificationNr__c +
+				'\'' +
+				' IN ALL FIELDS RETURNING ' +
+				ACCOUNT_OBJECT_STRING +
+				'IsPersonAccount = true AND AccountStatus__c = \'1\' AND LastName =\'' +
+				personClient.LastName +
+				'\')';
 
 		CustomerSearchController.lastName = personClient.LastName;
 		CustomerSearchController.birthNumber = personClient.PersonalIdentificationNr__c;
@@ -329,13 +329,13 @@ private class CustomerSearchController_Test {
 		testSetup();
 		String expectedQueryString =
 			'FIND \'' +
-			personClient.PersonalIdentificationNr__c +
-			'\'' +
-			' IN ALL FIELDS RETURNING ' +
-			ACCOUNT_OBJECT_STRING +
-			'IsPersonAccount = true AND AccountStatus__c != \'1\' AND LastName =\'' +
-			personClient.LastName +
-			'\')';
+				personClient.PersonalIdentificationNr__c +
+				'\'' +
+				' IN ALL FIELDS RETURNING ' +
+				ACCOUNT_OBJECT_STRING +
+				'IsPersonAccount = true AND AccountStatus__c != \'1\' AND LastName =\'' +
+				personClient.LastName +
+				'\')';
 		CustomerSearchController.lastName = personClient.LastName;
 		CustomerSearchController.birthNumber = personClient.PersonalIdentificationNr__c;
 		CustomerSearchController.searchAmong = CustomerSearchController.PROSPECTS;
@@ -350,10 +350,10 @@ private class CustomerSearchController_Test {
 		testSetup();
 		String expectedQueryString =
 			'FIND \'' +
-			asset3.Name +
-			'*\' IN ALL FIELDS RETURNING ' +
-			ASSET_OBJECT_STRING +
-			'Account.AccountStatus__c = \'1\')';
+				asset3.Name +
+				'*\' IN ALL FIELDS RETURNING ' +
+				ASSET_OBJECT_STRING +
+				'Account.AccountStatus__c = \'1\')';
 		CustomerSearchController.assetNumber = asset3.Name;
 		Test.startTest();
 		String query = CustomerSearchController.getQueryString();
@@ -366,10 +366,10 @@ private class CustomerSearchController_Test {
 		testSetup();
 		String expectedQueryString =
 			'FIND \'' +
-			asset4.Name +
-			'*\' IN ALL FIELDS RETURNING ' +
-			ASSET_OBJECT_STRING +
-			'Account.AccountStatus__c != \'1\')';
+				asset4.Name +
+				'*\' IN ALL FIELDS RETURNING ' +
+				ASSET_OBJECT_STRING +
+				'Account.AccountStatus__c != \'1\')';
 		CustomerSearchController.assetNumber = asset4.Name;
 		CustomerSearchController.searchAmong = CustomerSearchController.PROSPECTS;
 		Test.startTest();
@@ -383,9 +383,9 @@ private class CustomerSearchController_Test {
 		testSetup();
 		String expectedQueryString =
 			'FIND \'' +
-			personClient.PersonalIdentificationNr__c +
-			'\' IN ALL FIELDS RETURNING ' +
-			LEAD_OBJECT_STRING;
+				personClient.PersonalIdentificationNr__c +
+				'\' IN ALL FIELDS RETURNING ' +
+				LEAD_OBJECT_STRING;
 		CustomerSearchController.lastName = lead1.LastName;
 		CustomerSearchController.birthNumber = personClient.PersonalIdentificationNr__c;
 		CustomerSearchController.searchAmong = CustomerSearchController.LEADS;

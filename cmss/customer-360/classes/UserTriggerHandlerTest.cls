@@ -51,7 +51,7 @@ private class UserTriggerHandlerTest {
 		}
 
 		Test.startTest();
-		UserTriggerHandler.updateCommunityUsersContacts(new Set<Id>{ communityUser.Id });
+		UserTriggerHandler.updateCommunityUsersContacts(new Set<Id>{communityUser.Id});
 		Test.stopTest();
 
 		portalContact = [

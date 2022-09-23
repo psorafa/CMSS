@@ -15,7 +15,7 @@ private class AccountTriggerHandlerTest {
 		Test.startTest();
 		a1.IsInvalid__c = true;
 		a2.IsInvalid__c = true;
-		AccountTriggerHandler.setOwner(new List<Account>{ a1, a2, a3 });
+		AccountTriggerHandler.setOwner(new List<Account>{a1, a2, a3});
 		Test.stopTest();
 
 		System.assertEquals(u.Id, a1.OwnerId);
@@ -30,10 +30,10 @@ private class AccountTriggerHandlerTest {
 			FROM RecordType
 			WHERE SobjectType = 'Account' AND Name = 'Community Account'
 		]
-		.Id;
+			.Id;
 		User defaultOwner = TestDataFactory.getUser(new User());
 		User portfolioManager = TestDataFactory.getUser(new User());
-		insert new List<User>{ defaultOwner, portfolioManager };
+		insert new List<User>{defaultOwner, portfolioManager};
 		CommonSetting__c setting = CommonSetting__c.getOrgDefaults();
 		setting.AccountDefaultOwner__c = defaultOwner.Id;
 		insert setting;
@@ -46,7 +46,7 @@ private class AccountTriggerHandlerTest {
 		Test.startTest();
 		a1.PortfolioMngmtA__c = portfolioManager.Id;
 		a2.PortfolioMngmtA__c = portfolioManager.Id;
-		AccountTriggerHandler.setOwner(new List<Account>{ a1, a2, a3, a4 });
+		AccountTriggerHandler.setOwner(new List<Account>{a1, a2, a3, a4});
 		Test.stopTest();
 
 		System.assertEquals(portfolioManager.Id, a1.OwnerId);
@@ -64,7 +64,7 @@ private class AccountTriggerHandlerTest {
 		Account a4 = TestDataFactory.getAccount(new Account());
 
 		Test.startTest();
-		AccountTriggerHandler.invalidateAccount(new List<Account>{ a1, a2, a3, a4 });
+		AccountTriggerHandler.invalidateAccount(new List<Account>{a1, a2, a3, a4});
 		Test.stopTest();
 
 		System.assertEquals(true, a1.IsInvalid__c);
@@ -83,7 +83,7 @@ private class AccountTriggerHandlerTest {
 		Account a3 = TestDataFactory.getAccount(new Account(AccountStatus__c = '5', IsInvalid__c = true));
 
 		Test.startTest();
-		AccountTriggerHandler.validateAccount(new List<Account>{ a1, a2, a3 });
+		AccountTriggerHandler.validateAccount(new List<Account>{a1, a2, a3});
 		Test.stopTest();
 
 		System.assertEquals(true, a1.IsInvalid__c);

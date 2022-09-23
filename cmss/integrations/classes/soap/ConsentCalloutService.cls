@@ -12,11 +12,11 @@ public class ConsentCalloutService {
 			ConsentDataTypesService.DisableChannelConsentRequestType request_x = new ConsentDataTypesService.DisableChannelConsentRequestType(requestHeader, requestBody);
 			request_x.populateXmlNode(methodNode);
 
-            HttpRequest req = createRequest(doc, 'disableChannelConsent');
-            Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
-            HttpResponse res = getResponse(req);
-            Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
-            Dom.XmlNode bodyNode = getResponseBody(res);
+			HttpRequest req = createRequest(doc, 'disableChannelConsent');
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
+			HttpResponse res = getResponse(req);
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
+			Dom.XmlNode bodyNode = getResponseBody(res);
 			Dom.XmlNode DisableChannelConsentResponseNode = bodyNode.getChildElement('DisableChannelConsentResponse', DT_NS);
 			if (DisableChannelConsentResponseNode != null) {
 				ConsentDataTypesService.DisableChannelConsentResponseType response_x = new ConsentDataTypesService.DisableChannelConsentResponseType(DisableChannelConsentResponseNode);
@@ -31,11 +31,11 @@ public class ConsentCalloutService {
 			ConsentDataTypesService.DisableInternalConsentRequestType request_x = new ConsentDataTypesService.DisableInternalConsentRequestType(requestHeader, requestBody);
 			request_x.populateXmlNode(methodNode);
 
-            HttpRequest req = createRequest(doc, 'disableInternalConsent');
-            Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
-            HttpResponse res = getResponse(req);
-            Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
-            Dom.XmlNode bodyNode = getResponseBody(res);
+			HttpRequest req = createRequest(doc, 'disableInternalConsent');
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
+			HttpResponse res = getResponse(req);
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
+			Dom.XmlNode bodyNode = getResponseBody(res);
 			Dom.XmlNode DisableInternalConsentResponseNode = bodyNode.getChildElement('DisableInternalConsentResponse', DT_NS);
 			if (DisableInternalConsentResponseNode != null) {
 				ConsentDataTypesService.DisableInternalConsentResponseType response_x = new ConsentDataTypesService.DisableInternalConsentResponseType(DisableInternalConsentResponseNode);
@@ -50,24 +50,24 @@ public class ConsentCalloutService {
 			ConsentDataTypesService.EnableGeneralConsentRequestType request_x = new ConsentDataTypesService.EnableGeneralConsentRequestType(requestHeader, requestBody);
 			request_x.populateXmlNode(methodNode);
 
-            HttpRequest req = createRequest(doc, 'enableGeneralConsent');
-            Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
-            HttpResponse res = getResponse(req);
-            Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
-            Dom.XmlNode bodyNode = getResponseBody(res);
+			HttpRequest req = createRequest(doc, 'enableGeneralConsent');
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
+			HttpResponse res = getResponse(req);
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
+			Dom.XmlNode bodyNode = getResponseBody(res);
 			Dom.XmlNode EnableGeneralConsentResponseNode = bodyNode.getChildElement('EnableGeneralConsentResponse', DT_NS);
 			if (EnableGeneralConsentResponseNode != null) {
 				ConsentDataTypesService.EnableGeneralConsentResponseType response_x = new ConsentDataTypesService.EnableGeneralConsentResponseType(EnableGeneralConsentResponseNode);
 				return response_x.responseBody;
 			}
-            Dom.XmlNode faultNode = bodyNode.getChildElement('Fault', 'http://schemas.xmlsoap.org/soap/envelope/');
-            if (faultNode != null) {
-                Dom.XmlNode faultstringNode = faultNode.getChildElement('faultstring', null);
-                ConsentDataTypesService.EnableGeneralConsentResponseType response_x = new ConsentDataTypesService.EnableGeneralConsentResponseType();
-                response_x.responseBody = new ConsentDataTypesService.EnableGeneralConsentResponseBodyType();
-                response_x.responseBody.responseMessage = (faultstringNode == null) ? null : faultstringNode.getText();
-                return response_x.responseBody;
-            }
+			Dom.XmlNode faultNode = bodyNode.getChildElement('Fault', 'http://schemas.xmlsoap.org/soap/envelope/');
+			if (faultNode != null) {
+				Dom.XmlNode faultstringNode = faultNode.getChildElement('faultstring', null);
+				ConsentDataTypesService.EnableGeneralConsentResponseType response_x = new ConsentDataTypesService.EnableGeneralConsentResponseType();
+				response_x.responseBody = new ConsentDataTypesService.EnableGeneralConsentResponseBodyType();
+				response_x.responseBody.responseMessage = (faultstringNode == null) ? null : faultstringNode.getText();
+				return response_x.responseBody;
+			}
 			return null;
 		}
 
@@ -77,11 +77,11 @@ public class ConsentCalloutService {
 			ConsentDataTypesService.EnableChannelConsentRequestType request_x = new ConsentDataTypesService.EnableChannelConsentRequestType(requestHeader, requestBody);
 			request_x.populateXmlNode(methodNode);
 
-            HttpRequest req = createRequest(doc, 'enableChannelConsent');
-            Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
-            HttpResponse res = getResponse(req);
-            Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
-            Dom.XmlNode bodyNode = getResponseBody(res);
+			HttpRequest req = createRequest(doc, 'enableChannelConsent');
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
+			HttpResponse res = getResponse(req);
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
+			Dom.XmlNode bodyNode = getResponseBody(res);
 			Dom.XmlNode EnableChannelConsentResponseNode = bodyNode.getChildElement('EnableChannelConsentResponse', DT_NS);
 			if (EnableChannelConsentResponseNode != null) {
 				ConsentDataTypesService.EnableChannelConsentResponseType response_x = new ConsentDataTypesService.EnableChannelConsentResponseType(EnableChannelConsentResponseNode);
@@ -96,11 +96,11 @@ public class ConsentCalloutService {
 			ConsentDataTypesService.EnableInternalConsentRequestType request_x = new ConsentDataTypesService.EnableInternalConsentRequestType(requestHeader, requestBody);
 			request_x.populateXmlNode(methodNode);
 
-            HttpRequest req = createRequest(doc, 'enableInternalConsent');
-            Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
-            HttpResponse res = getResponse(req);
-            Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
-            Dom.XmlNode bodyNode = getResponseBody(res);
+			HttpRequest req = createRequest(doc, 'enableInternalConsent');
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
+			HttpResponse res = getResponse(req);
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
+			Dom.XmlNode bodyNode = getResponseBody(res);
 			Dom.XmlNode EnableInternalConsentResponseNode = bodyNode.getChildElement('EnableInternalConsentResponse', DT_NS);
 			if (EnableInternalConsentResponseNode != null) {
 				ConsentDataTypesService.EnableInternalConsentResponseType response_x = new ConsentDataTypesService.EnableInternalConsentResponseType(EnableInternalConsentResponseNode);
@@ -109,35 +109,35 @@ public class ConsentCalloutService {
 			return null;
 		}
 
-        public ConsentDataTypesService.DisableGeneralConsentResponseBodyType disableGeneralConsent_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.DisableGeneralConsentRequestBodyType requestBody) {
+		public ConsentDataTypesService.DisableGeneralConsentResponseBodyType disableGeneralConsent_Http(CommonMessageService.RequestHeader requestHeader, ConsentDataTypesService.DisableGeneralConsentRequestBodyType requestBody) {
 			DOM.Document doc = new DOM.Document();
-            Dom.XmlNode methodNode = setupRequest(doc, 'DisableGeneralConsentRequest');
-            ConsentDataTypesService.DisableGeneralConsentRequestType request_x = new ConsentDataTypesService.DisableGeneralConsentRequestType(requestHeader, requestBody);
-            request_x.populateXmlNode(methodNode);
-			
-            HttpRequest req = createRequest(doc, 'disableGeneralConsent');
-            Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
-            HttpResponse res = getResponse(req);
-            Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
-            Dom.XmlNode bodyNode = getResponseBody(res);
+			Dom.XmlNode methodNode = setupRequest(doc, 'DisableGeneralConsentRequest');
+			ConsentDataTypesService.DisableGeneralConsentRequestType request_x = new ConsentDataTypesService.DisableGeneralConsentRequestType(requestHeader, requestBody);
+			request_x.populateXmlNode(methodNode);
+
+			HttpRequest req = createRequest(doc, 'disableGeneralConsent');
+			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
+			HttpResponse res = getResponse(req);
+			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
+			Dom.XmlNode bodyNode = getResponseBody(res);
 			Dom.XmlNode DisableGeneralConsentResponseNode = bodyNode.getChildElement('DisableGeneralConsentResponse', DT_NS);
 			if (DisableGeneralConsentResponseNode != null) {
 				ConsentDataTypesService.DisableGeneralConsentResponseType response_x = new ConsentDataTypesService.DisableGeneralConsentResponseType(DisableGeneralConsentResponseNode);
-			    return response_x.responseBody;
+				return response_x.responseBody;
 			}
-            Dom.XmlNode faultNode = bodyNode.getChildElement('Fault', 'http://schemas.xmlsoap.org/soap/envelope/');
-            if (faultNode != null) {
-                Dom.XmlNode faultstringNode = faultNode.getChildElement('faultstring', null);
-                ConsentDataTypesService.DisableGeneralConsentResponseType response_x = new ConsentDataTypesService.DisableGeneralConsentResponseType();
-                response_x.responseBody = new ConsentDataTypesService.DisableGeneralConsentResponseBodyType();
-                response_x.responseBody.responseMessage = (faultstringNode == null) ? null : faultstringNode.getText();
-                return response_x.responseBody;
-            }
+			Dom.XmlNode faultNode = bodyNode.getChildElement('Fault', 'http://schemas.xmlsoap.org/soap/envelope/');
+			if (faultNode != null) {
+				Dom.XmlNode faultstringNode = faultNode.getChildElement('faultstring', null);
+				ConsentDataTypesService.DisableGeneralConsentResponseType response_x = new ConsentDataTypesService.DisableGeneralConsentResponseType();
+				response_x.responseBody = new ConsentDataTypesService.DisableGeneralConsentResponseBodyType();
+				response_x.responseBody.responseMessage = (faultstringNode == null) ? null : faultstringNode.getText();
+				return response_x.responseBody;
+			}
 			return null;
 		}
 
-        private Dom.XmlNode setupRequest(DOM.Document doc, String requestName) {
-            String env_ns = 'http://schemas.xmlsoap.org/soap/envelope/';
+		private Dom.XmlNode setupRequest(DOM.Document doc, String requestName) {
+			String env_ns = 'http://schemas.xmlsoap.org/soap/envelope/';
 			String v01_ns = 'http://service.cmss.cz/common/CommonMessage/v01';
 
 			DOM.XmlNode envelope = doc.createRootElement('Envelope', env_ns, 'soapenv');
@@ -151,30 +151,30 @@ public class ConsentCalloutService {
 			);
 			DOM.XmlNode body = envelope.addChildElement('Body', env_ns, 'soapenv');
 			return body.addChildElement(requestName, DT_NS, 'dat');
-        }
+		}
 
-        private HttpRequest createRequest(DOM.Document doc, String methodName) {
-            HttpRequest req = new HttpRequest();
+		private HttpRequest createRequest(DOM.Document doc, String methodName) {
+			HttpRequest req = new HttpRequest();
 			req.setEndpoint(endpoint_x);
 			req.setMethod('POST');
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/ConsentService/v01/' + methodName);
-            System.debug(doc.toXmlString());
+			System.debug(doc.toXmlString());
 			req.setBodyDocument(doc);
-            return req;
-        }
+			return req;
+		}
 
-        private HttpResponse getResponse(HttpRequest req) {
+		private HttpResponse getResponse(HttpRequest req) {
 			Http http = new Http();
 			HttpResponse res = http.send(req);
 			System.debug(res.getBody());
-            return res;
-        }
+			return res;
+		}
 
-        private Dom.XmlNode getResponseBody(HttpResponse res) {
+		private Dom.XmlNode getResponseBody(HttpResponse res) {
 			Dom.Document responseDoc = res.getBodyDocument();
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
-            return rootNode.getChildElement('Body','http://schemas.xmlsoap.org/soap/envelope/');
-        }
+			return rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
+		}
 	}
 }

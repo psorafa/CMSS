@@ -116,7 +116,7 @@ public without sharing class AccessShareController {
 			for (Task task : taskList) {
 				if (usersMap.get(task.OwnerId)?.IsActive == true) {
 					String accId;
-                    Date dt;
+					Date dt;
 					if (task.AccountId != null) {
 						accId = task.AccountId;
 					} else if (task.WhatId != null && assetMap.get(task.WhatId) != null) {
@@ -124,23 +124,21 @@ public without sharing class AccessShareController {
 					} else {
 						continue;
 					}
-                   
-                    if(task.ActivityDate != null){
-                        dt = task.ActivityDate;
-                    }else if (task.ValidTo__c != null){
-                        dt  = task.ValidTo__c;
-                    }
-                    else if(task.PlannedToDate__c != null ){
-                        dt = task.PlannedToDate__c.date();
-                    }
-                    else{
-                        dt = System.today().addDays(7);
-                    } 
-                    
+
+					if (task.ActivityDate != null) {
+						dt = task.ActivityDate;
+					} else if (task.ValidTo__c != null) {
+						dt = task.ValidTo__c;
+					} else if (task.PlannedToDate__c != null) {
+						dt = task.PlannedToDate__c.date();
+					} else {
+						dt = System.today().addDays(7);
+					}
+
 					AccessShareController.addAccessShareDtoToSet(
 						usersMap.get(task.OwnerId),
 						accId,
-					    dt,
+						dt,
 						task.Id,
 						AccessShareDtos
 					);
@@ -202,9 +200,9 @@ public without sharing class AccessShareController {
 			List<AccountShare> accountShareListToRemove = new List<AccountShare>();
 			for (
 				AccountShare accountSh : AccountShareDao.getAccountShareByUserAndAccountIds(
-					accountIdByUser.keyset(),
-					accountIds
-				)
+				accountIdByUser.keyset(),
+				accountIds
+			)
 			) {
 				for (Task task : taskList) {
 					if (task.ownerId == accountSh.UserOrGroupId) {
@@ -223,9 +221,9 @@ public without sharing class AccessShareController {
 			List<AccessShare__c> accessSharesToConsider = new List<AccessShare__C>();
 			for (
 				AccessShare__c AccessSh : AccessShareDao.getAccessShareByUserAndAccountIds(
-					accountIdByUser.keyset(),
-					accountIds
-				)
+				accountIdByUser.keyset(),
+				accountIds
+			)
 			) {
 				if (accountIdByUser.get(AccessSh.RequestedBy__c).contains(AccessSh.AccessTo__c)) {
 					accessSharesToConsider.add(accessSh);
@@ -254,9 +252,9 @@ public without sharing class AccessShareController {
 			List<AccountShare> accountShareListToRemove = new List<AccountShare>();
 			for (
 				AccountShare accountSh : AccountShareDao.getAccountShareByUserAndAccountIds(
-					accountIdByUser.keyset(),
-					accountIds
-				)
+				accountIdByUser.keyset(),
+				accountIds
+			)
 			) {
 				for (Opportunity opp : opportunityList) {
 					if (opp.OwnerId == accountSh.UserOrGroupId && opp.AccountId == accountSh.AccountId) {
@@ -269,9 +267,9 @@ public without sharing class AccessShareController {
 			List<AccessShare__c> accessSharesToConsider = new List<AccessShare__C>();
 			for (
 				AccessShare__c AccessSh : AccessShareDao.getAccessShareByUserAndAccountIds(
-					accountIdByUser.keyset(),
-					accountIds
-				)
+				accountIdByUser.keyset(),
+				accountIds
+			)
 			) {
 				if (accountIdByUser.get(AccessSh.RequestedBy__c).contains(AccessSh.AccessTo__c)) {
 					accessSharesToConsider.add(accessSh);

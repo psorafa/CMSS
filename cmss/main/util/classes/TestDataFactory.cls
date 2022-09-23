@@ -12,7 +12,7 @@ public class TestDataFactory {
 		FROM RecordType
 		WHERE DeveloperName = 'PersonAccount' AND SobjectType = 'Account'
 	]
-	.Id;
+		.Id;
 	private static Integer caseCounter = 0;
 	public static User defaultCaseOwner;
 	private static List<PermissionSet> permissionSets = [
@@ -201,7 +201,7 @@ public class TestDataFactory {
 						AssigneeId = defaultCaseOwner.Id,
 						PermissionSetId = permSets[2].Id
 					);
-					insert new List<PermissionSetAssignment>{ psa1, psa2, psa3 };
+					insert new List<PermissionSetAssignment>{psa1, psa2, psa3};
 				}
 			}
 			template.OwnerId = defaultCaseOwner.Id;

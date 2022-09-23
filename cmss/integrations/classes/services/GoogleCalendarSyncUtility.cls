@@ -54,11 +54,11 @@ public class GoogleCalendarSyncUtility {
 		if (isNew && !isOriginGoogle) {
 			String description =
 				'Událost ze CRM Fénix ke klientovi/klientům ' +
-				sfEvent.AccountAlias__c +
-				' typ produktu ' +
-				sfEvent.ProductType__c +
-				' pro detail klikněte na odkaz: ' +
-				sfEvent.ActivityLink__c;
+					sfEvent.AccountAlias__c +
+					' typ produktu ' +
+					sfEvent.ProductType__c +
+					' pro detail klikněte na odkaz: ' +
+					sfEvent.ActivityLink__c;
 			googleEvent.description = description;
 			googleEvent.colorId = '4';
 		}
@@ -105,16 +105,16 @@ public class GoogleCalendarSyncUtility {
 
 		googleEvent.description =
 			'Aktivita typu: ' +
-			task.Type +
-			'\nKe klientovi/klientům: ' +
-			task.AccountAlias__c +
-			'\nKategorie: ' +
-			task.Category__c +
-			'\nTyp produktu: ' +
-			task.ProductType__c +
-			'\nPro detail klikněte na odkaz: ' +
-			task.ActivityLink__c +
-			'\nS aktivitou je potřeba pracovat v CRM Fénix, kde po jejím dokončení prosím zaznamejte i její výsledek.';
+				task.Type +
+				'\nKe klientovi/klientům: ' +
+				task.AccountAlias__c +
+				'\nKategorie: ' +
+				task.Category__c +
+				'\nTyp produktu: ' +
+				task.ProductType__c +
+				'\nPro detail klikněte na odkaz: ' +
+				task.ActivityLink__c +
+				'\nS aktivitou je potřeba pracovat v CRM Fénix, kde po jejím dokončení prosím zaznamejte i její výsledek.';
 
 		googleEvent.colorId = '2';
 
@@ -174,8 +174,8 @@ public class GoogleCalendarSyncUtility {
 		Task googleToSfTask = getSFTaskFromGoogleEvent(googleEventTask);
 		if (
 			googleToSfTask.Location__c != sfTask.Location__c ||
-			googleToSfTask.PlannedFromDate__c != sfTask.PlannedFromDate__c ||
-			googleToSfTask.PlannedToDate__c != sfTask.PlannedToDate__c
+				googleToSfTask.PlannedFromDate__c != sfTask.PlannedFromDate__c ||
+				googleToSfTask.PlannedToDate__c != sfTask.PlannedToDate__c
 		) {
 			return true;
 		}
@@ -281,14 +281,14 @@ public class GoogleCalendarSyncUtility {
 	}
 
 	public static Boolean isQueableRunning() {
-		List<String> activeQueableStatuses = new List<String>{ 'Processing', 'Queued', 'Preparing', 'Holding' };
+		List<String> activeQueableStatuses = new List<String>{'Processing', 'Queued', 'Preparing', 'Holding'};
 		Id apexClassId = [SELECT Id FROM ApexClass WHERE Name = 'ProcessEventSyncQueue' LIMIT 1].Id;
 		return [
-				SELECT Id, Status, ApexClassId
-				FROM AsyncApexJob
-				WHERE ApexClassId = :apexClassId AND Status IN :activeQueableStatuses
-				LIMIT 1
-			]
+			SELECT Id, Status, ApexClassId
+			FROM AsyncApexJob
+			WHERE ApexClassId = :apexClassId AND Status IN :activeQueableStatuses
+			LIMIT 1
+		]
 			.size() != 0;
 	}
 

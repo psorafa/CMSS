@@ -117,12 +117,12 @@ public without sharing class ClientService {
 	private static Boolean accountAlreadyExists(String id, String uniqueFieldName) {
 		List<Account> duplicates = Database.query(
 			'SELECT Id FROM Account WHERE ' +
-			uniqueFieldName +
-			' = ' +
-			'\'' +
-			id +
-			'\'' +
-			' LIMIT 1'
+				uniqueFieldName +
+				' = ' +
+				'\'' +
+				id +
+				'\'' +
+				' LIMIT 1'
 		);
 		if (duplicates.isEmpty()) {
 			return false;

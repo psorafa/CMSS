@@ -60,7 +60,7 @@ class TaskTriggerHandlerTest {
 		insert acc1;
 		User u1 = TestDataFactory.getUser(new User());
 		User u2 = TestDataFactory.getUser(new User());
-		insert new List<User>{ u1, u2 };
+		insert new List<User>{u1, u2};
 
 		Integer accessShareSize = AccessShareDao.getAllRecordsFromAccessShare().size();
 		Integer accountShareSize = AccountShareDao.getAllRecordsFromAccountShare().size();
@@ -134,21 +134,21 @@ class TaskTriggerHandlerTest {
 		acc2.OpenedActivityDate__c = Date.today().addDays(3);
 		acc2.LastInteractionDate__c = Date.today().addDays(-5);
 
-		insert new List<Account>{ acc1, acc2 };
+		insert new List<Account>{acc1, acc2};
 
 		User u = TestDataFactory.getUser(new User());
 		insert u;
 
 		Task task1 = new Task(WhatId = acc1.Id, OwnerId = u.Id, Status = '1', ActivityDate = Date.today().addDays(1));
 		Task task2 = new Task(WhatId = acc2.Id, OwnerId = u.Id, Status = '1', ActivityDate = Date.today().addDays(1));
-		insert new List<Task>{ task1, task2 };
+		insert new List<Task>{task1, task2};
 
 		Map<Id, Account> updatedAccounts = new Map<Id, Account>(
-			[
-				SELECT Id, OpenedActivityDate__c, LastInteractionDate__c
-				FROM Account
-				WHERE Id IN :(new List<Id>{ acc1.Id, acc2.Id })
-			]
+		[
+			SELECT Id, OpenedActivityDate__c, LastInteractionDate__c
+			FROM Account
+			WHERE Id IN :(new List<Id>{acc1.Id, acc2.Id})
+		]
 		);
 
 		System.assertEquals(task1.ActivityDate, updatedAccounts.get(acc1.Id).OpenedActivityDate__c);

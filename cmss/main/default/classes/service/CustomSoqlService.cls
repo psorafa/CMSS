@@ -36,13 +36,13 @@ public with sharing class CustomSoqlService {
 		String queryFields = getQueryFieldsFromFieldSetService(service);
 		String query =
 			prepareQuery(queryFields) +
-			((this.filterRequestDto.sortBy != null)
-				? (' ORDER BY ' + this.filterRequestDto.sortBy + ' ' + this.filterRequestDto.sortDirection)
-				: '') +
-			' LIMIT ' +
-			this.filterRequestDto.pageSize +
-			' OFFSET ' +
-			this.filterRequestDto.pageSize * (this.filterRequestDto.pageNumber - 1);
+				((this.filterRequestDto.sortBy != null)
+					? (' ORDER BY ' + this.filterRequestDto.sortBy + ' ' + this.filterRequestDto.sortDirection)
+					: '') +
+				' LIMIT ' +
+				this.filterRequestDto.pageSize +
+				' OFFSET ' +
+				this.filterRequestDto.pageSize * (this.filterRequestDto.pageNumber - 1);
 		System.debug('data query = ' + query);
 		return Database.query(query);
 	}
@@ -68,11 +68,11 @@ public with sharing class CustomSoqlService {
 		String customFilterString = String.join(customFilters, ' AND ');
 		String baseQuery =
 			'SELECT ' +
-			queryFields +
-			' FROM ' +
-			this.filterRequestDto.configuration.ObjectType__c +
-			' WHERE ' +
-			this.filterRequestDto.configuration.FilterCondition__c;
+				queryFields +
+				' FROM ' +
+				this.filterRequestDto.configuration.ObjectType__c +
+				' WHERE ' +
+				this.filterRequestDto.configuration.FilterCondition__c;
 
 		if (!customFilters.isEmpty()) {
 			return baseQuery + ' AND ' + customFilterString;

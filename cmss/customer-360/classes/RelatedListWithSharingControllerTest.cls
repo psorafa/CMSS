@@ -17,7 +17,7 @@ public class RelatedListWithSharingControllerTest {
 		asset2 = new Asset();
 		asset2.name = 'testAsset 2';
 		asset2.AccountId = acc.Id;
-		insert new List<Asset>{ asset1, asset2 };
+		insert new List<Asset>{asset1, asset2};
 
 		AssetRelationship relationship = new AssetRelationship();
 		relationship.AssetId = asset1.Id;
@@ -68,7 +68,7 @@ public class RelatedListWithSharingControllerTest {
 
 	@isTest
 	public static void testGetFieldsDetails() {
-		List<String> listOfFields = new List<String>{ 'Id', 'Email__c', 'Street__c' };
+		List<String> listOfFields = new List<String>{'Id', 'Email__c', 'Street__c'};
 		List<ColumnDTO> myData = RelatedListWithSharingController.getFieldsDetailsWithButtons(
 			'ContactInformation__c',
 			listOfFields

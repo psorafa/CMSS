@@ -139,7 +139,7 @@ public without sharing class CustomerSearchController {
 	@TestVisible
 	private static Boolean validateInputs() {
 		return ((String.isNotBlank(compRegNum) || String.isNotBlank(assetNumber) || String.isNotBlank(birthNumber)) &&
-		(String.isNotBlank(lastName)));
+			(String.isNotBlank(lastName)));
 	}
 
 	/**
@@ -188,14 +188,14 @@ public without sharing class CustomerSearchController {
 	@TestVisible
 	private static final String ACCOUNT_OBJECT_STRING =
 		ACCOUNT_SOBJECT +
-		'(Id,PersonalIdentificationNr__c,CompanyRegistrationNumber__c,Name,FirstName,LastName,BillingCity,BillingPostalCode, IsPersonAccount, PersonEmail,CSOBSNonClient__c, CompanyEmail__c, AccountStatus__c,OwnerId, GlobalId__c WHERE ';
+			'(Id,PersonalIdentificationNr__c,CompanyRegistrationNumber__c,Name,FirstName,LastName,BillingCity,BillingPostalCode, IsPersonAccount, PersonEmail,CSOBSNonClient__c, CompanyEmail__c, AccountStatus__c,OwnerId, GlobalId__c WHERE ';
 	@TestVisible
 	private static final String LEAD_OBJECT_STRING =
 		LEAD_SOBJECT + '(Id,FirstName,LastName,Name,Email,PersonalIdentificationNr__c,City,PostalCode)';
 	@TestVisible
 	private static final String ASSET_OBJECT_STRING =
 		ASSET_SOBJECT +
-		'(Id,Name,AccountId,Account.Name,Account.BillingCity,Account.BillingPostalCode,Account.PersonalIdentificationNr__c,Account.CompanyRegistrationNumber__c, Account.IsPersonAccount, Account.PersonEmail, Account.CompanyEmail__c, Account.GlobalId__c WHERE ';
+			'(Id,Name,AccountId,Account.Name,Account.BillingCity,Account.BillingPostalCode,Account.PersonalIdentificationNr__c,Account.CompanyRegistrationNumber__c, Account.IsPersonAccount, Account.PersonEmail, Account.CompanyEmail__c, Account.GlobalId__c WHERE ';
 	/**
 	 * @description method to build and @return text to be used in the SOSL query after RETURNING keyword based on the sObject Type for which we need the string
 	 * @author Andrea Olexova
@@ -256,12 +256,12 @@ public without sharing class CustomerSearchController {
 				for (Account accountResult : (List<Account>) searchResults) {
 					if (
 						(String.isNotBlank(birthNumber) && birthNumber == accountResult.PersonalIdentificationNr__c) ||
-						(String.isNotBlank(compRegNum) && compRegNum == accountResult.CompanyRegistrationNumber__c)
+							(String.isNotBlank(compRegNum) && compRegNum == accountResult.CompanyRegistrationNumber__c)
 					) {
 						if (
 							accountResult.AccountStatus__c == '5' &&
-							(accountResult.OwnerId == hiddenRecordsOwnerUserId) &&
-							!isAdminUser
+								(accountResult.OwnerId == hiddenRecordsOwnerUserId) &&
+								!isAdminUser
 						) {
 							accessToRecord = false;
 						}
@@ -291,7 +291,7 @@ public without sharing class CustomerSearchController {
 				for (Asset assetResult : (List<Asset>) searchResults) {
 					if (
 						String.isNotBlank(assetNumber) &&
-						(assetNumber == assetResult.Name || assetResult.Name.startsWithIgnoreCase(assetNumber))
+							(assetNumber == assetResult.Name || assetResult.Name.startsWithIgnoreCase(assetNumber))
 					) {
 						String email = assetResult.Account.isPersonAccount
 							? assetResult.Account.PersonEmail
@@ -318,7 +318,7 @@ public without sharing class CustomerSearchController {
 				for (Lead leadResult : (List<Lead>) searchResults) {
 					if (
 						(String.isNotBlank(birthNumber) && birthNumber == leadResult.PersonalIdentificationNr__c) &&
-						((String.isNotBlank(lastName) && leadResult.LastName.startsWithIgnoreCase(lastName)))
+							((String.isNotBlank(lastName) && leadResult.LastName.startsWithIgnoreCase(lastName)))
 					) {
 						filteredResults.add(
 							new SearchResultDTO(

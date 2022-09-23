@@ -11,12 +11,12 @@ public with sharing class AccountRelatedListController {
 		AccountInfo ai = new AccountInfo();
 		ai.accountCount = Database.countQuery(
 			'SELECT COUNT() ' +
-			'FROM Account ' +
-			'WHERE PortfolioMngmt' +
-			portManType +
-			'__c = :userId ' +
-			(String.isNotBlank(city) ? 'AND City__c = :city ' : '') +
-			(String.isNotBlank(billingPostalCode) ? 'AND BillingPostalCode LIKE :billingPostalCode ' : '')
+				'FROM Account ' +
+				'WHERE PortfolioMngmt' +
+				portManType +
+				'__c = :userId ' +
+				(String.isNotBlank(city) ? 'AND City__c = :city ' : '') +
+				(String.isNotBlank(billingPostalCode) ? 'AND BillingPostalCode LIKE :billingPostalCode ' : '')
 		);
 		ai.accounts = queryAccounts(userId, portManType, city, billingPostalCode, recordsToShow, offset);
 
@@ -103,17 +103,17 @@ public with sharing class AccountRelatedListController {
 	) {
 		return Database.query(
 			'SELECT CombinedName__c, BillingStreet, City__c, BillingPostalCode, Phone, PersonEmail, PersonType__c ' +
-			'FROM Account ' +
-			'WHERE PortfolioMngmt' +
-			portManType +
-			'__c = :userId ' +
-			(String.isNotBlank(city) ? 'AND City__c = :city ' : '') +
-			(String.isNotBlank(billingPostalCode) ? 'AND BillingPostalCode LIKE :billingPostalCode ' : '') +
-			'LIMIT ' +
-			recordsToShow +
-			' ' +
-			'OFFSET ' +
-			offset
+				'FROM Account ' +
+				'WHERE PortfolioMngmt' +
+				portManType +
+				'__c = :userId ' +
+				(String.isNotBlank(city) ? 'AND City__c = :city ' : '') +
+				(String.isNotBlank(billingPostalCode) ? 'AND BillingPostalCode LIKE :billingPostalCode ' : '') +
+				'LIMIT ' +
+				recordsToShow +
+				' ' +
+				'OFFSET ' +
+				offset
 		);
 	}
 

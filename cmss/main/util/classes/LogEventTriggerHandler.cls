@@ -12,7 +12,7 @@ public class LogEventTriggerHandler {
 
 	private static Log__c createLog(LogEvent__e logEvent) {
 		Log__c log = new Log__c();
-        log.TransactionId__c = logEvent.TransactionId__c;
+		log.TransactionId__c = logEvent.TransactionId__c;
 		log.ClassMethodName__c = logEvent.ClassMethodName__c;
 		log.Exception__c = logEvent.Exception__c;
 		log.Level__c = logEvent.Level__c;
@@ -28,9 +28,9 @@ public class LogEventTriggerHandler {
 			if (!sr.isSuccess()) {
 				for (Database.Error err : sr.getErrors()) {
 					System.debug('Error while saving log returned: ' +
-							err.getStatusCode() +
-							' - ' +
-							err.getMessage());
+						err.getStatusCode() +
+						' - ' +
+						err.getMessage());
 				}
 			}
 		}

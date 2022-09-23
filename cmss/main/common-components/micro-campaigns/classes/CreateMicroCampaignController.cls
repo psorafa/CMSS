@@ -45,9 +45,9 @@ public with sharing class CreateMicroCampaignController {
 			Logger.error('Error in micro-campaign creation', e);
 			throw new AuraHandledException(
 				'Unexpected exception: ' +
-				e.getMessage() +
-				'; transactionId: ' +
-				Logger.getTransactionId()
+					e.getMessage() +
+					'; transactionId: ' +
+					Logger.getTransactionId()
 			);
 		} finally {
 			Logger.saveLogs();

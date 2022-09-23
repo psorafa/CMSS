@@ -110,7 +110,7 @@ public class PersonManagementUtility {
 			String emptyFieldLocator = '"' + field.getDescribe().getName() + '":""';
 			if (
 				(field.getDescribe().getType() == Schema.DisplayType.DATE ||
-				field.getDescribe().getType() == Schema.DisplayType.DATETIME) && finalString.contains(emptyFieldLocator)
+					field.getDescribe().getType() == Schema.DisplayType.DATETIME) && finalString.contains(emptyFieldLocator)
 			) {
 				finalString = finalString.replaceAll(emptyFieldLocator, '');
 				finalString = finalString.replaceAll(',,', ',');

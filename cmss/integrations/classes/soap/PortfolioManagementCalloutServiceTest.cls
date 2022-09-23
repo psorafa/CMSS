@@ -9,7 +9,7 @@ private class PortfolioManagementCalloutServiceTest {
 	static void testSetPortfolioManager() {
 		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0', IsAgentActive__c = true));
 		User u2 = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU1', IsAgentActive__c = true));
-		insert new List<User>{ u, u2 };
+		insert new List<User>{u, u2};
 
 		String portfolioMngmntRequestId =
 			PortfolioManagementRequest__c.SObjectType.getDescribe().getKeyPrefix() + '0'.repeat(12);
@@ -18,10 +18,10 @@ private class PortfolioManagementCalloutServiceTest {
 			200,
 			'OK',
 			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-			portfolioMngmntRequestId +
-			'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-			portfolioMngmntRequestId +
-			'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
+				portfolioMngmntRequestId +
+				'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
+				portfolioMngmntRequestId +
+				'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
 			null,
 			null
 		);
@@ -76,7 +76,7 @@ private class PortfolioManagementCalloutServiceTest {
 	static void testChangeCPEClientStateError() {
 		Test.startTest();
 		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0', IsAgentActive__c = true));
-		insert new List<User>{ u };
+		insert new List<User>{u};
 		Test.stopTest();
 
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
@@ -95,7 +95,7 @@ private class PortfolioManagementCalloutServiceTest {
 		);
 
 		try {
-			insert new List<PortfolioManagementRequest__c>{ pmr, pmr2 };
+			insert new List<PortfolioManagementRequest__c>{pmr, pmr2};
 			System.assert(false, 'This assert should not be reached.');
 		} catch (DmlException e) {
 			System.assert(
@@ -108,7 +108,7 @@ private class PortfolioManagementCalloutServiceTest {
 	@IsTest
 	static void testChangeCPEClientStateFuture() {
 		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0', IsAgentActive__c = true));
-		insert new List<User>{ u };
+		insert new List<User>{u};
 
 		String portfolioMngmntRequestId =
 			PortfolioManagementRequest__c.SObjectType.getDescribe().getKeyPrefix() + '0'.repeat(12);
@@ -117,10 +117,10 @@ private class PortfolioManagementCalloutServiceTest {
 			200,
 			'OK',
 			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-			portfolioMngmntRequestId +
-			'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-			portfolioMngmntRequestId +
-			'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
+				portfolioMngmntRequestId +
+				'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
+				portfolioMngmntRequestId +
+				'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
 			null,
 			null
 		);
@@ -137,12 +137,12 @@ private class PortfolioManagementCalloutServiceTest {
 		System.assert(
 			logs[0]
 				.Payload__c.contains(
-					'<ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
+				'<ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
 					portfolioMngmntRequestId +
 					'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
 					portfolioMngmntRequestId +
 					'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses>'
-				)
+			)
 		);
 	}
 }

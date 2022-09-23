@@ -708,7 +708,7 @@ public class CommonMessageService {
 		public RequestHeader() {
 			this.timestamp = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
 			this.timestamp = this.timestamp.substring(0, this.timestamp.length() - 2) + ':00';
-            String commonId = UUIDUtil.generateUUID();
+			String commonId = UUIDUtil.generateUUID();
 			this.messageId = commonId;
 			this.correlationId = commonId;
 			this.sourceSystem = IntegrationSettings__c.getOrgDefaults().SourceSystem__c;

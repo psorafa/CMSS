@@ -18,7 +18,7 @@ private class AccessSharingUtilsTest {
 				AccountStatus__c = '1'
 			)
 		);
-		insert new List<Account>{ client1, client2 };
+		insert new List<Account>{client1, client2};
 
 		Asset asset = TestDataFactory.getAsset(
 			new Asset(AccountId = client1.Id, EndDate__c = System.today().addDays(20))
@@ -43,7 +43,7 @@ private class AccessSharingUtilsTest {
 		originalDTO.accountIdToShare = client2Id;
 
 		Set<AccessShareDTO> resultDTOs = AccessSharingUtils.getRelatedAccessShareDTOs(
-			new Set<AccessShareDTO>{ originalDTO }
+			new Set<AccessShareDTO>{originalDTO}
 		);
 
 		List<AccessShareDTO> resultInList = new List<AccessShareDTO>(resultDTOs);

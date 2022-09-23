@@ -81,7 +81,7 @@ private class CustomSoqlServiceTest {
 		myCustomFilterItemDto.objectName = 'Account';
 		myCustomFilterItemDto.fieldName = 'City__c';
 		myCustomFilterItemDto.dataType = 'Text';
-		myCustomFilterItemDto.filters = new List<CustomSearchFilterRequestDto.FilterOptionDto>{ filter1, filter2 };
+		myCustomFilterItemDto.filters = new List<CustomSearchFilterRequestDto.FilterOptionDto>{filter1, filter2};
 
 		myCustomFilterItemDtoList.add(myCustomFilterItemDto);
 		myDto.filterItemList = myCustomFilterItemDtoList;

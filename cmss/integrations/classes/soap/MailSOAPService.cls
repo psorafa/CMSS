@@ -116,14 +116,14 @@ public class MailSOAPService {
 	}
 
 	public class sendEmailResponse_element {
-		private transient String[] apex_schema_type_info = new List<String>{ serviceNamespace, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{serviceNamespace, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{};
 		public sendEmailResponse_element(DOM.XmlNode responseNode) {
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
 		}
 	}
 	public class sendEmailWithAttachmentsResponse_element {
-		private transient String[] apex_schema_type_info = new List<String>{ serviceNamespace, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{serviceNamespace, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{};
 		public sendEmailWithAttachmentsResponse_element(DOM.XmlNode responseNode) {
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
@@ -167,8 +167,8 @@ public class MailSOAPService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ sendMailEndpoint, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'Reciever', 'Sender', 'Subject', 'Body' };
+		private transient String[] apex_schema_type_info = new List<String>{sendMailEndpoint, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'Reciever', 'Sender', 'Subject', 'Body'};
 		public SendEmailType() {
 		}
 
@@ -243,7 +243,7 @@ public class MailSOAPService {
 			'-1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ sendMailEndpoint, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{sendMailEndpoint, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'Reciever',
 			'Sender',
@@ -328,8 +328,8 @@ public class MailSOAPService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ faultEndpoint, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'message', 'cause', 'errorNumber' };
+		private transient String[] apex_schema_type_info = new List<String>{faultEndpoint, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'message', 'cause', 'errorNumber'};
 		public CMSSBusinessLogicFaultInfo() {
 		}
 		public CMSSBusinessLogicFaultInfo(DOM.XmlNode responseNode) {
@@ -384,8 +384,8 @@ public class MailSOAPService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ faultEndpoint, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'message', 'cause' };
+		private transient String[] apex_schema_type_info = new List<String>{faultEndpoint, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'message', 'cause'};
 		public CMSSFaultInfo() {
 		}
 		public CMSSFaultInfo(DOM.XmlNode responseNode) {
@@ -452,7 +452,7 @@ public class MailSOAPService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ faultEndpoint, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{faultEndpoint, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'message',
 			'cause',
@@ -523,8 +523,8 @@ public class MailSOAPService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ faultEndpoint, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'message', 'cause' };
+		private transient String[] apex_schema_type_info = new List<String>{faultEndpoint, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'message', 'cause'};
 		public CMSSServiceFaultInfo() {
 		}
 		public CMSSServiceFaultInfo(DOM.XmlNode responseNode) {

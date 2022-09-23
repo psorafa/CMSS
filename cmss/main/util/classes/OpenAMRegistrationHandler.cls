@@ -1,6 +1,6 @@
-public class OpenAMRegistrationHandler implements Auth.RegistrationHandler{
+public class OpenAMRegistrationHandler implements Auth.RegistrationHandler {
 
-	public User createUser(Id portalId, Auth.UserData data){
+	public User createUser(Id portalId, Auth.UserData data) {
 		System.debug('SSO login attempt: ' + JSON.serializePretty(data));
 		for (User u : [SELECT Id FROM User WHERE LoginName__c = :data.identifier OR GlowID__c = :data.identifier]) {
 			System.debug('User found: ' + u.Id);
@@ -10,6 +10,6 @@ public class OpenAMRegistrationHandler implements Auth.RegistrationHandler{
 		return null;
 	}
 
-	public void updateUser(Id userId, Id portalId, Auth.UserData data){
+	public void updateUser(Id userId, Id portalId, Auth.UserData data) {
 	}
 }

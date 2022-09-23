@@ -6,7 +6,7 @@ private class AccessShareScheduleTest {
 		userCreator = TestDataFactory.getUser(userCreator);
 		User userObserver = new User(FirstName = 'Tester2', LastName = 'Observer');
 		userObserver = TestDataFactory.getUser(userObserver);
-		insert new List<User>{ userCreator, userObserver };
+		insert new List<User>{userCreator, userObserver};
 
 		System.runAs(userCreator) {
 			Account acc1 = new Account(Name = 'Test Acc1', GlobalId__c = '089786');
@@ -42,14 +42,14 @@ private class AccessShareScheduleTest {
 		userCreator = TestDataFactory.getUser(userCreator);
 		User userObserver = new User(FirstName = 'Tester2', LastName = 'Observer');
 		userObserver = TestDataFactory.getUser(userObserver);
-		insert new List<User>{ userCreator, userObserver };
+		insert new List<User>{userCreator, userObserver};
 
 		System.runAs(userCreator) {
 			Account acc1 = new Account(Name = 'Test Acc1', GlobalId__c = '089786');
 			acc1 = TestDataFactory.getAccount(acc1);
 			Asset asset1 = new Asset(Name = '132435');
 			asset1 = TestDataFactory.getAsset(asset1);
-			insert new List<SObject>{ acc1, asset1 };
+			insert new List<SObject>{acc1, asset1};
 		}
 
 		Id testAccId = [SELECT Id FROM Account WHERE GlobalId__c = '089786' LIMIT 1].Id;
@@ -66,7 +66,7 @@ private class AccessShareScheduleTest {
 				FROM UserRecordAccess
 				WHERE UserId = :userObserver.Id AND recordId = :testAssetId
 			]
-			.HasEditAccess
+				.HasEditAccess
 		);
 
 		System.assert(
@@ -75,7 +75,7 @@ private class AccessShareScheduleTest {
 				FROM UserRecordAccess
 				WHERE UserId = :userObserver.Id AND recordId = :testAccId
 			]
-			.HasEditAccess
+				.HasEditAccess
 		);
 	}
 }

@@ -11,29 +11,27 @@ global class AccessShareBatch implements Database.Batchable<sObject>, Database.S
 	}
 
 	global Database.QueryLocator start(Database.BatchableContext bc) {
-		return Database.getQueryLocator(
-			[
-				SELECT
-					AccessTo__c,
-					CreatedById,
-					CreatedDate,
-					ExpirationDate__c,
-					Id,
-					IsDeleted,
-					LastModifiedById,
-					LastModifiedDate,
-					LastReferencedDate,
-					LastViewedDate,
-					Name,
-					Reason__c,
-					RequestedBy__c,
-					StartDate__c,
-					SystemModstamp,
-					Type__c
-				FROM AccessShare__c
-				WHERE ExpirationDate__c <= :Datetime.now() AND Type__c = :type
-			]
-		);
+		return Database.getQueryLocator([
+			SELECT
+				AccessTo__c,
+				CreatedById,
+				CreatedDate,
+				ExpirationDate__c,
+				Id,
+				IsDeleted,
+				LastModifiedById,
+				LastModifiedDate,
+				LastReferencedDate,
+				LastViewedDate,
+				Name,
+				Reason__c,
+				RequestedBy__c,
+				StartDate__c,
+				SystemModstamp,
+				Type__c
+			FROM AccessShare__c
+			WHERE ExpirationDate__c <= :Datetime.now() AND Type__c = :type
+		]);
 	}
 
 	public Void execute(Database.BatchableContext jobId, List<AccessShare__c> accessShareList) {
@@ -51,9 +49,9 @@ global class AccessShareBatch implements Database.Batchable<sObject>, Database.S
 		List<AccountShare> accountShareListToRemove = new List<AccountShare>();
 		for (
 			AccountShare accountSh : AccountShareDao.getAccountShareByUserAndAccountIds(
-				accountIdByUser.keyset(),
-				accountIds
-			)
+			accountIdByUser.keyset(),
+			accountIds
+		)
 		) {
 			if (accountIdByUser.get(accountSh.userOrGroupId).contains(accountSh.AccountId))
 				accountShareListToRemove.add(accountSh);
@@ -71,9 +69,9 @@ global class AccessShareBatch implements Database.Batchable<sObject>, Database.S
 		List<AccessShare__c> accessSharesToConsider = new List<AccessShare__C>();
 		for (
 			AccessShare__c AccessSh : AccessShareDao.getAccessShareByUserAndAccountIds(
-				accountIdByUser.keyset(),
-				accountIds
-			)
+			accountIdByUser.keyset(),
+			accountIds
+		)
 		) {
 			if (accountIdByUser.get(AccessSh.RequestedBy__c).contains(AccessSh.AccessTo__c))
 				accessSharesToConsider.add(accessSh);

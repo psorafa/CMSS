@@ -107,8 +107,8 @@ public with sharing class Logger {
 			DmlException outerException = new DmlException(ex);
 			logEvent.Exception__c =
 				ex.getMessage() +
-				'\n' +
-				outerException.getStackTraceString().substringAfter('Caused by');
+					'\n' +
+					outerException.getStackTraceString().substringAfter('Caused by');
 		}
 		logEvent.Payload__c = (payload != null && payload.length() > 131072) ? payload.left(131072) : payload;
 		logEvent.Level__c = logLevel;
@@ -139,14 +139,14 @@ public with sharing class Logger {
 		String h = EncodingUtil.convertToHex(b);
 		String guid =
 			h.substring(0, 8) +
-			'-' +
-			h.substring(8, 12) +
-			'-' +
-			h.substring(12, 16) +
-			'-' +
-			h.substring(16, 20) +
-			'-' +
-			h.substring(20);
+				'-' +
+				h.substring(8, 12) +
+				'-' +
+				h.substring(12, 16) +
+				'-' +
+				h.substring(16, 20) +
+				'-' +
+				h.substring(20);
 		return guid;
 	}
 

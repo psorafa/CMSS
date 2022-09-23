@@ -67,7 +67,7 @@ public with sharing class FieldsetService {
 					}
 					if (
 						Schema.DisplayType.PICKLIST.equals(displayType) ||
-						Schema.DisplayType.MULTIPICKLIST.equals(displayType)
+							Schema.DisplayType.MULTIPICKLIST.equals(displayType)
 					) {
 						fieldName = 'toLabel(' + fieldName + ')';
 					}

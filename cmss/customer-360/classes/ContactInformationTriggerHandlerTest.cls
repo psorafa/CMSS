@@ -8,7 +8,7 @@ private class ContactInformationTriggerHandlerTest {
 		);
 
 		Test.startTest();
-		insert new List<ContactInformation__c>{ contactInfo, contactInfo2 };
+		insert new List<ContactInformation__c>{contactInfo, contactInfo2};
 		Test.stopTest();
 
 		List<ContactInformation__c> contactInfoValues = [
@@ -42,7 +42,7 @@ private class ContactInformationTriggerHandlerTest {
 		);
 
 		Test.startTest();
-		insert new List<ContactInformation__c>{ contactInfo, contactInfo2 };
+		insert new List<ContactInformation__c>{contactInfo, contactInfo2};
 		Test.stopTest();
 
 		List<ContactInformation__c> contactInfoValues = [SELECT Value__c FROM ContactInformation__c];

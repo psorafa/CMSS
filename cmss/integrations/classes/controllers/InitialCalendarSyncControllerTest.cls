@@ -55,12 +55,12 @@ public class InitialCalendarSyncControllerTest {
 		event2.created = OLD_ACTIVITY_DATE_TIME_STRING;
 		event2.status = 'confirmed';
 		event2.id = GOOGLE_EVENT_ID2;
-		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{ event1, event2 };
+		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{event1, event2};
 
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{'start', 'end'}),
 			null,
 			null
 		);
@@ -112,14 +112,14 @@ public class InitialCalendarSyncControllerTest {
 		event2.created = ACTIVITY_DATE_TIME_STRING;
 		event2.status = 'confirmed';
 		event2.id = GOOGLE_EVENT_ID2;
-		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{ event1, event2 };
+		respFromGoogle.items = new List<GoogleCalendarSyncUtility.GoogleEventDTO>{event1, event2};
 
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
 			GoogleCalendarSyncUtility.placeReserved(
 				JSON.serialize(respFromGoogle),
-				new List<string>{ 'start', 'end', 'date', 'dateTime' }
+				new List<string>{'start', 'end', 'date', 'dateTime'}
 			),
 			null,
 			null
@@ -156,7 +156,7 @@ public class InitialCalendarSyncControllerTest {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{'start', 'end'}),
 			null,
 			null
 		);
@@ -192,7 +192,7 @@ public class InitialCalendarSyncControllerTest {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{'start', 'end'}),
 			null,
 			null
 		);
@@ -236,7 +236,7 @@ public class InitialCalendarSyncControllerTest {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			404,
 			'Not found',
-			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{ 'start', 'end' }),
+			GoogleCalendarSyncUtility.placeReserved(JSON.serialize(respFromGoogle), new List<string>{'start', 'end'}),
 			null,
 			null
 		);
@@ -296,7 +296,7 @@ public class InitialCalendarSyncControllerTest {
 		e2.StartDateTime = ACTIVITY_DATE_TIME;
 		e2.GoogleId__c = GOOGLE_EVENT_ID2;
 
-		return new List<Event>{ e1, e2 };
+		return new List<Event>{e1, e2};
 	}
 
 	public static List<Event> makeUnsyncedEvents(Id userId) {
@@ -313,6 +313,6 @@ public class InitialCalendarSyncControllerTest {
 		e2.DurationInMinutes = 60;
 		e2.StartDateTime = ACTIVITY_DATE_TIME;
 
-		return new List<Event>{ e1, e2 };
+		return new List<Event>{e1, e2};
 	}
 }

@@ -1,15 +1,15 @@
 public class GoogleCalendarSyncService {
 	private String baseEndpoint = 'callout:GoogleCalendar/calendars';
-	private List<String> reservedKeywords = new List<String>{ 'date', 'start', 'end', 'dateTime' };
+	private List<String> reservedKeywords = new List<String>{'date', 'start', 'end', 'dateTime'};
 
 	public GoogleCalendarSyncUtility.GoogleCalendarResponse getAllEvents(String googleCalendarId, String syncToken) {
 		HttpRequest req = new HttpRequest();
 		String fullRoute =
 			baseEndpoint +
-			'/' +
-			googleCalendarId +
-			'/events' +
-			(syncToken == null ? '' : '?syncToken=' + syncToken);
+				'/' +
+				googleCalendarId +
+				'/events' +
+				(syncToken == null ? '' : '?syncToken=' + syncToken);
 		req.setEndpoint(fullRoute);
 		req.setMethod('GET');
 		Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
@@ -25,10 +25,10 @@ public class GoogleCalendarSyncService {
 		HttpRequest req = new HttpRequest();
 		String fullRoute =
 			baseEndpoint +
-			'/' +
-			googleCalendarId +
-			'/events' +
-			(nextPageToken == null ? '' : '?pageToken=' + nextPageToken);
+				'/' +
+				googleCalendarId +
+				'/events' +
+				(nextPageToken == null ? '' : '?pageToken=' + nextPageToken);
 		req.setEndpoint(fullRoute);
 		req.setMethod('GET');
 		Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
@@ -67,8 +67,8 @@ public class GoogleCalendarSyncService {
 			Logger.debug(
 				'Incoming response',
 				Logger.serializeHttpResponse(res) +
-				'\n' +
-				JSON.serialize(serializedResp)
+					'\n' +
+					JSON.serialize(serializedResp)
 			);
 			Logger.saveLogs();
 		}
@@ -159,9 +159,9 @@ public class GoogleCalendarSyncService {
 		Logger.saveLogs();
 
 		String newEventId = ((GoogleCalendarSyncUtility.GoogleEventDTO) JSON.deserialize(
-				GoogleCalendarSyncUtility.replaceReserved(res.getBody(), reservedKeywords),
-				GoogleCalendarSyncUtility.GoogleEventDTO.class
-			))
+			GoogleCalendarSyncUtility.replaceReserved(res.getBody(), reservedKeywords),
+			GoogleCalendarSyncUtility.GoogleEventDTO.class
+		))
 			.id;
 		return new GoogleCalendarSyncUtility.GoogleCalendarResponse(res.getStatusCode(), res.getStatus(), newEventId);
 	}

@@ -44,7 +44,7 @@ private class AccountRelatedListControllerTest {
 	static void testCreatePortManRequests() {
 		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CommAccNr1', IsAgentActive__c = true));
 		User u2 = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CommAccNr2', IsAgentActive__c = true));
-		insert new List<User>{ u, u2 };
+		insert new List<User>{u, u2};
 
 		Account[] accs = new List<Account>{
 			TestDataFactory.getAccount(new Account(PortfolioMngmtA__c = u.Id)),
@@ -82,7 +82,7 @@ private class AccountRelatedListControllerTest {
 				ValidFrom__c = System.now().addDays(1)
 			)
 		);
-		AccountRelatedListController.createPortManRequests(pmr2, new List<String>{ accs[0].Id, accs[1].Id });
+		AccountRelatedListController.createPortManRequests(pmr2, new List<String>{accs[0].Id, accs[1].Id});
 
 		pmrs = [
 			SELECT PortfolioManager__c

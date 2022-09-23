@@ -30,7 +30,7 @@ public class BasicTypesService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
 		private transient String[] field_order_type_info = new List<String>{
 			'basicNumber',
 			'checkNumber',
@@ -83,8 +83,8 @@ public class BasicTypesService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
-		private transient String[] field_order_type_info = new List<String>{ 'Successful' };
+		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] field_order_type_info = new List<String>{'Successful'};
 		public OperationSuccessType() {
 		}
 		public OperationSuccessType(DOM.XmlNode responseNode) {

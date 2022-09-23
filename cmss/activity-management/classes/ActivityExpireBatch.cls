@@ -25,14 +25,12 @@ public without sharing class ActivityExpireBatch implements Database.Batchable<s
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
 		List<String> finalStatuses = cfg.FinalStatuses__c.split(',');
 
-		return Database.getQueryLocator(
-			[
-				SELECT Id, Subject, ValidTo__c, Status
-				FROM Task
-				WHERE ValidTo__c <= TODAY AND Status NOT IN :finalStatuses
-				ORDER BY WhatId
-			]
-		);
+		return Database.getQueryLocator([
+			SELECT Id, Subject, ValidTo__c, Status
+			FROM Task
+			WHERE ValidTo__c <= TODAY AND Status NOT IN :finalStatuses
+			ORDER BY WhatId
+		]);
 	}
 
 	/**

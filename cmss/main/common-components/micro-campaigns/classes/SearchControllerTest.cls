@@ -2,7 +2,7 @@
 private class SearchControllerTest {
 	@IsTest
 	static void testBehavior() {
-		SearchController.search('User', new List<String>{ 'Name', 'Email' }, 'test');
+		SearchController.search('User', new List<String>{'Name', 'Email'}, 'test');
 	}
 
 	@IsTest
@@ -61,10 +61,10 @@ private class SearchControllerTest {
 		}
 		Test.setFixedSearchResults(fixedSearchResults);
 		System.runAs(usersInHierarchyHigh[0]) {
-			subordinates1 = SearchController.search('User', new List<String>{ 'Name', 'Email' }, '1', '', true);
+			subordinates1 = SearchController.search('User', new List<String>{'Name', 'Email'}, '1', '', true);
 		}
 		System.runAs(usersInHierarchyLow[0]) {
-			subordinates2 = SearchController.search('User', new List<String>{ 'Name', 'Email' }, '1', '', true);
+			subordinates2 = SearchController.search('User', new List<String>{'Name', 'Email'}, '1', '', true);
 		}
 		for (User u : usersInHierarchy) {
 			if (u.FirstName.startsWith('Karel')) {
@@ -73,11 +73,11 @@ private class SearchControllerTest {
 		}
 		Test.setFixedSearchResults(fixedSearchResults);
 		System.runAs(usersInHierarchyLow[0]) {
-			subordinates3 = SearchController.search('User', new List<String>{ 'Name', 'Email' }, 'Karel', '', true);
-			nonSubordinates3 = SearchController.search('User', new List<String>{ 'Name', 'Email' }, 'Karel', '', false);
+			subordinates3 = SearchController.search('User', new List<String>{'Name', 'Email'}, 'Karel', '', true);
+			nonSubordinates3 = SearchController.search('User', new List<String>{'Name', 'Email'}, 'Karel', '', false);
 		}
 		System.runAs(usersInHierarchyMedium[0]) {
-			subordinates4 = SearchController.search('User', new List<String>{ 'Name', 'Email' }, 'Karel', '', true);
+			subordinates4 = SearchController.search('User', new List<String>{'Name', 'Email'}, 'Karel', '', true);
 		}
 		Test.stopTest();
 		System.assertEquals(2, subordinates1.size());

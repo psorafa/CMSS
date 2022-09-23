@@ -39,8 +39,8 @@ public without sharing class AssetRelatedListController {
 	private static List<AssetAccountRelation__c> selectRelations(Id accountId, String condition) {
 		String query =
 			'SELECT Id, toLabel(RelationType__c), Asset__c FROM AssetAccountRelation__c WHERE Account__c = \'' +
-			accountId +
-			'\'';
+				accountId +
+				'\'';
 		if (!String.isBlank(condition)) {
 			query += ' AND ' + condition;
 		}

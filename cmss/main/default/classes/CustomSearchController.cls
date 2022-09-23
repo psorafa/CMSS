@@ -18,7 +18,7 @@ public with sharing class CustomSearchController {
 			userId = UserInfo.getUserId();
 		}
 		UserHierarchyTreeService service = new UserHierarchyTreeService(userId);
-		return new List<UserHierarchyTreeDto>{ service.loadUserHierarchyTree() };
+		return new List<UserHierarchyTreeDto>{service.loadUserHierarchyTree()};
 	}
 
 	@AuraEnabled
@@ -96,9 +96,9 @@ public with sharing class CustomSearchController {
 			Logger.error('Error in micro-campaign creation', e);
 			throw new AuraHandledException(
 				'Unexpected exception: ' +
-				e.getMessage() +
-				'; transactionId: ' +
-				Logger.getTransactionId()
+					e.getMessage() +
+					'; transactionId: ' +
+					Logger.getTransactionId()
 			);
 		} finally {
 			Logger.saveLogs();

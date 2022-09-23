@@ -96,9 +96,9 @@ public without sharing class RelatedListWithSharingController {
 			aditionalFields.add(relationFieldName.replace('__c', '__r').removeEnd('Id') + '.' + accountfield);
 			aditionalFields.add(
 				relationFieldName.replace('__c', '__r').removeEnd('Id') +
-				'.' +
-				accountfield.replace('__c', '__r').removeEnd('Id') +
-				'.Name'
+					'.' +
+					accountfield.replace('__c', '__r').removeEnd('Id') +
+					'.Name'
 			);
 		}
 
@@ -125,7 +125,7 @@ public without sharing class RelatedListWithSharingController {
 		newAccessShare.expirationDate = Datetime.now().addDays(2);
 		newAccessShare.reason = 'RelatedListReference';
 
-		AccessShareService.assignAccess(new Set<AccessShareDTO>{ newAccessShare }, 'Reference');
+		AccessShareService.assignAccess(new Set<AccessShareDTO>{newAccessShare}, 'Reference');
 		return sobjectType;
 	}
 
@@ -167,9 +167,9 @@ public without sharing class RelatedListWithSharingController {
 		} catch (Exception e) {
 			throw new UnsupportedTypeException(
 				'Account Field Name could not be resolved from object: ' +
-				sObjectTypeName +
-				'; ' +
-				e
+					sObjectTypeName +
+					'; ' +
+					e
 			);
 		}
 		return accountField;

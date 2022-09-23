@@ -6,26 +6,26 @@ public class LoanDetailInfoService {
 	public class LoanDetailInfoServicePort {
 		public String endpoint_x = IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c +
 			'/LoanDetailInfoServiceWeb_v05/LoanDetailInfoService';
-		public Map<String,String> inputHttpHeaders_x;
-		public Map<String,String> outputHttpHeaders_x;
+		public Map<String, String> inputHttpHeaders_x;
+		public Map<String, String> outputHttpHeaders_x;
 		public String clientCertName_x;
 		public String clientCert_x;
 		public String clientCertPasswd_x;
 		public Integer timeout_x;
-		private transient String[] ns_map_type_info = new String[]{'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes','LoanDetailInfoServiceDataTypes','http://service.cmss.cz/common/CommonMessage/v01','CommonMessageService','http://service.cmss.cz/common/datamodel/basictypes/v02','BasicTypesService'};
-		
-		private DOM.XmlNode populateDoc(DOM.Document doc){
+		private transient String[] ns_map_type_info = new String[]{'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes', 'LoanDetailInfoServiceDataTypes', 'http://service.cmss.cz/common/CommonMessage/v01', 'CommonMessageService', 'http://service.cmss.cz/common/datamodel/basictypes/v02', 'BasicTypesService'};
+
+		private DOM.XmlNode populateDoc(DOM.Document doc) {
 			String env = 'http://schemas.xmlsoap.org/soap/envelope/';
 			String v01 = 'http://service.cmss.cz/common/CommonMessage/v01';
-            String dat = 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes';
-            
+			String dat = 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes';
+
 			DOM.XmlNode envelope = doc.createRootElement('Envelope', env, 'soapenv');
-            envelope.setNamespace('dat', dat);
+			envelope.setNamespace('dat', dat);
 			envelope.setNamespace('v01', v01);
 			DOM.XmlNode header = envelope.addChildElement('Header', env, 'soapenv');
 			AddHeader(header);
-            /////
-            new SOAPCommonTypes.OutboundHttpHeader().addWssToHeader1(
+			/////
+			new SOAPCommonTypes.OutboundHttpHeader().addWssToHeader1(
 				header,
 				IntegrationSettings__c.getOrgDefaults().EsbUsername__c,
 				IntegrationSettings__c.getOrgDefaults().EsbPassword__c
@@ -36,24 +36,24 @@ public class LoanDetailInfoService {
 			return body;
 		}
 
-		private void AddHeader(DOM.XmlNode header){
+		private void AddHeader(DOM.XmlNode header) {
 		}
 
 		public HTTPResponse getLoanDetailInfo_Http(CommonMessageService.RequestHeader requestHeader, LoanDetailInfoServiceDataTypes.GetLoanDetailInfoRequestBodyType requestBody) {
 			DOM.Document doc = new DOM.Document();
 			DOM.XmlNode body = populateDoc(doc);
-			DOM.XmlNode methodNode = body.addChildElement('dat:GetLoanDetailInfoRequest', null, null);			
-			LoanDetailInfoServiceDataTypes.GetLoanDetailInfoRequestType request_x = new LoanDetailInfoServiceDataTypes.GetLoanDetailInfoRequestType(requestHeader,requestBody);
+			DOM.XmlNode methodNode = body.addChildElement('dat:GetLoanDetailInfoRequest', null, null);
+			LoanDetailInfoServiceDataTypes.GetLoanDetailInfoRequestType request_x = new LoanDetailInfoServiceDataTypes.GetLoanDetailInfoRequestType(requestHeader, requestBody);
 			request_x.populateXmlNode(methodNode);
-			
+
 			HttpRequest req = new HttpRequest();
-            req.setClientCertificateName('test12345');
+			req.setClientCertificateName('test12345');
 			req.setEndpoint(IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c +
-			'/LoanDetailInfoServiceWeb_v05/LoanDetailInfoService');
+				'/LoanDetailInfoServiceWeb_v05/LoanDetailInfoService');
 			req.setMethod('POST');
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/getLoanDetailInfo');
-            system.debug(req.getEndpoint());
+			system.debug(req.getEndpoint());
 			System.debug(doc.toXmlString());
 			req.setBodyDocument(doc);
 			System.debug(req.getBody());
@@ -61,14 +61,14 @@ public class LoanDetailInfoService {
 			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			Logger.saveLogs();
 			HTTPResponse res = http.send(req);
-          
+
 			Logger.debug('Incoming response', Logger.serializeHttpResponse(res));
 			Logger.saveLogs();
-            system.debug('status ' + res.getStatusCode());
-            res.getStatusCode();
-            res.getStatus();
-            
-            return res;
+			system.debug('status ' + res.getStatusCode());
+			res.getStatusCode();
+			res.getStatus();
+
+			return res;
 		}
- 	}
+	}
 }

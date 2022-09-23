@@ -35,21 +35,21 @@ public with sharing class MicroCampaignCreator {
 			ids = new List<Id>(accountIds);
 		}
 		accountsMap = new Map<Id, Account>(
-			[
-				SELECT
-					Id,
-					Name,
-					PersonContactId,
-					PersonEmail,
-					BillingStreet,
-					BillingCity,
-					BillingPostalCode,
-					Phone,
-					OwnerId,
-					UserRecordAccess.HasEditAccess
-				FROM Account
-				WHERE Id IN :ids
-			]
+		[
+			SELECT
+				Id,
+				Name,
+				PersonContactId,
+				PersonEmail,
+				BillingStreet,
+				BillingCity,
+				BillingPostalCode,
+				Phone,
+				OwnerId,
+				UserRecordAccess.HasEditAccess
+			FROM Account
+			WHERE Id IN :ids
+		]
 		);
 		accountsByPersonContactId = new Map<Id, Account>();
 		generateRolesMap(accountsMap.values());
@@ -151,7 +151,7 @@ public with sharing class MicroCampaignCreator {
 		for (Account account : accountsMap.values()) {
 			if (
 				(campaign == null || campaignMembersByAccountId.keySet().contains(String.valueOf(account.Id))) &&
-				!invalidAccounts.contains(account)
+					!invalidAccounts.contains(account)
 			) {
 				Task t = prepareTaskFromTemplate(account);
 				tasks.add(t);
@@ -165,7 +165,7 @@ public with sharing class MicroCampaignCreator {
 		for (Asset asset : assetsMap.values()) {
 			if (
 				(campaign == null || campaignMembersByAccountId.keySet().contains(String.valueOf(asset.AccountId))) &&
-				!invalidAccounts.contains(accountsMap.get(asset.AccountId))
+					!invalidAccounts.contains(accountsMap.get(asset.AccountId))
 			) {
 				Task t = prepareTaskFromTemplate(accountsMap.get(asset.AccountId));
 				t.Asset__c = asset.Id;
@@ -222,9 +222,9 @@ public with sharing class MicroCampaignCreator {
 				Logger.error(
 					'Cannot create task for micro-campaign',
 					'Task:\n' +
-					JSON.serializePretty(tasks.get(i)) +
-					'\nError:\n' +
-					JSON.serializePretty(saveResult.getErrors())
+						JSON.serializePretty(tasks.get(i)) +
+						'\nError:\n' +
+						JSON.serializePretty(saveResult.getErrors())
 				);
 			}
 		}

@@ -8,7 +8,7 @@ public with sharing class FieldsetInfoDto {
 	@AuraEnabled
 	public Boolean sortable { get; set; }
 
-	public FieldsetInfoDto(String fieldApiName, String fieldLabel, String type,Boolean sortable) {
+	public FieldsetInfoDto(String fieldApiName, String fieldLabel, String type, Boolean sortable) {
 		this.fieldName = fieldApiName;
 		this.label = fieldLabel;
 		this.type = type;

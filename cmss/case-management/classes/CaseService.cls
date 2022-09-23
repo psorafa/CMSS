@@ -3,86 +3,86 @@ public with sharing class CaseService {
 	public static final String CASE_OWNER_MISSING_PERMISSION_ERR =
 		'Selected Owner doesn\'t have appropriate permission to handle this type of case.';
 
-    public static final String CASE_PCF_RECORDTYPE_ID = Schema.SObjectType.Case.getRecordTypeInfosByName().get('PCF').getRecordTypeId();
+	public static final String CASE_PCF_RECORDTYPE_ID = Schema.SObjectType.Case.getRecordTypeInfosByName().get('PCF').getRecordTypeId();
 
-    public static void setGDPRAndClientCaseOnAccount(List<Case> newCaseList, Map<Id, Case> oldCases) {
-        Set<Id> allCaseAccIds = new Set<Id>();
+	public static void setGDPRAndClientCaseOnAccount(List<Case> newCaseList, Map<Id, Case> oldCases) {
+		Set<Id> allCaseAccIds = new Set<Id>();
 
-        if (oldCases == null) {
-            for (Case c : newCaseList) {
-                if (c.AccountId != null && c.RecordTypeId != CASE_PCF_RECORDTYPE_ID) {
-                    allCaseAccIds.add(c.AccountId);
-                }
-            }
-        } else {
-            for (Case newCase : newCaseList) {
-                Case oldCase = oldCases.get(newCase.Id);
-                if (newCase.AccountId != oldCase.AccountId && newCase.RecordTypeId != CASE_PCF_RECORDTYPE_ID) {
-                    if (newCase.AccountId != null) {
-                        allCaseAccIds.add(newCase.AccountId);
-                    }
-                    if (oldCase.AccountId != null) {
-                        allCaseAccIds.add(oldCase.AccountId);
-                    }
-                }
-                if (newCase.Status != oldCase.Status && newCase.RecordTypeId != CASE_PCF_RECORDTYPE_ID) {
-                    if (newCase.AccountId != null) {
-                        allCaseAccIds.add(newCase.AccountId);
-                    }
-                }
-            }
-        }
+		if (oldCases == null) {
+			for (Case c : newCaseList) {
+				if (c.AccountId != null && c.RecordTypeId != CASE_PCF_RECORDTYPE_ID) {
+					allCaseAccIds.add(c.AccountId);
+				}
+			}
+		} else {
+			for (Case newCase : newCaseList) {
+				Case oldCase = oldCases.get(newCase.Id);
+				if (newCase.AccountId != oldCase.AccountId && newCase.RecordTypeId != CASE_PCF_RECORDTYPE_ID) {
+					if (newCase.AccountId != null) {
+						allCaseAccIds.add(newCase.AccountId);
+					}
+					if (oldCase.AccountId != null) {
+						allCaseAccIds.add(oldCase.AccountId);
+					}
+				}
+				if (newCase.Status != oldCase.Status && newCase.RecordTypeId != CASE_PCF_RECORDTYPE_ID) {
+					if (newCase.AccountId != null) {
+						allCaseAccIds.add(newCase.AccountId);
+					}
+				}
+			}
+		}
 
-        if (allCaseAccIds.size() == 0) {
-            return;
-        }
-        
-        List<AggregateResult> activeClientCaseCounts = [
-            SELECT AccountId, Count(Id) amount 
-            FROM Case 
-            WHERE AccountId IN :allCaseAccIds 
-                AND (RecordType.DeveloperName = 'NewClientClaim' OR RecordType.DeveloperName = 'ClientClaimConfirmationSent')
-                AND Status = '1' 
-            GROUP BY AccountId
-        ];
-        Map<Id, AggregateResult> idsToActiveClientCaseCounts = new Map<Id, AggregateResult>();
-        for (AggregateResult ag : activeClientCaseCounts) {
-            idsToActiveClientCaseCounts.put((Id) ag.get('AccountId'), ag);
-        }
+		if (allCaseAccIds.size() == 0) {
+			return;
+		}
 
-        List<AggregateResult> activeGDPRCaseCounts = [
-            SELECT AccountId, Count(Id) amount 
-            FROM Case 
-            WHERE AccountId IN :allCaseAccIds 
-                AND RecordType.DeveloperName = 'GDPR'
-                AND Status = '1' 
-            GROUP BY AccountId
-        ];
-        Map<Id, AggregateResult> idsToActiveGDPRCaseCounts = new Map<Id, AggregateResult>();
-        for (AggregateResult ag : activeGDPRCaseCounts) {
-            idsToActiveGDPRCaseCounts.put((Id) ag.get('AccountId'), ag);
-        }
+		List<AggregateResult> activeClientCaseCounts = [
+			SELECT AccountId, Count(Id) amount
+			FROM Case
+			WHERE AccountId IN :allCaseAccIds
+			AND (RecordType.DeveloperName = 'NewClientClaim' OR RecordType.DeveloperName = 'ClientClaimConfirmationSent')
+			AND Status = '1'
+			GROUP BY AccountId
+		];
+		Map<Id, AggregateResult> idsToActiveClientCaseCounts = new Map<Id, AggregateResult>();
+		for (AggregateResult ag : activeClientCaseCounts) {
+			idsToActiveClientCaseCounts.put((Id) ag.get('AccountId'), ag);
+		}
 
-        List<Account> accountsToUpdate = new List<Account>();
-        for (Id accId : allCaseAccIds) {
-            Account a = new Account(Id = accId);
-            AggregateResult clientAG = idsToActiveClientCaseCounts.get(accId);
-            if (clientAG != null) {
-                a.ClientCase__c = (Integer) clientAG.get('amount') > 0 ? '1' : '0';
-            } else {
-                a.ClientCase__c = '0';
-            }
-            AggregateResult gdprAG = idsToActiveGDPRCaseCounts.get(accId);
-            if (gdprAG != null) {
-                a.GDPRCase__c = (Integer) gdprAG.get('amount') > 0 ? '1' : '0';
-            } else {
-                a.GDPRCase__c = '0';
-            }
-            accountsToUpdate.add(a);
-        }
+		List<AggregateResult> activeGDPRCaseCounts = [
+			SELECT AccountId, Count(Id) amount
+			FROM Case
+			WHERE AccountId IN :allCaseAccIds
+			AND RecordType.DeveloperName = 'GDPR'
+			AND Status = '1'
+			GROUP BY AccountId
+		];
+		Map<Id, AggregateResult> idsToActiveGDPRCaseCounts = new Map<Id, AggregateResult>();
+		for (AggregateResult ag : activeGDPRCaseCounts) {
+			idsToActiveGDPRCaseCounts.put((Id) ag.get('AccountId'), ag);
+		}
 
-        update accountsToUpdate;
-    }
+		List<Account> accountsToUpdate = new List<Account>();
+		for (Id accId : allCaseAccIds) {
+			Account a = new Account(Id = accId);
+			AggregateResult clientAG = idsToActiveClientCaseCounts.get(accId);
+			if (clientAG != null) {
+				a.ClientCase__c = (Integer) clientAG.get('amount') > 0 ? '1' : '0';
+			} else {
+				a.ClientCase__c = '0';
+			}
+			AggregateResult gdprAG = idsToActiveGDPRCaseCounts.get(accId);
+			if (gdprAG != null) {
+				a.GDPRCase__c = (Integer) gdprAG.get('amount') > 0 ? '1' : '0';
+			} else {
+				a.GDPRCase__c = '0';
+			}
+			accountsToUpdate.add(a);
+		}
+
+		update accountsToUpdate;
+	}
 
 	public static void assignCaseID(List<Case> newCaseList) {
 		Set<Id> ClientClaimRecordTypes = new Set<Id>{
@@ -107,17 +107,17 @@ public with sharing class CaseService {
 			if (GDPRRecordTypes.contains(caseItem.RecordTypeId)) {
 				lastIssuedCaseID.GDPRClaimID__c += 1;
 				caseItem.CaseID__c = String.valueOf(
-						'' +
+					'' +
 						Integer.valueOf(lastIssuedCaseID.GDPRClaimID__c) +
 						Date.today().year()
-					)
+				)
 					.leftPad(10, '0');
 			}
 			if (ClientClaimRecordTypes.contains(caseItem.RecordTypeId)) {
 				lastIssuedCaseID.ClientClaimID__c += 1;
 				caseItem.CaseID__c =
 					String.valueOf('' + Date.today().year()) +
-					String.valueOf(Integer.valueOf(lastIssuedCaseID.ClientClaimID__c)).leftPad(5, '0');
+						String.valueOf(Integer.valueOf(lastIssuedCaseID.ClientClaimID__c)).leftPad(5, '0');
 			}
 		}
 		upsert lastIssuedCaseID;
@@ -196,7 +196,7 @@ public with sharing class CaseService {
 										(psa.PermissionSet.Name == 'CaseManager' && CaseManagerHasCustPerm)
 								)
 						)
-					) {
+				) {
 					errorCases.remove(c);
 				}
 			}
@@ -227,13 +227,13 @@ public with sharing class CaseService {
 		for (Case c : newList) {
 			if (oldMap == null || oldMap.get(c.Id).ComplainerContractorCPU__c != c.ComplainerContractorCPU__c) {
 				c.ComplainerContractor__c = usersByCPU.get(c.ComplainerContractorCPU__c);
-				if (c.ComplainerContractorCPU__c !=null && c.ComplainerContractor__c == null) {
+				if (c.ComplainerContractorCPU__c != null && c.ComplainerContractor__c == null) {
 					c.ComplainerContractorCPU__c.addError(Label.NoUserWithThisCPUFound);
 				}
 			}
 			if (oldMap == null || oldMap.get(c.Id).ContractorCPU__c != c.ContractorCPU__c) {
 				c.Contractor__c = usersByCPU.get(c.ContractorCPU__c);
-				if (c.ContractorCPU__c !=null && c.Contractor__c == null) {
+				if (c.ContractorCPU__c != null && c.Contractor__c == null) {
 					c.ContractorCPU__c.addError(Label.NoUserWithThisCPUFound);
 				}
 			}
