@@ -14,6 +14,12 @@ DAYS=${2-10}
 CONF=${3-"config/project-scratch-def.json"}
 DEVHUB=${4}
 
+#cleanup when done
+function finish {
+    # revert changes to forceignore
+    cp scripts/sh/ignores/.forceignore_sandbox .forceignore
+}
+trap finish EXIT
 set -o xtrace
 
 #create scratch org
@@ -24,13 +30,13 @@ else
     sfdx force:org:create --setalias $ALIAS --durationdays $DAYS --definitionfile  $CONF --targetdevhubusername  $DEVHUB --setdefaultusername
 fi
 
-# open deployment status page
-sfdx force:org:open -u $ALIAS -p /lightning/setup/DeployStatus/home
-
 #install packages
 sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wait 8 -u $ALIAS
 sfdx force:package:install --package 04t5p000000eegF -r --publishwait 3 --wait 8 -u $ALIAS
 sfdx force:package:install --package 04t1U000003Bnj3QAC -r --publishwait 3 --wait 8 -u $ALIAS
+
+# set forceignore to scratch org compatible
+cp scripts/sh/ignores/.forceignore_SO .forceignore
 
 #push source
 sfdx force:source:push --ignorewarnings --targetusername $ALIAS
