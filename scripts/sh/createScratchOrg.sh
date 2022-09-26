@@ -47,6 +47,9 @@ sfdx force:source:deploy --sourcepath cmss/app/default/translations --targetuser
 # reset source tracking so the next push won't push everything again
 sfdx force:source:tracking:reset -p
 
+#e add some permissions:
+sfdx force:apex:execute --apexcodefile "scripts/apex/givePermissions.apex" --targetusername $ALIAS
+
 #setup data
 scripts/sh/data.sh $ALIAS
 

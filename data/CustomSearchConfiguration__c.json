@@ -1,0 +1,354 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef1"
+            },
+            "Name": "SS s nesplněnou podmínkou provize",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "Search_Component_StSp",
+            "FilterCondition__c": "CommissionDate__c = null AND (Status__c = '11001' OR Status__c = '11008')",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "BuildingSavings",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef2"
+            },
+            "Name": "Účty bez splněné podmínky (Kvalita účtu)",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchCSOBProducts",
+            "FilterCondition__c": "ConditionFullfillmentDate__c = null",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "CSOBCurrentAccount",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef3"
+            },
+            "Name": "Klienti s předschváleným limitem MÚ",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "Search_Component_Acc",
+            "FilterCondition__c": "PreapprovedLimit__c != null",
+            "ObjectType__c": "Account",
+            "ProductType__c": "PersonAccount",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef4"
+            },
+            "Name": "Smlouvy s e ZVSP méně než 20 tisíc",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "Search_Component_StSp",
+            "FilterCondition__c": "SubveneBaseCurrentYear__c < 20000",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "BuildingSavings",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef5"
+            },
+            "Name": "Nevypovězené smlouvy s naspořením > 80%",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "Search_Component_StSp",
+            "FilterCondition__c": "ContractTerminated__c = false AND PercentageSaved__c > 80",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "BuildingSavings",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef6"
+            },
+            "Name": "Stavební spoření bez MÚ",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "Search_Component_StSp",
+            "FilterCondition__c": "HasMURelatedAsset__c = 0",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "BuildingSavings",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef7"
+            },
+            "Name": "Klienti s BÚ - nepřihlášeni do Smart za posl. 92 dní",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "Search_Component_Acc",
+            "FilterCondition__c": "CurrentAccountCount__c > 0 AND SmartLoginIn92Days__c = false",
+            "ObjectType__c": "Account",
+            "ProductType__c": "PersonAccount",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef8"
+            },
+            "Name": "Smlouvy ve výpovědi",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "Search_Component_StSp",
+            "FilterCondition__c": "StateCode__c = '1' AND ContractTerminationDelivered__c != null",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "BuildingSavings",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef9"
+            },
+            "Name": "Fyzické osoby",
+            "Active__c": true,
+            "Description__c": "Fyzické osoby",
+            "FieldsetName__c": "Search_Component_Acc",
+            "FilterCondition__c": "PersonType__c = '1' AND AccountStatus__c != '5'",
+            "ObjectType__c": "Account",
+            "ProductType__c": "PersonAccount",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef10"
+            },
+            "Name": "Klienti s KZ a bez běžného účtu ČSOB",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "Search_Component_Acc",
+            "FilterCondition__c": "CurrentAccountCount__c <= 0 AND ClientZoneAccess__c like '%Plný%'",
+            "ObjectType__c": "Account",
+            "ProductType__c": "PersonAccount",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef11"
+            },
+            "Name": "Klienti bez běžného účtu ČSOB",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "Search_Component_Acc",
+            "FilterCondition__c": "CurrentAccountCount__c < 1 AND AccountStatus__c != '5'",
+            "ObjectType__c": "Account",
+            "ProductType__c": "PersonAccount",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef12"
+            },
+            "Name": "Klienti s předschváleným limitem SÚ",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "Search_Component_Acc",
+            "FilterCondition__c": "CurrentPreApprovedAmount__c != null",
+            "ObjectType__c": "Account",
+            "ProductType__c": "PersonAccount",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef13"
+            },
+            "Name": "Aktivní ČSOB produkty",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchCSOBproducts",
+            "FilterCondition__c": "(ProductType__c = '12' OR ProductType__c = '13') AND StateCode__c = '1'",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "CSOBCurrentAccount",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef14"
+            },
+            "Name": "Aktivní hypotéky",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchMortgage",
+            "FilterCondition__c": "ProductType__c = '11' AND StateCode__c = '1'",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "Mortgages",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef15"
+            },
+            "Name": "Aktivní úvěrové případy",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchLoanCases",
+            "FilterCondition__c": "ProductType__c = '0' AND StateCode__c = '1'",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "CreditCases",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef16"
+            },
+            "Name": "Aktivní ČSOB Půjčky",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchCSOBProducts",
+            "FilterCondition__c": "ProductType__c = '12' AND StateCode__c = '1'",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "CSOBCurrentAccount",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef17"
+            },
+            "Name": "Aktivní ČSOB účty",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchCSOBProducts",
+            "FilterCondition__c": "ProductType__c = '13' AND StateCode__c = '1'",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "CSOBCurrentAccount",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef18"
+            },
+            "Name": "Aktivní stavební spoření",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "Search_Component_StSp",
+            "FilterCondition__c": "ProductType__c = '9' AND StateCode__c = '1'",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "BuildingSavings",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef19"
+            },
+            "Name": "Aktivní ŽP",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchZP",
+            "FilterCondition__c": "StateCode__c = '1'",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "InvestmentLifeInsurance",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef20"
+            },
+            "Name": "Aktivní RŽP",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchRZP",
+            "FilterCondition__c": "StateCode__c = '1'",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "RiskLifeInsurance",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef21"
+            },
+            "Name": "Úvěrové smlouvy bez RŽP",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchMUU",
+            "FilterCondition__c": "ProductSubtype__c IN ('1001','2002') AND StateCode__c = '1' AND HasRLIRelatedAsset__c = 0",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "CreditAndIntermediateLoan",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef22"
+            },
+            "Name": "Úvěry před splacením v příštích 365 dnech",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchMUU",
+            "FilterCondition__c": "ExpectedCreditEndDate__c = NEXT_N_DAYS:365 AND ProductSubtype__c IN ('1001','2002')",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "CreditAndIntermediateLoan",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef23"
+            },
+            "Name": "Pozastavené úvěrové případy",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchLoanCases",
+            "FilterCondition__c": "ProductType__c = '0' AND Status__c = '10008'",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "CreditCases",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef24"
+            },
+            "Name": "Aktivní penzijní produkty",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchPS",
+            "FilterCondition__c": "StateCode__c='1'",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "PensionProducts",
+            "DisplayOrder__c": null
+        },
+        {
+            "attributes": {
+                "type": "CustomSearchConfiguration__c",
+                "referenceId": "CustomSearchConfiguration__cRef25"
+            },
+            "Name": "Aktivní PMO",
+            "Active__c": true,
+            "Description__c": null,
+            "FieldsetName__c": "CustomSearchPMO",
+            "FilterCondition__c": "StateCode__c = '1'",
+            "ObjectType__c": "Asset",
+            "ProductType__c": "PMO",
+            "DisplayOrder__c": null
+        }
+    ]
+}

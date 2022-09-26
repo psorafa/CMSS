@@ -31,29 +31,17 @@ scripts/sh/util/mergeJson.sh "scripts/apex/importAssetAccountRelations.apex" "da
 scripts/sh/util/mergeJson.sh "scripts/apex/importAccountRelations.apex" "data/tree/accountRelations.json" "{0}" "$TARGETPATH/importAccountRelations.apex"
 
 set -o xtrace
-if [ -z "$ALIAS" ];
-then
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAccounts.apex"
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importProducts.apex"
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importOpportunities.apex"
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importOpportunities2.apex"
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssets.apex"
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks.apex"
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks2.apex"
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations.apex"
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations2.apex"
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAccountRelations.apex"
-else
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAccounts.apex" --targetusername $ALIAS
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importProducts.apex" --targetusername $ALIAS
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importOpportunities.apex" --targetusername $ALIAS
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importOpportunities2.apex" --targetusername $ALIAS
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssets.apex" --targetusername $ALIAS
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks.apex" --targetusername $ALIAS
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks2.apex" --targetusername $ALIAS
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations.apex" --targetusername $ALIAS
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations2.apex" --targetusername $ALIAS
-    sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAccountRelations.apex" --targetusername $ALIAS
-fi
+
+sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAccounts.apex" --targetusername $ALIAS
+sfdx force:apex:execute --apexcodefile "$TARGETPATH/importProducts.apex" --targetusername $ALIAS
+sfdx force:apex:execute --apexcodefile "$TARGETPATH/importOpportunities.apex" --targetusername $ALIAS
+sfdx force:apex:execute --apexcodefile "$TARGETPATH/importOpportunities2.apex" --targetusername $ALIAS
+sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssets.apex" --targetusername $ALIAS
+sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks.apex" --targetusername $ALIAS
+sfdx force:apex:execute --apexcodefile "$TARGETPATH/importTasks2.apex" --targetusername $ALIAS
+sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations.apex" --targetusername $ALIAS
+sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations2.apex" --targetusername $ALIAS
+sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAccountRelations.apex" --targetusername $ALIAS
+sfdx sfdmu:run -p data/custom-search --sourceusername csvfile --targetusername $ALIAS
 
 rm -r scripts/apex/tmp

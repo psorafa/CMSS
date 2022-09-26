@@ -1,0 +1,26 @@
+Name,Active__c,Description__c,FieldsetName__c,FilterCondition__c,ObjectType__c,ProductType__c,DisplayOrder__c,Errors,Id
+SS s nesplněnou podmínkou provize,true,,Search_Component_StSp,CommissionDate__c = null AND (Status__c = '11001' OR Status__c = '11008'),Asset,BuildingSavings,,,a0P1X000005S3fQUAS
+Účty bez splněné podmínky (Kvalita účtu),true,,CustomSearchCSOBProducts,ConditionFullfillmentDate__c = null,Asset,CSOBCurrentAccount,,,a0P1X000005S3fRUAS
+Klienti s předschváleným limitem MÚ,true,,Search_Component_Acc,PreapprovedLimit__c != null,Account,PersonAccount,,,a0P1X000005S3fSUAS
+Smlouvy s e ZVSP méně než 20 tisíc,true,,Search_Component_StSp,SubveneBaseCurrentYear__c < 20000,Asset,BuildingSavings,,,a0P1X000005S3fTUAS
+Nevypovězené smlouvy s naspořením > 80%,true,,Search_Component_StSp,ContractTerminated__c = false AND PercentageSaved__c > 80,Asset,BuildingSavings,,,a0P1X000005S3fUUAS
+Stavební spoření bez MÚ,true,,Search_Component_StSp,HasMURelatedAsset__c = 0,Asset,BuildingSavings,,,a0P1X000005S3fVUAS
+Klienti s BÚ - nepřihlášeni do Smart za posl. 92 dní,true,,Search_Component_Acc,CurrentAccountCount__c > 0 AND SmartLoginIn92Days__c = false,Account,PersonAccount,,,a0P1X000005S3fWUAS
+Smlouvy ve výpovědi,true,,Search_Component_StSp,StateCode__c = '1' AND ContractTerminationDelivered__c != null,Asset,BuildingSavings,,,a0P1X000005S3fXUAS
+Fyzické osoby,true,Fyzické osoby,Search_Component_Acc,PersonType__c = '1' AND AccountStatus__c != '5',Account,PersonAccount,,,a0P1X000005S3fYUAS
+Klienti s KZ a bez běžného účtu ČSOB,true,,Search_Component_Acc,CurrentAccountCount__c <= 0 AND ClientZoneAccess__c like '%Plný%',Account,PersonAccount,,,a0P1X000005S3fZUAS
+Klienti bez běžného účtu ČSOB,true,,Search_Component_Acc,CurrentAccountCount__c < 1 AND AccountStatus__c != '5',Account,PersonAccount,,,a0P1X000005S3faUAC
+Klienti s předschváleným limitem SÚ,true,,Search_Component_Acc,CurrentPreApprovedAmount__c != null,Account,PersonAccount,,,a0P1X000005S3fbUAC
+Aktivní ČSOB produkty,true,,CustomSearchCSOBproducts,(ProductType__c = '12' OR ProductType__c = '13') AND StateCode__c = '1',Asset,CSOBCurrentAccount,,,a0P1X000005S3fcUAC
+Aktivní hypotéky,true,,CustomSearchMortgage,ProductType__c = '11' AND StateCode__c = '1',Asset,Mortgages,,,a0P1X000005S3fdUAC
+Aktivní úvěrové případy,true,,CustomSearchLoanCases,ProductType__c = '0' AND StateCode__c = '1',Asset,CreditCases,,,a0P1X000005S3feUAC
+Aktivní ČSOB Půjčky,true,,CustomSearchCSOBProducts,ProductType__c = '12' AND StateCode__c = '1',Asset,CSOBCurrentAccount,,,a0P1X000005S3ffUAC
+Aktivní ČSOB účty,true,,CustomSearchCSOBProducts,ProductType__c = '13' AND StateCode__c = '1',Asset,CSOBCurrentAccount,,,a0P1X000005S3fgUAC
+Aktivní stavební spoření,true,,Search_Component_StSp,ProductType__c = '9' AND StateCode__c = '1',Asset,BuildingSavings,,,a0P1X000005S3fhUAC
+Aktivní ŽP,true,,CustomSearchZP,StateCode__c = '1',Asset,InvestmentLifeInsurance,,,a0P1X000005S3fiUAC
+Aktivní RŽP,true,,CustomSearchRZP,StateCode__c = '1',Asset,RiskLifeInsurance,,,a0P1X000005S3fjUAC
+Úvěrové smlouvy bez RŽP,true,,CustomSearchMUU,"ProductSubtype__c IN ('1001','2002') AND StateCode__c = '1' AND HasRLIRelatedAsset__c = 0",Asset,CreditAndIntermediateLoan,,,a0P1X000005S3fkUAC
+Úvěry před splacením v příštích 365 dnech,true,,CustomSearchMUU,"ExpectedCreditEndDate__c = NEXT_N_DAYS:365 AND ProductSubtype__c IN ('1001','2002')",Asset,CreditAndIntermediateLoan,,,a0P1X000005S3flUAC
+Pozastavené úvěrové případy,true,,CustomSearchLoanCases,ProductType__c = '0' AND Status__c = '10008',Asset,CreditCases,,,a0P1X000005S3fmUAC
+Aktivní penzijní produkty,true,,CustomSearchPS,StateCode__c='1',Asset,PensionProducts,,,a0P1X000005S3fnUAC
+Aktivní PMO,true,,CustomSearchPMO,StateCode__c = '1',Asset,PMO,,,a0P1X000005S3foUAC

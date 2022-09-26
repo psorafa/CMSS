@@ -1,0 +1,14 @@
+{
+  "objects": [
+    {
+      "query": "SELECT Name, Active__c, Description__c, FieldsetName__c, FilterCondition__c, ObjectType__c, ProductType__c, DisplayOrder__c FROM CustomSearchConfiguration__c LIMIT 200",
+      "operation": "Insert",
+      "externalId": "Name"
+    },
+    {
+      "query": "SELECT Name, RecordTypeId, FieldApiName__c, Filter__c, RelatedObject__c, ProductType__c, DisplayOrder__c FROM CustomSearchFilter__c LIMIT 200",
+      "operation": "Insert",
+      "externalId": "Name"
+    }
+  ]
+}
