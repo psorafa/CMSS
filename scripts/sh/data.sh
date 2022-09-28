@@ -43,5 +43,6 @@ sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations.
 sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAssetAccountRelations2.apex" --targetusername $ALIAS
 sfdx force:apex:execute --apexcodefile "$TARGETPATH/importAccountRelations.apex" --targetusername $ALIAS
 sfdx sfdmu:run -p data/custom-search --sourceusername csvfile --targetusername $ALIAS
+git checkout -- data/custom-search/target
 
 rm -r scripts/apex/tmp
