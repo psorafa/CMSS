@@ -2,7 +2,7 @@
 	"orgName": "CMSS",
 	"adminEmail": "nonsense@uinwertu.nroko",
 	"edition": "Enterprise",
-	"features": ["PersonAccounts", "FieldAuditTrail", "Communities", "PartnerCommunity", "Knowledge", "ServiceCloud", "ServiceUser"],
+	"features": ["PersonAccounts", "FieldAuditTrail", "Communities", "PartnerCommunity", "Knowledge", "ServiceCloud", "ServiceUser", "PlatformEncryption"],
 	"settings": {
     "chatterSettings": {
       "enableChatter": true,
@@ -35,6 +35,9 @@
         "enableKnowledgeArticleTextHighlights": true,
         "enableKnowledgeKeywordAutoComplete": true,
         "enableKnowledgeTitleAutoComplete": true
+    },
+    "platformEncryptionSettings": {
+      "enableDeterministEncryption": true
     }
 
 	}
