@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Value__c</fullName>
     <description>Shows values from fields Phone, Address, Email or Data Box Number based on the picklist value in field Type__c.</description>
+    <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
     <externalId>false</externalId>
     <label>Value</label>
     <length>255</length>

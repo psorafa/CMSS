@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ComplaintAgainstFirstName__c</fullName>
     <description>Křestní jméno osoby, proti které je podání směřováno</description>
+    <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
     <externalId>false</externalId>
     <label>Complaint Against First Name</label>
     <length>80</length>

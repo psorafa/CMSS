@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>City__c</fullName>
     <description>Adresa podávajícího - město</description>
+    <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
     <externalId>false</externalId>
     <inlineHelpText>If account is selected, attribute is filled automatically after save</inlineHelpText>
     <label>City</label>
