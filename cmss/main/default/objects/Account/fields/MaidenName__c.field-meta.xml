@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MaidenName__c</fullName>
     <description>Rodné příjmení</description>
+    <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
     <externalId>false</externalId>
     <label>Maiden Name</label>
     <length>40</length>
