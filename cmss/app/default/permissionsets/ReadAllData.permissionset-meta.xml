@@ -4980,6 +4980,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>NonLifeInsuranceRisk__c.InsurranceName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>NonLifeInsuranceRisk__c.PremiumWithoutDiscount__c</field>
         <readable>true</readable>
     </fieldPermissions>

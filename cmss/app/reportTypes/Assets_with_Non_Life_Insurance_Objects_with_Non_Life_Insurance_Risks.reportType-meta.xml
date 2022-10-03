@@ -1650,6 +1650,11 @@
             <field>LimitAmount__c</field>
             <table>Asset.NonLifeInsuranceObjects__r.NonLifeInsuranceRisks__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>InsurranceName__c</field>
+            <table>Asset.NonLifeInsuranceObjects__r.NonLifeInsuranceRisks__r</table>
+        </columns>
         <masterLabel>Non Life Insurance Risks</masterLabel>
     </sections>
 </ReportType>
