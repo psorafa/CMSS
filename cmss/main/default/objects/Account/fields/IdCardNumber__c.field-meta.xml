@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IdCardNumber__c</fullName>
     <description>Číslo dokladu</description>
+    <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
     <externalId>false</externalId>
     <label>Id Card Number</label>
     <length>40</length>

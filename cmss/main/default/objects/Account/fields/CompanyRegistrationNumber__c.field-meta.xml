@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CompanyRegistrationNumber__c</fullName>
     <description>IČO</description>
+    <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
     <externalId>false</externalId>
     <label>Company Registation Number</label>
     <length>13</length>

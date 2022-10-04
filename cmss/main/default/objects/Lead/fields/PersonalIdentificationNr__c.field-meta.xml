@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PersonalIdentificationNr__c</fullName>
     <description>Personal Identification Number (Birthnumber) of the lead</description>
+    <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
     <externalId>false</externalId>
     <label>Personal Identification Number</label>
     <length>10</length>

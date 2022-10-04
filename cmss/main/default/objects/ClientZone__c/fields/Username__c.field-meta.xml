@@ -3,6 +3,7 @@
     <fullName>Username__c</fullName>
     <caseSensitive>true</caseSensitive>
     <description>Username of the client for signing in to his client zone</description>
+    <encryptionScheme>CaseSensitiveDeterministicEncryption</encryptionScheme>
     <externalId>false</externalId>
     <label>Username</label>
     <length>50</length>

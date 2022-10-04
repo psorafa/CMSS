@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>HouseNumber__c</fullName>
     <description>Č. p. / Č. o.</description>
+    <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
     <externalId>false</externalId>
     <label>House Number</label>
     <length>12</length>
