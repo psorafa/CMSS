@@ -1,107 +1,130 @@
 Id,Name,RecordTypeId,FieldApiName__c,Filter__c,RelatedObject__c,ProductType__c,DisplayOrder__c,RecordType.$$DeveloperName$NamespacePrefix$SobjectType
-a0X3O000004Lr5FUAS,Výše úvěru,0123O0000012x9cQAA,CreditAmount__c,<=;>=,Asset,Mortgages,,Number;CustomSearchFilter__c
-a0X3O000004LqZnUAK,Datum uzavření,0123O0000012x9bQAA,ProductCloseDate__c,<;>,Asset,BuildingSavings,,Date;CustomSearchFilter__c
-a0X3O000004LqZoUAK,Datum poslední interakce,0123O0000012x9bQAA,LastInteractionDate__c,<=;>=,Asset,BuildingSavings,,Date;CustomSearchFilter__c
-a0X3O000004LqZpUAK,Datum uzavření,0123O0000012x9bQAA,ProductCloseDate__c,<=;>=,Asset,CSOBCurrentAccount,,Date;CustomSearchFilter__c
-a0X3O000004LqZqUAK,Datum naplnění podmínek (kvalita účtu),0123O0000012x9bQAA,ConditionFullfillmentDate__c,<=;>=,Asset,CSOBCurrentAccount,,Date;CustomSearchFilter__c
-a0X3O000004LqZrUAK,Datum předpokládaného přidělení,0123O0000012x9bQAA,AssignmentConditionsDate__c,<=;>=;=,Asset,BuildingSavings,,Date;CustomSearchFilter__c
-a0X3O000004LqZsUAK,Fixace sazby,0123O0000012x9bQAA,NearestReFixationDate__c,<=;>=;=,Asset,CreditCases,,Date;CustomSearchFilter__c
-a0X3O000004LqZtUAK,Vázací doba,0123O0000012x9bQAA,BindingPeriodDate__c,<;>;<=;>=;=,Asset,BuildingSavings,,Date;CustomSearchFilter__c
-a0X3O000004LqZuUAK,Datum poslední interakce,0123O0000012x9bQAA,LastInteractionDate__c,<=;>=,Account,PersonAccount,,Date;CustomSearchFilter__c
-a0X3O000004LqZvUAK,Datum uzavření,0123O0000012x9bQAA,ProductCloseDate__c,<=;>=,Asset,CreditCases,,Date;CustomSearchFilter__c
-a0X3O000004LqZwUAK,Předpokládané ukončení úvěru,0123O0000012x9bQAA,ExpectedCreditEndDate__c,<=;>=,Asset,CreditAndIntermediateLoan,,Date;CustomSearchFilter__c
-a0X3O000004LqZxUAK,Datum poslední interakce,0123O0000012x9bQAA,LastInteractionDate__c,<=;>=;=,Asset,CreditCases,,Date;CustomSearchFilter__c
-a0X3O000004LqZyUAK,Datum poslední interakce,0123O0000012x9bQAA,LastInteractionDate__c,<=;>=,Asset,CSOBCurrentAccount,,Date;CustomSearchFilter__c
-a0X3O000004LqZzUAK,Zbývá k čerpání,0123O0000012x9cQAA,RemainingDraw__c,<=;>=,Asset,CreditCases,,Number;CustomSearchFilter__c
-a0X3O000004Lqa0UAC,Věk,0123O0000012x9cQAA,Age__c,<;>;<=;>=;=,Account,PersonAccount,,Number;CustomSearchFilter__c
-a0X3O000004Lqa1UAC,Čisté vklady klienta,0123O0000012x9cQAA,NettoDeposit__c,<=;>=,Asset,BuildingSavings,,Number;CustomSearchFilter__c
-a0X3O000004Lqa2UAC,Aktuální zůstatek,0123O0000012x9cQAA,CurrentBalance__c,<;>;<=;>=,Asset,BuildingSavings,,Number;CustomSearchFilter__c
-a0X3O000004Lqa3UAC,Úroková sazba,0123O0000012x9cQAA,CurrentInterestRate__c,<=;>=;=,Asset,CreditAndIntermediateLoan,,Number;CustomSearchFilter__c
-a0X3O000004Lqa5UAC,Věk klienta,0123O0000012x9cQAA,Age__c,<=;>=;=,Asset,CSOBCurrentAccount,,Number;CustomSearchFilter__c
-a0X3O000004Lqa6UAC,Věk klienta,0123O0000012x9cQAA,Age__c,<=;>=;=,Asset,CreditCases,,Number;CustomSearchFilter__c
-a0X3O000004Lqa7UAC,Výše úvěru,0123O0000012x9cQAA,CreditAmount__c,<=;>=,Asset,CreditCases,,Number;CustomSearchFilter__c
-a0X3O000004Lqa8UAC,Hodnotící číslo,0123O0000012x9cQAA,EvaluationNumber__c,<=;>=,Asset,BuildingSavings,,Number;CustomSearchFilter__c
-a0X3O000004Lqa9UAC,Cílová částka,0123O0000012x9cQAA,TargetAmount__c,<;>;<=;>=;=,Asset,BuildingSavings,,Number;CustomSearchFilter__c
-a0X3O000004LqaAUAS,Aktuální stav programu,0123O0000012x9dQAA,ProgramStatus__c,contains,Asset,BuildingSavings,,Text;CustomSearchFilter__c
-a0X3O000004LqaBUAS,PSČ,0123O0000012x9dQAA,AccountPostalCode__c,exact match;start with,Asset,CreditCases,,Text;CustomSearchFilter__c
-a0X3O000004LqaCUAS,Město klienta,0123O0000012x9dQAA,AccountCity__c,exact match;contains,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
-a0X3O000004LqaDUAS,Město klienta,0123O0000012x9dQAA,AccountCity__c,exact match;contains,Asset,CreditCases,,Text;CustomSearchFilter__c
-a0X3O000004LqaEUAS,Podtyp produktu,0123O0000012x9dQAA,ProductSubtype__c,exact match;contains,Asset,CreditAndIntermediateLoan,,Text;CustomSearchFilter__c
-a0X3O000004LqaFUAS,Podtyp produktu,0123O0000012x9dQAA,ProductSubtype__c,exact match;contains,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
-a0X3O000004LqaGUAS,Detailní stav,0123O0000012x9dQAA,Status__c,exact match;contains,Asset,CreditCases,,Text;CustomSearchFilter__c
-a0X3O000004LqaIUAS,Detailní stav,0123O0000012x9dQAA,Status__c,exact match;contains,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
-a0X3O000004LqaJUAS,Obec,0123O0000012x9dQAA,City__c,exact match;contains;start with,Account,PersonAccount,,Text;CustomSearchFilter__c
-a0X3O000004LqaKUAS,PSČ,0123O0000012x9dQAA,AccountPostalCode__c,exact match;start with,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
-a0X3O000004LqaLUAS,Tarif,0123O0000012x9dQAA,Tariff__c,exact match;contains,Asset,BuildingSavings,,Text;CustomSearchFilter__c
-a0X3O000004Lr5KUAS,Detailní stav,0123O0000012x9cQAA,Status__c,<=;>=;=,Asset,Mortgages,,Number;CustomSearchFilter__c
-a0X3O000004Lr5UUAS,PSČ,0123O0000012x9dQAA,AccountPostalCode__c,start with,Asset,Mortgages,,Text;CustomSearchFilter__c
-a0X3O000004LtwZUAS,Pohlaví,0123O0000012x9dQAA,Gender__c,exact match;start with,Account,PersonAccount,,Text;CustomSearchFilter__c
-a0X3O000004LtwoUAC,Město klienta,0123O0000012x9dQAA,AccountCity__c,contains;start with,Asset,BuildingSavings,,Text;CustomSearchFilter__c
-a0X3O000004LtwtUAC,PSČ,0123O0000012x9dQAA,AccountPostalCode__c,exact match;start with,Asset,BuildingSavings,,Text;CustomSearchFilter__c
-a0X3O000004LtwPUAS,Předschválený limit,0123O0000012x9cQAA,PreapprovedLimit__c,<=;>=,Account,PersonAccount,,Number;CustomSearchFilter__c
-a0X3O000004LtweUAC,Smart za posledních 92 dní,0123O0000012x9aQAA,SmartLoginIn92Days__c,N/A,Account,PersonAccount,,Boolean;CustomSearchFilter__c
-a0X3O000004Lr50UAC,Datum uzavření,0123O0000012x9bQAA,ProductCloseDate__c,<=;>=,Asset,Mortgages,,Date;CustomSearchFilter__c
-a0X3O000004Lr55UAC,Konec fixace,0123O0000012x9bQAA,NearestReFixationDate__c,<=;>=;=,Asset,Mortgages,,Date;CustomSearchFilter__c
-a0X3O000004Lr5PUAS,Věk klienta,0123O0000012x9cQAA,Age__c,<=;>=,Asset,Mortgages,,Number;CustomSearchFilter__c
-a0X3O000004Lr5QUAS,Datum poslední interakce,0123O0000012x9bQAA,LastInteractionDate__c,<=;>=,Asset,Mortgages,,Date;CustomSearchFilter__c
-a0X3O000004Lr5RUAS,Město klienta,0123O0000012x9dQAA,AccountCity__c,exact match;contains,Asset,Mortgages,,Text;CustomSearchFilter__c
-a0X3O000004Lr5AUAS,Délka fixace v letech,0123O0000012x9cQAA,FixationLength__c,<=;>=;=,Asset,Mortgages,,Number;CustomSearchFilter__c
-a0X3O000004Lr5BUAS,Úroková sazba,0123O0000012x9cQAA,CurrentInterestRate__c,<=;>=,Asset,Mortgages,,Number;CustomSearchFilter__c
-a0X3O000004Lr5CUAS,Platnost úrokové sazby do,0123O0000012x9bQAA,InterestRateValidTo__c,<=;>=,Asset,Mortgages,,Date;CustomSearchFilter__c
-a0X3O000004LtxXUAS,Typ produktu,0123O0000012x9dQAA,ProductType__c,contains;start with,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
-a0X3O000004LtwjUAC,Smart poslední přihlášení,0123O0000012x9bQAA,SmartLastLogin__c,<=;>=,Account,PersonAccount,,Date;CustomSearchFilter__c
-a0X3O000004LtwUUAS,Aktuální předschválená částka SÚ,0123O0000012x9cQAA,CurrentPreApprovedAmount__c,<=;>=,Account,PersonAccount,,Number;CustomSearchFilter__c
-a0X3O000004Ltx8UAC,Věk klienta,0123O0000012x9cQAA,Age__c,<=;>=,Asset,PMO,,Number;CustomSearchFilter__c
-a0X3O000004kfhZUAQ,Příjmení,0123O0000012x9dQAA,LastName,exact match;start with,Account,PersonAccount,,Text;CustomSearchFilter__c
-a0X3O000004LzKUUA0,Detailní stav,0123O0000012x9dQAA,Status__c,exact match;contains,Asset,BuildingSavings,,Text;CustomSearchFilter__c
-a0X3O000004LzJWUA0,PSČ,0123O0000012x9dQAA,AccountPostalCode__c,exact match;start with,Asset,RiskLifeInsurance,,Text;CustomSearchFilter__c
-a0X3O000004LzHbUAK,Město klienta,0123O0000012x9dQAA,AccountCity__c,exact match;contains,Asset,InvestmentLifeInsurance,,Text;CustomSearchFilter__c
-a0X3O000004LzKjUAK,Detailní stav,0123O0000012x9dQAA,Status__c,exact match;contains,Asset,PMO,,Text;CustomSearchFilter__c
-a0X3O000004LzKtUAK,Detailní stav,0123O0000012x9dQAA,Status__c,exact match;contains,Asset,RiskLifeInsurance,,Text;CustomSearchFilter__c
-a0X3O000004LzDQUA0,Věk klienta,0123O0000012x9cQAA,Age__c,<=;>=;=,Asset,RiskLifeInsurance,,Number;CustomSearchFilter__c
-a0X3O000004MeHyUAK,StateCode,0123O0000012x9dQAA,StateCode__c,contains,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
-a0X3O000004LzLhUAK,Příspěvek celkem,0123O0000012x9cQAA,MonthFeeTotal__c,<=;>=,Asset,PensionProducts,,Number;CustomSearchFilter__c
-a0X3O000004LzNhUAK,Datum uzavření,0123O0000012x9bQAA,ProductCloseDate__c,<=;>=,Asset,RiskLifeInsurance,,Date;CustomSearchFilter__c
-a0X3O000004LzM1UAK,Podtyp produktu,0123O0000012x9dQAA,ProductSubtype__c,exact match;contains,Asset,PensionProducts,,Text;CustomSearchFilter__c
-a0X3O000004LzCNUA0,Věk klienta,0123O0000012x9cQAA,Age__c,<=;>=;=,Asset,CreditAndIntermediateLoan,,Number;CustomSearchFilter__c
-a0X3O000004LzHlUAK,Město klienta,0123O0000012x9dQAA,AccountCity__c,exact match;contains,Asset,PensionProducts,,Text;CustomSearchFilter__c
-a0X3O000004LzLrUAK,Pozůstalostní penze,0123O0000012x9aQAA,EstatePension__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
-a0X3O000004LzM6UAK,Datum uzavření,0123O0000012x9bQAA,ProductCloseDate__c,<=;>=,Asset,InvestmentLifeInsurance,,Date;CustomSearchFilter__c
-a0X3O000004LzMHUA0,Platnost od,0123O0000012x9bQAA,ValidFrom__c,<=;>=,Asset,InvestmentLifeInsurance,,Date;CustomSearchFilter__c
-a0X3O000004LzMIUA0,Datum aktivace,0123O0000012x9bQAA,ActivationDate__c,<=;>=,Asset,RiskLifeInsurance,,Date;CustomSearchFilter__c
-a0X3O000004LzJBUA0,PSČ,0123O0000012x9dQAA,AccountPostalCode__c,exact match;start with,Asset,InvestmentLifeInsurance,,Text;CustomSearchFilter__c
-a0X3O000004LzCXUA0,Věk klienta,0123O0000012x9cQAA,Age__c,<=;>=;=,Asset,InvestmentLifeInsurance,,Number;CustomSearchFilter__c
-a0X3O000004LzKoUAK,Detailní stav,0123O0000012x9dQAA,Status__c,exact match;contains,Asset,PensionProducts,,Text;CustomSearchFilter__c
-a0X3O000004LzKyUAK,Datum prvního čerpání úvěru,0123O0000012x9bQAA,FirstDrawDate__c,<=;>=,Asset,CSOBCurrentAccount,,Date;CustomSearchFilter__c
-a0X3O000004LzCcUAK,Věk klienta,0123O0000012x9cQAA,Age__c,<=;>=;=,Asset,BuildingSavings,,Number;CustomSearchFilter__c
-a0X3O000004McXIUA0,Výročí - měsíc,0123O0000012x9cQAA,Anniversary__c,<=;>=,Asset,PMO,,Number;CustomSearchFilter__c
-a0X3O000004Mrl8UAC,Plán. datum splac. ÚP,0123O0000012x9bQAA,PlanCreditPayment__c,<=;>=,Asset,CreditCases,,Date;CustomSearchFilter__c
-a0X3O000004MrkyUAC,Typ úvěru,0123O0000012x9dQAA,CreditType__c,contains;start with,Asset,CreditCases,,Text;CustomSearchFilter__c
-a0X3O000004Mrl3UAC,Termín úplného vyčerpání,0123O0000012x9bQAA,DrawdownTerm__c,<=;>=,Asset,CreditCases,,Date;CustomSearchFilter__c
-a0X3O000004LzJMUA0,PSČ,0123O0000012x9dQAA,AccountPostalCode__c,exact match;start with,Asset,PMO,,Text;CustomSearchFilter__c
-a0X3O000004LzCIUA0,Věk klienta,0123O0000012x9cQAA,Age__c,<=;>=;=,Account,PersonAccount,,Number;CustomSearchFilter__c
-a0X3O000004LzLXUA0,Datum uzavření,0123O0000012x9bQAA,ProductCloseDate__c,<=;>=,Asset,PensionProducts,,Date;CustomSearchFilter__c
-a0X3O000004LzLYUA0,Zaměstnavatel přispívá,0123O0000012x9aQAA,EmployerContribution__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
-a0X3O000004LzLZUA0,Spořicí pojistné,0123O0000012x9cQAA,SavingPremium__c,<=;>=,Asset,InvestmentLifeInsurance,,Number;CustomSearchFilter__c
-a0X3O000004LzMoUAK,Rizikové pojistné,0123O0000012x9cQAA,RiskPremium__c,<=;>=,Asset,InvestmentLifeInsurance,,Number;CustomSearchFilter__c
-a0X3O000004LzKeUAK,Detailní stav,0123O0000012x9dQAA,Status__c,exact match;contains,Asset,InvestmentLifeInsurance,,Text;CustomSearchFilter__c
-a0X3O000004LzMMUA0,Platnost do,0123O0000012x9bQAA,ValidFrom__c,<=;>=,Asset,InvestmentLifeInsurance,,Date;CustomSearchFilter__c
-a0X3O000004LzLcUAK,Měsíční příspěvek účastník,0123O0000012x9cQAA,MonthFeeParticipant__c,<=;>=,Asset,PensionProducts,,Number;CustomSearchFilter__c
-a0X3O000004LzMRUA0,Lhůtní pojistné,0123O0000012x9cQAA,TimePremium__c,<=;>=,Asset,InvestmentLifeInsurance,,Number;CustomSearchFilter__c
-a0X3O000004LzKFUA0,Datum poslední interakce,0123O0000012x9bQAA,LastInteractionDate__c,<=;>=,Asset,RiskLifeInsurance,,Date;CustomSearchFilter__c
-a0X3O000004LzIaUAK,PSČ,0123O0000012x9dQAA,AccountPostalCode__c,exact match;start with,Asset,CreditAndIntermediateLoan,,Text;CustomSearchFilter__c
-a0X3O000004LzL3UAK,Datum uzavření,0123O0000012x9bQAA,ProductCloseDate__c,<=;>=,Asset,PMO,,Date;CustomSearchFilter__c
-a0X3O000004LzKZUA0,Detailní stav,0123O0000012x9dQAA,Status__c,exact match;contains,Asset,CreditAndIntermediateLoan,,Text;CustomSearchFilter__c
-a0X3O000004LzHgUAK,Město klienta,0123O0000012x9dQAA,AccountCity__c,exact match;contains,Asset,PMO,,Text;CustomSearchFilter__c
-a0X3O000004LzHwUAK,Město klienta,0123O0000012x9dQAA,AccountCity__c,exact match;contains,Asset,RiskLifeInsurance,,Text;CustomSearchFilter__c
-a0X3O000004LzJRUA0,PSČ,0123O0000012x9dQAA,AccountPostalCode__c,exact match;start with,Asset,PensionProducts,,Text;CustomSearchFilter__c
-a0X3O000004LzLwUAK,Invalidní penze,0123O0000012x9aQAA,DisabilityPension__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
-a0X3O000004LzK5UAK,Datum poslední interakce,0123O0000012x9bQAA,LastInteractionDate__c,<=;>=,Asset,PensionProducts,,Date;CustomSearchFilter__c
-a0X3O000004LzLmUAK,Prodleva > 1 rok,0123O0000012x9aQAA,DelayInPaymentMorethanOneYear__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
-a0X3O000004LzJbUAK,PSČ,0123O0000012x9dQAA,BillingPostalCode,exact match;start with,Account,PersonAccount,,Text;CustomSearchFilter__c
-a0X3O000004LzJcUAK,Datum poslední interakce,0123O0000012x9bQAA,LastInteractionDate__c,<=;>=,Asset,PMO,,Date;CustomSearchFilter__c
-a0X3O000004LzHWUA0,Město klienta,0123O0000012x9dQAA,AccountCity__c,exact match;contains,Asset,CreditAndIntermediateLoan,,Text;CustomSearchFilter__c
-a0X3O000004LzK0UAK,Datum poslední interakce,0123O0000012x9bQAA,LastInteractionDate__c,<=;>=,Asset,CreditAndIntermediateLoan,,Date;CustomSearchFilter__c
-a0X3O000004LzK1UAK,Datum poslední interakce,0123O0000012x9bQAA,LastInteractionDate__c,<=;>=,Asset,InvestmentLifeInsurance,,Date;CustomSearchFilter__c
-a0X3O000004LzNmUAK,Skutečná pojistná částka,0123O0000012x9cQAA,ActualInsuranceAmount__c,<=;>=,Asset,RiskLifeInsurance,,Number;CustomSearchFilter__c
-a0X3O000004LzChUAK,Věk klienta,0123O0000012x9cQAA,Age__c,<=;>=;=,Asset,PensionProducts,,Number;CustomSearchFilter__c
+a0p3X00000gchHXQAY,Datum poslední interakce,0123X000000eX6OQAU,LastInteractionDate__c,<=;>=,Asset,PensionProducts,,Date;CustomSearchFilter__c
+a0p3X00000gchHYQAY,Datum poslední interakce,0123X000000eX6OQAU,LastInteractionDate__c,<=;>=,Asset,PMO,,Date;CustomSearchFilter__c
+a0p3X00000gchHZQAY,Datum poslední interakce,0123X000000eX6OQAU,LastInteractionDate__c,<=;>=,Asset,CreditAndIntermediateLoan,,Date;CustomSearchFilter__c
+a0p3X00000gchHaQAI,Datum poslední interakce,0123X000000eX6OQAU,LastInteractionDate__c,<=;>=,Asset,InvestmentLifeInsurance,,Date;CustomSearchFilter__c
+a0p3X00000gchHbQAI,Výše úvěru,0123X000000eX6PQAU,CreditAmount__c,<=;>=,Asset,Mortgages,,Number;CustomSearchFilter__c
+a0p3X00000gchHcQAI,Zbývá k čerpání,0123X000000eX6PQAU,RemainingDraw__c,<=;>=,Asset,CreditCases,,Number;CustomSearchFilter__c
+a0p3X00000gchHdQAI,Věk,0123X000000eX6PQAU,Age__c,<;>;<=;>=;=,Account,PersonAccount,,Number;CustomSearchFilter__c
+a0p3X00000gchHeQAI,Čisté vklady klienta,0123X000000eX6PQAU,NettoDeposit__c,<=;>=,Asset,BuildingSavings,,Number;CustomSearchFilter__c
+a0p3X00000gchHfQAI,Aktuální zůstatek,0123X000000eX6PQAU,CurrentBalance__c,<;>;<=;>=,Asset,BuildingSavings,,Number;CustomSearchFilter__c
+a0p3X00000gchHgQAI,Úroková sazba,0123X000000eX6PQAU,CurrentInterestRate__c,<=;>=;=,Asset,CreditAndIntermediateLoan,,Number;CustomSearchFilter__c
+a0p3X00000gchHhQAI,Věk klienta,0123X000000eX6PQAU,Age__c,<=;>=;=,Asset,CSOBCurrentAccount,,Number;CustomSearchFilter__c
+a0p3X00000gchHiQAI,Věk klienta,0123X000000eX6PQAU,Age__c,<=;>=;=,Asset,CreditCases,,Number;CustomSearchFilter__c
+a0p3X00000gchHjQAI,Výše úvěru,0123X000000eX6PQAU,CreditAmount__c,<=;>=,Asset,CreditCases,,Number;CustomSearchFilter__c
+a0p3X00000gchHkQAI,Hodnotící číslo,0123X000000eX6PQAU,EvaluationNumber__c,<=;>=,Asset,BuildingSavings,,Number;CustomSearchFilter__c
+a0p3X00000gchHlQAI,Cílová částka,0123X000000eX6PQAU,TargetAmount__c,<;>;<=;>=;=,Asset,BuildingSavings,,Number;CustomSearchFilter__c
+a0p3X00000gchHmQAI,Detailní stav,0123X000000eX6PQAU,Status__c,<=;>=;=,Asset,Mortgages,,Number;CustomSearchFilter__c
+a0p3X00000gchHnQAI,Předschválený limit,0123X000000eX6PQAU,PreapprovedLimit__c,<=;>=,Account,PersonAccount,,Number;CustomSearchFilter__c
+a0p3X00000gchHoQAI,Věk klienta,0123X000000eX6PQAU,Age__c,<=;>=,Asset,Mortgages,,Number;CustomSearchFilter__c
+a0p3X00000gchHpQAI,Délka fixace v letech,0123X000000eX6PQAU,FixationLength__c,<=;>=;=,Asset,Mortgages,,Number;CustomSearchFilter__c
+a0p3X00000gchHqQAI,Úroková sazba,0123X000000eX6PQAU,CurrentInterestRate__c,<=;>=,Asset,Mortgages,,Number;CustomSearchFilter__c
+a0p3X00000gchHrQAI,Aktuální předschválená částka SÚ,0123X000000eX6PQAU,CurrentPreApprovedAmount__c,<=;>=,Account,PersonAccount,,Number;CustomSearchFilter__c
+a0p3X00000gchHsQAI,Věk klienta,0123X000000eX6PQAU,Age__c,<=;>=,Asset,PMO,,Number;CustomSearchFilter__c
+a0p3X00000gchHtQAI,Věk klienta,0123X000000eX6PQAU,Age__c,<=;>=;=,Asset,RiskLifeInsurance,,Number;CustomSearchFilter__c
+a0p3X00000gchHuQAI,Příspěvek celkem,0123X000000eX6PQAU,MonthFeeTotal__c,<=;>=,Asset,PensionProducts,,Number;CustomSearchFilter__c
+a0p3X00000gchHvQAI,Věk klienta,0123X000000eX6PQAU,Age__c,<=;>=;=,Asset,CreditAndIntermediateLoan,,Number;CustomSearchFilter__c
+a0p3X00000gchHwQAI,Věk klienta,0123X000000eX6PQAU,Age__c,<=;>=;=,Asset,InvestmentLifeInsurance,,Number;CustomSearchFilter__c
+a0p3X00000gchHxQAI,Věk klienta,0123X000000eX6PQAU,Age__c,<=;>=;=,Asset,BuildingSavings,,Number;CustomSearchFilter__c
+a0p3X00000gchHyQAI,Výročí - měsíc,0123X000000eX6PQAU,Anniversary__c,<=;>=,Asset,PMO,,Number;CustomSearchFilter__c
+a0p3X00000gchI0QAI,Spořicí pojistné,0123X000000eX6PQAU,SavingPremium__c,<=;>=,Asset,InvestmentLifeInsurance,,Number;CustomSearchFilter__c
+a0p3X00000gchI1QAI,Rizikové pojistné,0123X000000eX6PQAU,RiskPremium__c,<=;>=,Asset,InvestmentLifeInsurance,,Number;CustomSearchFilter__c
+a0p3X00000gchI2QAI,Měsíční příspěvek účastník,0123X000000eX6PQAU,MonthFeeParticipant__c,<=;>=,Asset,PensionProducts,,Number;CustomSearchFilter__c
+a0p3X00000gchI3QAI,Lhůtní pojistné,0123X000000eX6PQAU,TimePremium__c,<=;>=,Asset,InvestmentLifeInsurance,,Number;CustomSearchFilter__c
+a0p3X00000gchI4QAI,Skutečná pojistná částka,0123X000000eX6PQAU,ActualInsuranceAmount__c,<=;>=,Asset,RiskLifeInsurance,,Number;CustomSearchFilter__c
+a0p3X00000gchI5QAI,Věk klienta,0123X000000eX6PQAU,Age__c,<=;>=;=,Asset,PensionProducts,,Number;CustomSearchFilter__c
+a0p3X00000gchI6QAI,"Aktuální stav programu (pravidelné, aktiv, neaktiv...)",0123X000000eX6QQAU,ProgramStatus__c,contains,Asset,BuildingSavings,,Text;CustomSearchFilter__c
+a0p3X00000gchI7QAI,PSČ,0123X000000eX6QQAU,AccountPostalCode__c,exact match;start with,Asset,CreditCases,,Text;CustomSearchFilter__c
+a0p3X00000gchI8QAI,Město klienta,0123X000000eX6QQAU,AccountCity__c,exact match;contains,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
+a0p3X00000gchI9QAI,Město klienta,0123X000000eX6QQAU,AccountCity__c,exact match;contains,Asset,CreditCases,,Text;CustomSearchFilter__c
+a0p3X00000gchIAQAY,Podtyp produktu,0123X000000eX6QQAU,ProductSubtype__c,exact match;contains,Asset,CreditAndIntermediateLoan,,Text;CustomSearchFilter__c
+a0p3X00000gchIBQAY,Podtyp produktu,0123X000000eX6QQAU,ProductSubtype__c,exact match;contains,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
+a0p3X00000gchICQAY,Detailní stav,0123X000000eX6QQAU,Status__c,exact match;contains,Asset,CreditCases,,Text;CustomSearchFilter__c
+a0p3X00000gchIDQAY,Detailní stav,0123X000000eX6QQAU,Status__c,exact match;contains,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
+a0p3X00000gchIEQAY,Obec,0123X000000eX6QQAU,City__c,exact match;contains;start with,Account,PersonAccount,,Text;CustomSearchFilter__c
+a0p3X00000gchIFQAY,PSČ,0123X000000eX6QQAU,AccountPostalCode__c,exact match;start with,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
+a0p3X00000gchIGQAY,"Tarif (BE, Q, Aktiv, Aktivplus ...)",0123X000000eX6QQAU,Tariff__c,contains,Asset,BuildingSavings,,Text;CustomSearchFilter__c
+a0p3X00000gchIHQAY,PSČ,0123X000000eX6QQAU,AccountPostalCode__c,start with,Asset,Mortgages,,Text;CustomSearchFilter__c
+a0p3X00000gchIIQAY,Pohlaví,0123X000000eX6QQAU,Gender__c,exact match;start with,Account,PersonAccount,,Text;CustomSearchFilter__c
+a0p3X00000gchIJQAY,Město klienta,0123X000000eX6QQAU,AccountCity__c,contains;start with,Asset,BuildingSavings,,Text;CustomSearchFilter__c
+a0p3X00000gchIKQAY,PSČ,0123X000000eX6QQAU,AccountPostalCode__c,exact match;start with,Asset,BuildingSavings,,Text;CustomSearchFilter__c
+a0p3X00000gchILQAY,Město klienta,0123X000000eX6QQAU,AccountCity__c,exact match;contains,Asset,Mortgages,,Text;CustomSearchFilter__c
+a0p3X00000gchIMQAY,Typ produktu,0123X000000eX6QQAU,ProductType__c,contains;start with,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
+a0p3X00000gchINQAY,Detailní stav,0123X000000eX6QQAU,Status__c,exact match;contains,Asset,BuildingSavings,,Text;CustomSearchFilter__c
+a0p3X00000gchIOQAY,PSČ,0123X000000eX6QQAU,AccountPostalCode__c,exact match;start with,Asset,RiskLifeInsurance,,Text;CustomSearchFilter__c
+a0p3X00000gchIPQAY,Město klienta,0123X000000eX6QQAU,AccountCity__c,exact match;contains,Asset,InvestmentLifeInsurance,,Text;CustomSearchFilter__c
+a0p3X00000gchIQQAY,Detailní stav,0123X000000eX6QQAU,Status__c,exact match;contains,Asset,PMO,,Text;CustomSearchFilter__c
+a0p3X00000gchIRQAY,Detailní stav,0123X000000eX6QQAU,Status__c,exact match;contains,Asset,RiskLifeInsurance,,Text;CustomSearchFilter__c
+a0p3X00000gchISQAY,StateCode,0123X000000eX6QQAU,StateCode__c,contains,Asset,CSOBCurrentAccount,,Text;CustomSearchFilter__c
+a0p3X00000gchITQAY,Podtyp produktu,0123X000000eX6QQAU,ProductSubtype__c,exact match;contains,Asset,PensionProducts,,Text;CustomSearchFilter__c
+a0p3X00000gchIUQAY,Město klienta,0123X000000eX6QQAU,AccountCity__c,exact match;contains,Asset,PensionProducts,,Text;CustomSearchFilter__c
+a0p3X00000gchIVQAY,PSČ,0123X000000eX6QQAU,AccountPostalCode__c,exact match;start with,Asset,InvestmentLifeInsurance,,Text;CustomSearchFilter__c
+a0p3X00000gchIWQAY,Detailní stav,0123X000000eX6QQAU,Status__c,exact match;contains,Asset,PensionProducts,,Text;CustomSearchFilter__c
+a0p3X00000gchIXQAY,Typ úvěru,0123X000000eX6QQAU,CreditType__c,contains;start with,Asset,CreditCases,,Text;CustomSearchFilter__c
+a0p3X00000gchIYQAY,PSČ,0123X000000eX6QQAU,AccountPostalCode__c,exact match;start with,Asset,PMO,,Text;CustomSearchFilter__c
+a0p3X00000gchIZQAY,Detailní stav,0123X000000eX6QQAU,Status__c,exact match;contains,Asset,InvestmentLifeInsurance,,Text;CustomSearchFilter__c
+a0p3X00000gchIaQAI,PSČ,0123X000000eX6QQAU,AccountPostalCode__c,exact match;start with,Asset,CreditAndIntermediateLoan,,Text;CustomSearchFilter__c
+a0p3X00000gchIbQAI,Detailní stav,0123X000000eX6QQAU,Status__c,exact match;contains,Asset,CreditAndIntermediateLoan,,Text;CustomSearchFilter__c
+a0p3X00000gchIcQAI,Město klienta,0123X000000eX6QQAU,AccountCity__c,exact match;contains,Asset,PMO,,Text;CustomSearchFilter__c
+a0p3X00000gchIdQAI,Město klienta,0123X000000eX6QQAU,AccountCity__c,exact match;contains,Asset,RiskLifeInsurance,,Text;CustomSearchFilter__c
+a0p3X00000gchIeQAI,PSČ,0123X000000eX6QQAU,AccountPostalCode__c,exact match;start with,Asset,PensionProducts,,Text;CustomSearchFilter__c
+a0p3X00000gchIfQAI,PSČ,0123X000000eX6QQAU,BillingPostalCode,exact match;start with,Account,PersonAccount,,Text;CustomSearchFilter__c
+a0p3X00000gchIgQAI,Město klienta,0123X000000eX6QQAU,AccountCity__c,exact match;contains,Asset,CreditAndIntermediateLoan,,Text;CustomSearchFilter__c
+a0p3X00000gchH0QAI,Smart za posledních 92 dní,0123X000000eX6NQAU,SmartLoginIn92Days__c,N/A,Account,PersonAccount,,Boolean;CustomSearchFilter__c
+a0p3X00000gchH1QAI,Pozůstalostní penze,0123X000000eX6NQAU,EstatePension__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
+a0p3X00000gchH2QAI,Zaměstnavatel přispívá,0123X000000eX6NQAU,EmployerContribution__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
+a0p3X00000gchH3QAI,Invalidní penze,0123X000000eX6NQAU,DisabilityPension__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
+a0p3X00000gchH4QAI,Prodleva > 1 rok,0123X000000eX6NQAU,DelayInPaymentMorethanOneYear__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
+a0p3X00000gchH5QAI,Datum uzavření,0123X000000eX6OQAU,ProductCloseDate__c,<;>,Asset,BuildingSavings,,Date;CustomSearchFilter__c
+a0p3X00000gchH6QAI,Datum poslední interakce,0123X000000eX6OQAU,LastInteractionDate__c,<=;>=,Asset,BuildingSavings,,Date;CustomSearchFilter__c
+a0p3X00000gchH7QAI,Datum uzavření,0123X000000eX6OQAU,ProductCloseDate__c,<=;>=,Asset,CSOBCurrentAccount,,Date;CustomSearchFilter__c
+a0p3X00000gchH8QAI,Datum naplnění podmínek (kvalita účtu),0123X000000eX6OQAU,ConditionFullfillmentDate__c,<=;>=,Asset,CSOBCurrentAccount,,Date;CustomSearchFilter__c
+a0p3X00000gchH9QAI,Datum předpokládaného přidělení,0123X000000eX6OQAU,AssignmentConditionsDate__c,<=;>=;=,Asset,BuildingSavings,,Date;CustomSearchFilter__c
+a0p3X00000gchHAQAY,Fixace sazby,0123X000000eX6OQAU,NearestReFixationDate__c,<=;>=;=,Asset,CreditCases,,Date;CustomSearchFilter__c
+a0p3X00000gchHBQAY,Vázací doba,0123X000000eX6OQAU,BindingPeriodDate__c,<;>;<=;>=;=,Asset,BuildingSavings,,Date;CustomSearchFilter__c
+a0p3X00000gchHCQAY,Datum poslední interakce,0123X000000eX6OQAU,LastInteractionDate__c,<=;>=,Account,PersonAccount,,Date;CustomSearchFilter__c
+a0p3X00000gchHDQAY,Datum uzavření,0123X000000eX6OQAU,ProductCloseDate__c,<=;>=,Asset,CreditCases,,Date;CustomSearchFilter__c
+a0p3X00000gchHEQAY,Předpokládané ukončení úvěru,0123X000000eX6OQAU,ExpectedCreditEndDate__c,<=;>=,Asset,CreditAndIntermediateLoan,,Date;CustomSearchFilter__c
+a0p3X00000gchHFQAY,Datum poslední interakce,0123X000000eX6OQAU,LastInteractionDate__c,<=;>=;=,Asset,CreditCases,,Date;CustomSearchFilter__c
+a0p3X00000gchHGQAY,Datum poslední interakce,0123X000000eX6OQAU,LastInteractionDate__c,<=;>=,Asset,CSOBCurrentAccount,,Date;CustomSearchFilter__c
+a0p3X00000gchHHQAY,Datum uzavření,0123X000000eX6OQAU,ProductCloseDate__c,<=;>=,Asset,Mortgages,,Date;CustomSearchFilter__c
+a0p3X00000gchHIQAY,Konec fixace,0123X000000eX6OQAU,NearestReFixationDate__c,<=;>=;=,Asset,Mortgages,,Date;CustomSearchFilter__c
+a0p3X00000gchHJQAY,Datum poslední interakce,0123X000000eX6OQAU,LastInteractionDate__c,<=;>=,Asset,Mortgages,,Date;CustomSearchFilter__c
+a0p3X00000gchHKQAY,Platnost úrokové sazby do,0123X000000eX6OQAU,InterestRateValidTo__c,<=;>=,Asset,Mortgages,,Date;CustomSearchFilter__c
+a0p3X00000gchHLQAY,Smart poslední přihlášení,0123X000000eX6OQAU,SmartLastLogin__c,<=;>=,Account,PersonAccount,,Date;CustomSearchFilter__c
+a0p3X00000gchHMQAY,Datum uzavření,0123X000000eX6OQAU,ProductCloseDate__c,<=;>=,Asset,RiskLifeInsurance,,Date;CustomSearchFilter__c
+a0p3X00000gchHNQAY,Datum uzavření,0123X000000eX6OQAU,ProductCloseDate__c,<=;>=,Asset,InvestmentLifeInsurance,,Date;CustomSearchFilter__c
+a0p3X00000gchHOQAY,Platnost od,0123X000000eX6OQAU,ValidFrom__c,<=;>=,Asset,InvestmentLifeInsurance,,Date;CustomSearchFilter__c
+a0p3X00000gchHPQAY,Datum aktivace,0123X000000eX6OQAU,ActivationDate__c,<=;>=,Asset,RiskLifeInsurance,,Date;CustomSearchFilter__c
+a0p3X00000gchHQQAY,Datum prvního čerpání úvěru,0123X000000eX6OQAU,FirstDrawDate__c,<=;>=,Asset,CSOBCurrentAccount,,Date;CustomSearchFilter__c
+a0p3X00000gchHRQAY,Plán. datum splac. ÚP,0123X000000eX6OQAU,PlanCreditPayment__c,<=;>=,Asset,CreditCases,,Date;CustomSearchFilter__c
+a0p3X00000gchHSQAY,Termín úplného vyčerpání,0123X000000eX6OQAU,DrawdownTerm__c,<=;>=,Asset,CreditCases,,Date;CustomSearchFilter__c
+a0p3X00000gchHTQAY,Datum uzavření,0123X000000eX6OQAU,ProductCloseDate__c,<=;>=,Asset,PensionProducts,,Date;CustomSearchFilter__c
+a0p3X00000gchHUQAY,Platnost do,0123X000000eX6OQAU,ValidFrom__c,<=;>=,Asset,InvestmentLifeInsurance,,Date;CustomSearchFilter__c
+a0p3X00000gchHVQAY,Datum poslední interakce,0123X000000eX6OQAU,LastInteractionDate__c,<=;>=,Asset,RiskLifeInsurance,,Date;CustomSearchFilter__c
+a0p3X00000gchHWQAY,Datum uzavření,0123X000000eX6OQAU,ProductCloseDate__c,<=;>=,Asset,PMO,,Date;CustomSearchFilter__c
+a0p3X00000gcnM7QAI,Dostupná výše,0123X000000eX6PQAU,AmountOffer__c,<;>;<=;>=;=,Account,PersonAccount,,Number;CustomSearchFilter__c
+a0p3X00000gcnMWQAY,Podmínky Premium,0123X000000eX6NQAU,PremiumConditions__c,N/A,Account,PersonAccount,,Boolean;CustomSearchFilter__c
+a0p3X00000gcnKuQAI,Zbývá doložit,0123X000000eX6PQAU,LeftToAdd__c,<;>;<=;>=;=,Asset,CreditCases,,Number;CustomSearchFilter__c
+a0p3X00000gcnM2QAI,Má CS produkt,0123X000000eX6NQAU,HasCsProduct__c,N/A,Account,PersonAccount,,Boolean;CustomSearchFilter__c
+a0p3X00000gcnLJQAY,Stav,0123X000000eX6NQAU,StateCodeCheckbox__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
+a0p3X00000gcnLxQAI,Má kmenový produkt,0123X000000eX6NQAU,HasSbProduct__c,N/A,Account,PersonAccount,,Boolean;CustomSearchFilter__c
+a0p3X00000gcnKkQAI,"Zajištění (Bez zajištění, se zajištěním)",0123X000000eX6QQAU,AssuranceType__c,contains,Asset,CreditCases,,Text;CustomSearchFilter__c
+a0p3X00000gcnKfQAI,Fixace sazby,0123X000000eX6OQAU,NearestReFixationDate__c,<;>;<=;>=;=,Asset,CreditAndIntermediateLoan,,Date;CustomSearchFilter__c
+a0p3X00000gcnLOQAY,Datum nároku na starobní penzi,0123X000000eX6OQAU,ClaimRetirementPensionDate__c,<;>;<=;>=;=,Asset,PensionProducts,,Date;CustomSearchFilter__c
+a0p3X00000gcnLTQAY,Datum výsluhové penze,0123X000000eX6OQAU,RetirementPensionDate__c,<;>;<=;>=;=,Asset,PensionProducts,,Date;CustomSearchFilter__c
+a0p3X00000gcnLsQAI,Datun příští AML,0123X000000eX6OQAU,NextAmlReviewDate__c,<;>;<=;>=;=,Account,PersonAccount,,Date;CustomSearchFilter__c
+a0p3X00000gcnLtQAI,uzavření poslední smlouvy,0123X000000eX6OQAU,AssetLastCloseDate__c,<;>;<=;>=;=,Account,PersonAccount,,Date;CustomSearchFilter__c
+a0p3X00000gcnMMQAY,Počet aktivních BU,0123X000000eX6PQAU,CurrentAccountCount__c,<;>;<=;>=;=,Account,PersonAccount,,Number;CustomSearchFilter__c
+a0p3X00000gcnL9QAI,Stav,0123X000000eX6NQAU,StateCodeCheckbox__c,N/A,Asset,PMO,,Boolean;CustomSearchFilter__c
+a0p3X00000gcnKpQAI,Předpokládané překopení,0123X000000eX6OQAU,FlipEstimate__c,<;>;<=;>=;=,Asset,CreditAndIntermediateLoan,,Date;CustomSearchFilter__c
+a0p3X00000gcnMCQAY,Počet SS,0123X000000eX6PQAU,BuildingSavingsCount__c,<;>;<=;>=;=,Account,PersonAccount,,Number;CustomSearchFilter__c
+a0p3X00000gcnLdQAI,Předepsaná platba,0123X000000eX6OQAU,PrescribedPayment__c,<;>;<=;>=;=,Asset,RiskLifeInsurance,,Date;CustomSearchFilter__c
+a0p3X00000gcnLEQAY,Stav,0123X000000eX6NQAU,StateCodeCheckbox__c,N/A,Asset,InvestmentLifeInsurance,,Boolean;CustomSearchFilter__c
+a0p3X00000gcnLiQAI,V ÚP,0123X000000eX6NQAU,HasLoanCaseRelatedAsset__c,N/A,Asset,RiskLifeInsurance,,Boolean;CustomSearchFilter__c
+a0p3X00000gcnMHQAY,Má pouze SS,0123X000000eX6NQAU,BuildingSavingsOnly__c,N/A,Account,PersonAccount,,Boolean;CustomSearchFilter__c
+a0p3X00000gcnKaQAI,Datum doručení výpovědi,0123X000000eX6OQAU,ContractTerminationDelivered__c,<;>;<=;>=;=,Asset,BuildingSavings,,Date;CustomSearchFilter__c
+a0p3X00000gcnKbQAI,Úroková sazba,0123X000000eX6PQAU,CurrentInterestRate__c,<;>;<=;>=;=,Asset,BuildingSavings,,Number;CustomSearchFilter__c
+a0p3X00000gcnLYQAY,Pojistná doba pro starobní penzi,0123X000000eX6PQAU,InsurancePeriodRetirementPension__c,<;>;<=;>=;=,Asset,PensionProducts,,Number;CustomSearchFilter__c
+a0p3X00000hgdNdQAI,Datum příští aktualizace,0123X000000eX6OQAU,NextAmlReviewDate__c,<=;>=,Account,PersonAccount,,Date;CustomSearchFilter__c
+a0p3X00000hgdFtQAI,Počet smluv,0123X000000eX6PQAU,AssetCount__c,<;>;<=;>=;=,Account,PersonAccount,,Number;CustomSearchFilter__c
