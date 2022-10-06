@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FullAddressEforms__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISBLANK( StreetAndHouseNumber__c ),&quot;&quot; , StreetAndHouseNumber__c &amp; &quot;, &quot; &amp;
+IF( ISBLANK( AdditionalAddressLine__c ), &quot;&quot;, AdditionalAddressLine__c &amp; &quot;, &quot; ) &amp;
+IF( ISBLANK( PostalCode__c ), &quot;&quot;, PostalCode__c &amp; &quot;, &quot; ) 
+ )</formula>
+    <label>FullAddressEforms</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
