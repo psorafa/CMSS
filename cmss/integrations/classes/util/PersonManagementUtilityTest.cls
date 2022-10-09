@@ -1,5 +1,14 @@
 @IsTest
 private class PersonManagementUtilityTest {
+	@TestSetup
+	static void testSetup() {
+		User u = TestDataFactory.getUser(new User());
+		insert u;
+		CommonSetting__c setting = CommonSetting__c.getOrgDefaults();
+		setting.OwnerForHiddenRecords__c = u.Id;
+		insert setting;
+	}
+
 	@IsTest
 	static void buildUpdateSObjectListTest() {
 		Account parentAccount = TestDataFactory.getAccount();
@@ -85,16 +94,19 @@ private class PersonManagementUtilityTest {
 		Test.startTest();
 		resultUpdateRequest = PersonManagementUtility.insertPersonCSOBData(serializedInput);
 		Test.stopTest();
-		Account createdAccount = [SELECT Id, Name, ExternalId__c FROM Account WHERE Name = 'Account 1'][0];
 
+		for (Account createdAccount : [SELECT Id, Name, ExternalId__c FROM Account]) {
+			System.assertEquals('Account 1', createdAccount.Name);
+			System.assertEquals(createdAccount.ExternalId__c, resultUpdateRequest.Account.ExternalId__c);
+			System.assertEquals(createdAccount.Id, resultUpdateRequest.Account.Id);
+			System.assertEquals(createdAccount.Id, resultUpdateRequest.Asset[0].AccountId);
+			System.assertEquals(createdAccount.Id, resultUpdateRequest.ContactInformation[0].Account__c);
+
+		}
 		System.assertEquals(null, resultUpdateRequest.Account.Name);
-		System.assertEquals(createdAccount.ExternalId__c, resultUpdateRequest.Account.ExternalId__c);
-		System.assertEquals(createdAccount.Id, resultUpdateRequest.Account.Id);
 		System.assertEquals(2, resultUpdateRequest.Asset.size());
-		System.assertEquals(createdAccount.Id, resultUpdateRequest.Asset[0].AccountId);
 		System.assertNotEquals(null, resultUpdateRequest.Asset[0].Id);
 		System.assertEquals(1, resultUpdateRequest.ContactInformation.size());
-		System.assertEquals(createdAccount.Id, resultUpdateRequest.ContactInformation[0].Account__c);
 		System.assertEquals('3456789', resultUpdateRequest.ContactInformation[0].ExternalId__c);
 	}
 }

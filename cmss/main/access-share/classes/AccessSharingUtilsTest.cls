@@ -1,7 +1,7 @@
 @isTest
 private class AccessSharingUtilsTest {
-	@TestSetup
-	static void makeData() {
+	@isTest
+	static void getRelatedAccessShareDTOsTest() {
 		Account client1 = TestDataFactory.getPersonAccount(
 			new Account(
 				FirstName = 'Gerard',
@@ -29,18 +29,12 @@ private class AccessSharingUtilsTest {
 			new AssetAccountRelation__c(Account__c = client2.Id, Asset__c = asset.Id, RelationType__c = '2')
 		);
 		insert relation;
-	}
-
-	@isTest
-	static void getRelatedAccessShareDTOsTest() {
-		Id client1Id = [SELECT Id FROM Account WHERE LastName = 'Hověz'].Id;
-		Id client2Id = [SELECT Id FROM Account WHERE LastName = 'Obdržálková'].Id;
 		User actualUser = [SELECT Id FROM USER WHERE Id = :UserInfo.getUserId()];
 		AccessShareDTO originalDTO = new AccessShareDTO();
 		originalDTO.userToShareWith = actualUser;
 		originalDTO.reason = 'CustomerSearch';
 		originalDTO.expirationDate = System.today().addDays(2);
-		originalDTO.accountIdToShare = client2Id;
+		originalDTO.accountIdToShare = client2.Id;
 
 		Set<AccessShareDTO> resultDTOs = AccessSharingUtils.getRelatedAccessShareDTOs(
 			new Set<AccessShareDTO>{originalDTO}
@@ -51,6 +45,6 @@ private class AccessSharingUtilsTest {
 		System.assertEquals(1, resultDTOs.size());
 		System.assertEquals(actualUser, resultInList[0].userToShareWith);
 		System.assertEquals('CustomerSearch', resultInList[0].reason);
-		System.assertEquals(client1Id, resultInList[0].accountIdToShare);
+		System.assertEquals(client1.Id, resultInList[0].accountIdToShare);
 	}
 }

@@ -8,6 +8,9 @@ public class UpdateLoanAssetsFlowControllerTest {
 
 	@IsTest
 	static void succsessResponse() {
+		LoanDetailInfoService.certificateName = null;
+		LoanService.certificateName = null;
+		LoanDocumentsService.certificateName = null;
 		Account acc = TestDataFactory.getAccount(new Account());
 		insert acc;
 		Asset asset1 = new Asset(Name = '1200373701', AccountId = acc.Id);
@@ -54,6 +57,9 @@ public class UpdateLoanAssetsFlowControllerTest {
 	}
 	@IsTest
 	static void failedResponse() {
+		LoanDetailInfoService.certificateName = null;
+		LoanService.certificateName = null;
+		LoanDocumentsService.certificateName = null;
 		Account acc = TestDataFactory.getAccount(new Account());
 		insert acc;
 		Asset asset1 = new Asset(Name = '1200373701', AccountId = acc.Id);

@@ -1,6 +1,7 @@
 public class LoanDocumentsService {
 
 	private static final String s_ns0 = 'http://service.cmss.cz/loan/LoanService/v06/datatypes';
+	@TestVisible private static String certificateName = 'test12345';
 	public class LoanDocumentsServicePort {
 
 		public String endpoint_x = IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c + '/LoanServiceWeb_v06/LoanService';
@@ -47,7 +48,9 @@ public class LoanDocumentsService {
 			req.setMethod('POST');
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
 			req.setHeader('SOAPAction', 'http://service.cmss.cz/loan/LoanService/v06/getLoanDocumentsList');
-			req.setClientCertificateName('test12345');
+			if (!String.isEmpty(certificateName)) {
+				req.setClientCertificateName(certificateName);
+			}
 			req.setBodyDocument(doc);
 			Http http = new Http();
 			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));

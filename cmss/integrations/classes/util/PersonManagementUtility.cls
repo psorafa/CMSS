@@ -30,7 +30,7 @@ public class PersonManagementUtility {
 
 	@TestVisible
 	private static GetPersonCSOBDataResponse insertCSOBPersonEntities(GetPersonCSOBDataResponse deserializedData) {
-		Id accountOwnerId = [SELECT Id FROM User WHERE Name = 'Hidden Records Owner'].Id;
+		Id accountOwnerId = CommonSetting__c.getOrgDefaults().OwnerForHiddenRecords__c;
 		deserializedData.Account.CSOBSNonClient__c = true;
 		deserializedData.Account.OwnerId = accountOwnerId;
 		insert deserializedData.Account;

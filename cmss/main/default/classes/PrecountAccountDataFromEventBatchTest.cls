@@ -13,10 +13,11 @@ public class PrecountAccountDataFromEventBatchTest {
 		insert event;
 		Test.startTest();
 		PrecountAccountDataFromEventBatch batch = new PrecountAccountDataFromEventBatch();
-		Id batchId = Database.executeBatch(batch);
+		Database.executeBatch(batch);
 		Test.stopTest();
 		Account account = [SELECT Id, LastInteractionDate__c, OpenedActivityDate__c FROM Account WHERE Id = :acc.Id];
+		event = [SELECT ActivityDate, EndDateTime FROM Event WHERE Id = :event.Id];
 		System.assertEquals(account.LastInteractionDate__c, event.EndDateTime);
-		System.assertEquals(account.OpenedActivityDate__c, system.today() - 6);
+		System.assertEquals(account.OpenedActivityDate__c, event.ActivityDate);
 	}
 }

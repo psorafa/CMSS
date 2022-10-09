@@ -21,9 +21,10 @@ public class EventTriggerHandlerTest {
 		insert event;
 		Test.stopTest();
 		Account account = [SELECT Id, LastInteractionDate__c, OpenedActivityDate__c FROM Account WHERE Id = :acc.Id];
+		event = [SELECT ActivityDate, EndDateTime FROM Event WHERE Id = :event.Id];
 
 		System.assertEquals(account.LastInteractionDate__c, Date.valueOf(event.EndDateTime));
-		System.assertEquals(account.OpenedActivityDate__c, system.today() - 6);
+		System.assertEquals(account.OpenedActivityDate__c, event.ActivityDate);
 	}
 
 	@IsTest

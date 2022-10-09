@@ -153,7 +153,6 @@ private class AccountConsolidationUtilityTest {
 
 	@IsTest
 	private static void testEmptyOldGlobalId() {
-
 		Account a1 = TestDataFactory.getAccount(new Account(
 			GlobalId__c = 'G1'
 		));
