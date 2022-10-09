@@ -3,6 +3,12 @@ private class PersonManagementControllerTest {
 	@TestSetup
 	static void insertCustomSettings() {
 		insert TestDataFactory.getIntegrationSettings();
+
+		User u = TestDataFactory.getUser(new User());
+		insert u;
+		CommonSetting__c setting = CommonSetting__c.getOrgDefaults();
+		setting.OwnerForHiddenRecords__c = u.Id;
+		insert setting;
 	}
 
 	@IsTest

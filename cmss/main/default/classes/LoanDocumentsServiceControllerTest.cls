@@ -7,6 +7,7 @@ public class LoanDocumentsServiceControllerTest {
 
 	@IsTest
 	static void succsessResponse() {
+		LoanDocumentsService.certificateName = null;
 		Account acc = TestDataFactory.getAccount(new Account());
 		insert acc;
 		Asset asset1 = new Asset(Name = '1006496201', AccountId = acc.Id);
@@ -31,7 +32,7 @@ public class LoanDocumentsServiceControllerTest {
 
 	@IsTest
 	static void failResponse() {
-
+		LoanDocumentsService.certificateName = null;
 
 		Account acc = TestDataFactory.getAccount(new Account());
 		insert acc;

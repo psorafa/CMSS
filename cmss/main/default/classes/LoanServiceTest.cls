@@ -7,6 +7,7 @@ public class LoanServiceTest {
 
 	@IsTest
 	static void coverHttp() {
+		LoanService.certificateName = null;
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',

@@ -3,6 +3,7 @@
 // Primary Port Class Name: LoanDetailInfoServiceSOAP	
 public class LoanDetailInfoService {
 	private static final String s_ns0 = 'http://service.cmss.cz/loan/LoanDetailInfoService/v05/datatypes';
+	@TestVisible private static String certificateName = 'test12345';
 	public class LoanDetailInfoServicePort {
 		public String endpoint_x = IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c +
 			'/LoanDetailInfoServiceWeb_v05/LoanDetailInfoService';
@@ -47,7 +48,9 @@ public class LoanDetailInfoService {
 			request_x.populateXmlNode(methodNode);
 
 			HttpRequest req = new HttpRequest();
-			req.setClientCertificateName('test12345');
+			if (certificateName != null) {
+				req.setClientCertificateName(certificateName);
+			}
 			req.setEndpoint(IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c +
 				'/LoanDetailInfoServiceWeb_v05/LoanDetailInfoService');
 			req.setMethod('POST');

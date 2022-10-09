@@ -16,7 +16,7 @@ public class LoanDocumentsServiceTest {
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		LoanDocumentsService.LoanDocumentsServicePort testObject = new LoanDocumentsService.LoanDocumentsServicePort();
-
+		LoanDocumentsService.certificateName = null;
 		Test.startTest();
 		testObject.getLoanDocumentsList_Http(null, null);
 		Test.stopTest();

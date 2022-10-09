@@ -45,6 +45,8 @@ success.tmp
 successSandbox.tmp
 successScratchOrg.tmp
 log/
+/data/custom-search/binary_cache/
+/data/custom-search/source/
 
 # woarkarounds:
 ./cmss/main/default/objects/Task/fields/IsVisibleInSelfService.field-meta.xml

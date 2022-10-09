@@ -10,3 +10,5 @@ post    popis
 ------------------------------------------------------------------------------------------------------------
 
 pre     smazat process CASE_On Update Actions
+post    zkontrolovat, že Account.Name a ClientZone__c.Username__c jsou probabilisticky (a kdyžtak přepnout)
+post    sync data (setup -> Encryption Statistics)

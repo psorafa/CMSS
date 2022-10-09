@@ -1,10 +1,12 @@
 public class ClientZoneTriggerHandler extends TriggerHandler {
 	public override void beforeInsert() {
 		IntegrationUtility.populateDefaultExternalId(Trigger.new);
+		setUsernameHash(Trigger.new);
 	}
 
 	public override void beforeUpdate() {
 		IntegrationUtility.populateDefaultExternalId(Trigger.new);
+		setUsernameHash(Trigger.new);
 	}
 
 	public override void beforeDelete() {
@@ -116,5 +118,16 @@ public class ClientZoneTriggerHandler extends TriggerHandler {
 			accounts.add(a);
 		}
 		update accounts;
+	}
+
+	private static void setUsernameHash(List<ClientZone__c> clientZones) {
+		for (ClientZone__c clientZone : clientZones) {
+			if (clientZone.Username__c != null) {
+				clientZone.UsernameHash__c = EncodingUtil.base64Encode(Crypto.generateDigest(
+					'SHA-256',
+					Blob.valueOf(clientZone.Username__c)
+				));
+			}
+		}
 	}
 }

@@ -99,7 +99,7 @@ public without sharing class CustomerSearchController {
 	}
 
 	private static String getHiddenRecordsOwnerUserId() {
-		Id hiddenRecordsOwnerId = [SELECT Id FROM User WHERE Name = 'Hidden Records Owner'].Id;
+		Id hiddenRecordsOwnerId = CommonSetting__c.getOrgDefaults().OwnerForHiddenRecords__c;
 		return hiddenRecordsOwnerId;
 	}
 	@AuraEnabled

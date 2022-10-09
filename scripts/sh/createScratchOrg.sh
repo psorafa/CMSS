@@ -45,7 +45,13 @@ sfdx force:source:push --ignorewarnings --targetusername $ALIAS
 sfdx force:source:deploy --sourcepath cmss/app/default/translations --targetusername $ALIAS
 
 # reset source tracking so the next push won't push everything again
-sfdx force:source:tracking:reset -p
+sfdx force:source:tracking:reset -p --targetusername $ALIAS
+
+# add some permissions:
+sfdx force:user:permset:assign --permsetname "ReadAllData" --targetusername $ALIAS
+sfdx force:user:permset:assign --permsetname "EditAllData" --targetusername $ALIAS
+sfdx force:user:permset:assign --permsetname "CustomSearchConfiguration" --targetusername $ALIAS
+sfdx force:user:permset:assign --permsetname "CustomSearchFilter" --targetusername $ALIAS
 
 #setup data
 scripts/sh/data.sh $ALIAS

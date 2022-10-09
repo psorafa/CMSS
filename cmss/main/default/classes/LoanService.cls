@@ -1,5 +1,6 @@
 public class LoanService {
 	private static final String s_ns0 = 'http://service.cmss.cz/loan/LoanService/v05/datatypes';
+	@TestVisible private static String certificateName = 'test12345';
 	public class LoanServicePort {
 		public String endpoint_x = IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c + '/LoanServiceWeb_v05/LoanService';
 		public Map<String, String> inputHttpHeaders_x;
@@ -39,7 +40,9 @@ public class LoanService {
 			LoanServiceDataTypes.LoadPackagesListRequestType request_x = new LoanServiceDataTypes.LoadPackagesListRequestType(requestHeader, requestBody);
 			request_x.populateXmlNode(methodNode);
 			HttpRequest req = new HttpRequest();
-			req.setClientCertificateName('test12345');
+			if (certificateName != null) {
+				req.setClientCertificateName(certificateName);
+			}
 			req.setEndpoint(endpoint_x);
 			req.setMethod('POST');
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');

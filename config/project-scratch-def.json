@@ -4,10 +4,10 @@
 	"edition": "Enterprise",
 	"features": ["PersonAccounts", "FieldAuditTrail", "Communities", "PartnerCommunity", "Knowledge", "ServiceCloud", "ServiceUser", "PlatformEncryption"],
 	"settings": {
-    "chatterSettings": {
-      "enableChatter": true,
-      "enableOutOfOfficeEnabledPref":true
-    },
+        "chatterSettings": {
+          "enableChatter": true,
+          "enableOutOfOfficeEnabledPref":true
+        },
 		"languageSettings": {
 			"enableEndUserLanguages": true,
 			"enableTranslationWorkbench": true
@@ -29,16 +29,12 @@
           "enableNetworksEnabled": true,
           "enableExternalAccHierPref": true
         },
-    "knowledgeSettings": {
-        "enableKnowledge": true,
-        "enableLightningKnowledge": true,
-        "enableKnowledgeArticleTextHighlights": true,
-        "enableKnowledgeKeywordAutoComplete": true,
-        "enableKnowledgeTitleAutoComplete": true
-    },
-    "platformEncryptionSettings": {
-      "enableDeterministEncryption": true
-    }
-
+        "knowledgeSettings": {
+            "enableKnowledge": true,
+            "enableLightningKnowledge": true,
+            "enableKnowledgeArticleTextHighlights": true,
+            "enableKnowledgeKeywordAutoComplete": true,
+            "enableKnowledgeTitleAutoComplete": true
+        }
 	}
 }
