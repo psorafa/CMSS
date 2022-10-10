@@ -1,34 +1,38 @@
 @IsTest
 private class ActivateCZContractRelationsHandlerTest {
-
 	@IsTest
 	static void testBehavior() {
 		Account account = TestDataFactory.getAccount(new Account());
 		insert account;
-		ClientZone__c clientZone = TestDataFactory.getClientZone(new ClientZone__c(
-			Account__c = account.Id
-		));
+		ClientZone__c clientZone = TestDataFactory.getClientZone(new ClientZone__c(Account__c = account.Id));
 		insert clientZone;
-		AccountRelation__c accountRelation1 = TestDataFactory.getAccountRelation(new AccountRelation__c(
-			RelatedAccount__c = account.Id,
-			AmendmentNumber__c = 5,
-			RelationTypeNEL__c = '5',
-			IsActive__c = true
-		));
-		AccountRelation__c accountRelation2 = TestDataFactory.getAccountRelation(new AccountRelation__c(
-			RelatedAccount__c = account.Id,
-			AmendmentNumber__c = 6,
-			RelationTypeNEL__c = '5',
-			IsActive__c = false
-		));
-		AccountRelation__c accountRelation3 = TestDataFactory.getAccountRelation(new AccountRelation__c(
-			RelatedAccount__c = account.Id,
-			AmendmentNumber__c = 6,
-			IsActive__c = false
-		));
-		insert new List<AccountRelation__c>{
-			accountRelation1, accountRelation2, accountRelation3
-		};
+		AccountRelation__c accountRelation1 = TestDataFactory.getAccountRelation(
+			new AccountRelation__c(
+				RelatedAccount__c = account.Id,
+				AmendmentNumber__c = 5,
+				RelationTypeNEL__c = '5',
+				AccountRole__c = '1501',
+				IsActive__c = true
+			)
+		);
+		AccountRelation__c accountRelation2 = TestDataFactory.getAccountRelation(
+			new AccountRelation__c(
+				RelatedAccount__c = account.Id,
+				AmendmentNumber__c = 6,
+				RelationTypeNEL__c = '5',
+				AccountRole__c = '1501',
+				IsActive__c = false
+			)
+		);
+		AccountRelation__c accountRelation3 = TestDataFactory.getAccountRelation(
+			new AccountRelation__c(
+				RelatedAccount__c = account.Id,
+				AmendmentNumber__c = 6,
+				AccountRole__c = '1501',
+				IsActive__c = false
+			)
+		);
+		insert new List<AccountRelation__c>{ accountRelation1, accountRelation2, accountRelation3 };
 
 		SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody request = new SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody();
 		request.clientZoneId = clientZone.ExternalId__c;
@@ -50,31 +54,36 @@ private class ActivateCZContractRelationsHandlerTest {
 	static void testNullAmendment() {
 		Account account = TestDataFactory.getAccount(new Account());
 		insert account;
-		ClientZone__c clientZone = TestDataFactory.getClientZone(new ClientZone__c(
-			Account__c = account.Id
-		));
+		ClientZone__c clientZone = TestDataFactory.getClientZone(new ClientZone__c(Account__c = account.Id));
 		insert clientZone;
-		AccountRelation__c accountRelation1 = TestDataFactory.getAccountRelation(new AccountRelation__c(
-			RelatedAccount__c = account.Id,
-			AmendmentNumber__c = 0,
-			RelationTypeNEL__c = '5',
-			IsActive__c = true
-		));
-		AccountRelation__c accountRelation2 = TestDataFactory.getAccountRelation(new AccountRelation__c(
-			RelatedAccount__c = account.Id,
-			AmendmentNumber__c = null,
-			RelationTypeNEL__c = '5',
-			IsActive__c = false
-		));
-		AccountRelation__c accountRelation3 = TestDataFactory.getAccountRelation(new AccountRelation__c(
-			RelatedAccount__c = account.Id,
-			AmendmentNumber__c = 1,
-			RelationTypeNEL__c = '5',
-			IsActive__c = false
-		));
-		insert new List<AccountRelation__c>{
-			accountRelation1, accountRelation2, accountRelation3
-		};
+		AccountRelation__c accountRelation1 = TestDataFactory.getAccountRelation(
+			new AccountRelation__c(
+				RelatedAccount__c = account.Id,
+				AmendmentNumber__c = 0,
+				RelationTypeNEL__c = '5',
+				AccountRole__c = '1501',
+				IsActive__c = true
+			)
+		);
+		AccountRelation__c accountRelation2 = TestDataFactory.getAccountRelation(
+			new AccountRelation__c(
+				RelatedAccount__c = account.Id,
+				AmendmentNumber__c = null,
+				RelationTypeNEL__c = '5',
+				AccountRole__c = '1501',
+				IsActive__c = false
+			)
+		);
+		AccountRelation__c accountRelation3 = TestDataFactory.getAccountRelation(
+			new AccountRelation__c(
+				RelatedAccount__c = account.Id,
+				AmendmentNumber__c = 1,
+				RelationTypeNEL__c = '5',
+				AccountRole__c = '1501',
+				IsActive__c = false
+			)
+		);
+		insert new List<AccountRelation__c>{ accountRelation1, accountRelation2, accountRelation3 };
 
 		SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody request = new SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody();
 		request.clientZoneId = clientZone.ExternalId__c;
@@ -96,9 +105,7 @@ private class ActivateCZContractRelationsHandlerTest {
 	static void testError() {
 		Account account = TestDataFactory.getAccount(new Account());
 		insert account;
-		ClientZone__c clientZone = TestDataFactory.getClientZone(new ClientZone__c(
-			Account__c = account.Id
-		));
+		ClientZone__c clientZone = TestDataFactory.getClientZone(new ClientZone__c(Account__c = account.Id));
 		insert clientZone;
 
 		SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody request = new SF_PersonManagementSOAPService.ActivateCZContractRelationsRequestBody();

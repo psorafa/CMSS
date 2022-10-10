@@ -1,5 +1,4 @@
 public with sharing class ActivateCZContractRelationsHandler {
-
 	private ClientZone__c clientZone;
 	private Integer amendmentNumber;
 	private List<AccountRelation__c> relationsToDeactivate = new List<AccountRelation__c>();
@@ -13,7 +12,10 @@ public with sharing class ActivateCZContractRelationsHandler {
 	public void handle() {
 		queryRelations();
 		if (relationsToActivate.isEmpty()) {
-			throw new SOAPCommonTypes.BusinessException(204, 'There are no relations to be activated. AmendmentNumber: ' + amendmentNumber);
+			throw new SOAPCommonTypes.BusinessException(
+				204,
+				'There are no relations to be activated. AmendmentNumber: ' + amendmentNumber
+			);
 		}
 		deactivateRelations();
 		activateRelations();
@@ -22,9 +24,27 @@ public with sharing class ActivateCZContractRelationsHandler {
 	private void queryRelations() {
 		List<AccountRelation__c> relations;
 		if (amendmentNumber == null) {
-			relations = [SELECT Id, AmendmentNumber__c FROM AccountRelation__c WHERE RelationTypeNEL__c = '5' AND AmendmentNumber__c = NULL AND (ClientZoneID__c = :clientZone.Id OR RelatedAccount__c = :clientZone.Account__c)];
+			relations = [
+				SELECT Id, AmendmentNumber__c
+				FROM AccountRelation__c
+				WHERE
+					AccountRole__c = '1501'
+					AND RelationTypeNEL__c = '5'
+					AND AmendmentNumber__c = NULL
+					AND (ClientZoneID__c = :clientZone.Id
+					OR RelatedAccount__c = :clientZone.Account__c)
+			];
 		} else {
-			relations = [SELECT Id, AmendmentNumber__c FROM AccountRelation__c WHERE RelationTypeNEL__c = '5' AND AmendmentNumber__c <= :amendmentNumber AND (ClientZoneID__c = :clientZone.Id OR RelatedAccount__c = :clientZone.Account__c)];
+			relations = [
+				SELECT Id, AmendmentNumber__c
+				FROM AccountRelation__c
+				WHERE
+					AccountRole__c = '1501'
+					AND RelationTypeNEL__c = '5'
+					AND AmendmentNumber__c <= :amendmentNumber
+					AND (ClientZoneID__c = :clientZone.Id
+					OR RelatedAccount__c = :clientZone.Account__c)
+			];
 		}
 		for (AccountRelation__c relation : relations) {
 			if (amendmentNumber == null || relation.AmendmentNumber__c == amendmentNumber) {
@@ -45,6 +65,8 @@ public with sharing class ActivateCZContractRelationsHandler {
 	private void activateRelations() {
 		for (AccountRelation__c relation : relationsToActivate) {
 			relation.IsActive__c = true;
+			relation.AccountRole__c = '1503';
+			relation.AmendmentSignDate__c = System.today();
 		}
 		DmlUtility.updateRecords(relationsToActivate);
 	}
