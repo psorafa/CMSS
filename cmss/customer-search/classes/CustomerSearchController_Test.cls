@@ -318,9 +318,7 @@ private class CustomerSearchController_Test {
 				'\'' +
 				' IN ALL FIELDS RETURNING ' +
 				ACCOUNT_OBJECT_STRING +
-				'IsPersonAccount = true AND AccountStatus__c = \'1\' AND LastName =\'' +
-				personClient.LastName +
-				'\')';
+				'IsPersonAccount = true AND AccountStatus__c = \'1\')';
 
 		CustomerSearchController.lastName = personClient.LastName;
 		CustomerSearchController.birthNumber = personClient.PersonalIdentificationNr__c;
@@ -339,9 +337,7 @@ private class CustomerSearchController_Test {
 				'\'' +
 				' IN ALL FIELDS RETURNING ' +
 				ACCOUNT_OBJECT_STRING +
-				'IsPersonAccount = true AND AccountStatus__c != \'1\' AND LastName =\'' +
-				personClient.LastName +
-				'\')';
+				'IsPersonAccount = true AND AccountStatus__c != \'1\')';
 		CustomerSearchController.lastName = personClient.LastName;
 		CustomerSearchController.birthNumber = personClient.PersonalIdentificationNr__c;
 		CustomerSearchController.searchAmong = CustomerSearchController.PROSPECTS;
@@ -357,7 +353,7 @@ private class CustomerSearchController_Test {
 		String expectedQueryString =
 			'FIND \'' +
 				asset3.Name +
-				'*\' IN ALL FIELDS RETURNING ' +
+				'*\' IN NAME FIELDS RETURNING ' +
 				ASSET_OBJECT_STRING +
 				'Account.AccountStatus__c = \'1\')';
 		CustomerSearchController.assetNumber = asset3.Name;
@@ -373,7 +369,7 @@ private class CustomerSearchController_Test {
 		String expectedQueryString =
 			'FIND \'' +
 				asset4.Name +
-				'*\' IN ALL FIELDS RETURNING ' +
+				'*\' IN NAME FIELDS RETURNING ' +
 				ASSET_OBJECT_STRING +
 				'Account.AccountStatus__c != \'1\')';
 		CustomerSearchController.assetNumber = asset4.Name;

@@ -156,7 +156,7 @@ public without sharing class CustomerSearchController {
 		returningString = getReturningString();
 
 		if (String.isNotBlank(searchTerm) && String.isNotBlank(returningString)) {
-			query = 'FIND ' + searchTerm + ' IN ALL FIELDS RETURNING ' + returningString;
+			query = 'FIND ' + searchTerm + ' RETURNING ' + returningString;
 		}
 
 		return query;
@@ -169,16 +169,18 @@ public without sharing class CustomerSearchController {
 	@TestVisible
 	private static String getSearchTerm() {
 		String searchTerm = '\'';
-
+		String searchIn = 'NAME FIELDS';
 		if (String.isNotBlank(birthNumber)) {
 			searchTerm += birthNumber;
+			searchIn = 'ALL FIELDS';
 		} else if (String.isNotBlank(compRegNum)) {
 			searchTerm += compRegNum;
+			searchIn = 'ALL FIELDS';
 		} else if (String.isNotBlank(assetNumber)) {
 			searchTerm += assetNumber + '*';
 		}
 
-		searchTerm += '\'';
+		searchTerm += '\' IN ' + searchIn;
 
 		return searchTerm;
 	}
@@ -195,7 +197,7 @@ public without sharing class CustomerSearchController {
 	@TestVisible
 	private static final String ASSET_OBJECT_STRING =
 		ASSET_SOBJECT +
-			'(Id,Name,AccountId,Account.Name,Account.BillingCity,Account.BillingPostalCode,Account.PersonalIdentificationNr__c,Account.CompanyRegistrationNumber__c, Account.IsPersonAccount, Account.PersonEmail, Account.CompanyEmail__c, Account.GlobalId__c WHERE ';
+			'(Id,Name,AccountId,Account.Name,Account.LastName,Account.BillingCity,Account.BillingPostalCode,Account.PersonalIdentificationNr__c,Account.CompanyRegistrationNumber__c, Account.IsPersonAccount, Account.PersonEmail, Account.CompanyEmail__c, Account.GlobalId__c WHERE ';
 	/**
 	 * @description method to build and @return text to be used in the SOSL query after RETURNING keyword based on the sObject Type for which we need the string
 	 * @author Andrea Olexova
@@ -211,13 +213,6 @@ public without sharing class CustomerSearchController {
 			whereCondition += '!= ';
 		}
 		whereCondition += '\'1\'';
-
-		Boolean queryChildObject = String.isNotBlank(assetNumber) || searchAmong == LEADS;
-		if (String.isNotBlank(LastName)) {
-			whereCondition += queryChildObject
-				? ' AND Account.LastName =\'' + LastName + '\''
-				: ' AND LastName =\'' + LastName + '\'';
-		}
 
 		if (LEADS == searchAmong) {
 			return LEAD_OBJECT_STRING;
@@ -255,8 +250,9 @@ public without sharing class CustomerSearchController {
 			if (sObjectType.equalsIgnoreCase(ACCOUNT_SOBJECT)) {
 				for (Account accountResult : (List<Account>) searchResults) {
 					if (
-						(String.isNotBlank(birthNumber) && birthNumber == accountResult.PersonalIdentificationNr__c) ||
-							(String.isNotBlank(compRegNum) && compRegNum == accountResult.CompanyRegistrationNumber__c)
+						((String.isNotBlank(birthNumber) && birthNumber == accountResult.PersonalIdentificationNr__c) ||
+							(String.isNotBlank(compRegNum) && compRegNum == accountResult.CompanyRegistrationNumber__c)) &&
+							(lastName == null || lastName == accountResult.LastName)
 					) {
 						if (
 							accountResult.AccountStatus__c == '5' &&
@@ -291,7 +287,8 @@ public without sharing class CustomerSearchController {
 				for (Asset assetResult : (List<Asset>) searchResults) {
 					if (
 						String.isNotBlank(assetNumber) &&
-							(assetNumber == assetResult.Name || assetResult.Name.startsWithIgnoreCase(assetNumber))
+							(assetNumber == assetResult.Name || assetResult.Name.startsWithIgnoreCase(assetNumber)) &&
+							(lastName == null || lastName == assetResult.Account.LastName)
 					) {
 						String email = assetResult.Account.isPersonAccount
 							? assetResult.Account.PersonEmail

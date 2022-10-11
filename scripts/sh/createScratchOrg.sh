@@ -48,10 +48,7 @@ sfdx force:source:deploy --sourcepath cmss/app/default/translations --targetuser
 sfdx force:source:tracking:reset -p --targetusername $ALIAS
 
 # add some permissions:
-sfdx force:user:permset:assign --permsetname "ReadAllData" --targetusername $ALIAS
-sfdx force:user:permset:assign --permsetname "EditAllData" --targetusername $ALIAS
-sfdx force:user:permset:assign --permsetname "CustomSearchConfiguration" --targetusername $ALIAS
-sfdx force:user:permset:assign --permsetname "CustomSearchFilter" --targetusername $ALIAS
+sfdx force:user:permset:assign --permsetname "ReadAllData,EditAllData,CustomSearchConfiguration,CustomSearchFilter" --targetusername $ALIAS
 
 #setup data
 scripts/sh/data.sh $ALIAS
