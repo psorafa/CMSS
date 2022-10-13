@@ -32,11 +32,11 @@
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
-        <label>Podání</label>
+        <label>Fénix Docs</label>
         <position>5</position>
         <publiclyAvailable>false</publiclyAvailable>
-        <target>Case</target>
-        <type>SalesforceObject</type>
+        <target>https://csobstavebni.force.com/fenixdocs/s/</target>
+        <type>ExternalLink</type>
     </navigationMenuItem>
     <navigationMenuItem>
         <label>Kalendář</label>
@@ -60,29 +60,36 @@
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
-        <label>Kampaně</label>
+        <label>Podání</label>
         <position>9</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Case</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Kampaně</label>
+        <position>10</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>Campaign</target>
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
         <label>Reporty</label>
-        <position>10</position>
+        <position>11</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>Report</target>
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
         <label>Ovládací panely</label>
-        <position>11</position>
+        <position>12</position>
         <publiclyAvailable>false</publiclyAvailable>
         <target>Dashboard</target>
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
         <label>Chatter</label>
-        <position>12</position>
+        <position>13</position>
         <publiclyAvailable>false</publiclyAvailable>
         <subMenu>
             <navigationMenuItem>
