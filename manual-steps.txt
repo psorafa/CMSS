@@ -9,6 +9,13 @@ pre     popis
 post    popis
 ------------------------------------------------------------------------------------------------------------
 
+v19 (+ opravy)
+
 pre     smazat process CASE_On Update Actions
-post    zkontrolovat, že Account.Name a ClientZone__c.Username__c jsou probabilisticky (a kdyžtak přepnout)
+pre     dočasně vyhodit ze source report ODBT_32_PreledKlientskychPodani (a pak to rollbacknout)
+post    zkontrolovat, že Account.Name je probabilisticky (a kdyžtak přepnout)
 post    sync data (setup -> Encryption Statistics)
+post    smazat pole ClientZone__c.UsernameHash__c
+
+
+v20
