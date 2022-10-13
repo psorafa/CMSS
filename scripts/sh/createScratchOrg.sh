@@ -38,6 +38,13 @@ sfdx force:package:install --package 04t1U000003Bnj3QAC -r --publishwait 3 --wai
 # set forceignore to scratch org compatible
 cp scripts/sh/ignores/.forceignore_SO .forceignore
 
+# enable platform encryption
+sfdx force:source:deploy -p cmss/scratch-orgs-only/permissionsets --targetusername $ALIAS
+sfdx force:user:permset:assign --permsetname "ManageEncryptionKeys" --targetusername $ALIAS
+sfdx force:data:record:create -s TenantSecret -v "Description=scratchOrgTest" --targetusername $ALIAS
+sfdx force:source:deploy -p cmss/scratch-orgs-only/settings --targetusername $ALIAS
+sfdx force:data:record:create -s TenantSecret -v "Description=scratchOrgTest Type=DeterministicData" --targetusername $ALIAS
+
 #push source
 sfdx force:source:push --ignorewarnings --targetusername $ALIAS
 
