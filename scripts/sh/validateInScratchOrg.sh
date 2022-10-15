@@ -38,6 +38,9 @@ else
 fi
 
 #install packages
+sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wait 8 -u $ALIAS
+sfdx force:package:install --package 04t5p000000eegF -r --publishwait 3 --wait 8 -u $ALIAS
+sfdx force:package:install --package 04t1U000003Bnj3QAC -r --publishwait 3 --wait 8 -u $ALIAS
 
 # set forceignore to scratch org compatible
 cp scripts/sh/ignores/.forceignore_SO .forceignore
@@ -51,7 +54,10 @@ sfdx force:data:record:create -s TenantSecret -v "Description=scratchOrgTest Typ
 
 #push source
 echo "Validating source deploy sequence..."
-sfdx force:source:deploy --ignorewarnings --targetusername $ALIAS --sourcepath cmss/main/
+sfdx force:source:deploy --ignorewarnings --targetusername $ALIAS --sourcepath cmss
+
+# add some permissions:
+sfdx force:user:permset:assign --permsetname "ReadAllData,EditAllData,CustomSearchConfiguration,CustomSearchFilter" --targetusername $ALIAS
 
 #run tests
 if [ -n "$TEST" ];
