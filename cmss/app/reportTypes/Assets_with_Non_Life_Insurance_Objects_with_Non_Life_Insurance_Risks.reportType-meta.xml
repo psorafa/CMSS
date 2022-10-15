@@ -1630,6 +1630,26 @@
             <field>Asset__c</field>
             <table>Asset.NonLifeInsuranceObjects__r.NonLifeInsuranceRisks__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AssetID__c</field>
+            <table>Asset.NonLifeInsuranceObjects__r.NonLifeInsuranceRisks__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LicencePlate__c</field>
+            <table>Asset.NonLifeInsuranceObjects__r.NonLifeInsuranceRisks__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>VehicleModel__c</field>
+            <table>Asset.NonLifeInsuranceObjects__r.NonLifeInsuranceRisks__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LimitAmount__c</field>
+            <table>Asset.NonLifeInsuranceObjects__r.NonLifeInsuranceRisks__r</table>
+        </columns>
         <masterLabel>Non Life Insurance Risks</masterLabel>
     </sections>
 </ReportType>

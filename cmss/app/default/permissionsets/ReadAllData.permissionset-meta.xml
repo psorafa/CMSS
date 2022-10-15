@@ -4945,6 +4945,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>NonLifeInsuranceRisk__c.AssetID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>NonLifeInsuranceRisk__c.Asset__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4965,6 +4970,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>NonLifeInsuranceRisk__c.LicencePlate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>NonLifeInsuranceRisk__c.LimitAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>NonLifeInsuranceRisk__c.PremiumWithoutDiscount__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4981,6 +4996,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>NonLifeInsuranceRisk__c.ValidTo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>NonLifeInsuranceRisk__c.VehicleModel__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6402,6 +6422,10 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Asset.CSOBCurrentAccount</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Asset.CarInsurance</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

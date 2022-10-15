@@ -1747,7 +1747,7 @@
         <field>Asset.ApprovedBy__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Asset.Arranged__c</field>
         <readable>true</readable>
@@ -6837,7 +6837,7 @@
         <field>UserCalendarSetting__c.SyncActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>UserCalendarSetting__c.SyncToken__c</field>
         <readable>true</readable>
@@ -6870,6 +6870,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Asset-Asset Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Asset Layout</layout>
+        <recordType>Asset.CarInsurance</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Asset-BuildingSavings</layout>
@@ -7608,6 +7612,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Asset.BuildingSavings</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Asset.CarInsurance</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

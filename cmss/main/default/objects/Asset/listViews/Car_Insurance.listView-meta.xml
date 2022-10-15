@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Car_Insurance</fullName>
+    <columns>StateCode__c</columns>
+    <columns>ASSET.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Surname__c</columns>
+    <columns>PersonalIdentificationNr__c</columns>
+    <columns>Premium__c</columns>
+    <columns>PremiumPaid__c</columns>
+    <columns>ProductCloseDate__c</columns>
+    <columns>ClosingAgentId__c</columns>
+    <columns>PortfolioMgmtA__c</columns>
+    <columns>CommissionAccountBase__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ASSET.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset.CarInsurance</value>
+    </filters>
+    <label>*Autopojištění</label>
+</ListView>
