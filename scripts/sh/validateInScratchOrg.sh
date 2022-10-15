@@ -38,29 +38,20 @@ else
 fi
 
 #install packages
-sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wait 8 -u $ALIAS
-sfdx force:package:install --package 04t5p000000eegF -r --publishwait 3 --wait 8 -u $ALIAS
-sfdx force:package:install --package 04t1U000003Bnj3QAC -r --publishwait 3 --wait 8 -u $ALIAS
 
 # set forceignore to scratch org compatible
 cp scripts/sh/ignores/.forceignore_SO .forceignore
 
+# enable platform encryption
+sfdx force:source:deploy -p cmss/scratch-orgs-only/permissionsets --targetusername $ALIAS
+sfdx force:user:permset:assign --permsetname "ManageEncryptionKeys" --targetusername $ALIAS
+sfdx force:data:record:create -s TenantSecret -v "Description=scratchOrgTest" --targetusername $ALIAS
+sfdx force:source:deploy -p cmss/scratch-orgs-only/settings --targetusername $ALIAS
+sfdx force:data:record:create -s TenantSecret -v "Description=scratchOrgTest Type=DeterministicData" --targetusername $ALIAS
+
 #push source
 echo "Validating source deploy sequence..."
 sfdx force:source:deploy --ignorewarnings --targetusername $ALIAS --sourcepath cmss/main/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/integrations/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/customer-360/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/customer-search/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/consent-icons/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/consent-management/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/activity-management/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/opportunity-management/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/portfolio-management/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/product-contract/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/case-management/
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/micro-campaign-custom-search
-sfdx force:source:deploy --targetusername $ALIAS --sourcepath cmss/e-forms
-sfdx force:source:deploy --ignorewarnings --targetusername $ALIAS --sourcepath cmss/app/
 
 #run tests
 if [ -n "$TEST" ];

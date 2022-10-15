@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Username__c</fullName>
+    <caseSensitive>true</caseSensitive>
     <description>Username of the client for signing in to his client zone</description>
-    <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
+    <encryptionScheme>CaseSensitiveDeterministicEncryption</encryptionScheme>
     <externalId>false</externalId>
     <label>Username</label>
     <length>50</length>
@@ -10,5 +11,5 @@
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
-    <unique>false</unique>
+    <unique>true</unique>
 </CustomField>
