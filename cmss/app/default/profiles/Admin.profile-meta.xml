@@ -5929,6 +5929,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>NonLifeInsuranceRisk__c.AssetID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>NonLifeInsuranceRisk__c.Asset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>NonLifeInsuranceRisk__c.DiscountInsurance__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5940,6 +5950,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>NonLifeInsuranceRisk__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>NonLifeInsuranceRisk__c.LicencePlate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>NonLifeInsuranceRisk__c.LimitAmount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5965,6 +5985,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>NonLifeInsuranceRisk__c.ValidTo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>NonLifeInsuranceRisk__c.VehicleModel__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6902,7 +6927,7 @@
         <layout>Asset-Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Asset-Asset Layout</layout>
+        <layout>Asset-Car Insurance</layout>
         <recordType>Asset.CarInsurance</recordType>
     </layoutAssignments>
     <layoutAssignments>
