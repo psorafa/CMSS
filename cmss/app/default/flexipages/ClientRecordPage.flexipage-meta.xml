@@ -131,7 +131,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>conditionAssets</name>
-                    <value>(RecordType.DeveloperName = &apos;PMO&apos; OR RecordType.DeveloperName = &apos;InvestmentLifeInsurance&apos;)</value>
+                    <value>(RecordType.DeveloperName = &apos;PMO&apos; OR RecordType.DeveloperName = &apos;InvestmentLifeInsurance&apos; OR RecordType.DeveloperName = &apos;CarInsurance&apos;)</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>conditionRelations</name>
