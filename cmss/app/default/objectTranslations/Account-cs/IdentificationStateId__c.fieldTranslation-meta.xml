@@ -3,11 +3,59 @@
     <label>Stav identifikace</label>
     <name>IdentificationStateId__c</name>
     <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>Osoba ke ztotožnění</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation><!-- 1 --></translation>
+        <translation>Osoba ztotožněna, probíhá aktualizace</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation><!-- 2 --></translation>
+        <translation>Osoba plně ztotožněna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3</masterLabel>
+        <translation>KO - Osoba ztotožněna, nesoulad dat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4</masterLabel>
+        <translation>KO – Osoba neztotožněna – má aktivní produkt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5</masterLabel>
+        <translation>Klient investigován</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6</masterLabel>
+        <translation>Osoba plně ztotožněna – duplicita AIFO nebo RČ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8</masterLabel>
+        <translation>Žádost o prioritní ztotožnění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>KO – Osoba neztotožněna – nemá aktivní produkt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>95</masterLabel>
+        <translation>Osoba ztotožněna, nesoulad dat-nepodporované znaky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>96</masterLabel>
+        <translation>Osoba ztotožněná - nepodporované znaky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>97</masterLabel>
+        <translation>Osoba ztotožněná – nepovolené znaky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>98</masterLabel>
+        <translation>Osoba ztotožněná - jiná chyba</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>99</masterLabel>
+        <translation>Neúplné údaje v datech z registrů</translation>
     </picklistValues>
 </CustomFieldTranslation>
