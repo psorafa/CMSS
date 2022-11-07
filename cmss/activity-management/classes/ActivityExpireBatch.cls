@@ -3,32 +3,45 @@ public without sharing class ActivityExpireBatch implements Database.Batchable<s
 	//System.schedule('Process expired activities','0 0 0 * * ?', new ActivityExpireBatch());
 
 	private final Date expiredDay;
-	private final ActivityExpirationConfig__mdt cfg;
+    private final List<Configuration__mdt> activityCfg;
+    private final Map<String, String> activityCfgMap;
 
 	/**
 	 * constructor
 	 */
-	public ActivityExpireBatch() {
-		this.cfg = [
-			SELECT ClosedResult__c, ClosedStatus__c, ExpirationDays__c, ExpiredStatus__c, FinalStatuses__c
-			FROM ActivityExpirationConfig__mdt
-			LIMIT 1
+    public ActivityExpireBatch() {
+		this.activityCfg = [
+			SELECT Parameter__c, Value__c
+			FROM Configuration__mdt
+			WHERE Type__c = 'ActivityExpiration'
 		];
-		System.debug('CFG: ' + JSON.serializePretty(cfg));
+        
+        activityCfgMap = new Map<String, String>();
+        
+        for(Configuration__mdt a : activityCfg) {
+            activityCfgMap.put(a.Parameter__c, a.Value__c);
+        }
+		System.debug('CFG: ' + JSON.serializePretty(activityCfgMap));
 
-		this.expiredDay = System.today().addDays(-cfg.ExpirationDays__c.intValue());
+		this.expiredDay = System.today().addDays(-Integer.valueOf(activityCfgMap.get('ExpirationDays')));
 	}
-
+    
 	/**
 	 * Batchable start - do the query.
 	 */
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
-		List<String> finalStatuses = cfg.FinalStatuses__c.split(',');
-
+		List<String> finalStatuses = activityCfgMap.get('FinalStatuses').split(',');
+        List<String> excludedRTs = activityCfgMap.get('ExcludedRecordTypes').split(',');
+        List<String> excludedRTsIDs;
+        
+        for(String rt : excludedRTs) {
+        	excludedRTsIDs.add(Schema.Sobjecttype.Task.getRecordTypeInfosByDeveloperName().get(rt).getRecordTypeId());
+        }
+            
 		return Database.getQueryLocator([
 			SELECT Id, Subject, ValidTo__c, Status
 			FROM Task
-			WHERE ValidTo__c <= TODAY AND Status NOT IN :finalStatuses
+			WHERE ValidTo__c <= TODAY AND Status NOT IN :finalStatuses AND RecordType.Id NOT IN :excludedRTsIDs
 			ORDER BY WhatId
 		]);
 	}
@@ -44,12 +57,12 @@ public without sharing class ActivityExpireBatch implements Database.Batchable<s
 			Date validTo = (Date) act.get('validTo__c');
 
 			if (validTo < expiredDay) {
-				act.put('Status', cfg.ExpiredStatus__c);
+				act.put('Status', activityCfgMap.get('ExpiredStatus'));
 				act.put('DeactivateDate__c', System.today());
 				toUpdate.add(act);
 			} else {
-				act.put('Status', cfg.ClosedStatus__c);
-				act.put('result__c', cfg.ClosedResult__c);
+				act.put('Status', activityCfgMap.get('ClosedStatus'));
+				act.put('result__c', activityCfgMap.get('ClosedResult'));
 				toUpdate.add(act);
 			}
 		}
