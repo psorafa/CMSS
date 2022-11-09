@@ -2,7 +2,20 @@
 	"orgName": "CMSS",
 	"adminEmail": "nonsense@uinwertu.nroko",
 	"edition": "Enterprise",
-	"features": ["PersonAccounts", "FieldAuditTrail", "Communities", "PartnerCommunity", "Knowledge", "ServiceCloud", "ServiceUser", "PlatformEncryption"],
+	"features": [
+		"PersonAccounts",
+		"FieldAuditTrail",
+		"Communities",
+		"PartnerCommunity",
+		"Knowledge",
+		"ServiceCloud",
+		"ServiceUser",
+		"PlatformEncryption",
+		"SalesCloudEinstein",
+		"EventLogFile",
+		"SecurityEventEnabled",
+		"FieldService:1"
+	],
 	"settings": {
         "chatterSettings": {
           "enableChatter": true,
@@ -35,6 +48,12 @@
             "enableKnowledgeArticleTextHighlights": true,
             "enableKnowledgeKeywordAutoComplete": true,
             "enableKnowledgeTitleAutoComplete": true
-        }
+        },
+		"quoteSettings": {
+			"enableQuote" : true
+		},
+		"fieldServiceSettings" : {
+			"enableWorkOrders" : true
+		}
 	}
 }
