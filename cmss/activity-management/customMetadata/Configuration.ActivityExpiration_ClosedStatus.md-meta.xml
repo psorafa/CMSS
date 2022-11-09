@@ -3,14 +3,6 @@
     <label>ActivityExpiration_ClosedStatus</label>
     <protected>false</protected>
     <values>
-        <field>Parameter__c</field>
-        <value xsi:type="xsd:string">ClosedStatus</value>
-    </values>
-    <values>
-        <field>Type__c</field>
-        <value xsi:type="xsd:string">ActivityExpiration</value>
-    </values>
-    <values>
         <field>Value__c</field>
         <value xsi:type="xsd:string">4</value>
     </values>

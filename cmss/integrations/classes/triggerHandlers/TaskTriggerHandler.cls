@@ -390,8 +390,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 		Task[] removeAccessList = new List<Task>{};
 		Task[] assignAccessList = new List<Task>{};
 
-		ActivityExpirationConfig__mdt config = [SELECT FinalStatuses__c FROM ActivityExpirationConfig__mdt LIMIT 1];
-		List<String> closedStatuses = config.FinalStatuses__c.split(',');
+		List<String> closedStatuses = Configuration__mdt.getInstance('ActivityExpiration_FinalStatuses').Value__c.split(',');
 
 		for (Task newTask : (Task[]) newListSo) {
 			Task oldTask = (Task) Trigger.oldMap.get(newTask.Id);

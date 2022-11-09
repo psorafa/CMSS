@@ -7,16 +7,21 @@ public with sharing class ActivityExpireBatchTest {
 	private static final Date today = System.today();
 	private static final Date tomorrow = System.today().addDays(1);
 
-	private static Task getTask(Date validTo, String status) {
-		return new Task(ValidTo__c = validTo, Status = status, Subject = 'TestTask' + (cntr++));
+	private static Task getTask(Date validTo, String status, String recordType) {
+        Task t = new Task();
+        t.ValidTo__c = validTo;
+        t.Status = status;
+        t.Subject = 'TestTask' + (cntr++);
+        t.RecordTypeId = Schema.Sobjecttype.Task.getRecordTypeInfosByDeveloperName().get(recordType).getRecordTypeId();
+        return t;
 	}
 
 	private static void createTestData() {
 		insert new List<sObject>{
-			getTask(yesterday, '1'),
-			getTask(today, '1'),
-			getTask(tomorrow, '1'),
-			getTask(before40days, '1')
+			getTask(yesterday, '1', 'Task'),
+			getTask(today, '1', 'Task'),
+			getTask(tomorrow, '1', 'Task'),
+			getTask(before40days, '1', 'Task')
 		};
 	}
 
