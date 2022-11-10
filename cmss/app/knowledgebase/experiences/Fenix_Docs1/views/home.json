@@ -59,7 +59,7 @@
       }, {
         "components" : [ {
           "componentAttributes" : {
-            "richTextValue" : "<p style=\"text-align: center;\"><br></p>\n<p><br></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/info\" rel=\"noopener noreferrer\" target=\"_self\"><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.Info.1}\" style=\"width: 297.469px; height: 199.125px;\"></a><a href=\"/fenixdocs/s/info\" rel=\"noopener noreferrer\" target=\"_self\"><img class=\"sfdcCbImage\" src=\"{!contentAsset.Info1JPG.1}\" alt=\"\" style=\"width: 317.062px; height: 212.088px;\"></a></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/info\" rel=\"noopener noreferrer\" target=\"_self\" style=\"font-size: 22px; color: rgb(0, 41, 102);\"><b>Kompletní seznam INFA</b></a></p>\n<p style=\"text-align: center;\"><span style=\"font-size: 22px;\">﻿</span></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/methodology\" rel=\"noopener noreferrer\" target=\"_self\"><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.Metodika.1}\" style=\"width: 296.888px; height: 197.4px;\"></a><a href=\"/fenixdocs/s/methodology\" rel=\"noopener noreferrer\" target=\"_self\"><img class=\"sfdcCbImage\" src=\"{!contentAsset.Metodika1JPG.1}\" alt=\"\" style=\"width: 317.85px; height: 211.025px;\"></a></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/methodology\" rel=\"noopener noreferrer\" target=\"_self\" style=\"color: rgb(0, 41, 102); font-size: 22px;\"><b>Kompletní seznam METODIK</b></a></p>\n<p><br></p>\n<p><br></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/file-libraries\" rel=\"noopener noreferrer\" target=\"_blank\"><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.Elko.1}\" style=\"width: 254.725px; height: 156.05px;\"></a></p>"
+            "richTextValue" : "<p style=\"text-align: center;\"><br></p>\n<p><br></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/info\" rel=\"noopener noreferrer\" target=\"_self\"><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.Info.1}\" style=\"width: 297.469px; height: 199.125px;\"></a><a href=\"/fenixdocs/s/info\" rel=\"noopener noreferrer\" target=\"_self\"><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.Info1JPG.1}\" style=\"width: 317.062px; height: 212.088px;\"></a></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/info\" rel=\"noopener noreferrer\" target=\"_self\" style=\"color: rgb(0, 41, 102); font-size: 22px;\"><strong>Kompletní seznam INFA</strong></a></p>\n<p style=\"text-align: center;\"><span style=\"font-size: 22px;\">﻿</span></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/methodology\" rel=\"noopener noreferrer\" target=\"_self\"><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.Metodika.1}\" style=\"width: 296.888px; height: 197.4px;\"></a><a href=\"/fenixdocs/s/methodology\" rel=\"noopener noreferrer\" target=\"_self\"><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.Metodika1JPG.1}\" style=\"width: 317.85px; height: 211.025px;\"></a></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/methodology\" rel=\"noopener noreferrer\" target=\"_self\" style=\"font-size: 22px; color: rgb(0, 41, 102);\"><strong>Kompletní seznam METODIK</strong></a></p>\n<p><br></p>\n<p><br></p>\n<p style=\"text-align: center;\"><a href=\"/fenixdocs/s/file-libraries\" rel=\"noopener noreferrer\" target=\"_blank\"><img class=\"sfdcCbImage\" src=\"{!contentAsset.elko_nov.1}\" alt=\"\" style=\"width: 231.421875px; height: 234.59375px;\"></a></p>"
           },
           "componentName" : "forceCommunity:richTextInline",
           "id" : "c2447cfb-3b29-4b11-80a8-ef67c2a1c860",
@@ -161,13 +161,13 @@
             "title" : "Top články",
             "topicList" : [ {
               "isPublic" : true,
-              "name" : "0TO1x0000005dbcGAA"
+              "name" : "0TO3O000000CnMvWAK"
             }, {
               "isPublic" : true,
-              "name" : "0TO1x0000005dbdGAA"
+              "name" : "0TO3O000000CnMwWAK"
             }, {
               "isPublic" : true,
-              "name" : "0TO1x0000005dbVGAQ"
+              "name" : "0TO3O000000CnMoWAK"
             } ]
           },
           "componentName" : "forceCommunity:topArticleList",
@@ -198,13 +198,13 @@
             "title" : "Top články",
             "topicList" : [ {
               "isPublic" : true,
-              "name" : "0TO1x0000005dbZGAQ"
+              "name" : "0TO3O000000CnMsWAK"
             }, {
               "isPublic" : true,
-              "name" : "0TO1x0000005dbYGAQ"
+              "name" : "0TO3O000000CnMrWAK"
             }, {
               "isPublic" : true,
-              "name" : "0TO1x0000005dbaGAA"
+              "name" : "0TO3O000000CnMtWAK"
             } ]
           },
           "componentName" : "forceCommunity:topArticleList",
@@ -235,13 +235,13 @@
             "title" : "Top články",
             "topicList" : [ {
               "isPublic" : true,
-              "name" : "0TO1x0000005dbWGAQ"
+              "name" : "0TO3O000000CnMpWAK"
             }, {
               "isPublic" : true,
-              "name" : "0TO1x0000005dbbGAA"
+              "name" : "0TO3O000000CnMuWAK"
             }, {
               "isPublic" : true,
-              "name" : "0TO1x0000005dbeGAA"
+              "name" : "0TO3O000000CnMqWAK"
             } ]
           },
           "componentName" : "forceCommunity:topArticleList",

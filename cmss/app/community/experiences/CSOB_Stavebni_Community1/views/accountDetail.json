@@ -110,21 +110,6 @@
       }, {
         "components" : [ {
           "componentAttributes" : {
-            "recordId" : "{!recordId}"
-          },
-          "componentName" : "forceCommunity:recordDetail",
-          "id" : "b3bf6283-2e99-4e74-a587-aecaa3e90418",
-          "renditionMap" : { },
-          "type" : "component"
-        } ],
-        "id" : "b4a58c77-7750-4a55-89e8-f4360d33b692",
-        "regionLabel" : "Detail Klienta",
-        "regionName" : "e855b",
-        "renditionMap" : { },
-        "type" : "region"
-      }, {
-        "components" : [ {
-          "componentAttributes" : {
             "relatedListApiName" : "Opportunities",
             "relatedListComponentOverride" : "ADVGRID",
             "width" : "MEDIUM"
@@ -142,34 +127,17 @@
       }, {
         "components" : [ {
           "componentAttributes" : {
-            "relatedListApiName" : "ClientZones__r",
-            "relatedListComponentOverride" : "ADVGRID",
-            "width" : "MEDIUM"
+            "condition" : "IsActive__c=true",
+            "fieldLabels" : "Název, Vztah k osobě, Typ vztahu, Klientská zóna, Platnost od, Platnost do, Datum aktualizace",
+            "fieldsToDisplay" : "Name, RelatedAccount__c, RelatedAccountRole__c, ClientZoneID__c, ValidFrom__c, ValidTo__c, DateUpdated__c",
+            "iconName" : "standard:person_account",
+            "label" : "Osobní vztahy",
+            "recordId" : "{!recordId}",
+            "relationPrimaryLookupField" : "Account__c",
+            "relationSecondaryLookupField" : "RelatedAccount__c",
+            "relationshipObjectName" : "AccountRelation__c",
+            "sharingEnabled" : true
           },
-          "componentName" : "forceCommunity:responsiveRelatedListSingle",
-          "id" : "7faf33e4-45ed-4f9f-aae8-3a2f8a968ba4",
-          "renditionMap" : { },
-          "type" : "component"
-        } ],
-        "id" : "50f9350d-102b-47c4-80b3-8c7f684eecdf",
-        "regionLabel" : "Klientská Zóna",
-        "regionName" : "14cdb",
-        "renditionMap" : { },
-        "type" : "region"
-      }, {
-        "components" : [ {
-          "componentAttributes" : {
-			"fieldLabels": "Název, Vztah k osobě, Typ vztahu, Klientská zóna, Platnost od, Platnost do, Datum aktualizace",
-			"fieldsToDisplay": "Name, RelatedAccount__c, RelatedAccountRole__c, ClientZoneID__c, ValidFrom__c, ValidTo__c, DateUpdated__c",
-				"iconName": "standard:person_account",
-				"condition": "IsActive__c=true",
-				"label": "Osobní vztahy",
-				"recordId": "{!recordId}",
-				"relationPrimaryLookupField": "Account__c",
-				"relationSecondaryLookupField": "RelatedAccount__c",
-				"relationshipObjectName": "AccountRelation__c",
-				"sharingEnabled": true
-			},
           "componentName" : "c:relatedListWithSharing",
           "id" : "940bdccf-e8d2-4eac-8fe2-6670d533152d",
           "renditionMap" : { },
@@ -199,6 +167,53 @@
       }, {
         "components" : [ {
           "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "forceCommunity:recordDetail",
+          "id" : "b3bf6283-2e99-4e74-a587-aecaa3e90418",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "b4a58c77-7750-4a55-89e8-f4360d33b692",
+        "regionLabel" : "Detail Klienta",
+        "regionName" : "e855b",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!recordId}"
+          },
+          "componentName" : "c:contactInfoRelatedListContainer",
+          "id" : "b36004ea-cdd3-4168-83a6-d0b36d12cf55",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "cf8fc2f2-f915-4bc9-bf0f-9ee166963c59",
+        "regionLabel" : "Kontaktní Informace",
+        "regionName" : "549bf",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "relatedListApiName" : "ClientZones__r",
+            "relatedListComponentOverride" : "ADVGRID",
+            "width" : "MEDIUM"
+          },
+          "componentName" : "forceCommunity:responsiveRelatedListSingle",
+          "id" : "7faf33e4-45ed-4f9f-aae8-3a2f8a968ba4",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "50f9350d-102b-47c4-80b3-8c7f684eecdf",
+        "regionLabel" : "Klientská Zóna",
+        "regionName" : "14cdb",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
             "relatedListApiName" : "Consents__r",
             "relatedListComponentOverride" : "ADVGRID",
             "width" : "MEDIUM"
@@ -221,21 +236,6 @@
         "id" : "cb4b7cc5-347b-4544-a4cc-d892db6c43cf",
         "regionLabel" : "Souhlasy",
         "regionName" : "d80e1",
-        "renditionMap" : { },
-        "type" : "region"
-      }, {
-        "components" : [ {
-          "componentAttributes" : {
-            "recordId" : "{!recordId}"
-          },
-          "componentName" : "c:contactInfoRelatedListContainer",
-          "id" : "b36004ea-cdd3-4168-83a6-d0b36d12cf55",
-          "renditionMap" : { },
-          "type" : "component"
-        } ],
-        "id" : "cf8fc2f2-f915-4bc9-bf0f-9ee166963c59",
-        "regionLabel" : "Kontaktní Informace",
-        "regionName" : "549bf",
         "renditionMap" : { },
         "type" : "region"
       }, {

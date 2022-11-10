@@ -46,10 +46,7 @@ sfdx force:source:deploy -p cmss/scratch-orgs-only/settings --targetusername $AL
 sfdx force:data:record:create -s TenantSecret -v "Description=scratchOrgTest Type=DeterministicData" --targetusername $ALIAS
 
 #push source
-sfdx force:source:push --ignorewarnings --targetusername $ALIAS
-
-#workaround to catch translation errors that silently fail in push
-sfdx force:source:deploy --sourcepath cmss/app/default/translations --targetusername $ALIAS
+sfdx force:source:push --ignorewarnings --forceoverwrite --targetusername $ALIAS
 
 # reset source tracking so the next push won't push everything again
 sfdx force:source:tracking:reset -p --targetusername $ALIAS
