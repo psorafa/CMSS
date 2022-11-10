@@ -13,8 +13,7 @@
 		"PlatformEncryption",
 		"SalesCloudEinstein",
 		"EventLogFile",
-		"SecurityEventEnabled",
-		"FieldService:1"
+		"SecurityEventEnabled"
 	],
 	"settings": {
         "chatterSettings": {
@@ -51,9 +50,6 @@
         },
 		"quoteSettings": {
 			"enableQuote" : true
-		},
-		"fieldServiceSettings" : {
-			"enableWorkOrders" : true
 		}
 	}
 }
