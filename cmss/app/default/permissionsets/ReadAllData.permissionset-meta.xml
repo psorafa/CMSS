@@ -1785,6 +1785,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Asset.MortgageOrigin__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Asset.MortgagePurpose__c</field>
         <readable>true</readable>
     </fieldPermissions>
