@@ -20,6 +20,15 @@
   }, {
     "components" : [ {
       "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "c:financialOperations",
+      "id" : "a2231beb-4d2c-43ee-880a-590f333ebad5",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
         "tabsetConfig" : {
           "UUID" : "3ee4ce64-5be8-4872-ace4-19e3b1e254de",
           "activeTab" : "",
@@ -60,12 +69,6 @@
         "type" : "region"
       }, {
         "components" : [ {
-          "componentAttributes" : { },
-          "componentName" : "c:financialOperations",
-          "id" : "b6c6fa80-1ed9-4e9f-a95a-e623924365c7",
-          "renditionMap" : { },
-          "type" : "component"
-        }, {
           "componentAttributes" : {
             "fieldLabels" : "Navázaná smlouva,Typ produktu,Typ vztahu,Klient navázané smlouvy,Platnost od,Platnost do",
             "fieldsToDisplay" : "RelatedAssetId, ProductTypeRelatedAsset__c, RelationshipType, RelatedAsset.Account.Name, FromDate, ToDate",
