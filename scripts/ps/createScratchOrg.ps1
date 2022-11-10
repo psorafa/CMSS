@@ -39,7 +39,8 @@ try {
     CheckLastExitCode
 
     # set forceignore to scratch org compatible
-    Copy-Item "scripts/sh/ignores/.forceignore_SO" -Destination ".forceignore"
+    $source = Join-Path scripts sh ignores .forceignore_SO
+    Copy-Item $source -Destination ".forceignore"
     CheckLastExitCode
 
     # enable platform encryption
@@ -67,12 +68,14 @@ try {
     CheckLastExitCode
 
     #setup data
-    Invoke-Expression "scripts/ps/data.ps1 $ALIAS"
+    $script = Join-Path scripts ps data.ps1
+    Invoke-Expression "$script $ALIAS"
 
     Write-Host "Org $ALIAS created!" -ForegroundColor Green
 
 } finally {
     #cleanup when done
     # revert changes to forceignore
-    Copy-Item "scripts/sh/ignores/.forceignore_sandbox" -Destination ".forceignore"
+    $source = Join-Path scripts sh ignores .forceignore_sandbox
+    Copy-Item $source -Destination ".forceignore"
 }
