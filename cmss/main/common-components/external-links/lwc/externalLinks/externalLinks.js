@@ -20,6 +20,7 @@ export default class ExternalLinks extends NavigationMixin(LightningElement) {
 
 	nel = LogoImg + '/LogoImg/NEL_logo.PNG';
 	zeus = LogoImg + '/LogoImg/ZEUS_logo.PNG';
+    errorMsg;
 
 	get baseUrls() {
 		return this.integrationSettings.data;
@@ -48,6 +49,7 @@ export default class ExternalLinks extends NavigationMixin(LightningElement) {
 
 	handleCloseModal(event) {
 		this.showModal = false;
+        this.errorMsg = null;
 	}
 
 	handleClickNEL(e) {
@@ -57,15 +59,22 @@ export default class ExternalLinks extends NavigationMixin(LightningElement) {
 	handleClickEUver2(e) {
 	window.console.log('recordId: ' + this.recordId);
 	createOpportunity({
-		objectId: this.recordId
+		objectIdString: this.recordId
 	})
-		.then(data => {
-			if (!data || data === 'null') {
-				throw new Error('no data');
-			} else {
-				window.console.log('Opportunity Id:' + data);			
-				this.navigateToRecordPage(data);
-                window.open('http://www.cenytovarov.sk', '_blank');                
+		.then(data => {                     
+			if (!data || data === 'null') {                 
+				throw new Error('no data or data===null');
+            } else if (data.ErrorMessage) {                
+                throw new Error(data.ErrorMessage);
+			} else if (data.OpportunityId) {
+				window.console.log('Opportunity Id:' + data.OpportunityId);
+				this.navigateToRecordPage(data.OpportunityId);
+                window.open(
+                    this.baseUrls.NELBaseUrl__c + '/group/nel/ezadosti?opportunityId=' + data.OpportunityId + '&clientId=' + this.clientGlobalId,
+                    '_blank'
+                );                               
+            } else {
+                throw new Error('No OpportunityId');                                 
 			}
 		})			
 		.catch(error => {
@@ -214,6 +223,7 @@ export default class ExternalLinks extends NavigationMixin(LightningElement) {
 	} 
     
 	handleErrors(error) {
-		window.console.log(error.message);
+		window.console.error(error.message);
+        this.errorMsg = error.message;
 	}    
 }

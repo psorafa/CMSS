@@ -167,6 +167,9 @@
                         </div>
                     </ul>
                 </div>
+                <template if:true={errorMsg}>
+                    <div class="slds-modal__content slds-p-around_medium red">{errorMsg}</div>
+                </template>
                 <footer class="slds-modal__footer">
                     <button class="slds-button slds-button_neutral" onclick={handleCloseModal}>Zavřít</button>
                 </footer>
