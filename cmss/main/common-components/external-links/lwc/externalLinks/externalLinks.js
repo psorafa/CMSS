@@ -2,9 +2,11 @@ import { LightningElement, track, api, wire } from 'lwc';
 import getIntegrationSettings from '@salesforce/apex/ExternalLinksController.getIntegrationSettings';
 import getClientGlobalId from '@salesforce/apex/ExternalLinksController.getClientGlobalId';
 import getObjectApiName from '@salesforce/apex/ExternalLinksController.getObjectApiName';
+import createOpportunity from '@salesforce/apex/OpportunityController.createOpportunity';
 import LogoImg from '@salesforce/resourceUrl/LogoImg';
+import { NavigationMixin } from 'lightning/navigation';
 
-export default class ExternalLinks extends LightningElement {
+export default class ExternalLinks extends NavigationMixin(LightningElement) {
 	@api objectApiName;
 	@api recordId;
 
@@ -51,6 +53,26 @@ export default class ExternalLinks extends LightningElement {
 	handleClickNEL(e) {
 		window.open(this.baseUrls.NELBaseUrl__c, '/group/nel');
 	}
+
+	handleClickEUver2(e) {
+	window.console.log('recordId: ' + this.recordId);
+	createOpportunity({
+		objectId: this.recordId
+	})
+		.then(data => {
+			if (!data || data === 'null') {
+				throw new Error('no data');
+			} else {
+				window.console.log('Opportunity Id:' + data);			
+				this.navigateToRecordPage(data);
+                window.open('http://www.cenytovarov.sk', '_blank');                
+			}
+		})			
+		.catch(error => {
+			this.handleErrors(error);
+		});
+	}    
+
 	handleClickStavebniSporeni(e) {
 		if (this.clientGlobalId) {
 			window.open(
@@ -179,4 +201,19 @@ export default class ExternalLinks extends LightningElement {
     handleClickTeamViewer(e) {
         window.open('https://get.teamviewer.com/csobstavebni/', '_blank');
     }
+
+	//function - redirects the page to the record page specified by the provided Id
+	navigateToRecordPage(recordIdToRedirect) {
+		this[NavigationMixin.Navigate]({
+			type: 'standard__recordPage',
+			attributes: {
+				recordId: recordIdToRedirect,
+				actionName: 'view'
+			}
+		});
+	} 
+    
+	handleErrors(error) {
+		window.console.log(error.message);
+	}    
 }
