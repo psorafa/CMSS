@@ -11,18 +11,19 @@ public with sharing class ActivityExpireBatchTest {
         Task t = new Task();
         t.ValidTo__c = validTo;
         t.Status = status;
-        t.Subject = 'TestTask' + (cntr++);
-        t.RecordTypeId = Schema.Sobjecttype.Task.getRecordTypeInfosByDeveloperName().get(recordType).getRecordTypeId();
-        return t;
+        t.Subject = 'TestTask' + (cntr++);       
+        t.RecordTypeId = Schema.Sobjecttype.Task.getRecordTypeInfosByDeveloperName().get(recordType).getRecordTypeId();          
+        return t;    
 	}
 
 	private static void createTestData() {
-		insert new List<sObject>{
+        List<Task> tasks = new List<sObject>{
 			getTask(yesterday, '1', 'Task'),
 			getTask(today, '1', 'Task'),
 			getTask(tomorrow, '1', 'Task'),
-			getTask(before40days, '1', 'Task')
-		};
+			getTask(before40days, '1', 'Task'),
+			getTask(yesterday, '1', 'Letter')};
+		insert tasks;
 	}
 
 	@IsTest
@@ -36,7 +37,7 @@ public with sharing class ActivityExpireBatchTest {
 		Test.stopTest();
 
 		List<Task> after = [
-			SELECT Id, Subject, ValidTo__c, Status, DeactivateDate__c
+			SELECT Id, Subject, ValidTo__c, Status, DeactivateDate__c, RecordType.Name, RecordTypeId
 			FROM Task
 			WHERE ValidTo__c <= TODAY
 			ORDER BY Subject
@@ -45,7 +46,7 @@ public with sharing class ActivityExpireBatchTest {
 		Integer idx = 0;
 		for (Task a : after) {
 			System.debug('AFTER ' + (idx++) + ': ' + JSON.serializePretty(a));
-			System.assertEquals(a.Subject == 'TestTask4' ? '5' : '4', a.Status, 'Invalid Status');
+			System.assert((a.Subject == 'TestTask4' && a.Status == '5') || (a.Subject != 'TestTask4' && a.Status == '4' && a.RecordTypeId != Schema.Sobjecttype.Task.getRecordTypeInfosByDeveloperName().get('Letter').getRecordTypeId()), 'Invalid Status');           
 		}
 
 		System.assertEquals(today, after[2].DeactivateDate__c, 'Wrong DeactivateDate__c');
