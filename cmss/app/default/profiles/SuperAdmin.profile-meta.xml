@@ -1614,6 +1614,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Access_Log__c.TaskID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Access_Log__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -8082,6 +8087,16 @@
         <object>UserTrainingLevel__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Access_Log__c.AccountAccess</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Access_Log__c.LetterAccess</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <personAccountDefault>true</personAccountDefault>
