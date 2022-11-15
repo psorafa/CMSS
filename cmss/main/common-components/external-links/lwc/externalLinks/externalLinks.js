@@ -49,7 +49,6 @@ export default class ExternalLinks extends NavigationMixin(LightningElement) {
 
 	handleCloseModal(event) {
 		this.showModal = false;
-		this.errorMsg = null;
 	}
 
 	handleClickNEL(e) {
