@@ -45,7 +45,10 @@ public without sharing class OpportunityController {
 			}
 		} catch (Exception e) {
 			//end Try
+			Logger.error('Error in OpportunityController.createOpportunity', e);
 			throw new AuraHandledException(e.getMessage());
+		} finally {
+			Logger.saveLogs();
 		}
 	}
 }
