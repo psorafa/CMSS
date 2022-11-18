@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Pilíř</label>
+    <name>Pillar__c</name>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>STS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20</masterLabel>
+        <translation>FB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30</masterLabel>
+        <translation>SMA</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>40</masterLabel>
+        <translation>BU</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50</masterLabel>
+        <translation>CSO</translation>
+    </picklistValues>
+</CustomFieldTranslation>

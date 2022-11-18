@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Typ příplatku</label>
+    <name>BonusType__c</name>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>PPP COV</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20</masterLabel>
+        <translation>PPP UFA</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30</masterLabel>
+        <translation>PPP UFA - Junior</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>40</masterLabel>
+        <translation>PPP BÚ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50</masterLabel>
+        <translation>PPP C-S ostatní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>60</masterLabel>
+        <translation>Náborový příspěvek</translation>
+    </picklistValues>
+</CustomFieldTranslation>

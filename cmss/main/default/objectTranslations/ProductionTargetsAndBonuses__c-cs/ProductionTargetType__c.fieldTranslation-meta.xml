@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Typ produkčního cíle</label>
+    <name>ProductionTargetType__c</name>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Počet StS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20</masterLabel>
+        <translation>Počet FB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30</masterLabel>
+        <translation>Počet BÚ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>40</masterLabel>
+        <translation>Objem C-S ostatní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50</masterLabel>
+        <translation>Počet SMART</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>60</masterLabel>
+        <translation>Objem FB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>70</masterLabel>
+        <translation>Obchodní produkce</translation>
+    </picklistValues>
+</CustomFieldTranslation>
