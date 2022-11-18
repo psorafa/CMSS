@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NextBonusLevel__c</fullName>
+    <description>Serves for formatting of NextBonusLevelForCalc</description>
+    <externalId>false</externalId>
+    <formula>&quot;+ &quot; &amp;   TEXT(NextBonusLevelForCalc__c) &amp; &quot; Kč&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Next Bonus Level</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

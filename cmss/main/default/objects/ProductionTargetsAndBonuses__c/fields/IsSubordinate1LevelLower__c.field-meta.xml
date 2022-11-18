@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsSubordinate1LevelLower__c</fullName>
+    <description>Checks if an owner of given record is subordinate of a current user</description>
+    <externalId>false</externalId>
+    <formula>OR(
+IF(
+ISPICKVAL($User.AgentActivityType__c, &quot;110&quot;),
+ISPICKVAL(Owner:User.AgentActivityType__c , &quot;110&quot;), false),
+IF(
+ISPICKVAL($User.AgentActivityType__c, &quot;108&quot;),
+ISPICKVAL(Owner:User.AgentActivityType__c, &quot;110&quot;), false)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Subordinate 1 Level Lower</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

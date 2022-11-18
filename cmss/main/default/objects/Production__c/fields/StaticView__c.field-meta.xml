@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StaticView__c</fullName>
+    <description>Serves for displaying records in reports depending on static user hierarchy.</description>
+    <externalId>false</externalId>
+    <formula>OR(
+$User.Id = ClosingAgent__c,
+$User.Id = TeamManager__c,
+$User.Id = RegionManager__c,
+$User.Id = SalesNetManager__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Static View</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
