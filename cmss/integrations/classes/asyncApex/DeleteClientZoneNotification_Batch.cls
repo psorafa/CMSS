@@ -20,21 +20,21 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
 		return Database.getQueryLocator(
-		[
-			SELECT
-				Id,
-				ClosedBy__c,
-				Role__c,
-				Status__c,
-				Account__c,
-				Email__c,
-				CreatedDate,
-				CancelationNotificationSentDate__c,
-				ModifiedDate__c,
-				SignatureDate__c
-			FROM ClientZone__c
-			WHERE ClosedBy__c = NULL AND (Role__c = '7' OR Role__c = '9') AND Status__c = '1'
-		]
+			[
+				SELECT
+					Id,
+					ClosedBy__c,
+					Role__c,
+					Status__c,
+					Account__c,
+					Email__c,
+					CreatedDate,
+					CancelationNotificationSentDate__c,
+					ModifiedDate__c,
+					SignatureDate__c
+				FROM ClientZone__c
+				WHERE ClosedBy__c = NULL AND (Role__c = '7' OR Role__c = '9') AND Status__c = '1'
+			]
 		);
 	}
 
@@ -82,12 +82,20 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 		Map<Id, AssetAccountRelation__c> associatedAssetRelations
 	) {
 		List<ClientZone__c> clientZonesToUpdate = new List<ClientZone__c>();
+		SendNotificationHandler mailNotificationHandler = new SendNotificationHandler();
+		mailNotificationHandler
+			.setContext('DIGIKZ')
+			.setEmailTemplate(CANCELATION_TEMPLATE_NAME)
+			.setSpecialVariables(
+				new Map<String, String>{ 'CANCELATION_DATE' => actualDate.addDays(14).format('dd. MM. yyyy') }
+			);
+
 		for (ClientZone__c clientZone : accountToClientZoneMap.values()) {
 			if (
 				!associatedAccounts.containsKey(clientZone.Account__c) &&
-					!associatedAssets.containsKey(clientZone.Account__c) &&
-					!associatedOpportunities.containsKey(clientZone.Account__c) &&
-					!associatedAssetRelations.containsKey(clientZone.Account__c)
+				!associatedAssets.containsKey(clientZone.Account__c) &&
+				!associatedOpportunities.containsKey(clientZone.Account__c) &&
+				!associatedAssetRelations.containsKey(clientZone.Account__c)
 			) {
 				Date clientZoneCheckDate = clientZone.SignatureDate__c != null
 					? clientZone.SignatureDate__c
@@ -97,36 +105,30 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 				Integer daysBetweenNotificationAndDeletionIncrement = -1 * (this.daysBetweenNotificationAndDeletion);
 				if (
 					clientZone.CancelationNotificationSentDate__c == null &&
-						clientZoneCheckDate < actualDate.addDays(daysBeforeFirstNotificationIncrement)
+					clientZoneCheckDate < actualDate.addDays(daysBeforeFirstNotificationIncrement)
 				) {
-					sendNotification(clientZone);
+					if (clientZone.Email__c != null) {
+						mailNotificationHandler.generateNotifications(
+							clientZone,
+							new List<String>{ clientZone.Email__c }
+						);
+					}
 					clientZone.CancelationNotificationSentDate__c = System.now();
 					clientZonesToUpdate.add(clientZone);
 				} else if (
 					clientZone.CancelationNotificationSentDate__c != null &&
-						clientZone.CancelationNotificationSentDate__c <
-							actualDate.addDays(daysBetweenNotificationAndDeletionIncrement) &&
-						clientZone.CancelationNotificationSentDate__c >
-							actualDate.addDays(daysBetweenNotificationAndDeletionIncrement - 15)
+					clientZone.CancelationNotificationSentDate__c <
+					actualDate.addDays(daysBetweenNotificationAndDeletionIncrement) &&
+					clientZone.CancelationNotificationSentDate__c >
+					actualDate.addDays(daysBetweenNotificationAndDeletionIncrement - 15)
 				) {
 					CancelCZContractHandler handler = new CancelCZContractHandler(clientZone);
 					handler.handle();
 				}
 			}
 		}
+		mailNotificationHandler.handleInsertNotifications();
 		return clientZonesToUpdate;
-	}
-
-	private void sendNotification(ClientZone__c clientZone) {
-		if (clientZone.Email__c != null) {
-			SendNotificationHandler handler = new SendNotificationHandler(
-				clientZone,
-				CANCELATION_TEMPLATE_NAME,
-				clientZone.Email__c,
-				new Map<String, String>{'CANCELATION_DATE' => actualDate.addDays(14).format('dd. MM. yyyy')}
-			);
-			handler.handle();
-		}
 	}
 
 	private Map<Id, AccountRelation__c> getAssociatedAccounts(Set<Id> accountIds) {

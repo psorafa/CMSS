@@ -1,51 +1,92 @@
 public class SendNotificationHandler {
-	private sObject onObject;
-	private String emailTemplateDevName;
-
-	private Boolean disableMailSending;
-	private String senderEmail = 'noreply@csobstavebni.cz';
-	private String receiverEmail;
-	private String emailSubject;
-	@testVisible
-	private String emailBody;
+	private SObject onObject;
+	private EmailTemplate emailTemplate;
 	private Map<String, String> specialVariableValues;
+	private String senderEmail = 'noreply@csobstavebni.cz';
+	private List<String> receiverEmails;
+	private String emailSubject;
+	private String emailBody;
+	private String context = '';
+	private Boolean disableMailSending = false;
 
-	public SendNotificationHandler(
-		sObject onObject,
-		String emailTemplateDevName,
-		String receiverEmail,
-		Map<String, String> specialVariableValues
-	) {
-		this.onObject = onObject;
-		this.emailTemplateDevName = emailTemplateDevName;
-		this.receiverEmail = receiverEmail;
+	private List<MailServiceNotification__c> generatedNotifications;
+
+	public SendNotificationHandler() {
+		this.receiverEmails = new List<String>();
+		this.generatedNotifications = new List<MailServiceNotification__c>();
+	}
+
+	public SendNotificationHandler setContext(String context) {
+		this.context = context;
+		setUpDisableMailSending();
+		return this;
+	}
+
+	public SendNotificationHandler setEmailTemplate(EmailTemplate emailTemplate) {
+		this.emailTemplate = emailTemplate;
+		return this;
+	}
+
+	public SendNotificationHandler setEmailTemplate(String emailTemplateDevName) {
+		this.emailTemplate = [SELECT HtmlValue, Subject FROM EmailTemplate WHERE DeveloperName = :emailTemplateDevName];
+		return this;
+	}
+
+	public SendNotificationHandler setSpecialVariables(Map<String, String> specialVariableValues) {
 		this.specialVariableValues = specialVariableValues;
-		KZNotificationSettings__c KZSettings = KZNotificationSettings__c.getOrgDefaults();
-		this.disableMailSending = !KZSettings.SendNotifications__c;
+		return this;
 	}
 
-	public SendNotificationHandler(sObject onObject, String emailTemplateDevName, String receiverEmail) {
-		this.onObject = onObject;
-		this.emailTemplateDevName = emailTemplateDevName;
-		this.receiverEmail = receiverEmail;
-		KZNotificationSettings__c KZSettings = KZNotificationSettings__c.getOrgDefaults();
-		this.disableMailSending = !KZSettings.SendNotifications__c;
+	public SendNotificationHandler setSender(String senderEmail) {
+		this.senderEmail = senderEmail;
+		return this;
 	}
 
-	public void handle() {
+	public SendNotificationHandler setReceivers(List<String> receiverEmails) {
+		this.receiverEmails = receiverEmails;
+		return this;
+	}
+
+	public void handleInsertNotifications() {
+		List<MailServiceNotification__c> notifications = retrieveGeneratedNotifications();
+		System.debug(notifications);
+		insert notifications;
+	}
+
+	public void generateNotifications(SObject sourceObject, List<String> receivers) {
+		this.onObject = sourceObject;
 		setUpEmail();
-		sendEmailNotificaton();
+		for (String receiverEmail : receivers) {
+			generatedNotifications.add(getOneNotification(receiverEmail));
+		}
+	}
+
+	public List<MailServiceNotification__c> retrieveGeneratedNotifications() {
+		return generatedNotifications;
+	}
+
+	private MailServiceNotification__c getOneNotification(String receiverEmail) {
+		MailServiceNotification__c newNotification = new MailServiceNotification__c();
+		newNotification.ToEmailAddress__c = receiverEmail;
+		newNotification.FromEmailAddress__c = senderEmail;
+		newNotification.Subject__c = emailSubject;
+		newNotification.Body__c = emailBody;
+		newNotification.SendAfter__c = System.today();
+		newNotification.NotSentDueToError__c = disableMailSending;
+		return newNotification;
 	}
 
 	@TestVisible
 	private void setUpEmail() {
-		EmailTemplate template = [
-			SELECT HtmlValue, Subject
-			FROM EmailTemplate
-			WHERE DeveloperName = :emailTemplateDevName
-		];
-		emailBody = processTextation(template.HtmlValue);
-		emailSubject = processTextation(template.Subject);
+		emailBody = processTextation(emailTemplate.HtmlValue);
+		emailSubject = processTextation(emailTemplate.Subject);
+	}
+
+	private void setUpDisableMailSending() {
+		if (context == 'DIGIKZ') {
+			KZNotificationSettings__c KZSettings = KZNotificationSettings__c.getOrgDefaults();
+			disableMailSending = !KZSettings.SendNotifications__c;
+		}
 	}
 
 	private String processTextation(String text) {
@@ -56,90 +97,31 @@ public class SendNotificationHandler {
 			if (this.specialVariableValues != null && this.specialVariableValues.keySet().contains(fieldName)) {
 				finalText = finalText.replace('{!' + fieldName + '}', this.specialVariableValues.get(fieldName));
 			} else {
-				List<String> fieldRelation = fieldName.split('\\.');
-				SObject childObject = onObject;
-
-				while (fieldRelation.size() > 1) {
-					String firstObj = fieldRelation.remove(0);
-					childObject = childObject.getSobject(firstObj);
-				}
-
-				if (childObject?.get(fieldRelation?.get(0)) != null) {
-					finalText = finalText.replace(
-						'{!' +
-							fieldName +
-							'}',
-						String.valueOf(childObject.get(fieldRelation.get(0)))
-					);
-				} else {
-					finalText = finalText.replace('{!' + fieldName + '}', '?');
-				}
+				finalText = replaceFirstVarWithFieldValue(finalText, fieldName);
 			}
 		}
-
 		return finalText;
 	}
 
-	@TestVisible
-	private void sendEmailNotificaton() {
-		MailServiceNotification__c newNotification = new MailServiceNotification__c();
-		newNotification.ToEmailAddress__c = receiverEmail;
-		newNotification.FromEmailAddress__c = senderEmail;
-		newNotification.Subject__c = emailSubject;
-		newNotification.Body__c = emailBody;
-		newNotification.SendAfter__c = System.today();
-		newNotification.NotSentDueToError__c = this.disableMailSending;
-		insert newNotification;
-	}
-
-	public static void sendEmailNotificaton(String receiverEmail, String senderEmail, String subject, String body) {
-		MailSOAPService.MailServicePort mailServicePort = new MailSOAPService.MailServicePort();
-		mailServicePort.sendEmail_Http(receiverEmail, senderEmail, subject, body);
-	}
-
-	public static String getTextationFromTemplate(
-		SObject objectOfOrigin,
-		String templateText,
-		Map<String, String> specialVariablesMap
-	) {
-		String finalText = templateText;
-
-		while (finalText.contains('{!')) {
-			String fieldName = finalText.substringBetween('{!', '}');
-			if (specialVariablesMap != null && specialVariablesMap.keySet().contains(fieldName)) {
-				finalText = finalText.replace('{!' + fieldName + '}', specialVariablesMap.get(fieldName));
-			} else {
-				finalText = extractValueFromFieldInText(fieldName, objectOfOrigin, finalText);
-			}
-		}
-
-		return finalText;
-	}
-
-	@testVisible
-	private static String extractValueFromFieldInText(String fieldName, SObject objectOfOrigin, String text) {
+	private String replaceFirstVarWithFieldValue(String text, String fieldName) {
 		String finalText = text;
 		List<String> fieldRelation = fieldName.split('\\.');
-		SObject childObject = objectOfOrigin;
+		SObject childObject = onObject;
+
 		while (fieldRelation.size() > 1) {
 			String firstObj = fieldRelation.remove(0);
 			childObject = childObject.getSobject(firstObj);
 		}
-		if (
-			childObject.getSobjectType()
-				.getDescribe()
-				.fields.getMap()
-				.keySet()
-				.contains(fieldRelation?.get(0)?.toLowercase())
-		) {
-			return finalText.replace(
+		if (childObject?.get(fieldRelation?.get(0)) != null) {
+			finalText = finalText.replace(
 				'{!' +
-					fieldName +
-					'}',
-				String.valueOf('' + childObject.get(fieldRelation.get(0)))
+				fieldName +
+				'}',
+				String.valueOf(childObject.get(fieldRelation.get(0)))
 			);
 		} else {
-			return finalText.replace('{!' + fieldName + '}', '?');
+			finalText = finalText.replace('{!' + fieldName + '}', '?');
 		}
+		return finalText;
 	}
 }
