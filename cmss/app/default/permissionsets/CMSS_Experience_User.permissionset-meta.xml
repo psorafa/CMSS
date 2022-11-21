@@ -1105,7 +1105,7 @@
         <field>Asset.AssumedPayoutDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Asset.AssuranceCountWith__c</field>
         <readable>false</readable>
@@ -1808,6 +1808,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset.MortgageLength__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset.MortgageOrigin__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
