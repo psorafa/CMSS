@@ -2,9 +2,12 @@ import { LightningElement, track, api, wire } from 'lwc';
 import getIntegrationSettings from '@salesforce/apex/ExternalLinksController.getIntegrationSettings';
 import getClientGlobalId from '@salesforce/apex/ExternalLinksController.getClientGlobalId';
 import getObjectApiName from '@salesforce/apex/ExternalLinksController.getObjectApiName';
+import createOpportunity from '@salesforce/apex/OpportunityController.createOpportunity';
 import LogoImg from '@salesforce/resourceUrl/LogoImg';
+import { NavigationMixin } from 'lightning/navigation';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
-export default class ExternalLinks extends LightningElement {
+export default class ExternalLinks extends NavigationMixin(LightningElement) {
 	@api objectApiName;
 	@api recordId;
 
@@ -36,7 +39,7 @@ export default class ExternalLinks extends LightningElement {
 
 	connectedCallback() {
 		if (!this.objectApiName && this.recordId) {
-			getObjectApiName({ recordId: this.recordId }).then(apiName => (this.objectApiName = apiName));
+			getObjectApiName({ recordId: this.recordId }).then((apiName) => (this.objectApiName = apiName));
 		}
 	}
 
@@ -51,6 +54,33 @@ export default class ExternalLinks extends LightningElement {
 	handleClickNEL(e) {
 		window.open(this.baseUrls.NELBaseUrl__c, '/group/nel');
 	}
+
+	handleClickEUver2(e) {
+		window.console.log('recordId: ' + this.recordId);
+		createOpportunity({
+			objectIdString: this.recordId
+		})
+			.then((data) => {
+				if (!data || data === 'null') {
+					throw new Error('no data or data===null');
+				} else {
+					window.console.log('Opportunity Id:' + data);
+					this.navigateToRecordPage(data);
+					window.open(
+						this.baseUrls.NELBaseUrl__c +
+							'/group/nel/ezadosti?opportunityId=' +
+							data +
+							'&clientId=' +
+							this.clientGlobalId,
+						'_blank'
+					);
+				}
+			})
+			.catch((error) => {
+				this.handleErrors(error);
+			});
+	}
+
 	handleClickStavebniSporeni(e) {
 		if (this.clientGlobalId) {
 			window.open(
@@ -117,7 +147,7 @@ export default class ExternalLinks extends LightningElement {
 		);
 	}
 	handleClickAxigen(e) {
-        window.open('https://mail.csobstavebni-oz.cz/', '_blank');
+		window.open('https://mail.csobstavebni-oz.cz/', '_blank');
 	}
 	handleClickExpo(e) {
 		window.open('https://expoplus.csobstavebni.cz/', '_blank');
@@ -159,7 +189,7 @@ export default class ExternalLinks extends LightningElement {
 		window.open('https://kalkulacka.csobstavebni.cz/', '_blank');
 	}
 	handleClickUloziste(e) {
-        window.open('https://itweboz.csobstavebni.cz/knowledge-base-2/oz-install/', '_blank');
+		window.open('https://itweboz.csobstavebni.cz/knowledge-base-2/oz-install/', '_blank');
 	}
 	handleClickO2Family(e) {
 		window.open('https://www.o2family.cz/csob-stavebni/', '_blank');
@@ -175,8 +205,39 @@ export default class ExternalLinks extends LightningElement {
 	}
 	handleClickVernostniProgram(e) {
 		window.open('http://www.najdetesevevlastnim.cz/', '_blank');
-    }
-    handleClickTeamViewer(e) {
-        window.open('https://get.teamviewer.com/csobstavebni/', '_blank');
-    }
+	}
+	handleClickTeamViewer(e) {
+		window.open('https://get.teamviewer.com/csobstavebni/', '_blank');
+	}
+
+	//function - redirects the page to the record page specified by the provided Id
+	navigateToRecordPage(recordIdToRedirect) {
+		this[NavigationMixin.Navigate]({
+			type: 'standard__recordPage',
+			attributes: {
+				recordId: recordIdToRedirect,
+				actionName: 'view'
+			}
+		});
+	}
+
+	handleErrors(error) {
+		if (error.message) {
+			this.showToast('info', 'No data returned', error.message);
+			this.noRecordsFound = true;
+		} else {
+			this.showToast('error', 'Error', error.body.message);
+		}
+	}
+
+	showToast(v, t, msg) {
+		this.dispatchEvent(
+			new ShowToastEvent({
+				title: t,
+				message: msg,
+				variant: v,
+				mode: 'sticky'
+			})
+		);
+	}
 }
