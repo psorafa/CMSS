@@ -17,5 +17,12 @@ post    zkontrolovat, že Account.Name je probabilisticky (a kdyžtak přepnout)
 post    sync data (setup -> Encryption Statistics)
 post    smazat pole ClientZone__c.UsernameHash__c
 
-
 v20
+
+post    vyplnit custom metadata Configuration__mdt pro Threat Detection (
+            APIAnomalyEventNotifReceiver = emaily prijemcu oddelene carkou, 
+            CredentialStuffingEventNotifReceiver = emaily prijemcu oddelene carkou, 
+            ReportAnomalyEventNotifReceiver = emaily prijemcu oddelene carkou, 
+            SessionHijackingEventNotifReceiver = emaily prijemcu oddelene carkou, 
+            ThreatDetectionNotifScoreThreshold = 0
+        ) -- defaultni hodnota pro reciever metadata (pro prvni ctyri) = 'CRM_monitoring@csobstavebni.cz'

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Is sent to a reciever defined in custom metadata notification about Threat Detection Event</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Threat Detection Notification</name>
+    <style>none</style>
+    <subject>Nová Threat Detection událost</subject>
+    <textOnly>Dobrý den,
+
+byla detekována Threat Detection událost: {!eventName}.
+
+Další informace naleznete zde: {!eventLink}
+
+S přáním příjemného dne
+
+Vaše ČSOB Stavební spořitelna
+
+
+E-mail je generován automaticky, neodpovídejte na něj.
+
+Odesílatel: ČSOB Stavební spořitelna, a.s., se sídlem Praha 5, Radlická 333/150, IČ: 492 41 397,
+zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, sp. zn. B 2117,
+korespondenční adresa: Radlická 333/150, 150 57 Praha 5</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
