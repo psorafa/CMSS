@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Typ dodatku</label>
+    <name>TrainingLevelType_c__c</name>
+    <picklistValues>
+        <masterLabel>1000</masterLabel>
+        <translation>Oprávnění eDokumenty/Expo+</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1001</masterLabel>
+        <translation>Konto s pohledávkou odepsanou před migrací</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1002</masterLabel>
+        <translation>Konto ukončeno se záporným saldem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1003</masterLabel>
+        <translation>Vrácená pošta CODIS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>199</masterLabel>
+        <translation>Potenciální odbytový orgán</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>200</masterLabel>
+        <translation>Výsledek AC</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2000</masterLabel>
+        <translation>Přihlášení na AC</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>400</masterLabel>
+        <translation>Rozvojové cílové provize</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>415</masterLabel>
+        <translation>Dodatek ke sml.o OZ-jiné sml.úpravy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>426</masterLabel>
+        <translation>Ověřovací razítko-vydáno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>434</masterLabel>
+        <translation>Zvýhodněný MÚ/Ú</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>440</masterLabel>
+        <translation>Smlouva o zpracování osobních údajů</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>444</masterLabel>
+        <translation>Běžné účty ČSOB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>445</masterLabel>
+        <translation>Běžné účty ČSOB (Nová eLiška)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>450</masterLabel>
+        <translation>Registrace KCP/ČNB</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>451</masterLabel>
+        <translation>Zplnomocnění - podílové fondy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>452</masterLabel>
+        <translation>Deník investičního zprostředkovatele</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>453</masterLabel>
+        <translation>Vázaný zástupce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>455</masterLabel>
+        <translation>Produkty poštovní spořitelny</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>459</masterLabel>
+        <translation>Živnostenské oprávnění SÚ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>460</masterLabel>
+        <translation>MÚ / Ú certifikát</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>461</masterLabel>
+        <translation>HÚ certifikát</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>462</masterLabel>
+        <translation>Oprávnění eSpoření/Expo+</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>463</masterLabel>
+        <translation>Registrace PPZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>464</masterLabel>
+        <translation>Životní pojištění_oprávnění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>465</masterLabel>
+        <translation>Registrace VZ-Penzijní produkty</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>466</masterLabel>
+        <translation>Životní pojištění_oprávnění_investice</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>467</masterLabel>
+        <translation>Zplnomocnění VZ-Penzijní produkty</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>468</masterLabel>
+        <translation>Penzijní produkty - odborná zkouška</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>469</masterLabel>
+        <translation>Registrace VZ - hypotéka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>470</masterLabel>
+        <translation>Ukončené Základní vzdělávání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>471</masterLabel>
+        <translation>SW Certifikace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>472</masterLabel>
+        <translation>Prokazování odb. způsobilosti pro stav. spoření a ověřování</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>473</masterLabel>
+        <translation>Prokazování odb. způsobilosti pro MÚ/Ú</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>474</masterLabel>
+        <translation>Nesplněno prokazování odb. způsobilosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>475</masterLabel>
+        <translation>Pilot Nový Model</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>476</masterLabel>
+        <translation>Pojistné produkty - odborná zkouška</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>477</masterLabel>
+        <translation>1. stupeň Základního vzdělávání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>478</masterLabel>
+        <translation>Školitel</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>479</masterLabel>
+        <translation>Registrace VZ - Úvěry</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>480</masterLabel>
+        <translation>Zpracování Ú/MÚ nepovoleno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>481</masterLabel>
+        <translation>Nesplnění produkčních kriterií</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>482</masterLabel>
+        <translation>Odborná zkouška - úvěr na bydlení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>483</masterLabel>
+        <translation>Rizikové životní pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>484</masterLabel>
+        <translation>Pojistky – registrace VZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>485</masterLabel>
+        <translation>Pojistky – akreditovaná zkouška - kombinovaná I. + III.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>486</masterLabel>
+        <translation>eLearning autopojištění - tipování</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>487</masterLabel>
+        <translation>Tipování SVJ a BD</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>488</masterLabel>
+        <translation>Neživotní pojištění_oprávnění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>489</masterLabel>
+        <translation>Tipování Plus Konto a Premium konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>490</masterLabel>
+        <translation>Odborná zkouška - úvěry kombinovaná</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>491</masterLabel>
+        <translation>Odborná zkouška - úvěr jiný než na bydlení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>492</masterLabel>
+        <translation>Registrace VZ - úvěr jiný než na bydlení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>493</masterLabel>
+        <translation>Pojistky - akreditovaná zkouška - životní pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>494</masterLabel>
+        <translation>Pojistky - akreditovaná zkouška - motorová vozidla</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>495</masterLabel>
+        <translation>Pojistky - akreditovaná zkouška - neživotní pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>496</masterLabel>
+        <translation>Pojistky - registrace VZ - životní pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>497</masterLabel>
+        <translation>Pojistky - registrace VZ - motorová vozidla</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>498</masterLabel>
+        <translation>Pojistky - registrace VZ - neživotní pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>499</masterLabel>
+        <translation>e_Podpis</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>501</masterLabel>
+        <translation>Neobnovovat spolupráci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>502</masterLabel>
+        <translation>Nesplněn e-learning Praní špinavých peněz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>503</masterLabel>
+        <translation>Nezařazovat do vyššího stupně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>504</masterLabel>
+        <translation>Konto s vymáhanou pohledávkou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>508</masterLabel>
+        <translation>Nezahajovat spolupráci - asociace</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>510</masterLabel>
+        <translation>Ukončení pro neshody v síti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>511</masterLabel>
+        <translation>Pojistky - akreditovaná zkouška - kombinovaná I. + III. + IV.</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>512</masterLabel>
+        <translation>Pojistky - akreditovaná zkouška - souhrnná</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>520</masterLabel>
+        <translation>AMID ČSOB POJ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>525</masterLabel>
+        <translation>Náš život</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>530</masterLabel>
+        <translation>Pojistky – následné vzdělávání</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>550</masterLabel>
+        <translation>Investice – tipování</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>600</masterLabel>
+        <translation>Přístup NeL</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>601</masterLabel>
+        <translation>Přístup eÚvěry omezený</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>602</masterLabel>
+        <translation>Oprávnění eÚvěry</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>603</masterLabel>
+        <translation>Admin NeL</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>604</masterLabel>
+        <translation>NeL - jen zakládání KZ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>605</masterLabel>
+        <translation>NeL - eSpoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>606</masterLabel>
+        <translation>Pověření k podpisu SD - samostatně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>607</masterLabel>
+        <translation>Pověření k podpisu SD - zprostředkovaně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>608</masterLabel>
+        <translation>NeL - Registrace VZ - eÚvěry2</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>609</masterLabel>
+        <translation>Tipování možnosti zhodnoceni</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>610</masterLabel>
+        <translation>Čestné prohlášení</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>611</masterLabel>
+        <translation>Pojistky – zkouška – manuál flotilníka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>612</masterLabel>
+        <translation>Pojistky – Naše odpovědnost</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>620</masterLabel>
+        <translation>ePrescore DLP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>638</masterLabel>
+        <translation>Přístup na ZL</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>639</masterLabel>
+        <translation>Uživatel IS e-Liška</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>640</masterLabel>
+        <translation>Přístup SalesForce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>642</masterLabel>
+        <translation>Přístup SalesForce marketing</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>650</masterLabel>
+        <translation>Invoz negativní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>720</masterLabel>
+        <translation>Uvalení exekuce</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RecruitedBonusEligibility__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+AND(
+Bonus__c != 0,  IsException__c = false), &quot;Ano&quot;, 
+IF(
+AND(Bonus__c != 0,  IsException__c = true), &quot;Ano - výjimka&quot;, &quot;Ne&quot;)
+)</formula>
+    <label>Recruited Bonus Eligibility</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

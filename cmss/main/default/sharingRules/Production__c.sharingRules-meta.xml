@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ExperienceUsersRTSharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Shares records with Updates or Production Ranking record type (RT) with all Experience Users</description>
+        <label>Experience Users RT Sharing</label>
+        <sharedTo>
+            <allPartnerUsers/>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Production Rankings,Updates</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>InternalUsersRTSharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Shares records with Updates or Production Ranking record type (RT) with all Internal Users</description>
+        <label>Internal Users RT Sharing</label>
+        <sharedTo>
+            <allInternalUsers/>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Production Rankings,Updates</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>
