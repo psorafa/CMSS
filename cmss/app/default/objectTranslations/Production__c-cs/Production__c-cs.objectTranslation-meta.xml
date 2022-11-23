@@ -64,7 +64,7 @@
     <layouts>
         <layout>Production Layout</layout>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label></label>
             <section>Custom Links</section>
         </sections>
         <sections>
@@ -75,14 +75,14 @@
     <layouts>
         <layout>Production Ranking Layout</layout>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label></label>
             <section>Custom Links</section>
         </sections>
     </layouts>
     <layouts>
         <layout>Update Layout</layout>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label></label>
             <section>Custom Links</section>
         </sections>
     </layouts>
@@ -99,4 +99,16 @@
         <label>Aktualizace Cross-selling</label>
         <name>Updates</name>
     </recordTypes>
+    <sharingReasons>
+        <label></label>
+        <name>RegionManager</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label></label>
+        <name>SalesNetManager</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label></label>
+        <name>TeamManager</name>
+    </sharingReasons>
 </CustomObjectTranslation>
