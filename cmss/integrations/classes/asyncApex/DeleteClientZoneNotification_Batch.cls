@@ -82,7 +82,7 @@ public without sharing class DeleteClientZoneNotification_Batch implements Datab
 		Map<Id, AssetAccountRelation__c> associatedAssetRelations
 	) {
 		List<ClientZone__c> clientZonesToUpdate = new List<ClientZone__c>();
-		SendNotificationHandler mailNotificationHandler = new SendNotificationHandler();
+		MailNotificationsHandler mailNotificationHandler = new MailNotificationsHandler();
 		mailNotificationHandler
 			.setContext('DIGIKZ')
 			.setEmailTemplate(CANCELATION_TEMPLATE_NAME)

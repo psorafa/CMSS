@@ -1,5 +1,5 @@
 @IsTest
-public class SendNotificationHandlerTest {
+public class MailNotificationsHandlerTest {
 	@TestSetup
 	static void makeData() {
 		RecordType personAccountRecordType = [
@@ -34,7 +34,7 @@ public class SendNotificationHandlerTest {
 		opportunity.Account = testAccount;
 		insert opportunity;
 
-		SendNotificationHandler testHandler = new SendNotificationHandler();
+		MailNotificationsHandler testHandler = new MailNotificationsHandler();
 		testHandler.setEmailTemplate(new EmailTemplate())
 			.setEmailTemplate('UnfinishedContractNotification')
 			.setSpecialVariables(new Map<String, String>{ 'DateOfCreation__c' => 'NOW', 'ORG_URL' => 'some url' })

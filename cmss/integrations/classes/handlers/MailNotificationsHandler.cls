@@ -1,4 +1,4 @@
-public class SendNotificationHandler {
+public class MailNotificationsHandler {
 	private SObject onObject;
 	private EmailTemplate emailTemplate;
 	private Map<String, String> specialVariableValues;
@@ -11,38 +11,38 @@ public class SendNotificationHandler {
 
 	private List<MailServiceNotification__c> generatedNotifications;
 
-	public SendNotificationHandler() {
+	public MailNotificationsHandler() {
 		this.receiverEmails = new List<String>();
 		this.generatedNotifications = new List<MailServiceNotification__c>();
 	}
 
-	public SendNotificationHandler setContext(String context) {
+	public MailNotificationsHandler setContext(String context) {
 		this.context = context;
 		setUpDisableMailSending();
 		return this;
 	}
 
-	public SendNotificationHandler setEmailTemplate(EmailTemplate emailTemplate) {
+	public MailNotificationsHandler setEmailTemplate(EmailTemplate emailTemplate) {
 		this.emailTemplate = emailTemplate;
 		return this;
 	}
 
-	public SendNotificationHandler setEmailTemplate(String emailTemplateDevName) {
+	public MailNotificationsHandler setEmailTemplate(String emailTemplateDevName) {
 		this.emailTemplate = [SELECT HtmlValue, Subject FROM EmailTemplate WHERE DeveloperName = :emailTemplateDevName];
 		return this;
 	}
 
-	public SendNotificationHandler setSpecialVariables(Map<String, String> specialVariableValues) {
+	public MailNotificationsHandler setSpecialVariables(Map<String, String> specialVariableValues) {
 		this.specialVariableValues = specialVariableValues;
 		return this;
 	}
 
-	public SendNotificationHandler setSender(String senderEmail) {
+	public MailNotificationsHandler setSender(String senderEmail) {
 		this.senderEmail = senderEmail;
 		return this;
 	}
 
-	public SendNotificationHandler setReceivers(List<String> receiverEmails) {
+	public MailNotificationsHandler setReceivers(List<String> receiverEmails) {
 		this.receiverEmails = receiverEmails;
 		return this;
 	}

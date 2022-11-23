@@ -60,7 +60,7 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 
 	public void execute(Database.BatchableContext jobId, List<Opportunity> opportunities) {
 		try {
-			SendNotificationHandler userNotificationHandler = new SendNotificationHandler();
+			MailNotificationsHandler userNotificationHandler = new MailNotificationsHandler();
 			userNotificationHandler.setContext('DIGIKZ');
 
 			for (Opportunity opportunity : opportunities) {

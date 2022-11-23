@@ -292,7 +292,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 			emailByInactiveUserId.put(ci.User__c, ci.Email__c);
 		}
 
-		SendNotificationHandler notificationHandler = new SendNotificationHandler();
+		MailNotificationsHandler notificationHandler = new MailNotificationsHandler();
 		notificationHandler.setEmailTemplate('ServiceActivityNotification')
 			.setSpecialVariables(new Map<String, String>{ 'LinkToNEL' => linkToNel })
 			.setSender('noreply@csobstavebni-oz.cz');
