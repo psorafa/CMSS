@@ -56,7 +56,7 @@ class TaskTriggerHandlerTest {
 
 	@isTest
 	static void afterInsertLetterTypeTest() {
-        Id letterRecordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName().get('Letter').getRecordTypeId();
+        Id letterRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('Letter', 'Task');
 		Account acc1 = TestDataFactory.getAccount(new Account());
 		insert acc1;
 		User u = TestDataFactory.getUser(new User());
