@@ -7,7 +7,7 @@ public with sharing class ThreatDetectionNotificationHandler {
     private String sessionHijackingReceiver;
     private String eventScoreThreshold;
     @TestVisible
-    private SendNotificationHandler notificationHandler;
+    private Map<String, MailNotificationsHandler> emailHandlers;
 
     public ThreatDetectionNotificationHandler() {
         this.apiAnomalyReceiver = getConfigurationMetadataValue('APIAnomalyEventNotifReceiver');
@@ -15,6 +15,8 @@ public with sharing class ThreatDetectionNotificationHandler {
         this.reportAnomalyReceiver = getConfigurationMetadataValue('ReportAnomalyEventNotifReceiver');
         this.sessionHijackingReceiver = getConfigurationMetadataValue('SessionHijackingEventNotifReceiver');
         this.eventScoreThreshold = getConfigurationMetadataValue('ThreatDetectionNotifScoreThreshold');
+
+        this.emailHandlers = new Map<String, MailNotificationsHandler>();
     }
 
     @InvocableMethod(label='Send ThreatDetection Email Notifications')
@@ -38,34 +40,41 @@ public with sharing class ThreatDetectionNotificationHandler {
             if ((Decimal) event.get('Score') >= Decimal.valueOf(this.eventScoreThreshold)) {
                 switch on event {
                     when APIAnomalyEventStore aes {
-                        sendThreatDetectionEmailForEvent(aes, 'API Anomaly Event', apiAnomalyReceiver);
+                        addNotificationToHandler(aes, 'API Anomaly Event', apiAnomalyReceiver);
                     }
                     when CredentialStuffingEventStore ces {
-                        sendThreatDetectionEmailForEvent(ces, 'Credential Stuffing Event', credentialStuffingReceiver);
+                        addNotificationToHandler(ces, 'Credential Stuffing Event', credentialStuffingReceiver);
                     }
                     when ReportAnomalyEventStore res {
-                        sendThreatDetectionEmailForEvent(res, 'Report Anomaly Event', reportAnomalyReceiver);
+                        addNotificationToHandler(res, 'Report Anomaly Event', reportAnomalyReceiver);
                     }
                     when SessionHijackingEventStore ses {
-                        sendThreatDetectionEmailForEvent(ses, 'Session Hijacking Event', sessionHijackingReceiver);
+                        addNotificationToHandler(ses, 'Session Hijacking Event', sessionHijackingReceiver);
                     }
                 }
             }
         }
+
+        for (MailNotificationsHandler handler : emailHandlers.values()) {
+            handler.handleInsertNotifications();
+        }
     }
 
-    private void sendThreatDetectionEmailForEvent(sObject event, String eventName, String receivers) {
-        notificationHandler = new SendNotificationHandler(
-            null,
-            emailTemplateDevName,
-            receivers.split(','),
-            new Map<String, String>{
-                'eventName' => eventName,
-                'eventLink' => URL.getSalesforceBaseUrl().toExternalForm()+ '/'+ event.get('Id')
-            },
-            null
-        );
-        notificationHandler.handleInsertNotifications();
+
+
+    private void addNotificationToHandler(sObject event, String eventName, String receivers) {
+        if (!emailHandlers.containsKey(eventName)) {
+            MailNotificationsHandler handler = new MailNotificationsHandler();
+            handler.setEmailTemplate(new EmailTemplate())
+                .setEmailTemplate(emailTemplateDevName)
+                .setSpecialVariables(new Map<String, String>{ 
+                    'eventName' => eventName, 
+                    'eventLink' => URL.getSalesforceBaseUrl().toExternalForm()+ '/'+ event.get('Id') 
+                })
+                .setReceivers(receivers.split(','));
+            emailHandlers.put(eventName, handler);
+        }
+        emailHandlers.get(eventName).generateNotifications(null, receivers.split(','));
     }
 
     private String getConfigurationMetadataValue(String developerName) {

@@ -4,7 +4,7 @@ public class ThreatDetectionNotificationHandlerTest {
     @IsTest
 	static void sendThreatDetectionEmailNotificatonsTest() {
 
-        Test.setMock(HttpCalloutMock.class, new SendNotificationHandlerTest.MailSOAPServiceHttpMock());
+        Test.setMock(HttpCalloutMock.class, new MailSOAPServiceHttpMock());
 		insert TestDataFactory.getIntegrationSettings();
 
         String rawParams = '{"eventIdentifier":"123456789", "Score":"1"}';
@@ -17,12 +17,18 @@ public class ThreatDetectionNotificationHandlerTest {
         Test.startTest();
             ThreatDetectionNotificationHandler.sendThreatDetectionEmailNotificatons(new List<sObject> {apEventRecord, csEventRecord, raEventRecord, shEventRecord});
         Test.stopTest();
+        
+        List<MailServiceNotification__c> createdNotifications = [
+			SELECT Body__c, Subject__c, ToEmailAddress__c, FromEmailAddress__c, NotSentDueToError__c
+			FROM MailServiceNotification__c
+		];
+        System.assertEquals(4, createdNotifications.size());
     }
 
     @IsTest
 	static void handleTest() {
 
-        Test.setMock(HttpCalloutMock.class, new SendNotificationHandlerTest.MailSOAPServiceHttpMock());
+        Test.setMock(HttpCalloutMock.class, new MailSOAPServiceHttpMock());
 		insert TestDataFactory.getIntegrationSettings();
 
         String rawParams = '{"eventIdentifier":"123456789", "Score":"1"}';
@@ -37,14 +43,17 @@ public class ThreatDetectionNotificationHandlerTest {
             handler.handle(new List<sObject> {apEventRecord, csEventRecord, raEventRecord, shEventRecord});
         Test.stopTest();
 
-        System.assert(!handler.notificationHandler.emailBody.contains('{!'));
-        System.assert(handler.notificationHandler.emailBody.contains('Session Hijacking Event'));
+        List<MailServiceNotification__c> createdNotifications = [
+			SELECT Body__c, Subject__c, ToEmailAddress__c, FromEmailAddress__c, NotSentDueToError__c
+			FROM MailServiceNotification__c
+		];
+        System.assertEquals(4, createdNotifications.size());
     }
 
     @IsTest
 	static void handleTresholdTest() {
 
-        Test.setMock(HttpCalloutMock.class, new SendNotificationHandlerTest.MailSOAPServiceHttpMock());
+        Test.setMock(HttpCalloutMock.class, new MailSOAPServiceHttpMock());
 		insert TestDataFactory.getIntegrationSettings();
 
         String rawParams = '{"eventIdentifier":"123456789", "Score":"-1"}';
@@ -59,6 +68,10 @@ public class ThreatDetectionNotificationHandlerTest {
             handler.handle(new List<sObject> {apEventRecord, csEventRecord, raEventRecord, shEventRecord});
         Test.stopTest();
 
-        System.assert(handler.notificationHandler == null);
+        List<MailServiceNotification__c> createdNotifications = [
+			SELECT Body__c, Subject__c, ToEmailAddress__c, FromEmailAddress__c, NotSentDueToError__c
+			FROM MailServiceNotification__c
+		];
+        System.assertEquals(0, createdNotifications.size());
     }
 }
