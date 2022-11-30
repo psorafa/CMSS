@@ -6,10 +6,10 @@
     <formula>OR(
 IF(
 ISPICKVAL($User.AgentActivityType__c, &quot;110&quot;),
-ISPICKVAL(Owner:User.AgentActivityType__c , &quot;110&quot;), false),
+ISPICKVAL(Owner:User.AgentActivityType__c , &quot;112&quot;), false),
 IF(
 ISPICKVAL($User.AgentActivityType__c, &quot;108&quot;),
-ISPICKVAL(Owner:User.AgentActivityType__c, &quot;110&quot;), false)
+ISPICKVAL(Owner:User.AgentActivityType__c, &quot;110&quot;), false), false
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Is Subordinate 1 Level Lower</label>

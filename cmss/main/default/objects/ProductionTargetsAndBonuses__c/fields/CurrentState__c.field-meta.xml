@@ -5,8 +5,10 @@
     <externalId>false</externalId>
     <formula>TEXT(CurrentStateForCalc__c) &amp; 
 CASE(
+ MetricType__c,
 &quot;COUNT&quot;, &quot; ks&quot;,
-&quot;SUM&quot;, &quot; Kč&quot;)</formula>
+&quot;SUM&quot;, &quot; Kč&quot;,
+&quot;&quot;)</formula>
     <label>Current State</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

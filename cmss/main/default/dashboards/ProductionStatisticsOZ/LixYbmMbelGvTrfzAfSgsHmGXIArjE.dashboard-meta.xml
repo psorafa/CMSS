@@ -7,6 +7,21 @@
     <colorPalette>water</colorPalette>
     <dashboardChartTheme>light</dashboardChartTheme>
     <dashboardColorPalette>water</dashboardColorPalette>
+    <dashboardFilters>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>1/1/2023</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>7/1/2023</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>1/1/2024</values>
+        </dashboardFilterOptions>
+        <name>Období</name>
+    </dashboardFilters>
     <dashboardGridLayout>
         <dashboardGridComponents>
             <colSpan>3</colSpan>
@@ -19,6 +34,9 @@
                     <column>ProductionTargetsAndBonuses__c.Bonus__c</column>
                 </chartSummary>
                 <componentType>Gauge</componentType>
+                <dashboardFilterColumns>
+                    <column>ProductionTargetsAndBonuses__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Integer</displayUnits>
                 <gaugeMax>24000.0</gaugeMax>
@@ -48,6 +66,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>Production__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Integer</displayUnits>
                 <footer>UFA v H2 2022 = 36 ks (Junior 18 ks)</footer>
@@ -73,6 +94,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>Production__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Integer</displayUnits>
                 <footer>UFA v H2 2022 = 6 ks (Junior 3 ks)</footer>
@@ -98,6 +122,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>Production__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Integer</displayUnits>
                 <footer>UFA v H2 2022 = 6 ks (Junior 3 ks)</footer>
@@ -124,6 +151,9 @@
                     <column>Production__c.AmountAs__c</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>Production__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Integer</displayUnits>
                 <footer>UFA v H2 2022 = 96 tis. Kč (Junior 48 tis. Kč)</footer>
@@ -149,6 +179,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>Production__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Integer</displayUnits>
                 <footer>UFA v H2 2022 = 12 ks (Junior 6 ks)</footer>
@@ -175,6 +208,9 @@
                     <column>Production__c.AmountAs__c</column>
                 </chartSummary>
                 <componentType>Metric</componentType>
+                <dashboardFilterColumns>
+                    <column>Production__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Integer</displayUnits>
                 <footer>H2 2022 není součástí UFA</footer>
@@ -197,6 +233,9 @@
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <componentType>FlexTable</componentType>
+                <dashboardFilterColumns>
+                    <column>ProductionTargetsAndBonuses__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <flexComponentProperties>
                     <decimalPrecision>-1</decimalPrecision>
                     <flexTableColumn>
@@ -253,6 +292,9 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentType>Donut</componentType>
+                <dashboardFilterColumns>
+                    <column>Production__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Integer</displayUnits>
                 <drillEnabled>false</drillEnabled>
@@ -284,6 +326,9 @@
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <componentType>FlexTable</componentType>
+                <dashboardFilterColumns>
+                    <column>Production__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <flexComponentProperties>
                     <decimalPrecision>0</decimalPrecision>
                     <flexTableColumn>
@@ -317,6 +362,9 @@
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <componentType>FlexTable</componentType>
+                <dashboardFilterColumns>
+                    <column>Production__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <flexComponentProperties>
                     <decimalPrecision>0</decimalPrecision>
                     <flexTableColumn>
@@ -362,6 +410,9 @@
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <componentType>FlexTable</componentType>
+                <dashboardFilterColumns>
+                    <column>Production__c.PeriodStartDate__c</column>
+                </dashboardFilterColumns>
                 <flexComponentProperties>
                     <decimalPrecision>-1</decimalPrecision>
                     <flexTableColumn>

@@ -9,11 +9,12 @@
     <columns>
         <field>Production__c.PeriodStartDate__c</field>
     </columns>
+    <description>Pořadí mého manažera obchodního týmu</description>
     <filter>
         <criteriaItems>
             <column>CUST_RECORDTYPE</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
+            <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
             <value>Production__c.ProductionRankings</value>
         </criteriaItems>

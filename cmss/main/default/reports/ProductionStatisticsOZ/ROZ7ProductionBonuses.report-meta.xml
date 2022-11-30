@@ -20,7 +20,7 @@
         <criteriaItems>
             <column>CUST_RECORDTYPE</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
+            <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
             <value>ProductionTargetsAndBonuses__c.Bonus</value>
         </criteriaItems>
