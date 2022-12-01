@@ -1,4 +1,7 @@
 public class TaskTriggerHandler extends TriggerHandler {
+    
+    public static String letterRecordTypeName = 'Letter';
+
 	public override void beforeInsert() {
 		TaskService.setRecordType(Trigger.new);
 		IntegrationUtility.populateDefaultExternalId(Trigger.new);
@@ -328,7 +331,9 @@ public class TaskTriggerHandler extends TriggerHandler {
 		}
 		allFields = allFields.removeEnd(', ');
 
-		String queryString = 'SELECT ' + allFields + ' FROM Task WHERE Id IN ' + idsString;
+		String queryString = 'SELECT ' + allFields + ' FROM Task ' 
+                            + 'WHERE Id IN ' + idsString 
+                            + ' AND RecordType.Name != \'' + letterRecordTypeName + '\'';
 
 		List<Task> tasks = Database.query(queryString);
 

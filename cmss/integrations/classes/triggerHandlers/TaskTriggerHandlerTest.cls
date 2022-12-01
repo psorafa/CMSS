@@ -55,6 +55,38 @@ class TaskTriggerHandlerTest {
 	}
 
 	@isTest
+	static void afterInsertLetterTypeTest() {
+        Id letterRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('Letter', 'Task');
+		Account acc1 = TestDataFactory.getAccount(new Account());
+		insert acc1;
+		User u = TestDataFactory.getUser(new User());
+		insert u;
+
+		Task task = new Task(
+			WhatId = acc1.Id,
+			OwnerId = u.Id,
+			ActivityDate = Date.today().addYears(1),
+			Type = '4',
+            RecordTypeId = letterRecordTypeId
+		);
+
+        // No HTTP mock in passing test indicates that there is no AQ notification call for record with RecordType = 'Letter'
+
+		Test.startTest();
+		insert task;
+		Test.stopTest();
+
+		task = [
+			SELECT ActivityType__c
+			FROM Task
+			WHERE Id = :task.Id
+		];
+
+		System.assertEquals('4', task.ActivityType__c);
+        
+	}
+
+	@isTest
 	static void afterUpdateTest() {
 		Account acc1 = TestDataFactory.getAccount(new Account());
 		insert acc1;
