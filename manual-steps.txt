@@ -16,6 +16,7 @@ pre     dočasně vyhodit ze source report ODBT_32_PreledKlientskychPodani (a pa
 post    zkontrolovat, že Account.Name je probabilisticky (a kdyžtak přepnout)
 post    sync data (setup -> Encryption Statistics)
 post    smazat pole ClientZone__c.UsernameHash__c
+post    pro object Commmissions nastavit v OWD Grant Access Using Hierarchies = false (unchecked)
 
 v20
 
