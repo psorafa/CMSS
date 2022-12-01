@@ -1668,26 +1668,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ActivityExpirationConfig__mdt.ClosedResult__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ActivityExpirationConfig__mdt.ClosedStatus__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ActivityExpirationConfig__mdt.ExpirationDays__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ActivityExpirationConfig__mdt.ExpiredStatus__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Asset.AcceptedValue__c</field>
         <readable>false</readable>
     </fieldPermissions>
