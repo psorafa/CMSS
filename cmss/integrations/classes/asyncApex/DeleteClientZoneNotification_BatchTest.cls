@@ -1,40 +1,5 @@
 @IsTest
 public class DeleteClientZoneNotification_BatchTest {
-	public class MailSOAPServiceHttpMock implements HttpCalloutMock {
-		public HTTPResponse respond(HTTPRequest req) {
-			HttpResponse res = new HttpResponse();
-			res.setHeader('Content-Type', 'application/json');
-			DOM.Document responseDoc = new DOM.Document();
-			DOM.XmlNode envelope = responseDoc.createRootElement(
-				'Envelope',
-				'http://schemas.xmlsoap.org/soap/envelope/',
-				's'
-			);
-			DOM.XmlNode bodyNode = envelope.addChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/', null);
-
-			DOM.Document reqDoc = req.getBodyDocument();
-			DOM.XmlNode rootNode = reqDoc.getRootElement();
-			DOM.XmlNode reqBodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
-			DOM.XmlNode[] methodNode = reqBodyNode.getChildElements();
-			if (methodNode[0].getName() == 'sendEmail') {
-				DOM.XmlNode ResponseNode = bodyNode.addChildElement(
-					'sendEmailResponse',
-					'http://service.cmss.cz/mail',
-					null
-				);
-			} else if (methodNode[0].getName() == 'sendEmailWithAttachments') {
-				DOM.XmlNode ResponseNode = bodyNode.addChildElement(
-					'sendEmailWithAttachmentsResponse',
-					'http://service.cmss.cz/mail',
-					null
-				);
-			}
-			res.setBody(responseDoc.toXmlString());
-			res.setStatusCode(200);
-			return res;
-		}
-	}
-
 	@TestSetup
 	static void prepareTestData() {
 		RecordType personAccountRecordType = [
@@ -63,12 +28,12 @@ public class DeleteClientZoneNotification_BatchTest {
 		account3.LastName = 'Novák';
 		account3.GlobalId__c = '87654';
 
-		insert new List<Account>{account1, account2, account3};
+		insert new List<Account>{ account1, account2, account3 };
 
 		account1.GlobalId__c = account1.GlobalId__c;
 		account2.GlobalId__c = account2.GlobalId__c;
 
-		update new List<Account>{account1, account2};
+		update new List<Account>{ account1, account2 };
 
 		ClientZone__c clientZone1 = new ClientZone__c();
 		clientZone1.ClosedBy__c = null;
@@ -96,7 +61,7 @@ public class DeleteClientZoneNotification_BatchTest {
 		clientZone3.ModifiedDate__c = System.now().addDays(-2);
 		clientZone3.CancelationNotificationSentDate__c = System.now().addDays(-35);
 
-		insert new List<ClientZone__c>{clientZone1, clientZone2, clientZone3};
+		insert new List<ClientZone__c>{ clientZone1, clientZone2, clientZone3 };
 
 		Test.setCreatedDate(clientZone1.ID, System.now().addDays(-16));
 		Test.setCreatedDate(clientZone2.ID, System.now().addDays(-50));

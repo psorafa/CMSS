@@ -60,6 +60,9 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 
 	public void execute(Database.BatchableContext jobId, List<Opportunity> opportunities) {
 		try {
+			MailNotificationsHandler userNotificationHandler = new MailNotificationsHandler();
+			userNotificationHandler.setContext('DIGIKZ');
+
 			for (Opportunity opportunity : opportunities) {
 				System.debug('opportunity.CreatedDateTime__c: ' + opportunity.CreatedDateTime__c);
 				System.debug('opportunity.CreatedDateTime__c.date(): ' + opportunity.CreatedDateTime__c.date());
@@ -78,12 +81,8 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 					this.validDaysFromCreation.contains(numberOfDaysFromOppCreation) &&
 					opportunity?.Account?.PersonEmail != null
 				) {
-					SendNotificationHandler userNotificationHandler = new SendNotificationHandler(
-						opportunity,
-						UNSIGNED_CONTRACT_TEMPLATE,
-						opportunity.Account.PersonEmail
-					);
-					userNotificationHandler.handle();
+					userNotificationHandler.setEmailTemplate(UNSIGNED_CONTRACT_TEMPLATE)
+						.generateNotifications(opportunity, new List<String>{ opportunity.Account.PersonEmail });
 				}
 				if (
 					numberOfDaysFromOppCreation == this.validDaysFromCreationForOZ &&
@@ -91,18 +90,17 @@ public without sharing class UnsignedOpportunityNotification_Batch implements Da
 					opportunity?.Owner?.CooperationPartnerType__c == '4' &&
 					opportunity.Account.PortfolioMngmtC__c == null
 				) {
-					SendNotificationHandler ownerNotificationHandler = new SendNotificationHandler(
-						opportunity,
-						UNFINISHED_CONTRACT_TEMPLATE,
-						opportunity.Owner.Email,
-						new Map<String, String>{
-							'ORG_URL' => URL.getSalesforceBaseUrl().toExternalForm(),
-							'CreatedDateTime__c' => opportunity.CreatedDateTime__c.format('dd. MM. yyyy')
-						}
-					);
-					ownerNotificationHandler.handle();
+					userNotificationHandler.setEmailTemplate(UNFINISHED_CONTRACT_TEMPLATE)
+						.setSpecialVariables(
+							new Map<String, String>{
+								'ORG_URL' => URL.getSalesforceBaseUrl().toExternalForm(),
+								'CreatedDateTime__c' => opportunity.CreatedDateTime__c.format('dd. MM. yyyy')
+							}
+						)
+						.generateNotifications(opportunity, new List<String>{ opportunity.Owner.Email });
 				}
 			}
+			userNotificationHandler.handleInsertNotifications();
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
 			throw e;

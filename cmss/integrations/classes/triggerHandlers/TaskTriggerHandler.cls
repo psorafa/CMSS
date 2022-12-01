@@ -72,18 +72,18 @@ public class TaskTriggerHandler extends TriggerHandler {
 
 	private static void completeAccountAliases(Map<Id, Task> contactsToTasksToGetAlias) {
 		Map<Id, Contact> contactsMap = new Map<Id, Contact>(
-		[
-			SELECT Account.LastName, Account.FirstName, Account.Birthdate__c
-			FROM Contact
-			WHERE Id IN :contactsToTasksToGetAlias.keySet()
-		]
+			[
+				SELECT Account.LastName, Account.FirstName, Account.Birthdate__c
+				FROM Contact
+				WHERE Id IN :contactsToTasksToGetAlias.keySet()
+			]
 		);
 		for (Contact contact : contactsMap.values()) {
 			contactsToTasksToGetAlias.get(contact.Id).AccountAlias__c =
 				contact.Account?.LastName.left(3) +
-					contact.Account?.FirstName?.left(3) +
-					'_' +
-					String.valueOf(contact?.Account?.Birthdate__c?.year())?.right(2);
+				contact.Account?.FirstName?.left(3) +
+				'_' +
+				String.valueOf(contact?.Account?.Birthdate__c?.year())?.right(2);
 		}
 	}
 
@@ -114,8 +114,8 @@ public class TaskTriggerHandler extends TriggerHandler {
 		for (Task task : (List<Task>) newTasks) {
 			if (
 				task.OwnerId != ((Task) oldTasksMap.get(task.Id)).OwnerId &&
-					!integrationUserIds.contains(task.LastModifiedById) &&
-					task.isClosed == false
+				!integrationUserIds.contains(task.LastModifiedById) &&
+				task.isClosed == false
 			) {
 				potentialTasksToNotifyAbout.add(task.Id);
 			}
@@ -134,7 +134,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	private static void sendNewTaskNotificationEmails(List<Id> taskIds) {
-		Map<String, Object> params = new Map<String, Object>{'newTasks' => taskIds};
+		Map<String, Object> params = new Map<String, Object>{ 'newTasks' => taskIds };
 		Flow.Interview.SendNewTaskEmailNotifications sendEmailsFlow = new Flow.Interview.SendNewTaskEmailNotifications(
 			params
 		);
@@ -144,7 +144,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 	@testVisible
 	@future
 	private static void sendDelegatedTaskNotificationEmails(List<Id> taskIds) {
-		Map<String, Object> params = new Map<String, Object>{'delegatedTasks' => taskIds};
+		Map<String, Object> params = new Map<String, Object>{ 'delegatedTasks' => taskIds };
 		Flow.Interview.SendDelegatedTaskEmailNotifications sendEmailsFlow = new Flow.Interview.SendDelegatedTaskEmailNotifications(
 			params
 		);
@@ -219,8 +219,8 @@ public class TaskTriggerHandler extends TriggerHandler {
 		Map<Id, EventSync__c> existingSyncsMap = new Map<Id, EventSync__c>(
 			(List<EventSync__c>) Database.query(
 				'SELECT Id, SFTaskId__c, GoogleEventId__c, IsNew__c, IsDeleted__c, ChangeFromGoogle__c FROM EventSync__c ' +
-					'WHERE (GoogleEventId__c IN :googleIds OR SFTaskId__c IN :taskIds) ' +
-					(isDeleted ? ' AND IsDeleted__c = true' : '')
+				'WHERE (GoogleEventId__c IN :googleIds OR SFTaskId__c IN :taskIds) ' +
+				(isDeleted ? ' AND IsDeleted__c = true' : '')
 			)
 		);
 
@@ -274,12 +274,6 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	private static void createMailServiceNotifications(List<Task> tasksToNotifyAbout) {
-		EmailTemplate template = [
-			SELECT HtmlValue, Subject
-			FROM EmailTemplate
-			WHERE DeveloperName = 'ServiceActivityNotification'
-		];
-		List<MailServiceNotification__c> notifications = new List<MailServiceNotification__c>();
 		String linkToNel = IntegrationSettings__c.getOrgDefaults().NELBaseUrl__c + '/group/nel/prehled-op/aktivit';
 
 		Set<Id> inactiveOwnersIds = new Set<Id>();
@@ -298,51 +292,23 @@ public class TaskTriggerHandler extends TriggerHandler {
 			emailByInactiveUserId.put(ci.User__c, ci.Email__c);
 		}
 
+		MailNotificationsHandler notificationHandler = new MailNotificationsHandler();
+		notificationHandler.setEmailTemplate('ServiceActivityNotification')
+			.setSpecialVariables(new Map<String, String>{ 'LinkToNEL' => linkToNel })
+			.setSender('noreply@csobstavebni-oz.cz');
+
 		for (Task task : tasksToNotifyAbout) {
 			if (!task.Owner.IsActive && !emailByInactiveUserId.containsKey(task.OwnerId)) {
 				continue;
 			}
 			if (task.CreatedById != task.OwnerId || task.Source__c == '54') {
-				notifications.add(
-					createMailServiceNotification(
-						template,
-						task,
-						System.now(),
-						'noreply@csobstavebni-oz.cz',
-						new Map<String, String>{'LinkToNEL' => linkToNel},
-						emailByInactiveUserId
-					)
-				);
+				String ownerEmailAddress = task.Owner.IsActive
+					? task.Owner.Email
+					: emailByInactiveUserId.get(task.OwnerId);
+				notificationHandler.generateNotifications(task, new List<String>{ ownerEmailAddress });
 			}
 		}
-		insert notifications;
-	}
-
-	private static MailServiceNotification__c createMailServiceNotification(
-		EmailTemplate template,
-		Task task,
-		DateTime notificationDate,
-		String senderEmailAddress,
-		Map<String, String> specialValues,
-		Map<Id, String> emailByInactiveUserId
-	) {
-		MailServiceNotification__c newNotification = new MailServiceNotification__c();
-		newNotification.FromEmailAddress__c = senderEmailAddress;
-		newNotification.ToEmailAddress__c = task.Owner.IsActive
-			? task.Owner.Email
-			: emailByInactiveUserId.get(task.OwnerId);
-		newNotification.Body__c = SendNotificationHandler.getTextationFromTemplate(
-			task,
-			template.HtmlValue,
-			specialValues
-		);
-		newNotification.Subject__c = SendNotificationHandler.getTextationFromTemplate(
-			task,
-			template.Subject,
-			new Map<String, String>()
-		);
-		newNotification.SendAfter__c = notificationDate;
-		return newNotification;
+		notificationHandler.handleInsertNotifications();
 	}
 
 	@testVisible
@@ -372,11 +338,11 @@ public class TaskTriggerHandler extends TriggerHandler {
 	public void handleUpdateAccountDateFields() {
 		Set<Account> accountsToUpdate = new Set<Account>();
 		Map<Id, Task> tasksWithAccount = new Map<Id, Task>(
-		[
-			SELECT AccountId, Account.LastInteractionDate__c, Account.OpenedActivityDate__c
-			FROM Task
-			WHERE Id IN :Trigger.newMap.keySet()
-		]
+			[
+				SELECT AccountId, Account.LastInteractionDate__c, Account.OpenedActivityDate__c
+				FROM Task
+				WHERE Id IN :Trigger.newMap.keySet()
+			]
 		);
 
 		for (Task newTask : (Task[]) Trigger.new) {
@@ -387,9 +353,9 @@ public class TaskTriggerHandler extends TriggerHandler {
 			}
 			if (
 				newTask.CompletedDateTime != oldTask?.CompletedDateTime &&
-					newTask?.CompletedDateTime?.date() <= Date.today() &&
-					(newTask.CompletedDateTime > actualTaskAccount?.LastInteractionDate__c ||
-						actualTaskAccount?.LastInteractionDate__c == null)
+				newTask?.CompletedDateTime?.date() <= Date.today() &&
+				(newTask.CompletedDateTime > actualTaskAccount?.LastInteractionDate__c ||
+				actualTaskAccount?.LastInteractionDate__c == null)
 			) {
 				actualTaskAccount.LastInteractionDate__c = (Date) newTask?.CompletedDateTime?.date();
 				accountsToUpdate.add(actualTaskAccount);
@@ -397,10 +363,10 @@ public class TaskTriggerHandler extends TriggerHandler {
 
 			if (
 				newTask.ActivityDate != oldTask?.ActivityDate &&
-					newTask.ActivityDate >= Date.today() &&
-					(newTask.Status == '1' ||
-						newTask.Status == '2') && newTask.ActivityDate < actualTaskAccount?.OpenedActivityDate__c ||
-					actualTaskAccount?.OpenedActivityDate__c == null
+				newTask.ActivityDate >= Date.today() &&
+				(newTask.Status == '1' ||
+				newTask.Status == '2') && newTask.ActivityDate < actualTaskAccount?.OpenedActivityDate__c ||
+				actualTaskAccount?.OpenedActivityDate__c == null
 			) {
 				actualTaskAccount.OpenedActivityDate__c = newTask?.ActivityDate;
 				accountsToUpdate.add(actualTaskAccount);
@@ -452,8 +418,8 @@ public class TaskTriggerHandler extends TriggerHandler {
 
 		if (
 			currentUser.Profile.Name == 'CMSS User' ||
-				currentUser.Profile.Name == 'CMSS Experience User' ||
-				currentUser.Profile.Name == 'CMSS Headquarters User'
+			currentUser.Profile.Name == 'CMSS Experience User' ||
+			currentUser.Profile.Name == 'CMSS Headquarters User'
 		) {
 			isRestrictedUser = true;
 		}
