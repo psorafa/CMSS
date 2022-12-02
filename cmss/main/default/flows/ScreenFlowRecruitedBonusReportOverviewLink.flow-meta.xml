@@ -13,7 +13,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -23,28 +23,59 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordLookups>
+        <description>Gets ROZ12RecruitedBonusCountedAssets</description>
+        <name>GetROZ12Report</name>
+        <label>GetROZ12Report</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>RecruitedBonusProductsOverview</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>ROZ12RecruitedBonusCountedAssets</stringValue>
+            </value>
+        </filters>
+        <object>Report</object>
+        <outputAssignments>
+            <assignToReference>ReportId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
     <screens>
         <name>RecruitedBonusProductsOverview</name>
         <label>Recruited Bonus Products Overview</label>
-        <locationX>752</locationX>
-        <locationY>206</locationY>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
             <name>ReportLink</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 12px; color: rgb(0, 51, 102); font-family: &amp;quot;Salesforce Sans&amp;quot;; background-color: rgb(255, 255, 255);&quot;&gt;Seznam započítaných smluv najdete na následujícím odkazu&lt;/span&gt;&lt;strong style=&quot;font-size: 12px; color: rgb(7, 108, 208); font-family: &amp;quot;Salesforce Sans&amp;quot;; background-color: rgb(255, 255, 255);&quot;&gt; &lt;/strong&gt;&lt;a href=&quot;{!$Setup.Configurations__c.CommunityRecruitedBonusReportLink__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 12px; color: rgb(7, 108, 208); font-family: &amp;quot;Salesforce Sans&amp;quot;; background-color: rgb(255, 255, 255);&quot;&gt;&lt;strong&gt;zde&lt;/strong&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 12px; color: rgb(0, 51, 102); font-family: &amp;quot;Salesforce Sans&amp;quot;; background-color: rgb(255, 255, 255);&quot;&gt;.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-family: &amp;quot;Salesforce Sans&amp;quot;; color: rgb(0, 51, 102); font-size: 12px;&quot;&gt;Seznam započítaných smluv najdete na následujícím odkazu&lt;/span&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); font-family: &amp;quot;Salesforce Sans&amp;quot;; color: rgb(7, 108, 208); font-size: 12px;&quot;&gt; &lt;/strong&gt;&lt;a href=&quot;/s/report/{!ReportId}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(255, 255, 255); font-family: &amp;quot;Salesforce Sans&amp;quot;; color: rgb(7, 108, 208); font-size: 12px;&quot;&gt;&lt;strong&gt;zde&lt;/strong&gt;&lt;/a&gt;&lt;a href=&quot;/s/report/&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(255, 255, 255); font-family: &amp;quot;Salesforce Sans&amp;quot;; color: rgb(0, 51, 102); font-size: 12px;&quot;&gt;.&lt;/a&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>626</locationX>
-        <locationY>48</locationY>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
         <connector>
-            <targetReference>RecruitedBonusProductsOverview</targetReference>
+            <targetReference>GetROZ12Report</targetReference>
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <name>ReportId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>
