@@ -1,7 +1,4 @@
-/**
- * Created by J. Birka on 21.11.2022
- */
-public without sharing class ProductionService {
+public with sharing class ProductionService {
 	public static void deleteProductionSharing(List<Production__c> oldProductions) {
 		try {
 			List<Id> oldProductionIDs = new List<Id>();
@@ -60,22 +57,15 @@ public without sharing class ProductionService {
 				}
 
 				if (!productionShrs.isEmpty()) {
-					// Insert sharing records and capture save result
 					Database.SaveResult[] lsr = Database.insert(productionShrs, false);
 					Integer i = 0;
-					// Process the save results
 					for (Database.SaveResult sr : lsr) {
 						if (!sr.isSuccess()) {
 							Database.Error err = sr.getErrors()[0];
-
-							// Check if the error is related to a trivial access level
-							// Access levels equal or more permissive than the object's default access level are not allowed.
-							// These sharing records are not required and thus an insert exception is acceptable.
 							if (
 								!(err.getStatusCode() == StatusCode.FIELD_FILTER_VALIDATION_EXCEPTION &&
 								err.getMessage().contains('AccessLevel'))
 							) {
-								// Log an error when the error is not related to trivial access level.
 								Logger.error(
 									'Error in ProductionService.insertProductionSharing',
 									'Unable to grant sharing access for Id=' +
@@ -86,8 +76,8 @@ public without sharing class ProductionService {
 							}
 						}
 						i++;
-					} //end for
-				} //end empty check
+					}
+				}
 			}
 		} catch (Exception e) {
 			Logger.error('Error in ProductionService.insertProductionSharing', e);

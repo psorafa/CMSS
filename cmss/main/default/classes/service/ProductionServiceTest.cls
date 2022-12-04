@@ -1,6 +1,3 @@
-/**
- * Created by J.Birka on 22.11.2022
- */
 @IsTest
 public class ProductionServiceTest {
 	static User teamManager;
@@ -25,14 +22,17 @@ public class ProductionServiceTest {
 		updateUser = TestDataFactory.getUser(new User());
 		updateUser2 = TestDataFactory.getUser(new User());
 		updateUser3 = TestDataFactory.getUser(new User());
-		insert teamManager;
-		insert regionManager;
-		insert salesNetManager;
-		insert currentTeamManager;
-		insert currentRegionManager;
-		insert currentSalesNetManager;
-		insert updateUser;
-		insert updateUser3;
+		List<User> insertUsers = new List<User>();
+		insertUsers.add(teamManager);
+		insertUsers.add(regionManager);
+		insertUsers.add(salesNetManager);
+		insertUsers.add(currentTeamManager);
+		insertUsers.add(currentRegionManager);
+		insertUsers.add(currentSalesNetManager);
+		insertUsers.add(updateUser);
+		insertUsers.add(updateUser3);
+
+		insert insertUsers;
 
 		prod = new Production__c(
 			CurrentTeamManager__c = currentTeamManager.Id,
@@ -55,82 +55,69 @@ public class ProductionServiceTest {
 		insert prod3;
 	}
 
+	private static List<Production__Share> getProductionShare(Id prodId) {
+		List<Production__Share> mgrs = [
+			SELECT Id, ParentId, UserOrGroupId, RowCause
+			FROM Production__Share
+			WHERE
+				ParentId = :prodId
+				AND RowCause IN (
+					:Schema.Production__Share.rowCause.TeamManager__c,
+					:Schema.Production__Share.rowCause.RegionManager__c,
+					:Schema.Production__Share.rowCause.SalesNetManager__c
+				)
+		];
+		return mgrs;
+	}
+
 	@IsTest
-	static void productionTriggerTest() {
+	static void productionTriggerInsertTest() {
 		createTestData();
 
-		//after insert test
-		Production__Share teamManagerShr = [
-			SELECT Id, ParentId, UserOrGroupId, RowCause
-			FROM Production__Share
-			WHERE ParentId = :prod.Id AND RowCause = :Schema.Production__Share.rowCause.TeamManager__c
-		];
-		Production__Share regionManagerShr = [
-			SELECT Id, ParentId, UserOrGroupId, RowCause
-			FROM Production__Share
-			WHERE ParentId = :prod.Id AND RowCause = :Schema.Production__Share.rowCause.RegionManager__c
-		];
-		Production__Share salesNetManagerShr = [
-			SELECT Id, ParentId, UserOrGroupId, RowCause
-			FROM Production__Share
-			WHERE ParentId = :prod.Id AND RowCause = :Schema.Production__Share.rowCause.SalesNetManager__c
-		];
-		System.assertEquals(
-			teamManagerShr.UserOrGroupId,
-			teamManager.Id,
-			'UserOrGroupId for Team Manager after insert not as expected.'
-		);
-		System.assertEquals(
-			regionManagerShr.UserOrGroupId,
-			regionManager.Id,
-			'UserOrGroupId for Region Manager after insert not as expected.'
-		);
-		System.assertEquals(
-			salesNetManagerShr.UserOrGroupId,
-			salesNetManager.Id,
-			'UserOrGroupId for Sales Net Manager after insert not as expected.'
-		);
+		for (Production__Share ps : getProductionShare(prod.Id)) {
+			if (ps.RowCause == Schema.Production__Share.rowCause.TeamManager__c) {
+				System.assertEquals(
+					ps.UserOrGroupId,
+					teamManager.Id,
+					'UserOrGroupId for Team Manager after insert not as expected.'
+				);
+			} else if (ps.RowCause == Schema.Production__Share.rowCause.RegionManager__c) {
+				System.assertEquals(
+					ps.UserOrGroupId,
+					regionManager.Id,
+					'UserOrGroupId for Region Manager after insert not as expected.'
+				);
+			} else {
+				System.assertEquals(
+					ps.UserOrGroupId,
+					salesNetManager.Id,
+					'UserOrGroupId for Sales Net Manager after insert not as expected.'
+				);
+			}
+		}
+	}
 
-		//after update test
+	@IsTest
+	static void productionTriggerUpdateTest() {
+		createTestData();
 		prod.TeamManager__c = updateUser.Id;
 		prod.RegionManager__c = updateUser.Id;
 		prod.SalesNetManager__c = updateUser.Id;
 		update prod;
-		teamManagerShr = [
-			SELECT Id, ParentId, UserOrGroupId, RowCause
-			FROM Production__Share
-			WHERE ParentId = :prod.Id AND RowCause = :Schema.Production__Share.rowCause.TeamManager__c
-		];
-		regionManagerShr = [
-			SELECT Id, ParentId, UserOrGroupId, RowCause
-			FROM Production__Share
-			WHERE ParentId = :prod.Id AND RowCause = :Schema.Production__Share.rowCause.RegionManager__c
-		];
-		salesNetManagerShr = [
-			SELECT Id, ParentId, UserOrGroupId, RowCause
-			FROM Production__Share
-			WHERE ParentId = :prod.Id AND RowCause = :Schema.Production__Share.rowCause.SalesNetManager__c
-		];
-		System.assertEquals(
-			teamManagerShr.UserOrGroupId,
-			updateUser.Id,
-			'UserOrGroupId for Team Manager after update not as expected.'
-		);
-		System.assertEquals(
-			regionManagerShr.UserOrGroupId,
-			updateUser.Id,
-			'UserOrGroupId for Region Manager after update not as expected.'
-		);
-		System.assertEquals(
-			salesNetManagerShr.UserOrGroupId,
-			updateUser.Id,
-			'UserOrGroupId for Sales Net Manager after update not as expected.'
-		);
+
+		for (Production__Share ps : getProductionShare(prod.Id)) {
+			System.assertEquals(
+				ps.UserOrGroupId,
+				updateUser.Id,
+				'UserOrGroupId for ' +
+				ps.RowCause +
+				' after update not as expected.'
+			);
+		}
 	}
 
 	@IsTest
 	static void errorHandlingTest() {
-		//error handling test
 		createTestData();
 		updateUser2.IsActive = false;
 		insert updateUser2;

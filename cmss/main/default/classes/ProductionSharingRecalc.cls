@@ -8,10 +8,9 @@ public class ProductionSharingRecalc implements Database.Batchable<sObject> {
 		);
 	}
 
-	public void execute(Database.BatchableContext BC, List<sObject> scope) {
-		List<Production__c> productions = new List<Production__c>((List<Production__c>) scope);
-		ProductionService.deleteProductionSharing(Trigger.old);
-		ProductionService.insertProductionSharing(Trigger.new);
+	public void execute(Database.BatchableContext BC, List<Production__c> scope) {
+		ProductionService.deleteProductionSharing(scope);
+		ProductionService.insertProductionSharing(scope);
 	}
 
 	public void finish(Database.BatchableContext BC) {
