@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>RT30</fullName>
     <active>true</active>
+    <description>Zaplacené smlouvy o stavebním spoření</description>
     <label>30</label>
     <picklistValues>
         <picklist>ClosureType__c</picklist>

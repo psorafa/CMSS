@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>RT20</fullName>
     <active>true</active>
+    <description>Nezaplacené smlouvy o stavebním spoření zpracované v měsíci</description>
     <label>20</label>
     <picklistValues>
         <picklist>ClosureType__c</picklist>
