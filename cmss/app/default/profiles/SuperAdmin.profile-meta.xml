@@ -4719,6 +4719,201 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Commission__c.AccountKeySerialNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.AssetName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.Author__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.BaseAssetName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.BillingDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.BusinessCaseDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.BusinessCase__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.CPUSuffix__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.ChangeIdentifier__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.ClosingAgentCommissionAcountBase__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.ClosingAgent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.ClosingFee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.ClosingSerialNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.ClosureType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.CommissionBasis__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.CommissionRate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.DateOfAcquisition__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.DateOfPayment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.DocumentDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.DocumentNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.EntitlementAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Commission__c.ExpenditureFlatRateCategory__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.ExpenditureFlatRate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Commission__c.FenixDocsLink__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.FreeText__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.FundIdentification__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.Modulo10Indicator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.Modulo11Indicator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.OwnerCommissionAcountBase__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.PendingAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.ProductGroup__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.ProductProvider__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.RecordNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.RowNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.StatementType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Commission__c.TargetAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>    
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CreditCommission__c.DecreaseInCreditPortfolio__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -7414,6 +7609,97 @@
     <layoutAssignments>
         <layout>ContentVersion-Files_Author</layout>
     </layoutAssignments>
+   <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT10</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT100</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT110</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT120</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT130</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT140</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT150</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT160</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT170</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT180</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT190</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT20</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT200</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT30</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT40</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT50</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT60</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT70</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT80</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT90</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT998</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Commission__c-Commission Layout</layout>
+        <recordType>Commission__c.RT999</recordType>
+    </layoutAssignments>    
     <layoutAssignments>
         <layout>CreditCommission__c-Credit Commission Layout</layout>
     </layoutAssignments>
@@ -7825,6 +8111,15 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>Commission__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>    
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>CreditCommission__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -8209,6 +8504,116 @@
         <recordType>CaseType__c.CaseTypeWithoutAsset</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+   <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Commission__c.RT10</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT100</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT110</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT120</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT130</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT140</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT150</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT160</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT170</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT180</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT190</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT20</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT200</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT30</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT40</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT50</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT60</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT70</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT80</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT90</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT998</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Commission__c.RT999</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>    
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>CustomSearchFilter__c.Boolean</recordType>
