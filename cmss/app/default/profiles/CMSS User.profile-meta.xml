@@ -6340,6 +6340,10 @@
         <recordType>Production__c.Updates</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Task-Letter</layout>
+        <recordType>Task.Letter</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Task-UnifiedActivityLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -7327,6 +7331,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>PersonAccount.PersonAccount</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Task.Letter</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

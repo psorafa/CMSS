@@ -34,6 +34,29 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>LetterType__c</picklist>
+        <values>
+            <fullName>A003</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A011</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A014</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A015</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A016</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Priority</picklist>
         <values>
             <fullName>High</fullName>
@@ -96,6 +119,21 @@
         </values>
         <values>
             <fullName>9</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>RecipientRole__c</picklist>
+        <values>
+            <fullName>ID 1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ID 2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ID 3</fullName>
             <default>false</default>
         </values>
     </picklistValues>
