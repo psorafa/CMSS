@@ -132,6 +132,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Access_Log__c.TaskId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Access_Log__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6855,6 +6860,14 @@
         <apexPage>RenderAsPdf</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <recordTypeVisibilities>
+        <recordType>Access_Log__c.AccountAccess</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Access_Log__c.LetterAccess</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Account.Business_Account</recordType>
         <visible>true</visible>

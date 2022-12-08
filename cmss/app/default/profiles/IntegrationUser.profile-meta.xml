@@ -5635,6 +5635,17 @@
         <readable>false</readable>
     </fieldPermissions>
     <layoutAssignments>
+        <layout>Access_Log__c-Access Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Access_Log__c-Access Log Layout</layout>
+        <recordType>Access_Log__c.AccountAccess</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Access_Log__c-Access Log Layout</layout>
+        <recordType>Access_Log__c.LetterAccess</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Account-Account Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
