@@ -5803,6 +5803,13 @@
         <readable>false</readable>
     </fieldPermissions>
     <layoutAssignments>
+        <layout>Access_Log__c-Access Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Access_Log__c-PV PDF Export Layout</layout>
+        <recordType>Access_Log__c.PVPDFExport</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Account-Account Layout</layout>
         <recordType>Account.Business_Account</recordType>
     </layoutAssignments>
