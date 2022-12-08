@@ -70,6 +70,52 @@
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "tabsetConfig" : {
+          "UUID" : "70eebe4d-2295-4b95-bda2-807a54ab9cae",
+          "activeTab" : "",
+          "tabs" : [ {
+            "UUID" : "6d016703-862d-434d-b5ed-4854341d55d1",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ ],
+            "tabKey" : "1",
+            "tabName" : "Výkon nováčka"
+          } ],
+          "useOverflowMenu" : false
+        }
+      },
+      "componentName" : "forceCommunity:tabset",
+      "id" : "70eebe4d-2295-4b95-bda2-807a54ab9cae",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "00O5E000001KLitUAG"
+          },
+          "componentName" : "forceCommunity:reportPage",
+          "id" : "7dab5fe1-7b90-4f8c-88cd-2982a849444d",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "flowArguments" : "",
+            "flowName" : "ScreenFlowRecruitedBonusReportOverviewLink"
+          },
+          "componentName" : "forceCommunity:flowCommunity",
+          "id" : "a189b03e-adaa-4d3d-a320-313256b30d34",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "6d016703-862d-434d-b5ed-4854341d55d1",
+        "regionLabel" : "Výkon nováčka",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
     } ],
     "id" : "b79bd9a3-5675-4bd4-9a83-670d33512510",
     "regionName" : "content",

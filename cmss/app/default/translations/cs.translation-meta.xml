@@ -528,6 +528,71 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description>Obsahuje všechna pole s Record Type Produkce</description>
+        <label>Produkce</label>
+        <name>Production</name>
+        <sections>
+            <label>Zprostředkovatel</label>
+            <name>Closing Agent</name>
+        </sections>
+        <sections>
+            <label>Organizační struktura</label>
+            <name>Organisational Structure</name>
+        </sections>
+        <sections>
+            <label>Produkce</label>
+            <name>Production</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description>Obsahuje všechna pole s Record Type Příplatky a Návorové příspěvky</description>
+        <label>Produkční příplatky a náborové příspěvky</label>
+        <name>ProductionBonusesAndRecruitedBonuses</name>
+        <sections>
+            <label>Příplatek nebo náborový příspěvek</label>
+            <name>Bonus or Recruited Bonus</name>
+        </sections>
+        <sections>
+            <label>Uživatel</label>
+            <name>User</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description>Obsahuje všechna pole s Record Type Pořadí v Cílech</description>
+        <label>Žebříček produkce</label>
+        <name>ProductionRankings</name>
+        <sections>
+            <label>Žebříček produkce</label>
+            <name>Production Ranking</name>
+        </sections>
+        <sections>
+            <label>Uživatel</label>
+            <name>User</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description>Obsahuje všechna pole s Record Type Aktualizace Cross-selling</description>
+        <label>Aktualizace produkce</label>
+        <name>ProductionUpdates</name>
+        <sections>
+            <label>Aktualizace produkce</label>
+            <name>Production Update</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description>Obsahuje všechna pole s Record Type Cíl</description>
+        <label>Produkční cíle</label>
+        <name>Production_Targets</name>
+        <sections>
+            <label>Produkční cíl</label>
+            <name>Production Target</name>
+        </sections>
+        <sections>
+            <label>Uživatel</label>
+            <name>User</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- User with Manager --></description>
         <label><!-- User with Manager --></label>
         <name>UserWithManager</name>
