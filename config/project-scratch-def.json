@@ -16,17 +16,17 @@
 		"SecurityEventEnabled"
 	],
 	"settings": {
-        "chatterSettings": {
-          "enableChatter": true,
-          "enableOutOfOfficeEnabledPref":true
-        },
+		"chatterSettings": {
+			"enableChatter": true,
+			"enableOutOfOfficeEnabledPref": true
+		},
 		"languageSettings": {
 			"enableEndUserLanguages": true,
 			"enableTranslationWorkbench": true
 		},
 		"nameSettings": {
 			"enableNameSuffix": true,
-			"enableMiddleName" : true
+			"enableMiddleName": true
 		},
 		"mobileSettings": {
 			"enableS1EncryptedStoragePref2": false
@@ -34,22 +34,22 @@
 		"entitlementSettings": {
 			"enableEntitlements": true
 		},
-        "experienceBundleSettings": {
-            "enableExperienceBundleMetadata": true
-        },
-        "communitiesSettings": {
-          "enableNetworksEnabled": true,
-          "enableExternalAccHierPref": true
-        },
-        "knowledgeSettings": {
-            "enableKnowledge": true,
-            "enableLightningKnowledge": true,
-            "enableKnowledgeArticleTextHighlights": true,
-            "enableKnowledgeKeywordAutoComplete": true,
-            "enableKnowledgeTitleAutoComplete": true
-        },
+		"experienceBundleSettings": {
+			"enableExperienceBundleMetadata": true
+		},
+		"communitiesSettings": {
+			"enableNetworksEnabled": true,
+			"enableExternalAccHierPref": true
+		},
+		"knowledgeSettings": {
+			"enableKnowledge": true,
+			"enableLightningKnowledge": true,
+			"enableKnowledgeArticleTextHighlights": true,
+			"enableKnowledgeKeywordAutoComplete": true,
+			"enableKnowledgeTitleAutoComplete": true
+		},
 		"quoteSettings": {
-			"enableQuote" : true
+			"enableQuote": true
 		}
 	}
 }
