@@ -1,0 +1,47 @@
+{
+  "metadataName": "PermissionSet",
+  "fileExtension": "permissionset-meta.xml",
+  "items": [{
+    "typeName": "applicationVisibilities",
+    "keys": ["application"]
+  },{
+    "typeName": "classAccesses",
+    "keys": ["apexClass"]
+  },{
+    "typeName": "customMetadataTypeAccesses",
+    "keys": ["name"]
+  },{
+    "typeName": "customPermissions",
+    "keys": ["name"]
+  },{
+    "typeName": "customSettingAccesses",
+    "keys": ["name"]
+  },{
+    "typeName": "externalDataSourceAccesses",
+    "keys": ["externalDataSource"]
+  },{
+    "typeName": "fieldPermissions",
+    "keys": ["field"],
+    "ignoreFalse": "readable"
+  },{
+    "typeName": "flowAccesses",
+    "keys": ["flow"]
+  },{
+    "typeName": "objectPermissions",
+    "keys": ["object"],
+    "ignoreFalse": "allowRead"
+  },{
+    "typeName": "pageAccesses",
+    "keys": ["apexPage"]
+  },{
+    "typeName": "recordTypeVisibilities",
+    "keys": ["recordType"]
+  },{
+    "typeName": "tabSettings",
+    "keys": ["tab"]
+  },{
+    "typeName": "userPermissions",
+    "keys": ["name"]
+  }],
+  "ignoreType": ["$", "custom", "description", "userLicense", "hasActivationRequired", "label", "license"]
+}
