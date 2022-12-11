@@ -23,37 +23,55 @@ public with sharing class ProductionService {
 		}
 	}
 
+	private static Production__Share prepareProductionShare(
+		Id productionId,
+		Id userId,
+		String accessLevel,
+		String rowCause
+	) {
+		Production__Share mngrShr = new Production__Share(
+			ParentId = productionId,
+			UserOrGroupId = userId,
+			AccessLevel = accessLevel,
+			RowCause = rowCause
+		);
+		return mngrShr;
+	}
+
 	public static void insertProductionSharing(List<Production__c> newProductions) {
 		try {
 			List<Production__Share> productionShrs = new List<Production__Share>();
-			Production__Share teamMngrShr;
-			Production__Share regionMngrShr;
-			Production__Share salesNetMngrShr;
 
 			for (Production__c production : newProductions) {
 				if (production.CurrentTeamManager__c != production.TeamManager__c) {
-					teamMngrShr = new Production__Share();
-					teamMngrShr.ParentId = production.Id;
-					teamMngrShr.UserOrGroupId = production.TeamManager__C;
-					teamMngrShr.AccessLevel = 'Read';
-					teamMngrShr.RowCause = Schema.Production__Share.rowCause.TeamManager__c;
-					productionShrs.add(teamMngrShr);
+					productionShrs.add(
+						prepareProductionShare(
+							production.Id,
+							production.TeamManager__c,
+							'Read',
+							Schema.Production__Share.rowCause.TeamManager__c
+						)
+					);
 				}
 				if (production.CurrentRegionManager__c != production.RegionManager__c) {
-					regionMngrShr = new Production__Share();
-					regionMngrShr.ParentId = production.Id;
-					regionMngrShr.UserOrGroupId = production.RegionManager__c;
-					regionMngrShr.AccessLevel = 'Read';
-					regionMngrShr.RowCause = Schema.Production__Share.rowCause.RegionManager__c;
-					productionShrs.add(regionMngrShr);
+					productionShrs.add(
+						prepareProductionShare(
+							production.Id,
+							production.RegionManager__c,
+							'Read',
+							Schema.Production__Share.rowCause.RegionManager__c
+						)
+					);
 				}
 				if (production.CurrentSalesNetManager__c != production.SalesNetManager__c) {
-					salesNetMngrShr = new Production__Share();
-					salesNetMngrShr.ParentId = production.Id;
-					salesNetMngrShr.UserOrGroupId = production.SalesNetManager__c;
-					salesNetMngrShr.AccessLevel = 'Read';
-					salesNetMngrShr.RowCause = Schema.Production__Share.rowCause.SalesNetManager__c;
-					productionShrs.add(salesNetMngrShr);
+					productionShrs.add(
+						prepareProductionShare(
+							production.Id,
+							production.SalesNetManager__c,
+							'Read',
+							Schema.Production__Share.rowCause.SalesNetManager__c
+						)
+					);
 				}
 
 				if (!productionShrs.isEmpty()) {
