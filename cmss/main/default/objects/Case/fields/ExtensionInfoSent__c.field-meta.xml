@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ExtensionInfoSent__c</fullName>
     <description>The date of an information to the client with an appology that the claim will be resolved later than the official due date.</description>
+    <encryptionScheme>None</encryptionScheme>
     <externalId>false</externalId>
     <inlineHelpText>The sending date of the appology information to the client.</inlineHelpText>
     <label>Extension Info Sent</label>

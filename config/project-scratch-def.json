@@ -16,6 +16,9 @@
 		"SecurityEventEnabled"
 	],
 	"settings": {
+      "userManagementSettings": {
+      "enableNewProfileUI": true
+    },
 		"chatterSettings": {
 			"enableChatter": true,
 			"enableOutOfOfficeEnabledPref": true

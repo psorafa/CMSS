@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LastPortfolioManagerA__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Datum poslední změny správy stavu A, plněno při změně Portfolio Manager A</description>
+    <externalId>false</externalId>
+    <label>Last Portfolio Manager A</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>LastPortfoloManagerAccounts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Lookup</type>
+</CustomField>

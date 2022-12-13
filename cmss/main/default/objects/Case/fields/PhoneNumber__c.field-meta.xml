@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PhoneNumber__c</fullName>
     <description>Telefonní číslo podávajícího</description>
+    <encryptionScheme>None</encryptionScheme>
     <externalId>false</externalId>
     <inlineHelpText>If account is selected, attribute is filled automatically after save</inlineHelpText>
     <label>Phone Number</label>

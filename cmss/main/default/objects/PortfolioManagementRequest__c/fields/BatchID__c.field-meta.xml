@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>BatchID__c</fullName>
-    <description>Unikatni Batch ID manualniho importu csv souboru.</description>
+    <description>Unikatni Batch ID manualniho importu csv souboru.
+Pouze pro historické záznamy, již se nepoužívá.</description>
+    <encryptionScheme>None</encryptionScheme>
     <externalId>false</externalId>
+    <inlineHelpText>Pouze pro historické záznamy, již se nepoužívá.</inlineHelpText>
     <label>Batch ID</label>
     <length>100</length>
     <required>false</required>

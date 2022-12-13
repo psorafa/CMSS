@@ -2,7 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ExternalId__c</fullName>
     <caseSensitive>false</caseSensitive>
+    <description>Pouze pro historické záznamy, již se nepoužívá.</description>
+    <encryptionScheme>None</encryptionScheme>
     <externalId>true</externalId>
+    <inlineHelpText>Pouze pro historické záznamy, již se nepoužívá.</inlineHelpText>
     <label>External Id</label>
     <length>38</length>
     <required>false</required>

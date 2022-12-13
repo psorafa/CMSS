@@ -3,6 +3,7 @@
     <fullName>ValidFrom__c</fullName>
     <defaultValue>NOW () + (1/24)</defaultValue>
     <description>Platnost od</description>
+    <encryptionScheme>None</encryptionScheme>
     <externalId>false</externalId>
     <label>Valid From</label>
     <required>true</required>
