@@ -19,6 +19,7 @@ post    smazat pole ClientZone__c.UsernameHash__c
 post    pro object Commmissions nastavit v OWD Grant Access Using Hierarchies = false (unchecked)
 
 v20
+post    naplanovat Schedule Apex pro tridu CommissionNotification_Batch na 8:00 AM na kazdy den
 
 v20
 pre     před prvním deploymentem na prostředí zakomentovat ve .forceignore
