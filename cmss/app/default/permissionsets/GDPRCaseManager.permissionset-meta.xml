@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
         <apexClass>APRD__ObjectDetailController</apexClass>
@@ -16,7 +16,6 @@
         <enabled>true</enabled>
         <name>GDPRCaseManager</name>
     </customPermissions>
-    <description>Správce GDPR podání</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.AccountId</field>
@@ -79,12 +78,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.ComplainerContractorCPU__c</field>
+        <field>Case.ComplainerContractor__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.ComplainerContractor__c</field>
+        <field>Case.ComplainerContractorCPU__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -99,17 +98,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.ComplaintAgainst__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.ComplaintAgainstFirstName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.ComplaintAgainstLastName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.ComplaintAgainst__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -124,7 +123,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.ContractorCPU__c</field>
+        <field>Case.Contractor__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -133,13 +132,13 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.ContractorSortingCode__c</field>
+        <editable>true</editable>
+        <field>Case.ContractorCPU__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.Contractor__c</field>
+        <editable>false</editable>
+        <field>Case.ContractorSortingCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -209,12 +208,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.InternalPrecautionType__c</field>
+        <field>Case.InternalPrecaution__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.InternalPrecaution__c</field>
+        <field>Case.InternalPrecautionType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -383,6 +382,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Case.SourceDescription__c</field>
         <readable>true</readable>
@@ -390,11 +394,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.SourceId</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -457,9 +456,6 @@
         <field>Case.Type</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>GDPR Case Manager</label>
-    <license>Salesforce</license>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -477,4 +473,8 @@
         <tab>standard-Case</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <description>Správce GDPR podání</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>GDPR Case Manager</label>
+    <license>Salesforce</license>
 </PermissionSet>

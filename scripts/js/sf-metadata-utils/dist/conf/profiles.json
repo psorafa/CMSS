@@ -1,0 +1,43 @@
+{
+  "metadataName": "Profile",
+  "fileExtension": "profile-meta.xml",
+  "items": [{
+    "typeName": "applicationVisibilities",
+    "keys": ["application"]
+  },{
+    "typeName": "classAccesses",
+    "keys": ["apexClass"]
+  },{
+    "typeName": "customMetadataTypeAccesses",
+    "keys": ["name"]
+  },{
+    "typeName": "customPermissions",
+    "keys": ["name"]
+  },{
+    "typeName": "customSettingAccesses",
+    "keys": ["name"]
+  },{
+    "typeName": "fieldPermissions",
+    "keys": ["field"]
+  },{
+    "typeName": "layoutAssignments",
+    "keys": ["layout","recordType"]
+  },{
+    "typeName": "objectPermissions",
+    "keys": ["object"]
+  },{
+    "typeName": "pageAccesses",
+    "keys": ["apexPage"]
+  },{
+    "typeName": "recordTypeVisibilities",
+    "keys": ["recordType"]
+  },{
+    "typeName": "tabVisibilities",
+    "keys": ["tab"]
+  },{
+    "typeName": "userPermissions",
+    "keys": ["name"]
+  }],
+  "ignoreType": ["$", "custom", "description", "userLicense"],
+  "ignoreUserPermission": ["CustomSidebarOnAllPages", "ManageSandboxes"]
+}

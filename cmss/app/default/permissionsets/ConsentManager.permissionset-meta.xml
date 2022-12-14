@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
         <apexClass>APRD__ObjectDetailController</apexClass>
@@ -24,7 +24,6 @@
         <apexClass>PermissionUtility</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <description>Správce souhlasů</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.ConsentManualChange__c</field>
@@ -190,9 +189,6 @@
         <field>InternalConsent__c.ValidTo__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>Consent Manager</label>
-    <license>Salesforce</license>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -229,4 +225,8 @@
         <object>InternalConsent__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <description>Správce souhlasů</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Consent Manager</label>
+    <license>Salesforce</license>
 </PermissionSet>

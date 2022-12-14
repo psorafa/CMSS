@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
         <apexClass>APRD__ObjectDetailController</apexClass>
@@ -12,7 +12,6 @@
         <apexClass>GenericRelatedListController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <description>IT admin + Správce klientské zóny</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.AccountId</field>
@@ -90,17 +89,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.ComplaintAgainst__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.ComplaintAgainstFirstName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.ComplaintAgainstLastName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.ComplaintAgainst__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -114,6 +113,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Contractor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Case.ContractorCommissionAccountNumber__c</field>
         <readable>true</readable>
@@ -121,11 +125,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.ContractorSortingCode__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.Contractor__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -142,11 +141,6 @@
         <editable>false</editable>
         <field>Case.Days10Exceeded__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.DaysOfComplaintSolving__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -205,12 +199,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.InternalPrecautionType__c</field>
+        <field>Case.InternalPrecaution__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.InternalPrecaution__c</field>
+        <field>Case.InternalPrecautionType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -379,6 +373,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Case.SourceDescription__c</field>
         <readable>true</readable>
@@ -386,11 +385,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.SourceId</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -460,12 +454,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CaseType__c.AssetNumber__c</field>
+        <field>CaseType__c.Asset__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CaseType__c.Asset__c</field>
+        <field>CaseType__c.AssetNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -515,12 +509,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>ClientZone__c.CancellationDate__c</field>
+        <field>ClientZone__c.CancelationNotificationSentDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>ClientZone__c.CancelationNotificationSentDate__c</field>
+        <field>ClientZone__c.CancellationDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -828,9 +822,6 @@
         <field>Task.WhoId</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>IT Admin</label>
-    <license>Salesforce</license>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -939,4 +930,8 @@
         <tab>standard-Case</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <description>IT admin + Správce klientské zóny</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>IT Admin</label>
+    <license>Salesforce</license>
 </PermissionSet>
