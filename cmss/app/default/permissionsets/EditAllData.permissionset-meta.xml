@@ -8220,6 +8220,10 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>CreateAuditFields</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>CreateCustomizeDashboards</name>
     </userPermissions>
     <userPermissions>
@@ -8328,6 +8332,10 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>ManageQuotas</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>ManageReportsInPubFolders</name>
     </userPermissions>
     <userPermissions>
@@ -8349,6 +8357,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ModifyMetadata</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>OverrideForecasts</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -8376,11 +8388,19 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>UpdateWithInactiveOwner</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>UseTeamReassignWizards</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewAllData</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewAllForecasts</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

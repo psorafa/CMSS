@@ -20,6 +20,11 @@ post    pro object Commmissions nastavit v OWD Grant Access Using Hierarchies = 
 
 v20
 
+pre     před prvním deploymentem na prostředí zakomentovat ve .forceignore
+            cmss/main/default/objects/Commission__c/fields/ClosureType__c.field-meta.xml
+            cmss/main/default/objects/Commission__c/fields/ProductProvider__c.field-meta.xml
+            cmss/main/default/objects/Commission__c/fields/StatementType__c.field-meta.xml
+            cmss/main/default/objects/Commission__c/fields/ExpenditureFlatRate__c.field-meta.xml
 post    vyplnit custom metadata Configuration__mdt pro Threat Detection (
             APIAnomalyEventNotifReceiver = emaily prijemcu oddelene carkou, 
             CredentialStuffingEventNotifReceiver = emaily prijemcu oddelene carkou, 
