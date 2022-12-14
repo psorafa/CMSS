@@ -7493,6 +7493,10 @@
         <recordType>Access_Log__c.LetterAccess</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Access_Log__c-PV PDF Export Layout</layout>
+        <recordType>Access_Log__c.PVPDFExport</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Account-LACRLayout</layout>
     </layoutAssignments>
     <layoutAssignments>
