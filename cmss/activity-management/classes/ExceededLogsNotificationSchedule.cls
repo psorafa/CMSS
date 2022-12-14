@@ -84,8 +84,7 @@ public with sharing class ExceededLogsNotificationSchedule implements Schedulabl
 					'REPORT_LINK' => notificationReportUrl
 				}
 			)
-			.setReceivers(notificationReceivers)
-			.generateNotifications();
+			.generateNotifications(null, notificationReceivers);
 
 		notificationsHandler.handleInsertNotifications();
 	}
