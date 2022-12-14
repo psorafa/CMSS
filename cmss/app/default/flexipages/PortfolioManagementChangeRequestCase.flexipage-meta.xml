@@ -48,16 +48,10 @@
                 <componentName>APRD:objectDetails</componentName>
                 <identifier>APRD_objectDetails</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!$User.Profile.Name}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>CMSS User</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!$User.Profile.Name}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>System Administrator</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

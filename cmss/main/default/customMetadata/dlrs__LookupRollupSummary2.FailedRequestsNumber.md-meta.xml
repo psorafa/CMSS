@@ -57,7 +57,7 @@ PortfolioManChangeResult__c</value>
     </values>
     <values>
         <field>dlrs__RelationshipCriteria__c</field>
-        <value xsi:type="xsd:string">(RequestStatus__c = &apos;2&apos; AND PortfolioManChangeResult__c != null)</value>
+        <value xsi:type="xsd:string">((RequestStatus__c = &apos;2&apos; OR RequestStatus__c = &apos;7&apos;) AND PortfolioManChangeResult__c != null)</value>
     </values>
     <values>
         <field>dlrs__RelationshipField__c</field>
