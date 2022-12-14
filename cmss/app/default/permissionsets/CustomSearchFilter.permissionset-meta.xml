@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldPermissions>
         <editable>true</editable>
@@ -25,9 +25,6 @@
         <field>CustomSearchFilter__c.RelatedObject__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>Custom Search Filter</label>
-    <license>Salesforce</license>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
@@ -57,4 +54,7 @@
         <tab>CustomSearchFilter__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Custom Search Filter</label>
+    <license>Salesforce</license>
 </PermissionSet>

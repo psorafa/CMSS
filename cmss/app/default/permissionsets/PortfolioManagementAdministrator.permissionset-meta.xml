@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
-        <apexClass>APRD__ObjectDetailController</apexClass>
+        <apexClass>AccountRelatedListController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>AccountRelatedListController</apexClass>
+        <apexClass>APRD__ObjectDetailController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -24,12 +24,6 @@
         <enabled>true</enabled>
         <name>BulkOwnershipStateChangeVisibility</name>
     </customPermissions>
-    <description>Správce portfolio managementu</description>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.DaysOfComplaintSolving__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PortfolioManagementA__c.Account__c</field>
@@ -62,12 +56,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementA__c.PortfolioManChangeReason__c</field>
+        <field>PortfolioManagementA__c.PortfolioManager__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementA__c.PortfolioManager__c</field>
+        <field>PortfolioManagementA__c.PortfolioManChangeReason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -112,12 +106,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementC__c.PortfolioManChangeReason__c</field>
+        <field>PortfolioManagementC__c.PortfolioManager__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementC__c.PortfolioManager__c</field>
+        <field>PortfolioManagementC__c.PortfolioManChangeReason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -141,6 +135,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>PortfolioManagementRequest__c.PortfolioManager__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PortfolioManagementRequest__c.PortfolioManagerCPU__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>PortfolioManagementRequest__c.PortfolioManChangeReason__c</field>
         <readable>true</readable>
@@ -151,23 +155,10 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>PortfolioManagementRequest__c.PortfolioManagerCPU__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>PortfolioManagementRequest__c.PortfolioManager__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>PortfolioManagementRequest__c.RequestStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>Portfolio Management Administrator</label>
-    <license>Salesforce</license>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -225,4 +216,8 @@
         <tab>PortfolioManagementRequest__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <description>Správce portfolio managementu</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Portfolio Management Administrator</label>
+    <license>Salesforce</license>
 </PermissionSet>
