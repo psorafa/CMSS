@@ -1,5 +1,5 @@
 @IsTest
-public with sharing class CommissionNotification_BatchTest {
+public with sharing class CommissionNotificationBatchTest {
 	
     @testSetup
 	private static void createTestData() {
@@ -13,7 +13,7 @@ public with sharing class CommissionNotification_BatchTest {
 	@IsTest
 	static void executeScheduleTest() {
 		String CRON_EXP = '0 0 12 * * ?';        
-		CommissionNotification_Batch batch = new CommissionNotification_Batch();
+		CommissionNotificationBatch batch = new CommissionNotificationBatch();
         Id jobId;
         Id cjdi;
 		Test.startTest();  
@@ -25,7 +25,7 @@ public with sharing class CommissionNotification_BatchTest {
     
 	@IsTest
 	static void executeBatchTest() {    
-		CommissionNotification_Batch batch = new CommissionNotification_Batch();
+		CommissionNotificationBatch batch = new CommissionNotificationBatch();
         Id jobId;
 		Test.startTest();       
 		Database.executeBatch(batch);      
