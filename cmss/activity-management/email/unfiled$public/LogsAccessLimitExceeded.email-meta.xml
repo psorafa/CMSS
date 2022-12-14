@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Logs Access Limit Exceeded</name>
+    <style>none</style>
+    <subject>Seznam uživatelů, kteří tento měsíc překročili limit zobrazení dopisů</subject>
+    <textOnly>
+        Dobrý den,
+        následující OZ překročili tento měsíc nastavený limit {!LIMIT} zobrazení dopisů v SalesForce:
+        {!CLIENTS_SUMMARY} 
+
+        Odkaz na report v Salesforce: {!REPORT_LINK}
+    </textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

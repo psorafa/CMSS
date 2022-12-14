@@ -34,3 +34,8 @@ post    vyplnit custom metadata Configuration__mdt pro Threat Detection (
         ) -- defaultni hodnota pro reciever metadata (pro prvni ctyri) = 'CRM_monitoring@csobstavebni.cz'
 post    V Dashabordu Pořadí MOT dle pilíře, Pořadí RM dle pilíře, Plnění produkce RM/MOS, Plnění produkce Manažera obchodního týmu a Produkce OZ – PPP přepsat zobrazení filtrů na H1 2023, H2 2022 a H1 2022 dle začátku období (nepodporují metadata)
 post    Přidat Custom Link na report RMOT11 do komponenty "Plnění nováčků za aktuální měsíc" v Dashboardu Homepage (MOT)
+post    vytvořit záznam pro custom metadata Configuration 
+        * Name = LogsNotification_Limit, Value = '30' 
+        * Name = LogsNotification_Receivers, Value = 'crm_podpora@csobstavebni.cz, TODO (p. Kožušková)' 
+        * Name = LogsNotification_ReportURL, Value = 'TODO' 
+post    naplánovat schedulable ExceededLogsNotificationSchedule - vždy 1. den v měsíci o půlnoci
