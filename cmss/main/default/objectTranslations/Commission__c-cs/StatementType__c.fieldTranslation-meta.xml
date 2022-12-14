@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Typ výpisu</label>
+    <name>StatementType__c</name>
+    <picklistValues>
+        <masterLabel>1</masterLabel>
+        <translation>Úvodní list pro provizní výpisy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10</masterLabel>
+        <translation>Nezaplacené smlouvy o stavebním spoření – pořízené do konce měsíce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100</masterLabel>
+        <translation>Podílové fondy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>110</masterLabel>
+        <translation>Rizikové životní pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>120</masterLabel>
+        <translation>ČSOB + Poštovní spořitelna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>130</masterLabel>
+        <translation>Sberbank</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>140</masterLabel>
+        <translation>Hypotéka od Lišky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>150</masterLabel>
+        <translation>Investiční životní pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>160</masterLabel>
+        <translation>Pojištění majetku a odpovědnosti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>170</masterLabel>
+        <translation>Jednorázové obraty zúčtovatelné s minimem/maximem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>180</masterLabel>
+        <translation>Jednorázové obraty nezúčtovatelné s minimem/maximem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>190</masterLabel>
+        <translation>Kauční konto (tvorba a čerpání)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20</masterLabel>
+        <translation>Nezaplacené smlouvy o stavebním spoření zpracované v měsíci</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>200</masterLabel>
+        <translation>Ostatní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30</masterLabel>
+        <translation>Zaplacené smlouvy o stavebním spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>40</masterLabel>
+        <translation>Pravidelně dospořované smlouvy o stavebním spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50</masterLabel>
+        <translation>Bonusový vklad od Lišky - smlouvy s nárokem na provize</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>60</masterLabel>
+        <translation>Informativní list – smlouvy - akce &quot;bez poplatku&quot;</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>70</masterLabel>
+        <translation>Informativní list – Bonusový vklad, kde dosud nevznikl nárok na výplatu provize</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>80</masterLabel>
+        <translation>Úvěry / meziúvěry</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>90</masterLabel>
+        <translation>Penzijní produkty</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>998</masterLabel>
+        <translation>Výplata</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>999</masterLabel>
+        <translation>Součtová strana</translation>
+    </picklistValues>
+</CustomFieldTranslation>

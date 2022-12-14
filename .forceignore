@@ -90,6 +90,10 @@ cmss/main/default/objects/Case/fields/InstitutionType__c.field-meta.xml
 cmss/main/default/objects/Case/fields/InternalPrecautionType__c.field-meta.xml
 cmss/main/default/objects/Case/fields/Country__c.field-meta.xml
 cmss/main/default/objects/ClientZone__c/fields/Role__c.field-meta.xml
+cmss/main/default/objects/Commission__c/fields/ClosureType__c.field-meta.xml
+cmss/main/default/objects/Commission__c/fields/ProductProvider__c.field-meta.xml
+cmss/main/default/objects/Commission__c/fields/StatementType__c.field-meta.xml
+cmss/main/default/objects/Commission__c/fields/ExpenditureFlatRate__c.field-meta.xml
 cmss/main/default/objects/Consent__c/fields/EntityConsent__c.field-meta.xml
 cmss/main/default/objects/Consent__c/fields/SourceEntity__c.field-meta.xml
 cmss/main/default/objects/Consent__c/fields/SubstituteRole__c.field-meta.xml
@@ -194,6 +198,10 @@ cmss/app/default/objectTranslations/Case-cs/InstitutionType__c.fieldTranslation-
 cmss/app/default/objectTranslations/Case-cs/InternalPrecautionType__c.fieldTranslation-meta.xml
 cmss/app/default/objectTranslations/Case-cs/Country__c.fieldTranslation-meta.xml
 cmss/app/default/objectTranslations/ClientZone__c-cs/Role__c.fieldTranslation-meta.xml
+cmss/app/default/objectTranslations/Commission__c-cs/ClosureType__c.fieldTranslation-meta.xml
+cmss/app/default/objectTranslations/Commission__c-cs/ProductProvider__c.fieldTranslation-meta.xml
+cmss/app/default/objectTranslations/Commission__c-cs/StatementType__c.fieldTranslation-meta.xml
+cmss/app/default/objectTranslations/Commission__c-cs/ExpenditureFlatRate__c.fieldTranslation-meta.xml
 cmss/app/default/objectTranslations/Consent__c-cs/EntityConsent__c.fieldTranslation-meta.xml
 cmss/app/default/objectTranslations/Consent__c-cs/SourceEntity__c.fieldTranslation-meta.xml
 cmss/app/default/objectTranslations/Consent__c-cs/SubstituteRole__c.fieldTranslation-meta.xml
