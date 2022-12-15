@@ -6151,6 +6151,10 @@
         <recordType>Case.NewClientClaim</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Case-Portfolio Management Change Request</layout>
+        <recordType>Case.PortfolioManagementChangeRequest</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CaseMilestone-Case Milestone Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -7262,6 +7266,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Case.NewClientClaim</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Case.PortfolioManagementChangeRequest</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

@@ -24,6 +24,10 @@
         <enabled>true</enabled>
         <name>BulkOwnershipStateChangeVisibility</name>
     </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>CreateEmptyPortfolioManagementCases</name>
+    </customPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PortfolioManagementA__c.Account__c</field>
@@ -130,12 +134,32 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>PortfolioManagementRequest__c.Case__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>PortfolioManagementRequest__c.ErrorMessage__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>PortfolioManagementRequest__c.OriginalPortfolioManagerA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PortfolioManagementRequest__c.PMTCaseCreatedByName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PortfolioManagementRequest__c.PMTCaseChangeReason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PortfolioManagementRequest__c.PortfolioManager__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -157,6 +181,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>PortfolioManagementRequest__c.RequestStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PortfolioManagementRequest__c.UniqueId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <objectPermissions>
