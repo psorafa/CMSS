@@ -56,12 +56,12 @@ public class EDocumentSOAPService {
 			if (content.contains('<soapenv:Fault>')) {
 				String errorMessage = content.substringAfter('<ns2:message>');
 				errorMessage = errorMessage.substringBefore('</ns2:message>');
-                Logger.error('Incoming response error', errorMessage);
+				Logger.error('Incoming response error', errorMessage);
 				throw new EDocumentSOAPServiceException(errorMessage);
 			} else if (!content.contains('<ns3:eDocumentData>')) {
-                Logger.error('Unexpected response', Logger.serializeHttpResponse(res));
-                throw new EDocumentSOAPServiceException('Unkown error');
-            }
+				Logger.error('Unexpected response', Logger.serializeHttpResponse(res));
+				throw new EDocumentSOAPServiceException('Unkown error');
+			}
 			content = content.substringAfter('<ns3:eDocumentData>');
 			content = content.substringBefore('</ns3:eDocumentData>');
 			return content;
@@ -90,7 +90,7 @@ public class EDocumentSOAPService {
 		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
 		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
 
-        public GetDocumentBySBIdRequest(
+		public GetDocumentBySBIdRequest(
 			CommonMessageService.RequestHeader requestHeader,
 			EDocumentSOAPService.GetDocumentBySBIdRequestBody requestBody
 		) {

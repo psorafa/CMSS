@@ -1,26 +1,25 @@
 @IsTest
 public class EDocumentControllerTest {
-
 	@TestSetup
 	static void setup() {
-        insert TestDataFactory.getIntegrationSettings();
+		insert TestDataFactory.getIntegrationSettings();
 
-        User u = TestDataFactory.getUserWithProfile(new User(), 'Standard User');
-        insert u;
+		User u = TestDataFactory.getUserWithProfile(new User(), 'Standard User');
+		insert u;
 
-        EDocumentControllerTest.addPermSet();
+		EDocumentControllerTest.addPermSet();
 	}
 
-    @future
-    private static void addPermSet() {
-        List<User> users = [SELECT Id FROM User WHERE Alias = 'tstU'];
-        List<PermissionSet> ps = [SELECT Id, Name FROM PermissionSet WHERE Name = 'CMSS_User'];
-        insert new PermissionSetAssignment(AssigneeId = users[0].id, PermissionSetId = ps[0].Id);
-    }
+	@future
+	private static void addPermSet() {
+		List<User> users = [SELECT Id FROM User WHERE Alias = 'tstU'];
+		List<PermissionSet> ps = [SELECT Id, Name FROM PermissionSet WHERE Name = 'CMSS_User'];
+		insert new PermissionSetAssignment(AssigneeId = users[0].id, PermissionSetId = ps[0].Id);
+	}
 
-    @IsTest
-    static void testEDocumentController() {
-        CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+	@IsTest
+	static void testEDocumentController() {
+		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
 			null,
@@ -30,33 +29,33 @@ public class EDocumentControllerTest {
 			null
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
-        User u = [SELECT Id FROM User WHERE Alias = 'tstU'];
+		User u = [SELECT Id FROM User WHERE Alias = 'tstU'];
 
-        Task t = TestDataFactory.getTask(new Task());
-        t.OwnerId = u.Id;
-        t.LetterId__c = '123';
-        t.LetterType__c = 'testtype';
-        insert t;
+		Task t = TestDataFactory.getTask(new Task());
+		t.OwnerId = u.Id;
+		t.LetterId__c = '123';
+		t.LetterType__c = 'testtype';
+		insert t;
 
-        EDocumentController controller;
-        Test.startTest();
-            System.runAs(u) {
-                ApexPages.currentPage().getParameters().put('recordId', t.Id);
-                controller = new EDocumentController(null);
-                controller.loadDocument();
-            }
-        Test.stopTest();
+		EDocumentController controller;
+		Test.startTest();
+		System.runAs(u) {
+			ApexPages.currentPage().getParameters().put('recordId', t.Id);
+			controller = new EDocumentController(null);
+			controller.loadDocument();
+		}
+		Test.stopTest();
 
-        System.assert(controller.isError == false);
-        System.assert(controller.showPDF == true);
-        System.assert(controller.base64Data.startsWith('JVBERi0xLjQN'));
-        
-        Access_Log__c log = [SELECT Id, TaskLetterId__c, TaskLetterType__c, TaskId__c FROM Access_Log__c LIMIT 1];
-        System.assert(log != null);
-    }
+		System.assert(controller.isError == false);
+		System.assert(controller.showPDF == true);
+		System.assert(controller.base64Data.startsWith('JVBERi0xLjQN'));
 
-        @IsTest
-    static void testEDocumentControllerError() {
+		Access_Log__c log = [SELECT Id, TaskLetterId__c, TaskLetterType__c, TaskId__c FROM Access_Log__c LIMIT 1];
+		System.assert(log != null);
+	}
+
+	@IsTest
+	static void testEDocumentControllerError() {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
@@ -67,39 +66,38 @@ public class EDocumentControllerTest {
 			null
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
-        User u = [SELECT Id FROM User WHERE Alias = 'tstU'];
+		User u = [SELECT Id FROM User WHERE Alias = 'tstU'];
 
-        Task t = TestDataFactory.getTask(new Task());
-        t.OwnerId = u.Id;
-        t.LetterId__c = '123';
-        t.LetterType__c = 'testtype';
-        insert t;
+		Task t = TestDataFactory.getTask(new Task());
+		t.OwnerId = u.Id;
+		t.LetterId__c = '123';
+		t.LetterType__c = 'testtype';
+		insert t;
 
-        EDocumentController controller;
-        Test.startTest();
-            System.runAs(u) {
-                ApexPages.currentPage().getParameters().put('recordId', t.Id);
-                controller = new EDocumentController(null);
-                controller.loadDocument();
-            }
-        Test.stopTest();
+		EDocumentController controller;
+		Test.startTest();
+		System.runAs(u) {
+			ApexPages.currentPage().getParameters().put('recordId', t.Id);
+			controller = new EDocumentController(null);
+			controller.loadDocument();
+		}
+		Test.stopTest();
 
-        System.assert(controller.isError == true);
-        System.assert(controller.showPDF == false);
-        System.assert(controller.base64Data == null);
-    }
+		System.assert(controller.isError == true);
+		System.assert(controller.showPDF == false);
+		System.assert(controller.base64Data == null);
+	}
 
-    @IsTest
-    static void testCreateAccessLogRecord() {
+	@IsTest
+	static void testCreateAccessLogRecord() {
+		Test.startTest();
+		new EDocumentController(null).createAccessLogRecord('letterId', 'letterType', 'taskId');
+		Test.stopTest();
 
-        Test.startTest();
-            new EDocumentController(null).createAccessLogRecord('letterId', 'letterType', 'taskId');
-        Test.stopTest();
+		Access_Log__c log = [SELECT Id, TaskLetterId__c, TaskLetterType__c, TaskId__c FROM Access_Log__c LIMIT 1];
 
-        Access_Log__c log = [SELECT Id, TaskLetterId__c, TaskLetterType__c, TaskId__c FROM Access_Log__c LIMIT 1];
-
-        System.assertEquals('letterId', log.TaskLetterId__c);
-        System.assertEquals('letterType', log.TaskLetterType__c);
-        System.assertEquals('taskId', log.TaskId__c);
-    }
+		System.assertEquals('letterId', log.TaskLetterId__c);
+		System.assertEquals('letterType', log.TaskLetterType__c);
+		System.assertEquals('taskId', log.TaskId__c);
+	}
 }
