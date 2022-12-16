@@ -9,6 +9,7 @@ public class AccountTriggerHandler extends TriggerHandler {
 		validateAccount(Trigger.new);
 		invalidateAccount(Trigger.new);
 		setOwner(Trigger.new);
+		setLastPortfolioManager(Trigger.oldMap, Trigger.new);
 	}
 
 	public override void beforeDelete() {
@@ -36,7 +37,8 @@ public class AccountTriggerHandler extends TriggerHandler {
 			SELECT Id
 			FROM RecordType
 			WHERE SobjectType = 'Account' AND Name = 'Community Account'
-		].Id;
+		]
+		.Id;
 		for (Account a : accounts) {
 			if (a.RecordTypeId == communityRecordType) {
 				continue;
@@ -47,6 +49,16 @@ public class AccountTriggerHandler extends TriggerHandler {
 				a.OwnerId = a.PortfolioMngmtA__c;
 			} else if (commonSetting.AccountDefaultOwner__c != null) {
 				a.OwnerId = commonSetting.AccountDefaultOwner__c;
+			}
+		}
+	}
+
+	@TestVisible
+	private static void setLastPortfolioManager(Map<Id, Account> oldAccountsMap, List<Account> newAccounts) {
+		for (Account account : newAccounts) {
+			if (oldAccountsMap.get(account.Id).PortfolioMngmtA__c != account.PortfolioMngmtA__c) {
+				account.LastPortfolioManagerA__c = oldAccountsMap.get(account.Id).PortfolioMngmtA__c;
+				account.LastPtfManAChangeDate__c = System.today();
 			}
 		}
 	}
