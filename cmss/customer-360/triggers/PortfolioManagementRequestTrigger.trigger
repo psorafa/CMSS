@@ -7,7 +7,7 @@ trigger PortfolioManagementRequestTrigger on PortfolioManagementRequest__c (
 	after delete,
 	after undelete
 ) {
-  if (!FeatureManagement.checkPermission('SkipCalculations')) {
+    if (!FeatureManagement.checkPermission('SkipCalculations')) {
 		dlrs.RollupService.triggerHandler();
 	}
 	new PortfolioManagementRequestTriggerHandler().run();
