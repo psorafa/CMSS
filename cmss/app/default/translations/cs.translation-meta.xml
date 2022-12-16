@@ -297,6 +297,14 @@
         <name>SearchCommonError</name>
         <label>Vyhledávání skončilo chybou. Prosíme opakujte akci. Pokud problém přetrvá kontaktujte podporu.</label>
     </customLabels>
+    <customLabels>
+        <name>eDocumentNotAvailable</name>
+        <label>Nastala technická chyba, detail dopisu nelze zobrazit. Opakujte prosím později.</label>
+    </customLabels>
+    <customLabels>
+        <name>Link</name>
+        <label>Odkaz</label>
+    </customLabels>
     <customTabs>
         <label>Identifikace klienta</label>
         <name>Customer_Search</name>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Link</fullName>
+        <categories>LetterLink</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Link</shortDescription>
+        <value>Link</value>
+    </labels>
+    <labels>
+        <fullName>eDocumentNotAvailable</fullName>
+        <categories>EDocumentController</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>eDocument not available</shortDescription>
+        <value>Technical Error ocured, it is not possible to view letter detail. Please try again later.</value>
+    </labels>
+</CustomLabels>

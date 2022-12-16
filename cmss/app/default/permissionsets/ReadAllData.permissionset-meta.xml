@@ -4510,6 +4510,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Event.eDocumentLink__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Event.Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6226,6 +6231,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.eDocumentLink__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
