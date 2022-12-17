@@ -1,0 +1,33 @@
+<template>
+	<lightning-card title="Základní parametry">
+		<lightning-spinner if:true={loading}></lightning-spinner>
+		<div class="slds-p-around_medium">
+			<lightning-combobox
+				label="Typ provizního výpisu"
+				placeholder="Vyberte typ provizního výpisu"
+				onchange={handleFolderChange}
+				options={folderOptions}
+			></lightning-combobox>
+			<br />
+			<lightning-button variant="brand" label="run report" onclick={handleRunReport}></lightning-button>&nbsp;
+			<lightning-button variant="brand" label="check" onclick={handleCheckStatus}></lightning-button>&nbsp;
+			<lightning-button variant="brand" label="get data" onclick={handleGetData}></lightning-button>&nbsp;
+		</div>
+		<br />
+		<div class="slds-is-relative slds-p-around_medium">
+			Report: {selectedReport}<br />
+			Instance: {reportInstance}<br />
+			Status: {reportStatus}<br />
+			Error:
+			<pre>{error}</pre>
+			<br />
+			<form method="POST" action="https://csobstavebni--reporting--c.sandbox.vf.force.com/apex/PocPdfGenerator">
+				<button if:true={reportHtmlData} class="slds-button slds-button_neutral">dělej PDF</button>
+				<input name="html" style="display: none" type="hidden" value={reportHtmlData} />
+			</form>
+			<template for:item="item" for:each={reportData}>
+				<div key={item}>{item}</div>
+			</template>
+		</div>
+	</lightning-card>
+</template>

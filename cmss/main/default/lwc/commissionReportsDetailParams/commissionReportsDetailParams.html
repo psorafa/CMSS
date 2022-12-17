@@ -1,0 +1,109 @@
+<template>
+	<lightning-card title="Upřesňující parametry">
+		<lightning-spinner if:true={loading}></lightning-spinner>
+		<div class="slds-p-around_medium">
+			<lightning-radio-group
+				name="radioGroup"
+				label="Období"
+				options={options}
+				value={value}
+				class="customRadioCls"
+				type="radio"
+				onchange={handlePeriodRadioChange}
+			></lightning-radio-group>
+		</div>
+		<div class="c-container">
+			<lightning-layout vertical-align="stretch" multiple-rows="false">
+				<lightning-layout-item flexibility="auto" padding="around-small">
+					<p class="bolded">Od</p>
+					<lightning-combobox
+						name="year"
+						label="Rok"
+						value={yearValue}
+						placeholder="Select a Year"
+						variant="label-inline"
+						options={yearOptions}
+						onchange={handleYearChange}
+					></lightning-combobox>
+					<p>Selected value is: {yearValue}</p>
+					<lightning-combobox
+						name="month"
+						label="Měsíc"
+						value={monthValue}
+						placeholder="Select a Month"
+						variant="label-inline"
+						options={monthOptions}
+						onchange={handleMonthChange}
+					></lightning-combobox>
+					<p>Selected value is: {monthValue}</p>
+				</lightning-layout-item>
+				<template if:true={showTo}>
+					<lightning-layout-item flexibility="auto" padding="around-small"
+						><p class="bolded">Do</p>
+						<lightning-combobox
+							name="yearTo"
+							label="Rok"
+							value={yearToValue}
+							placeholder="Select a Year"
+							variant="label-inline"
+							options={yearOptions}
+							onchange={handleYearToChange}
+						></lightning-combobox>
+						<p>Selected value is: {yearToValue}</p>
+						<lightning-combobox
+							name="monthTo"
+							label="Měsíc"
+							value={monthToValue}
+							placeholder="Select a Month"
+							variant="label-inline"
+							options={monthToOptions}
+							onchange={handleMonthToChange}
+						></lightning-combobox>
+						<p>Selected value is: {monthToValue}</p>
+					</lightning-layout-item>
+				</template>
+				<lightning-layout-item flexibility="auto" padding="around-small"
+					><p class="bolded">Koncovka ČPÚ</p>
+					<div class="slds-form-element">
+						<div class="slds-form-element__control padd-top">
+							<input
+								type="text"
+								name="cpu"
+								placeholder="Koncovka ČPÚ…"
+								oninput={handleCpuChange}
+								class="slds-input"
+								value={cpuValue}
+							/>
+						</div>
+					</div>
+					<p>CPU is: {cpuValue}</p>
+				</lightning-layout-item>
+				<lightning-layout-item flexibility="auto" padding="around-small"
+					><p class="bolded">Pořadové číslo záznamu</p>
+					<div class="slds-form_horizontal">
+						<lightning-input
+							type="number"
+							min="1"
+							label="Od"
+							name="fromrecord"
+							value={fromRecordValue}
+							onchange={handleFromRecordChange}
+						></lightning-input>
+						<p>FromRecord: {fromRecordValue}</p>
+					</div>
+					<div class="slds-form_horizontal">
+						<lightning-input
+							type="number"
+							min="1"
+							label="Do"
+							name="torecord"
+							value={toRecordValue}
+							onchange={handleToRecordChange}
+						></lightning-input>
+						<p>ToRecord: {toRecordValue}</p>
+					</div>
+				</lightning-layout-item>
+			</lightning-layout>
+		</div>
+	</lightning-card>
+</template>
