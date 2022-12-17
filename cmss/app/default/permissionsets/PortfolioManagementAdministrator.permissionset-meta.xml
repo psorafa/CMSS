@@ -150,12 +150,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementRequest__c.PMTCaseCreatedByName__c</field>
+        <field>PortfolioManagementRequest__c.CaseCreatedByName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementRequest__c.PMTCaseChangeReason__c</field>
+        <field>PortfolioManagementRequest__c.CaseChangeReason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
