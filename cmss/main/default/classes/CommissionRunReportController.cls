@@ -1,14 +1,29 @@
 public with sharing class CommissionRunReportController {
 
     @AuraEnabled
-    public static Map<String, CommissionReports__mdt> getReportsMap() {
+    public static Map<String, ReportWrap> getReportsMap() {
        Map<String, CommissionReports__mdt> result = CommissionReports__mdt.getAll();
        Set<String> restultSet = result.keySet();
+       Map<String, ReportWrap> reportMap = new Map<String, ReportWrap>();
+        for (Report report : [SELECT Id, Name, FolderName, DeveloperName FROM Report where DeveloperName IN :restultSet ORDER BY Name]) {
+            if (!reportMap.containsKey(report.DeveloperName)) {
+                reportMap.put(report.DeveloperName, new ReportWrap(report.DeveloperName, report.Name, report.Id));
+            }
+        }
+        
+        if(reportMap.isEmpty()){
+            for(String report : restultSet){
+              if (!reportMap.containsKey(report)) {
+                reportMap.put(report, new ReportWrap(report, result.get(report).ReportName__c, ''));
+              }   
+            }
+        }
+           
        List<String> resultList = new List<String>(restultSet);
        resultList.sort();
-       Map<String, CommissionReports__mdt> resultSorted = new Map<String, CommissionReports__mdt>();
+       Map<String, ReportWrap> resultSorted = new Map<String, ReportWrap>();
         for (String reportDevName : resultList) {
-            resultSorted.put(reportDevName, result.get(reportDevName));
+            resultSorted.put(reportDevName, reportMap.get(reportDevName));
         }
        return resultSorted;
         
@@ -23,12 +38,24 @@ public with sharing class CommissionRunReportController {
     }
 
     public class ReportWrap {
+        @AuraEnabled public String reportDeveloperName;
+        @AuraEnabled public String ReportName;
+        @AuraEnabled public String reportId;
+
+        public ReportWrap(String rDevName, String rLabel, String rId) {
+            this.reportDeveloperName = rDevName;
+            this.ReportName = rLabel;
+            this.reportId = rId;
+        }
+    }
+    
+    public class ReportWrapTezi {
         @AuraEnabled public String label;
         @AuraEnabled public String value;
         //@AuraEnabled public String developername;
         //@AuraEnabled public String columns;
 
-        public ReportWrap(String name, Id id) {
+        public ReportWrapTezi(String name, Id id) {
             this.label = name;
             this.value = id;
             //this.developername = developername;

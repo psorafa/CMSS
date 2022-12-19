@@ -1,0 +1,15 @@
+<aura:component implements="lightning:appHomeTemplate" description="Commission Reports layout" access="global">
+	<aura:attribute name="top" type="Aura.Component[]" access="global" />
+	<aura:attribute name="leftmiddle" type="Aura.Component[]" access="global" />
+	<aura:attribute name="rightmiddle" type="Aura.Component[]" access="global" />
+	<aura:attribute name="bottom" type="Aura.Component[]" access="global" />
+
+	<div aura:id="container">
+		<lightning:layout multipleRows="true">
+			<lightning:layoutItem aura:id="topRow" size="12"> {!v.top} </lightning:layoutItem>
+			<lightning:layoutItem aura:id="leftColumn" size="4"> {!v.leftmiddle} </lightning:layoutItem>
+			<lightning:layoutItem aura:id="rightColumn" size="8"> {!v.rightmiddle} </lightning:layoutItem>
+			<lightning:layoutItem aura:id="bottomRow" size="12"> {!v.bottom} </lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

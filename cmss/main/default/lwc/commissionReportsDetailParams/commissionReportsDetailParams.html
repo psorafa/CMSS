@@ -25,7 +25,7 @@
 						options={yearOptions}
 						onchange={handleYearChange}
 					></lightning-combobox>
-					<p>Selected value is: {yearValue}</p>
+					<br />
 					<lightning-combobox
 						name="month"
 						label="Měsíc"
@@ -35,7 +35,6 @@
 						options={monthOptions}
 						onchange={handleMonthChange}
 					></lightning-combobox>
-					<p>Selected value is: {monthValue}</p>
 				</lightning-layout-item>
 				<template if:true={showTo}>
 					<lightning-layout-item flexibility="auto" padding="around-small"
@@ -49,7 +48,7 @@
 							options={yearOptions}
 							onchange={handleYearToChange}
 						></lightning-combobox>
-						<p>Selected value is: {yearToValue}</p>
+						<br />
 						<lightning-combobox
 							name="monthTo"
 							label="Měsíc"
@@ -59,7 +58,6 @@
 							options={monthToOptions}
 							onchange={handleMonthToChange}
 						></lightning-combobox>
-						<p>Selected value is: {monthToValue}</p>
 					</lightning-layout-item>
 				</template>
 				<lightning-layout-item flexibility="auto" padding="around-small"
@@ -76,7 +74,19 @@
 							/>
 						</div>
 					</div>
-					<p>CPU is: {cpuValue}</p>
+					<p class="bolded padd-top-tribe-cpu">Kmen ČPÚ</p>
+					<div class="slds-form-element">
+						<div class="slds-form-element__control padd-top">
+							<input
+								type="text"
+								name="tribecpu"
+								placeholder="Kmen ČPÚ…"
+								oninput={handleTribeCpuChange}
+								class="slds-input"
+								value={tribeCpuValue}
+							/>
+						</div>
+					</div>
 				</lightning-layout-item>
 				<lightning-layout-item flexibility="auto" padding="around-small"
 					><p class="bolded">Pořadové číslo záznamu</p>
@@ -89,8 +99,8 @@
 							value={fromRecordValue}
 							onchange={handleFromRecordChange}
 						></lightning-input>
-						<p>FromRecord: {fromRecordValue}</p>
 					</div>
+					<br />
 					<div class="slds-form_horizontal">
 						<lightning-input
 							type="number"
@@ -100,7 +110,6 @@
 							value={toRecordValue}
 							onchange={handleToRecordChange}
 						></lightning-input>
-						<p>ToRecord: {toRecordValue}</p>
 					</div>
 				</lightning-layout-item>
 			</lightning-layout>

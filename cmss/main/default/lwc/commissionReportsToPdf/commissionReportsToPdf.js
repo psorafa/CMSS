@@ -1,67 +1,60 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, wire, api } from 'lwc';
 import getReportsMap from '@salesforce/apex/CommissionRunReportController.getReportsMap';
 import runReport from '@salesforce/apex/CommissionRunReportController.runReport';
 import checkStatus from '@salesforce/apex/CommissionRunReportController.checkStatus';
 import getReportData from '@salesforce/apex/CommissionRunReportController.getReportData';
+import { subscribe, unsubscribe, APPLICATION_SCOPE, MessageContext } from 'lightning/messageService';
+import COMMISSION_CHANNEL from '@salesforce/messageChannel/Commission_Reports__c';
 
 export default class commissionReportsToPdf extends LightningElement {
 	data;
 	loaded = false;
-	@track folderOptions = [
-		{
-			label: 'test',
-			value: 'test'
-		}
-	];
-	@track reportOptions = [];
+
+	@api selectedReport;
+	year;
+	month;
+	yearTo;
+	monthTo;
+	showTo;
+	cpu;
+	fromRecord;
+	toRecord;
 	selectedReport;
+
+	@wire(MessageContext)
+	messageContext;
+
 	reportInstance;
 	reportStatus;
 	reportData;
 	reportHtmlData;
 	error;
 	loading = false;
+	subscription = null;
+
+	subscribeToMessageChannel() {
+		this.subscription = subscribe(
+			this.messageContext,
+			COMMISSION_CHANNEL,
+			(message) => this.handleMessage(message),
+			{ scope: APPLICATION_SCOPE }
+		);
+	}
+
+	handleMessage(message) {
+		this.year = message.year;
+		this.month = message.month;
+		this.yearTo = message.yearTo;
+		this.monthTo = message.monthTo;
+		this.showTo = message.showTo;
+		this.cpu = message.cpu;
+		this.fromRecord = message.fromRecord;
+		this.toRecord = message.toRecord;
+		this.selectedReport = message.selectedReport;
+	}
 
 	connectedCallback() {
-		if (!this.loaded) {
-			this.loaded = true;
-			getReportsMap().then((result) => {
-				this.processResult(result);
-			});
-		}
-	}
-
-	processResult(result) {
-		this.data = result;
-		let folderOptions = [];
-		for (let folder in result) {
-			console.log('folder:' + folder);
-			console.log('inside:' + result[folder].ReportName__c);
-			folderOptions.push({
-				label: result[folder].ReportName__c,
-				value: folder
-			});
-		}
-		this.folderOptions = folderOptions;
-		console.log('pokus:' + this.data.CommissionReport90.ReportName__c);
-		console.log('result:' + JSON.stringify(result));
-		/*this.data = result;
-		let folderOptions = [];
-		for (let folder in result) {
-			folderOptions.push({
-				label: folder,
-				value: folder
-			});
-		}
-		this.folderOptions = folderOptions;*/
-	}
-
-	handleFolderChange(event) {
-		//this.reportOptions = this.data[event.detail.value];
-	}
-
-	handleReportChange(event) {
-		this.selectedReport = event.detail.value;
+		this.subscribeToMessageChannel();
 	}
 
 	handleRunReport(event) {
