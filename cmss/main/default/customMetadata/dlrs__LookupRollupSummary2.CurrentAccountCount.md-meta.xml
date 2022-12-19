@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>dlrs__Active__c</field>
-        <value xsi:type="xsd:boolean">false</value>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>dlrs__AggregateAllRows__c</field>
@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>dlrs__CalculationSharingMode__c</field>
-        <value xsi:type="xsd:string">User</value>
+        <value xsi:type="xsd:string">System</value>
     </values>
     <values>
         <field>dlrs__ChildObject__c</field>

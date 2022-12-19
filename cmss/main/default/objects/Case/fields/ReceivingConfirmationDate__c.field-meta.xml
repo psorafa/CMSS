@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ReceivingConfirmationDate__c</fullName>
     <description>Pole obsahující informaci kdy došlo k odeslání potvrzení o přijetí podání podávájícímu</description>
+    <encryptionScheme>None</encryptionScheme>
     <externalId>false</externalId>
     <label>Receiving Confirmation Date</label>
     <required>false</required>

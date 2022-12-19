@@ -3,12 +3,16 @@
     <label>Stav requestu</label>
     <name>RequestStatus__c</name>
     <picklistValues>
+        <masterLabel>0</masterLabel>
+        <translation>Nový</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>1</masterLabel>
-        <translation>Nový požadavek</translation>
+        <translation>Úspěšně zpracováno</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>2</masterLabel>
-        <translation>Odesláno ke zpracování</translation>
+        <translation>Zpracování odmítnuto</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>3</masterLabel>
@@ -16,14 +20,18 @@
     </picklistValues>
     <picklistValues>
         <masterLabel>4</masterLabel>
-        <translation>Zpracování odmítnuto</translation>
+        <translation>Odesláno ke zpracování</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>5</masterLabel>
-        <translation>Úspěšně zpracováno</translation>
+        <translation>Zpracování přesunuto do nočního zpracování (D-1)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>6</masterLabel>
         <translation>Zpracování skončilo chybou</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>7</masterLabel>
+        <translation>Změna do minulosti</translation>
     </picklistValues>
 </CustomFieldTranslation>

@@ -198,6 +198,42 @@
     <navType>Standard</navType>
     <profileActionOverrides>
         <actionName>View</actionName>
+        <content>PortfolioManagementChangeRequestCase</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.PortfolioManagementChangeRequest</recordType>
+        <type>Flexipage</type>
+        <profile>CMSS Headquarters User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>PortfolioManagementChangeRequestCase</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.PortfolioManagementChangeRequest</recordType>
+        <type>Flexipage</type>
+        <profile>CMSS User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>PortfolioManagementChangeRequestCase</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.PortfolioManagementChangeRequest</recordType>
+        <type>Flexipage</type>
+        <profile>SuperAdmin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>PortfolioManagementChangeRequestCase</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+        <recordType>Case.PortfolioManagementChangeRequest</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
         <content>ClientRecordPageCMSSUsers</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Account</pageOrSobjectType>

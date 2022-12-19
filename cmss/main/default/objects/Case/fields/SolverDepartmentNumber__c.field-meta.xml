@@ -3,6 +3,7 @@
     <fullName>SolverDepartmentNumber__c</fullName>
     <defaultValue>$User.Department</defaultValue>
     <description>Číslo útvaru řešitele, automaticky se doplní dle zvoleného řešitele</description>
+    <encryptionScheme>None</encryptionScheme>
     <externalId>false</externalId>
     <label>Solver Department Number</label>
     <length>255</length>

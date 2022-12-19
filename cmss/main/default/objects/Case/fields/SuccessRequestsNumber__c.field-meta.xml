@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SuccessRequestsNumber__c</fullName>
+    <description>Počet úspěšně dokončených – nápočet pomocí DLRS dle stavu requestů</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Platné k aktuálnímu okamžiku</inlineHelpText>
+    <label>Success Requests Number</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

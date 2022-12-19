@@ -3,6 +3,7 @@
     <fullName>HistoricCaseNumber__c</fullName>
     <caseSensitive>false</caseSensitive>
     <description>Holds Case Number for imported/migrated records. Expected format is YYYY00000</description>
+    <encryptionScheme>None</encryptionScheme>
     <externalId>true</externalId>
     <label>Historic Case Number</label>
     <length>9</length>

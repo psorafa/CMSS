@@ -180,6 +180,17 @@
             <section>Řešení</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>Portfolio Management Change Request</layout>
+        <sections>
+            <label></label>
+            <section>Vlastní odkazy</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Pole</section>
+        </sections>
+    </layouts>
     <quickActions>
         <label>Zrušit podání</label>
         <name>ClaimCancellation</name>
@@ -232,6 +243,10 @@
         <description><!-- Record type for Client Claims (complaints, incidents, requests) --></description>
         <label>Nové klientské podání</label>
         <name>NewClientClaim</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Žádost o změnu správy stavu</label>
+        <name>PortfolioManagementChangeRequest</name>
     </recordTypes>
     <validationRules>
         <errorMessage>Povinné pole</errorMessage>

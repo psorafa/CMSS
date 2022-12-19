@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ResponseSentDate__c</fullName>
     <description>Pole obsahující informaci kdy došlo k odeslání odpovědi na podání podávájícímu</description>
+    <encryptionScheme>None</encryptionScheme>
     <externalId>false</externalId>
     <label>Response Sent Date</label>
     <required>false</required>

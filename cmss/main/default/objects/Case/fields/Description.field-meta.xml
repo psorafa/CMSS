@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Description</fullName>
     <description>Popis případu</description>
+    <encryptionScheme>None</encryptionScheme>
     <securityClassification>Confidential</securityClassification>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>

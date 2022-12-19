@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>CMSSUserPMRCase</label>
+    <protected>false</protected>
+    <values>
+        <field>APRD__ReadonlyFields__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>APRD__SectionFieldMapping__c</field>
+        <value xsi:type="xsd:string">[{&quot;SecName&quot;:&quot;Podrobnosti&quot;,&quot;FieldList&quot;:[&quot;CreatedDate&quot;,&quot;DecisionDate__c&quot;,&quot;Approver__c&quot;,&quot;ChangeReason__c&quot;,&quot;Description&quot;,&quot;TotalRequestsNumber__c&quot;,&quot;SuccessRequestsNumber__c&quot;,&quot;FailedRequestsNumber__c&quot;]}]</value>
+    </values>
+</CustomMetadata>
