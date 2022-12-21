@@ -248,6 +248,49 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>condition</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>fieldLabels</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>fieldsToDisplay</name>
+                    <value>Name,ExternalId__c,TrainingLevelType_c__c,ValidFrom__c,ValidTo__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>standard:education</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Vzdělávání a certifikace</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relationPrimaryLookupField</name>
+                    <value>User__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relationSecondaryLookupField</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relationshipObjectName</name>
+                    <value>UserTrainingLevel__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sharingEnabled</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>relatedListWithSharing</componentName>
+                <identifier>c_relatedListWithSharing</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-c1b5337c-96c7-4629-a4f1-745e3230685b</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>active</name>
                     <value>true</value>
                 </componentInstanceProperties>
@@ -307,6 +350,20 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-c1b5337c-96c7-4629-a4f1-745e3230685b</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Vzdělávání a certifikace</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab2</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-0454c846-692c-4cb0-8174-6db2a6e9829c</name>
