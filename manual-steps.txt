@@ -20,6 +20,12 @@ post    pro object Commmissions nastavit v OWD Grant Access Using Hierarchies = 
 
 v20
 
+v20
+
+post    vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__mdt pro vsechny dashboardType
+            - LinkMOTDashboard - Plnění produkce Manažera obchodního týmu
+            - LinkOZDashboard - Produkce OZ – PPP
+            - LinkRMMOSDashboard - Plnění produkce RM / MOS
 pre     před prvním deploymentem na prostředí zakomentovat ve .forceignore
             cmss/main/default/objects/Commission__c/fields/ClosureType__c.field-meta.xml
             cmss/main/default/objects/Commission__c/fields/ProductProvider__c.field-meta.xml
