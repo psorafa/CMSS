@@ -1,6 +1,5 @@
 public class TaskTriggerHandler extends TriggerHandler {
-    
-    public static String letterRecordTypeName = 'Letter';
+	public static String letterRecordTypeDeveloperName = 'Letter';
 
 	public override void beforeInsert() {
 		TaskService.setRecordType(Trigger.new);
@@ -114,11 +113,15 @@ public class TaskTriggerHandler extends TriggerHandler {
 		List<Id> potentialTasksToNotifyAbout = new List<Id>();
 		List<Id> tasksToNotifyAbout = new List<Id>();
 
+		Id letterRecordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
+			.get(letterRecordTypeDeveloperName)
+			.getRecordTypeId();
 		for (Task task : (List<Task>) newTasks) {
 			if (
 				task.OwnerId != ((Task) oldTasksMap.get(task.Id)).OwnerId &&
 				!integrationUserIds.contains(task.LastModifiedById) &&
-				task.isClosed == false
+				task.isClosed == false &&
+				task.RecordTypeId != letterRecordTypeId
 			) {
 				potentialTasksToNotifyAbout.add(task.Id);
 			}
@@ -166,6 +169,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 				AND Category__c = '1'
 				AND (IsVisibleForNel__c = TRUE
 				OR Source__c = '54')
+				AND RecordType.DeveloperName != :letterRecordTypeDeveloperName
 		];
 
 		List<Task> otherTasks = [
@@ -179,6 +183,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 				AND (Category__c != '1'
 				OR (IsVisibleForNel__c = FALSE
 				AND Source__c != '54'))
+				AND RecordType.DeveloperName != :letterRecordTypeDeveloperName
 		];
 
 		createMailServiceNotifications(serviceTasks);
@@ -331,9 +336,15 @@ public class TaskTriggerHandler extends TriggerHandler {
 		}
 		allFields = allFields.removeEnd(', ');
 
-		String queryString = 'SELECT ' + allFields + ' FROM Task ' 
-                            + 'WHERE Id IN ' + idsString 
-                            + ' AND RecordType.Name != \'' + letterRecordTypeName + '\'';
+		String queryString =
+			'SELECT ' +
+			allFields +
+			' FROM Task ' +
+			'WHERE Id IN ' +
+			idsString +
+			' AND RecordType.DeveloperName != \'' +
+			letterRecordTypeDeveloperName +
+			'\'';
 
 		List<Task> tasks = Database.query(queryString);
 
@@ -395,7 +406,8 @@ public class TaskTriggerHandler extends TriggerHandler {
 		Task[] removeAccessList = new List<Task>{};
 		Task[] assignAccessList = new List<Task>{};
 
-		List<String> closedStatuses = Configuration__mdt.getInstance('ActivityExpiration_FinalStatuses').Value__c.split(',');
+		List<String> closedStatuses = Configuration__mdt.getInstance('ActivityExpiration_FinalStatuses')
+			.Value__c.split(',');
 
 		for (Task newTask : (Task[]) newListSo) {
 			Task oldTask = (Task) Trigger.oldMap.get(newTask.Id);
