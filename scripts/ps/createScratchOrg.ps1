@@ -24,6 +24,11 @@ if ($null -eq $ALIAS) {
 }
 
 try {
+    if (7 -gt $PSVersionTable.PSVersion.Major) {
+        Write-Host "Powershell version 7 required." -ForegroundColor Red
+        Write-Host "Please update your powershell." -ForegroundColor Red
+        exit
+    }
 
     Write-Host "Creating scratch org..." -ForegroundColor Magenta
     #create scratch org
