@@ -2,7 +2,7 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customPermissions>
         <enabled>true</enabled>
-        <name>CommisionStatementAdministrator</name>
+        <name>CommissionStatementAdministrator</name>
     </customPermissions>
     <description>Administrátor provizních výpisů pro profil Centrála</description>
     <hasActivationRequired>false</hasActivationRequired>
