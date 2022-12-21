@@ -3633,6 +3633,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Commission__c.BusinessCaseDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Commission__c.BusinessCase__c</field>
         <readable>true</readable>
     </fieldPermissions>
