@@ -36,7 +36,6 @@ $RECYCLE.BIN/
 /IlluminatedCloud/
 sf_crm.iml
 cmss_crm.iml
-/IlluminatedCloud/
 
 #tmp folders for data import and deployments
 scripts/apex/tmp/
@@ -47,6 +46,8 @@ successScratchOrg.tmp
 log/
 /data/custom-search/binary_cache/
 /data/custom-search/source/
+/data/core-data/binary_cache/
+/data/core-data/source/
 
 # woarkarounds:
 ./cmss/main/default/objects/Task/fields/IsVisibleInSelfService.field-meta.xml

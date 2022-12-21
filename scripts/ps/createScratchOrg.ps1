@@ -19,23 +19,29 @@ function CheckLastExitCode {
 }
 
 $ALIAS=$args[0]
-if ($ALIAS -eq $null) {
+if ($null -eq $ALIAS) {
     $ALIAS = 'cmss'
 }
 
 try {
+    if (7 -gt $PSVersionTable.PSVersion.Major) {
+        Write-Host "Powershell version 7 required." -ForegroundColor Red
+        Write-Host "Please update your powershell." -ForegroundColor Red
+        exit
+    }
 
-    echo "Creating scratch org..."
+    Write-Host "Creating scratch org..." -ForegroundColor Magenta
     #create scratch org
     sfdx force:org:create --setalias $ALIAS --durationdays 30 --definitionfile config/project-scratch-def.json --setdefaultusername
     CheckLastExitCode
 
     #install packages
-    sfdx force:package:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wait 8 -u $ALIAS
+    Write-Host "Installing packages..." -ForegroundColor Magenta
+    sfdx force:package:beta:install --package 04t2x000001WtSIAA0 -r --publishwait 3 --wait 8 -u $ALIAS
     CheckLastExitCode
-    sfdx force:package:install --package 04t5p000000eegF -r --publishwait 3 --wait 8 -u $ALIAS
+    sfdx force:package:beta:install --package 04t5p000000eegF -r --publishwait 3 --wait 8 -u $ALIAS
     CheckLastExitCode
-    sfdx force:package:install --package 04t1U000003Bnj3QAC -r --publishwait 3 --wait 8 -u $ALIAS
+    sfdx force:package:beta:install --package 04t1U000003Bnj3QAC -r --publishwait 3 --wait 8 -u $ALIAS
     CheckLastExitCode
 
     # set forceignore to scratch org compatible
@@ -44,6 +50,7 @@ try {
     CheckLastExitCode
 
     # enable platform encryption
+    Write-Host "Enable platform encryption..." -ForegroundColor Magenta
     sfdx force:source:deploy -p cmss/scratch-orgs-only/permissionsets --targetusername $ALIAS
     CheckLastExitCode
     sfdx force:user:permset:assign --permsetname "ManageEncryptionKeys" --targetusername $ALIAS
@@ -56,6 +63,7 @@ try {
     CheckLastExitCode
 
     #push source
+    Write-Host "Now pushing the whole source, this may take a while (usually 10 - 20 min)" -ForegroundColor Magenta
     sfdx force:source:push --ignorewarnings --forceoverwrite --targetusername $ALIAS
     CheckLastExitCode
 
@@ -68,13 +76,17 @@ try {
     CheckLastExitCode
 
     #setup data
+    Write-Host "Setting up data..." -ForegroundColor Magenta
     $script = Join-Path scripts ps data.ps1
     Invoke-Expression "$script $ALIAS"
+    CheckLastExitCode
+
+    sfdx force:org:open --targetusername $ALIAS
 
     Write-Host "Org $ALIAS created!" -ForegroundColor Green
 
 } finally {
-    #cleanup when done
+    # cleanup when done
     # revert changes to forceignore
     $source = Join-Path scripts sh ignores .forceignore_sandbox
     Copy-Item $source -Destination ".forceignore"
