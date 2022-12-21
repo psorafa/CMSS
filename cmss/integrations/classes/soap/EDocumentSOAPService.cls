@@ -59,7 +59,7 @@ public class EDocumentSOAPService {
                 Logger.error('Incoming response error', errorMessage);
 				throw new EDocumentSOAPServiceException(errorMessage);
 			} else if (!content.contains('<ns3:eDocumentData>')) {
-                Logger.error('Incoming response error', 'Unknown error');
+                Logger.error('Unexpected response', Logger.serializeHttpResponse(res));
                 throw new EDocumentSOAPServiceException('Unkown error');
             }
 			content = content.substringAfter('<ns3:eDocumentData>');
@@ -99,8 +99,6 @@ public class EDocumentSOAPService {
 		}
 
 		public void populateXmlNode(Dom.XmlNode outerNode) {
-			//System.assertEquals('getDocumentBySBId', outerNode.getName());
-
 			CommonMessageService.RequestHeader requestHeaderObj = this.requestHeader;
 			Dom.XmlNode requestHeaderNode = outerNode.addChildElement(
 				'requestHeader',
