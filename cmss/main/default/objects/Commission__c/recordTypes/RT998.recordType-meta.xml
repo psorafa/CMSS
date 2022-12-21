@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>RT998</fullName>
     <active>true</active>
@@ -35,6 +35,105 @@
         </values>
         <values>
             <fullName>60</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ProductGroup__c</picklist>
+        <values>
+            <fullName>11</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>13</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>14</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>15</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>16</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>17</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>22</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>24</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>51</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>64</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>68</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>69</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>71</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>81</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>82</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>83</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>84</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>91</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>93</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>94</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>95</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>96</fullName>
             <default>false</default>
         </values>
     </picklistValues>

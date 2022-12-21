@@ -2,4 +2,100 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>Produktová skupina</label>
     <name>ProductGroup__c</name>
+    <picklistValues>
+        <masterLabel>11</masterLabel>
+        <translation>Stavební spoření</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12</masterLabel>
+        <translation>Úvěry</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13</masterLabel>
+        <translation>Meziúvěry</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14</masterLabel>
+        <translation>Kombi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15</masterLabel>
+        <translation>Osobní příplatky - zúčtovatelné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16</masterLabel>
+        <translation>Osobní příplatky - nezúčtovatelné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>17</masterLabel>
+        <translation>Provizní hranice</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22</masterLabel>
+        <translation>Stabilita</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24</masterLabel>
+        <translation>Doplňkové důchodové pojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>51</masterLabel>
+        <translation>Postžiro</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>64</masterLabel>
+        <translation>Spotřeb. úvěry a půjčky</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>67</masterLabel>
+        <translation>Plus Konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>68</masterLabel>
+        <translation>Premium Konto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>69</masterLabel>
+        <translation>Spořící účet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>71</masterLabel>
+        <translation>Hypoteční úvěr</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>81</masterLabel>
+        <translation>IŽP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>82</masterLabel>
+        <translation>PMO</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>83</masterLabel>
+        <translation>RŽP</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>84</masterLabel>
+        <translation>Autopojištění</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>91</masterLabel>
+        <translation>Spotřebitelský úvěr</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>93</masterLabel>
+        <translation>ČSOB ID</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>94</masterLabel>
+        <translation>Běžné účty pro podnikatele</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>95</masterLabel>
+        <translation>SME úvěry pro podnikatele</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>96</masterLabel>
+        <translation>Zhodnocení investování</translation>
+    </picklistValues>
 </CustomFieldTranslation>

@@ -2,9 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ExpenditureFlatRateCategory__c</fullName>
     <description>Field for grouping of Expenditure Flat Rate report (Výdajový paušál)</description>
+    <encryptionScheme>None</encryptionScheme>
     <externalId>false</externalId>
-    <formula>IF( ProductGroup__c == 15 || ProductGroup__c == 16, BusinessCaseDescription__c, TEXT(ProductGroup__c) )</formula>
     <label>ExpenditureFlatRateCategory</label>
+    <length>255</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
