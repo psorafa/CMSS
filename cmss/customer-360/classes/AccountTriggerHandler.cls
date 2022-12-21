@@ -9,7 +9,7 @@ public class AccountTriggerHandler extends TriggerHandler {
 		validateAccount(Trigger.new);
 		invalidateAccount(Trigger.new);
 		setOwner(Trigger.new);
-		setLastPortfolioManager(Trigger.oldMap, Trigger.new);
+		setLastPortfolioManager((Map<Id, Account>) Trigger.oldMap, (List<Account>) Trigger.new);
 	}
 
 	public override void beforeDelete() {
