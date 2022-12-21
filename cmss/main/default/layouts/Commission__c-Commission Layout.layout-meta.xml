@@ -7,7 +7,7 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
@@ -140,10 +140,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>ExpenditureFlatRateCategory__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>FenixDocsLink__c</field>
             </layoutItems>
             <layoutItems>
@@ -165,6 +161,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>AssetName__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ExpenditureFlatRateCategory__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
