@@ -128,6 +128,9 @@ cmss/main/default/objects/PortfolioManagementC__c/fields/PortfolioManChangeReaso
 cmss/main/default/objects/PortfolioManagementRequest__c/fields/PortfolioManChangeReason__c.field-meta.xml
 cmss/main/default/objects/PortfolioManagementRequest__c/fields/PortfolioManChangeResult__c.field-meta.xml
 cmss/main/default/objects/PortfolioManagementRequest__c/fields/RequestStatus__c.field-meta.xml
+cmss/main/default/objects/Production__c/fields/ProductTypePS__c.field-meta.xml
+cmss/main/default/objects/ProductionTargetsAndBonuses__c/fields/BonusType__c.field-meta.xml
+cmss/main/default/objects/ProductionTargetsAndBonuses__c/fields/ProductionTargetType__c.field-meta.xml
 cmss/main/default/objects/Task/fields/Result__c.field-meta.xml
 cmss/main/default/objects/Task/fields/Source__c.field-meta.xml
 cmss/main/default/objects/User/fields/PersonType__c.field-meta.xml
@@ -236,6 +239,9 @@ cmss/app/default/objectTranslations/PortfolioManagementC__c-cs/PortfolioManChang
 cmss/app/default/objectTranslations/PortfolioManagementRequest__c-cs/PortfolioManChangeReason__c.fieldTranslation-meta.xml
 cmss/app/default/objectTranslations/PortfolioManagementRequest__c-cs/PortfolioManChangeResult__c.fieldTranslation-meta.xml
 cmss/app/default/objectTranslations/PortfolioManagementRequest__c-cs/RequestStatus__c.fieldTranslation-meta.xml
+cmss/main/default/objectTranslations/Production__c-cs/ProductTypePS__c.fieldTranslation-meta.xml
+cmss/main/default/objectTranslations/ProductionTargetsAndBonuses__c-cs/BonusType__c.fieldTranslation-meta.xml
+cmss/main/default/objectTranslations/ProductionTargetsAndBonuses__c-cs/ProductionTargetType__c.fieldTranslation-meta.xml
 cmss/app/default/objectTranslations/Task-cs/Result__c.fieldTranslation-meta.xml
 cmss/app/default/objectTranslations/Task-cs/Source__c.fieldTranslation-meta.xml
 cmss/app/default/objectTranslations/User-cs/PersonType__c.fieldTranslation-meta.xml
