@@ -470,9 +470,8 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			});
 			const sortedByColumnType = 'type' in sortedByColumn ? sortedByColumn.type : null;
 
-			if (sortedByColumnType !== 'DATE') {
+			if (sortedByColumnType !== 'DATE' && sortedByColumnType !== 'CURRENCY') {
 				const cloneData = [...this.outputTableData];
-
 				cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
 				this.outputTableData = cloneData;
 			}
