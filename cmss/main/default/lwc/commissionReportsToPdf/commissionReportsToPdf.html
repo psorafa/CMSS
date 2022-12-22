@@ -6,9 +6,12 @@
 			<lightning-button variant="brand" label="run report" onclick={handleRunReport}></lightning-button>&nbsp;
 			<lightning-button variant="brand" label="check" onclick={handleCheckStatus}></lightning-button>&nbsp;
 			<lightning-button variant="brand" label="get data" onclick={handleGetData}></lightning-button>&nbsp;
+			<lightning-button variant="brand" label="get report filters" onclick={handleGetFilters}></lightning-button
+			>&nbsp;
 		</div>
 		<div class="slds-is-relative slds-p-around_medium">
 			selectedReport: {selectedReport}<br />
+			selectedReportDevName: {selectedReportDevName}<br />
 			year: {year}<br />
 			month: {month}<br />
 			yearTo: {yearTo}<br />
@@ -23,14 +26,67 @@
 			Status: {reportStatus}<br />
 			Error:
 			<pre>{error}</pre>
-			<br />
 			<form method="POST" action="https://csobstavebni--reporting--c.sandbox.vf.force.com/apex/PocPdfGenerator">
 				<button if:true={reportHtmlData} class="slds-button slds-button_neutral">dělej PDF</button>
 				<input name="html" style="display: none" type="hidden" value={reportHtmlData} />
 			</form>
-			<template for:item="item" for:each={reportData}>
-				<div key={item}>{item}</div>
-			</template>
 		</div>
+		<template if:true={reportHtmlData}>
+			<div
+				id="containerDiv"
+				onmousemove={handlemousemove}
+				onmouseup={handlemouseup}
+				ondblclick={handledblclickresizable}
+				class="slds-table_header-fixed_container slds-border_right slds-border_left tableScroll"
+				onscroll={tableOuterDivScrolled}
+			>
+				<div id="tableViewInnerDiv" onscroll={tableScrolled} class="slds-scrollable_y tableViewInnerDiv">
+					<table
+						class="slds-table slds-table_bordered slds-table_header-fixed slds-table_resizable-cols slds-table_fixed-layout"
+					>
+						<thead>
+							<tr>
+								<template for:item="itemHeader" for:each={viewHeader}>
+									<th
+										key={itemHeader}
+										class="slds-is-resizable dv-dynamic-width"
+										scope="col"
+										style={fixedWidth}
+										title="Column 1"
+									>
+										<div class="slds-cell-fixed" style={fixedWidth}>
+											<a class="slds-th__action slds-text-link--reset">
+												<span class="slds-truncate">{itemHeader}</span>
+											</a>
+											<div class="slds-resizable">
+												<span class="slds-resizable__handle" onmousedown={handlemousedown}>
+													<span class="slds-resizable__divider"></span>
+												</span>
+											</div>
+										</div>
+									</th>
+								</template>
+								<th scope="col">
+									<div class="slds-cell-fixed"></div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<template for:item="row" for:each={reportData}
+								><tr key={row}>
+									<template for:item="column" for:each={row}>
+										<td key={column}>
+											<div class="slds-truncate dv-dynamic-width" style={fixedWidth}>
+												{column}
+											</div>
+										</td></template
+									>
+								</tr></template
+							>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</template>
 	</lightning-card>
 </template>

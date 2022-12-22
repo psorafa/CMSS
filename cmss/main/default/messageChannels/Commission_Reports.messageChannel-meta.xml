@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Message Channel to pass a Commission Reports criteria</description>
     <isExposed>true</isExposed>
@@ -38,5 +38,9 @@
         <description>This is the selected report that changed</description>
         <fieldName>selectedReport</fieldName>
     </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the selected report developer name that changed</description>
+        <fieldName>selectedReportDevName</fieldName>
+    </lightningMessageFields>    
     <masterLabel>YearSelected</masterLabel>
 </LightningMessageChannel>

@@ -7,14 +7,15 @@ export default class commissionReportsBasicParams extends LightningElement {
 	data;
 	loaded = false;
 	pload = [];
-	@track folderOptions = [
+	@track reportOptions = [
 		{
 			label: 'test',
 			value: 'test'
 		}
 	];
-	@track reportOptions = [];
+	reportArray = {};
 	selectedReport;
+	selectedReportDevName;
 	reportInstance;
 	reportStatus;
 	reportData;
@@ -50,27 +51,32 @@ export default class commissionReportsBasicParams extends LightningElement {
 		console.log('Zoznam reportov result: ' + JSON.stringify(result));
 		this.data = result;
 		let folderOptions = [];
+		let reportArr = {};
+		let reportId;
 		for (let folder in result) {
 			folderOptions.push({
 				label: result[folder].ReportName,
-				value: folder
+				value: result[folder].reportId
 			});
+			reportId = result[folder].reportId;
+			reportArr[reportId] = result[folder].reportDeveloperName;
 		}
-		this.folderOptions = folderOptions;
-	}
-
-	handleFolderChange(event) {
-		//this.reportOptions = this.data[event.detail.value];
-		this.selectedReport = event.detail.value;
-		if (this.pload.length === 0) {
-			this.pload = { selectedReport: this.selectedReport };
-		} else {
-			this.pload.selectedReport = this.selectedReport;
-		}
-		publish(this.messageContext, COMMISSION_CHANNEL, this.pload);
+		this.reportOptions = folderOptions;
+		this.reportArray = reportArr;
+		console.log('reportArray: ' + JSON.stringify(this.reportArray));
 	}
 
 	handleReportChange(event) {
 		this.selectedReport = event.detail.value;
+		this.selectedReportDevName = this.reportArray[event.detail.value];
+		console.log('reportArray[event.detail.value]: ' + this.reportArray[event.detail.value]);
+		console.log('this.selectedReportDevName: ' + this.selectedReportDevName);
+		if (this.pload.length === 0) {
+			this.pload = { selectedReport: this.selectedReport, selectedReportDevName: this.selectedReportDevName };
+		} else {
+			this.pload.selectedReport = this.selectedReport;
+			this.pload.selectedReportDevName = this.selectedReportDevName;
+		}
+		publish(this.messageContext, COMMISSION_CHANNEL, this.pload);
 	}
 }
