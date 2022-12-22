@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ZadostiSPS_storno_expirovane_zamitnute</fullName>
+    <columns>CaseID__c</columns>
+    <columns>ReceivedDatetime__c</columns>
+    <columns>DecisionDate__c</columns>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>RegionalManager__c</columns>
+    <columns>NewPortfolioManager__c</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>TotalRequestsNumber__c</columns>
+    <columns>SuccessRequestsNumber__c</columns>
+    <columns>FailedRequestsNumber__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>24,25,26</value>
+    </filters>
+    <label>Žádosti SpS storno,expirované,zamítnuté</label>
+</ListView>

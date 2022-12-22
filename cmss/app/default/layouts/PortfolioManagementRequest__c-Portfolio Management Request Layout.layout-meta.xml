@@ -24,6 +24,10 @@
                 <behavior>Readonly</behavior>
                 <field>PortfolioManager__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CaseStatus__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

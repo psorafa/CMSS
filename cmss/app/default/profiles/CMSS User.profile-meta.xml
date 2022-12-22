@@ -5594,7 +5594,9 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementRequest__c.PortfolioManager__c</field>
+        <field>PortfolioManagementRequest__c.CaseStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5619,6 +5621,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PortfolioManagementRequest__c.ValidFrom__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
         <field>ProductContractUrl__mdt.ImageName__c</field>
         <readable>false</readable>
     </fieldPermissions>

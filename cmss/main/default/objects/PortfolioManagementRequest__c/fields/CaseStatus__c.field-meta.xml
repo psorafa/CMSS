@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CaseStatus__c</fullName>
+    <description>Konkrétní stav nadřazené žádosti nad requesty dle číselníku</description>
+    <externalId>false</externalId>
+    <formula>CASE(Case__r.Status,
+&quot;21&quot;, &quot;Nová&quot;,
+&quot;22&quot;, &quot;Čeká na schválení&quot;,
+&quot;23&quot;, &quot;Schválená&quot;,
+&quot;24&quot;, &quot;Zamítnutá&quot;,
+&quot;25&quot;, &quot;Stornovaná&quot;,
+&quot;26&quot;, &quot;Expirovaná&quot;,
+&quot;27&quot;, &quot;Ve zpracování&quot;,
+&quot;28&quot;, &quot;Odmítnuto zpracování&quot;,
+&quot;29&quot;, &quot;Zpracovaná bez chyby&quot;,
+&quot;30&quot;, &quot;Zpracovaná s chybou&quot;,
+&quot;None&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Case Status for requests</inlineHelpText>
+    <label>CaseStatus</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
