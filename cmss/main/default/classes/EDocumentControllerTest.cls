@@ -43,12 +43,16 @@ public class EDocumentControllerTest {
             System.runAs(u) {
                 ApexPages.currentPage().getParameters().put('recordId', t.Id);
                 controller = new EDocumentController(null);
+                controller.loadDocument();
             }
         Test.stopTest();
 
         System.assert(controller.isError == false);
         System.assert(controller.showPDF == true);
         System.assert(controller.base64Data.startsWith('JVBERi0xLjQN'));
+        
+        Access_Log__c log = [SELECT Id, TaskLetterId__c, TaskLetterType__c, TaskId__c FROM Access_Log__c LIMIT 1];
+        System.assert(log != null);
     }
 
         @IsTest
@@ -76,6 +80,7 @@ public class EDocumentControllerTest {
             System.runAs(u) {
                 ApexPages.currentPage().getParameters().put('recordId', t.Id);
                 controller = new EDocumentController(null);
+                controller.loadDocument();
             }
         Test.stopTest();
 
@@ -88,7 +93,7 @@ public class EDocumentControllerTest {
     static void testCreateAccessLogRecord() {
 
         Test.startTest();
-            EDocumentController.createAccessLogRecord('letterId', 'letterType', 'taskId');
+            new EDocumentController(null).createAccessLogRecord('letterId', 'letterType', 'taskId');
         Test.stopTest();
 
         Access_Log__c log = [SELECT Id, TaskLetterId__c, TaskLetterType__c, TaskId__c FROM Access_Log__c LIMIT 1];

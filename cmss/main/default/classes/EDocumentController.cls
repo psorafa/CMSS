@@ -11,8 +11,9 @@ global with sharing class EDocumentController {
     }
 
     public PageReference loadDocument() {
+        Task sourceTask;
         try{
-            Task sourceTask = [SELECT Id, LetterId__c, LetterType__c
+            sourceTask = [SELECT Id, LetterId__c, LetterType__c
                       FROM Task
                       WHERE Id = :recordId];
 
@@ -22,17 +23,18 @@ global with sharing class EDocumentController {
             EDocumentSOAPService.EDocumentServicePort stub = new EDocumentSOAPService.EDocumentServicePort();
             base64Data = stub.getDocumentBySBId_Http(header, body);
             showPDF = true;
-            createAccessLogRecord(sourceTask.LetterId__c, sourceTask.LetterType__c, sourceTask.Id);
         } catch (Exception e){
             Logger.error('Error in EDocumentController', e);
             isError = true;
             showPDF = false;
         } finally{
+            createAccessLogRecord(sourceTask.LetterId__c, sourceTask.LetterType__c, sourceTask.Id);
             Logger.saveLogs();
         }
         return null;
     }
 
+    @TestVisible
     private void createAccessLogRecord(String letterId, String letterType, String taskId){
         Access_Log__c log = new Access_Log__c();
         log.RequestedBy__c = UserInfo.getUserId();
