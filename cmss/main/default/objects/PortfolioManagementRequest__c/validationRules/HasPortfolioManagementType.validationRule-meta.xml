@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HasPortfolioManagementType</fullName>
+    <active>true</active>
+    <description>For newly created Portfolio Management Request, field Portfolio Management Type must be filled.</description>
+    <errorConditionFormula>NOT(ISBLANK(Case__c)) &amp;&amp; 
+ISBLANK(TEXT(PortfolioManagementType__c)) &amp;&amp; 
+ISBLANK(TEXT(Case__r.PortfolioManagementType__c))</errorConditionFormula>
+    <errorDisplayField>PortfolioManagementType__c</errorDisplayField>
+    <errorMessage>Portfolio Management Type is required field.</errorMessage>
+</ValidationRule>

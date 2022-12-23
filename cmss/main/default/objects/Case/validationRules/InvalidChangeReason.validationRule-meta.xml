@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InvalidChangeReason</fullName>
+    <active>true</active>
+    <description>If the current user is not a HQ user, only valid Change Reason can be inserted (400 - 409).</description>
+    <errorConditionFormula>RecordType.DeveloperName = &apos;PortfolioManagementChangeRequest&apos; &amp;&amp;
+$Profile.Name &lt;&gt; &apos;System Administrator&apos; &amp;&amp;
+$Profile.Name &lt;&gt; &apos;CMSS Headquarters User&apos; &amp;&amp;
+$Profile.Name &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp;
+NOT(
+ISPICKVAL(ChangeReason__c, &apos;400&apos;) ||
+ISPICKVAL(ChangeReason__c, &apos;401&apos;) ||
+ISPICKVAL(ChangeReason__c, &apos;402&apos;) ||
+ISPICKVAL(ChangeReason__c, &apos;403&apos;) ||
+ISPICKVAL(ChangeReason__c, &apos;404&apos;) ||
+ISPICKVAL(ChangeReason__c, &apos;405&apos;) ||
+ISPICKVAL(ChangeReason__c, &apos;406&apos;) ||
+ISPICKVAL(ChangeReason__c, &apos;407&apos;) ||
+ISPICKVAL(ChangeReason__c, &apos;408&apos;) ||
+ISPICKVAL(ChangeReason__c, &apos;409&apos;)
+)</errorConditionFormula>
+    <errorDisplayField>ChangeReason__c</errorDisplayField>
+    <errorMessage>Invalid Change Reason. Please select Change Reason 400-409.</errorMessage>
+</ValidationRule>

@@ -64,15 +64,35 @@
     <layouts>
         <layout>Portfolio Management Request Layout</layout>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label></label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Request Information --></label>
+            <label></label>
             <section>Request Information</section>
         </sections>
     </layouts>
     <nameFieldLabel>Požadavek změny správy stavu</nameFieldLabel>
+    <validationRules>
+        <errorMessage>Požadavek nelze navázat na žádost, která je již ve zpracování.</errorMessage>
+        <name>CannotAddRequestForCaseInProgress</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Pole nelze editovat.</errorMessage>
+        <name>CannotChangeCase</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Nadřazená žádost je povinné pole.</errorMessage>
+        <name>HasCase</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Typ správy stavu je povinné pole.</errorMessage>
+        <name>HasPortfolioManagementType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Požadovaný správce stavu je povinné pole.</errorMessage>
+        <name>HasPortfolioManager</name>
+    </validationRules>
     <validationRules>
         <errorMessage>Vyplňte nového Portfolio Managera</errorMessage>
         <name>NewPortfolioManagerRequired</name>
