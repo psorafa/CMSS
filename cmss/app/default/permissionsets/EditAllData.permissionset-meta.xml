@@ -5823,6 +5823,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Production__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Production__c.AcquisitionDate__c</field>
         <readable>true</readable>
     </fieldPermissions>

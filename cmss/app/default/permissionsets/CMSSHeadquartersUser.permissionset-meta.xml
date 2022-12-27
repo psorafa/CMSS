@@ -5416,12 +5416,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>PortfolioManagementRequest__c.CaseStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>PortfolioManagementRequest__c.ErrorMessage__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementRequest__c.CaseStatus__c</field>
+        <field>PortfolioManagementRequest__c.OriginalPortfolioManagerA__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
