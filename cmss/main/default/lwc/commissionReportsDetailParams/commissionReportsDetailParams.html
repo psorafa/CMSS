@@ -74,19 +74,21 @@
 							/>
 						</div>
 					</div>
-					<p class="bolded padd-top-tribe-cpu">Kmen ČPÚ</p>
-					<div class="slds-form-element">
-						<div class="slds-form-element__control padd-top">
-							<input
-								type="text"
-								name="tribecpu"
-								placeholder="Kmen ČPÚ…"
-								oninput={handleTribeCpuChange}
-								class="slds-input"
-								value={tribeCpuValue}
-							/>
+					<template if:true={adminProfile}>
+						<p class="bolded padd-top-tribe-cpu">Kmen ČPÚ</p>
+						<div class="slds-form-element">
+							<div class="slds-form-element__control padd-top">
+								<input
+									type="text"
+									name="tribecpu"
+									placeholder="Kmen ČPÚ…"
+									oninput={handleTribeCpuChange}
+									class="slds-input"
+									value={tribeCpuValue}
+								/>
+							</div>
 						</div>
-					</div>
+					</template>
 				</lightning-layout-item>
 				<lightning-layout-item flexibility="auto" padding="around-small"
 					><p class="bolded">Pořadové číslo záznamu</p>

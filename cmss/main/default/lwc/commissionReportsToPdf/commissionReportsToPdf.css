@@ -3,3 +3,13 @@
 	overflow-y: hidden;
 	height: 15rem;
 }
+
+p.clear {
+	clear: both;
+}
+.allignright {
+	float: right;
+}
+.allignleft {
+	float: left;
+}

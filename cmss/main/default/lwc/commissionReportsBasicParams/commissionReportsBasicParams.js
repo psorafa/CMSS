@@ -16,6 +16,8 @@ export default class commissionReportsBasicParams extends LightningElement {
 	reportArray = {};
 	selectedReport;
 	selectedReportDevName;
+	selectedReportName;
+	selectedReportDescription;
 	reportInstance;
 	reportStatus;
 	reportData;
@@ -48,34 +50,44 @@ export default class commissionReportsBasicParams extends LightningElement {
 	}
 
 	processResult(result) {
-		console.log('Zoznam reportov result: ' + JSON.stringify(result));
+		//console.log('Zoznam reportov result: ' + JSON.stringify(result));
 		this.data = result;
 		let folderOptions = [];
 		let reportArr = {};
 		let reportId;
 		for (let folder in result) {
 			folderOptions.push({
-				label: result[folder].ReportName,
+				label: result[folder].reportName,
 				value: result[folder].reportId
 			});
 			reportId = result[folder].reportId;
-			reportArr[reportId] = result[folder].reportDeveloperName;
+			reportArr[reportId] = {
+				devName: result[folder].reportDeveloperName,
+				description: result[folder].reportDescription,
+				name: result[folder].reportName
+			};
 		}
 		this.reportOptions = folderOptions;
 		this.reportArray = reportArr;
-		console.log('reportArray: ' + JSON.stringify(this.reportArray));
 	}
 
 	handleReportChange(event) {
 		this.selectedReport = event.detail.value;
-		this.selectedReportDevName = this.reportArray[event.detail.value];
-		console.log('reportArray[event.detail.value]: ' + this.reportArray[event.detail.value]);
-		console.log('this.selectedReportDevName: ' + this.selectedReportDevName);
+		this.selectedReportDevName = this.reportArray[event.detail.value].devName;
+		this.selectedReportName = this.reportArray[event.detail.value].name;
+		this.selectedReportDescription = this.reportArray[event.detail.value].description;
 		if (this.pload.length === 0) {
-			this.pload = { selectedReport: this.selectedReport, selectedReportDevName: this.selectedReportDevName };
+			this.pload = {
+				selectedReport: this.selectedReport,
+				selectedReportDevName: this.selectedReportDevName,
+				selectedReportName: this.selectedReportName,
+				selectedReportDescription: this.selectedReportDescription
+			};
 		} else {
 			this.pload.selectedReport = this.selectedReport;
 			this.pload.selectedReportDevName = this.selectedReportDevName;
+			this.pload.selectedReportName = this.selectedReportName;
+			this.pload.selectedReportDescription = this.selectedReportDescription;
 		}
 		publish(this.messageContext, COMMISSION_CHANNEL, this.pload);
 	}

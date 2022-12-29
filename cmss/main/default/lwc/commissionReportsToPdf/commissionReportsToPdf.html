@@ -2,36 +2,58 @@
 	<lightning-card title="Náhled exportu do PDF">
 		<lightning-spinner if:true={loading}></lightning-spinner>
 		<div class="slds-p-around_medium">
-			<br />
-			<lightning-button variant="brand" label="run report" onclick={handleRunReport}></lightning-button>&nbsp;
-			<lightning-button variant="brand" label="check" onclick={handleCheckStatus}></lightning-button>&nbsp;
-			<lightning-button variant="brand" label="get data" onclick={handleGetData}></lightning-button>&nbsp;
-			<lightning-button variant="brand" label="get report filters" onclick={handleGetFilters}></lightning-button
-			>&nbsp;
+			<table class="slds-table_fixed-layout">
+				<thead>
+					<tr>
+						<th>
+							<lightning-button
+								variant="brand"
+								label="Zobrazit náhled"
+								onclick={handleRunReport}
+								disabled={runReportDisabled}
+							></lightning-button>
+						</th>
+						<th>
+							<form method="POST" action={pdfUrl} target="_blank">
+								<!--https://csobstavebni--reporting--c.sandbox.vf.force.com/apex/PocPdfGenerator-->
+								<!--https://saas-momentum-5709--c.scratch.vf.force.com/apex/CommissionPdfGenerator-->
+								<button if:true={reportHasRows} class="slds-button slds-button_neutral">
+									Export do PDF
+								</button>
+								<input name="html" style="display: none" type="hidden" value={reportHtmlData} />
+								<input
+									name="selectedReportName"
+									style="display: none"
+									type="hidden"
+									value={selectedReportName}
+								/>
+								<input
+									name="selectedPeriod"
+									style="display: none"
+									type="hidden"
+									value={selectedPeriod}
+								/>
+								<input
+									name="commissionAccount"
+									style="display: none"
+									type="hidden"
+									value={commissionAccount}
+								/>
+								<input name="combinedName" style="display: none" type="hidden" value={combinedName} />
+								<input name="address" style="display: none" type="hidden" value={address} />
+								<input
+									name="footerTimestamp"
+									style="display: none"
+									type="hidden"
+									value={footerTimestamp}
+								/>
+							</form>
+						</th>
+					</tr>
+				</thead>
+			</table>
 		</div>
-		<div class="slds-is-relative slds-p-around_medium">
-			selectedReport: {selectedReport}<br />
-			selectedReportDevName: {selectedReportDevName}<br />
-			year: {year}<br />
-			month: {month}<br />
-			yearTo: {yearTo}<br />
-			monthTo: {monthTo}<br />
-			showTo: {showTo}<br />
-			cpu: {cpu}<br />
-			fromRecord: {fromRecord}<br />
-			toRecord: {toRecord}<br />
-
-			Report: {selectedReport}<br />
-			Instance: {reportInstance}<br />
-			Status: {reportStatus}<br />
-			Error:
-			<pre>{error}</pre>
-			<form method="POST" action="https://csobstavebni--reporting--c.sandbox.vf.force.com/apex/PocPdfGenerator">
-				<button if:true={reportHtmlData} class="slds-button slds-button_neutral">dělej PDF</button>
-				<input name="html" style="display: none" type="hidden" value={reportHtmlData} />
-			</form>
-		</div>
-		<template if:true={reportHtmlData}>
+		<template if:true={reportHasRows}>
 			<div
 				id="containerDiv"
 				onmousemove={handlemousemove}
@@ -52,7 +74,6 @@
 										class="slds-is-resizable dv-dynamic-width"
 										scope="col"
 										style={fixedWidth}
-										title="Column 1"
 									>
 										<div class="slds-cell-fixed" style={fixedWidth}>
 											<a class="slds-th__action slds-text-link--reset">
@@ -87,6 +108,37 @@
 					</table>
 				</div>
 			</div>
+		</template>
+		<template if:true={reportData}>
+			<table class="slds-table">
+				<tbody>
+					<tr>
+						<td style={fixedWidth}>Počet záznamů:</td>
+						<td style={fixedWidth}>{rowCount}</td>
+						<td style={fixedWidth}>Součet hodnot zobrazených provizí:</td>
+						<td style={fixedWidth}></td>
+					</tr>
+					<tr>
+						<td style={fixedWidth}>Výpis z provizního účtu:</td>
+						<td style={fixedWidth}>{accountBaseCombinedName}</td>
+						<td style={fixedWidth}>Čekatelství:</td>
+						<td style={fixedWidth}>{pendingAmount}</td>
+					</tr>
+					<tr>
+						<td style={fixedWidth}>Provizní zpracování k/OD-DO:</td>
+						<td style={fixedWidth}>{dateValues}</td>
+						<td style={fixedWidth}>Nárok:</td>
+						<td style={fixedWidth}>{entitlementAmount}</td>
+					</tr>
+					<template if:true={rowCountExceeded}>
+						<tr>
+							<td style={fixedWidth}>Existuje více záznamů!</td>
+							<td style={fixedWidth}></td>
+							<td style={fixedWidth}></td>
+							<td style={fixedWidth}></td></tr
+					></template>
+				</tbody>
+			</table>
 		</template>
 	</lightning-card>
 </template>

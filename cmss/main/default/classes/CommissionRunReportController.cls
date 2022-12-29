@@ -1,24 +1,55 @@
 public with sharing class CommissionRunReportController {
 	@AuraEnabled
+	public static User getUserInfo() {
+		User usr = [
+			SELECT Id, Name, CombinedName__c, CommissionAccountNr__c, CommissionAccountBase__c, Profile.Name
+			FROM User
+			WHERE Id = :UserInfo.getUserId()
+		][0];
+		return usr;
+	}
+
+	@AuraEnabled
+	public static ContactInformation__c getContactInfo(Id userId) {
+		try {
+			ContactInformation__c conInfo = [
+				SELECT Id, Value__c
+				FROM ContactInformation__c
+				WHERE User__c = :userId AND Type__c = '1' AND Subtype__c = '1000003' AND Area__c = '0'
+				ORDER BY LastModifiedDate DESC
+			][0];
+			return conInfo;
+		} catch (Exception e) {
+			Logger.error('Error in CommissionRunReportController.getContactInfo', e);
+			throw new AuraHandledException(e.getMessage());
+		} finally {
+			Logger.saveLogs();
+		}
+	}
+
+	@AuraEnabled
 	public static Map<String, ReportWrap> getReportsMap() {
 		Map<String, CommissionReports__mdt> result = CommissionReports__mdt.getAll();
 		Set<String> restultSet = result.keySet();
 		Map<String, ReportWrap> reportMap = new Map<String, ReportWrap>();
 		for (Report report : [
-			SELECT Id, Name, FolderName, DeveloperName
+			SELECT Id, Name, FolderName, DeveloperName, Description
 			FROM Report
 			WHERE DeveloperName IN :restultSet
 			ORDER BY Name
 		]) {
 			if (!reportMap.containsKey(report.DeveloperName)) {
-				reportMap.put(report.DeveloperName, new ReportWrap(report.DeveloperName, report.Name, report.Id));
+				reportMap.put(
+					report.DeveloperName,
+					new ReportWrap(report.DeveloperName, report.Name, report.Id, report.Description)
+				);
 			}
 		}
 
 		if (reportMap.isEmpty()) {
 			for (String report : restultSet) {
 				if (!reportMap.containsKey(report)) {
-					reportMap.put(report, new ReportWrap(report, result.get(report).ReportName__c, ''));
+					reportMap.put(report, new ReportWrap(report, result.get(report).ReportName__c, '', ''));
 				}
 			}
 		}
@@ -36,14 +67,17 @@ public with sharing class CommissionRunReportController {
 		@AuraEnabled
 		public String reportDeveloperName;
 		@AuraEnabled
-		public String ReportName;
+		public String reportName;
 		@AuraEnabled
 		public String reportId;
+		@AuraEnabled
+		public String reportDescription;
 
-		public ReportWrap(String rDevName, String rLabel, String rId) {
+		public ReportWrap(String rDevName, String rLabel, String rId, String rDesc) {
 			this.reportDeveloperName = rDevName;
-			this.ReportName = rLabel;
+			this.reportName = rLabel;
 			this.reportId = rId;
+			this.reportDescription = rDesc;
 		}
 	}
 
@@ -56,7 +90,7 @@ public with sharing class CommissionRunReportController {
 		List<Reports.StandardFilter> standardFilters = repMd.getStandardFilters();
 
 		for (Reports.ReportFilter repFilter : repFilters) {
-			System.debug('Filter: ' + repFilter);
+			System.debug('Filter column: ' + repFilter);
 		}
 		System.debug('standardDateFilters: ' + standardDateFilters);
 
@@ -68,7 +102,19 @@ public with sharing class CommissionRunReportController {
 	}
 
 	@AuraEnabled
-	public static Id runReport(Id reportId, String fromYear, String fromMonth, String toYear, String toMonth) {
+	public static Id runReport(
+		Id reportId,
+		String fromYear,
+		String fromMonth,
+		String toYear,
+		String toMonth,
+		String fromRecord,
+		String toRecord,
+		String cpu,
+		String tribeCpu
+	) {
+		Reports.ReportDescribeResult repDesc = Reports.ReportManager.describeReport(reportId);
+		Reports.ReportMetadata repMd = repDesc.getReportMetadata();
 		Reports.StandardDateFilter standardDateFilter = new Reports.StandardDateFilter();
 		standardDateFilter.setColumn('Commission__c.BillingDate__c');
 		standardDateFilter.setDurationValue('CUSTOM');
@@ -96,16 +142,49 @@ public with sharing class CommissionRunReportController {
 			);
 		}
 
-		Reports.ReportDescribeResult repDesc = Reports.ReportManager.describeReport(reportId);
-		Reports.ReportMetadata repMd = repDesc.getReportMetadata();
+		//set custom filters
+		List<Reports.ReportFilter> repFilters = repMd.getReportFilters();
+		if (!String.isBlank(fromRecord)) {
+			Reports.ReportFilter fromRecordFilter = new Reports.ReportFilter();
+			fromRecordFilter.setColumn('Commission__c.RecordNumber__c');
+			fromRecordFilter.setOperator('greaterOrEqual');
+			fromRecordFilter.setValue(fromRecord);
+			fromRecordFilter.setFilterType('fieldValue');
+			repFilters.add(fromRecordFilter);
+		}
+		if (!String.isBlank(toRecord)) {
+			Reports.ReportFilter toRecordFilter = new Reports.ReportFilter();
+			toRecordFilter.setColumn('Commission__c.RecordNumber__c');
+			toRecordFilter.setOperator('lessOrEqual');
+			toRecordFilter.setValue(toRecord);
+			toRecordFilter.setFilterType('fieldValue');
+			repFilters.add(toRecordFilter);
+		}
+		if (!String.isBlank(tribeCpu)) {
+			Reports.ReportFilter tribeCPUFilter = new Reports.ReportFilter();
+			tribeCPUFilter.setColumn('Commission__c.OwnerCommissionAcountBase__c');
+			tribeCPUFilter.setOperator('equals');
+			tribeCPUFilter.setValue(tribeCpu);
+			tribeCPUFilter.setFilterType('fieldValue');
+			repFilters.add(tribeCPUFilter);
+		}
+		if (!String.isBlank(cpu)) {
+			Reports.ReportFilter cpuFilter = new Reports.ReportFilter();
+			cpuFilter.setColumn('Commission__c.CPUSuffix__c');
+			cpuFilter.setOperator('equals');
+			cpuFilter.setValue(cpu);
+			cpuFilter.setFilterType('fieldValue');
+			repFilters.add(cpuFilter);
+		}
+
 		repMd.setStandardDateFilter(standardDateFilter);
+		repMd.setReportFilters(repFilters);
 		Reports.ReportInstance instance = Reports.ReportManager.runAsyncReport(reportId, repMd, true);
 		return instance.getId();
 	}
 
 	@AuraEnabled
 	public static String checkStatus(Id instanceId) {
-		System.debug('Check status: ' + instanceId);
 		Reports.ReportInstance instance = Reports.ReportManager.getReportInstance(instanceId);
 		return instance.getStatus();
 	}
@@ -130,9 +209,24 @@ public with sharing class CommissionRunReportController {
 		public Map<String, ReportHeader> reportHeader;
 		@AuraEnabled
 		public List<List<String>> reportData;
-		public ReportTable(Map<String, ReportHeader> header, List<List<String>> data) {
+		@AuraEnabled
+		public String entitlementAmount;
+		@AuraEnabled
+		public String pendingAmount;
+		@AuraEnabled
+		public String rowCount;
+		public ReportTable(
+			Map<String, ReportHeader> header,
+			List<List<String>> data,
+			String entitlementAmount,
+			String pendingAmount,
+			String rowCount
+		) {
 			this.reportHeader = header;
 			this.reportData = data;
+			this.entitlementAmount = entitlementAmount;
+			this.pendingAmount = pendingAmount;
+			this.rowCount = rowCount;
 		}
 	}
 
@@ -182,7 +276,7 @@ public with sharing class CommissionRunReportController {
 			}
 		}
 
-		// Prepare report rows.
+		// get report rows.
 		Reports.ReportFactWithDetails factDetails = (Reports.ReportFactWithDetails) results.getFactMap().get('T!T');
 		List<String> result = new List<String>();
 		List<List<String>> resultTable = new List<List<String>>();
@@ -194,6 +288,30 @@ public with sharing class CommissionRunReportController {
 			resultTable.add(row);
 			System.debug('Row: ' + row);
 		}
-		return new ReportTable(header, resultTable);
+
+		//get aggregates metadata and data
+		Reports.ReportMetadata repMetadata = results.getReportMetadata();
+		List<String> repAggregates = repMetadata.getAggregates();
+		List<Reports.SummaryValue> repAggregatesData = factDetails.getAggregates();
+		String entitlementAmount;
+		String pendingAmount;
+		String rowCount;
+		Integer j = 0;
+		for (String aggregate : repAggregates) {
+			switch on aggregate {
+				when 's!Commission__c.PendingAmount__c' {
+					PendingAmount = repAggregatesData[j].getLabel();
+				}
+				when 's!Commission__c.EntitlementAmount__c' {
+					EntitlementAmount = repAggregatesData[j].getLabel();
+				}
+				when 'RowCount' {
+					RowCount = repAggregatesData[j].getLabel();
+				}
+			}
+			j++;
+		}
+
+		return new ReportTable(header, resultTable, entitlementAmount, pendingAmount, rowCount);
 	}
 }

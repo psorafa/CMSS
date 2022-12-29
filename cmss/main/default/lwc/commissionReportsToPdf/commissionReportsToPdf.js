@@ -6,37 +6,62 @@ import checkStatus from '@salesforce/apex/CommissionRunReportController.checkSta
 import getReportData from '@salesforce/apex/CommissionRunReportController.getReportData';
 import { subscribe, unsubscribe, APPLICATION_SCOPE, MessageContext } from 'lightning/messageService';
 import COMMISSION_CHANNEL from '@salesforce/messageChannel/Commission_Reports__c';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class commissionReportsToPdf extends LightningElement {
 	fixedWidth = 'width:10rem;';
 	data;
 	loaded = false;
+	columnWidths = [];
+	columnWidthsPx = [];
+	columnWidthsPerc = [];
+	columnWidthsPxSum = 0;
+	timeout;
+	timerCounter = 0;
+	timeSpan = 1000;
 
 	selectedReport;
+	selectedReportDevName;
+	selectedReportName;
+	selectedReportDescription;
 	year;
 	month;
 	yearTo;
 	monthTo;
 	showTo;
 	cpu;
+	tribeCpu;
 	fromRecord;
 	toRecord;
-	selectedReport;
-	selectedReportDevName;
+	accountBaseCombinedName;
+	address;
+	footerTimestamp;
 
 	@wire(MessageContext)
 	messageContext;
 
 	reportFilters;
 	reportInstance;
-	reportStatus;
+	reportStatus = 'Not Started';
 	reportData;
 	reportHeader;
+	reportHasRows = false;
+	entitlementAmount;
+	pendingAmount;
+	rowCount = 0;
+	rowCountExceeded = false;
 	viewHeader;
 	reportHtmlData;
 	error;
 	loading = false;
 	subscription = null;
+	runReportDisabled = true;
+	todayDate;
+	dateValues;
+	selectedPeriod;
+	commissionAccount;
+	combinedName;
+	pdfUrl;
 
 	subscribeToMessageChannel() {
 		this.subscription = subscribe(
@@ -48,34 +73,98 @@ export default class commissionReportsToPdf extends LightningElement {
 	}
 
 	handleMessage(message) {
+		this.selectedReport = message.selectedReport;
+		this.selectedReportDevName = message.selectedReportDevName;
+		this.selectedReportName = message.selectedReportName;
+		this.selectedReportDescription = message.selectedReportDescription;
 		this.year = message.year;
 		this.month = message.month;
 		this.yearTo = message.yearTo;
 		this.monthTo = message.monthTo;
 		this.showTo = message.showTo;
 		this.cpu = message.cpu;
+		this.tribeCpu = message.tribeCpu;
 		this.fromRecord = message.fromRecord;
 		this.toRecord = message.toRecord;
-		this.selectedReport = message.selectedReport;
-		this.selectedReportDevName = message.selectedReportDevName;
+		this.accountBaseCombinedName = message.accountBaseCombinedName;
+		this.address = message.address;
+		if (this.accountBaseCombinedName !== undefined) {
+			this.commissionAccount =
+				this.tribeCpu !== '' && this.tribeCpu !== undefined
+					? this.tribeCpu
+					: this.accountBaseCombinedName.slice(0, this.accountBaseCombinedName.indexOf(','));
+
+			this.combinedName = this.accountBaseCombinedName.slice(this.accountBaseCombinedName.indexOf(',') + 1);
+		}
+		let endingTo = this.monthTo !== undefined ? this.monthTo + '.' + this.yearTo : '';
+		this.dateValues = this.todayDate + ' / ' + this.month + '.' + this.year + ' - ' + endingTo;
+		this.selectedPeriod = this.month + '.' + this.year + ' - ' + endingTo;
+
+		console.log('selectedReport: ' + this.selectedReport);
+		console.log('selectedReportDevName: ' + this.selectedReportDevName);
+		console.log('selectedReportName: ' + this.selectedReportName);
+		console.log('selectedReportDescription: ' + this.selectedReportDescription);
+		console.log('year: ' + this.year);
+		console.log('month: ' + this.month);
+		console.log('yearTo: ' + this.yearTo);
+		console.log('monthTo: ' + this.monthTo);
+		console.log('showTo: ' + this.showTo);
+		console.log('cpu: ' + this.cpu);
+		console.log('tribeCpu: ' + this.tribeCpu);
+		console.log('fromRecord: ' + this.fromRecord);
+		console.log('toRecord: ' + this.toRecord);
+		console.log('accountBaseCombinedName: ' + this.accountBaseCombinedName);
+		console.log('address: ' + this.address);
+		console.log('commissionAccount: ' + this.commissionAccount);
+		console.log('combinedName: ' + this.combinedName);
+		console.log('dateValues: ' + this.dateValues);
+		console.log('selectedPeriod: ' + this.selectedPeriod);
+
+		if (this.year && this.month && this.selectedReport) {
+			this.runReportDisabled = false;
+		}
 	}
 
 	connectedCallback() {
 		this.subscribeToMessageChannel();
+		let today = new Date();
+		let dd = String(today.getDate()).padStart(2, '0');
+		let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+		let yyyy = today.getFullYear();
+		let hh = today.getHours();
+		let min = today.getMinutes();
+		this.todayDate = dd + '.' + mm + '.' + yyyy;
+		this.footerTimestamp = this.todayDate + ' ' + hh + ':' + min;
+		let myDomain = window.location.hostname;
+		console.log('domena: ' + window.location.hostname);
+		this.pdfUrl =
+			'https://' +
+			myDomain.slice(0, myDomain.indexOf('.')) +
+			'--c' +
+			myDomain.slice(myDomain.indexOf('.')).replace('lightning', 'vf') +
+			'/apex/CommissionPdfGenerator';
+		console.log('pdfUrl: ' + this.pdfUrl);
 	}
 
 	handleRunReport(event) {
 		this.loading = true;
+		this.timerCounter = 0;
+		let today = new Date();
+		this.footerTimestamp = this.todayDate + ' ' + today.getHours() + ':' + today.getMinutes();
 		runReport({
 			reportId: this.selectedReport,
 			fromYear: this.year,
 			fromMonth: this.month,
 			toYear: this.yearTo,
-			toMonth: this.monthTo
+			toMonth: this.monthTo,
+			fromRecord: this.fromRecord,
+			toRecord: this.toRecord,
+			cpu: this.cpu,
+			tribeCpu: this.tribeCpu
 		})
 			.then((result) => {
 				this.reportInstance = result;
-				this.loading = false;
+				this.checkStatusContinuously();
 			})
 			.catch((error) => {
 				this.error = JSON.stringify(error);
@@ -83,23 +172,23 @@ export default class commissionReportsToPdf extends LightningElement {
 			});
 	}
 
-	handleGetFilters(event) {
-		getReportFilters({ reportId: this.selectedReport })
-			.then((result) => {
-				this.reportFilters = result;
-				console.log('this.reportFilters: ' + JSON.stringify(this.reportFilters));
-			})
-			.catch((error) => {
-				this.error = JSON.stringify(error);
-			});
+	checkStatusContinuously() {
+		this.timeout = setInterval(() => {
+			this.checkStatus();
+		}, this.timeSpan);
 	}
 
-	handleCheckStatus(event) {
-		this.loading = true;
+	checkStatus() {
+		console.log('reportStatus: ' + this.reportStatus + ', counter: ' + this.timerCounter);
+		if (this.reportStatus === 'Success' || this.timerCounter > 300) {
+			this.loading = false;
+			clearInterval(this.timeout);
+			this.handleGetData();
+		}
+		this.timerCounter++;
 		checkStatus({ instanceId: this.reportInstance })
 			.then((result) => {
 				this.reportStatus = result;
-				this.loading = false;
 			})
 			.catch((error) => {
 				this.error = JSON.stringify(error);
@@ -113,45 +202,84 @@ export default class commissionReportsToPdf extends LightningElement {
 			repHead.push(reportHeader[col].columnLabel);
 		}
 		this.viewHeader = repHead;
+		this.reportStatus = 'Not started';
 	}
 
-	handleGetData(event) {
-		this.loading = true;
+	buildHTML() {
+		this.recalcColumnWidths();
+		let i = 0;
+		let html = '<table style="width:100%"><thead><tr>';
+		for (let columnName of this.viewHeader) {
+			html += '<th style="width:' + this.columnWidthsPerc[i] + '%;">' + columnName + '</th>';
+			i++;
+		}
+		i = 0;
+		let j = 0;
+		html += '</thead><tbody>';
+		for (let row of this.reportData) {
+			html += '<tr>';
+			for (let cell of row) {
+				html += '<td style="width:' + this.columnWidthsPerc[i] + '%;">' + cell + '</td>';
+				i++;
+			}
+			j++;
+			i = 0;
+			html += '</tr>';
+		}
+
+		html += '</tbody></table>';
+		html += '<br/><table style="width: 100%;">';
+		html += '<tbody><tr>';
+		html += '<td style="border-top: 1px solid black;">Počet záznamů:</td>';
+		html += '<td style="border-top: 1px solid black;">' + this.rowCount + '</td>';
+		html += '<td style="border-top: 1px solid black;">Součet hodnot zobrazených provizí:</td>';
+		html += '<td style="border-top: 1px solid black;"></td>';
+		html += '</tr><tr>';
+		html += '<td>Výpis z provizního účtu:</td>';
+		html += '<td>' + this.accountBaseCombinedName + '</td>';
+		html += '<td>Čekatelství:</td>';
+		html += '<td>' + this.pendingAmount + '</td>';
+		html += '</tr><tr>';
+		html += '<td>Provizní zpracování k/OD-DO:</td>';
+		html += '<td>' + this.dateValues + '</td>';
+		html += '<td>Nárok:</td>';
+		html += '<td>' + this.entitlementAmount + '</td>';
+		html += '</tr></tbody></table>';
+		this.reportHtmlData = html;
+		console.log('html: ' + this.reportHtmlData);
+	}
+
+	handleGetData() {
+		//this.loading = true;
 		getReportData({ instanceId: this.reportInstance, reportDevName: this.selectedReportDevName })
 			.then((result) => {
 				this.reportData = result.reportData;
 				this.reportHeader = result.reportHeader;
-				console.log('reportData: ' + JSON.stringify(this.reportData));
-				console.log('reportData length: ' + this.reportData.length);
+				this.entitlementAmount = result.entitlementAmount;
+				this.pendingAmount = result.pendingAmount;
+				this.rowCount = result.rowCount;
+				this.rowCountExceeded = Number(this.rowCount) > 2000 ? true : false;
+				this.reportHasRows = Number(this.rowCount) > 0 ? true : false;
+				if (this.rowCountExceeded) {
+					throw new Error(
+						'Snažíte se vyexportovat více záznamů, než je povolený limit 2000. Prosím zužte datovou sadu změnou upřesňujících kritérií zadáním užšího období, výběrem specifického typu provizního výpisu čí rozmezí pořadových čísel záznamů.'
+					);
+				}
+				if (!this.reportHasRows) {
+					throw new Error(
+						'Dle zadaných parametrů export neobsahuje žádné záznamy. Prosím upravte parametry exportu.'
+					);
+				}
 				console.log('reportHeader: ' + JSON.stringify(this.reportHeader));
-				console.log('reportHeader length: ' + this.reportHeader.length);
-
-				console.log('result.reportData[0]: ' + result.reportData[0]);
-				console.log('result.reportData[0][7]: ' + result.reportData[0][7]);
-				console.log('result.reportData[1][7]: ' + result.reportData[1][7]);
-				console.log('result.reportData[2][7]: ' + result.reportData[2][7]);
-				console.log('result.reportData[3][7]: ' + result.reportData[3][7]);
-				console.log('result.reportData.length: ' + result.reportData.lenght);
-
-				console.log(
-					'result.reportHeader[Commission__c.ExpenditureFlatRate__c].columnLabel: ' +
-						result.reportHeader['Commission__c.ExpenditureFlatRate__c'].columnLabel
-				);
 
 				this.processHeader(this.reportHeader);
-
-				let html = '<table>';
-				for (let id of this.reportData) {
-					html += '<tr><td>' + id + '</td></tr>';
-				}
-				html += '</table>';
-				this.reportHtmlData = html;
-				console.log('html: ' + this.reportHtmlData);
-				this.loading = false;
+				this.buildHTML();
+				//this.loading = false;
 			})
 			.catch((error) => {
 				this.error = JSON.stringify(error);
 				this.loading = false;
+				this.handleErrors(error);
 			});
 	}
 
@@ -193,11 +321,37 @@ export default class commissionReportsToPdf extends LightningElement {
 	}
 
 	//#region ***************** RESIZABLE COLUMNS *************************************/
-	handlemouseup(e) {
+	recalcColumnWidths() {
+		this.columnWidthsPxSum = 0;
+		let tableThs = this.template.querySelectorAll('table thead .dv-dynamic-width');
+		tableThs.forEach((th, ind) => {
+			this.columnWidths[ind] = th.style.width;
+			this.columnWidthsPx[ind] = th.style.width.includes('rem')
+				? String(
+						Number(th.style.width.replace('rem', '')) *
+							parseFloat(getComputedStyle(document.documentElement).fontSize)
+				  ) + 'px'
+				: th.style.width;
+			this.columnWidthsPxSum += Number(this.columnWidthsPx[ind].replace('px', ''));
+		});
+		for (let i = 0; i < this.columnWidthsPx.length; i++) {
+			this.columnWidthsPerc[i] =
+				(Number(this.columnWidthsPx[i].replace('px', '')) / this.columnWidthsPxSum) * 100;
+		}
+		console.log('columnWidths: ' + this.columnWidths);
+		console.log('columnWidthsPx: ' + this.columnWidthsPx);
+		console.log('columnWidthsPerc: ' + this.columnWidthsPerc);
+		console.log('columnWidthsPxSum: ' + this.columnWidthsPxSum);
+		console.log('columnWidths length: ' + this.columnWidths.length);
+
 		this._tableThColumn = undefined;
 		this._tableThInnerDiv = undefined;
 		this._pageX = undefined;
 		this._tableThWidth = undefined;
+	}
+
+	handlemouseup(e) {
+		this.buildHTML();
 	}
 
 	handlemousedown(e) {
@@ -217,17 +371,17 @@ export default class commissionReportsToPdf extends LightningElement {
 		while (!this._tableThInnerDiv.className.includes('slds-cell-fixed')) {
 			this._tableThInnerDiv = this._tableThInnerDiv.parentNode;
 		}
-		console.log('handlemousedown this._tableThColumn.tagName => ', this._tableThColumn.tagName);
+		//console.log('handlemousedown this._tableThColumn.tagName => ', this._tableThColumn.tagName);
 		this._pageX = e.pageX;
 
 		this._padding = this.paddingDiff(this._tableThColumn);
 
 		this._tableThWidth = this._tableThColumn.offsetWidth - this._padding;
-		console.log('handlemousedown this._tableThColumn.tagName => ', this._tableThColumn.tagName);
+		//console.log('handlemousedown this._tableThColumn.tagName => ', this._tableThColumn.tagName);
 	}
 
 	handlemousemove(e) {
-		console.log('mousemove this._tableThColumn => ', this._tableThColumn);
+		//.log('mousemove this._tableThColumn => ', this._tableThColumn);
 		if (this._tableThColumn && this._tableThColumn.tagName === 'TH') {
 			this._diffX = e.pageX - this._pageX;
 
@@ -276,5 +430,25 @@ export default class commissionReportsToPdf extends LightningElement {
 
 	getStyleVal(elm, css) {
 		return window.getComputedStyle(elm, null).getPropertyValue(css);
+	}
+
+	handleErrors(error) {
+		if (error.message) {
+			this.showToast('info', 'No data returned', error.message);
+			this.noRecordsFound = true;
+		} else {
+			this.showToast('error', 'Error', error.body.message);
+		}
+	}
+
+	showToast(v, t, msg) {
+		this.dispatchEvent(
+			new ShowToastEvent({
+				title: t,
+				message: msg,
+				variant: v,
+				mode: 'sticky'
+			})
+		);
 	}
 }

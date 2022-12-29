@@ -27,6 +27,10 @@
         <fieldName>cpu</fieldName>
     </lightningMessageFields>
     <lightningMessageFields>
+        <description>This is the &quot;Kmen ČPÚ&quot; that changed</description>
+        <fieldName>tribeCpu</fieldName>
+    </lightningMessageFields>    
+    <lightningMessageFields>
         <description>This is the &quot;from record&quot; that changed</description>
         <fieldName>fromRecord</fieldName>
     </lightningMessageFields>
@@ -41,6 +45,22 @@
     <lightningMessageFields>
         <description>This is the selected report developer name that changed</description>
         <fieldName>selectedReportDevName</fieldName>
-    </lightningMessageFields>    
-    <masterLabel>YearSelected</masterLabel>
+    </lightningMessageFields> 
+    <lightningMessageFields>
+        <description>This is the selected report name that changed</description>
+        <fieldName>selectedReportName</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the selected report description that changed</description>
+        <fieldName>selectedReportDescription</fieldName>
+    </lightningMessageFields>          
+    <lightningMessageFields>
+        <description>This is the accountBaseCombinedName</description>
+        <fieldName>accountBaseCombinedName</fieldName>
+    </lightningMessageFields> 
+    <lightningMessageFields>
+        <description>This is the address</description>
+        <fieldName>address</fieldName>
+    </lightningMessageFields>          
+    <masterLabel>Commission Reports Channel</masterLabel>
 </LightningMessageChannel>
