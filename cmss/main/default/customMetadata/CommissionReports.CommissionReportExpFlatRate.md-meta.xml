@@ -4,7 +4,10 @@
     <protected>false</protected>
     <values>
         <field>Columns__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">Commission__c.ExpenditureFlatRate__c,
+Commission__c.ExpenditureFlatRateCategory__c,
+Commission__c.PendingAmount__c,
+Commission__c.EntitlementAmount__c</value>
     </values>
     <values>
         <field>ReportName__c</field>

@@ -4,18 +4,18 @@
     <protected>false</protected>
     <values>
         <field>Columns__c</field>
-        <value xsi:type="xsd:string">BillingDate__c,
-CPUSuffix__c,
-BaseAssetName__c,
-Account__c.GlobalId__c,
-Date__c,
-TargetAmount__c,
-ClosingAgentCommissionAcountBase__c,
-ClosingAgent__c.LastName,
-PendingAmount__c,
-ExpenditureFlatRate__c,
-BusinessCaseDescription __c,
-RecordNumber__c</value>
+        <value xsi:type="xsd:string">Commission__c.BillingDate__c,
+Commission__c.CPUSuffix__c,
+Commission__c.BaseAssetName__c,
+Commission__c.Account__c.GlobalId__c,
+Commission__c.Date__c,
+Commission__c.TargetAmount__c,
+Commission__c.ClosingAgentCommissionAcountBase__c,
+Commission__c.ClosingAgent__c.LastName,
+Commission__c.PendingAmount__c,
+Commission__c.ExpenditureFlatRate__c,
+Commission__c.BusinessCaseDescription__c,
+Commission__c.RecordNumber__c</value>
     </values>
     <values>
         <field>ReportName__c</field>
