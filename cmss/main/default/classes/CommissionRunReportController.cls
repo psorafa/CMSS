@@ -206,7 +206,8 @@ public with sharing class CommissionRunReportController {
 
 	public class ReportTable {
 		@AuraEnabled
-		public Map<String, ReportHeader> reportHeader;
+		//public Map<String, ReportHeader> reportHeader;
+		public List<ReportHeader> reportHeader;
 		@AuraEnabled
 		public List<List<String>> reportData;
 		@AuraEnabled
@@ -216,7 +217,8 @@ public with sharing class CommissionRunReportController {
 		@AuraEnabled
 		public String rowCount;
 		public ReportTable(
-			Map<String, ReportHeader> header,
+			//Map<String, ReportHeader> header,
+			List<ReportHeader> header,
 			List<List<String>> data,
 			String entitlementAmount,
 			String pendingAmount,
@@ -231,8 +233,16 @@ public with sharing class CommissionRunReportController {
 	}
 
 	@AuraEnabled
-	//public static List<List<String>> getReportData(Id instanceId) {
 	public static ReportTable getReportData(Id instanceId, String reportDevName) {
+		if (reportDevName == 'CommissionReportExpFlatRate') {
+			return getSummaryReportData(instanceId, reportDevName);
+		} else {
+			return getTabularReportData(instanceId, reportDevName);
+		}
+	}
+
+	@AuraEnabled
+	public static ReportTable getTabularReportData(Id instanceId, String reportDevName) {
 		//prepare header columns from metadata
 		//getInstance method cannot be used because it truncates columns to 255 chars
 		List<String> reportMdtColumns = [
@@ -259,18 +269,18 @@ public with sharing class CommissionRunReportController {
 		Reports.ReportExtendedMetadata repExtendedMetadata = results.getReportExtendedMetadata();
 		Map<String, Reports.DetailColumn> repDetailColumnInfo = repExtendedMetadata.getDetailColumnInfo();
 		Map<String, ReportHeader> header = new Map<String, ReportHeader>();
+		List<ReportHeader> headerList = new List<ReportHeader>();
 		for (String key : reportMdtColumnsMap.keySet()) {
 			Integer i = 0; //position of column in repDetailColumnInfo is needed
 			for (String keyColumn : repDetailColumnInfo.keySet()) {
 				if (key == keyColumn) {
-					header.put(
+					ReportHeader h = new ReportHeader(
+						repDetailColumnInfo.get(key).getLabel(),
 						repDetailColumnInfo.get(key).getName(),
-						new ReportHeader(
-							repDetailColumnInfo.get(key).getLabel(),
-							repDetailColumnInfo.get(key).getName(),
-							i
-						)
+						i
 					);
+					header.put(repDetailColumnInfo.get(key).getName(), h);
+					headerList.add(h);
 				}
 				i++;
 			}
@@ -312,6 +322,134 @@ public with sharing class CommissionRunReportController {
 			j++;
 		}
 
-		return new ReportTable(header, resultTable, entitlementAmount, pendingAmount, rowCount);
+		return new ReportTable(headerList, resultTable, entitlementAmount, pendingAmount, rowCount);
+	}
+
+	@AuraEnabled
+	public static ReportTable getSummaryReportData(Id instanceId, String reportDevName) {
+		Reports.ReportResults results = Reports.ReportManager.getReportInstance(instanceId).getReportResults();
+		if (results == null) {
+			return null;
+		}
+
+		//build report header
+		Reports.ReportExtendedMetadata repResultMetadata = results.getReportExtendedMetadata();
+		List<ReportHeader> header = new List<ReportHeader>();
+		Integer i = 0;
+		MAP<String, Reports.GroupingColumn> groupingColumnInfo = repResultMetadata.getGroupingColumnInfo();
+		for (String groupColInfo : groupingColumnInfo.keySet()) {
+			ReportHeader h = new ReportHeader(
+				groupingColumnInfo.get(groupColInfo).getLabel(),
+				groupingColumnInfo.get(groupColInfo).getName(),
+				i
+			);
+			header.add(h);
+			i++;
+		}
+		MAP<String, Reports.DetailColumn> detailColumnInfo = repResultMetadata.getDetailColumnInfo();
+		for (String detailColInfo : detailColumnInfo.keySet()) {
+			//iterate all columns (correct order)
+			MAP<String, Reports.AggregateColumn> aggregateColumnInfo = repResultMetadata.getAggregateColumnInfo();
+			for (String agrColInfo : aggregateColumnInfo.keySet()) {
+				//iterate aggregated columns
+				if (
+					('s!' + detailColumnInfo.get(detailColInfo).getName()) ==
+					aggregateColumnInfo.get(agrColInfo).getName()
+				) {
+					ReportHeader h = new ReportHeader(
+						aggregateColumnInfo.get(agrColInfo).getLabel(),
+						aggregateColumnInfo.get(agrColInfo).getName(),
+						i
+					);
+					header.add(h);
+					i++;
+				}
+			}
+		}
+
+		// get report cells.
+		List<List<String>> resultTable = new List<List<String>>();
+		Integer rowCount = 0;
+		Reports.Dimension groupingsDown = results.getGroupingsDown();
+		List<Reports.GroupingValue> ListOfGroupingValuesL0 = groupingsDown.getGroupings();
+		for (Reports.GroupingValue groupingValueL0 : ListOfGroupingValuesL0) {
+			//keys 0, 1...
+			List<String> rowL0 = new List<String>();
+			List<String> rowL1 = new List<String>();
+			List<String> rowSum = new List<String>();
+
+			rowL0.add(groupingValueL0.getLabel()); //40, 60...;
+
+			List<Reports.GroupingValue> ListOfGroupingValuesL1 = groupingValueL0.getGroupings();
+			for (Reports.GroupingValue groupingValueL1 : ListOfGroupingValuesL1) {
+				//keys 0_0, 1_0, 1_1...
+				if (rowL0.size() > 0) {
+					rowL0.add(groupingValueL1.getLabel()); //Test 3, Test 1...
+				} else {
+					rowL1.clear();
+					rowL1.add('');
+					rowL1.add(groupingValueL1.getLabel());
+				}
+
+				Reports.ReportFactWithDetails factDetailsL1 = (Reports.ReportFactWithDetails) results.getFactMap()
+					.get(groupingValueL1.getKey() + '!T'); //get summaries for L1
+				for (Reports.SummaryValue aggregatesRowL1 : factDetailsL1.getAggregates()) {
+					//iterate fact columns for white cells
+					if (rowL0.size() > 0) {
+						rowL0.add(aggregatesRowL1.getLabel());
+					} else {
+						rowL1.add(aggregatesRowL1.getLabel());
+					}
+				}
+				if (rowL0.size() > 0) {
+					resultTable.add(rowL0.Clone());
+					rowCount++;
+				} else {
+					resultTable.add(rowL1.Clone());
+					rowCount++;
+				}
+				rowL0.clear();
+				rowL1.clear();
+			} //L1
+
+			rowSum.add('');
+			rowSum.add('Mezisoučet');
+			Reports.ReportFactWithDetails factDetailsL0 = (Reports.ReportFactWithDetails) results.getFactMap()
+				.get(groupingValueL0.getKey() + '!T'); //get summaries for L0
+			for (Reports.SummaryValue aggregatesRowL0 : factDetailsL0.getAggregates()) {
+				//iterate fact columns for summaries
+				rowSum.add(aggregatesRowL0.getLabel());
+			}
+			resultTable.add(rowSum.Clone());
+			rowCount++;
+			rowSum.clear();
+		} //L0
+
+		//get last summary row
+		List<String> rowSumLast = new List<String>();
+		rowSumLast.add('Celkem');
+		rowSumLast.add('');
+		Reports.ReportMetadata repMetadata = results.getReportMetadata();
+		List<String> repAggregates = repMetadata.getAggregates();
+		Reports.ReportFactWithDetails factDetails = (Reports.ReportFactWithDetails) results.getFactMap().get('T!T');
+		List<Reports.SummaryValue> repAggregatesData = factDetails.getAggregates();
+		String entitlementAmount;
+		String pendingAmount;
+		Integer j = 0;
+		for (String aggregate : repAggregates) {
+			rowSumLast.add(repAggregatesData[j].getLabel());
+			switch on aggregate {
+				when 's!Commission__c.PendingAmount__c' {
+					PendingAmount = repAggregatesData[j].getLabel();
+				}
+				when 's!Commission__c.EntitlementAmount__c' {
+					EntitlementAmount = repAggregatesData[j].getLabel();
+				}
+			}
+			j++;
+		}
+		resultTable.add(rowSumLast);
+		rowCount++;
+		return new ReportTable(header, resultTable, entitlementAmount, pendingAmount, String.valueOf(rowCount));
 	}
 }

@@ -5,6 +5,7 @@
 	sideBar="false"
 	id="PocPdfGenerator"
 	applyBodyTag="false"
+    action = "{!insertAccessLog}"
 >
 	<head>
 		<style type="text/css" media="print">
@@ -56,7 +57,10 @@
 			}
 		</style>
 	</head>
-
+	<div class="footerRight">
+		<div>Strana <span class="pagenumber" /> / <span class="pagecount" /></div>
+	</div>
+	<div class="footerLeft"><apex:outputText escape="false" value="{!footerTimestamp}" /></div>
 	<html>
 		<body>
 			<table style="width: 100%">
@@ -86,10 +90,6 @@
 			<div>
 				<apex:outputText escape="false" value="{!html}" />
 			</div>
-			<div class="footerRight">
-				<div>Strana <span class="pagenumber" /> / <span class="pagecount" /></div>
-			</div>
-			<div class="footerLeft"><apex:outputText escape="false" value="{!footerTimestamp}" /></div>
 		</body>
 	</html>
 </apex:page>

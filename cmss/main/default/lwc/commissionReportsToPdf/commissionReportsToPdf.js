@@ -4,6 +4,7 @@ import runReport from '@salesforce/apex/CommissionRunReportController.runReport'
 import getReportFilters from '@salesforce/apex/CommissionRunReportController.getReportFilters';
 import checkStatus from '@salesforce/apex/CommissionRunReportController.checkStatus';
 import getReportData from '@salesforce/apex/CommissionRunReportController.getReportData';
+import getSummaryReportData from '@salesforce/apex/CommissionRunReportController.getSummaryReportData';
 import { subscribe, unsubscribe, APPLICATION_SCOPE, MessageContext } from 'lightning/messageService';
 import COMMISSION_CHANNEL from '@salesforce/messageChannel/Commission_Reports__c';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -36,6 +37,8 @@ export default class commissionReportsToPdf extends LightningElement {
 	accountBaseCombinedName;
 	address;
 	footerTimestamp;
+	filterReport;
+	filterRecordRange;
 
 	@wire(MessageContext)
 	messageContext;
@@ -77,6 +80,7 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.selectedReportDevName = message.selectedReportDevName;
 		this.selectedReportName = message.selectedReportName;
 		this.selectedReportDescription = message.selectedReportDescription;
+		this.filterReport = this.selectedReportDevName + '; ' + this.selectedReportDescription;
 		this.year = message.year;
 		this.month = message.month;
 		this.yearTo = message.yearTo;
@@ -86,6 +90,7 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.tribeCpu = message.tribeCpu;
 		this.fromRecord = message.fromRecord;
 		this.toRecord = message.toRecord;
+		this.filterRecordRange = this.fromRecord + ' - ' + this.toRecord;
 		this.accountBaseCombinedName = message.accountBaseCombinedName;
 		this.address = message.address;
 		if (this.accountBaseCombinedName !== undefined) {
@@ -151,6 +156,8 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.timerCounter = 0;
 		let today = new Date();
 		this.footerTimestamp = this.todayDate + ' ' + today.getHours() + ':' + today.getMinutes();
+		console.log('Running selectedReport: ' + this.selectedReport);
+		console.log('Running selectedReportDevName: ' + this.selectedReportDevName);
 		runReport({
 			reportId: this.selectedReport,
 			fromYear: this.year,
@@ -196,7 +203,7 @@ export default class commissionReportsToPdf extends LightningElement {
 			});
 	}
 
-	processHeader(reportHeader) {
+	processHeaderMap(reportHeader) {
 		let repHead = [];
 		for (let col in reportHeader) {
 			repHead.push(reportHeader[col].columnLabel);
@@ -205,10 +212,21 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.reportStatus = 'Not started';
 	}
 
+	processHeader(reportHeader) {
+		let repHead = [];
+		let i = 0;
+		for (let col in reportHeader) {
+			repHead.push(reportHeader[i].columnLabel);
+			i++;
+		}
+		this.viewHeader = repHead;
+		this.reportStatus = 'Not started';
+	}
+
 	buildHTML() {
 		this.recalcColumnWidths();
 		let i = 0;
-		let html = '<table style="width:100%"><thead><tr>';
+		let html = '<table style="width:100%; height: 95%;"><thead><tr>';
 		for (let columnName of this.viewHeader) {
 			html += '<th style="width:' + this.columnWidthsPerc[i] + '%;">' + columnName + '</th>';
 			i++;
@@ -250,7 +268,7 @@ export default class commissionReportsToPdf extends LightningElement {
 	}
 
 	handleGetData() {
-		//this.loading = true;
+		console.log('Ready reportInstance: ' + this.reportInstance);
 		getReportData({ instanceId: this.reportInstance, reportDevName: this.selectedReportDevName })
 			.then((result) => {
 				this.reportData = result.reportData;
