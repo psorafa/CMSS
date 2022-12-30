@@ -96,6 +96,31 @@
             <field>Type__c</field>
             <table>Access_Log__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>FilterCPUSuffix__c</field>
+            <table>Access_Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>FilterPeriod__c</field>
+            <table>Access_Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>FilterStatementType__c</field>
+            <table>Access_Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>FilterRecordNumber__c</field>
+            <table>Access_Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>FilterOwnerCommissionAccountBase__c</field>
+            <table>Access_Log__c</table>
+        </columns>
         <masterLabel>Access Logs</masterLabel>
     </sections>
     <sections>
