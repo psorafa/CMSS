@@ -261,3 +261,11 @@ cmss/main/default/sites/googleApiWebhooks.site-meta.xml
 
 cmss/main/default/authproviders/GoogleCalendarApi.authprovider-meta.xml
 cmss/main/default/namedCredentials/GoogleCalendar.namedCredential-meta.xml
+
+#custom metadata types specific per environment
+cmss/main/default/customMetadata/Configuration.Knowledge_CommissionArticleURL.md-meta.xml
+cmss/main/default/customMetadata/Configuration.LinkMOTDashboard.md-meta.xml
+cmss/main/default/customMetadata/Configuration.LinkMOTRMMOSCommissionStatementDashboard.md-meta.xml
+cmss/main/default/customMetadata/Configuration.LinkOZCommissionDashboard.md-meta.xml
+cmss/main/default/customMetadata/Configuration.LinkOZDashboard.md-meta.xml
+cmss/main/default/customMetadata/Configuration.LinkRMMOSDashboard.md-meta.xml

@@ -41,6 +41,10 @@ post    vytvořit záznam pro custom metadata Configuration
         * Name = LogsNotification_ReportURL, Value = 'TODO' 
 post    naplánovat schedulable ExceededLogsNotificationSchedule - vždy 1. den v měsíci o půlnoci
 post    vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__mdt pro vsechny dashboardType
-            - LinkMOTDashboard - Plnění produkce Manažera obchodního týmu
-            - LinkOZDashboard - Produkce OZ – PPP
-            - LinkRMMOSDashboard - Plnění produkce RM / MOS
+            - LinkMOTDashboard - Plnění produkce Manažera obchodního týmu (v Lighnitning)
+            - LinkOZDashboard - Produkce OZ – PPP (v Community)
+            - LinkRMMOSDashboard - Plnění produkce RM / MOS (v Lighnitning)
+post    vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__mdt pro vsechny dashboardType
+            - LinkOZCommissionDashboard - Přehled provizních výpisů (v Community)
+            - LinkMOTRMMOSCommissionStatementDashboard - Přehled provizních výpisů (v Lighnitning)
+        po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_CommissionArticleURL (link do Fenix Docs Community na konkrétní článek)
