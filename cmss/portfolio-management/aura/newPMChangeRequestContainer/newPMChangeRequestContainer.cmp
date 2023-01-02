@@ -1,0 +1,7 @@
+<!--
+ - Just an Aura container to display LWC component. No need to pass any attributes or anything.
+ -->
+
+<aura:component description="newPMChangeRequestContainer" implements="lightning:isUrlAddressable">
+    <c:newPMChangeRequestModal></c:newPMChangeRequestModal>
+</aura:component>
