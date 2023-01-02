@@ -31,7 +31,7 @@ try {
     sfdx sfdmu:run -p data/custom-search --sourceusername csvfile --targetusername $ALIAS
     CheckLastExitCode
 
-    Write-Host "Data loading completed." -ForegroundColor Green
+    Write-Host "Data loading completed."
 } finally {
     # cleanup when done
     git checkout -- data/core-data/target
