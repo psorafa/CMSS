@@ -1,0 +1,124 @@
+{
+  "appPageId" : "337013c6-d938-416e-8e47-602f422bd3a0",
+  "componentName" : "siteforce:dynamicLayout",
+  "id" : "250767c3-d26b-4da0-b11c-8e10ed0d9446",
+  "label" : "PV Export PDF",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "d35609ec-6485-4f0b-a93e-3845f0d513d0",
+          "columns" : [ {
+            "UUID" : "c11159ea-3fc6-47cf-83e9-483279a961e4",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "6",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "5c3123b8-c9f6-4582-ba11-9aba66d87833",
+            "columnKey" : "695fe",
+            "columnName" : "Column 2",
+            "columnWidth" : "6",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "d35609ec-6485-4f0b-a93e-3845f0d513d0",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:commissionReportsBasicParams",
+          "id" : "9bdf20ca-98b3-44c0-b9e8-81ed24b1da55",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "c11159ea-3fc6-47cf-83e9-483279a961e4",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:commissionReportsDetailParams",
+          "id" : "3a19213c-ae27-4728-b90b-dce19261371c",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "5c3123b8-c9f6-4582-ba11-9aba66d87833",
+        "regionLabel" : "Column 2",
+        "regionName" : "695fe",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "d94bb6a2-afef-43e0-959c-7818f5200669",
+          "columns" : [ {
+            "UUID" : "32a16e53-c585-4181-a7c9-1c1b22f23445",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "d94bb6a2-afef-43e0-959c-7818f5200669",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:commissionReportsToPdf",
+          "id" : "233dae5b-213c-4ccc-9518-ac058f076dd3",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "32a16e53-c585-4181-a7c9-1c1b22f23445",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "73fe5717-10cc-4e93-9ffd-9a7d870e80ad",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "PV Export PDF"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "f551caff-4fdf-4f9f-a233-c8048287e298",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "03d36ea3-d449-4244-a0b9-5d92edd09c53",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-pv-export-pdf"
+}

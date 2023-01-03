@@ -19,4 +19,12 @@ Commission__c.RecordNumber__c</value>
         <field>ReportName__c</field>
         <value xsi:type="xsd:string">60 Informace &quot;bez poplatku&quot;</value>
     </values>
+    <values>
+        <field>Show_Footer__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Show_Pending_Amount__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
 </CustomMetadata>

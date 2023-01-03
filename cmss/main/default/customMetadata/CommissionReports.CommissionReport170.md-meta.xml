@@ -16,4 +16,12 @@ Commission__c.RecordNumber__c</value>
         <field>ReportName__c</field>
         <value xsi:type="xsd:string">170 Jednorázové obraty zúčtovatelné s minimem/maximem</value>
     </values>
+    <values>
+        <field>Show_Footer__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Show_Pending_Amount__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
 </CustomMetadata>

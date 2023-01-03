@@ -88,8 +88,15 @@
         <type>SalesforceObject</type>
     </navigationMenuItem>
     <navigationMenuItem>
-        <label>Chatter</label>
+        <label>PV Export PDF</label>
         <position>13</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/pv-export-pdf</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Chatter</label>
+        <position>14</position>
         <publiclyAvailable>false</publiclyAvailable>
         <subMenu>
             <navigationMenuItem>

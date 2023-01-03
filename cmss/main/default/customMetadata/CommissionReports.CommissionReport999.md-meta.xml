@@ -16,4 +16,12 @@ Commission__c.EntitlementAmount__c</value>
         <field>ReportName__c</field>
         <value xsi:type="xsd:string">999 Rozpis odměn</value>
     </values>
+    <values>
+        <field>Show_Footer__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Show_Pending_Amount__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
 </CustomMetadata>
