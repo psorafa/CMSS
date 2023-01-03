@@ -51,6 +51,8 @@ export default class commissionReportsToPdf extends LightningElement {
 	reportHasRows = false;
 	entitlementAmount;
 	pendingAmount;
+	showFooter;
+	showPendingAmount;
 	rowCount = 0;
 	rowCountExceeded = false;
 	viewHeader;
@@ -226,6 +228,7 @@ export default class commissionReportsToPdf extends LightningElement {
 	buildHTML() {
 		this.recalcColumnWidths();
 		let i = 0;
+		let footer = '';
 		let html = '<table style="width:100%; height: 95%;"><thead><tr>';
 		for (let columnName of this.viewHeader) {
 			html += '<th style="width:' + this.columnWidthsPerc[i] + '%;">' + columnName + '</th>';
@@ -246,24 +249,26 @@ export default class commissionReportsToPdf extends LightningElement {
 		}
 
 		html += '</tbody></table>';
-		html += '<br/><table style="width: 100%;">';
-		html += '<tbody><tr>';
-		html += '<td style="border-top: 1px solid black;">Počet záznamů:</td>';
-		html += '<td style="border-top: 1px solid black;">' + this.rowCount + '</td>';
-		html += '<td style="border-top: 1px solid black;">Součet hodnot zobrazených provizí:</td>';
-		html += '<td style="border-top: 1px solid black;"></td>';
-		html += '</tr><tr>';
-		html += '<td>Výpis z provizního účtu:</td>';
-		html += '<td>' + this.accountBaseCombinedName + '</td>';
-		html += '<td>Čekatelství:</td>';
-		html += '<td>' + this.pendingAmount + '</td>';
-		html += '</tr><tr>';
-		html += '<td>Provizní zpracování k/OD-DO:</td>';
-		html += '<td>' + this.dateValues + '</td>';
-		html += '<td>Nárok:</td>';
-		html += '<td>' + this.entitlementAmount + '</td>';
-		html += '</tr></tbody></table>';
+		footer += '<br/><table style="width: 100%;">';
+		footer += '<tbody><tr>';
+		footer += '<td style="border-top: 1px solid black;">Počet záznamů:</td>';
+		footer += '<td style="border-top: 1px solid black;">' + this.rowCount + '</td>';
+		footer += '<td style="border-top: 1px solid black;">Součet hodnot zobrazených provizí:</td>';
+		footer += '<td style="border-top: 1px solid black;"></td>';
+		footer += '</tr><tr>';
+		footer += '<td>Výpis z provizního účtu:</td>';
+		footer += '<td>' + this.accountBaseCombinedName + '</td><td>';
+		footer += this.showPendingAmount ? 'Čekatelství:' : '';
+		footer += '</td><td>';
+		footer += this.showPendingAmount ? this.pendingAmount : '';
+		footer += '</td></tr><tr>';
+		footer += '<td>Provizní zpracování k/OD-DO:</td>';
+		footer += '<td>' + this.dateValues + '</td>';
+		footer += '<td>Nárok:</td>';
+		footer += '<td>' + this.entitlementAmount + '</td>';
+		footer += '</tr></tbody></table>';
 		this.reportHtmlData = html;
+		this.reportHtmlData += this.showFooter ? footer : '';
 		console.log('html: ' + this.reportHtmlData);
 	}
 
@@ -276,6 +281,10 @@ export default class commissionReportsToPdf extends LightningElement {
 				this.entitlementAmount = result.entitlementAmount;
 				this.pendingAmount = result.pendingAmount;
 				this.rowCount = result.rowCount;
+				this.showFooter = result.showFooter;
+				this.showPendingAmount = result.showPendingAmount;
+				console.log('showFooter: ' + this.showFooter);
+				console.log('showPendingAmount: ' + this.showPendingAmount);
 				this.rowCountExceeded = Number(this.rowCount) > 2000 ? true : false;
 				this.reportHasRows = Number(this.rowCount) > 0 ? true : false;
 				if (this.rowCountExceeded) {

@@ -1,5 +1,12 @@
 <template>
 	<lightning-card title="Základní parametry">
+		<lightning-formatted-url
+			value={knowledgeCommissionArticleURL}
+			tooltip={knowledgeCommissionArticleURL}
+			label="Metodika a kontakty"
+			target="_blank"
+			slot="actions"
+		></lightning-formatted-url>
 		<lightning-spinner if:true={loading}></lightning-spinner>
 		<div class="slds-p-around_medium">
 			<lightning-combobox

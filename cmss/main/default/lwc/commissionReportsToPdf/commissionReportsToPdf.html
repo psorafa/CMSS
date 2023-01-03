@@ -117,7 +117,7 @@
 				</div>
 			</div>
 		</template>
-		<template if:true={reportData}>
+		<template if:true={showFooter}>
 			<table class="slds-table">
 				<tbody>
 					<tr>
@@ -129,8 +129,8 @@
 					<tr>
 						<td style={fixedWidth}>Výpis z provizního účtu:</td>
 						<td style={fixedWidth}>{accountBaseCombinedName}</td>
-						<td style={fixedWidth}>Čekatelství:</td>
-						<td style={fixedWidth}>{pendingAmount}</td>
+						<td style={fixedWidth}><span if:true={showPendingAmount}>Čekatelství:</span></td>
+						<td style={fixedWidth}><span if:true={showPendingAmount}>{pendingAmount}</span></td>
 					</tr>
 					<tr>
 						<td style={fixedWidth}>Provizní zpracování k/OD-DO:</td>

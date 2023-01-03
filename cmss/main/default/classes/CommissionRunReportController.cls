@@ -28,6 +28,12 @@ public with sharing class CommissionRunReportController {
 	}
 
 	@AuraEnabled
+	public static String getKnowledgeCommissionArticleURL() {
+		String url = Configuration__mdt.getInstance('Knowledge_CommissionArticleURL').Value__c;
+		return url;
+	}
+
+	@AuraEnabled
 	public static Map<String, ReportWrap> getReportsMap() {
 		Map<String, CommissionReports__mdt> result = CommissionReports__mdt.getAll();
 		Set<String> restultSet = result.keySet();
@@ -216,19 +222,28 @@ public with sharing class CommissionRunReportController {
 		public String pendingAmount;
 		@AuraEnabled
 		public String rowCount;
+		@AuraEnabled
+		public Boolean showFooter;
+		@AuraEnabled
+		public Boolean showPendingAmount;
+
 		public ReportTable(
 			//Map<String, ReportHeader> header,
 			List<ReportHeader> header,
 			List<List<String>> data,
 			String entitlementAmount,
 			String pendingAmount,
-			String rowCount
+			String rowCount,
+			Boolean showFooter,
+			Boolean showPendingAmount
 		) {
 			this.reportHeader = header;
 			this.reportData = data;
 			this.entitlementAmount = entitlementAmount;
 			this.pendingAmount = pendingAmount;
 			this.rowCount = rowCount;
+			this.showFooter = showFooter;
+			this.showPendingAmount = showPendingAmount;
 		}
 	}
 
@@ -322,7 +337,17 @@ public with sharing class CommissionRunReportController {
 			j++;
 		}
 
-		return new ReportTable(headerList, resultTable, entitlementAmount, pendingAmount, rowCount);
+		Boolean showFooter = CommissionReports__mdt.getInstance(reportDevName).Show_Footer__c;
+		Boolean showPendingAmount = CommissionReports__mdt.getInstance(reportDevName).Show_Pending_Amount__c;
+		return new ReportTable(
+			headerList,
+			resultTable,
+			entitlementAmount,
+			pendingAmount,
+			rowCount,
+			showFooter,
+			showPendingAmount
+		);
 	}
 
 	@AuraEnabled
@@ -450,6 +475,16 @@ public with sharing class CommissionRunReportController {
 		}
 		resultTable.add(rowSumLast);
 		rowCount++;
-		return new ReportTable(header, resultTable, entitlementAmount, pendingAmount, String.valueOf(rowCount));
+		Boolean showFooter = CommissionReports__mdt.getInstance(reportDevName).Show_Footer__c;
+		Boolean showPendingAmount = CommissionReports__mdt.getInstance(reportDevName).Show_Pending_Amount__c;
+		return new ReportTable(
+			header,
+			resultTable,
+			entitlementAmount,
+			pendingAmount,
+			String.valueOf(rowCount),
+			showFooter,
+			showPendingAmount
+		);
 	}
 }

@@ -1,5 +1,6 @@
 import { LightningElement, wire, track } from 'lwc';
 import getReportsMap from '@salesforce/apex/CommissionRunReportController.getReportsMap';
+import getKnowledgeCommissionArticleURL from '@salesforce/apex/CommissionRunReportController.getKnowledgeCommissionArticleURL';
 import { publish, subscribe, MessageContext } from 'lightning/messageService';
 import COMMISSION_CHANNEL from '@salesforce/messageChannel/Commission_Reports__c';
 
@@ -18,6 +19,7 @@ export default class commissionReportsBasicParams extends LightningElement {
 	selectedReportDevName;
 	selectedReportName;
 	selectedReportDescription;
+	knowledgeCommissionArticleURL;
 	reportInstance;
 	reportStatus;
 	reportData;
@@ -44,6 +46,10 @@ export default class commissionReportsBasicParams extends LightningElement {
 			this.loaded = true;
 			getReportsMap().then((result) => {
 				this.processResult(result);
+			});
+
+			getKnowledgeCommissionArticleURL().then((result) => {
+				this.knowledgeCommissionArticleURL = result;
 			});
 		}
 		this.subscribeToMessageChannel();
