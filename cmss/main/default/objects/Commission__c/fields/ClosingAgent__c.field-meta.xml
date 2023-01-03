@@ -3,7 +3,7 @@
     <fullName>ClosingAgent__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>ClosingAgent</label>
+    <label>Closing Agent</label>
     <referenceTo>User</referenceTo>
     <relationshipName>ClosingAgentCommissions</relationshipName>
     <required>false</required>

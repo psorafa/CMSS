@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <formula>HYPERLINK($CustomMetadata.Configuration__mdt.CommissionFenixDocsLink.Value__c, $CustomMetadata.Configuration__mdt.CommissionFenixDocsLink.Value__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>FenixDocsLink</label>
+    <label>Fenix Docs Link</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
