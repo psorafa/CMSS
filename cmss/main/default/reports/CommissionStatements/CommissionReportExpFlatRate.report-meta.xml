@@ -8,6 +8,18 @@
         <aggregateTypes>Sum</aggregateTypes>
         <field>Commission__c$EntitlementAmount__c</field>
     </columns>
+    <columns>
+        <field>Commission__c$BillingDate__c</field>
+    </columns>
+    <columns>
+        <field>Commission__c$OwnerCommissionAcountBase__c</field>
+    </columns>
+    <columns>
+        <field>Commission__c$CPUSuffix__c</field>
+    </columns>
+    <columns>
+        <field>Commission__c$RecordNumber__c</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>Commission__c$RecordType</column>
@@ -81,11 +93,11 @@
     <name>Výdajový paušál</name>
     <params>
         <name>co</name>
-        <value>1</value>
+        <value>0</value>
     </params>
     <reportType>Commissions__c</reportType>
     <scope>user</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
