@@ -107,7 +107,9 @@ export default class CommissionReportsDetailParams extends LightningElement {
 		this.adminProfile = this.profiles.indexOf(result.Profile.Name) > -1 ? true : false;
 		this.accountBaseCombinedName = result.CommissionAccountBase__c + ', ' + result.CombinedName__c;
 		var localCpu = result.CommissionAccountNr__c;
-		this.cpuValue = localCpu.substring(localCpu.length - 3);
+		if (localCpu !== undefined) {
+			this.cpuValue = localCpu.substring(localCpu.length - 3);
+		}
 		this.loading = false;
 	}
 
