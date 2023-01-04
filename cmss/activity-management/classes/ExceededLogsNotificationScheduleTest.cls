@@ -25,10 +25,8 @@ class ExceededLogsNotificationScheduleTest {
 
 		insert new List<Access_Log__c>{ log1, log2, log3 };
 		Integer month = System.today().month() == 1 ? 12 : System.today().month() - 1;
-		DateTime newDateTime = DateTime.newInstance(
-			Date.newInstance(System.today().year(), month, 15),
-			Time.newInstance(12, 0, 0, 0)
-		);
+		Integer year = month == 12 ? System.today().year() - 1 : System.today().year();
+		DateTime newDateTime = DateTime.newInstance(Date.newInstance(year, month, 15), Time.newInstance(12, 0, 0, 0));
 		Test.setCreatedDate(log1.Id, newDateTime);
 		Test.setCreatedDate(log2.Id, newDateTime);
 		Test.setCreatedDate(log3.Id, newDateTime);
