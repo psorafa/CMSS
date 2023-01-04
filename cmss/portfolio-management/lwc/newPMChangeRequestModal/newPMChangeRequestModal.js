@@ -1,7 +1,3 @@
-/**
- * Created by tadeas on 31.12.2022.
- */
-
 import { LightningElement, api } from 'lwc'
 import { NavigationMixin } from 'lightning/navigation'
 import saveData from '@salesforce/apex/NewPMChangeRequestController.saveData'
@@ -45,12 +41,10 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
     handleClose() {
         this.show = false
         this.dispatchEvent(new CustomEvent('close'))
-        console.log('close fired')
     }
 
     handleSave() {
         this.showSpinner = true
-        console.log('data to be send', JSON.stringify(this.data))
         saveData({
             jsonData : JSON.stringify(this.data)
         }).then((result) => {
