@@ -4,58 +4,81 @@
     <assignments>
         <name>SetMOTDashboardLink</name>
         <label>Set MOT Dashboard Link</label>
-        <locationX>542</locationX>
-        <locationY>977</locationY>
+        <locationX>481</locationX>
+        <locationY>715</locationY>
         <assignmentItems>
-            <assignToReference>dashboardLink</assignToReference>
+            <assignToReference>productionStatisticsDashboardLink</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>GetMOTDashboardLink.Value__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>ProdStatScreen</targetReference>
+            <targetReference>GetMOTRMMOSCommissionStatementDashboard</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>SetMOTRMMOSCommissonDashboardLink</name>
+        <label>Set MOT/RM/MOS Commisson Dashboard Link</label>
+        <locationX>588</locationX>
+        <locationY>1096</locationY>
+        <assignmentItems>
+            <assignToReference>commissionStatementDashboardLink</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GetMOTRMMOSCommissionStatementDashboard.Value__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>StatisticsScreen</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>SetOZDashboardLink3</name>
         <label>Set OZ Dashboard Link</label>
-        <locationX>1022</locationX>
-        <locationY>979</locationY>
+        <locationX>974</locationX>
+        <locationY>917</locationY>
         <assignmentItems>
-            <assignToReference>dashboardLink</assignToReference>
+            <assignToReference>productionStatisticsDashboardLink</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>GetOZDashboardMTLink.Value__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>commissionStatementDashboardLink</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GetOZCommissionStatementDashboard.Value__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
-            <targetReference>ProdStatScreen</targetReference>
+            <targetReference>StatisticsScreen</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>SetRMMOSDashboardLink</name>
         <label>Set RM/MOS Dashboard Link</label>
-        <locationX>776</locationX>
-        <locationY>967</locationY>
+        <locationX>715</locationX>
+        <locationY>703</locationY>
         <assignmentItems>
-            <assignToReference>dashboardLink</assignToReference>
+            <assignToReference>productionStatisticsDashboardLink</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>GetRMMOSDashboardLink.Value__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>ProdStatScreen</targetReference>
+            <targetReference>GetMOTRMMOSCommissionStatementDashboard</targetReference>
         </connector>
     </assignments>
     <decisions>
         <name>CheckAgentActivityType</name>
         <label>Check Agent Activity Type</label>
-        <locationX>768</locationX>
-        <locationY>666</locationY>
+        <locationX>707</locationX>
+        <locationY>403</locationY>
         <defaultConnector>
-            <targetReference>GetOZDashboardMTLink</targetReference>
+            <targetReference>DefaultScreen</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -97,28 +120,43 @@
         </rules>
     </decisions>
     <decisions>
-        <name>CheckUserAssignedPermSet</name>
-        <label>Check User Assigned PermSet</label>
-        <locationX>766</locationX>
-        <locationY>481</locationY>
+        <name>CheckUserProfile</name>
+        <label>Check User Profile</label>
+        <locationX>704</locationX>
+        <locationY>191</locationY>
         <defaultConnector>
-            <targetReference>GetOZDashboardMTLink</targetReference>
+            <targetReference>DefaultScreen</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>CMSSUser</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>LoadCMSSUserPermSetAssignement</leftValueReference>
-                <operator>IsNull</operator>
+                <leftValueReference>$Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <stringValue>CMSS User</stringValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>CheckAgentActivityType</targetReference>
             </connector>
             <label>CMSS User</label>
+        </rules>
+        <rules>
+            <name>CMSSExperienceUser</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CMSS Experience User</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>GetOZDashboardMTLink</targetReference>
+            </connector>
+            <label>CMSS Experience User</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -146,8 +184,8 @@
     <recordLookups>
         <name>GetMOTDashboardLink</name>
         <label>Get  MOT Dashboard Link</label>
-        <locationX>540</locationX>
-        <locationY>819</locationY>
+        <locationX>479</locationX>
+        <locationY>557</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>SetMOTDashboardLink</targetReference>
@@ -167,13 +205,59 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>GetOZDashboardMTLink</name>
-        <label>Get OZ Dashboard MT Link</label>
-        <locationX>1034</locationX>
-        <locationY>809</locationY>
+        <name>GetMOTRMMOSCommissionStatementDashboard</name>
+        <label>Get MOT/RM/MOS Commission Statement Dashboard</label>
+        <locationX>588</locationX>
+        <locationY>923</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>SetMOTRMMOSCommissonDashboardLink</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>LinkMOTRMMOSCommissionStatementDashboard</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Configuration__mdt</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Value__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>GetOZCommissionStatementDashboard</name>
+        <label>Get OZ Commission Statement Dashboard</label>
+        <locationX>973</locationX>
+        <locationY>712</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>SetOZDashboardLink3</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>LinkOZCommissionDashboard</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Configuration__mdt</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Value__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>GetOZDashboardMTLink</name>
+        <label>Get OZ Dashboard MT Link</label>
+        <locationX>973</locationX>
+        <locationY>546</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>GetOZCommissionStatementDashboard</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -192,8 +276,8 @@
     <recordLookups>
         <name>GetRMMOSDashboardLink</name>
         <label>Get RM/MOS Dashboard Link</label>
-        <locationX>781</locationX>
-        <locationY>820</locationY>
+        <locationX>720</locationX>
+        <locationY>557</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>SetRMMOSDashboardLink</targetReference>
@@ -210,91 +294,56 @@
         <object>Configuration__mdt</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordLookups>
-        <name>LoadCMSSUserPermissionSet</name>
-        <label>Load CMSS User Permission Set</label>
-        <locationX>776</locationX>
-        <locationY>206</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>LoadCMSSUserPermSetAssignement</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Name</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>CMSS_User</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>PermissionSet</object>
-        <queriedFields>Id</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>LoadCMSSUserPermSetAssignement</name>
-        <label>Load CMSSUser PermSet Assignement</label>
-        <locationX>776</locationX>
-        <locationY>326</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>CheckUserAssignedPermSet</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>AssigneeId</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$User.Id</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>IsActive</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>PermissionSetId</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>LoadCMSSUserPermissionSet.Id</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>PermissionSetAssignment</object>
-        <queriedFields>Id</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
-        <name>ProdStatScreen</name>
-        <label>ProdStatScreen</label>
-        <locationX>778</locationX>
-        <locationY>1161</locationY>
+        <name>DefaultScreen</name>
+        <label>DefaultScreen</label>
+        <locationX>464</locationX>
+        <locationY>283</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>DisplayDefaultText</name>
+            <fieldText>&lt;p&gt;Pro vašeho uživatele nejsou k dispozici žádné odkazy.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>StatisticsScreen</name>
+        <label>StatisticsScreen</label>
+        <locationX>775</locationX>
+        <locationY>1326</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
             <name>ShowLink</name>
-            <fieldText>&lt;p&gt;&lt;a href=&quot;{!dashboardLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(8, 151, 234);&quot;&gt;&lt;strong&gt;Produkční statistiky&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;a href=&quot;{!productionStatisticsDashboardLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(0, 153, 205); font-size: 14px;&quot;&gt;&lt;strong&gt;Produkční statistiky&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!commissionStatementDashboardLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(0, 153, 205); font-size: 14px;&quot;&gt;&lt;strong&gt;Provizní výpis﻿y﻿&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>650</locationX>
-        <locationY>48</locationY>
+        <locationX>586</locationX>
+        <locationY>34</locationY>
         <connector>
-            <targetReference>LoadCMSSUserPermissionSet</targetReference>
+            <targetReference>CheckUserProfile</targetReference>
         </connector>
     </start>
     <status>Active</status>
     <variables>
-        <name>dashboardLink</name>
+        <name>commissionStatementDashboardLink</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>productionStatisticsDashboardLink</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

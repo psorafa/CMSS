@@ -2,9 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FenixDocsLink__c</fullName>
     <externalId>false</externalId>
-    <formula>HYPERLINK($CustomMetadata.Configuration__mdt.CommissionFenixDocsLink.Value__c, $CustomMetadata.Configuration__mdt.CommissionFenixDocsLink.Value__c)</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Fenix Docs Link</label>
+    <formula>HYPERLINK($CustomMetadata.Configuration__mdt.Knowledge_CommissionArticleURL.Value__c, &apos;Metodika a kontakty&apos;)</formula>
+    <label>FenixDocsLink</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
