@@ -1,4 +1,4 @@
-public with sharing class CommissionRunReportController {
+public without sharing class CommissionRunReportController {
 	@AuraEnabled
 	public static User getUserInfo() {
 		User usr = [
@@ -88,7 +88,7 @@ public with sharing class CommissionRunReportController {
 	}
 
 	@AuraEnabled
-	public static List<Reports.ReportFilter> getReportFilters(Id reportId) {
+	public static Reports.StandardDateFilter getReportFilters(Id reportId) {
 		Reports.ReportDescribeResult repDesc = Reports.ReportManager.describeReport(reportId);
 		Reports.ReportMetadata repMd = repDesc.getReportMetadata();
 		List<Reports.ReportFilter> repFilters = repMd.getReportFilters();
@@ -104,7 +104,7 @@ public with sharing class CommissionRunReportController {
 			System.debug('standardFilter: ' + standardFilter);
 		}
 
-		return repFilters;
+		return standardDateFilters;
 	}
 
 	@AuraEnabled
@@ -124,13 +124,15 @@ public with sharing class CommissionRunReportController {
 		Reports.StandardDateFilter standardDateFilter = new Reports.StandardDateFilter();
 		standardDateFilter.setColumn('Commission__c.BillingDate__c');
 		standardDateFilter.setDurationValue('CUSTOM');
-		if (!String.isBlank(fromYear) && !String.isBlank(fromMonth)) {
+		if (String.isNotBlank(fromYear) && String.isNotBlank(fromMonth)) {
+			fromMonth = fromMonth.length() == 1 ? '0' + fromMonth : fromMonth;
 			standardDateFilter.setStartDate(fromYear + '-' + fromMonth + '-' + '01');
 		} else {
 			standardDateFilter.setStartDate('null');
 		}
 
-		if (!String.isBlank(toYear) && !String.isBlank(toMonth)) {
+		if (String.isNotBlank(toYear) && String.isNotBlank(toMonth)) {
+			toMonth = toMonth.length() == 1 ? '0' + toMonth : toMonth;
 			standardDateFilter.setEndDate(
 				toYear +
 				'-' +
@@ -150,7 +152,7 @@ public with sharing class CommissionRunReportController {
 
 		//set custom filters
 		List<Reports.ReportFilter> repFilters = repMd.getReportFilters();
-		if (!String.isBlank(fromRecord)) {
+		if (String.isNotBlank(fromRecord)) {
 			Reports.ReportFilter fromRecordFilter = new Reports.ReportFilter();
 			fromRecordFilter.setColumn('Commission__c.RecordNumber__c');
 			fromRecordFilter.setOperator('greaterOrEqual');
@@ -158,7 +160,7 @@ public with sharing class CommissionRunReportController {
 			fromRecordFilter.setFilterType('fieldValue');
 			repFilters.add(fromRecordFilter);
 		}
-		if (!String.isBlank(toRecord)) {
+		if (String.isNotBlank(toRecord)) {
 			Reports.ReportFilter toRecordFilter = new Reports.ReportFilter();
 			toRecordFilter.setColumn('Commission__c.RecordNumber__c');
 			toRecordFilter.setOperator('lessOrEqual');
@@ -166,7 +168,7 @@ public with sharing class CommissionRunReportController {
 			toRecordFilter.setFilterType('fieldValue');
 			repFilters.add(toRecordFilter);
 		}
-		if (!String.isBlank(tribeCpu)) {
+		if (String.isNotBlank(tribeCpu)) {
 			Reports.ReportFilter tribeCPUFilter = new Reports.ReportFilter();
 			tribeCPUFilter.setColumn('Commission__c.OwnerCommissionAcountBase__c');
 			tribeCPUFilter.setOperator('equals');
@@ -174,7 +176,7 @@ public with sharing class CommissionRunReportController {
 			tribeCPUFilter.setFilterType('fieldValue');
 			repFilters.add(tribeCPUFilter);
 		}
-		if (!String.isBlank(cpu)) {
+		if (String.isNotBlank(cpu)) {
 			Reports.ReportFilter cpuFilter = new Reports.ReportFilter();
 			cpuFilter.setColumn('Commission__c.CPUSuffix__c');
 			cpuFilter.setOperator('equals');
@@ -311,7 +313,7 @@ public with sharing class CommissionRunReportController {
 				row.add('' + detailRow.getDataCells()[header.get(key).columnIndex].getLabel());
 			}
 			resultTable.add(row);
-			System.debug('Row: ' + row);
+			//System.debug('Row: ' + row);
 		}
 
 		//get aggregates metadata and data
