@@ -3,5 +3,7 @@
  -->
 
 <aura:component description="newPMChangeRequestContainer" implements="lightning:isUrlAddressable">
-    <c:newPMChangeRequestModal></c:newPMChangeRequestModal>
+    <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
+    <lightning:navigation aura:id="navigation"/>
+    <c:newPMChangeRequestModal aura:id="modal" onclose="{!c.onClose}"></c:newPMChangeRequestModal>
 </aura:component>
