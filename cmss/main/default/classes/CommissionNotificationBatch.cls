@@ -1,6 +1,14 @@
 public class CommissionNotificationBatch implements Database.Batchable<sObject>, Schedulable {
+	public Id templateId;
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
 		Datetime commissionWindow = Date.Today();
+		templateId = [
+			SELECT Id, DeveloperName
+			FROM CustomNotificationType
+			WHERE DeveloperName = 'Commission'
+			LIMIT 1
+		]
+		.Id;
 		return Database.getQueryLocator(
 			[
 				SELECT Id, OwnerId, CreatedDate
@@ -12,22 +20,14 @@ public class CommissionNotificationBatch implements Database.Batchable<sObject>,
 
 	public void execute(Database.BatchableContext jobId, List<Commission__c> commissions) {
 		try {
-			List<CustomNotificationType> templateInfoDetail = [
-				SELECT Id, DeveloperName
-				FROM CustomNotificationType
-				WHERE DeveloperName = 'Commission'
-				LIMIT 1
-			];
-		if (templateInfoDetail.size() > 0) {
 			for (Commission__c comm : commissions) {
 				CustomNotificationService.sendNotification(
 					comm.OwnerId,
-					templateInfoDetail[0].Id,
+					templateId,
 					'Provozní výpisy',
 					'V CRM Fénix máte nový provizní výpis.'
 				);
 			}
-		}
 		} catch (Exception e) {
 			Logger.error('An exception thrown', e);
 		} finally {
@@ -39,6 +39,6 @@ public class CommissionNotificationBatch implements Database.Batchable<sObject>,
 	}
 
 	public void execute(SchedulableContext sc) {
-		Database.executeBatch(this);
+		Database.executeBatch(this, 150);
 	}
 }

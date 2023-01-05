@@ -7,12 +7,6 @@ public class CustomNotificationService {
 		currNotification.setTargetId(usrId);
 		Set<String> usrIds = new Set<String>();
 		usrIds.add(usrId);
-		try {
-			currNotification.send(usrIds);
-		} catch (Exception ex) {
-			Logger.error('An exception thrown', ex);
-		} finally {
-			Logger.saveLogs();
-		}
+		currNotification.send(usrIds);
 	}
 }

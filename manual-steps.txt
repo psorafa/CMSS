@@ -19,7 +19,6 @@ post    smazat pole ClientZone__c.UsernameHash__c
 post    pro object Commmissions nastavit v OWD Grant Access Using Hierarchies = false (unchecked)
 
 v20
-post    naplanovat Schedule Apex pro tridu CommissionNotificationBatch na 8:00 AM na kazdy den
 
 v20
 pre     před prvním deploymentem na prostředí zakomentovat ve .forceignore
@@ -49,3 +48,4 @@ post    vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__
             - LinkOZCommissionDashboard - Přehled provizních výpisů (v Community)
             - LinkMOTRMMOSCommissionStatementDashboard - Přehled provizních výpisů (v Lighnitning)
         po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_CommissionArticleURL (link do Fenix Docs Community na konkrétní článek)
+post    naplanovat Schedule Apex pro tridu CommissionNotificationBatch na 8:00 AM na kazdy den
