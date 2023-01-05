@@ -1,15 +1,16 @@
 public with sharing class PortfolioManagementRequestTriggerHandler extends TriggerHandler {
-
 	public static final String DEFAULT_REQUEST_STATUS = '4';
 
 	public override void beforeInsert() {
-		PortfolioManagementRequestService.setPortfolioManager(Trigger.new, null);
 		setDefaultRequestStatus(Trigger.new);
 		setBatchIds(Trigger.new);
 	}
 
 	public override void beforeUpdate() {
-		PortfolioManagementRequestService.setPortfolioManager(Trigger.new, (Map<Id, PortfolioManagementRequest__c>) Trigger.oldMap);
+		PortfolioManagementRequestService.setPortfolioManager(
+			Trigger.new,
+			(Map<Id, PortfolioManagementRequest__c>) Trigger.oldMap
+		);
 	}
 
 	public override void afterInsert() {
