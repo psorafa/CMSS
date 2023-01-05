@@ -30,6 +30,8 @@ cmss/main/default/flexipages/HomePageCMSSUser.flexipage-meta.xml
 # claim management.entitlementProcess
 
 # picklist values to ignore defined in CUSTCMSSCRM-2314
+cmss/main/default/objects/Activity/fields/LetterType__c.field-meta.xml
+cmss/main/default/objects/Activity/fields/RecipientRole__c.field-meta.xml
 cmss/main/default/objects/Account/fields/AccountStatus__c.field-meta.xml
 cmss/main/default/objects/Account/fields/NACE__c.field-meta.xml
 cmss/main/default/objects/Account/fields/PersonType__c.field-meta.xml
