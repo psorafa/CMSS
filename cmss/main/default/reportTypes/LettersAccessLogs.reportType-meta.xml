@@ -12,6 +12,11 @@
             <table>Access_Log__c</table>
         </columns>
         <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TaskLetterId__c</field>
+            <table>Access_Log__c</table>
+        </columns>
+        <columns>
             <checkedByDefault>true</checkedByDefault>
             <field>Name</field>
             <table>Access_Log__c</table>
@@ -24,6 +29,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CreatedBy</field>
+            <table>Access_Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TaskLetterType__c</field>
+            <table>Access_Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Detail__c</field>
             <table>Access_Log__c</table>
         </columns>
         <columns>
