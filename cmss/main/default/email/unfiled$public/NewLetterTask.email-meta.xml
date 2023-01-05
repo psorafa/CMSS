@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>New Letter Task</name>
+    <style>none</style>
+    <subject>Předmět notifikace: Nový dopis: {!LetterType__c}</subject>
+    <textOnly>Dobrý den,
+ČSOB Stavební spořitelna odeslala dopis typu {!LetterType__c} na Vašeho klienta {!Who.Name}.
+Detaily o odeslaném dopisu i proklik na jeho znění zobrazíte v CRM Fénix - {!ActivityLink__c}.
+
+Přehled dopisů za posledních 30 dní si zobrazíte zde: {LISTVIEW}. 
+S pozdravem
+
+ČSOB Stavební spořitelna
+&lt;Logo ČSOB Stavební&gt;</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
