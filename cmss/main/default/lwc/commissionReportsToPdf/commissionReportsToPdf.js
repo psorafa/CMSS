@@ -95,7 +95,7 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.filterRecordRange = this.fromRecord + ' - ' + this.toRecord;
 		this.accountBaseCombinedName = message.accountBaseCombinedName;
 		this.address = message.address;
-		if (this.accountBaseCombinedName !== undefined) {
+		if (!!this.accountBaseCombinedName) {
 			this.commissionAccount =
 				this.tribeCpu !== '' && this.tribeCpu !== undefined
 					? this.tribeCpu
@@ -298,6 +298,7 @@ export default class commissionReportsToPdf extends LightningElement {
 					);
 				}
 				console.log('reportHeader: ' + JSON.stringify(this.reportHeader));
+				console.log('reportData: ' + JSON.stringify(this.reportData));
 
 				this.processHeader(this.reportHeader);
 				this.buildHTML();

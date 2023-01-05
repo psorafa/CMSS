@@ -30,7 +30,7 @@ public without sharing class CommissionPdfGeneratorControllerTest {
 		Integer checkAccessLog = [
 			SELECT COUNT()
 			FROM Access_Log__c
-			WHERE Type__c = 'PV PDF Export' AND FilterStatementType__c = :filterReport
+			WHERE Type__c = 'PV PDF Export'
 		];
 		System.Assert(checkAccessLog > 0);
 	}

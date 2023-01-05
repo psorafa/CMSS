@@ -14,13 +14,21 @@ public without sharing class CommissionPdfGeneratorController {
 		Access_Log__c accessLog = new Access_Log__c();
 		accessLog.RequestedBy__c = UserInfo.getUserId();
 		accessLog.Type__c = 'PV PDF Export';
-		if (cpu.deleteWhitespace().isNumeric()) {
-			accessLog.FilterCPUSuffix__c = Integer.valueOf(cpu.deleteWhitespace());
-		}
-		accessLog.FilterPeriod__c = selectedPeriod;
-		accessLog.FilterStatementType__c = filterReport;
-		accessLog.FilterRecordNumber__c = filterRecordRange;
-		accessLog.FilterOwnerCommissionAccountBase__c = commissionAccount;
+		accessLog.Detail__c =
+			'Koncovka ČPU: ' +
+			cpu +
+			'\n' +
+			'Období od-do: ' +
+			selectedPeriod +
+			'\n' +
+			'Typ výpisu: ' +
+			filterReport +
+			'\n' +
+			'Pořadové číslo od-do: ' +
+			filterRecordRange +
+			'\n' +
+			'Provizní účet: ' +
+			commissionAccount;
 		accessLog.RecordTypeId = Schema.sObjectType.Access_Log__c.getRecordTypeInfosByDeveloperName()
 			.get('PVPDFExport')
 			.getRecordTypeId();
