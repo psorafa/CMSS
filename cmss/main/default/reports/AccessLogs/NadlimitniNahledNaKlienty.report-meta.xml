@@ -33,24 +33,29 @@
     <columns>
         <field>Access_Log__c$CreatedDate</field>
     </columns>
-    <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Access_Log__c$RequestedBy__c.Username</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
+    <filter>
+        <criteriaItems>
+            <column>Access_Log__c$RecordType</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Access_Log__c.LetterAccess</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
     <name>Nadlimitní náhled na klienty</name>
     <params>
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>LettersAccessLogs__c</reportType>
-    <scope>user</scope>
+    <reportType>AccessLogs__c</reportType>
+    <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>Access_Log__c$CreatedDate</dateColumn>
-        <interval>INTERVAL_CURRENT</interval>
+        <interval>INTERVAL_LAST30</interval>
     </timeFrameFilter>
 </Report>
