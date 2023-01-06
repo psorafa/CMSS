@@ -5752,6 +5752,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>PortfolioManagementRequest__c.CaseStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>PortfolioManagementRequest__c.Case__c</field>
         <readable>true</readable>
@@ -5809,6 +5814,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>PortfolioManagementRequest__c.UniqueId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PortfolioManagementRequest__c.ValidFrom__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
