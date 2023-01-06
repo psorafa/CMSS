@@ -5023,8 +5023,8 @@
         <editable>false</editable>
         <field>PortfolioManagementRequest__c.CaseStatus__c</field>
         <readable>true</readable>
-    <fieldPermissions>
     </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>PortfolioManagementRequest__c.Case__c</field>
         <readable>true</readable>
