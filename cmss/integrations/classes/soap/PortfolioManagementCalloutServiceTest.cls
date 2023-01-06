@@ -83,7 +83,7 @@ private class PortfolioManagementCalloutServiceTest {
 		PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(
 			new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0')
 		);
-        insert pmr;
+		insert pmr;
 
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
@@ -97,7 +97,7 @@ private class PortfolioManagementCalloutServiceTest {
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
 		Test.startTest();
-            PortfolioManagementRequestService.callCPEClientStateFuture(new Set<Id>{pmr.Case__c});
+		PortfolioManagementRequestService.callCPEClientStateFuture(new Set<Id>{ pmr.Case__c });
 		Test.stopTest();
 
 		Log__c[] logs = [SELECT Payload__c FROM Log__c WHERE Message__c = 'Incoming response'];

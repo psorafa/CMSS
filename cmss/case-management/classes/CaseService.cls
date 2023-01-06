@@ -6,27 +6,30 @@ public with sharing class CaseService {
 		.getRecordTypeId();
 
 	public static final String CASE_PMCR_RECORDTYPE_ID = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName()
-        .get('PortfolioManagementChangeRequest')
-        .getRecordTypeId();
+		.get('PortfolioManagementChangeRequest')
+		.getRecordTypeId();
 
-    public static void changeCPEClientState (List<Case> newCaseList, Map<Id, Case> oldCases) {
-        if (FeatureManagement.checkPermission('Bypass_AQ_Messaging')) {
+	public static void changeCPEClientState(List<Case> newCaseList, Map<Id, Case> oldCases) {
+		if (FeatureManagement.checkPermission('Bypass_AQ_Messaging')) {
 			return;
 		}
 
-        Set<Id> pmrCaseIds = new Set<Id>();
-        for (Case newCase : newCaseList) {
-            if (newCase.RecordTypeId == CASE_PMCR_RECORDTYPE_ID && newCase.Status == '3' && oldCases.get(newCase.Id).Status != '3') {
-                newCase.Status = '7';
-                pmrCaseIds.add(newCase.Id);
+		Set<Id> pmrCaseIds = new Set<Id>();
+		for (Case newCase : newCaseList) {
+			if (
+				newCase.RecordTypeId == CASE_PMCR_RECORDTYPE_ID &&
+				newCase.Status == '3' &&
+				oldCases.get(newCase.Id).Status != '3'
+			) {
+				newCase.Status = '7';
+				pmrCaseIds.add(newCase.Id);
+			}
+		}
 
-            }
-        }
-
-        if (!pmrCaseIds.isEmpty()) {
-            PortfolioManagementRequestService.callCPEClientStateFuture(pmrCaseIds);
-        }
-    }
+		if (!pmrCaseIds.isEmpty()) {
+			PortfolioManagementRequestService.callCPEClientStateFuture(pmrCaseIds);
+		}
+	}
 
 	public static void setGDPRAndClientCaseOnAccount(List<Case> newCaseList, Map<Id, Case> oldCases) {
 		Set<Id> allCaseAccIds = new Set<Id>();
