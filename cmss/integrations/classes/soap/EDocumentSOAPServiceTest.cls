@@ -94,7 +94,7 @@ private class EDocumentSOAPServiceTest {
 			'OK',
 			null,
 			new Map<String, String>{
-				'GetDocumentBySBIdRequest' => '<soapenv:Envelope xmlns:soapenv=http://schemas.xmlsoap.org/soap/envelope/> <soapenv:Body>Unknown ERror</soapenv:Body> </soapenv:Envelope>'
+				'GetDocumentBySBIdRequest' => '<soapenv:Envelope xmlns:soapenv=http://schemas.xmlsoap.org/soap/envelope/> <soapenv:Body>Unknown Error</soapenv:Body> </soapenv:Envelope>'
 			},
 			null
 		);
@@ -123,7 +123,7 @@ private class EDocumentSOAPServiceTest {
             SELECT Id, ClassMethodName__c
             FROM Log__c
             WHERE
-                Message__c = 'Incoming response error'
+                Message__c = 'Unexpected response'
         ];
 		System.assert(logs.size() > 0);
         System.assertEquals('EDocumentSOAPService.EDocumentServicePort.getDocumentBySBId_Http', logs[0].ClassMethodName__c);

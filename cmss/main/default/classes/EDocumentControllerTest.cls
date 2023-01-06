@@ -34,7 +34,7 @@ public class EDocumentControllerTest {
 		Task t = TestDataFactory.getTask(new Task());
 		t.OwnerId = u.Id;
 		t.LetterId__c = '123';
-		t.LetterType__c = 'testtype';
+		t.LetterType__c = 'A003';
 		insert t;
 
 		EDocumentController controller;
@@ -71,7 +71,7 @@ public class EDocumentControllerTest {
 		Task t = TestDataFactory.getTask(new Task());
 		t.OwnerId = u.Id;
 		t.LetterId__c = '123';
-		t.LetterType__c = 'testtype';
+		t.LetterType__c = 'A003';
 		insert t;
 
 		EDocumentController controller;
@@ -91,13 +91,13 @@ public class EDocumentControllerTest {
 	@IsTest
 	static void testCreateAccessLogRecord() {
 		Test.startTest();
-		new EDocumentController(null).createAccessLogRecord('letterId', 'letterType', 'taskId');
+		new EDocumentController(null).createAccessLogRecord('letterId', 'A003', 'taskId');
 		Test.stopTest();
 
 		Access_Log__c log = [SELECT Id, TaskLetterId__c, TaskLetterType__c, TaskId__c FROM Access_Log__c LIMIT 1];
 
 		System.assertEquals('letterId', log.TaskLetterId__c);
-		System.assertEquals('letterType', log.TaskLetterType__c);
+		System.assertEquals('A003', log.TaskLetterType__c);
 		System.assertEquals('taskId', log.TaskId__c);
 	}
 }
