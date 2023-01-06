@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
     <baseObject>Access_Log__c</baseObject>
     <category>activities</category>
@@ -94,31 +94,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Type__c</field>
-            <table>Access_Log__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>FilterCPUSuffix__c</field>
-            <table>Access_Log__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>FilterPeriod__c</field>
-            <table>Access_Log__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>FilterStatementType__c</field>
-            <table>Access_Log__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>FilterRecordNumber__c</field>
-            <table>Access_Log__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>FilterOwnerCommissionAccountBase__c</field>
             <table>Access_Log__c</table>
         </columns>
         <masterLabel>Access Logs</masterLabel>
