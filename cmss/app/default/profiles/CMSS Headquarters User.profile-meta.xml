@@ -5157,11 +5157,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>PortfolioManagementRequest__c.CaseStatus__c</field>
         <readable>true</readable>
+    <fieldPermissions>
     </fieldPermissions>
+        <editable>false</editable>
         <field>PortfolioManagementRequest__c.ErrorMessage__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -5192,13 +5192,14 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>ProductContractUrl__mdt.ImageName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PortfolioManagementRequest__c.ValidFrom__c</field>
         <readable>false</readable>
     </fieldPermissions>
-        <field>ProductContractUrl__mdt.ImageName__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

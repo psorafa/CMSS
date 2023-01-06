@@ -5838,6 +5838,7 @@
         <field>PortfolioManagementRequest__c.ValidFrom__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Production__c.Account__c</field>
         <readable>true</readable>

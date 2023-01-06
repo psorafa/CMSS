@@ -5344,13 +5344,13 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>PortfolioManagementRequest__c.ErrorMessage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PortfolioManagementRequest__c.CaseStatus__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-        <field>PortfolioManagementRequest__c.ErrorMessage__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -5379,6 +5379,9 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>PortfolioManagementRequest__c.RequestStatus__c</field>
+        <readable>false</readable>
+     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PortfolioManagementRequest__c.ValidFrom__c</field>
