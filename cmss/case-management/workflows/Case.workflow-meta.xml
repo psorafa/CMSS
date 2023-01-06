@@ -201,6 +201,76 @@
         <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/GDPROwnerChanged</template>
     </alerts>
+    <fieldUpdates>
+        <fullName>Approval_date</fullName>
+        <field>DecisionDate__c</field>
+        <formula>TODAY()</formula>
+        <name>Approval date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approved</fullName>
+        <field>Status</field>
+        <literalValue>23</literalValue>
+        <name>Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ChangePriorityToHigh</fullName>
+        <field>Priority</field>
+        <literalValue>High</literalValue>
+        <name>Changes the case priority to high.</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Process_entry</fullName>
+        <field>Status</field>
+        <literalValue>22</literalValue>
+        <name>Process entry</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Recall</fullName>
+        <field>Status</field>
+        <literalValue>25</literalValue>
+        <name>Recall</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Rejected</fullName>
+        <field>Status</field>
+        <literalValue>24</literalValue>
+        <name>Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Rejection_date</fullName>
+        <field>DecisionDate__c</field>
+        <formula>TODAY()</formula>
+        <name>Rejection date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
     <rules>
         <fullName>ClientClaimChangedOwnerNotification</fullName>
         <actions>
@@ -209,9 +279,7 @@
         </actions>
         <active>true</active>
         <description>When owner is changed alert is sent to new owner</description>
-        <formula>IsClientClaim__c = true &amp;&amp;
-ISCHANGED(OwnerId) &amp;&amp;
-OwnerId &lt;&gt; LastModifiedById</formula>
+        <formula>IsClientClaim__c = true &amp;&amp; ISCHANGED(OwnerId) &amp;&amp; OwnerId &lt;&gt; LastModifiedById</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
