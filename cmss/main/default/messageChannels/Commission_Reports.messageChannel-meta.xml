@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Message Channel to pass a Commission Reports criteria</description>
+    <isExposed>true</isExposed>
+    <lightningMessageFields>
+        <description>This is the year that changed</description>
+        <fieldName>year</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the month that changed</description>
+        <fieldName>month</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the &quot;to year&quot; that changed</description>
+        <fieldName>yearTo</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the &quot;to month&quot; that changed</description>
+        <fieldName>monthTo</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the &quot;show to&quot; that changed</description>
+        <fieldName>showTo</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the &quot;Koncovka ČPÚ&quot; that changed</description>
+        <fieldName>cpu</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the &quot;Kmen ČPÚ&quot; that changed</description>
+        <fieldName>tribeCpu</fieldName>
+    </lightningMessageFields>    
+    <lightningMessageFields>
+        <description>This is the &quot;from record&quot; that changed</description>
+        <fieldName>fromRecord</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the &quot;to record&quot; that changed</description>
+        <fieldName>toRecord</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the selected report that changed</description>
+        <fieldName>selectedReport</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the selected report developer name that changed</description>
+        <fieldName>selectedReportDevName</fieldName>
+    </lightningMessageFields> 
+    <lightningMessageFields>
+        <description>This is the selected report name that changed</description>
+        <fieldName>selectedReportName</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the selected report description that changed</description>
+        <fieldName>selectedReportDescription</fieldName>
+    </lightningMessageFields>          
+    <lightningMessageFields>
+        <description>This is the accountBaseCombinedName</description>
+        <fieldName>accountBaseCombinedName</fieldName>
+    </lightningMessageFields> 
+    <lightningMessageFields>
+        <description>This is the address</description>
+        <fieldName>address</fieldName>
+    </lightningMessageFields>          
+    <masterLabel>Commission Reports Channel</masterLabel>
+</LightningMessageChannel>

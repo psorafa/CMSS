@@ -1,0 +1,8 @@
+<design:component label="Commission Reports layout">
+	<flexipage:template>
+		<flexipage:region name="top" defaultWidth="SMALL" label="lavy" />
+		<flexipage:region name="leftmiddle" defaultWidth="SMALL" label="lavystredny" />
+		<flexipage:region name="rightmiddle" defaultWidth="SMALL" label="pravystredny" />
+		<flexipage:region name="bottom" defaultWidth="SMALL" label="pravy" />
+	</flexipage:template>
+</design:component>

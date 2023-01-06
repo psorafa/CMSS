@@ -1,0 +1,152 @@
+<template>
+	<lightning-card title="Náhled exportu do PDF">
+		<lightning-spinner if:true={loading}></lightning-spinner>
+		<div class="slds-p-around_medium">
+			<table class="slds-table_fixed-layout">
+				<thead>
+					<tr>
+						<th>
+							<lightning-button
+								variant="brand"
+								label="Zobrazit náhled"
+								onclick={handleRunReport}
+								disabled={runReportDisabled}
+							></lightning-button>
+						</th>
+						<th>
+							<form method="POST" action={pdfUrl} target="_blank">
+								<!--https://csobstavebni--reporting--c.sandbox.vf.force.com/apex/PocPdfGenerator-->
+								<!--https://saas-momentum-5709--c.scratch.vf.force.com/apex/CommissionPdfGenerator-->
+								<button if:true={reportHasRows} class="slds-button slds-button_neutral">
+									Export do PDF
+								</button>
+								<input name="html" style="display: none" type="hidden" value={reportHtmlData} />
+								<input
+									name="selectedReportName"
+									style="display: none"
+									type="hidden"
+									value={selectedReportName}
+								/>
+								<input
+									name="selectedPeriod"
+									style="display: none"
+									type="hidden"
+									value={selectedPeriod}
+								/>
+								<input
+									name="commissionAccount"
+									style="display: none"
+									type="hidden"
+									value={commissionAccount}
+								/>
+								<input name="combinedName" style="display: none" type="hidden" value={combinedName} />
+								<input name="address" style="display: none" type="hidden" value={address} />
+								<input
+									name="footerTimestamp"
+									style="display: none"
+									type="hidden"
+									value={footerTimestamp}
+								/>
+								<input name="cpu" style="display: none" type="hidden" value={cpu} />
+								<input name="filterReport" style="display: none" type="hidden" value={filterReport} />
+								<input
+									name="filterRecordRange"
+									style="display: none"
+									type="hidden"
+									value={filterRecordRange}
+								/>
+							</form>
+						</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<template if:true={reportHasRows}>
+			<div
+				id="containerDiv"
+				onmousemove={handlemousemove}
+				onmouseup={handlemouseup}
+				ondblclick={handledblclickresizable}
+				class="slds-table_header-fixed_container slds-border_right slds-border_left tableScroll"
+				onscroll={tableOuterDivScrolled}
+			>
+				<div id="tableViewInnerDiv" onscroll={tableScrolled} class="slds-scrollable_y tableViewInnerDiv">
+					<table
+						class="slds-table slds-table_bordered slds-table_header-fixed slds-table_resizable-cols slds-table_fixed-layout"
+					>
+						<thead>
+							<tr>
+								<template for:item="itemHeader" for:each={viewHeader}>
+									<th
+										key={itemHeader}
+										class="slds-is-resizable dv-dynamic-width"
+										scope="col"
+										style={fixedWidth}
+									>
+										<div class="slds-cell-fixed" style={fixedWidth}>
+											<a class="slds-th__action slds-text-link--reset">
+												<span class="slds-truncate">{itemHeader}</span>
+											</a>
+											<div class="slds-resizable">
+												<span class="slds-resizable__handle" onmousedown={handlemousedown}>
+													<span class="slds-resizable__divider"></span>
+												</span>
+											</div>
+										</div>
+									</th>
+								</template>
+								<th scope="col">
+									<div class="slds-cell-fixed"></div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<template for:item="row" for:each={reportData}
+								><tr key={row}>
+									<template for:item="column" for:each={row}>
+										<td key={column}>
+											<div class="slds-truncate dv-dynamic-width" style={fixedWidth}>
+												{column}
+											</div>
+										</td></template
+									>
+								</tr></template
+							>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</template>
+		<template if:true={showFooter}>
+			<table class="slds-table">
+				<tbody>
+					<tr>
+						<td style={fixedWidth}>Počet záznamů:</td>
+						<td style={fixedWidth}>{rowCount}</td>
+						<td style={fixedWidth}>Součet hodnot zobrazených provizí:</td>
+						<td style={fixedWidth}></td>
+					</tr>
+					<tr>
+						<td style={fixedWidth}>Výpis z provizního účtu:</td>
+						<td style={fixedWidth}>{accountBaseCombinedName}</td>
+						<td style={fixedWidth}><span if:true={showPendingAmount}>Čekatelství:</span></td>
+						<td style={fixedWidth}><span if:true={showPendingAmount}>{pendingAmount}</span></td>
+					</tr>
+					<tr>
+						<td style={fixedWidth}>Provizní zpracování k/OD-DO:</td>
+						<td style={fixedWidth}>{dateValues}</td>
+						<td style={fixedWidth}>Nárok:</td>
+						<td style={fixedWidth}>{entitlementAmount}</td>
+					</tr>
+					<template if:true={rowCountExceeded}>
+						<tr>
+							<td style={fixedWidth}>Existuje více záznamů!</td>
+							<td style={fixedWidth}></td>
+							<td style={fixedWidth}></td>
+							<td style={fixedWidth}></td></tr
+					></template>
+				</tbody>
+			</table>
+		</template>
+	</lightning-card>
+</template>
