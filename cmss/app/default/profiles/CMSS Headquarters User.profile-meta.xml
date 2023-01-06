@@ -362,6 +362,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Access_Log__c.TaskLetterId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Access_Log__c.TaskLetterType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Access_Log__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -394,21 +404,6 @@
         <editable>false</editable>
         <field>Account.AccountSource</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Access_Log__c.TaskLetterId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Access_Log__c.TaskLetterType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Access_Log__c.Type__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -5192,12 +5187,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ProductContractUrl__mdt.ImageName__c</field>
+        <field>PortfolioManagementRequest__c.ValidFrom__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementRequest__c.ValidFrom__c</field>
+        <field>ProductContractUrl__mdt.ImageName__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

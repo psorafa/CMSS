@@ -5421,12 +5421,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementRequest__c.CaseStatus__c</field>
+        <field>PortfolioManagementRequest__c.CaseChangeReason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementRequest__c.CaseChangeReason__c</field>
+        <field>PortfolioManagementRequest__c.CaseStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
