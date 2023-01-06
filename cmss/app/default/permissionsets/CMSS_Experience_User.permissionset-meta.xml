@@ -2886,6 +2886,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.CPECallAttempts__c</field>
+        <readable>true</readable>
+    </fieldPermissions>        
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.CaseID__c</field>
         <readable>true</readable>
     </fieldPermissions>

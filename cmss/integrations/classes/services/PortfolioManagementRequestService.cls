@@ -1,6 +1,9 @@
 public without sharing class PortfolioManagementRequestService {
 
-	public static final String MULTIPLE_BATCH_IDS_ERR = 'All created requests must contain identical Batch ID.';
+    public static final String INVALID_REQUEST_STATUS = '2';
+    public static final String INVALID_REQUEST_RESULT = '927';
+    public static final String RETRY_INTERVAL_CONFIGURATION_MDT = 'changeCPERequest_retryCalloutInterval';
+    public static final String RETRY_MAX_ATTEMPTS_MDT = 'changeCPERequest_retryCalloutAttempts';
 
 	public static void setPortfolioManager(List<PortfolioManagementRequest__c> newList, Map<Id, PortfolioManagementRequest__c> oldMap) {
 		Set<String> userCPUs = new Set<String>();
@@ -24,24 +27,72 @@ public without sharing class PortfolioManagementRequestService {
 		}
 	}
 
-	public static void changeCPEClientState(PortfolioManagementRequest__c[] newPMRs) {
-		if (FeatureManagement.checkPermission('Bypass_AQ_Messaging')) {
-			return;
-		}
-		String batchId = newPMRs[0].BatchID__c;
+    @Future
+    public static void updateInvalidRequests(Set<Id> invalidRequestIds) {
+        List<PortfolioManagementRequest__c> invalidRequests = new List<PortfolioManagementRequest__c>();
+        for (Id pmrId : invalidRequestIds) {
+            PortfolioManagementRequest__c pmr = new PortfolioManagementRequest__c(
+                Id = pmrId,
+                RequestStatus__c = INVALID_REQUEST_STATUS,
+                PortfolioManChangeResult__c = INVALID_REQUEST_RESULT
+            );
+            invalidRequests.add(pmr);
+        }
+        update invalidRequests;
+    }
 
-		for (PortfolioManagementRequest__c pmr : newPMRs) {
-			if (batchId != pmr.BatchID__c) {
-				throw new MultipleBatchIdsException(MULTIPLE_BATCH_IDS_ERR);
-			}
-		}
+    public static Map<Id, Set<Id>> preparePMRs(Map<Id, Case> changeCPERequestCasesMap) {
+        Map<Id, Set<Id>> pmrIdsByCaseId = new Map<Id, Set<Id>>();
+        Set<Id> invalidRequests = new Set<Id>();
 
-		changeCPEClientStateFuture(new Map<Id, PortfolioManagementRequest__c>(newPMRs).keySet(), batchId);
-	}
+        PortfolioManagementRequest__c[] pmrs = queryPortfolioManagementRequests(changeCPERequestCasesMap.keySet());
+
+        for (PortfolioManagementRequest__c pmr : pmrs) {
+            pmr.BatchID__c = pmr.Case__c;
+            if (changeCPERequestCasesMap.get(pmr.Case__c).NewPortfolioManager__c != null) {
+                pmr.PortfolioManager__c = changeCPERequestCasesMap.get(pmr.Case__c).NewPortfolioManager__c;
+            }
+            if (changeCPERequestCasesMap.get(pmr.Case__c).PortfolioManagementType__c != null) {
+                pmr.PortfolioManagementType__c = changeCPERequestCasesMap.get(pmr.Case__c).PortfolioManagementType__c;
+            }
+            if (pmr.Account__r.LastPtfManAChangeDate__c == null || pmr.Account__r.LastPtfManAChangeDate__c < pmr.CreatedDate) {
+                if (pmrIdsByCaseId.get(pmr.Case__c) == null) {
+                    pmrIdsByCaseId.put(pmr.Case__c, new Set<Id>());
+                }
+                pmrIdsByCaseId.get(pmr.Case__c).add(pmr.Id);
+            } else {
+                invalidRequests.add(pmr.Id);
+            }                
+        }
+        
+        updateInvalidRequests(invalidRequests);
+        
+        return pmrIdsByCaseId;
+    }
+
+    public static List<PortfolioManagementRequest__c> queryPortfolioManagementRequests(Set<Id> caseIds) {
+        PortfolioManagementRequest__c[] pmrs = [
+            SELECT
+                Id,
+                Case__c,
+                Account__c, 
+                Account__r.GlobalId__c, 
+                Account__r.LastPtfManAChangeDate__c, 
+                PortfolioManChangeReason__c, 
+                ValidFrom__c, 
+                PortfolioManagementType__c, 
+                PortfolioManager__c,
+                CreatedDate
+            FROM PortfolioManagementRequest__c
+            WHERE Case__c IN: caseIds
+        ];
+        return pmrs;
+    }
 
 	@Future(Callout=true)
-	private static void changeCPEClientStateFuture(Set<Id> pmrIds, String batchId) {
+	public static void changeCPEClientStateFuture(Set<Id> pmrIds, String batchId, Double attemptsCount) {
 		try {
+
 			PortfolioManagementRequest__c[] pmrs = [
 				SELECT Account__c, Account__r.GlobalId__c, PortfolioManChangeReason__c, ValidFrom__c, PortfolioManagementType__c, PortfolioManager__r.CommissionAccountBase__c
 				FROM PortfolioManagementRequest__c
@@ -101,16 +152,39 @@ public without sharing class PortfolioManagementRequestService {
 				}
 			} else {
 				Logger.error('Invalid response!');
+                scheduleJobOfFailureCallout(pmrIds, batchId, attemptsCount);
 			}
 
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
+            scheduleJobOfFailureCallout(pmrIds, batchId, attemptsCount);
 			throw e;
 		} finally {
+            CaseService.updateCPECallCounter(batchId, Double.valueOf(attemptsCount + 1));
 			Logger.saveLogs();
 		}
 	}
 
-	public class MultipleBatchIdsException extends Exception {
-	}
+    public static Id scheduleJobOfFailureCallout(Set<Id> pmrIds, String batchId, Double attemptsCount) {
+        Integer maxAttempts = 1;
+        if (Configuration__mdt.getInstance(RETRY_MAX_ATTEMPTS_MDT) != null) {
+            maxAttempts = Integer.valueOf(((Configuration__mdt) Configuration__mdt.getInstance(RETRY_INTERVAL_CONFIGURATION_MDT)).Value__c);
+        }
+        if ((attemptsCount + 1) <= maxAttempts) {
+            Double initialInterval = 5;
+            if (Configuration__mdt.getInstance(RETRY_INTERVAL_CONFIGURATION_MDT) != null) {
+                initialInterval = Double.valueOf(((Configuration__mdt) Configuration__mdt.getInstance(RETRY_INTERVAL_CONFIGURATION_MDT)).Value__c);
+            }
+            DateTime dt = System.now().addMinutes(Integer.valueOf(Math.pow(initialInterval, (attemptsCount + 1))));
+            String day = string.valueOf(dt.day());                    
+            String month = string.valueOf(dt.month());                      
+            String hour = string.valueOf(dt.hour());                   
+            String minute = string.valueOf(dt.minute());                                   
+            String year = string.valueOf(dt.year());                  
+            String scheduledTime = '0 ' + minute + ' ' + hour + ' ' + day + ' ' + month + ' ?' + ' ' + year;
+            PMRequestRetryCalloutSchedule job = new PMRequestRetryCalloutSchedule(pmrIds, batchId, attemptsCount);
+            return System.schedule('Schedule Job ' + dt, scheduledTime, job);
+        }
+        return null;
+    }
 }
