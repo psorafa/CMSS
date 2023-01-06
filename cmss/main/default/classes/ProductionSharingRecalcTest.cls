@@ -7,11 +7,9 @@ private class ProductionSharingRecalcTest {
 	static void executeBatchTest() {
 		ProductionSharingRecalc batch = new ProductionSharingRecalc();
 		ProductionServiceTest.createTestData();
-
+		Integer sharesCount = 0;
 		Test.startTest();
 		Database.executeBatch(batch);
-		Test.stopTest();
-
 		List<Production__Share> prodShr = [
 			SELECT Id, ParentId, UserOrGroupId, RowCause
 			FROM Production__Share
@@ -20,6 +18,9 @@ private class ProductionSharingRecalcTest {
 				OR RowCause = :Schema.Production__Share.rowCause.RegionManager__c
 				OR RowCause = :Schema.Production__Share.rowCause.SalesNetManager__c
 		];
-		System.assertEquals(prodShr.size(), 6, 'Records in Production__Share not as expected.');
+		sharesCount = prodShr.size();
+		Test.stopTest();
+
+		System.assertEquals(6, sharesCount, 'Records in Production__Share not as expected.');
 	}
 }
