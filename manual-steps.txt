@@ -20,7 +20,7 @@ post    pro object Commmissions nastavit v OWD Grant Access Using Hierarchies = 
 
 v20
 
-v20
+v21
 pre     před prvním deploymentem na prostředí zakomentovat ve .forceignore
             cmss/main/default/objects/Commission__c/fields/ClosureType__c.field-meta.xml
             cmss/main/default/objects/Commission__c/fields/ProductProvider__c.field-meta.xml
@@ -47,5 +47,8 @@ post    vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__
 post    vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__mdt pro vsechny dashboardType
             - LinkOZCommissionDashboard - Přehled provizních výpisů (v Community)
             - LinkMOTRMMOSCommissionStatementDashboard - Přehled provizních výpisů (v Lighnitning)
-        po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_CommissionArticleURL (link do Fenix Docs Community na konkrétní článek)
 post    naplanovat Schedule Apex pro tridu CommissionNotificationBatch na 8:00 AM na kazdy den
+post    po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_CommissionArticleURL (link do Fenix Docs Community na konkrétní článek)
+post    vyplnit custom metadata Configuration__mdt - 
+        label: TaskLetter_LightningListviewLink value: odkaz na listview 
+        label: TaskLetter_CommunityListviewLink value: odkaz na listview 
