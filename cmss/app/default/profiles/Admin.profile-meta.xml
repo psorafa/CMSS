@@ -662,6 +662,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Access_Log__c.TaskId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Access_Log__c.TaskLetterId__c</field>
         <readable>true</readable>
@@ -669,11 +674,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Access_Log__c.TaskLetterType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Access_Log__c.TaskId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6662,13 +6662,23 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>PortfolioManagementRequest__c.CaseStatus__c</field>
+        <editable>true</editable>
+        <field>PortfolioManagementRequest__c.Case__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>PortfolioManagementRequest__c.Case__c</field>
+        <editable>false</editable>
+        <field>PortfolioManagementRequest__c.CaseCreatedByName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PortfolioManagementRequest__c.CaseChangeReason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PortfolioManagementRequest__c.CaseStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6687,13 +6697,8 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>PortfolioManagementRequest__c.CaseCreatedByName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>PortfolioManagementRequest__c.CaseChangeReason__c</field>
+        <editable>true</editable>
+        <field>PortfolioManagementRequest__c.PortfolioManagementType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

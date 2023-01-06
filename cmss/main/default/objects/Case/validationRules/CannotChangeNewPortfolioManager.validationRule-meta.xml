@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CannotChangeNewPortfolioManager</fullName>
+    <active>true</active>
+    <description>Users are not allowed to edit New Portfolio Manager once the record has been created.</description>
+    <errorConditionFormula>RecordType.DeveloperName = &apos;PortfolioManagementChangeRequest&apos; &amp;&amp;
+NOT(ISNEW()) &amp;&amp;
+ISCHANGED(NewPortfolioManager__c)</errorConditionFormula>
+    <errorDisplayField>NewPortfolioManager__c</errorDisplayField>
+    <errorMessage>New Portfolio Manager can&apos;t be edited once the record has been created.</errorMessage>
+</ValidationRule>

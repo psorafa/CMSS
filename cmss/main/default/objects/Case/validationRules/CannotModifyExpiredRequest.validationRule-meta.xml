@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CannotModifyExpiredRequest</fullName>
+    <active>true</active>
+    <description>Expired Request cannot be edited.</description>
+    <errorConditionFormula>RecordType.DeveloperName = &apos;PortfolioManagementChangeRequest&apos; &amp;&amp;
+NOT(ISNEW()) &amp;&amp;
+ISPICKVAL(Status, &quot;26&quot;)</errorConditionFormula>
+    <errorMessage>Once expired, the request cannot be edited.</errorMessage>
+</ValidationRule>

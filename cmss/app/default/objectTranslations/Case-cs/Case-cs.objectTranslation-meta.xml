@@ -257,6 +257,18 @@
         <name>CancelCanOnlyOwner</name>
     </validationRules>
     <validationRules>
+        <errorMessage>Nového (požadovaného) správce stavu již nelze změnit.</errorMessage>
+        <name>CannotChangeNewPortfolioManager</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Typ správy stavu již nelze změnit.</errorMessage>
+        <name>CannotChangePortfolioChangeType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Expirovanou žádost již nelze editovat.</errorMessage>
+        <name>CannotModifyExpiredRequest</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>ID podání nelze změnit.</errorMessage>
         <name>CaseIDCannotBeEditedOnceFilled</name>
     </validationRules>
@@ -383,6 +395,14 @@
     <validationRules>
         <errorMessage>Pole Klient musí být vyplněno pro Zdroj případu &quot;Klient&quot;</errorMessage>
         <name>IfSourceClientAccountIdRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Neplatná hodnota pro pole Důvod změny. Prosím vyberte jeden z následujících důvodů: Svázání rodiny, Ukončení činnosti OZ, Nový OZ, Změna dle požadavku RM, Změna dle požadavku MOT, Změna dle požadavku klienta, Výměna klientů mezi OZ, OZ z jiného okresu, Převod ZZ, Přerozdělení klienta s úkolem.</errorMessage>
+        <name>InvalidChangeReason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Nový (požadovaný) správce stavu je povinné pole.</errorMessage>
+        <name>NewPortfolioManagerMustBeFilled</name>
     </validationRules>
     <validationRules>
         <errorMessage>Příchod nesmí být zadán do budoucnosti.</errorMessage>

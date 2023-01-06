@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NewPortfolioManagerMustBeFilled</fullName>
+    <active>true</active>
+    <description>New Portfolio Manager is required field.</description>
+    <errorConditionFormula>RecordType.DeveloperName = &apos;PortfolioManagementChangeRequest&apos; &amp;&amp;
+ISBLANK(NewPortfolioManager__c)</errorConditionFormula>
+    <errorDisplayField>NewPortfolioManager__c</errorDisplayField>
+    <errorMessage>New Portfolio Manager is required field.</errorMessage>
+</ValidationRule>

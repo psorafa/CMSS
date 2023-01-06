@@ -140,6 +140,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>PortfolioManagementRequest__c.CaseCreatedByName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>PortfolioManagementRequest__c.CaseChangeReason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>PortfolioManagementRequest__c.ErrorMessage__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -149,13 +159,8 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>PortfolioManagementRequest__c.CaseCreatedByName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>PortfolioManagementRequest__c.CaseChangeReason__c</field>
+        <editable>true</editable>
+        <field>PortfolioManagementRequest__c.PortfolioManagementType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
