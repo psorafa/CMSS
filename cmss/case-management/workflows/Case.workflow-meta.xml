@@ -222,17 +222,6 @@
         <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Approver_c</fullName>
-        <field>Approver__c</field>
-        <lookupValue>test-xjxyobtwrpnc@example.com</lookupValue>
-        <lookupValueType>User</lookupValueType>
-        <name>Approver_c</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>false</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>ChangePriorityToHigh</fullName>
         <field>Priority</field>
         <literalValue>High</literalValue>
