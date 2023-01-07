@@ -1,9 +1,9 @@
 public with sharing class CaseService {
+	public static final String CASE_OWNER_MISSING_PERMISSION_ERR = 'Selected Owner doesn\'t have appropriate permission to handle this type of case.';
 
-	public static final String CASE_OWNER_MISSING_PERMISSION_ERR =
-		'Selected Owner doesn\'t have appropriate permission to handle this type of case.';
-
-	public static final String CASE_PCF_RECORDTYPE_ID = Schema.SObjectType.Case.getRecordTypeInfosByName().get('PCF').getRecordTypeId();
+	public static final String CASE_PCF_RECORDTYPE_ID = Schema.SObjectType.Case.getRecordTypeInfosByName()
+		.get('PCF')
+		.getRecordTypeId();
 
 	public static void setGDPRAndClientCaseOnAccount(List<Case> newCaseList, Map<Id, Case> oldCases) {
 		Set<Id> allCaseAccIds = new Set<Id>();
@@ -40,9 +40,11 @@ public with sharing class CaseService {
 		List<AggregateResult> activeClientCaseCounts = [
 			SELECT AccountId, Count(Id) amount
 			FROM Case
-			WHERE AccountId IN :allCaseAccIds
-			AND (RecordType.DeveloperName = 'NewClientClaim' OR RecordType.DeveloperName = 'ClientClaimConfirmationSent')
-			AND Status = '1'
+			WHERE
+				AccountId IN :allCaseAccIds
+				AND (RecordType.DeveloperName = 'NewClientClaim'
+				OR RecordType.DeveloperName = 'ClientClaimConfirmationSent')
+				AND Status = '1'
 			GROUP BY AccountId
 		];
 		Map<Id, AggregateResult> idsToActiveClientCaseCounts = new Map<Id, AggregateResult>();
@@ -53,9 +55,7 @@ public with sharing class CaseService {
 		List<AggregateResult> activeGDPRCaseCounts = [
 			SELECT AccountId, Count(Id) amount
 			FROM Case
-			WHERE AccountId IN :allCaseAccIds
-			AND RecordType.DeveloperName = 'GDPR'
-			AND Status = '1'
+			WHERE AccountId IN :allCaseAccIds AND RecordType.DeveloperName = 'GDPR' AND Status = '1'
 			GROUP BY AccountId
 		];
 		Map<Id, AggregateResult> idsToActiveGDPRCaseCounts = new Map<Id, AggregateResult>();
@@ -107,17 +107,17 @@ public with sharing class CaseService {
 			if (GDPRRecordTypes.contains(caseItem.RecordTypeId)) {
 				lastIssuedCaseID.GDPRClaimID__c += 1;
 				caseItem.CaseID__c = String.valueOf(
-					'' +
+						'' +
 						Integer.valueOf(lastIssuedCaseID.GDPRClaimID__c) +
 						Date.today().year()
-				)
+					)
 					.leftPad(10, '0');
 			}
 			if (ClientClaimRecordTypes.contains(caseItem.RecordTypeId)) {
 				lastIssuedCaseID.ClientClaimID__c += 1;
 				caseItem.CaseID__c =
 					String.valueOf('' + Date.today().year()) +
-						String.valueOf(Integer.valueOf(lastIssuedCaseID.ClientClaimID__c)).leftPad(5, '0');
+					String.valueOf(Integer.valueOf(lastIssuedCaseID.ClientClaimID__c)).leftPad(5, '0');
 			}
 		}
 		upsert lastIssuedCaseID;
@@ -132,7 +132,11 @@ public with sharing class CaseService {
 		Set<Case> errorCases = new Set<Case>();
 		if (oldCases == null) {
 			for (Case c : newCases) {
-				if (c.RecordTypeId == GDPRRecordTypeId || c.RecordTypeId == CCCSRecordTypeId || c.RecordTypeId == NCCRecordTypeId) {
+				if (
+					c.RecordTypeId == GDPRRecordTypeId ||
+					c.RecordTypeId == CCCSRecordTypeId ||
+					c.RecordTypeId == NCCRecordTypeId
+				) {
 					setupOwnerIdsToCases(ownerIdsToCases, c);
 					errorCases.add(c);
 				}
@@ -140,19 +144,27 @@ public with sharing class CaseService {
 		} else {
 			for (Case newCase : newCases) {
 				Case oldCase = oldCases.get(newCase.Id);
-				if (newCase.OwnerId != oldCase.OwnerId && (newCase.RecordTypeId == GDPRRecordTypeId || newCase.RecordTypeId == CCCSRecordTypeId || newCase.RecordTypeId == NCCRecordTypeId)) {
+				if (
+					newCase.OwnerId != oldCase.OwnerId &&
+					(newCase.RecordTypeId == GDPRRecordTypeId ||
+					newCase.RecordTypeId == CCCSRecordTypeId ||
+					newCase.RecordTypeId == NCCRecordTypeId)
+				) {
 					setupOwnerIdsToCases(ownerIdsToCases, newCase);
 					errorCases.add(newCase);
 				}
 			}
 		}
 
-		Map<Id, CustomPermission> idsToCustomPermissions = new Map<Id, CustomPermission>([
-			SELECT DeveloperName
-			FROM CustomPermission
-			WHERE DeveloperName IN ('ClaimCaseManager', 'ClientOmbudsman', 'GDPRCaseManager')
-			AND NamespacePrefix = null
-		]);
+		Map<Id, CustomPermission> idsToCustomPermissions = new Map<Id, CustomPermission>(
+			[
+				SELECT DeveloperName
+				FROM CustomPermission
+				WHERE
+					DeveloperName IN ('ClaimCaseManager', 'ClientOmbudsman', 'GDPRCaseManager')
+					AND NamespacePrefix = NULL
+			]
+		);
 
 		Boolean GDPRCaseManagerHasCustPerm = false;
 		Boolean ClientOmbudsmanHasCustPerm = false;
@@ -162,8 +174,9 @@ public with sharing class CaseService {
 		for (SetupEntityAccess sea : [
 			SELECT ParentId, Parent.Name, SetupEntityId
 			FROM SetupEntityAccess
-			WHERE SetupEntityId IN :idsToCustomPermissions.keySet()
-			AND Parent.Name IN ('CaseManager', 'ClientOmbudsman', 'GDPRCaseManager')
+			WHERE
+				SetupEntityId IN :idsToCustomPermissions.keySet()
+				AND Parent.Name IN ('CaseManager', 'ClientOmbudsman', 'GDPRCaseManager')
 		]) {
 			String custPermDevName = idsToCustomPermissions.get(sea.SetupEntityId).DeveloperName;
 			if (sea.Parent.Name == 'GDPRCaseManager' && custPermDevName == 'GDPRCaseManager') {
@@ -180,22 +193,17 @@ public with sharing class CaseService {
 		for (PermissionSetAssignment psa : [
 			SELECT AssigneeId, PermissionSetId, PermissionSet.Name
 			FROM PermissionSetAssignment
-			WHERE PermissionSetId IN :permissionSetIds
-			AND AssigneeId IN :ownerIdsToCases.keySet()
+			WHERE PermissionSetId IN :permissionSetIds AND AssigneeId IN :ownerIdsToCases.keySet()
 		]) {
 			List<Case> cases = ownerIdsToCases.get(psa.AssigneeId);
 			for (Case c : cases) {
 				if (
-					(c.RecordTypeId == GDPRRecordTypeId && psa.PermissionSet.Name == 'GDPRCaseManager' && GDPRCaseManagerHasCustPerm)
-						||
-						(
-							(c.RecordTypeId == CCCSRecordTypeId || c.RecordTypeId == NCCRecordTypeId)
-								&&
-								(
-									(psa.PermissionSet.Name == 'ClientOmbudsman' && ClientOmbudsmanHasCustPerm) ||
-										(psa.PermissionSet.Name == 'CaseManager' && CaseManagerHasCustPerm)
-								)
-						)
+					(c.RecordTypeId == GDPRRecordTypeId &&
+					psa.PermissionSet.Name == 'GDPRCaseManager' &&
+					GDPRCaseManagerHasCustPerm) ||
+					((c.RecordTypeId == CCCSRecordTypeId || c.RecordTypeId == NCCRecordTypeId) &&
+					((psa.PermissionSet.Name == 'ClientOmbudsman' && ClientOmbudsmanHasCustPerm) ||
+					(psa.PermissionSet.Name == 'CaseManager' && CaseManagerHasCustPerm)))
 				) {
 					errorCases.remove(c);
 				}
@@ -221,7 +229,11 @@ public with sharing class CaseService {
 		complainerContractorCPUs.remove(null);
 		contractorCPUs.remove(null);
 		Map<String, Id> usersByCPU = new Map<String, Id>();
-		for (User u : [SELECT Id, CommissionAccountBase__c FROM User WHERE CommissionAccountBase__c IN :complainerContractorCPUs OR CommissionAccountBase__c IN :contractorCPUs]) {
+		for (User u : [
+			SELECT Id, CommissionAccountBase__c
+			FROM User
+			WHERE CommissionAccountBase__c IN :complainerContractorCPUs OR CommissionAccountBase__c IN :contractorCPUs
+		]) {
 			usersByCPU.put(u.CommissionAccountBase__c, u.Id);
 		}
 		for (Case c : newList) {
@@ -243,12 +255,26 @@ public with sharing class CaseService {
 	private static void setupOwnerIdsToCases(Map<Id, List<Case>> ownerIdsToCases, Case c) {
 		List<Case> cases = ownerIdsToCases.get(c.OwnerId);
 		if (cases == null) {
-			ownerIdsToCases.put(c.OwnerId, new List<Case>{
-				c
-			});
+			ownerIdsToCases.put(c.OwnerId, new List<Case>{ c });
 		} else {
 			cases.add(c);
 			ownerIdsToCases.put(c.OwnerId, cases);
+		}
+	}
+
+	public static void setupCaseStatuses(List<Case> newCases) {
+		for (Case singleCase : newCases) {
+			if (
+				singleCase.TotalRequestsNumber__c != null &&
+				singleCase.CompletedRequestsNumber__c == singleCase.TotalRequestsNumber__c
+			) {
+				if (singleCase.TotalRequestsNumber__c == singleCase.SuccessRequestsNumber__c) {
+					singleCase.Status = '29';
+				}
+				if (singleCase.TotalRequestsNumber__c > singleCase.SuccessRequestsNumber__c) {
+					singleCase.Status = '30';
+				}
+			}
 		}
 	}
 
