@@ -2,6 +2,8 @@
 private class ApprovalRecallServiceTest {
 	@IsTest
 	static void recallApprovalsTest() {
+		Test.setMock(HttpCalloutMock.class, new MailSOAPServiceHttpMock());
+		insert TestDataFactory.getIntegrationSettings();
 		Id userId = UserInfo.getUserId();
 		Case testCase = TestDataFactory.getCase(
 			new Case(
