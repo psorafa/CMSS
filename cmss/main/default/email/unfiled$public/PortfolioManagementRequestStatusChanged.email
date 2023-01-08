@@ -1,0 +1,12 @@
+Dobrý den,  <br>
+<br>
+U žádosti o změnu správy stavu číslo <a href = '{LINKTOCASE}'>{!CaseNumber}</a> ze dne {!CreatedDate} byl změn stav na {!Status}. <br>
+
+Žádost byla vytvořena uživatelem: {CPUNAME} <br>
+<br>
+Poznámka na žádosti: {!Description}
+<br>
+Počet požadavků v žádosti:
+celkem: {!TotalRequestsNumber__c}
+<br>
+{RESULT}

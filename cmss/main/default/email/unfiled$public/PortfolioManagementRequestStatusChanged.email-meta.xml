@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Portfolio Management Request Status Changed</name>
+    <style>none</style>
+    <subject>U Žádost o změnu SPS číslo {!CaseNumber} byl stav změněn na {!Status}</subject>
+    <textOnly>Dobrý den,
+U žádosti o změnu správy stavu číslo &lt;a href = &apos;{LINKTOCASE}&apos;&gt;{!CaseNumber}&lt;/a&gt; ze dne {!CreatedDate} byl změn stav na {!Status}.
+
+Žádost byla vytvořena uživatelem: {CPUNAME}
+
+Poznámka na žádosti: 
+{!Description}
+
+Počet požadavků v žádosti:
+celkem: {!TotalRequestsNumber__c}
+
+{RESULT}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

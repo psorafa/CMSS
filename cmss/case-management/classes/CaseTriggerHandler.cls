@@ -6,11 +6,13 @@ public class CaseTriggerHandler extends TriggerHandler {
 		CaseService.validateOwnerPermission((List<Case>) Trigger.new, null);
 		CaseService.assignCaseID(Trigger.new);
 		CaseService.populateUserLookupsFromCPU(Trigger.new, null);
+		CaseService.setupCaseStatuses((List<Case>) Trigger.new);
 	}
 
 	public override void beforeUpdate() {
 		CaseService.validateOwnerPermission((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 		CaseService.populateUserLookupsFromCPU(Trigger.new, (Map<Id, Case>) Trigger.oldMap);
+		CaseService.setupCaseStatuses((List<Case>) Trigger.new);
 	}
 
 	public override void afterInsert() {
@@ -54,7 +56,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 		if (!relevantCaseIdsToCloseMilestone.isEmpty() && csEntitlementInfo != null) {
 			//String responseMilestoneName = csEntitlementInfo.ResponseSentMilestoneName__c;
 			String confirmMilestoneName = csEntitlementInfo.ReceivingConfirmationMilestoneName__c;
-			List<String> milestonesNames = new List<String>{confirmMilestoneName};
+			List<String> milestonesNames = new List<String>{ confirmMilestoneName };
 			CaseMilestoneUtils.closeMilestones(relevantCaseIdsToCloseMilestone, milestonesNames);
 		}
 	}
@@ -95,19 +97,21 @@ public class CaseTriggerHandler extends TriggerHandler {
 	private static Boolean isRelevantForAction(Case newCase, Map<Id, Case> oldMap, String actionName) {
 		Case oldCase = oldMap != null ? oldMap.get(newCase.Id) : null;
 		if (
-			ACTION_COMPLETE_RESPONSE_MILESTONE == actionName && newCase.IsClientClaim__c &&
-				String.isNotBlank(newCase.EntitlementId) &&
-				newCase.ResponseSentDate__c != null &&
-				oldCase != null &&
-				oldCase.ResponseSentDate__c != newCase.ResponseSentDate__c
+			ACTION_COMPLETE_RESPONSE_MILESTONE == actionName &&
+			newCase.IsClientClaim__c &&
+			String.isNotBlank(newCase.EntitlementId) &&
+			newCase.ResponseSentDate__c != null &&
+			oldCase != null &&
+			oldCase.ResponseSentDate__c != newCase.ResponseSentDate__c
 		) {
 			return true;
 		} else if (
-			ACTION_COMPLETE_CONFIRMATION_MILESTONE == actionName && newCase.IsClientClaim__c &&
-				String.isNotBlank(newCase.EntitlementId) &&
-				newCase.ReceivingConfirmationDate__c != null &&
-				oldCase != null &&
-				oldCase.ReceivingConfirmationDate__c != newCase.ReceivingConfirmationDate__c
+			ACTION_COMPLETE_CONFIRMATION_MILESTONE == actionName &&
+			newCase.IsClientClaim__c &&
+			String.isNotBlank(newCase.EntitlementId) &&
+			newCase.ReceivingConfirmationDate__c != null &&
+			oldCase != null &&
+			oldCase.ReceivingConfirmationDate__c != newCase.ReceivingConfirmationDate__c
 		) {
 			return true;
 		}
