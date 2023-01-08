@@ -354,7 +354,7 @@
         <fields>CaseChangeReason__c</fields>
         <fields>RequestStatus__c</fields>
         <fields>PortfolioManChangeResult__c</fields>
-        <fields>Case_Status__c</fields>
+        <fields>CaseStatus__c</fields>
         <fields>CREATED_DATE</fields>
         <fields>CaseCreatedByName__c</fields>
         <relatedList>PortfolioManagementRequest__c.Account__c</relatedList>
