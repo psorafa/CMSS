@@ -187,7 +187,6 @@ public without sharing class PortfolioManagementRequestService {
 			);
 			throw e;
 		} finally {
-			CaseService.updateCPECallCounter(batchId, Double.valueOf(attemptsCount + 1));
 			Logger.saveLogs();
 		}
 	}
