@@ -1,0 +1,76 @@
+<!-- New Portfolio Manager Select -->
+<template>
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="combobox-id-4">Relate To</label>
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
+
+                    <div if:true={showInput} class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right">
+                        <input type="text" class="slds-input slds-combobox__input slds-combobox__input-value"
+                               id="combobox-id-4" autocomplete="off" placeholder="Hledat..." value={searchTerm}
+                               onkeyup={handleKeyup} data-id="searchInput" onfocus={handleFocus} onblur={handleBlur} />
+                        <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                            <lightning-icon icon-name="utility:search" size="x-small"></lightning-icon>
+                        </span>
+                    </div>
+
+                    <div if:true={hasValue} class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right">
+                        <span class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon" title="Account">
+                            <lightning-icon icon-name="standard:user" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Account</span>
+                        </span>
+                        <button type="button" class="slds-input_faux slds-combobox__input slds-combobox__input-value">
+                            <span class="slds-truncate">{selectedUser.name}</span>
+                        </button>
+                        <button onclick={handleClear} class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Remove selected option">
+                            <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
+                            <span class="slds-assistive-text">Remove selected option</span>
+                        </button>
+                    </div>
+
+                    <div if:true={showDropdown} class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid">
+
+                        <ul class="slds-listbox slds-listbox_vertical slds-is-relative">
+                            <lightning-spinner if:true={searching} size="small"></lightning-spinner>
+
+                            <li if:true={searching} class="slds-listbox__item slds-is-relative">
+                                <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta">
+                                    [LBL] Searching
+                                </div>
+                            </li>
+
+                            <li if:true={noResults} class="slds-listbox__item">
+                                <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta">
+                                    [LBL] No results
+                                </div>
+                            </li>
+
+                            <template for:each={options} for:item="option">
+                                <li key={option.id} onclick={handleOptionClick} onmousedown={handleOptionMouseDown}
+                                    data-id={option.id} data-name={option.name} class="slds-listbox__item">
+                                    <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta">
+                                        <span class="slds-media__figure slds-listbox__option-icon">
+                                            <span class="slds-icon_container slds-icon-standard-account">
+                                                <lightning-icon icon-name="standard:user" size="small"></lightning-icon>
+                                            </span>
+                                        </span>
+                                        <span class="slds-media__body">
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                                <span class="slds-listbox__option-text_entity">{option.name}</span>
+                                                <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">
+                                                    {option.cpu}
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
