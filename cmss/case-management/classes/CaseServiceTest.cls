@@ -372,7 +372,8 @@ private class CaseServiceTest {
             new Case(
                 RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
                     .get('PortfolioManagementChangeRequest')
-                    .getRecordTypeId()
+                    .getRecordTypeId(),
+                NewPortfolioManager__c = u.Id
             )
         );
         insert c;        
@@ -422,7 +423,8 @@ private class CaseServiceTest {
             new Case(
                 RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
                     .get('PortfolioManagementChangeRequest')
-                    .getRecordTypeId()
+                    .getRecordTypeId(),
+                NewPortfolioManager__c = u.Id
             )
         );
         insert c;        

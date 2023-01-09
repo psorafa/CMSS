@@ -5,8 +5,9 @@ public with sharing class CaseService {
 		.get('PCF')
 		.getRecordTypeId();
 
-	public static final String CASE_PCF_RECORDTYPE_ID = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('PCF').getRecordTypeId();
-    public static final String CASE_PMCR_RECORDTYPE_ID = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('PortfolioManagementChangeRequest').getRecordTypeId();
+	public static final String CASE_PMCR_RECORDTYPE_ID = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName()
+        .get('PortfolioManagementChangeRequest')
+        .getRecordTypeId();
 
     public static void changeCPEClientState (List<Case> newCaseList, Map<Id, Case> oldCases) {
         if (FeatureManagement.checkPermission('Bypass_AQ_Messaging')) {

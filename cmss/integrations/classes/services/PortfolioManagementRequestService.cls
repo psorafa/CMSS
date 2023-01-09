@@ -160,7 +160,6 @@ public without sharing class PortfolioManagementRequestService {
             scheduleJobOfFailureCallout((new Map<Id,SObject>(pmrs)).keySet(), Double.valueOf(pmrs[0].Case__r.CPECallAttempts__c + 1));
 			throw e;
 		} finally {
-            CaseService.updateCPECallCounter(batchId, Double.valueOf(attemptsCount + 1));
 			Logger.saveLogs();
 		}
 	}
