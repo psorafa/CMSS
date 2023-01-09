@@ -2,7 +2,14 @@ public class ProductionSharingRecalc implements Database.Batchable<sObject> {
 	public Database.QueryLocator start(Database.BatchableContext BC) {
 		return Database.getQueryLocator(
 			[
-				SELECT Id, TeamManager__c, RegionManager__c, SalesNetManager__c
+				SELECT
+					Id,
+					TeamManager__c,
+					RegionManager__c,
+					SalesNetManager__c,
+					CurrentTeamManager__c,
+					CurrentRegionManager__c,
+					CurrentSalesNetManager__c
 				FROM Production__c
 			]
 		);

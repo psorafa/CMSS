@@ -248,6 +248,7 @@ public class TestDataFactory {
 					RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
 						.get('PortfolioManagementChangeRequest')
 						.getRecordTypeId(),
+					Status = '21',
 					NewPortfolioManager__c = u.Id
 				)
 			);
