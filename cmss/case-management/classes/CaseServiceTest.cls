@@ -364,32 +364,6 @@ private class CaseServiceTest {
 
 
     @isTest
-    static void testUpdateCPECallCounter() {
-        User user = TestDataFactory.getUser(new User());
-		insert user;
-		insert TestDataFactory.getPermissionSetAssignments(user.Id);
-		TestDataFactory.defaultCaseOwner = user;
-		System.runAs(user) {
-			Case c = TestDataFactory.getCase(
-				new Case(
-					RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
-						.get('PortfolioManagementChangeRequest')
-						.getRecordTypeId()
-				)
-			);
-
-            insert c;
-
-            Test.startTest();
-                CaseService.updateCPECallCounter(c.Id, 5);
-            Test.stopTest();
-
-            c = [SELECT CPECallAttempts__c FROM Case WHERE Id =: c.Id];
-            System.assert(c.CPECallAttempts__c == 5);
-        }
-    }
-
-    @isTest
     static void testChangeCPEClientState() {
 		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0', IsAgentActive__c = true));
 		insert new List<User>{u};
@@ -433,6 +407,7 @@ private class CaseServiceTest {
 
         System.assert(c.Status == '7');
         System.assert(c.CPECallAttempts__c == 1);
+        System.assertEquals('3', validRequest.RequestStatus__c);
         System.assertEquals('2', invalidRequest.RequestStatus__c);
         System.assertEquals('927', invalidRequest.PortfolioManChangeResult__c);
     }
@@ -476,7 +451,7 @@ private class CaseServiceTest {
     @isTest
     static void testScheduleJobOfFailureCallout() {
         Test.startTest();
-            Id jobId = PortfolioManagementRequestService.scheduleJobOfFailureCallout(new Set<Id>(), 'batchId', 0);
+            Id jobId = PortfolioManagementRequestService.scheduleJobOfFailureCallout(new Set<Id>(), 1);
             CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, State FROM CronTrigger WHERE Id =: jobId];
             System.assert(ct != null);
             System.assertEquals(0, ct.TimesTriggered);         

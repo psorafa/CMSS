@@ -27,47 +27,31 @@ public without sharing class PortfolioManagementRequestService {
 		}
 	}
 
-    @Future
-    public static void updateInvalidRequests(Set<Id> invalidRequestIds) {
+    public static RequestsWrapper preparePMRs(Set<Id> caseIds) {
+        Map<Id, List<PortfolioManagementRequest__c>> pmrByCaseId = new Map<Id, List<PortfolioManagementRequest__c>>();
         List<PortfolioManagementRequest__c> invalidRequests = new List<PortfolioManagementRequest__c>();
-        for (Id pmrId : invalidRequestIds) {
-            PortfolioManagementRequest__c pmr = new PortfolioManagementRequest__c(
-                Id = pmrId,
-                RequestStatus__c = INVALID_REQUEST_STATUS,
-                PortfolioManChangeResult__c = INVALID_REQUEST_RESULT
-            );
-            invalidRequests.add(pmr);
-        }
-        update invalidRequests;
-    }
-
-    public static Map<Id, Set<Id>> preparePMRs(Map<Id, Case> changeCPERequestCasesMap) {
-        Map<Id, Set<Id>> pmrIdsByCaseId = new Map<Id, Set<Id>>();
-        Set<Id> invalidRequests = new Set<Id>();
-
-        PortfolioManagementRequest__c[] pmrs = queryPortfolioManagementRequests(changeCPERequestCasesMap.keySet());
-
+        PortfolioManagementRequest__c[] pmrs = queryPortfolioManagementRequests(caseIds);
         for (PortfolioManagementRequest__c pmr : pmrs) {
             pmr.BatchID__c = pmr.Case__c;
-            if (changeCPERequestCasesMap.get(pmr.Case__c).NewPortfolioManager__c != null) {
-                pmr.PortfolioManager__c = changeCPERequestCasesMap.get(pmr.Case__c).NewPortfolioManager__c;
+            if (pmr.Case__r.NewPortfolioManager__c != null) {
+                pmr.PortfolioManager__c = pmr.Case__r.NewPortfolioManager__c;
             }
-            if (changeCPERequestCasesMap.get(pmr.Case__c).PortfolioManagementType__c != null) {
-                pmr.PortfolioManagementType__c = changeCPERequestCasesMap.get(pmr.Case__c).PortfolioManagementType__c;
+            if (pmr.Case__r.PortfolioManagementType__c != null) {
+                pmr.PortfolioManagementType__c = pmr.Case__r.PortfolioManagementType__c;
             }
             if (pmr.Account__r.LastPtfManAChangeDate__c == null || pmr.Account__r.LastPtfManAChangeDate__c < pmr.CreatedDate) {
-                if (pmrIdsByCaseId.get(pmr.Case__c) == null) {
-                    pmrIdsByCaseId.put(pmr.Case__c, new Set<Id>());
+                if (pmrByCaseId.get(pmr.Case__c) == null) {
+                    pmrByCaseId.put(pmr.Case__c, new List<PortfolioManagementRequest__c>());
                 }
-                pmrIdsByCaseId.get(pmr.Case__c).add(pmr.Id);
+                pmrByCaseId.get(pmr.Case__c).add(pmr);
             } else {
-                invalidRequests.add(pmr.Id);
+                pmr.RequestStatus__c = INVALID_REQUEST_STATUS;
+                pmr.PortfolioManChangeResult__c = INVALID_REQUEST_RESULT;
+                invalidRequests.add(pmr);
             }                
         }
-        
-        updateInvalidRequests(invalidRequests);
-        
-        return pmrIdsByCaseId;
+        RequestsWrapper wrapper = new RequestsWrapper(pmrByCaseId, invalidRequests);
+        return wrapper;
     }
 
     public static List<PortfolioManagementRequest__c> queryPortfolioManagementRequests(Set<Id> caseIds) {
@@ -75,6 +59,9 @@ public without sharing class PortfolioManagementRequestService {
             SELECT
                 Id,
                 Case__c,
+                Case__r.CPECallAttempts__c,
+                Case__r.PortfolioManagementType__c, 
+                Case__r.NewPortfolioManager__c,                
                 Account__c, 
                 Account__r.GlobalId__c, 
                 Account__r.LastPtfManAChangeDate__c, 
@@ -82,6 +69,7 @@ public without sharing class PortfolioManagementRequestService {
                 ValidFrom__c, 
                 PortfolioManagementType__c, 
                 PortfolioManager__c,
+                PortfolioManager__r.CommissionAccountBase__c,
                 CreatedDate
             FROM PortfolioManagementRequest__c
             WHERE Case__c IN: caseIds
@@ -90,15 +78,27 @@ public without sharing class PortfolioManagementRequestService {
     }
 
 	@Future(Callout=true)
-	public static void changeCPEClientStateFuture(Set<Id> pmrIds, String batchId, Double attemptsCount) {
+    public static void callCPEClientStateFuture(Set<Id> caseIds) {
+        RequestsWrapper wrapper = PortfolioManagementRequestService.preparePMRs(caseIds);
+        List<PortfolioManagementRequest__c> processedRequests = new List<PortfolioManagementRequest__c>();
+        List<Case> processedCases = new List<Case>();
+        for (Id caseId : caseIds) {
+            if (wrapper.pmrsByCaseId.get(caseId) != null && !wrapper.pmrsByCaseId.get(caseId).isEmpty()) {
+                processedCases.add(new Case(Id=caseId, CPECallAttempts__c=wrapper.pmrsByCaseId.get(caseId)[0].Case__r.CPECallAttempts__c + 1));
+                processedRequests.addAll(changeCPEClientState(wrapper.pmrsByCaseId.get(caseId)));
+            }
+        }
+        if (!processedRequests.isEmpty()) {
+            update processedRequests;
+        }
+        if (!wrapper.invalidRequests.isEmpty()) {
+            update wrapper.invalidRequests;
+        }
+        update processedCases;      
+    }
+
+	private static List<PortfolioManagementRequest__c> changeCPEClientState(List<PortfolioManagementRequest__c> pmrs) {
 		try {
-
-			PortfolioManagementRequest__c[] pmrs = [
-				SELECT Account__c, Account__r.GlobalId__c, PortfolioManChangeReason__c, ValidFrom__c, PortfolioManagementType__c, PortfolioManager__r.CommissionAccountBase__c
-				FROM PortfolioManagementRequest__c
-				WHERE Id IN :pmrIds
-			];
-
 			User runningUser = [SELECT Id, CommissionAccountBase__c FROM User WHERE Id = :UserInfo.getUserId()];
 			String commissionAccountNumber = runningUser.CommissionAccountBase__c;
 
@@ -134,7 +134,7 @@ public without sharing class PortfolioManagementRequestService {
 
 			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
 			PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody body = new PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody();
-			body.batchId = batchId;
+			body.batchId = pmrs[0].Case__c;
 			body.listOfClientStates = clientStates;
 			body.commissionAccountNumberBase = commissionAccountNumber;
 
@@ -147,44 +147,53 @@ public without sharing class PortfolioManagementRequestService {
 					PortfolioManagementRequest__c pmr = new PortfolioManagementRequest__c(Id = responseItem.stateChangeRequestId, RequestStatus__c = responseItem.requestStatus);
 					pmrToUpdate.add(pmr);
 				}
-				if (!pmrToUpdate.isEmpty() && !Test.isRunningTest()) {
-					update pmrToUpdate;
-				}
+				
+                return pmrToUpdate;
 			} else {
 				Logger.error('Invalid response!');
-                scheduleJobOfFailureCallout(pmrIds, batchId, attemptsCount);
+                scheduleJobOfFailureCallout((new Map<Id,SObject>(pmrs)).keySet(), Double.valueOf(pmrs[0].Case__r.CPECallAttempts__c + 1));
+                return new List<PortfolioManagementRequest__c>();
 			}
 
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
-            scheduleJobOfFailureCallout(pmrIds, batchId, attemptsCount);
+            scheduleJobOfFailureCallout((new Map<Id,SObject>(pmrs)).keySet(), Double.valueOf(pmrs[0].Case__r.CPECallAttempts__c + 1));
 			throw e;
 		} finally {
-            CaseService.updateCPECallCounter(batchId, Double.valueOf(attemptsCount + 1));
 			Logger.saveLogs();
 		}
 	}
 
-    public static Id scheduleJobOfFailureCallout(Set<Id> pmrIds, String batchId, Double attemptsCount) {
+    public static Id scheduleJobOfFailureCallout(Set<Id> pmrIds, Double currentAttempt) {
         Integer maxAttempts = 1;
         if (Configuration__mdt.getInstance(RETRY_MAX_ATTEMPTS_MDT) != null) {
             maxAttempts = Integer.valueOf(((Configuration__mdt) Configuration__mdt.getInstance(RETRY_INTERVAL_CONFIGURATION_MDT)).Value__c);
         }
-        if ((attemptsCount + 1) <= maxAttempts) {
+        if (currentAttempt <= maxAttempts) {
             Double initialInterval = 5;
             if (Configuration__mdt.getInstance(RETRY_INTERVAL_CONFIGURATION_MDT) != null) {
                 initialInterval = Double.valueOf(((Configuration__mdt) Configuration__mdt.getInstance(RETRY_INTERVAL_CONFIGURATION_MDT)).Value__c);
             }
-            DateTime dt = System.now().addMinutes(Integer.valueOf(Math.pow(initialInterval, (attemptsCount + 1))));
+            DateTime dt = System.now().addMinutes(Integer.valueOf(Math.pow(initialInterval, currentAttempt)));
             String day = string.valueOf(dt.day());                    
             String month = string.valueOf(dt.month());                      
             String hour = string.valueOf(dt.hour());                   
             String minute = string.valueOf(dt.minute());                                   
             String year = string.valueOf(dt.year());                  
             String scheduledTime = '0 ' + minute + ' ' + hour + ' ' + day + ' ' + month + ' ?' + ' ' + year;
-            PMRequestRetryCalloutSchedule job = new PMRequestRetryCalloutSchedule(pmrIds, batchId, attemptsCount);
+            PMRequestRetryCalloutSchedule job = new PMRequestRetryCalloutSchedule(pmrIds);
             return System.schedule('Schedule Job ' + dt, scheduledTime, job);
         }
         return null;
+    }
+
+    public class RequestsWrapper {
+        public Map<Id, List<PortfolioManagementRequest__c>> pmrsByCaseId { get; set; }
+        public List<PortfolioManagementRequest__c> invalidRequests { get; set; }
+
+        public RequestsWrapper(Map<Id, List<PortfolioManagementRequest__c>> pmrsByCaseId, List<PortfolioManagementRequest__c> invalidRequests) {
+            this.pmrsByCaseId = pmrsByCaseId;
+            this.invalidRequests = invalidRequests;
+        }
     }
 }

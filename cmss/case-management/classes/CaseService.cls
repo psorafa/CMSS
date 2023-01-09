@@ -13,33 +13,18 @@ public with sharing class CaseService {
 			return;
 		}
 
-        Map<Id, Case> changeCPERequestCasesMap = new Map<Id, Case>();
+        Set<Id> pmrCaseIds = new Set<Id>();
         for (Case newCase : newCaseList) {
             if (newCase.RecordTypeId == CASE_PMCR_RECORDTYPE_ID && newCase.Status == '3' && oldCases.get(newCase.Id).Status != '3') {
                 newCase.Status = '7';
-                changeCPERequestCasesMap.put(newCase.Id, newCase);
+                pmrCaseIds.add(newCase.Id);
 
             }
         }
 
-        if (!changeCPERequestCasesMap.isEmpty()) {
-            Map<Id, Set<Id>> requestsIdsByCaseId = PortfolioManagementRequestService.preparePMRs(changeCPERequestCasesMap);
-
-            for (Id caseId : requestsIdsByCaseId.keySet()) {
-                if (!requestsIdsByCaseId.get(caseId).isEmpty()) {
-                    PortfolioManagementRequestService.changeCPEClientStateFuture(
-                        requestsIdsByCaseId.get(caseId), 
-                        caseId, 
-                        Double.valueOf(changeCPERequestCasesMap.get(caseId).CPECallAttempts__c)
-                    );
-                }
-            }            
+        if (!pmrCaseIds.isEmpty()) {
+            PortfolioManagementRequestService.callCPEClientStateFuture(pmrCaseIds);
         }
-    }
-
-    public static void updateCPECallCounter(String caseId, Double attempts) {
-        Case c = new Case(Id=caseId, CPECallAttempts__c = attempts);
-        update c;
     }
 
 	public static void setGDPRAndClientCaseOnAccount(List<Case> newCaseList, Map<Id, Case> oldCases) {
