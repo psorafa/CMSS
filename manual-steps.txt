@@ -53,3 +53,6 @@ post    vyplnit custom metadata Configuration__mdt -
         label: TaskLetter_LightningListviewLink value: odkaz na listview 
         label: TaskLetter_CommunityListviewLink value: odkaz na listview 
 post    pravděpodobně bude řeba smazat dashboard 'Úspěšnost kampaní' na každém prostředí manuálně
+post    vyplnit custom metadata Configuration__mdt pro CPE call retry mechanismus
+            - changeCPERequest_retryCalloutInterval - pocatecni interval v minutach, po kterem dojde k dalsimu pokusu 
+            - changeCPERequest_retryCalloutAttempts - pocet pokusu 

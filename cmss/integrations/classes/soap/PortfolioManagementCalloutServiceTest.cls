@@ -73,63 +73,31 @@ private class PortfolioManagementCalloutServiceTest {
 	}
 
 	@IsTest
-	static void testChangeCPEClientStateError() {
-		Test.startTest();
-		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0', IsAgentActive__c = true));
-		insert new List<User>{ u };
-		Test.stopTest();
-
-		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
-			200,
-			'OK',
-			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>a0k1x00000AwCl9AAF</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>a0k1x00000AwCl9AAF</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
-			null,
-			null
-		);
-		Test.setMock(HttpCalloutMock.class, fakeResponse);
-		PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(BatchID__c = 'uweih567', PortfolioManagerCPU__c = 'CPU0')
-		);
-		PortfolioManagementRequest__c pmr2 = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(BatchID__c = '1kod983', PortfolioManagerCPU__c = 'CPU0')
-		);
-
-		try {
-			insert new List<PortfolioManagementRequest__c>{ pmr, pmr2 };
-			System.assert(false, 'This assert should not be reached.');
-		} catch (DmlException e) {
-			System.assert(
-				e.getMessage().contains(PortfolioManagementRequestService.MULTIPLE_BATCH_IDS_ERR),
-				e.getMessage()
-			);
-		}
-	}
-
-	@IsTest
-	static void testChangeCPEClientStateFuture() {
+	static void testCallCPEClientStateFuture() {
 		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0', IsAgentActive__c = true));
 		insert new List<User>{ u };
 
 		String portfolioMngmntRequestId =
 			PortfolioManagementRequest__c.SObjectType.getDescribe().getKeyPrefix() + '0'.repeat(12);
 
+		PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(
+			new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0')
+		);
+		insert pmr;
+
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
 			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-			portfolioMngmntRequestId +
-			'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-			portfolioMngmntRequestId +
-			'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
+			pmr.Id +
+			'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
 			null,
 			null
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
-		PortfolioManagementRequest__c pmr = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0')
-		);
+
 		Test.startTest();
-		insert pmr;
+		PortfolioManagementRequestService.callCPEClientStateFuture(new Set<Id>{ pmr.Case__c });
 		Test.stopTest();
 
 		Log__c[] logs = [SELECT Payload__c FROM Log__c WHERE Message__c = 'Incoming response'];
@@ -138,10 +106,8 @@ private class PortfolioManagementCalloutServiceTest {
 			logs[0]
 				.Payload__c.contains(
 					'<ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-					portfolioMngmntRequestId +
-					'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-					portfolioMngmntRequestId +
-					'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses>'
+					pmr.Id +
+					'</ns3:stateChangeRequestId><ns3:requestStatus>2</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses>'
 				)
 		);
 	}

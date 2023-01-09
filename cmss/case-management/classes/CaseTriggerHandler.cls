@@ -12,6 +12,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 	public override void beforeUpdate() {
 		CaseService.validateOwnerPermission((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 		CaseService.populateUserLookupsFromCPU(Trigger.new, (Map<Id, Case>) Trigger.oldMap);
+		CaseService.changeCPEClientState((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 		CaseService.setupCaseStatuses((List<Case>) Trigger.new);
 	}
 
