@@ -19,7 +19,7 @@
                         <lightning-spinner if:true={showSpinner}></lightning-spinner>
 
                         <lightning-record-edit-form object-api-name="Case" onsubmit={handleFormSubmit}>
-                            <lightning-input-field field-name="NewPortfolioManager__c" onchange={handleManagerChange}> </lightning-input-field>
+                            <c-new-portfolio-manager-select onchange={handleManagerChange}></c-new-portfolio-manager-select>
                             <lightning-input-field field-name="PortfolioManagementType__c" onchange={handleTypeChange}
                                                    value={data.type}> </lightning-input-field>
                             <lightning-input-field field-name="ChangeReason__c" onchange={handleReasonChange}> </lightning-input-field>

@@ -1,4 +1,4 @@
-import { LightningElement, api } from 'lwc'
+import { LightningElement, api, track } from 'lwc'
 import { NavigationMixin } from 'lightning/navigation'
 import saveData from '@salesforce/apex/NewPMChangeRequestController.saveData'
 
@@ -11,19 +11,20 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
     set ids(value) {
         if (value) {
             if (Array.isArray(value)) {
-                this.data.ids = [...value]
+                this._ids = [...value]
             } else {
-                this.data.ids = [value]
+                this._ids = [value]
             }
         } else {
-            this.data.ids = null
+            this._ids = null
         }
     }
 
+    _ids = []
     show = false
     validationError = null
     showSpinner = false
-    data = {}
+    @track data = {}
 
     @api open() {
         this.show = true
@@ -45,20 +46,21 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
 
     handleSave() {
         this.showSpinner = true
+        this.data.ids = this._ids
         saveData({
             jsonData : JSON.stringify(this.data)
         }).then((result) => {
             // check result
             console.log('save done', JSON.stringify(result))
             if (result.isSuccess) {
-                // todo
+                this.navigateTo(result.caseId)
             } else {
                 this.validationError = result.error
                 this.showSpinner = false
             }
         }).catch((error) => {
-            // todo: handle error
             console.error(error)
+            this.validationError = error.body.message
             this.showSpinner = false
         })
     }
@@ -70,7 +72,7 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
     }
 
     handleManagerChange(event) {
-        this.data.manager = event.target.value
+        this.data.manager = event.detail
     }
     handleTypeChange(event) {
         this.data.type = event.target.value
@@ -80,5 +82,14 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
     }
     handleCommentsChange(event) {
         this.data.comments = event.target.value
+    }
+    navigateTo(id) {
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: id,
+                actionName: 'view'
+            }
+        })
     }
 }

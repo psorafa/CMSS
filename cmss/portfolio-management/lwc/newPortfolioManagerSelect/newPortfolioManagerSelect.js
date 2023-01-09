@@ -72,6 +72,7 @@ export default class NewPortfolioManagerSelect extends LightningElement {
             id: event.currentTarget.dataset.id
         }
         this.searchTerm = null
+        this.fireChange(this.selectedUser.id)
     }
 
     handleClear(event) {
@@ -81,7 +82,7 @@ export default class NewPortfolioManagerSelect extends LightningElement {
         setTimeout(() => {
             this.template.querySelector('[data-id="searchInput"]').focus()
         })
-        fireChange(null)
+        this.fireChange(null)
     }
 
     handleFocus(event) {
