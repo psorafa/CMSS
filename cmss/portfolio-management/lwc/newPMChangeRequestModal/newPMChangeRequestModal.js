@@ -1,6 +1,9 @@
 import { LightningElement, api, track } from 'lwc'
 import { NavigationMixin } from 'lightning/navigation'
 import saveData from '@salesforce/apex/NewPMChangeRequestController.saveData'
+import NewPortfolioManagementChangeRequest from '@salesforce/label/c.NewPortfolioManagementChangeRequest'
+import Cancel from '@salesforce/label/c.Cancel'
+import Save from '@salesforce/label/c.Save'
 
 export default class NewPMChangeRequestModal extends NavigationMixin(LightningElement) {
 
@@ -25,6 +28,12 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
     validationError = null
     showSpinner = false
     @track data = {}
+
+    labels = {
+        NewPortfolioManagementChangeRequest,
+        Save,
+        Cancel
+    }
 
     @api open() {
         this.show = true

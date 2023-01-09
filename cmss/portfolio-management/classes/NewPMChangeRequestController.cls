@@ -80,7 +80,7 @@ public with sharing class NewPMChangeRequestController {
 			HierarchyUtil hierarchyUtil = new HierarchyUtil();
 			Id rmRoleId = hierarchyUtil.getRegionalManagerOrAssistantRoleOf(UserInfo.getUserRoleId());
 			if (rmRoleId == null) {
-				throw new ProcessingException('[LBL] Cannot find any Regional Manager of current user.');
+				throw new ProcessingException(Label.Cannot_find_any_Regional_Manager_of_current_user);
 			}
 			for (User u : selector.selectRegionalManagerAndAssistant(rmRoleId)) {
 				if (u.UserRole.DeveloperName.endsWith('ASSIST')) {
@@ -95,20 +95,20 @@ public with sharing class NewPMChangeRequestController {
 	private Boolean isUserInputValid() {
 		if (!canCreateEmptyRequest) {
 			if (userInput.ids == null || userInput.ids.isEmpty()) {
-				errorMessage = '[LBL] You don\'t have permission to create empty Portfolio Management Change Requests.';
+				errorMessage = Label.No_permission_to_create_empty_PM_requests;
 				return false;
 			}
 			if (String.isEmpty(userInput.manager)) {
-				errorMessage = '[LBL] Please fill in New Portfolio Manager';
+				errorMessage = Label.Please_fill_in_New_Portfolio_Manager;
 				return false;
 			}
 			if (String.isEmpty(userInput.type)) {
-				errorMessage = '[LBL] Please fill in Change Type';
+				errorMessage = Labek.Please_fill_in_Change_Type;
 				return false;
 			}
 		}
 		if (String.isEmpty(userInput.reason)) {
-			errorMessage = '[LBL] Please fill in Change Reason.';
+			errorMessage = Label.Please_fill_in_Change_Reason;
 			return false;
 		}
 		return true;
@@ -126,7 +126,7 @@ public with sharing class NewPMChangeRequestController {
 		} catch (DmlException e) {
 			Database.rollback(savepoint);
 			Logger.warn('Cannot save data.', e);
-			throw new ProcessingException('[LBL] Cannot save data: ' + e.getMessage(), e);
+			throw new ProcessingException(Label.Cannot_save_data + ': ' + e.getMessage(), e);
 		} catch (Exception e) {
 			Database.rollback(savepoint);
 			throw e;

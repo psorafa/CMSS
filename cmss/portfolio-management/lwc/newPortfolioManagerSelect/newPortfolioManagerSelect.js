@@ -1,5 +1,7 @@
 import { LightningElement } from 'lwc'
 import search from '@salesforce/apex/NewPortfolioManagerSelectController.search'
+import Searching from '@salesforce/label/c.Searching'
+import NoResults from '@salesforce/label/c.NoResults'
 
 export default class NewPortfolioManagerSelect extends LightningElement {
 
@@ -10,6 +12,11 @@ export default class NewPortfolioManagerSelect extends LightningElement {
     searching = false
     anotherSearchPending = false
     hasFocus = false
+
+    labels = {
+        Searching,
+        NoResults
+    }
 
     get hasValue() {
         return this.selectedUser

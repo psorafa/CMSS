@@ -12,7 +12,7 @@
                     <div class="slds-is-relative">
                     <div class="slds-modal__header">
                         <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
-                            [LBL] New: Portfolio Management Change Request
+                            {labels.NewPortfolioManagementChangeRequest}
                         </h1>
                     </div>
                     <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
@@ -29,8 +29,8 @@
 
                     </div>
                     <div class="slds-modal__footer">
-                        <button class="slds-button slds-button_neutral" onclick={handleClose}>[LBL] Cancel</button>
-                        <button class="slds-button slds-button_brand" onclick={handleSave}>[LBL] Save</button>
+                        <button class="slds-button slds-button_neutral" onclick={handleClose}>{labels.Cancel}</button>
+                        <button class="slds-button slds-button_brand" onclick={handleSave}>{labels.Save}</button>
                         <div if:true={validationError} class="slds-text-color_error slds-text-align_right">
                             {validationError}
                         </div>
