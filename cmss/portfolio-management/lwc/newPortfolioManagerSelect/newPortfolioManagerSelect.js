@@ -46,7 +46,7 @@ export default class NewPortfolioManagerSelect extends LightningElement {
                     console.log('error', JSON.stringify(error))
                 })
             } else {
-                processSearchResults(null)
+                this.processSearchResults(null)
             }
             this.anotherSearchPending = false
         }

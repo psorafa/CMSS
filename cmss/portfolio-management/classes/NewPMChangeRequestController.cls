@@ -103,7 +103,7 @@ public with sharing class NewPMChangeRequestController {
 				return false;
 			}
 			if (String.isEmpty(userInput.type)) {
-				errorMessage = Labek.Please_fill_in_Change_Type;
+				errorMessage = Label.Please_fill_in_Change_Type;
 				return false;
 			}
 		}
@@ -123,6 +123,9 @@ public with sharing class NewPMChangeRequestController {
 				item.Case__c = changeRequest.Id;
 			}
 			dml.insertData(requestItems);
+			if (!requestItems.isEmpty()) {
+				submitForApproval(changeRequest);
+			}
 		} catch (DmlException e) {
 			Database.rollback(savepoint);
 			Logger.warn('Cannot save data.', e);
@@ -130,6 +133,16 @@ public with sharing class NewPMChangeRequestController {
 		} catch (Exception e) {
 			Database.rollback(savepoint);
 			throw e;
+		}
+	}
+
+	private void submitForApproval(Case record) {
+		Approval.ProcessSubmitRequest request = new Approval.ProcessSubmitRequest();
+		request.setObjectId(record.Id);
+		Approval.ProcessResult result = Approval.process(request);
+		if (!result.isSuccess()) {
+			Logger.warn('Cannot submit for approval', JSON.serialize(result));
+			throw new ProcessingException(Label.Cannot_save_data + ': ' + result.getErrors().get(0).getMessage());
 		}
 	}
 
@@ -158,8 +171,7 @@ public with sharing class NewPMChangeRequestController {
 		}
 	}
 
-	@TestVisible
-	private class Selector {
+	public class Selector {
 		public List<User> selectRegionalManagerAndAssistant(Id rmRole) {
 			return [SELECT Id, UserRole.DeveloperName FROM User WHERE UserRoleId = :rmRole OR UserRole.ParentRoleId = :rmRole];
 		}
