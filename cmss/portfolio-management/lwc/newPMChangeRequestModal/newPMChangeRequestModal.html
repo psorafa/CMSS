@@ -1,0 +1,42 @@
+<!-- New PM Change Request Modal -->
+<template>
+    <div if:true={show} tabindex="-1" class="slds-backdrop slds-backdrop_open">
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+                 class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={handleClose}>
+                    <lightning-icon aria-hidden="true" icon-name="utility:close" variant="inverse">
+                    </lightning-icon>
+                    <span class="slds-assistive-text">Cancel and close</span>
+                </button>
+                    <div class="slds-is-relative">
+                    <div class="slds-modal__header">
+                        <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+                            {labels.NewPortfolioManagementChangeRequest}
+                        </h1>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning-spinner if:true={showSpinner}></lightning-spinner>
+
+                        <lightning-record-edit-form object-api-name="Case" onsubmit={handleFormSubmit}>
+                            <c-new-portfolio-manager-select onchange={handleManagerChange}></c-new-portfolio-manager-select>
+                            <lightning-input-field field-name="PortfolioManagementType__c" onchange={handleTypeChange}
+                                                   value={data.type}> </lightning-input-field>
+                            <lightning-input-field field-name="ChangeReason__c" onchange={handleReasonChange}> </lightning-input-field>
+                            <lightning-input-field field-name="Comments" onchange={handleCommentsChange}> </lightning-input-field>
+                            <button type="submit" style="display:none"></button>
+                        </lightning-record-edit-form>
+
+                    </div>
+                    <div class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={handleClose}>{labels.Cancel}</button>
+                        <button class="slds-button slds-button_brand" onclick={handleSave}>{labels.Save}</button>
+                        <div if:true={validationError} class="slds-text-color_error slds-text-align_right">
+                            {validationError}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</template>

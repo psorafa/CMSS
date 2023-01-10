@@ -1,0 +1,8 @@
+<!--
+ - Just an Aura container to display LWC component. No need to pass any attributes or anything.
+ -->
+<aura:component description="newPMChangeRequestContainer" implements="lightning:isUrlAddressable">
+    <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
+    <lightning:navigation aura:id="navigation"/>
+    <c:newPMChangeRequestModal aura:id="modal" onclose="{!c.onClose}"></c:newPMChangeRequestModal>
+</aura:component>

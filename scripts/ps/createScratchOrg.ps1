@@ -8,12 +8,10 @@ function CheckLastExitCode {
     param ([int[]]$SuccessCodes = @(0))
     if (!$?) {
         Write-Host "Last CMD failed" -ForegroundColor Red
-        #GoToWrapperDirectory in my code I go back to the original directory that launched the script
         exit
     }
     if ($SuccessCodes -notcontains $LastExitCode) {
         Write-Host "EXE RETURNED EXIT CODE $LastExitCode" -ForegroundColor Red
-        #GoToWrapperDirectory in my code I go back to the original directory that launched the script
         exit
     }
 }

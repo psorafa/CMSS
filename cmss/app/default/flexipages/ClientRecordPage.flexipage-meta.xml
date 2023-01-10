@@ -605,6 +605,16 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>label</name>
+                    <value>New</value>
+                </componentInstanceProperties>
+                <componentName>changePortfolioManagementButton</componentName>
+                <identifier>c_changePortfolioManagementButton</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>parentFieldApiName</name>
                     <value>Account.Id</value>
                 </componentInstanceProperties>

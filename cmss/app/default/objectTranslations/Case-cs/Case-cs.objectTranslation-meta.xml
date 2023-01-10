@@ -62,6 +62,29 @@
     </caseValues>
     <gender>Neuter</gender>
     <layouts>
+        <layout>Case Feed Layout</layout>
+        <layoutType>CaseInteraction</layoutType>
+        <sections>
+            <label></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Client Consolidation</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Other Information</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>ClientClaimConfirmationSent</layout>
         <sections>
             <label>Informace o případu</label>
@@ -122,6 +145,10 @@
             <section>GDPR Case Information</section>
         </sections>
         <sections>
+            <label></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
             <label>Řešení</label>
             <section>Solving</section>
         </sections>
@@ -145,7 +172,7 @@
             <section>GDPR Case Information</section>
         </sections>
         <sections>
-            <label><!-- New Section --></label>
+            <label></label>
             <section>New Section</section>
         </sections>
         <sections>
@@ -181,68 +208,94 @@
         </sections>
     </layouts>
     <layouts>
-        <layout>Portfolio Management Change Request</layout>
-        <sections>
-            <label></label>
-            <section>Vlastní odkazy</section>
-        </sections>
+        <layout>PCF</layout>
         <sections>
             <label></label>
             <section>Pole</section>
         </sections>
+        <sections>
+            <label></label>
+            <section>Vlastní odkazy</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Portfolio Management Change Request</layout>
+        <sections>
+            <label></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label></label>
+            <section>Fields</section>
+        </sections>
     </layouts>
     <quickActions>
+        <aspect>Master</aspect>
         <label>Zrušit podání</label>
         <name>ClaimCancellation</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewChildCase --></label>
+        <label></label>
+        <name>Eform</name>
+    </quickActions>
+    <quickActions>
+        <label></label>
+        <name>Nahled_E_Formulare</name>
+    </quickActions>
+    <quickActions>
+        <label></label>
         <name>NewChildCase</name>
     </quickActions>
     <quickActions>
+        <label></label>
+        <name>Pokracovat_v_draftu</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
         <label>Potvrzení o přijetí odesláno</label>
         <name>ReceivingConfirmationSent</name>
     </quickActions>
     <quickActions>
+        <aspect>Master</aspect>
         <label>Odpověď na podání odeslána</label>
         <name>ResponseSent</name>
     </quickActions>
     <quickActions>
-        <label><!-- SendEmail --></label>
+        <label></label>
         <name>SendEmail</name>
     </quickActions>
     <quickActions>
+        <aspect>Master</aspect>
         <label>Bez potvrzení o přijetí</label>
         <name>WithoutReceivingConfirmation</name>
     </quickActions>
     <recordTypes>
-        <description><!-- The client claim record type with a layout that omits the lightning action for sending confirmation to complainer as it has been already sent. --></description>
         <label>Klientské podání potvrzení odesláno</label>
         <name>ClientClaimConfirmationSent</name>
     </recordTypes>
     <recordTypes>
-        <label><!-- Client Consolidation --></label>
+        <label></label>
         <name>Client_Consolidation</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- The client claim record type with a non editable layout for closed cases --></description>
         <label>Zavřené klientské podání</label>
         <name>ClosedClientClaim</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Record type with read-only fields for closed GDPR claims --></description>
         <label>Zavřené GDPR podání</label>
         <name>ClosedGDPRClaim</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- GDPR claim --></description>
         <label>Nové GDPR podání</label>
         <name>GDPR</name>
     </recordTypes>
     <recordTypes>
-        <description><!-- Record type for Client Claims (complaints, incidents, requests) --></description>
         <label>Nové klientské podání</label>
         <name>NewClientClaim</name>
+    </recordTypes>
+    <recordTypes>
+        <label></label>
+        <name>PCF</name>
     </recordTypes>
     <recordTypes>
         <label>Žádost o změnu správy stavu</label>
@@ -409,13 +462,11 @@
         <name>ReceivedDateInFuture</name>
     </validationRules>
     <validationRules>
-        <errorMessage>
-        Odeslání odpovědi na podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
+        <errorMessage>Odeslání odpovědi na podání musí být v čase mezi příchodem podání a tímto okamžikem.</errorMessage>
         <name>ResponseSentDate</name>
     </validationRules>
     <validationRules>
-        <errorMessage>
-        Pole Odeslání odpovědi na podání musí být vyplněno před nastavením Statusu na Vyřešeno.</errorMessage>
+        <errorMessage>Pole Odeslání odpovědi na podání musí být vyplněno před nastavením Statusu na Vyřešeno.</errorMessage>
         <name>StatusCompletedOnlyIfResponseSentFilled</name>
     </validationRules>
     <validationRules>

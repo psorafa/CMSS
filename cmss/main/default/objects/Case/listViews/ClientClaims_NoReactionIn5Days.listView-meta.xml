@@ -41,7 +41,7 @@
         <field>ReceivingConfirmationDate__c</field>
         <operation>equals</operation>
     </filters>
-     <filters>
+    <filters>
         <field>CASES.RECORDTYPE</field>
         <operation>notEqual</operation>
         <value>Case.PCF</value>

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>NewPortfolioManagerRequired</fullName>
-    <active>false</active>
-    <errorConditionFormula>PortfolioManagerCPU__c == null &amp;&amp; 
+    <active>true</active>
+    <errorConditionFormula>Case__r.NewPortfolioManager__c == null &amp;&amp;
 PortfolioManager__c == null</errorConditionFormula>
-    <errorDisplayField>PortfolioManagerCPU__c</errorDisplayField>
-    <errorMessage>Please fill in new portfolio manager</errorMessage>
+    <errorMessage>New Portfolio Manager is required.</errorMessage>
 </ValidationRule>
