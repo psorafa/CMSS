@@ -11,4 +11,10 @@ public class CustomFilterItemDto {
 	public String relatedObject { get; set; }
 	@AuraEnabled
 	public List<SelectOption> availableFilterList { get; set; }
+	@AuraEnabled
+	public String objectTypeForLabel { get; set; }
+	@AuraEnabled
+	public String fieldNameForLabel { get; set; }
+	@AuraEnabled
+	public String fieldLabel { get; set; }
 }

@@ -15,18 +15,19 @@ public with sharing class CustomFilterService {
 				RecordType.DeveloperName,
 				RelatedObject__c,
 				Filter__c,
-				DisplayOrder__c
+				DisplayOrder__c,
+				Name
 			FROM CustomSearchFilter__c
 			WHERE RelatedObject__c = :objectType AND ProductType__c = :productType
 			ORDER BY DisplayOrder__c ASC NULLS LAST
 		];
 
 		Map<Id, CustomSearchFilter__c> customFilterLabelMap = new Map<Id, CustomSearchFilter__c>(
-		[
-			SELECT Id, toLabel(ProductType__c)
-			FROM CustomSearchFilter__c
-			WHERE RelatedObject__c = :objectType AND ProductType__c = :productType
-		]
+			[
+				SELECT Id, toLabel(ProductType__c)
+				FROM CustomSearchFilter__c
+				WHERE RelatedObject__c = :objectType AND ProductType__c = :productType
+			]
 		);
 
 		List<CustomFilterItemDto> dtoItemList = new List<CustomFilterItemDto>();
@@ -39,6 +40,30 @@ public with sharing class CustomFilterService {
 			dtoItem.dataType = csf.RecordType.DeveloperName;
 			dtoItem.relatedObject = csf.RelatedObject__c;
 			dtoItem.availableFilterList = getAvailableFilterList(csf.Filter__c);
+			if (dtoItem.fieldName.indexOf('.') > -1) {
+				String relR = csf.FieldApiName__c.substringBefore('.');
+				String relC = relR.replace('__r', '__c');
+				SObjectType sObjectTypeL2 = Schema.getGlobalDescribe().get(dtoItem.relatedObject);
+				List<Schema.sObjectType> parents = sObjectTypeL2.getDescribe()
+					.fields.getMap()
+					.get(relC)
+					.getDescribe()
+					.getReferenceTo();
+				dtoItem.objectTypeForLabel = String.valueOf(parents[0]);
+				dtoItem.fieldNameForLabel = csf.FieldApiName__c.substringAfter('.');
+				dtoItem.fieldLabel = csf.Name;
+			} else {
+				dtoItem.objectTypeForLabel = dtoItem.relatedObject;
+				dtoItem.fieldNameForLabel = dtoItem.fieldName;
+				dtoItem.fieldLabel = Schema.getGlobalDescribe()
+					.get(dtoItem.relatedObject)
+					.getDescribe()
+					.fields.getMap()
+					.get(dtoItem.fieldName)
+					.getDescribe()
+					.getLabel();
+			}
+			System.debug('FIELD: ' + csf.FieldApiName__c);
 			dtoItemList.add(dtoItem);
 		}
 
