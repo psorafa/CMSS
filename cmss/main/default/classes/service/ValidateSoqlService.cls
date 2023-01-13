@@ -30,8 +30,9 @@ public with sharing class ValidateSoqlService {
 			if (sObjectField == null && csf.FieldApiName__c.indexOf('.') > -1) {
 				String relR = csf.FieldApiName__c.substringBefore('.');
 				String relC = relR.replace('__r', '__c');
+				relC = relC == 'Account' ? 'AccountId' : relC;
 				SObjectField sObjectFieldRel = sObjectType.getDescribe().fields.getMap().get(relC);
-				if (sObjectFieldRel == null || relR.indexOf('__c') > -1) {
+				if (sObjectFieldRel == null || relR.endsWith('__c') || relR.endsWith('Id')) {
 					//mistake in relationship
 					csf.FieldApiName__c.addError(Label.FieldApiNameIsWrong);
 				} else {

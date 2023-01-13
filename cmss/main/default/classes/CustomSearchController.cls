@@ -4,7 +4,7 @@ public with sharing class CustomSearchController {
 		CustomFilterService service = new CustomFilterService(objectType, productName);
 
 		return service.getCustomFilterMap();
-	}
+	} 
 
 	@AuraEnabled(Cacheable=true)
 	public static List<RecordTypeInfoDto> loadTypeList() {

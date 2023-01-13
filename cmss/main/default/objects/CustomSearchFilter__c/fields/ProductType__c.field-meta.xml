@@ -50,5 +50,9 @@
             <controllingFieldValue>Asset</controllingFieldValue>
             <valueName>RiskLifeInsurance</valueName>
         </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Case</controllingFieldValue>
+            <valueName>PortfolioManagementChangeRequest</valueName>
+        </valueSettings>
     </valueSet>
 </CustomField>

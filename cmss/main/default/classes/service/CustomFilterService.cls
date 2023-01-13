@@ -43,6 +43,7 @@ public with sharing class CustomFilterService {
 			if (dtoItem.fieldName.indexOf('.') > -1) {
 				String relR = csf.FieldApiName__c.substringBefore('.');
 				String relC = relR.replace('__r', '__c');
+				relC = relC == 'Account' ? 'AccountId' : relC;
 				SObjectType sObjectTypeL2 = Schema.getGlobalDescribe().get(dtoItem.relatedObject);
 				List<Schema.sObjectType> parents = sObjectTypeL2.getDescribe()
 					.fields.getMap()
@@ -63,7 +64,6 @@ public with sharing class CustomFilterService {
 					.getDescribe()
 					.getLabel();
 			}
-			System.debug('FIELD: ' + csf.FieldApiName__c);
 			dtoItemList.add(dtoItem);
 		}
 

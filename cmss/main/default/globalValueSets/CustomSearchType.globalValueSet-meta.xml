@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
         <fullName>PersonAccount</fullName>
@@ -49,6 +49,11 @@
         <fullName>RiskLifeInsurance</fullName>
         <default>false</default>
         <label>RiskLifeInsurance</label>
+    </customValue>
+    <customValue>
+        <fullName>PortfolioManagementChangeRequest</fullName>
+        <default>false</default>
+        <label>PortfolioManagementChangeRequest</label>
     </customValue>
     <customValue>
         <fullName>Master</fullName>

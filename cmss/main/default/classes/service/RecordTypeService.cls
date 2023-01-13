@@ -65,8 +65,14 @@ public with sharing class RecordTypeService {
 					if (!dependentPicklistValues.containsKey((String) controlValue)) {
 						dependentPicklistValues.put((String) controlValue, new List<String>());
 					}
+
 					dependentPicklistValues.get((String) controlValue).add(entry.getValue());
 				}
+			} else if (entry.isActive()) {
+				if (!dependentPicklistValues.containsKey('Case')) {
+					dependentPicklistValues.put('Case', new List<String>());
+				}
+				dependentPicklistValues.get('Case').add(entry.getValue());
 			}
 		}
 		return dependentPicklistValues;
