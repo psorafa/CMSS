@@ -17,6 +17,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CommissionPdfGeneratorController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CommissionRunReportController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CreateMicroCampaignController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -6931,6 +6939,10 @@
     </tabSettings>
     <tabSettings>
         <tab>Knowledge__kav</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>PVExportPDF</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

@@ -1,9 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>CommissionPdfGeneratorController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CommissionRunReportController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <customPermissions>
         <enabled>true</enabled>
         <name>CommissionStatementAdministrator</name>
     </customPermissions>
+    <description>Administrátor provizních výpisů pro profil Centrála</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Commission Statement Administrator</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -22,7 +33,8 @@
         <object>Commission__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <description>Administrátor provizních výpisů pro profil Centrála</description>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>Commission Statement Administrator</label>
+    <tabSettings>
+        <tab>PVExportPDF</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>
