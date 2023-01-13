@@ -35,7 +35,7 @@ public with sharing class ActivityExpireBatchTest {
 		createTestData();
 
 		Test.startTest();
-		Database.executeBatch(batch);
+		batch.execute(null);
 		Test.stopTest();
 
 		List<Task> after = [
