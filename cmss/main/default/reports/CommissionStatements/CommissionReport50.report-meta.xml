@@ -63,11 +63,11 @@
             <value>Commission__c.RT50</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Commission__c$Date__c</column>
+            <column>Commission__c$StatementType__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value></value>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>50</value>
         </criteriaItems>
         <criteriaItems>
             <column>Commission__c$ClosingAgentCommissionAcountBase__c</column>
@@ -98,7 +98,7 @@
             <value></value>
         </criteriaItems>
         <criteriaItems>
-            <column>Commission__c$RowNumber__c</column>
+            <column>Commission__c$RecordNumber__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>

@@ -84,11 +84,11 @@
             <value>Commission__c.RT999</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Commission__c$Date__c</column>
+            <column>Commission__c$StatementType__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
+            <isUnlocked>false</isUnlocked>
             <operator>notEqual</operator>
-            <value></value>
+            <value>999</value>
         </criteriaItems>
         <criteriaItems>
             <column>Commission__c$ClosingAgentCommissionAcountBase__c</column>
@@ -119,7 +119,7 @@
             <value></value>
         </criteriaItems>
         <criteriaItems>
-            <column>Commission__c$RowNumber__c</column>
+            <column>Commission__c$RecordNumber__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
