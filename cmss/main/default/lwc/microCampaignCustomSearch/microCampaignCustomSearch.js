@@ -94,6 +94,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	@wire(loadTypeList)
 	loadTypeList({ error, data }) {
+		console.log('loadTypeList data: ' + JSON.stringify(data));
 		if (data) {
 			this.availableTypes = data;
 		} else if (error) {
@@ -203,10 +204,23 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			this.errorToastMessage(LBL_INVALID_REQUEST_TITLE, LBL_INVALID_REQUEST_MESSAGE);
 			return;
 		}
-		this.addSelectedUsersToFilter();
+		this.selectedObjectType === 'Case' ? null : this.addSelectedUsersToFilter();
 		this.addRecordTypeFilter();
 		this.loading = true;
-
+		if (this.selectedObjectType === 'Case') {
+			const objType = 'Case';
+			const filterCond = 'Id != null';
+			const fieldset = 'PortfolioManagementChangeRequest';
+			this.selectedConfiguration
+				? ((this.selectedConfiguration.ObjectType__c = objType),
+				  (this.selectedConfiguration.FilterCondition__c = filterCond),
+				  (this.selectedConfiguration.FieldsetName__c = fieldset))
+				: (this.selectedConfiguration = {
+						ObjectType__c: objType,
+						FilterCondition__c: filterCond,
+						FieldsetName__c: fieldset
+				  });
+		}
 		const request = {
 			filterItemList: this.filterConditionList,
 			configuration: this.selectedConfiguration,
@@ -222,6 +236,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		countResults({ dto: request })
 			.then((countResult) => {
 				this.totalRecordsCount = countResult;
+				console.log('totalRecordsCount: ' + this.totalRecordsCount);
 				const maxAllowedRecordsCount = 10000;
 				if (countResult < 1) {
 					this.toastMessage(null, '', LBL_NO_RECORDS);
@@ -287,7 +302,11 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	}
 
 	get isRequestNotValid() {
-		return this.selectedConfiguration == null;
+		if (this.selectedObjectType === 'Case') {
+			return false;
+		} else {
+			return this.selectedConfiguration == null;
+		}
 	}
 
 	get isTableVisible() {

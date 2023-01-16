@@ -1,5 +1,5 @@
 <template>
-	<lightning-card title={labels.LBL_SelectedConfiguration}>
+	<lightning-card title={labels.LBL_SelectedConfiguration} if:true={show}>
 		<lightning-datatable
 			key-field="id"
 			data={data}

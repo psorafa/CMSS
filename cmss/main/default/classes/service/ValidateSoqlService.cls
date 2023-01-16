@@ -26,32 +26,50 @@ public with sharing class ValidateSoqlService {
 			if (sObjectType == null) {
 				csf.RelatedObject__c.addError(Label.RelatedObjectIsWrong);
 			}
-			SObjectField sObjectField = sObjectType.getDescribe().fields.getMap().get(csf.FieldApiName__c);
-			if (sObjectField == null && csf.FieldApiName__c.indexOf('.') > -1) {
-				String relR = csf.FieldApiName__c.substringBefore('.');
-				String relC = relR.replace('__r', '__c');
-				relC = relC == 'Account' ? 'AccountId' : relC;
-				SObjectField sObjectFieldRel = sObjectType.getDescribe().fields.getMap().get(relC);
-				if (sObjectFieldRel == null || relR.endsWith('__c') || relR.endsWith('Id')) {
-					//mistake in relationship
-					csf.FieldApiName__c.addError(Label.FieldApiNameIsWrong);
-				} else {
-					List<Schema.sObjectType> parents = sObjectType.getDescribe()
-						.fields.getMap()
-						.get(relC)
-						.getDescribe()
-						.getReferenceTo();
-					if (parents.size() > 0) {
-						String fieldL2 = csf.FieldApiName__c.substringAfter('.');
-						SObjectField sObjectFieldRelL2 = parents[0].getDescribe().fields.getMap().get(fieldL2);
-						if (sObjectFieldRelL2 == null) {
+
+			Integer dotsCount = csf.FieldApiName__c.countMatches('.');
+			Integer dotsCounter = 0;
+			Integer i = 0;
+			String targetField = dotsCount > 0 ? csf.FieldApiName__c.substringAfterLast('.') : csf.FieldApiName__c;
+			String fieldString = csf.FieldApiName__c;
+			SObjectType targetObject = sObjectType;
+			do {
+				if (dotsCounter < dotsCount) {
+					//get relationship (target) object
+					String relR = fieldString.substringBefore('.');
+					String relC = relR.replace('__r', '__c');
+					relC = relC == 'Account' ? 'AccountId' : relC;
+					relC = relC == 'Contact' ? 'ContactId' : relC;
+					SObjectField sObjectFieldRel = targetObject.getDescribe().fields.getMap().get(relC);
+					if (sObjectFieldRel == null || relR.endsWith('__c') || relR.endsWith('Id')) {
+						//mistake in relationship
+						csf.FieldApiName__c.addError(Label.FieldApiNameIsWrong);
+					} else {
+						List<Schema.sObjectType> parents = targetObject.getDescribe()
+							.fields.getMap()
+							.get(relC)
+							.getDescribe()
+							.getReferenceTo();
+						if (parents.size() > 0) {
+							targetObject = parents[0];
+						} else {
 							csf.FieldApiName__c.addError(Label.FieldApiNameIsWrong);
 						}
 					}
+
+					fieldString = fieldString.substringAfter('.');
+					dotsCounter++;
 				}
-			} else if (sObjectField == null) {
-				csf.FieldApiName__c.addError(Label.FieldApiNameIsWrong);
-			}
+
+				if (i == dotsCount) {
+					//target field validation
+					SObjectField targetSObjectField = targetObject.getDescribe().fields.getMap().get(targetField);
+					if (targetSObjectField == null) {
+						csf.FieldApiName__c.addError(Label.FieldApiNameIsWrong);
+					}
+				}
+				i++;
+			} while (i < dotsCount + 1);
 		}
 	}
 }

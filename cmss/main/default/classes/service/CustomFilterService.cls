@@ -40,22 +40,11 @@ public with sharing class CustomFilterService {
 			dtoItem.dataType = csf.RecordType.DeveloperName;
 			dtoItem.relatedObject = csf.RelatedObject__c;
 			dtoItem.availableFilterList = getAvailableFilterList(csf.Filter__c);
+			dtoItem.objectTypeForLabel = dtoItem.relatedObject;
+			dtoItem.fieldNameForLabel = dtoItem.fieldName;
 			if (dtoItem.fieldName.indexOf('.') > -1) {
-				String relR = csf.FieldApiName__c.substringBefore('.');
-				String relC = relR.replace('__r', '__c');
-				relC = relC == 'Account' ? 'AccountId' : relC;
-				SObjectType sObjectTypeL2 = Schema.getGlobalDescribe().get(dtoItem.relatedObject);
-				List<Schema.sObjectType> parents = sObjectTypeL2.getDescribe()
-					.fields.getMap()
-					.get(relC)
-					.getDescribe()
-					.getReferenceTo();
-				dtoItem.objectTypeForLabel = String.valueOf(parents[0]);
-				dtoItem.fieldNameForLabel = csf.FieldApiName__c.substringAfter('.');
 				dtoItem.fieldLabel = csf.Name;
 			} else {
-				dtoItem.objectTypeForLabel = dtoItem.relatedObject;
-				dtoItem.fieldNameForLabel = dtoItem.fieldName;
 				dtoItem.fieldLabel = Schema.getGlobalDescribe()
 					.get(dtoItem.relatedObject)
 					.getDescribe()
