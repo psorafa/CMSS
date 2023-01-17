@@ -2,58 +2,64 @@
 public class KnowledgeArticlesListControllerTest {
 	@TestSetup
 	static void initializeTestData() {
-		Id RT_FAQ_ID = Schema.Sobjecttype.Knowledge__kav.getRecordTypeInfosByDeveloperName()
-			.get('FAQ')
-			.getRecordTypeId();
-		Id RT_PROD_ID = Schema.Sobjecttype.Knowledge__kav.getRecordTypeInfosByDeveloperName()
-			.get('Methodology')
-			.getRecordTypeId();
+		User u = TestDataFactory.getUser(new User(Username = 'test4564654654@test787878.com'));
+		u.UserPermissionsKnowledgeUser = true;
+		insert u;
 
-		Knowledge__kav article1 = TestDataFactory.getKnowledgeArticle(
-			new Knowledge__kav(
-				RecordTypeId = RT_FAQ_ID,
-				ValidFrom__c = Date.today().addDays(-10),
-				ValidTo__c = Date.today().addDays(10)
-			)
-		);
-		insert article1;
-		Knowledge__kav article2 = TestDataFactory.getKnowledgeArticle(
-			new Knowledge__kav(
-				RecordTypeId = RT_PROD_ID,
-				ValidFrom__c = Date.today().addDays(-10),
-				ValidTo__c = Date.today().addDays(10)
-			)
-		);
-		insert article2;
-		Knowledge__kav article3 = TestDataFactory.getKnowledgeArticle(
-			new Knowledge__kav(
-				RecordTypeId = RT_PROD_ID,
-				ValidFrom__c = Date.today().addDays(-100),
-				ValidTo__c = Date.today().addDays(-10)
-			)
-		);
-		insert article3;
-		Topic top = TestDataFactory.getTopic();
-		insert top;
-		TopicAssignment topicAssignment1 = TestDataFactory.getTopicAssignment(
-			new TopicAssignment(EntityId = article1.Id, TopicId = top.Id)
-		);
-		insert topicAssignment1;
-		TopicAssignment topicAssignment2 = TestDataFactory.getTopicAssignment(
-			new TopicAssignment(EntityId = article2.Id, TopicId = top.Id)
-		);
-		insert topicAssignment2;
-		TopicAssignment topicAssignment3 = TestDataFactory.getTopicAssignment(
-			new TopicAssignment(EntityId = article3.Id, TopicId = top.Id)
-		);
-		insert topicAssignment3;
+		System.runAs(u) {
+			Id RT_FAQ_ID = Schema.Sobjecttype.Knowledge__kav.getRecordTypeInfosByDeveloperName()
+				.get('FAQ')
+				.getRecordTypeId();
+			Id RT_PROD_ID = Schema.Sobjecttype.Knowledge__kav.getRecordTypeInfosByDeveloperName()
+				.get('Methodology')
+				.getRecordTypeId();
 
-		Knowledge__kav kn1 = [SELECT Id, Title, KnowledgeArticleId FROM Knowledge__kav WHERE id = :article1.Id];
-		KbManagement.PublishingService.publishArticle(kn1.KnowledgeArticleId, true);
-		Knowledge__kav kn2 = [SELECT Id, Title, KnowledgeArticleId FROM Knowledge__kav WHERE id = :article2.Id];
-		KbManagement.PublishingService.publishArticle(kn2.KnowledgeArticleId, true);
-		Knowledge__kav kn3 = [SELECT Id, Title, KnowledgeArticleId FROM Knowledge__kav WHERE id = :article3.Id];
-		KbManagement.PublishingService.publishArticle(kn3.KnowledgeArticleId, true);
+			Knowledge__kav article1 = TestDataFactory.getKnowledgeArticle(
+				new Knowledge__kav(
+					RecordTypeId = RT_FAQ_ID,
+					ValidFrom__c = Date.today().addDays(-10),
+					ValidTo__c = Date.today().addDays(10)
+				)
+			);
+			insert article1;
+			Knowledge__kav article2 = TestDataFactory.getKnowledgeArticle(
+				new Knowledge__kav(
+					RecordTypeId = RT_PROD_ID,
+					ValidFrom__c = Date.today().addDays(-10),
+					ValidTo__c = Date.today().addDays(10)
+				)
+			);
+			insert article2;
+			Knowledge__kav article3 = TestDataFactory.getKnowledgeArticle(
+				new Knowledge__kav(
+					RecordTypeId = RT_PROD_ID,
+					ValidFrom__c = Date.today().addDays(-100),
+					ValidTo__c = Date.today().addDays(-10)
+				)
+			);
+			insert article3;
+			Topic top = TestDataFactory.getTopic();
+			insert top;
+			TopicAssignment topicAssignment1 = TestDataFactory.getTopicAssignment(
+				new TopicAssignment(EntityId = article1.Id, TopicId = top.Id)
+			);
+			insert topicAssignment1;
+			TopicAssignment topicAssignment2 = TestDataFactory.getTopicAssignment(
+				new TopicAssignment(EntityId = article2.Id, TopicId = top.Id)
+			);
+			insert topicAssignment2;
+			TopicAssignment topicAssignment3 = TestDataFactory.getTopicAssignment(
+				new TopicAssignment(EntityId = article3.Id, TopicId = top.Id)
+			);
+			insert topicAssignment3;
+
+			Knowledge__kav kn1 = [SELECT Id, Title, KnowledgeArticleId FROM Knowledge__kav WHERE id = :article1.Id];
+			KbManagement.PublishingService.publishArticle(kn1.KnowledgeArticleId, true);
+			Knowledge__kav kn2 = [SELECT Id, Title, KnowledgeArticleId FROM Knowledge__kav WHERE id = :article2.Id];
+			KbManagement.PublishingService.publishArticle(kn2.KnowledgeArticleId, true);
+			Knowledge__kav kn3 = [SELECT Id, Title, KnowledgeArticleId FROM Knowledge__kav WHERE id = :article3.Id];
+			KbManagement.PublishingService.publishArticle(kn3.KnowledgeArticleId, true);
+		}
 	}
 
 	@IsTest
