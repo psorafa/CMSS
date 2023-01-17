@@ -6710,6 +6710,10 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
+        <apexPage>CommissionPdfGenerator</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>MigrationPremium</apexPage>
         <enabled>true</enabled>
     </pageAccesses>

@@ -33,6 +33,10 @@
         <object>Commission__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>CommissionPdfGenerator</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <tabSettings>
         <tab>PVExportPDF</tab>
         <visibility>Visible</visibility>
