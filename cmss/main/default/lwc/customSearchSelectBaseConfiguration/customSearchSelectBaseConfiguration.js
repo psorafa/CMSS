@@ -20,7 +20,7 @@ export default class CustomSearchSelectBaseConfiguration extends LightningElemen
 
 	@wire(getObjectInfo, { objectApiName: SEARCH_CONFIGURATION_OBJECT })
 	loadColumnsData({ error, data }) {
-		if (this.objectType === 'Case') {
+		if (this.objectType === 'PortfolioManagementRequest__c') {
 			this.show = false;
 		}
 

@@ -22,7 +22,7 @@ public with sharing class CustomSearchController {
 	}
 
 	@AuraEnabled
-	public static Integer countResults(CustomSearchFilterRequestDto dto) {
+	public static Integer countResults(CustomSearchFilterRequestDto dto) {      
 		try {
 			CustomSoqlService service = new CustomSoqlService(dto);
 			return service.getDataCountFromDbDto();

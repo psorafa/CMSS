@@ -10,8 +10,15 @@ export default class CustomSearchDynamicSingleFilter extends LightningElement {
 	@api
 	label;
 
+	@api
+	fieldDataType;
+
 	selectedFilterValue;
 	selectedValue;
+
+	get isNotPicklist() {
+		return this.fieldDataType !== 'Picklist';
+	}
 
 	handleValueChange(event) {
 		this.selectedValue = event.target.value;
@@ -20,6 +27,9 @@ export default class CustomSearchDynamicSingleFilter extends LightningElement {
 
 	handleFilterChange(event) {
 		this.selectedFilterValue = this.template.querySelector('select.slds-select').value;
+		if (this.fieldDataType === 'Picklist') {
+			this.selectedValue = this.selectedFilterValue;
+		}
 		this.publishEventToParent();
 	}
 

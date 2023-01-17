@@ -39,7 +39,11 @@ public with sharing class CustomFilterService {
 			dtoItem.fieldName = csf.FieldApiName__c;
 			dtoItem.dataType = csf.RecordType.DeveloperName;
 			dtoItem.relatedObject = csf.RelatedObject__c;
-			dtoItem.availableFilterList = getAvailableFilterList(csf.Filter__c);
+			if (dtoItem.dataType == 'Picklist') {
+				dtoItem.availableFilterList = getPicklistOptions(dtoItem.fieldName, dtoItem.relatedObject);
+			} else {
+				dtoItem.availableFilterList = getAvailableFilterList(csf.Filter__c);
+			}
 			dtoItem.objectTypeForLabel = dtoItem.relatedObject;
 			dtoItem.fieldNameForLabel = dtoItem.fieldName;
 			if (dtoItem.fieldName.indexOf('.') > -1) {
@@ -65,6 +69,50 @@ public with sharing class CustomFilterService {
 		for (Schema.PicklistEntry en : picklistValList) {
 			valueLabelMap.put(en.getValue(), en.getLabel());
 		}
+	}
+
+	public List<SelectOption> getPicklistOptions(String fieldString, String relatedObject) {
+		List<SelectOption> labelValueList = new List<SelectOption>();
+
+		Integer dotsCount = fieldString.countMatches('.');
+		Integer dotsCounter = 0;
+		Integer i = 0;
+		String targetField = dotsCount > 0 ? fieldString.substringAfterLast('.') : fieldString;
+		SObjectType targetObject = Schema.getGlobalDescribe().get(relatedObject);
+		do {
+			if (dotsCounter < dotsCount) {
+				String relR = fieldString.substringBefore('.');
+				String relC = relR.replace('__r', '__c');
+				relC = relC == 'Account' ? 'AccountId' : relC;
+				relC = relC == 'Contact' ? 'ContactId' : relC;
+				SObjectField sObjectFieldRel = targetObject.getDescribe().fields.getMap().get(relC);
+				List<Schema.sObjectType> parents = targetObject.getDescribe()
+					.fields.getMap()
+					.get(relC)
+					.getDescribe()
+					.getReferenceTo();
+				if (parents.size() > 0) {
+					targetObject = parents[0];
+				}
+
+				fieldString = fieldString.substringAfter('.');
+				dotsCounter++;
+			}
+
+			if (i == dotsCount) {
+				SObjectField targetSObjectField = targetObject.getDescribe().fields.getMap().get(targetField);
+				Schema.DescribeFieldResult targetFieldResult = targetSObjectField.getDescribe();
+				List<Schema.PicklistEntry> ple = targetFieldResult.getPicklistValues();
+				for (Schema.PicklistEntry pickListVal : ple) {
+					String itemLabel = pickListVal.getLabel();
+					String itemValue = pickListVal.getValue();
+					SelectOption option = new SelectOption(itemValue, itemLabel);
+					labelValueList.add(option);
+				}
+			}
+			i++;
+		} while (i < dotsCount + 1);
+		return labelValueList;
 	}
 
 	private List<SelectOption> getAvailableFilterList(String savedFiltersString) {

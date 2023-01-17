@@ -94,7 +94,6 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	@wire(loadTypeList)
 	loadTypeList({ error, data }) {
-		console.log('loadTypeList data: ' + JSON.stringify(data));
 		if (data) {
 			this.availableTypes = data;
 		} else if (error) {
@@ -204,13 +203,11 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			this.errorToastMessage(LBL_INVALID_REQUEST_TITLE, LBL_INVALID_REQUEST_MESSAGE);
 			return;
 		}
-		this.selectedObjectType === 'Case' ? null : this.addSelectedUsersToFilter();
-		this.addRecordTypeFilter();
-		this.loading = true;
-		if (this.selectedObjectType === 'Case') {
-			const objType = 'Case';
+
+		if (this.selectedObjectType === 'PortfolioManagementRequest__c') {
+			const objType = 'PortfolioManagementRequest__c';
 			const filterCond = 'Id != null';
-			const fieldset = 'PortfolioManagementChangeRequest';
+			const fieldset = 'PortfolioManagementRequest';
 			this.selectedConfiguration
 				? ((this.selectedConfiguration.ObjectType__c = objType),
 				  (this.selectedConfiguration.FilterCondition__c = filterCond),
@@ -220,7 +217,12 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 						FilterCondition__c: filterCond,
 						FieldsetName__c: fieldset
 				  });
+		} else {
+			this.addSelectedUsersToFilter();
+			this.addRecordTypeFilter();
 		}
+		this.loading = true;
+
 		const request = {
 			filterItemList: this.filterConditionList,
 			configuration: this.selectedConfiguration,
@@ -236,7 +238,6 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		countResults({ dto: request })
 			.then((countResult) => {
 				this.totalRecordsCount = countResult;
-				console.log('totalRecordsCount: ' + this.totalRecordsCount);
 				const maxAllowedRecordsCount = 10000;
 				if (countResult < 1) {
 					this.toastMessage(null, '', LBL_NO_RECORDS);
@@ -302,7 +303,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	}
 
 	get isRequestNotValid() {
-		if (this.selectedObjectType === 'Case') {
+		if (this.selectedObjectType === 'PortfolioManagementRequest__c') {
 			return false;
 		} else {
 			return this.selectedConfiguration == null;

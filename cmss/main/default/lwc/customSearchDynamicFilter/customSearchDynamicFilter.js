@@ -18,6 +18,7 @@ export default class CustomSearchDynamicFilter extends LightningElement {
 
 	@wire(getCustomFilterMap, { objectType: '$objectType', productName: '$productName' })
 	loadCustomFilterMap({ error, data }) {
+		console.log('getCustomFilterMap data: ' + JSON.stringify(data));
 		if (data) {
 			this.customFilterItems = data;
 			this.fieldsWithCustomFilters = [];

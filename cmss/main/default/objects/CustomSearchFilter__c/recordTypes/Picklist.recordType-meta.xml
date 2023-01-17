@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Text</fullName>
+    <fullName>Picklist</fullName>
     <active>true</active>
-    <label>Text</label>
+    <label>Picklist</label>
     <picklistValues>
         <picklist>Filter__c</picklist>
         <values>
-            <fullName>contains</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>end with</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>exact match</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>start with</fullName>
+            <fullName>N%2FA</fullName>
             <default>false</default>
         </values>
     </picklistValues>

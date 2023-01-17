@@ -13,6 +13,7 @@
 					</template>
 				</select>
 				<input
+					if:true={isNotPicklist}
 					type={inputType}
 					onkeyup={handleValueChange}
 					onchange={handleValueChange}
