@@ -18,7 +18,6 @@ export default class CustomSearchDynamicFilter extends LightningElement {
 
 	@wire(getCustomFilterMap, { objectType: '$objectType', productName: '$productName' })
 	loadCustomFilterMap({ error, data }) {
-		console.log('getCustomFilterMap data: ' + JSON.stringify(data));
 		if (data) {
 			this.customFilterItems = data;
 			this.fieldsWithCustomFilters = [];
@@ -29,7 +28,6 @@ export default class CustomSearchDynamicFilter extends LightningElement {
 
 	handleFieldChange(event) {
 		const eventData = event.detail;
-
 		const existingItem = this.fieldsWithCustomFilters.filter(
 			(item) =>
 				item.fieldName === eventData.fieldName &&

@@ -304,7 +304,32 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	get isRequestNotValid() {
 		if (this.selectedObjectType === 'PortfolioManagementRequest__c') {
-			return false;
+			let hasCaseId = false;
+			let hasA = false;
+			let hasC = false;
+			for (const key in this.filterConditionList) {
+				switch (this.filterConditionList[key].fieldName) {
+					case 'Case__r.CaseID__c':
+						hasCaseId = true;
+						break;
+					case 'Case__r.Account.PortfolioMngmtA__r.CommissionAccountBase__c':
+						hasA = true;
+						break;
+					case 'Case__r.Account.PortfolioMngmtC__r.CommissionAccountBase__c':
+						hasC = true;
+						break;
+					default:
+						hasCaseId = false;
+						hasA = false;
+						hasC = false;
+						break;
+				}
+			}
+			if (hasCaseId || (hasA && hasC)) {
+				return false;
+			} else {
+				return true;
+			}
 		} else {
 			return this.selectedConfiguration == null;
 		}
