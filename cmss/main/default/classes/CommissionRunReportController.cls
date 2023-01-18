@@ -14,7 +14,7 @@ public without sharing class CommissionRunReportController {
 		Integer adminPermSetCount = [
 			SELECT COUNT()
 			FROM PermissionSetAssignment
-			WHERE PermissionSet.Name = 'Commission Statement Administrator' AND AssigneeId = :UserInfo.getUserId()
+			WHERE PermissionSet.Name = 'CommissionStatementAdministrator' AND AssigneeId = :UserInfo.getUserId()
 		];
 		return adminPermSetCount;
 	}
