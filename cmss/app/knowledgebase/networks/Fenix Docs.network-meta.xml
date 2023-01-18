@@ -29,6 +29,9 @@
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
     <networkMemberGroups>
         <permissionSet>Knowledge_LSF_Permission_Set</permissionSet>
+        <permissionSet>CMSS_User</permissionSet>
+        <permissionSet>CMSSHeadquartersUser</permissionSet>
+        <permissionSet>CMSS_Experience_User</permissionSet>
         <profile>admin</profile>
     </networkMemberGroups>
     <networkPageOverrides>
