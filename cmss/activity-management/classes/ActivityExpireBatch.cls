@@ -6,6 +6,10 @@ public without sharing class ActivityExpireBatch implements Database.Batchable<s
 	private String closedStatus;
 	private String closedResult;
 
+	public ActivityExpireBatch() {
+		loadConfigValues();
+	}
+
 	private void loadConfigValues() {
 		List<String> excludedRTs = Configuration__mdt.getInstance('ActivityExpiration_ExcludedRecordTypes')
 			.Value__c.split(',');
