@@ -54,7 +54,7 @@ public with sharing class NewPortfolioManagerSelectController {
 				SELECT Id, Name, CommissionAccountNrAll__c FROM User
 				WHERE
 					(Name LIKE :value OR CommissionAccountNr__c LIKE :value OR CommissionAccountNrAll__c LIKE :value)
-				AND IsAgentActive__c = TRUE AND PortfolioManType__c = '1' AND UserRoleId IN :rolesIds
+				AND IsAgentActive__c = TRUE AND PortfolioManType__c = 'A' AND UserRoleId IN :rolesIds
 				ORDER BY Name LIMIT 5
 			];
 		}
@@ -64,7 +64,7 @@ public with sharing class NewPortfolioManagerSelectController {
 				SELECT Id, Name, CommissionAccountNrAll__c FROM User
 				WHERE
 					(Name LIKE :value OR CommissionAccountNr__c LIKE :value OR CommissionAccountNrAll__c LIKE :value)
-				AND IsAgentActive__c = TRUE AND PortfolioManType__c = '1'
+				AND IsAgentActive__c = TRUE AND PortfolioManType__c = 'A'
 				ORDER BY Name LIMIT 5
 			];
 		}
