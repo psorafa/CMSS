@@ -108,6 +108,8 @@ public without sharing class CommissionRunReportController {
 		List<Reports.ReportFilter> repFilters = repMd.getReportFilters();
 		Reports.StandardDateFilter standardDateFilters = repMd.getStandardDateFilter();
 		List<Reports.StandardFilter> standardFilters = repMd.getStandardFilters();
+		String scope = repMd.getScope();
+		System.debug('scope: ' + scope);
 
 		for (Reports.ReportFilter repFilter : repFilters) {
 			System.debug('Filter column: ' + repFilter);
@@ -188,6 +190,7 @@ public without sharing class CommissionRunReportController {
 			tribeCPUFilter.setOperator('equals');
 			tribeCPUFilter.setValue(tribeCpu);
 			tribeCPUFilter.setFilterType('fieldValue');
+			repMd.setScope('organization');
 			repFilters.add(tribeCPUFilter);
 		}
 		if (String.isNotBlank(cpu)) {

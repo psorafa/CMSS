@@ -192,8 +192,8 @@ export default class commissionReportsToPdf extends LightningElement {
 	checkStatus() {
 		console.log('reportStatus: ' + this.reportStatus + ', counter: ' + this.timerCounter);
 		if (this.reportStatus === 'Success' || this.timerCounter > 300) {
-			this.loading = false;
 			clearInterval(this.timeout);
+			this.timerCounter = 0;
 			this.handleGetData();
 		}
 		this.timerCounter++;
@@ -288,7 +288,7 @@ export default class commissionReportsToPdf extends LightningElement {
 				console.log('showFooter: ' + this.showFooter);
 				console.log('showPendingAmount: ' + this.showPendingAmount);
 				this.rowCountExceeded = Number(this.rowCount) > 2000 ? true : false;
-				this.reportHasRows = Number(this.rowCount) > 0 ? true : false;
+				this.reportHasRows = Number(this.rowCount.replace(/\s/g, '')) > 0 ? true : false;
 				if (this.rowCountExceeded) {
 					throw new Error(
 						'Snažíte se vyexportovat více záznamů, než je povolený limit 2000. Prosím zužte datovou sadu změnou upřesňujících kritérií zadáním užšího období, výběrem specifického typu provizního výpisu čí rozmezí pořadových čísel záznamů.'
@@ -304,7 +304,7 @@ export default class commissionReportsToPdf extends LightningElement {
 
 				this.processHeader(this.reportHeader);
 				this.buildHTML();
-				//this.loading = false;
+				this.loading = false;
 			})
 			.catch((error) => {
 				this.error = JSON.stringify(error);
