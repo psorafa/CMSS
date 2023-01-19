@@ -22,13 +22,17 @@ public without sharing class CommissionRunReportController {
 	@AuraEnabled
 	public static ContactInformation__c getContactInfo(Id userId) {
 		try {
-			ContactInformation__c conInfo = [
+			List<ContactInformation__c> conInfo = [
 				SELECT Id, Value__c
 				FROM ContactInformation__c
 				WHERE User__c = :userId AND Type__c = '1' AND Subtype__c = '1000003' AND Area__c = '0'
-				ORDER BY LastModifiedDate DESC
-			][0];
-			return conInfo;
+				ORDER BY LastModifiedDate DESC LIMIT 1
+			];
+            if (conInfo.size() > 0) {
+			    return conInfo[0];
+            } else {
+                return new ContactInformation__c();
+            }
 		} catch (Exception e) {
 			Logger.error('Error in CommissionRunReportController.getContactInfo', e);
 			throw new AuraHandledException(e.getMessage());
