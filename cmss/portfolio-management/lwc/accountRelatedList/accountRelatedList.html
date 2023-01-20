@@ -20,10 +20,8 @@
 				></lightning-input>
 			</lightning-layout-item>
 			<lightning-layout-item size="9" padding="around-small" class="slds-m-top_large">
-				<template if:true={btnVisibility}>
-					<c-change-portfolio-management-button ids={selectedData} label={labels.bulkOwnershipStateChange}
-														  onclick={handleOpenModal}></c-change-portfolio-management-button>
-				</template>
+                <c-change-portfolio-management-button ids={selectedData} label={labels.bulkOwnershipStateChange}
+                                                        onclick={handleOpenModal}></c-change-portfolio-management-button>
 			</lightning-layout-item>
 		</lightning-layout>
 	</template>
