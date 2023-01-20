@@ -10,6 +10,16 @@ public without sharing class CommissionRunReportController {
 	}
 
 	@AuraEnabled
+	public static User getUserInfo(String tribeCpu) {
+		User usr = [
+			SELECT Id, Name, CombinedName__c, CommissionAccountNr__c, CommissionAccountBase__c, Profile.Name
+			FROM User
+			WHERE CommissionAccountBase__c = :tribeCpu
+		][0];
+		return usr;
+	}
+
+	@AuraEnabled
 	public static Integer checkPermissionSets() {
 		Integer adminPermSetCount = [
 			SELECT COUNT()
@@ -26,13 +36,14 @@ public without sharing class CommissionRunReportController {
 				SELECT Id, Value__c
 				FROM ContactInformation__c
 				WHERE User__c = :userId AND Type__c = '1' AND Subtype__c = '1000003' AND Area__c = '0'
-				ORDER BY LastModifiedDate DESC LIMIT 1
+				ORDER BY LastModifiedDate DESC
+				LIMIT 1
 			];
-            if (conInfo.size() > 0) {
-			    return conInfo[0];
-            } else {
-                return new ContactInformation__c();
-            }
+			if (conInfo.size() > 0) {
+				return conInfo[0];
+			} else {
+				return new ContactInformation__c();
+			}
 		} catch (Exception e) {
 			Logger.error('Error in CommissionRunReportController.getContactInfo', e);
 			throw new AuraHandledException(e.getMessage());
@@ -108,6 +119,8 @@ public without sharing class CommissionRunReportController {
 		List<Reports.ReportFilter> repFilters = repMd.getReportFilters();
 		Reports.StandardDateFilter standardDateFilters = repMd.getStandardDateFilter();
 		List<Reports.StandardFilter> standardFilters = repMd.getStandardFilters();
+		String scope = repMd.getScope();
+		System.debug('scope: ' + scope);
 
 		for (Reports.ReportFilter repFilter : repFilters) {
 			System.debug('Filter column: ' + repFilter);
@@ -188,6 +201,7 @@ public without sharing class CommissionRunReportController {
 			tribeCPUFilter.setOperator('equals');
 			tribeCPUFilter.setValue(tribeCpu);
 			tribeCPUFilter.setFilterType('fieldValue');
+			repMd.setScope('organization');
 			repFilters.add(tribeCPUFilter);
 		}
 		if (String.isNotBlank(cpu)) {

@@ -1,5 +1,7 @@
 import { LightningElement, wire } from 'lwc';
 import getReportsMap from '@salesforce/apex/CommissionRunReportController.getReportsMap';
+import getUserInfoTribeCpu from '@salesforce/apex/CommissionRunReportController.getUserInfoTribeCpu';
+import getContactInfo from '@salesforce/apex/CommissionRunReportController.getContactInfo';
 import runReport from '@salesforce/apex/CommissionRunReportController.runReport';
 import getReportFilters from '@salesforce/apex/CommissionRunReportController.getReportFilters';
 import checkStatus from '@salesforce/apex/CommissionRunReportController.checkStatus';
@@ -32,6 +34,7 @@ export default class commissionReportsToPdf extends LightningElement {
 	showTo;
 	cpu;
 	tribeCpu;
+	tribeCpuUserId;
 	fromRecord;
 	toRecord;
 	accountBaseCombinedName;
@@ -146,12 +149,16 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.footerTimestamp = this.todayDate + ' ' + hh + ':' + min;
 		let myDomain = window.location.hostname;
 		console.log('domena: ' + window.location.hostname);
-		this.pdfUrl =
-			'https://' +
-			myDomain.slice(0, myDomain.indexOf('.')) +
-			'--c' +
-			myDomain.slice(myDomain.indexOf('.')).replace('lightning', 'vf') +
-			'/apex/CommissionPdfGenerator';
+		if (myDomain.indexOf('lightning.') > -1) {
+			this.pdfUrl =
+				'https://' +
+				myDomain.slice(0, myDomain.indexOf('.')) +
+				'--c' +
+				myDomain.slice(myDomain.indexOf('.')).replace('lightning', 'vf') +
+				'/apex/CommissionPdfGenerator';
+		} else {
+			this.pdfUrl = 'https://' + myDomain + '/apex/CommissionPdfGenerator';
+		}
 		console.log('pdfUrl: ' + this.pdfUrl);
 	}
 
@@ -192,8 +199,8 @@ export default class commissionReportsToPdf extends LightningElement {
 	checkStatus() {
 		console.log('reportStatus: ' + this.reportStatus + ', counter: ' + this.timerCounter);
 		if (this.reportStatus === 'Success' || this.timerCounter > 300) {
-			this.loading = false;
 			clearInterval(this.timeout);
+			this.timerCounter = 0;
 			this.handleGetData();
 		}
 		this.timerCounter++;
@@ -225,6 +232,34 @@ export default class commissionReportsToPdf extends LightningElement {
 		}
 		this.viewHeader = repHead;
 		this.reportStatus = 'Not started';
+	}
+
+	getTribeCPUUserData() {
+		if (!!this.tribeCpu) {
+			console.log('Recalc of user data.');
+			getUserInfoTribeCpu({ tribeCpu: this.tribeCpu })
+				.then((result) => {
+					this.tribeCpuUserId = result.Id;
+					this.accountBaseCombinedName = result.CommissionAccountBase__c + ', ' + result.CombinedName__c;
+					this.commissionAccount = result.CommissionAccountBase__c;
+					this.combinedName = result.CombinedName__c;
+				})
+				.then(() =>
+					getContactInfo({
+						userId: this.tribeCpuUserId
+					})
+						.then((data) => {
+							this.address = data.Value__c;
+							console.log('address: ' + JSON.stringify(this.address));
+						})
+						.catch((error) => {
+							this.handleErrors(error);
+						})
+				)
+				.catch((error) => {
+					this.handleErrors(error);
+				});
+		}
 	}
 
 	buildHTML() {
@@ -288,7 +323,7 @@ export default class commissionReportsToPdf extends LightningElement {
 				console.log('showFooter: ' + this.showFooter);
 				console.log('showPendingAmount: ' + this.showPendingAmount);
 				this.rowCountExceeded = Number(this.rowCount) > 2000 ? true : false;
-				this.reportHasRows = Number(this.rowCount) > 0 ? true : false;
+				this.reportHasRows = Number(this.rowCount.replace(/\s/g, '')) > 0 ? true : false;
 				if (this.rowCountExceeded) {
 					throw new Error(
 						'Snažíte se vyexportovat více záznamů, než je povolený limit 2000. Prosím zužte datovou sadu změnou upřesňujících kritérií zadáním užšího období, výběrem specifického typu provizního výpisu čí rozmezí pořadových čísel záznamů.'
@@ -303,8 +338,9 @@ export default class commissionReportsToPdf extends LightningElement {
 				console.log('reportData: ' + JSON.stringify(this.reportData));
 
 				this.processHeader(this.reportHeader);
+				this.getTribeCPUUserData();
 				this.buildHTML();
-				//this.loading = false;
+				this.loading = false;
 			})
 			.catch((error) => {
 				this.error = JSON.stringify(error);

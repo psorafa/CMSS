@@ -40,6 +40,18 @@ public without sharing class CommissionRunReportControllerTest {
 	}
 
 	@IsTest
+	static void getUserInfoTribeCpuTest() {
+		User usr = [SELECT Id, CommissionAccountBase__c FROM User WHERE CommissionAccountBase__c != NULL LIMIT 1][0];
+		System.assertEquals(usr.Id, CommissionRunReportController.getUserInfoTribeCpu(usr.CommissionAccountBase__c).Id);
+	}
+
+	@IsTest
+	static void checkPermissionSetsTest() {
+		createTestData();
+		System.assert(CommissionRunReportController.checkPermissionSets() > -1);
+	}
+
+	@IsTest
 	static void getContactInfoTest() {
 		createTestData();
 		try {
