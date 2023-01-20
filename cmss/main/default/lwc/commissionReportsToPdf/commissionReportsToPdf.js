@@ -82,7 +82,9 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.selectedReportDevName = message.selectedReportDevName;
 		this.selectedReportName = message.selectedReportName;
 		this.selectedReportDescription = message.selectedReportDescription;
-		this.filterReport = this.selectedReportDevName + '; ' + this.selectedReportDescription;
+		this.filterReport = ((this.selectedReportDevName !== undefined) ? this.selectedReportDevName : '') 
+                            + '; ' 
+                            + ((this.selectedReportDescription !== undefined) ? this.selectedReportDescription : '');
 		this.year = message.year;
 		this.month = message.month;
 		this.yearTo = message.yearTo;
