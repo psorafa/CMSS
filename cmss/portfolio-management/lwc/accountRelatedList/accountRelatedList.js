@@ -4,7 +4,6 @@ import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getAccounts from '@salesforce/apex/AccountRelatedListController.getAccounts';
 import getUserId from '@salesforce/apex/AccountRelatedListController.getUserId';
-import checkPermission from '@salesforce/apex/AccountRelatedListController.checkPermission';
 import createPortManRequests from '@salesforce/apex/AccountRelatedListController.createPortManRequests';
 import createPortManRequestsForUsersClients from '@salesforce/apex/AccountRelatedListController.createPortManRequestsForUsersClients';
 import save from '@salesforce/label/c.Save';
@@ -38,7 +37,6 @@ export default class AccountRelatedList extends LightningElement {
 	isLoading = false;
 	isAllSelected = false;
 	isAccessEnabled = false;
-	btnVisibility = false;
 	labels = {
 		save,
 		cancel,
@@ -62,12 +60,7 @@ export default class AccountRelatedList extends LightningElement {
 		);
 	}
 
-	@wire(checkPermission, { permissionName: 'BulkOwnershipStateChangeVisibility' })
-	handlePerm({ data }) {
-		this.btnVisibility = data;
-	}
-
-	connectedCallback() {
+    connectedCallback() {
 		this.isLoading = true;
 		this.handleGetAccounts(null, null, recordsToShow, this.offset, (data) => {
 			this.accountCount = data.accountCount;
