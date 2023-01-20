@@ -1,17 +1,56 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customApplications>
+        <label><!-- Commission Reports --></label>
+        <name>Commission_Reports</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Declarative Lookup Rollup Summaries --></label>
+        <name>DeclarativeLookupRollupSummaries</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Declarative Lookup Rollup Summaries --></label>
+        <name>DeclarativeLookupRollupSummaries2</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Knowledge Base --></label>
+        <name>KnowledgeBase</name>
+    </customApplications>
+    <customLabels>
+        <label>Vyhledávání nad klienty</label>
+        <name>AccountSearchType</name>
+    </customLabels>
+    <customLabels>
+        <label>Dodatečné parametry filtru</label>
+        <name>AdditionFilterParams</name>
+    </customLabels>
+    <customLabels>
+        <label>Typ činnosti</label>
+        <name>AgentActivityType</name>
+    </customLabels>
+    <customLabels>
+        <label>Vybrat vše</label>
+        <name>AllAccountsNotSelected</name>
+    </customLabels>
+    <customLabels>
+        <label>Vybrány všechny záznamy</label>
+        <name>AllAccountsSelected</name>
+    </customLabels>
     <customLabels>
         <label>Smlouva</label>
         <name>Asset</name>
+    </customLabels>
+    <customLabels>
+        <label>Vyhledávání nad smlouvami</label>
+        <name>AssetSearchType</name>
     </customLabels>
     <customLabels>
         <label>Produkty</label>
         <name>Assets</name>
     </customLabels>
     <customLabels>
-        <label
-		>Pod tímto uživatelem je příliš mnoho klientů. Změna správy stavu byla provedena pouze pro 5 000 záznamů.</label>
-        <name>TooManyClients</name>
+        <label><!-- Attach File --></label>
+        <name>Attach_File</name>
     </customLabels>
     <customLabels>
         <label>Hromadná změna správy stavu</label>
@@ -22,6 +61,18 @@
         <name>Cancel</name>
     </customLabels>
     <customLabels>
+        <label>Zrušit</label>
+        <name>CancelButtonTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktuální uživatel nemá žádného regionálního manažera.</label>
+        <name>Cannot_find_any_Regional_Manager_of_current_user</name>
+    </customLabels>
+    <customLabels>
+        <label>Data nelze uložit</label>
+        <name>Cannot_save_data</name>
+    </customLabels>
+    <customLabels>
         <label>Klient</label>
         <name>Client</name>
     </customLabels>
@@ -30,12 +81,60 @@
         <name>ClientIdentification</name>
     </customLabels>
     <customLabels>
+        <label><!-- Client Auth Label --></label>
+        <name>Client_Auth_Label</name>
+    </customLabels>
+    <customLabels>
+        <label>Zavřít</label>
+        <name>CloseModalWindow</name>
+    </customLabels>
+    <customLabels>
+        <label>Vytvořit mikrokampaň</label>
+        <name>CreateMicroCampaignButtonTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Vytvoření nové mikrokampaně / aktivit</label>
+        <name>CreateMicroCampaignModalWindowTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Vytvořit záznamy</label>
+        <name>CreateRecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Current Account Products --></label>
+        <name>Current_Account_Products</name>
+    </customLabels>
+    <customLabels>
+        <label>Výsledek hledání</label>
+        <name>DataSectionTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Email</label>
         <name>EmailCommunication</name>
     </customLabels>
     <customLabels>
         <label>Chyba</label>
         <name>Error</name>
+    </customLabels>
+    <customLabels>
+        <label>Field Api name není platný.</label>
+        <name>FieldApiNameIsWrong</name>
+    </customLabels>
+    <customLabels>
+        <label>Fieldset API name není platný.</label>
+        <name>FieldsetNameIsWrong</name>
+    </customLabels>
+    <customLabels>
+        <label>Vyplňte všechna povinná pole</label>
+        <name>FillRequiredFieldsMessage</name>
+    </customLabels>
+    <customLabels>
+        <label>Od</label>
+        <name>From</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InputNamePlaceholder --></label>
+        <name>InputNamePlaceholder</name>
     </customLabels>
     <customLabels>
         <label>Vložte celé číslo smlouvy nebo kmen smlouvy</label>
@@ -66,6 +165,54 @@
         <name>InputValuesNotValidMessage</name>
     </customLabels>
     <customLabels>
+        <label>Musí být vybraný typ a zvolená základní konfigurace.</label>
+        <name>InvalidRequestMissingRequiredParameters</name>
+    </customLabels>
+    <customLabels>
+        <label>Odkaz</label>
+        <name>Link</name>
+    </customLabels>
+    <customLabels>
+        <label>Typy produktů nebylo možné načíst - prosím kontaktujte administrátora.</label>
+        <name>LoadingProductTypesError</name>
+    </customLabels>
+    <customLabels>
+        <label>Výsledek hledání obsahuje velké množství záznamů. Prosím upřesněte filtery a hledání opakujte. Maximální povolený počet výsledků je </label>
+        <name>MaxRecordsExceeded</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Migration Premium --></label>
+        <name>Migration_Premium</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Migration Premium Print --></label>
+        <name>Migration_Premium_Print</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Migration Premium Print Investment --></label>
+        <name>Migration_Premium_Print_Investment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Migration_Premium_Required_Fields --></label>
+        <name>Migration_Premium_Required_Fields</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Migration Premium Submit --></label>
+        <name>Migration_Premium_Submit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for missing processes toast --></label>
+        <name>MissingProcessesLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Message for missing processes toast --></label>
+        <name>MissingProcessesText</name>
+    </customLabels>
+    <customLabels>
+        <label>Jméno a příjmení</label>
+        <name>NameAndSurname</name>
+    </customLabels>
+    <customLabels>
         <label>Vyplňte alespoň část pole Jméno nebo Příjmení.</label>
         <name>NamesMissingMessage</name>
     </customLabels>
@@ -82,16 +229,76 @@
         <name>NewInternalConsent</name>
     </customLabels>
     <customLabels>
+        <label><!-- New: Portfolio Management Change Request --></label>
+        <name>NewPortfolioManagementChangeRequest</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- New Product --></label>
+        <name>New_Product</name>
+    </customLabels>
+    <customLabels>
+        <label>Další stránka</label>
+        <name>NextPageButtonTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Nejsou žádná data k zobrazení.</label>
+        <name>NoDataLoaded</name>
+    </customLabels>
+    <customLabels>
         <label>Žádný klient nenalezen.</label>
         <name>NoRecordsFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No Results --></label>
+        <name>NoResults</name>
     </customLabels>
     <customLabels>
         <label>Nebyl nalezen uživatel s tímto ČPÚ.</label>
         <name>NoUserWithThisCPUFound</name>
     </customLabels>
     <customLabels>
+        <label>Nemáte oprávnění vytvářet prázdné žádosti o změnu správy stavu.</label>
+        <name>No_permission_to_create_empty_PM_requests</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PCF_Attachment_Send_Err --></label>
+        <name>PCF_Attachment_Send_Err</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PCF_BioSign_NoSelectedDoc --></label>
+        <name>PCF_BioSign_NoSelectedDoc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PCF_Create_Case_Error_Msg --></label>
+        <name>PCF_Create_Case_Error_Msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PCF Default Case Sent Msg --></label>
+        <name>PCF_Default_Case_Sent_Msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PCF Draft Saved --></label>
+        <name>PCF_Draft_Saved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PCF_elDocDist_noAgreement --></label>
+        <name>PCF_elDocDist_noAgreement</name>
+    </customLabels>
+    <customLabels>
         <label>Telefon</label>
         <name>PhoneCommunication</name>
+    </customLabels>
+    <customLabels>
+        <label>Vyplňte Důvod změny</label>
+        <name>Please_fill_in_Change_Reason</name>
+    </customLabels>
+    <customLabels>
+        <label>Vyplňte Type správy stavu</label>
+        <name>Please_fill_in_Change_Type</name>
+    </customLabels>
+    <customLabels>
+        <label>Vyplňte nového správce stavu</label>
+        <name>Please_fill_in_New_Portfolio_Manager</name>
     </customLabels>
     <customLabels>
         <label>Sociální sítě</label>
@@ -102,12 +309,32 @@
         <name>PostCommunication</name>
     </customLabels>
     <customLabels>
-        <label>Záznamy byly úspěšně vytvořeny.</label>
-        <name>RecordsCreated</name>
+        <label>Předchozí stránka</label>
+        <name>PrevPageButtonTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Product Parameters Not Found --></label>
+        <name>Product_Parameters_Not_Found</name>
+    </customLabels>
+    <customLabels>
+        <label>Požadavek na vytvoření záznamů byl úspěšný. Data budou vytvořena v krátkém okamžiku - jedná se o dávkový proces.</label>
+        <name>RecordSuccessfullyCreated</name>
     </customLabels>
     <customLabels>
         <label>Záznam byl úspěšně aktualizován.</label>
         <name>RecordUpdated</name>
+    </customLabels>
+    <customLabels>
+        <label>Záznamy byly úspěšně vytvořeny.</label>
+        <name>RecordsCreated</name>
+    </customLabels>
+    <customLabels>
+        <label>Počet záznamů na stránku</label>
+        <name>RecordsPerPageInputTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Vybraný název objektu není validní.</label>
+        <name>RelatedObjectIsWrong</name>
     </customLabels>
     <customLabels>
         <label>Vztah</label>
@@ -126,16 +353,80 @@
         <name>Save</name>
     </customLabels>
     <customLabels>
+        <label><!-- Save for later --></label>
+        <name>Save_for_later</name>
+    </customLabels>
+    <customLabels>
         <label>Hledat</label>
         <name>SearchButton</name>
+    </customLabels>
+    <customLabels>
+        <label>Vyhledávání skončilo chybou. Prosíme opakujte akci. Pokud problém přetrvá kontaktujte podporu.</label>
+        <name>SearchCommonError</name>
+    </customLabels>
+    <customLabels>
+        <label>Výběr filtrovacích kritérií</label>
+        <name>SearchSectionTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Searching --></label>
+        <name>Searching</name>
     </customLabels>
     <customLabels>
         <label>Vybrat vše</label>
         <name>SelectAll</name>
     </customLabels>
     <customLabels>
+        <label>Zvolená konfigurace</label>
+        <name>SelectedConfiguration</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Header for signpost --></label>
+        <name>SignpostHeader</name>
+    </customLabels>
+    <customLabels>
         <label>SMS</label>
         <name>SmsCommunication</name>
+    </customLabels>
+    <customLabels>
+        <label>Do</label>
+        <name>To</name>
+    </customLabels>
+    <customLabels>
+        <label>Pod tímto uživatelem je příliš mnoho klientů. Změna správy stavu byla provedena pouze pro 5 000 záznamů.</label>
+        <name>TooManyClients</name>
+    </customLabels>
+    <customLabels>
+        <label>Celkový počet výsledků</label>
+        <name>TotalRecordsCountLabel</name>
+    </customLabels>
+    <customLabels>
+        <label>Celkový počet vybraných záznamů</label>
+        <name>TotalRecordsSelectedLabel</name>
+    </customLabels>
+    <customLabels>
+        <label>Převést všechny klienty čpú</label>
+        <name>TransferAllClients</name>
+    </customLabels>
+    <customLabels>
+        <label>Nepodporovaný typ identifikace - povolené je vyhledávání přes Klienta a Smlouvu klienta.</label>
+        <name>UnsupportedIdentificationType</name>
+    </customLabels>
+    <customLabels>
+        <label>Nepodporovaný typ objektu</label>
+        <name>UnsupportedObjectType</name>
+    </customLabels>
+    <customLabels>
+        <label>Přístup do do NEL byl zablokován - budete odhlášení se Salesforce.</label>
+        <name>UserDoesNotHaveAccessToNEL</name>
+    </customLabels>
+    <customLabels>
+        <label>Filtr podle uživatelů</label>
+        <name>UserHierarchyFilter</name>
+    </customLabels>
+    <customLabels>
+        <label>Neplatný požadavek</label>
+        <name>ValidateErrorTitle</name>
     </customLabels>
     <customLabels>
         <label>Nemáte oprávnění mazat podání</label>
@@ -146,165 +437,49 @@
         <name>YouDoNotHavePermissionToDeleteTask</name>
     </customLabels>
     <customLabels>
-        <label>Převést všechny klienty čpú</label>
-        <name>TransferAllClients</name>
+        <label><!-- fflib_security_error_field_not_insertable --></label>
+        <name>dlrs__fflib_security_error_field_not_insertable</name>
     </customLabels>
     <customLabels>
-        <name>NameAndSurname</name>
-        <label>Jméno a příjmení</label>
+        <label><!-- fflib_security_error_field_not_readable --></label>
+        <name>dlrs__fflib_security_error_field_not_readable</name>
     </customLabels>
     <customLabels>
-        <name>AgentActivityType</name>
-        <label>Typ činnosti</label>
+        <label><!-- fflib_security_error_field_not_updateable --></label>
+        <name>dlrs__fflib_security_error_field_not_updateable</name>
     </customLabels>
     <customLabels>
-        <name>AssetSearchType</name>
-        <label>Vyhledávání nad smlouvami</label>
+        <label><!-- fflib_security_error_object_not_deletable --></label>
+        <name>dlrs__fflib_security_error_object_not_deletable</name>
     </customLabels>
     <customLabels>
-        <name>AccountSearchType</name>
-        <label>Vyhledávání nad klienty</label>
+        <label><!-- fflib_security_error_object_not_insertable --></label>
+        <name>dlrs__fflib_security_error_object_not_insertable</name>
     </customLabels>
     <customLabels>
-        <name>AllAccountsSelected</name>
-        <label>Vybrány všechny záznamy</label>
+        <label><!-- fflib_security_error_object_not_readable --></label>
+        <name>dlrs__fflib_security_error_object_not_readable</name>
     </customLabels>
     <customLabels>
-        <name>AllAccountsNotSelected</name>
-        <label>Vybrat vše</label>
+        <label><!-- fflib_security_error_object_not_updateable --></label>
+        <name>dlrs__fflib_security_error_object_not_updateable</name>
     </customLabels>
     <customLabels>
-        <name>SelectedConfiguration</name>
-        <label>Zvolená konfigurace</label>
-    </customLabels>
-    <customLabels>
-        <name>UserHierarchyFilter</name>
-        <label>Filtr podle uživatelů</label>
-    </customLabels>
-    <customLabels>
-        <name>AdditionFilterParams</name>
-        <label>Dodatečné parametry filtru</label>
-    </customLabels>
-    <customLabels>
-        <name>From</name>
-        <label>Od</label>
-    </customLabels>
-    <customLabels>
-        <name>To</name>
-        <label>Do</label>
-    </customLabels>
-    <customLabels>
-        <name>ValidateErrorTitle</name>
-        <label>Neplatný požadavek</label>
-    </customLabels>
-    <customLabels>
-        <name>InvalidRequestMissingRequiredParameters</name>
-        <label>Musí být vybraný typ a zvolená základní konfigurace.</label>
-    </customLabels>
-    <customLabels>
-        <name>SearchSectionTitle</name>
-        <label>Výběr filtrovacích kritérií</label>
-    </customLabels>
-    <customLabels>
-        <name>DataSectionTitle</name>
-        <label>Výsledek hledání</label>
-    </customLabels>
-    <customLabels>
-        <name>CreateMicroCampaignButtonTitle</name>
-        <label>Vytvořit mikrokampaň</label>
-    </customLabels>
-    <customLabels>
-        <name>CreateMicroCampaignModalWindowTitle</name>
-        <label>Vytvoření nové mikrokampaně / aktivit</label>
-    </customLabels>
-    <customLabels>
-        <name>RecordsPerPageInputTitle</name>
-        <label>Počet záznamů na stránku</label>
-    </customLabels>
-    <customLabels>
-        <name>TotalRecordsCountLabel</name>
-        <label>Celkový počet výsledků</label>
-    </customLabels>
-    <customLabels>
-        <name>TotalRecordsSelectedLabel</name>
-        <label>Celkový počet vybraných záznamů</label>
-    </customLabels>
-    <customLabels>
-        <name>NoDataLoaded</name>
-        <label>Nejsou žádná data k zobrazení.</label>
-    </customLabels>
-    <customLabels>
-        <name>NextPageButtonTitle</name>
-        <label>Další stránka</label>
-    </customLabels>
-    <customLabels>
-        <name>PrevPageButtonTitle</name>
-        <label>Předchozí stránka</label>
-    </customLabels>
-    <customLabels>
-        <name>FillRequiredFieldsMessage</name>
-        <label>Vyplňte všechna povinná pole</label>
-    </customLabels>
-    <customLabels>
-        <name>CreateRecords</name>
-        <label>Vytvořit záznamy</label>
-    </customLabels>
-    <customLabels>
-        <name>CloseModalWindow</name>
-        <label>Zavřít</label>
-    </customLabels>
-    <customLabels>
-        <name>CancelButtonTitle</name>
-        <label>Zrušit</label>
-    </customLabels>
-    <customLabels>
-        <name>UnsupportedObjectType</name>
-        <label>Nepodporovaný typ objektu</label>
-    </customLabels>
-    <customLabels>
-        <name>RecordSuccessfullyCreated</name>
-        <label>Požadavek na vytvoření záznamů byl úspěšný. Data budou vytvořena v krátkém okamžiku - jedná se o dávkový proces.</label>
-    </customLabels>
-    <customLabels>
-        <name>LoadingProductTypesError</name>
-        <label>Typy produktů nebylo možné načíst - prosím kontaktujte administrátora.</label>
-    </customLabels>
-    <customLabels>
-        <name>RelatedObjectIsWrong</name>
-        <label>Vybraný název objektu není validní.</label>
-    </customLabels>
-    <customLabels>
-        <name>FieldApiNameIsWrong</name>
-        <label>Field Api name není platný.</label>
-    </customLabels>
-    <customLabels>
-        <name>FieldsetNameIsWrong</name>
-        <label>Fieldset API name není platný.</label>
-    </customLabels>
-    <customLabels>
-        <name>UserDoesNotHaveAccessToNEL</name>
-        <label>Přístup do do NEL byl zablokován - budete odhlášení se Salesforce.</label>
-    </customLabels>
-    <customLabels>
-        <name>UnsupportedIdentificationType</name>
-        <label>Nepodporovaný typ identifikace - povolené je vyhledávání přes Klienta a Smlouvu klienta.</label>
-    </customLabels>
-    <customLabels>
-        <name>MaxRecordsExceeded</name>
-        <label>Výsledek hledání obsahuje velké množství záznamů. Prosím upřesněte filtery a hledání opakujte. Maximální povolený počet výsledků je </label>
-    </customLabels>
-    <customLabels>
-        <name>SearchCommonError</name>
-        <label>Vyhledávání skončilo chybou. Prosíme opakujte akci. Pokud problém přetrvá kontaktujte podporu.</label>
-    </customLabels>
-    <customLabels>
-        <name>eDocumentNotAvailable</name>
         <label>Nastala technická chyba, detail dopisu nelze zobrazit. Opakujte prosím později.</label>
+        <name>eDocumentNotAvailable</name>
     </customLabels>
     <customLabels>
-        <name>Link</name>
-        <label>Odkaz</label>
+        <label><!-- helpTextForCustomerSearchComponent --></label>
+        <name>helpTextForCustomerSearchComponent</name>
     </customLabels>
+    <customPageWebLinks>
+        <label><!-- Welcome --></label>
+        <name>Welcome</name>
+    </customPageWebLinks>
+    <customTabs>
+        <label><!-- Client Identification --></label>
+        <name>ClientIdentification</name>
+    </customTabs>
     <customTabs>
         <label>Identifikace klienta</label>
         <name>Customer_Search</name>
@@ -313,21 +488,60 @@
         <label>Detailní vyhledávání</label>
         <name>DetailedCustomSearch</name>
     </customTabs>
+    <customTabs>
+        <label><!-- Lookup Rollup Summaries Tools --></label>
+        <name>LookupRollupSummariesHome</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Manage Lookup Rollup Summaries --></label>
+        <name>ManageLookupRollupSummaries</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- PV Export PDF --></label>
+        <name>PVExportPDF</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Welcome --></label>
+        <name>Welcome</name>
+    </customTabs>
     <flowDefinitions>
-        <flows />
+        <flows/>
+        <fullName>CASESendPortfolioManagementRequestStatusChangeNotifications</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
         <fullName>CASE_OnCreateActions</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows />
+        <flows/>
+        <fullName>CaseOnCreatePortfolioManagementChangeRequest</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
         <fullName>CaseTypeWithAsset</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>CommunityWelcomeEmail</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>CreateMicroCampaign</name>
+                </fields>
+                <name>Input_form</name>
+            </screens>
+        </flows>
+        <fullName>CreateMicroCampaign</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows>
             <choices>
-                <name>phoneDefaultChoice</name>
+                <name>eventTypeDefaultChoice</name>
             </choices>
             <choices>
-                <name>eventTypeDefaultChoice</name>
+                <name>phoneDefaultChoice</name>
             </choices>
             <screens>
                 <fields>
@@ -357,7 +571,11 @@
         <fullName>EventWithObjUpdate</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows />
+        <flows/>
+        <fullName>Event_Prefill_fields_on_created_record</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
         <fullName>GetRecordTypeIdByNameAndSObjectType</fullName>
     </flowDefinitions>
     <flowDefinitions>
@@ -367,6 +585,12 @@
                     <name>SuccessMessage_0</name>
                 </fields>
                 <name>ErrorScreen</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>Error_0</name>
+                </fields>
+                <name>Record_creation_error_0</name>
             </screens>
             <screens>
                 <fields>
@@ -396,12 +620,20 @@
         <fullName>InternalConsentCreation</fullName>
     </flowDefinitions>
     <flowDefinitions>
+        <flows/>
+        <fullName>NewLetterTaskNotifications</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
         <flows>
             <screens>
                 <fields>
                     <name>ProductUrlListScreen</name>
                 </fields>
                 <fields>
+                    <inputParameters>
+                        <name>showSave</name>
+                        <value/>
+                    </inputParameters>
                     <name>myFooter</name>
                 </fields>
                 <name>ProductUrlScreen</name>
@@ -410,9 +642,441 @@
         <fullName>ProductContractUrl</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows />
+        <flows>
+            <screens>
+                <fields>
+                    <name>DisplayDefaultText</name>
+                </fields>
+                <name>DefaultScreen</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>ShowLink</name>
+                </fields>
+                <name>StatisticsScreen</name>
+            </screens>
+        </flows>
+        <fullName>ProductionStatisticsLinks</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>ProductionUFAStatusNotification</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>RecordTriggerCASEBeforeSave</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>RecordTriggerCaseAfterSave</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>RecordTriggerPortfolioManagementRequestBeforeCreate</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>accountNameScreen</name>
+                </fields>
+                <fields>
+                    <name>eventDescription</name>
+                </fields>
+                <fields>
+                    <name>eventEndScreen</name>
+                </fields>
+                <fields>
+                    <name>eventStartScreen</name>
+                </fields>
+                <fields>
+                    <name>eventSubjectName</name>
+                </fields>
+                <name>Nova_udalost</name>
+            </screens>
+        </flows>
+        <fullName>RegisterCall</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>accountNameScreen</name>
+                </fields>
+                <fields>
+                    <name>eventDescription</name>
+                </fields>
+                <fields>
+                    <name>eventEndScreen</name>
+                </fields>
+                <fields>
+                    <name>eventStartScreen</name>
+                </fields>
+                <fields>
+                    <name>eventSubjectName</name>
+                </fields>
+                <name>Nova_udalost</name>
+            </screens>
+        </flows>
+        <fullName>RegisterMeeting</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>RoleUpdate</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>ReportLink</name>
+                </fields>
+                <name>RecruitedBonusProductsOverview</name>
+            </screens>
+        </flows>
+        <fullName>ScreenFlowRecruitedBonusReportOverviewLink</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>SendDelegatedTaskEmailNotifications</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>SendNewTaskEmailNotifications</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Service_Notification_Delete_Flow</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>SuperAdmin_logged_in_email_notification</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>TASKOnCreateActions</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>TASK_OnUpdateActions</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>ThreatDetectionAPIAnomalyEventNotification</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>ThreatDetectionCredentialStuffingEventNotification</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>ThreatDetectionReportAnomalyEventNotification</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>ThreatDetectionSessionHijackingEventNotification</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
         <fullName>UpdateCaseRecordType</fullName>
     </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>ErrorMessagesText</name>
+                </fields>
+                <name>ErrorMessagesScreen</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>SuccessMessageText</name>
+                </fields>
+                <name>successMessageScreen</name>
+            </screens>
+        </flows>
+        <fullName>Update_Loan_Assets</fullName>
+    </flowDefinitions>
+    <prompts>
+        <name>ServiceCloudTrialHomepageGuide</name>
+        <promptVersions>
+            <name>Service Cloud Trial Homepage Guide</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>NPSPLicenseDay1</name>
+        <promptVersions>
+            <name>NPSP License Day 1</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>EnablementExploreMeasuresEnblAdmin</name>
+        <promptVersions>
+            <name>Explore Measures</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudCoreHomepage</name>
+        <promptVersions>
+            <name>Service Cloud Core Homepage</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudTrialContactsListViewsVideo</name>
+        <promptVersions>
+            <name>Sales Cloud Trial Contacts List Views Video</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudCoreChatter</name>
+        <promptVersions>
+            <name>Service Cloud Core Chatter</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCoreQuoteAdminCpq</name>
+        <promptVersions>
+            <name>Sales Core Quote Admin to CPQ</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>MFARequirementAwareness</name>
+        <promptVersions>
+            <name>MFA Requirement Awareness</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudCoreChatterTab</name>
+        <promptVersions>
+            <name>Sales Cloud Core Chatter Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>EinsteinPredictionBuilderSetupPagePrompt</name>
+        <promptVersions>
+            <name>Einstein Prediction Builder Setup Page Prompt</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SelfSupportDataImportWizard</name>
+        <promptVersions>
+            <name>Self Support Data Import Wizard</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudTrialDashboardGuide</name>
+        <promptVersions>
+            <name>Service Cloud Trial Dashboard Guide</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudTrailPreconfiguredDashboardsGuide</name>
+        <promptVersions>
+            <name>Sales Cloud Trail Pre-configured Dashboards Guide</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>EnablementExploreAnalyticsEnblAdmin</name>
+        <promptVersions>
+            <name>Explore Analytics</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudTrialCasesTab</name>
+        <promptVersions>
+            <name>Service Cloud Trial Cases Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudTrialHomePage</name>
+        <promptVersions>
+            <name>Sales Cloud Trial Home Page</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudCoreCases</name>
+        <promptVersions>
+            <name>Service Cloud Core Cases</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudCoreOpportunitiesTab</name>
+        <promptVersions>
+            <name>Sales Cloud Core Opportunities Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>CDPOnboardingInAppGuidance</name>
+        <promptVersions>
+            <name>CDP Onboarding InApp Guidance</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>X2StepWalkthroughonReports</name>
+        <promptVersions>
+            <name>2 Step Walkthrough on Reports Step 1</name>
+            <stepNumber>1</stepNumber>
+        </promptVersions>
+        <promptVersions>
+            <name>2 Step Walkthrough on Reports Step 2</name>
+            <stepNumber>2</stepNumber>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>EngagementAttributeTips</name>
+        <promptVersions>
+            <name>Engagement Attribute Tips</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ReleaseReadinessSandboxSales</name>
+        <promptVersions>
+            <name>Release Readiness Sandbox Sales</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudCoreReportsTab</name>
+        <promptVersions>
+            <name>Sales Cloud Core Reports Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>GmailIntegrationandSync</name>
+        <promptVersions>
+            <name>Gmail Integration and Sync</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>NPSPLicenseDay25</name>
+        <promptVersions>
+            <name>NPSP License Day 25</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudCoreHomepage</name>
+        <promptVersions>
+            <name>Sales Cloud Core Homepage</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>IAGFeatureAdoption</name>
+        <promptVersions>
+            <name>IAG Feature Adoption Step 1</name>
+            <stepNumber>1</stepNumber>
+        </promptVersions>
+        <promptVersions>
+            <name>IAG Feature Adoption Step 2</name>
+            <stepNumber>2</stepNumber>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>tabletFullWidthGA</name>
+        <promptVersions>
+            <name>TabletFullWidthGA</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudTrialChatterGuide</name>
+        <promptVersions>
+            <name>Service Cloud Trial Chatter Guide</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudCoreContactsTab</name>
+        <promptVersions>
+            <name>Sales Cloud Core Contacts Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudTrialKanbanVideo</name>
+        <promptVersions>
+            <name>Sales Cloud Trial Kanban Video</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>NPSPLicenseDay20</name>
+        <promptVersions>
+            <name>NPSP License Day 20</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ReleaseReadinessServiceSandbox</name>
+        <promptVersions>
+            <name>Release Readiness Service Sandbox</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesCloudTrialChatterGuide</name>
+        <promptVersions>
+            <name>Sales Cloud Trial Chatter Guide</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ReleaseReadinessSales</name>
+        <promptVersions>
+            <name>Release Readiness Sales</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ServiceCloudCoreReportsTab</name>
+        <promptVersions>
+            <name>Service Cloud Core Reports Tab</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>ReleaseReadiness</name>
+        <promptVersions>
+            <name>Release Readiness</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>EnablementExploreProgramsEnblAdmin</name>
+        <promptVersions>
+            <name>Explore Programs</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>EnablementSwitchToProgramsEnblAdmin</name>
+        <promptVersions>
+            <name>Switch Between Measures and Programs Easily</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SetupUsers</name>
+        <promptVersions>
+            <name>Setup Users</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SalesHVSDialer</name>
+        <promptVersions>
+            <name>Sales HVS Dialer</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>SupportEmailToCase</name>
+        <promptVersions>
+            <name>Support Email To Case</name>
+        </promptVersions>
+    </prompts>
+    <prompts>
+        <name>X4StepWalkthroughonContact</name>
+        <promptVersions>
+            <name>4 Step Walkthrough on Contact Step 1</name>
+            <stepNumber>1</stepNumber>
+        </promptVersions>
+        <promptVersions>
+            <name>4 Step Walkthrough on Contact Step 2</name>
+            <stepNumber>2</stepNumber>
+        </promptVersions>
+        <promptVersions>
+            <name>4 Step Walkthrough on Contact Step 3</name>
+            <stepNumber>3</stepNumber>
+        </promptVersions>
+        <promptVersions>
+            <name>4 Step Walkthrough on Contact Step 4</name>
+            <stepNumber>4</stepNumber>
+        </promptVersions>
+    </prompts>
     <quickActions>
         <label><!-- LogACall --></label>
         <name>LogACall</name>
@@ -446,7 +1110,7 @@
         <name>NewNote</name>
     </quickActions>
     <quickActions>
-        <label><!-- NewOpportunity --></label>
+        <label><!-- New Opportunity --></label>
         <name>NewOpportunity</name>
     </quickActions>
     <quickActions>
@@ -457,6 +1121,112 @@
         <label><!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
+    <reportTypes>
+        <description><!-- Access Logs --></description>
+        <label><!-- Access Logs --></label>
+        <name>AccessLogs</name>
+        <sections>
+            <label><!-- Access Logs --></label>
+            <name>Access Logs</name>
+        </sections>
+        <sections>
+            <label><!-- Access To --></label>
+            <name>Access To</name>
+        </sections>
+        <sections>
+            <label><!-- Portfolio Manager A --></label>
+            <name>Portfolio Manager A</name>
+        </sections>
+        <sections>
+            <label><!-- Requested By --></label>
+            <name>Requested By</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Assets (OZ) --></description>
+        <label><!-- Accounts with Assets (OZ) --></label>
+        <name>AccountsWithAssetsOZ</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Activities --></description>
+        <label><!-- Activities --></label>
+        <name>Activities</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Activities --></label>
+            <name>Activities</name>
+        </sections>
+        <sections>
+            <label><!-- Campaign Members --></label>
+            <name>Campaign Members</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Activities with Campaign and Campaign Members --></description>
+        <label><!-- Activities with Campaign and Campaign Members --></label>
+        <name>ActivitieswithCampaignandCampaignMembers</name>
+        <sections>
+            <label><!-- Activities --></label>
+            <name>Activities</name>
+        </sections>
+        <sections>
+            <label><!-- Campaign --></label>
+            <name>Campaign</name>
+        </sections>
+        <sections>
+            <label><!-- Campaign Members --></label>
+            <name>Campaign Members</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Assets_with_Accounts_and_Users --></description>
+        <label><!-- Assets_with_Accounts_and_Users --></label>
+        <name>Assets</name>
+        <sections>
+            <label><!-- Account --></label>
+            <name>Account</name>
+        </sections>
+        <sections>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+        <sections>
+            <label><!-- Closing Agent --></label>
+            <name>Closing Agent</name>
+        </sections>
+        <sections>
+            <label><!-- Superiors --></label>
+            <name>Superiors</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Assets with account users --></description>
+        <label><!-- Assets with account users --></label>
+        <name>AssetsWithAccountUsers</name>
+        <sections>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+        <sections>
+            <label><!-- Zprostředkovatel --></label>
+            <name>Zprostředkovatel</name>
+        </sections>
+    </reportTypes>
     <reportTypes>
         <description><!-- Assets with Non Life Insurance Objects with Non Life Insurance Other Objects --></description>
         <label><!-- Assets with Non Life Insurance Objects with Non Life Insurance Other Objects --></label>
@@ -492,6 +1262,62 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Campaign Members with Activities --></description>
+        <label><!-- Campaign Members with Activities --></label>
+        <name>CampaignMembersWithActivities</name>
+        <sections>
+            <label><!-- Activities --></label>
+            <name>Activities</name>
+        </sections>
+        <sections>
+            <label><!-- Campaign Members --></label>
+            <name>Campaign Members</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Campaign Members with Assets --></description>
+        <label><!-- Campaign Members with Assets --></label>
+        <name>CampaignMembersWithAssets</name>
+        <sections>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+        <sections>
+            <label><!-- Campaign Members --></label>
+            <name>Campaign Members</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Campaign Members with Assets (AND) --></description>
+        <label><!-- Campaign Members with Assets (AND) --></label>
+        <name>CampaignMemberswithAssetsAND</name>
+        <sections>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+        <sections>
+            <label><!-- Campaign Members --></label>
+            <name>Campaign Members</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Campaigns with Users with Activities --></description>
+        <label><!-- Campaigns with Users with Activities --></label>
+        <name>Campaigns_with_Users_with_Activities</name>
+        <sections>
+            <label><!-- Activities --></label>
+            <name>Activities</name>
+        </sections>
+        <sections>
+            <label><!-- Assigned To --></label>
+            <name>Assigned To</name>
+        </sections>
+        <sections>
+            <label><!-- Campaigns --></label>
+            <name>Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Case with Case Type --></description>
         <label><!-- Case with Case Type --></label>
         <name>CaseWithCaseType</name>
@@ -502,6 +1328,19 @@
         <sections>
             <label><!-- Cases --></label>
             <name>Cases</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Commissions --></description>
+        <label><!-- Commissions --></label>
+        <name>Commissions</name>
+        <sections>
+            <label><!-- Account --></label>
+            <name>Account</name>
+        </sections>
+        <sections>
+            <label><!-- Commission --></label>
+            <name>Commission</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -518,6 +1357,40 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Knowledge with Versions --></description>
+        <label><!-- Knowledge with Versions --></label>
+        <name>KnowledgeWithVersions</name>
+        <sections>
+            <label><!-- Knowledge --></label>
+            <name>Knowledge</name>
+        </sections>
+        <sections>
+            <label><!-- Knowledge Versions --></label>
+            <name>Knowledge Versions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Letters Access Logs --></description>
+        <label><!-- Letters Access Logs --></label>
+        <name>LettersAccessLogs</name>
+        <sections>
+            <label><!-- Access Logs --></label>
+            <name>Access Logs</name>
+        </sections>
+        <sections>
+            <label><!-- Access To --></label>
+            <name>Access To</name>
+        </sections>
+        <sections>
+            <label><!-- Portfolio Manager A --></label>
+            <name>Portfolio Manager A</name>
+        </sections>
+        <sections>
+            <label><!-- Requested By --></label>
+            <name>Requested By</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Opportunities and Activities --></description>
         <label><!-- Opportunities and Activities --></label>
         <name>OpportunitiesAndActivities</name>
@@ -527,9 +1400,52 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Opportunities with Campaign and Campaign Members --></description>
+        <label><!-- Opportunities with Campaign and Campaign Members --></label>
+        <name>OpportunitieswithCampaignandCampaignMembers</name>
+        <sections>
+            <label><!-- Campaign --></label>
+            <name>Campaign</name>
+        </sections>
+        <sections>
+            <label><!-- Campaign Members --></label>
+            <name>Campaign Members</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunity Owner --></label>
+            <name>Opportunity Owner</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Portfolio Management A with Accounts and Users --></description>
+        <label><!-- Portfolio Management A with Accounts and Users --></label>
+        <name>PortfolioManagementAWithAccountsAndUsers</name>
+        <sections>
+            <label><!-- Portfolio Management A --></label>
+            <name>Portfolio Management A</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Portfolio Management C with Accounts and Users --></description>
+        <label><!-- Portfolio Management C with Accounts and Users --></label>
+        <name>PortfolioManagementCwithAccountsAndUsers</name>
+        <sections>
+            <label><!-- Portfolio Management C --></label>
+            <name>Portfolio Management C</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Portfolio Management Compare --></description>
         <label><!-- Portfolio Management Compare --></label>
         <name>Portfolio_Management_Compare</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
         <sections>
             <label><!-- Účty --></label>
             <name>Účty</name>
@@ -550,6 +1466,14 @@
         <sections>
             <label>Produkce</label>
             <name>Production</name>
+        </sections>
+        <sections>
+            <label><!-- Region Manager --></label>
+            <name>Region Manager</name>
+        </sections>
+        <sections>
+            <label><!-- Team Manager --></label>
+            <name>Team Manager</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -604,6 +1528,23 @@
         <description><!-- User with Manager --></description>
         <label><!-- User with Manager --></label>
         <name>UserWithManager</name>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users with Activities --></description>
+        <label><!-- Users with Activities --></label>
+        <name>Users_with_Activities</name>
+        <sections>
+            <label><!-- Activities --></label>
+            <name>Activities</name>
+        </sections>
+        <sections>
+            <label><!-- Activities (Assigned To) --></label>
+            <name>Activities (Assigned To)</name>
+        </sections>
         <sections>
             <label><!-- Users --></label>
             <name>Users</name>

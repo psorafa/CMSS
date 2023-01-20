@@ -1,9 +1,11 @@
-import { LightningElement, api, track } from 'lwc'
+import { LightningElement, api, track, wire } from 'lwc'
 import { NavigationMixin } from 'lightning/navigation'
 import saveData from '@salesforce/apex/NewPMChangeRequestController.saveData'
 import NewPortfolioManagementChangeRequest from '@salesforce/label/c.NewPortfolioManagementChangeRequest'
 import Cancel from '@salesforce/label/c.Cancel'
 import Save from '@salesforce/label/c.Save'
+
+import { getObjectInfo, getPicklistValues } from 'lightning/uiObjectInfoApi'
 
 export default class NewPMChangeRequestModal extends NavigationMixin(LightningElement) {
 
@@ -22,6 +24,25 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
             this._ids = null
         }
     }
+
+    @wire(getObjectInfo, { objectApiName: 'Case' })
+    caseInfo
+
+    @wire(getPicklistValues,
+        {
+            recordTypeId: '$caseInfo.data.defaultRecordTypeId',
+            fieldApiName: 'Case.PortfolioManagementType__c'
+        }
+    )
+    typeOptions
+
+    @wire(getPicklistValues,
+        {
+            recordTypeId: '$caseInfo.data.defaultRecordTypeId',
+            fieldApiName: 'Case.ChangeReason__c'
+        }
+    )
+    reasonOptions
 
     _ids = []
     show = false
@@ -72,12 +93,6 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
             this.validationError = error.body.message
             this.showSpinner = false
         })
-    }
-
-    handleFormSubmit(event) {
-        // override standard form submit, let user click on Save instead
-        event.preventDefault()
-        event.stopPropagation()
     }
 
     handleManagerChange(event) {
