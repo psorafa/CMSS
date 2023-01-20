@@ -1,21 +1,23 @@
+@IsTest
 public class DmlUtilMock extends DmlUtil {
 
 	public List<DmlMockOperation> operations = new List<DmlUtilMock.DmlMockOperation>();
-	public List<Id> idsToAssign;
+	public List<Id> idsToAssign = new List<Id>();
+	public Integer idsCounter = 0;
 
 	public override void insertData(List<SObject> data) {
 		operations.add(new DmlMockOperation('insert', data));
 		if (idsToAssign != null) {
 			for (Integer i = 0; i < data.size(); i++) {
 				SObject so = data.get(i);
-				so.Id = idsToAssign.get(i);
+				so.Id = idsToAssign.get(idsCounter++);
 			}
 		}
 	}
 	public override void insertData(SObject data) {
 		operations.add(new DmlMockOperation('insert', data));
 		if (idsToAssign != null) {
-			data.Id = idsToAssign.get(0);
+			data.Id = idsToAssign.get(idsCounter++);
 		}
 	}
 	public override void updateData(List<SObject> data) {

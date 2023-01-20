@@ -128,20 +128,14 @@ public class TestDataFactory {
 		return template;
 	}
 
-	public static User getUser(User so) {
-		return getUserWithProfile(so, 'System Administrator');
-	}
-
-	public static User getUserWithProfile(User so, String profileName) {
-		Id profileId = [SELECT Id FROM Profile WHERE Name = :profileName].Id;
+	private static User getUserTemplate() {
 		String username = 'user' + ++userCounter;
-		User template = new User(
+		return new User(
 			LastName = username,
 			Username = username + '@mail.invalid',
 			Email = username + '@mail.invalid',
 			CommissionAccountNr__c = 'CPU' + userCounter,
 			CommissionAccountBase__c = 'B' + userCounter,
-			ProfileId = profileId,
 			Alias = 'tstU',
 			TimeZoneSidKey = 'Europe/Prague',
 			LocaleSidKey = 'cs_CZ',
@@ -149,8 +143,29 @@ public class TestDataFactory {
 			LanguageLocaleKey = 'en_US',
 			AgentId__c = 'UA11111' + userCounter
 		);
+	}
+
+	public static User getUser(User so) {
+		return getUserWithProfile(so, 'System Administrator');
+	}
+
+	public static User getUserWithProfile(User so, String profileName) {
+		Id profileId = [SELECT Id FROM Profile WHERE Name = :profileName].Id;
+		User template = getUserTemplate();
+		template.ProfileId = profileId;
 		SObjectUtil.copyFields(so, template);
 		return template;
+	}
+
+	public static User getCmssUser(User so) {
+		User user = getUserWithProfile(so, 'CMSS User');
+		insert user;
+		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'CMSS_User'];
+		insert new PermissionSetAssignment(
+			AssigneeId = user.Id,
+			PermissionSetId = ps.Id
+		);
+		return user;
 	}
 
 	public static Case getCase(Case so) {

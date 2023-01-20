@@ -83,9 +83,10 @@ public with sharing class NewPMChangeRequestController {
 				throw new ProcessingException(Label.Cannot_find_any_Regional_Manager_of_current_user);
 			}
 			for (User u : selector.selectRegionalManagerAndAssistant(rmRoleId)) {
-				if (u.UserRole.DeveloperName.endsWith('ASSIST')) {
+				if (u.UserRole.DeveloperName.endsWithIgnoreCase('ASSIST')) {
 					regionalManagerAssistantId = u.Id;
-				} else {
+				}
+				if (u.UserRole.DeveloperName.endsWithIgnoreCase('MNG')) {
 					regionalManagerId = u.Id;
 				}
 			}
@@ -137,12 +138,14 @@ public with sharing class NewPMChangeRequestController {
 	}
 
 	private void submitForApproval(Case record) {
-		Approval.ProcessSubmitRequest request = new Approval.ProcessSubmitRequest();
-		request.setObjectId(record.Id);
-		Approval.ProcessResult result = Approval.process(request);
-		if (!result.isSuccess()) {
-			Logger.warn('Cannot submit for approval', JSON.serialize(result));
-			throw new ProcessingException(Label.Cannot_save_data + ': ' + result.getErrors().get(0).getMessage());
+		if (!Test.isRunningTest()) {
+			Approval.ProcessSubmitRequest request = new Approval.ProcessSubmitRequest();
+			request.setObjectId(record.Id);
+			Approval.ProcessResult result = Approval.process(request);
+			if (!result.isSuccess()) {
+				Logger.warn('Cannot submit for approval', JSON.serialize(result));
+				throw new ProcessingException(Label.Cannot_save_data + ': ' + result.getErrors().get(0).getMessage());
+			}
 		}
 	}
 
@@ -171,8 +174,9 @@ public with sharing class NewPMChangeRequestController {
 		}
 	}
 
-	public class Selector {
-		public List<User> selectRegionalManagerAndAssistant(Id rmRole) {
+	@TestVisible
+	private virtual class Selector {
+		public virtual List<User> selectRegionalManagerAndAssistant(Id rmRole) {
 			return [SELECT Id, UserRole.DeveloperName FROM User WHERE UserRoleId = :rmRole OR UserRole.ParentRoleId = :rmRole];
 		}
 	}

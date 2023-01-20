@@ -1,6 +1,9 @@
 public class HierarchyUtil {
 
-	private final Map<Id, UserRole> allRolesMap = new Map<Id, UserRole>([SELECT Id, DeveloperName, ParentRoleId FROM UserRole]);
+	@TestVisible
+	private static Selector selector = new Selector();
+
+	private final Map<Id, UserRole> allRolesMap = new Map<Id, UserRole>(selector.selectRoles());
 
 	/**
 	 * Will return highest superior of given role, that is Regional Manager or Regional Manager Assistant (role
@@ -46,5 +49,30 @@ public class HierarchyUtil {
 		}
 		childRolesSet.remove(parentRoleId);
 		return childRolesSet;
+	}
+
+	public Boolean roleIsRegionalManagerOrAssistant(Id roleId) {
+		UserRole role = allRolesMap.get(roleId);
+		return (
+			role != null && role.DeveloperName.startsWithIgnoreCase('X100_') &&
+			(role.DeveloperName.endsWithIgnoreCase('ASSIST') || role.DeveloperName.endsWithIgnoreCase('MNG'))
+		);
+	}
+
+	public Set<Id> getRmRoles() {
+		Set<Id> rmRoles = new Set<Id>();
+		for (Id roleId : allRolesMap.keySet()) {
+			if (roleIsRegionalManagerOrAssistant(roleId)) {
+				rmRoles.add(roleId);
+			}
+		}
+		return rmRoles;
+	}
+
+	@TestVisible
+	private virtual class Selector {
+		public virtual List<UserRole> selectRoles() {
+			return [SELECT Id, DeveloperName, ParentRoleId FROM UserRole];
+		}
 	}
 }

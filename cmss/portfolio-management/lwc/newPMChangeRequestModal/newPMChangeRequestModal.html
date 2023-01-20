@@ -18,14 +18,15 @@
                     <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                         <lightning-spinner if:true={showSpinner}></lightning-spinner>
 
-                        <lightning-record-edit-form object-api-name="Case" onsubmit={handleFormSubmit}>
-                            <c-new-portfolio-manager-select onchange={handleManagerChange}></c-new-portfolio-manager-select>
-                            <lightning-input-field field-name="PortfolioManagementType__c" onchange={handleTypeChange}
-                                                   value={data.type}> </lightning-input-field>
-                            <lightning-input-field field-name="ChangeReason__c" onchange={handleReasonChange}> </lightning-input-field>
-                            <lightning-input-field field-name="Comments" onchange={handleCommentsChange}> </lightning-input-field>
-                            <button type="submit" style="display:none"></button>
-                        </lightning-record-edit-form>
+                        <c-new-portfolio-manager-select onchange={handleManagerChange}></c-new-portfolio-manager-select>
+                        <lightning-combobox variant="label-inline" label="Typ správy stavu"
+                                            if:true={typeOptions.data} onchange={handleTypeChange}
+                                            options={typeOptions.data.values} value={data.type}></lightning-combobox>
+                        <lightning-combobox variant="label-inline" label="Důvod změny"
+                                            if:true={reasonOptions.data} onchange={handleReasonChange}
+                                            options={reasonOptions.data.values} ></lightning-combobox>
+                        <lightning-textarea variant="label-inline" label="Popis"
+                                            onchange={handleCommentsChange}></lightning-textarea>
 
                     </div>
                     <div class="slds-modal__footer">
