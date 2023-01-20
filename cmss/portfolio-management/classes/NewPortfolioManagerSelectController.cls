@@ -30,6 +30,9 @@ public with sharing class NewPortfolioManagerSelectController {
 				rmRole = UserInfo.getUserRoleId();
 			}
 			Set<Id> rolesToSearch = hierarchyUtil.getSubordinateRolesOf(rmRole);
+			if (hierarchyUtil.roleIsRegionalManagerOrAssistant(UserInfo.getUserRoleId())) {
+				rolesToSearch.addAll(hierarchyUtil.getRmRoles());
+			}
 			return selector.searchUsersWithRole(searchTerm, rolesToSearch);
 		}
 	}
