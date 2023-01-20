@@ -454,10 +454,6 @@
         <name>InvalidChangeReason</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Nový (požadovaný) správce stavu je povinné pole.</errorMessage>
-        <name>NewPortfolioManagerMustBeFilled</name>
-    </validationRules>
-    <validationRules>
         <errorMessage>Příchod nesmí být zadán do budoucnosti.</errorMessage>
         <name>ReceivedDateInFuture</name>
     </validationRules>
@@ -478,7 +474,7 @@
         <name>ThirtyDayPeriodOverTimeRequired</name>
     </validationRules>
     <webLinks>
-        <label>Odeslat ke schválení</label>
-        <name>Submit_for_approval</name>
+        <label>Žádost o změnu správy stavu</label>
+        <name>New_Portfolio_Management_Change_Request</name>
     </webLinks>
 </CustomObjectTranslation>
