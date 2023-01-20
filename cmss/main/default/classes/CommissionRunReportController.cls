@@ -10,6 +10,16 @@ public without sharing class CommissionRunReportController {
 	}
 
 	@AuraEnabled
+	public static Integer checkPermissionSets() {
+		Integer adminPermSetCount = [
+			SELECT COUNT()
+			FROM PermissionSetAssignment
+			WHERE PermissionSet.Name = 'CommissionStatementAdministrator' AND AssigneeId = :UserInfo.getUserId()
+		];
+		return adminPermSetCount;
+	}
+
+	@AuraEnabled
 	public static ContactInformation__c getContactInfo(Id userId) {
 		try {
 			ContactInformation__c conInfo = [
