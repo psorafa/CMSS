@@ -30,6 +30,7 @@ public with sharing class NewPortfolioManagerSelectController {
 				rmRole = UserInfo.getUserRoleId();
 			}
 			Set<Id> rolesToSearch = hierarchyUtil.getSubordinateRolesOf(rmRole);
+			rolesToSearch.add(rmRole);
 			if (hierarchyUtil.roleIsRegionalManagerOrAssistant(UserInfo.getUserRoleId())) {
 				rolesToSearch.addAll(hierarchyUtil.getRmRoles());
 			}
@@ -50,9 +51,9 @@ public with sharing class NewPortfolioManagerSelectController {
 	}
 
 	@TestVisible
-	private class Selector {
+	private virtual class Selector {
 
-		public List<User> searchUsersWithRole(String value, Set<Id> rolesIds) {
+		public virtual List<User> searchUsersWithRole(String value, Set<Id> rolesIds) {
 			return [
 				SELECT Id, Name, CommissionAccountNrAll__c FROM User
 				WHERE
@@ -62,7 +63,7 @@ public with sharing class NewPortfolioManagerSelectController {
 			];
 		}
 
-		public List<User> searchUsers(String value) {
+		public virtual List<User> searchUsers(String value) {
 			return [
 				SELECT Id, Name, CommissionAccountNrAll__c FROM User
 				WHERE
