@@ -2,7 +2,7 @@
 public without sharing class CommissionRunReportControllerTest {
 	@IsTest
 	private static void createTestData() {
-		User user = TestDataFactory.getUser(new User());
+		User user = TestDataFactory.getUser(new User(CommissionAccountBase__c = '001'));
 		insert user;
 		ContactInformation__c conInfo = new ContactInformation__c(
 			User__c = user.Id,
@@ -41,8 +41,9 @@ public without sharing class CommissionRunReportControllerTest {
 
 	@IsTest
 	static void getUserInfoTribeCpuTest() {
-		User usr = [SELECT Id, CommissionAccountBase__c FROM User WHERE CommissionAccountBase__c != NULL LIMIT 1][0];
-		System.assertEquals(usr.Id, CommissionRunReportController.getUserInfoTribeCpu(usr.CommissionAccountBase__c).Id);
+		createTestData();
+		User usr = [SELECT Id, CommissionAccountBase__c FROM User WHERE CommissionAccountBase__c = '001' LIMIT 1][0];
+		System.assertEquals(usr.Id, CommissionRunReportController.getUserInfo(usr.CommissionAccountBase__c).Id);
 	}
 
 	@IsTest
@@ -54,12 +55,9 @@ public without sharing class CommissionRunReportControllerTest {
 	@IsTest
 	static void getContactInfoTest() {
 		createTestData();
-		try {
-			ContactInformation__c conInfo = [SELECT Id FROM ContactInformation__c LIMIT 1][0];
-			System.assertEquals(conInfo.Id, CommissionRunReportController.getContactInfo(UserInfo.getUserId()).Id);
-		} catch (exception e) {
-			System.assert(e.getMessage().length() > 0);
-		}
+		ContactInformation__c conInfo = [SELECT Id FROM ContactInformation__c WHERE Subtype__c = '1000003'][0];
+		User user = [SELECT Id FROM User WHERE CommissionAccountBase__c = '001'][0];
+		System.assertEquals(conInfo.Id, CommissionRunReportController.getContactInfo(user.Id).Id);
 	}
 
 	@IsTest
