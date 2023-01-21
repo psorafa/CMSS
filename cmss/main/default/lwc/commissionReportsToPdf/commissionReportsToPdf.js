@@ -1,6 +1,6 @@
 import { LightningElement, wire } from 'lwc';
 import getReportsMap from '@salesforce/apex/CommissionRunReportController.getReportsMap';
-import getUserInfoTribeCpu from '@salesforce/apex/CommissionRunReportController.getUserInfoTribeCpu';
+import getUserInfoTribeCpu from '@salesforce/apex/CommissionRunReportController.getUserInfo';
 import getContactInfo from '@salesforce/apex/CommissionRunReportController.getContactInfo';
 import runReport from '@salesforce/apex/CommissionRunReportController.runReport';
 import getReportFilters from '@salesforce/apex/CommissionRunReportController.getReportFilters';
@@ -85,9 +85,10 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.selectedReportDevName = message.selectedReportDevName;
 		this.selectedReportName = message.selectedReportName;
 		this.selectedReportDescription = message.selectedReportDescription;
-		this.filterReport = ((this.selectedReportDevName !== undefined) ? this.selectedReportDevName : '') 
-                            + '; ' 
-                            + ((this.selectedReportDescription !== undefined) ? this.selectedReportDescription : '');
+		this.filterReport =
+			(this.selectedReportDevName !== undefined ? this.selectedReportDevName : '') +
+			'; ' +
+			(this.selectedReportDescription !== undefined ? this.selectedReportDescription : '');
 		this.year = message.year;
 		this.month = message.month;
 		this.yearTo = message.yearTo;
