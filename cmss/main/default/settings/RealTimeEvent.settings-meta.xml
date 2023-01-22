@@ -94,11 +94,11 @@
     </realTimeEvents>
     <realTimeEvents>
         <entityName>ReportEvent</entityName>
-        <isEnabled>false</isEnabled>
+        <isEnabled>true</isEnabled>
     </realTimeEvents>
     <realTimeEvents>
         <entityName>ReportEventStream</entityName>
-        <isEnabled>false</isEnabled>
+        <isEnabled>true</isEnabled>
     </realTimeEvents>
     <realTimeEvents>
         <entityName>ReportAnomalyEventStore</entityName>
