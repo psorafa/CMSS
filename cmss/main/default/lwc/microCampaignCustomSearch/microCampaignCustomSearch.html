@@ -81,7 +81,12 @@
 							class="slds-p-around_xxx-small"
 						>
 						</lightning-button>
+                        <div class="slds-p-top_xxx-small">
+                            <c-change-portfolio-management-button ids={selectedAccountIds} label={labels.LBL_CREATE_PMR_BUTTON_TITLE}
+							    							  onclick={handleOpenModal}></c-change-portfolio-management-button>
+                        </div>
 					</div>
+
 					<div class="slds-grid">
 						<div class="slds-size_1-of-6">
 							<lightning-combobox
