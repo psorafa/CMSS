@@ -150,7 +150,7 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.footerTimestamp = this.todayDate + ' ' + hh + ':' + min;
 		let myDomain = window.location.hostname;
 		console.log('domena: ' + window.location.hostname);
-		if (myDomain.indexOf('lightning.') > -1) {
+		if (myDomain.includes('lightning.')) {
 			this.pdfUrl =
 				'https://' +
 				myDomain.slice(0, myDomain.indexOf('.')) +
