@@ -16,6 +16,7 @@ import LBL_DATA_SECTION_TITLE from '@salesforce/label/c.DataSectionTitle';
 import LBL_NEXT_PAGE_BUTTON_TITLE from '@salesforce/label/c.NextPageButtonTitle';
 import LBL_PREV_PAGE_TITLE from '@salesforce/label/c.PrevPageButtonTitle';
 import LBL_CREATE_CAMPAIGN_BUTTON_TITLE from '@salesforce/label/c.CreateMicroCampaignButtonTitle';
+import LBL_CREATE_PMR_BUTTON_TITLE from '@salesforce/label/c.NewPortfolioManagementChangeRequest';
 import LBL_CREATE_CAMPAIGN_MODAL_TITLE from '@salesforce/label/c.CreateMicroCampaignModalWindowTitle';
 import LBL_RECORDS_PER_PAGE_TITLE from '@salesforce/label/c.RecordsPerPageInputTitle';
 import LBL_TOTAL_RECORDS_COUNT_LABEL from '@salesforce/label/c.TotalRecordsCountLabel';
@@ -75,6 +76,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		LBL_SEARCH_SECTION_TITLE,
 		LBL_DATA_SECTION_TITLE,
 		LBL_CREATE_CAMPAIGN_BUTTON_TITLE,
+        LBL_CREATE_PMR_BUTTON_TITLE,
 		LBL_CREATE_CAMPAIGN_MODAL_TITLE,
 		LBL_RECORDS_PER_PAGE_TITLE,
 		LBL_TOTAL_RECORDS_COUNT_LABEL,
