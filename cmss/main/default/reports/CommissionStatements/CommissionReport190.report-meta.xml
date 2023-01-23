@@ -51,10 +51,10 @@
             <value>190</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Commission__c$ClosingAgentCommissionAcountBase__c</column>
+            <column>Commission__c$ClosingAgent__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
+            <operator>contains</operator>
             <value></value>
         </criteriaItems>
         <criteriaItems>
@@ -68,14 +68,14 @@
             <column>Commission__c$Account__c.GlobalId__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
+            <operator>contains</operator>
             <value></value>
         </criteriaItems>
         <criteriaItems>
             <column>Commission__c$AssetName__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
+            <operator>contains</operator>
             <value></value>
         </criteriaItems>
         <criteriaItems>
