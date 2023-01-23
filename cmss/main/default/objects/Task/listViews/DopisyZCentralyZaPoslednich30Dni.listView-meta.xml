@@ -13,5 +13,10 @@
         <operation>lessOrEqual</operation>
         <value>LAST_N_DAYS:30</value>
     </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Task.Letter</value>
+    </filters>
     <label>Dopisy z centrály za posledních 30 dní</label>
 </ListView>
