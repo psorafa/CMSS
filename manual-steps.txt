@@ -71,7 +71,6 @@ post    Vyplnit custom metadata Configuration__mdt -
 post    Vyplnit custom metadata Configuration__mdt pro CPE call retry mechanismus
             - changeCPERequest_retryCalloutInterval - pocatecni interval v minutach, po kterem dojde k dalsimu pokusu 
             - changeCPERequest_retryCalloutAttempts - pocet pokusu
-post    Po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_CommissionArticleURL (link do Fenix Docs Community na konkrétní článek)
 post    V Dashabordu Pořadí MOT dle pilíře, Pořadí RM dle pilíře, Plnění produkce RM/MOS, Plnění produkce Manažera obchodního týmu a Produkce OZ – PPP přepsat zobrazení filtrů na 1. pololetí 2023, 2. pololetí 2022 a 1. pololetí 2022 dle začátku období (nepodporují metadata)
 post    Pravděpodobně bude řeba smazat dashboard 'Úspěšnost kampaní' na každém prostředí manuálně
 post    Přidat Custom Link na report RMOT11 do komponenty "Plnění nováčků za aktuální měsíc" v Dashboardu Homepage (MOT)
@@ -87,3 +86,4 @@ post    Po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_Commi
 			- vyplnit Value__c - Configuration__mdt - Knowledge_CommissionArticleURL v nasledujicim formatu:
 				https://<org-domain>/servlet/networks/switch?networkId=<networkId z predchoziho kroku>&startURL=<URL Name clanku>
 			- priklad pro aktualni test org: https://csobstavebni--test.sandbox.my.salesforce.com/servlet/networks/switch?networkId=0DB3X000000TQGg&&startURL=/s/article/Vysvetlivky-k-vypisu-z-provizniho-uctu-kontakty
+post    update dat v orgu z data\custom-search\target\*.csv
