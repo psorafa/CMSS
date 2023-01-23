@@ -1,6 +1,6 @@
 import { LightningElement, wire } from 'lwc';
 import getReportsMap from '@salesforce/apex/CommissionRunReportController.getReportsMap';
-import getUserInfoTribeCpu from '@salesforce/apex/CommissionRunReportController.getUserInfo';
+import getUserInfoTribeCpu from '@salesforce/apex/CommissionRunReportController.getUserInfoTribeCpu';
 import getContactInfo from '@salesforce/apex/CommissionRunReportController.getContactInfo';
 import runReport from '@salesforce/apex/CommissionRunReportController.runReport';
 import getReportFilters from '@salesforce/apex/CommissionRunReportController.getReportFilters';
@@ -249,14 +249,11 @@ export default class commissionReportsToPdf extends LightningElement {
 					getContactInfo({
 						userId: this.tribeCpuUserId
 					})
-						.then((data) => {
-							this.address = data.Value__c;
-							console.log('address: ' + JSON.stringify(this.address));
-						})
-						.catch((error) => {
-							this.handleErrors(error);
-						})
 				)
+				.then((data) => {
+					this.address = data.Value__c;
+					console.log('address: ' + JSON.stringify(this.address));
+				})
 				.catch((error) => {
 					this.handleErrors(error);
 				});
