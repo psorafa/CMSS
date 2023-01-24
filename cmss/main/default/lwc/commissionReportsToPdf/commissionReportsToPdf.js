@@ -106,9 +106,18 @@ export default class commissionReportsToPdf extends LightningElement {
 
 			this.combinedName = this.accountBaseCombinedName.slice(this.accountBaseCombinedName.indexOf(',') + 1);
 		}
-		let endingTo = this.monthTo !== undefined ? this.monthTo + '.' + this.yearTo : '';
-		this.dateValues = this.todayDate + ' / ' + this.month + '.' + this.year + ' - ' + endingTo;
-		this.selectedPeriod = this.month + '.' + this.year + ' - ' + endingTo;
+		let endingTo;
+		let beginningFrom;
+		if (!!this.monthTo) {
+			beginningFrom = this.month + '.' + this.year;
+			endingTo = this.monthTo + '.' + this.yearTo;
+			this.dateValues = this.todayDate + ' / ' + beginningFrom + ' - ' + endingTo;
+			this.selectedPeriod = beginningFrom + ' - ' + endingTo;
+		} else {
+			let d = new Date(this.year, this.month, 0).getDate();
+			this.dateValues = this.todayDate + ' / ' + d + '.' + this.month + '.' + this.year;
+			this.selectedPeriod = d + '.' + this.month + '.' + this.year;
+		}
 
 		console.log('selectedReport: ' + this.selectedReport);
 		console.log('selectedReportDevName: ' + this.selectedReportDevName);
