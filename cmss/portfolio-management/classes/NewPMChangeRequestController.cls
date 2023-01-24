@@ -177,7 +177,10 @@ public with sharing class NewPMChangeRequestController {
 	@TestVisible
 	private virtual class Selector {
 		public virtual List<User> selectRegionalManagerAndAssistant(Id rmRole) {
-			return [SELECT Id, UserRole.DeveloperName FROM User WHERE UserRoleId = :rmRole OR UserRole.ParentRoleId = :rmRole];
+			if (rmRole != null) {
+				return [SELECT Id, UserRole.DeveloperName FROM User WHERE UserRoleId = :rmRole OR UserRole.ParentRoleId = :rmRole];
+			}
+			return null;
 		}
 	}
 }

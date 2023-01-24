@@ -209,6 +209,7 @@ private class NewPMChangeRequestControllerTest {
 	@IsTest
 	static void coverSelector() {
 		new NewPMChangeRequestController.Selector().selectRegionalManagerAndAssistant(null);
+		new NewPMChangeRequestController.Selector().selectRegionalManagerAndAssistant('00E000000000001');
 	}
 
 	private static void insertRoles() {
