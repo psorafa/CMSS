@@ -43,7 +43,7 @@ public without sharing class CommissionRunReportControllerTest {
 	static void getUserInfoTribeCpuTest() {
 		createTestData();
 		User usr = [SELECT Id, CommissionAccountBase__c FROM User WHERE CommissionAccountBase__c = '001' LIMIT 1][0];
-		System.assertEquals(usr.Id, CommissionRunReportController.getUserInfo(usr.CommissionAccountBase__c).Id);
+		System.assertEquals(usr.Id, CommissionRunReportController.getUserInfoTribeCpu(usr.CommissionAccountBase__c).Id);
 	}
 
 	@IsTest

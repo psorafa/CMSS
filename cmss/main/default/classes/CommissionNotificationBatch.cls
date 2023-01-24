@@ -1,7 +1,14 @@
-public class CommissionNotificationBatch implements Database.Batchable<sObject>, Schedulable {
+public class CommissionNotificationBatch implements Database.Batchable<sObject>, Schedulable, Database.Stateful {
 	public Id templateId;
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
 		Datetime commissionWindow = Date.Today();
+		templateId = [
+			SELECT Id, DeveloperName
+			FROM CustomNotificationType
+			WHERE DeveloperName = 'Commission'
+			LIMIT 1
+		]
+		.Id;
 		return Database.getQueryLocator(
 			[
 				SELECT Id, OwnerId, CreatedDate
@@ -12,14 +19,8 @@ public class CommissionNotificationBatch implements Database.Batchable<sObject>,
 	}
 
 	public void execute(Database.BatchableContext jobId, List<Commission__c> commissions) {
+		system.debug('templateId: ' + templateId);
 		try {
-			templateId = [
-				SELECT Id, DeveloperName
-				FROM CustomNotificationType
-				WHERE DeveloperName = 'Commission'
-				LIMIT 1
-			]
-			.Id;
 			for (Commission__c comm : commissions) {
 				CustomNotificationService.sendNotification(
 					comm.OwnerId,

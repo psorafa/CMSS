@@ -1,12 +1,9 @@
 import { LightningElement, wire } from 'lwc';
-import getReportsMap from '@salesforce/apex/CommissionRunReportController.getReportsMap';
 import getUserInfoTribeCpu from '@salesforce/apex/CommissionRunReportController.getUserInfoTribeCpu';
 import getContactInfo from '@salesforce/apex/CommissionRunReportController.getContactInfo';
 import runReport from '@salesforce/apex/CommissionRunReportController.runReport';
-import getReportFilters from '@salesforce/apex/CommissionRunReportController.getReportFilters';
 import checkStatus from '@salesforce/apex/CommissionRunReportController.checkStatus';
 import getReportData from '@salesforce/apex/CommissionRunReportController.getReportData';
-import getSummaryReportData from '@salesforce/apex/CommissionRunReportController.getSummaryReportData';
 import { subscribe, unsubscribe, APPLICATION_SCOPE, MessageContext } from 'lightning/messageService';
 import COMMISSION_CHANNEL from '@salesforce/messageChannel/Commission_Reports__c';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -166,6 +163,7 @@ export default class commissionReportsToPdf extends LightningElement {
 	handleRunReport(event) {
 		this.loading = true;
 		this.timerCounter = 0;
+		this.reportStatus = 'Not Started';
 		let today = new Date();
 		this.footerTimestamp = this.todayDate + ' ' + today.getHours() + ':' + today.getMinutes();
 		console.log('Running selectedReport: ' + this.selectedReport);
@@ -320,13 +318,9 @@ export default class commissionReportsToPdf extends LightningElement {
 				this.showPendingAmount = result.showPendingAmount;
 				console.log('showFooter: ' + this.showFooter);
 				console.log('showPendingAmount: ' + this.showPendingAmount);
-				this.rowCountExceeded = Number(this.rowCount) > 2000 ? true : false;
+				this.rowCountExceeded = Number(this.rowCount.replace(/\s/g, '')) > 2000 ? true : false;
 				this.reportHasRows = Number(this.rowCount.replace(/\s/g, '')) > 0 ? true : false;
-				if (this.rowCountExceeded) {
-					throw new Error(
-						'Snažíte se vyexportovat více záznamů, než je povolený limit 2000. Prosím zužte datovou sadu změnou upřesňujících kritérií zadáním užšího období, výběrem specifického typu provizního výpisu čí rozmezí pořadových čísel záznamů.'
-					);
-				}
+
 				if (!this.reportHasRows) {
 					throw new Error(
 						'Dle zadaných parametrů export neobsahuje žádné záznamy. Prosím upravte parametry exportu.'
@@ -345,6 +339,18 @@ export default class commissionReportsToPdf extends LightningElement {
 				this.loading = false;
 				this.handleErrors(error);
 			});
+	}
+
+	handleExportToPdf(event) {
+		if (this.rowCountExceeded) {
+			event.preventDefault();
+			alert(
+				'Snažíte se vyexportovat více záznamů, než je povolený limit 2000. Prosím zužte datovou sadu změnou upřesňujících kritérií zadáním užšího období, výběrem specifického typu provizního výpisu čí rozmezí pořadových čísel záznamů.'
+			);
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	//FOR HANDLING THE HORIZONTAL SCROLL OF TABLE MANUALLY
