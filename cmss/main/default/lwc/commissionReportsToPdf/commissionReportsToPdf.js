@@ -164,6 +164,9 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.loading = true;
 		this.timerCounter = 0;
 		this.reportStatus = 'Not Started';
+		this.reportData = '';
+		this.reportHeader = '';
+		this.reportHtmlData = '';
 		let today = new Date();
 		this.footerTimestamp = this.todayDate + ' ' + today.getHours() + ':' + today.getMinutes();
 		console.log('Running selectedReport: ' + this.selectedReport);
