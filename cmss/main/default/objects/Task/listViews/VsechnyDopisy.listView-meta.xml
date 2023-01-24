@@ -8,5 +8,10 @@
     <columns>Recipient__c</columns>
     <columns>RecipientRole__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Task.Letter</value>
+    </filters>
     <label>Všechny dopisy</label>
 </ListView>
