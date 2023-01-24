@@ -3,38 +3,10 @@
     <fullName>TaskLetterType__c</fullName>
     <externalId>false</externalId>
     <label>TaskLetterType</label>
+    <encryptionScheme>None</encryptionScheme>
+    <length>50</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
-    <type>Picklist</type>
-    <valueSet>
-        <restricted>true</restricted>
-        <valueSetDefinition>
-            <sorted>false</sorted>
-            <value>
-                <fullName>A003</fullName>
-                <default>false</default>
-                <label>A003</label>
-            </value>
-            <value>
-                <fullName>A011</fullName>
-                <default>false</default>
-                <label>A011</label>
-            </value>
-            <value>
-                <fullName>A014</fullName>
-                <default>false</default>
-                <label>A014</label>
-            </value>
-            <value>
-                <fullName>A015</fullName>
-                <default>false</default>
-                <label>A015</label>
-            </value>
-            <value>
-                <fullName>A016</fullName>
-                <default>false</default>
-                <label>A016</label>
-            </value>
-        </valueSetDefinition>
-    </valueSet>
+    <type>Text</type>
+    <unique>false</unique>
 </CustomField>
