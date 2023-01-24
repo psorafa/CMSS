@@ -57,3 +57,5 @@ post    vyplnit custom metadata Configuration__mdt pro CPE call retry mechanismu
             - changeCPERequest_retryCalloutInterval - pocatecni interval v minutach, po kterem dojde k dalsimu pokusu 
             - changeCPERequest_retryCalloutAttempts - pocet pokusu
 post    v setupu -> approval processes -> Case -> zkontrolovat a případně změnit pořadí tak, aby "without Assistant" byl jako první
+post    smazat validation rule: Case.NewPortfolioManagerMustBeFilled (pokud existuje)
+post    smazat button Case.SubmitForApproval (pokud existuje)
