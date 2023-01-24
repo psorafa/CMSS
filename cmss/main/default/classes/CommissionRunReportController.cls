@@ -10,7 +10,7 @@ public without sharing class CommissionRunReportController {
 	}
 
 	@AuraEnabled
-	public static User getUserInfo(String tribeCpu) {
+	public static User getUserInfoTribeCpu(String tribeCpu) {
 		User usr = [
 			SELECT Id, Name, CombinedName__c, CommissionAccountNr__c, CommissionAccountBase__c, Profile.Name
 			FROM User

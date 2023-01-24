@@ -14,7 +14,7 @@
 							></lightning-button>
 						</th>
 						<th>
-							<form method="POST" action={pdfUrl} target="_blank">
+							<form method="POST" action={pdfUrl} target="_blank" onsubmit={handleExportToPdf}>
 								<!--https://csobstavebni--reporting--c.sandbox.vf.force.com/apex/PocPdfGenerator-->
 								<button if:true={reportHasRows} class="slds-button slds-button_neutral">
 									Export do PDF

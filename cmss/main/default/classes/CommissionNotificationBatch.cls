@@ -1,4 +1,4 @@
-public class CommissionNotificationBatch implements Database.Batchable<sObject>, Schedulable {
+public class CommissionNotificationBatch implements Database.Batchable<sObject>, Schedulable, Database.Stateful {
 	public Id templateId;
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
 		Datetime commissionWindow = Date.Today();
@@ -19,6 +19,7 @@ public class CommissionNotificationBatch implements Database.Batchable<sObject>,
 	}
 
 	public void execute(Database.BatchableContext jobId, List<Commission__c> commissions) {
+		system.debug('templateId: ' + templateId);
 		try {
 			for (Commission__c comm : commissions) {
 				CustomNotificationService.sendNotification(

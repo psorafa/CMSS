@@ -91,26 +91,18 @@ export default class CommissionReportsDetailParams extends LightningElement {
 					getContactInfo({
 						userId: this.userId
 					})
-						.then((data) => {
-							this.processContactInfo(data);
-						})
-						.catch((error) => {
-							this.handleErrors(error);
-						})
 				)
-				.then(() =>
-					checkPermissionSets()
-						.then((cnt) => {
-							console.log('cnt: ' + cnt);
-							this.adminPermissionSet = Number(cnt) > 0 ? true : false;
-							if (this.adminPermissionSet || this.adminProfile) {
-								this.showTribeCPU = true;
-							}
-						})
-						.catch((error) => {
-							this.handleErrors(error);
-						})
-				)
+				.then((data) => {
+					this.processContactInfo(data);
+				})
+				.then(() => checkPermissionSets())
+				.then((cnt) => {
+					console.log('cnt: ' + cnt);
+					this.adminPermissionSet = Number(cnt) > 0 ? true : false;
+					if (this.adminPermissionSet || this.adminProfile) {
+						this.showTribeCPU = true;
+					}
+				})
 				.catch((error) => {
 					this.handleErrors(error);
 				});
@@ -121,7 +113,10 @@ export default class CommissionReportsDetailParams extends LightningElement {
 		console.log('User info: ' + JSON.stringify(result));
 		this.userId = result.Id;
 		this.adminProfile = this.profiles.indexOf(result.Profile.Name) > -1 ? true : false;
-		this.accountBaseCombinedName = (result.CommissionAccountBase__c !== undefined ? result.CommissionAccountBase__c : '') + ', ' + result.CombinedName__c;
+		this.accountBaseCombinedName =
+			(result.CommissionAccountBase__c !== undefined ? result.CommissionAccountBase__c : '') +
+			', ' +
+			result.CombinedName__c;
 		var localCpu = result.CommissionAccountNr__c;
 		if (localCpu !== undefined) {
 			this.cpuValue = localCpu.substring(localCpu.length - 3);
