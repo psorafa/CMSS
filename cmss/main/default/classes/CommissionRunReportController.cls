@@ -63,6 +63,8 @@ public without sharing class CommissionRunReportController {
 		Map<String, CommissionReports__mdt> result = CommissionReports__mdt.getAll();
 		Set<String> restultSet = result.keySet();
 		Map<String, ReportWrap> reportMap = new Map<String, ReportWrap>();
+		List<Decimal> indexedList = new List<Decimal>();
+		Map<Decimal, String> indexedReportsMap = new Map<Decimal, String>();
 		for (Report report : [
 			SELECT Id, Name, FolderName, DeveloperName, Description
 			FROM Report
@@ -72,23 +74,34 @@ public without sharing class CommissionRunReportController {
 			if (!reportMap.containsKey(report.DeveloperName)) {
 				reportMap.put(
 					report.DeveloperName,
-					new ReportWrap(report.DeveloperName, report.Name, report.Id, report.Description)
+					new ReportWrap(
+						report.DeveloperName,
+						report.Name,
+						report.Id,
+						report.Description,
+						result.get(report.DeveloperName).Order__c
+					)
 				);
+				indexedList.add(result.get(report.DeveloperName).Order__c);
+				indexedReportsMap.put(result.get(report.DeveloperName).Order__c, report.DeveloperName);
 			}
 		}
 
 		if (reportMap.isEmpty()) {
 			for (String report : restultSet) {
 				if (!reportMap.containsKey(report)) {
-					reportMap.put(report, new ReportWrap(report, result.get(report).ReportName__c, '', ''));
+					reportMap.put(
+						report,
+						new ReportWrap(report, result.get(report).ReportName__c, '', '', result.get(report).Order__c)
+					);
 				}
 			}
 		}
 
-		List<String> resultList = new List<String>(restultSet);
-		resultList.sort();
+		indexedList.sort();
 		Map<String, ReportWrap> resultSorted = new Map<String, ReportWrap>();
-		for (String reportDevName : resultList) {
+		for (Decimal idx : indexedList) {
+			String reportDevName = indexedReportsMap.get(idx);
 			resultSorted.put(reportDevName, reportMap.get(reportDevName));
 		}
 		return resultSorted;
