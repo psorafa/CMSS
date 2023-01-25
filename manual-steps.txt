@@ -7,6 +7,26 @@ syntaxe:
 
 pre     popis
 post    popis
+
+------------------------------------------------------------------------------------------------------------
+MANUAL STEPS VŽDY:
+
+post    Zaškrtnout "View all data" na Read All Data permission setu
+post    Chatter feed componenta: ID skupiny "Informování o odstávkách"" (platí i pro Homepage pro CMSS Usery v Lightning)
+        Test: Community: 0F91j0000009GEVCA2, Lightning: 0F91j0000009GELCA2
+        Prep: Community: 0F93O000000CoZ5SAK, Lightning: 0F93O000000CoZASA0 (verzovaný)
+        Prod: Community: 0F93X000000Yk7xSAC, Lightning: 0F93X000000YmTNSA0
+post    Zkopírovat text z CMSS User Homepage - rich text component - do stejné komponenty na homepage v komunitách
+post    Odebrat a pak znovu pridat komponentu financni obraty v community (Asset Detail -> Building Savings, Credit and Interm. Loans, Risk Life Insurance)
+post    V pravé liště nastavit report Id pro daný sandbox - Klienti s datem příštích narozenin	na testu netřeba, prep: 00O3O000000t9dzUAA
+post    V Community Stavební - v OZ Navigation Menu je třeba změnit link na Fénix Docs z produkčního linku (tj. tenhle step je nutný pouze na TESTu a PREPRODu) link platný pro konkrétní prostředí 
+        TEST - https://csobstavebni--test.sandbox.my.site.com/fenixdocs/s/ 
+        PREPROD - https://csobstavebni--preprod.sandbox.my.site.com/fenixdocs/s/
+post    Ve Fénix Docs Community změnit na stránce INFO a Methodology v komponenentě, aby odkazovala na správné listview - "Metodiky - publikováno" a INFO + Týdenky 2023"
+post    Ve Fénix Doce Community v sekci "Top články dle jednotlivých oblastí" na HP přidat jednotlivé parent Topics do komponent po 3 
+post    Ve Fénix Doce Community změnit Hero obrázek (Cesta: Asset Library > FenixDocs_Hero)
+post    Ve Fénix Doce Community změnit Elko obrázek (Cesta: Asset Library > Elko nové)
+
 ------------------------------------------------------------------------------------------------------------
 
 v19 (+ opravy)
@@ -19,43 +39,46 @@ post    smazat pole ClientZone__c.UsernameHash__c
 post    pro object Commmissions nastavit v OWD Grant Access Using Hierarchies = false (unchecked)
 
 v20
+-
 
 v21
-pre     před prvním deploymentem na prostředí zakomentovat ve .forceignore
+pre     Před prvním deploymentem na prostředí zakomentovat ve .forceignore
             cmss/main/default/objects/Commission__c/fields/ClosureType__c.field-meta.xml
             cmss/main/default/objects/Commission__c/fields/ProductProvider__c.field-meta.xml
             cmss/main/default/objects/Commission__c/fields/StatementType__c.field-meta.xml
             cmss/main/default/objects/Commission__c/fields/ExpenditureFlatRate__c.field-meta.xml
-post    vyplnit custom metadata Configuration__mdt pro Threat Detection (
+post    Vyplnit custom metadata Configuration__mdt pro Threat Detection (
             APIAnomalyEventNotifReceiver = emaily prijemcu oddelene carkou, 
             CredentialStuffingEventNotifReceiver = emaily prijemcu oddelene carkou, 
             ReportAnomalyEventNotifReceiver = emaily prijemcu oddelene carkou, 
             SessionHijackingEventNotifReceiver = emaily prijemcu oddelene carkou, 
             ThreatDetectionNotifScoreThreshold = 0
         ) -- defaultni hodnota pro reciever metadata (pro prvni ctyri) = 'CRM_monitoring@csobstavebni.cz'
-post    V Dashabordu Pořadí MOT dle pilíře, Pořadí RM dle pilíře, Plnění produkce RM/MOS, Plnění produkce Manažera obchodního týmu a Produkce OZ – PPP přepsat zobrazení filtrů na H1 2023, H2 2022 a H1 2022 dle začátku období (nepodporují metadata)
-post    Přidat Custom Link na report RMOT11 do komponenty "Plnění nováčků za aktuální měsíc" v Dashboardu Homepage (MOT)
-post    vytvořit záznam pro custom metadata Configuration 
+post    Vytvořit záznam pro custom metadata Configuration 
         * Name = LogsNotification_Limit, Value = '30' 
         * Name = LogsNotification_Receivers, Value = 'crm_podpora@csobstavebni.cz, TODO (p. Kožušková)' 
         * Name = LogsNotification_ReportURL, Value = 'TODO' 
-post    naplánovat schedulable ExceededLogsNotificationSchedule - vždy 1. den v měsíci o půlnoci
-post    vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__mdt pro vsechny dashboardType
+post    Vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__mdt pro vsechny dashboardType
             - LinkMOTDashboard - Plnění produkce Manažera obchodního týmu (v Lighnitning)
             - LinkOZDashboard - Produkce OZ – PPP (v Community)
             - LinkRMMOSDashboard - Plnění produkce RM / MOS (v Lighnitning)
-post    vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__mdt pro vsechny dashboardType
+post    Vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__mdt pro vsechny dashboardType
             - LinkOZCommissionDashboard - Přehled provizních výpisů (v Community)
             - LinkMOTRMMOSCommissionStatementDashboard - Přehled provizních výpisů (v Lighnitning)
-post    naplanovat Schedule Apex pro tridu CommissionNotificationBatch na 8:00 AM na kazdy den
-post    po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_CommissionArticleURL (link do Fenix Docs Community na konkrétní článek)
-post    vyplnit custom metadata Configuration__mdt - 
-        label: TaskLetter_LightningListviewLink value: odkaz na listview 
-        label: TaskLetter_CommunityListviewLink value: odkaz na listview 
-post    pravděpodobně bude řeba smazat dashboard 'Úspěšnost kampaní' na každém prostředí manuálně
-post    vyplnit custom metadata Configuration__mdt pro CPE call retry mechanismus
+post    Vyplnit custom metadata Configuration__mdt - 
+            label: TaskLetter_LightningListviewLink value: odkaz na listview 
+            label: TaskLetter_CommunityListviewLink value: odkaz na listview 
+post    Vyplnit custom metadata Configuration__mdt pro CPE call retry mechanismus
             - changeCPERequest_retryCalloutInterval - pocatecni interval v minutach, po kterem dojde k dalsimu pokusu 
             - changeCPERequest_retryCalloutAttempts - pocet pokusu
-post    v setupu -> approval processes -> Case -> zkontrolovat a případně změnit pořadí tak, aby "without Assistant" byl jako první
-post    smazat validation rule: Case.NewPortfolioManagerMustBeFilled (pokud existuje)
-post    smazat button Case.SubmitForApproval (pokud existuje)
+post    Po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_CommissionArticleURL (link do Fenix Docs Community na konkrétní článek)
+post    V Dashabordu Pořadí MOT dle pilíře, Pořadí RM dle pilíře, Plnění produkce RM/MOS, Plnění produkce Manažera obchodního týmu a Produkce OZ – PPP přepsat zobrazení filtrů na H1 2023, H2 2022 a H1 2022 dle začátku období (nepodporují metadata)
+post    Pravděpodobně bude řeba smazat dashboard 'Úspěšnost kampaní' na každém prostředí manuálně
+post    Přidat Custom Link na report RMOT11 do komponenty "Plnění nováčků za aktuální měsíc" v Dashboardu Homepage (MOT)
+post    Naplánovat schedulable ExceededLogsNotificationSchedule - vždy 1. den v měsíci o půlnoci
+post    Naplanovat Schedule Apex pro tridu CommissionNotificationBatch na 8:00 AM na kazdy den
+post    V setupu -> approval processes -> Case -> zkontrolovat a případně změnit pořadí tak, aby "without Assistant" byl jako první
+post    Smazat validation rule: Case.NewPortfolioManagerMustBeFilled (pokud existuje)
+post    Smazat button Case.SubmitForApproval (pokud existuje)
+post    V Declarative Lookup Rollup Summary Appce přejít na TAB Manage Lookup Rollup Summaries> kliknout "Full Calculate" u každého pole, které je nastavené Calculation Mode = 'Schedulable'. POZOR je třeba dělat přes noc/nejlépe v pátek večer, pokud se spustí všechny najednou může to zahltit joby. Konzultovat s Lukášem A./Tadeášem
+
