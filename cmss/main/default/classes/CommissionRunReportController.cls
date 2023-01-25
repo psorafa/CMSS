@@ -116,12 +116,15 @@ public without sharing class CommissionRunReportController {
 		public String reportId;
 		@AuraEnabled
 		public String reportDescription;
+		@AuraEnabled
+		public Decimal reportIndex;
 
-		public ReportWrap(String rDevName, String rLabel, String rId, String rDesc) {
+		public ReportWrap(String rDevName, String rLabel, String rId, String rDesc, Decimal rIndex) {
 			this.reportDeveloperName = rDevName;
 			this.reportName = rLabel;
 			this.reportId = rId;
 			this.reportDescription = rDesc;
+			this.reportIndex = rIndex;
 		}
 	}
 
