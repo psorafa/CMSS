@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
     <active>true</active>
     <allowRecall>true</allowRecall>
     <allowedSubmitters>
@@ -30,7 +30,7 @@
     </approvalStep>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <booleanFilter>1 AND 2</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
             <field>Case.RecordType</field>
             <operation>equals</operation>
@@ -40,6 +40,10 @@
             <field>Case.Status</field>
             <operation>equals</operation>
             <value>21</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RegionalManagerAssistant__c</field>
+            <operation>notEqual</operation>
         </criteriaItems>
     </entryCriteria>
     <finalApprovalActions>
@@ -51,8 +55,6 @@
             <name>Approved</name>
             <type>FieldUpdate</type>
         </action>
-        
-            
     </finalApprovalActions>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionActions>
