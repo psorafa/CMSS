@@ -13,6 +13,10 @@ Commission__c.RecordNumber__c,
 Commission__c.CPUSuffix__c</value>
     </values>
     <values>
+        <field>Order__c</field>
+        <value xsi:type="xsd:double">15.0</value>
+    </values>
+    <values>
         <field>ReportName__c</field>
         <value xsi:type="xsd:string">180 Jednorázové obraty nezúčtovatelné s minimem/maximem</value>
     </values>

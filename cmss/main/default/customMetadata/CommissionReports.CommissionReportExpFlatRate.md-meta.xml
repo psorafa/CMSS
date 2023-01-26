@@ -10,6 +10,10 @@ Commission__c.PendingAmount__c,
 Commission__c.EntitlementAmount__c</value>
     </values>
     <values>
+        <field>Order__c</field>
+        <value xsi:type="xsd:double">20.0</value>
+    </values>
+    <values>
         <field>ReportName__c</field>
         <value xsi:type="xsd:string">Výdajový paušál</value>
     </values>
