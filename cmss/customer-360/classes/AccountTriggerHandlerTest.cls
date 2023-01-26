@@ -113,4 +113,52 @@ private class AccountTriggerHandlerTest {
 		System.assertEquals(false, a2.IsInvalid__c);
 		System.assertEquals(true, a3.IsInvalid__c);
 	}
+
+    @IsTest
+    static void setHasEmailHasPhoneFieldsInsertTest() {
+        Account acc1 = TestDataFactory.getPersonAccount(new Account(Alias__c = 'test1', Phone = '123456789', PersonEmail = 'test@test.com'));
+        Account acc2 = TestDataFactory.getPersonAccount(new Account(Alias__c = 'test2'));
+
+        List<Account> accountList = new List<Account>{acc1, acc2};
+
+        Test.startTest();
+            insert accountList;
+        Test.stopTest();
+
+        acc1 = [SELECT HasPhone__c, HasEmail__c FROM Account WHERE Alias__c = 'test1'];
+        acc2 = [SELECT HasPhone__c, HasEmail__c FROM Account WHERE Alias__c = 'test2'];
+
+        System.assertEquals(true, acc1.HasPhone__c);
+        System.assertEquals(true, acc1.HasEmail__c);
+        System.assertEquals(false, acc2.HasPhone__c);
+        System.assertEquals(false, acc2.HasEmail__c);
+    }
+
+    @IsTest
+    static void setHasEmailHasPhoneFieldsUpdateTest() {
+        Account acc1 = TestDataFactory.getPersonAccount(new Account(Alias__c = 'test1', Phone = '123456789', PersonEmail = 'test@test.com'));
+        Account acc2 = TestDataFactory.getPersonAccount(new Account(Alias__c = 'test2', Phone = '123456789', PersonEmail = 'test@test.com'));
+        List<Account> accountList = new List<Account>{acc1, acc2};
+        insert accountList;
+
+        Test.startTest();
+            accountList[0].Phone = '111111111111';
+            accountList[0].PersonEmail = 'xxx@xxx.com';
+            accountList[1].Phone = null;
+            accountList[1].PersonEmail = null;
+            update accountList;
+        Test.stopTest();
+
+        acc1 = [SELECT HasPhone__c, HasEmail__c, Phone, PersonEmail FROM Account WHERE Id =: accountList[0].Id];
+        acc2 = [SELECT HasPhone__c, HasEmail__c, Phone, PersonEmail FROM Account WHERE Id =: accountList[1].Id];
+
+        System.assertEquals(true, acc1.HasPhone__c);
+        System.assertEquals(true, acc1.HasEmail__c);
+        System.assertEquals('111111111111', acc1.Phone);
+        System.assertEquals('xxx@xxx.com', acc1.PersonEmail);
+        System.assertEquals(false, acc2.HasPhone__c);
+        System.assertEquals(false, acc2.HasEmail__c);
+        System.assertEquals(null, acc2.Phone);
+        System.assertEquals(null, acc2.PersonEmail);
+    }
 }

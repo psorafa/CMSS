@@ -48,6 +48,8 @@ pre     Před prvním deploymentem na prostředí zakomentovat ve .forceignore
             cmss/main/default/objects/Commission__c/fields/StatementType__c.field-meta.xml
             cmss/main/default/objects/Commission__c/fields/ExpenditureFlatRate__c.field-meta.xml
 post    Vyplnit custom metadata Configuration__mdt pro Threat Detection (
+pre     pred prvnim deploymentem na prostredi smazat v prostredi fieldy HasEmail__c a HasPhone__c na Account Objektu            
+post    vyplnit custom metadata Configuration__mdt pro Threat Detection (
             APIAnomalyEventNotifReceiver = emaily prijemcu oddelene carkou, 
             CredentialStuffingEventNotifReceiver = emaily prijemcu oddelene carkou, 
             ReportAnomalyEventNotifReceiver = emaily prijemcu oddelene carkou, 
@@ -87,3 +89,5 @@ post    Po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_Commi
 				https://<org-domain>/servlet/networks/switch?networkId=<networkId z predchoziho kroku>&startURL=<URL Name clanku>
 			- priklad pro aktualni test org: https://csobstavebni--test.sandbox.my.salesforce.com/servlet/networks/switch?networkId=0DB3X000000TQGg&&startURL=/s/article/Vysvetlivky-k-vypisu-z-provizniho-uctu-kontakty
 post    update dat v orgu z data\custom-search\target\*.csv
+
+post    jednorazove nashedulovat batch job pro update accountu AccountMassUpdateBatch
