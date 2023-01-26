@@ -16,6 +16,8 @@ public with sharing class CustomSoqlService {
 		String queryFields = 'Id';
 		if (filterRequestDto.objectName.equals('Asset')) {
 			queryFields = 'AccountId';
+		} else if (filterRequestDto.objectName.equals('PortfolioManagementRequest__c')) {
+			queryFields = 'Account__c';
 		}
 
 		Set<Id> accountIds = new Set<Id>();
@@ -84,6 +86,8 @@ public with sharing class CustomSoqlService {
 		Set<String> fieldList = service.getFieldsetInfoToSoql();
 		if (this.filterRequestDto.objectName.equals('Asset')) {
 			fieldList.add('AccountId');
+		} else if (this.filterRequestDto.objectName.equals('PortfolioManagementRequest__c')) {
+			fieldList.add('Account__c');
 		}
 
 		if (Test.isRunningTest() && fieldList.isEmpty()) {

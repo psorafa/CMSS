@@ -76,7 +76,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		LBL_SEARCH_SECTION_TITLE,
 		LBL_DATA_SECTION_TITLE,
 		LBL_CREATE_CAMPAIGN_BUTTON_TITLE,
-        LBL_CREATE_PMR_BUTTON_TITLE,
+		LBL_CREATE_PMR_BUTTON_TITLE,
 		LBL_CREATE_CAMPAIGN_MODAL_TITLE,
 		LBL_RECORDS_PER_PAGE_TITLE,
 		LBL_TOTAL_RECORDS_COUNT_LABEL,
@@ -388,6 +388,10 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 				this.selectedAccountIds.length === this.totalRecordsCount && this.totalRecordsCount !== 0;
 		} else if (this.selectedConfiguration.ObjectType__c === 'Asset') {
 			this.selectedAccountIds = selectedRows.map((row) => row.AccountId);
+			this.allAccountsSelected =
+				this.selectedAccountIds.length === this.totalRecordsCount && this.totalRecordsCount !== 0;
+		} else if (this.selectedConfiguration.ObjectType__c === 'PortfolioManagementRequest__c') {
+			this.selectedAccountIds = selectedRows.map((row) => row.Account__c);
 			this.allAccountsSelected =
 				this.selectedAccountIds.length === this.totalRecordsCount && this.totalRecordsCount !== 0;
 		} else {
