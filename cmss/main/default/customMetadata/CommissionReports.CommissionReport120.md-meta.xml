@@ -7,7 +7,7 @@
         <value xsi:type="xsd:string">Commission__c.BillingDate__c,
 Commission__c.CPUSuffix__c,
 Commission__c.BaseAssetName__c,
-Commission__c.Account__c.GlobalId__c,
+Commission__c.Account__c.LastName,
 Commission__c.ClosingAgentCommissionAcountBase__c,
 Commission__c.ClosingAgent__c.LastName,
 Commission__c.BusinessCaseDescription__c,

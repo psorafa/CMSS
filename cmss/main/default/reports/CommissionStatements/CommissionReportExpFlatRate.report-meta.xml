@@ -50,7 +50,7 @@
             <value></value>
         </criteriaItems>
         <criteriaItems>
-            <column>Commission__c$Account__c.GlobalId__c</column>
+            <column>Commission__c$AccountGlobalId__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>contains</operator>

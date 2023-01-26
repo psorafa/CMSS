@@ -13,6 +13,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>AccountGlobalId__c</field>
+            <table>Commission__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>AccountKeySerialNumber__c</field>
             <table>Commission__c</table>
         </columns>
