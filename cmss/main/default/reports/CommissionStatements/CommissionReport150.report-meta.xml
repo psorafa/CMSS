@@ -4,12 +4,6 @@
         <field>Commission__c$BillingDate__c</field>
     </columns>
     <columns>
-        <field>Commission__c$OwnerCommissionAcountBase__c</field>
-    </columns>
-    <columns>
-        <field>Commission__c$CPUSuffix__c</field>
-    </columns>
-    <columns>
         <field>Commission__c$BaseAssetName__c</field>
     </columns>
     <columns>
@@ -42,6 +36,12 @@
     </columns>
     <columns>
         <field>Commission__c$RecordNumber__c</field>
+    </columns>
+    <columns>
+        <field>Commission__c$OwnerCommissionAcountBase__c</field>
+    </columns>
+    <columns>
+        <field>Commission__c$CPUSuffix__c</field>
     </columns>
     <description>Životní pojištění</description>
     <filter>

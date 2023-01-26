@@ -13,9 +13,6 @@
         <field>Commission__c$OwnerCommissionAcountBase__c</field>
     </columns>
     <columns>
-        <field>Commission__c$ClosingAgent__c.LastName</field>
-    </columns>
-    <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>Commission__c$PendingAmount__c</field>
     </columns>
@@ -94,6 +91,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
+    <sortColumn>Commission__c$RowNumber__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Commission__c$BillingDate__c</dateColumn>
         <interval>INTERVAL_LASTMONTH</interval>
