@@ -7217,6 +7217,10 @@
         <apexPage>RenderAsPdf</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <pageAccesses>
+        <apexPage>eDocumentPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Access_Log__c.AccountAccess</recordType>
         <visible>true</visible>
