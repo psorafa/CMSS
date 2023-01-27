@@ -3143,6 +3143,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Commission__c.AccountGlobalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Commission__c.AccountKeySerialNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6283,7 +6288,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>UserTrainingLevel__c.TrainingLevelType_c__c</field>
+        <field>UserTrainingLevel__c.TrainingLevelType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

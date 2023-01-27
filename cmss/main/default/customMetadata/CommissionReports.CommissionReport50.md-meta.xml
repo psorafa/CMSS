@@ -5,9 +5,8 @@
     <values>
         <field>Columns__c</field>
         <value xsi:type="xsd:string">Commission__c.BillingDate__c,
-Commission__c.CPUSuffix__c,
 Commission__c.BaseAssetName__c,
-Commission__c.Account__c.GlobalId__c,
+Commission__c.Account__c.LastName,
 Commission__c.Date__c,
 Commission__c.DateOfPayment__c,
 Commission__c.TargetAmount__c,
@@ -16,7 +15,8 @@ Commission__c.ClosingAgent__c.LastName,
 Commission__c.EntitlementAmount__c,
 Commission__c.ExpenditureFlatRate__c,
 Commission__c.BusinessCaseDescription__c,
-Commission__c.RecordNumber__c</value>
+Commission__c.RecordNumber__c,
+Commission__c.CPUSuffix__c</value>
     </values>
     <values>
         <field>ReportName__c</field>

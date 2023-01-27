@@ -4,12 +4,6 @@
         <field>Commission__c$BillingDate__c</field>
     </columns>
     <columns>
-        <field>Commission__c$OwnerCommissionAcountBase__c</field>
-    </columns>
-    <columns>
-        <field>Commission__c$CPUSuffix__c</field>
-    </columns>
-    <columns>
         <field>Commission__c$BaseAssetName__c</field>
     </columns>
     <columns>
@@ -19,7 +13,7 @@
         <field>Commission__c$Account__c.LastName</field>
     </columns>
     <columns>
-        <field>Commission__c$Account__c.GlobalId__c</field>
+        <field>Commission__c$AccountGlobalId__c</field>
     </columns>
     <columns>
         <field>Commission__c$ClosingAgentCommissionAcountBase__c</field>
@@ -45,6 +39,12 @@
     </columns>
     <columns>
         <field>Commission__c$RecordNumber__c</field>
+    </columns>
+    <columns>
+        <field>Commission__c$OwnerCommissionAcountBase__c</field>
+    </columns>
+    <columns>
+        <field>Commission__c$CPUSuffix__c</field>
     </columns>
     <description>Penzijní produkty</description>
     <filter>
@@ -77,7 +77,7 @@
             <value></value>
         </criteriaItems>
         <criteriaItems>
-            <column>Commission__c$Account__c.GlobalId__c</column>
+            <column>Commission__c$AccountGlobalId__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>contains</operator>
