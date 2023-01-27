@@ -65,7 +65,7 @@ public without sharing class CommissionRunReportControllerTest {
 		System.assert(CommissionRunReportController.getKnowledgeCommissionArticleURL().length() > 0);
 	}
 
-	@IsTest
+	@IsTest(SeeAllData=true)
 	static void getReportsMapTest() {
 		System.assert(CommissionRunReportController.getReportsMap().size() > 0);
 	}

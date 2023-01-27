@@ -111,11 +111,13 @@ export default class commissionReportsToPdf extends LightningElement {
 		if (!!this.monthTo) {
 			beginningFrom = this.month + '.' + this.year;
 			endingTo = this.monthTo + '.' + this.yearTo;
-			this.dateValues = this.todayDate + ' / ' + beginningFrom + ' - ' + endingTo;
+			//this.dateValues = this.todayDate + ' / ' + beginningFrom + ' - ' + endingTo;
+			this.dateValues = beginningFrom + ' - ' + endingTo;
 			this.selectedPeriod = beginningFrom + ' - ' + endingTo;
 		} else {
 			let d = new Date(this.year, this.month, 0).getDate();
-			this.dateValues = this.todayDate + ' / ' + d + '.' + this.month + '.' + this.year;
+			//this.dateValues = this.todayDate + ' / ' + d + '.' + this.month + '.' + this.year;
+			this.dateValues = d + '.' + this.month + '.' + this.year;
 			this.selectedPeriod = d + '.' + this.month + '.' + this.year;
 		}
 
