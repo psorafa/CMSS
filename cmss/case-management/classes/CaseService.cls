@@ -18,10 +18,10 @@ public with sharing class CaseService {
 		for (Case newCase : newCaseList) {
 			if (
 				newCase.RecordTypeId == CASE_PMCR_RECORDTYPE_ID &&
-				newCase.Status == '3' &&
-				oldCases.get(newCase.Id).Status != '3'
+				newCase.Status == '23' &&
+				oldCases.get(newCase.Id).Status != '23'
 			) {
-				newCase.Status = '7';
+				newCase.Status = '27';
 				pmrCaseIds.add(newCase.Id);
 			}
 		}
