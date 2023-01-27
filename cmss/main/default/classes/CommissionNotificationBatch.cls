@@ -1,7 +1,6 @@
-public class CommissionNotificationBatch implements Database.Batchable<sObject>, Schedulable, Database.Stateful {
+public class CommissionNotificationBatch implements Database.Batchable<AggregateResult>, Schedulable, Database.Stateful {
 	public Id templateId;
-	public Database.QueryLocator start(Database.BatchableContext jobId) {
-		Datetime commissionWindow = Date.Today();
+	public Iterable<AggregateResult> start(Database.BatchableContext jobId) {
 		templateId = [
 			SELECT Id, DeveloperName
 			FROM CustomNotificationType
@@ -9,21 +8,17 @@ public class CommissionNotificationBatch implements Database.Batchable<sObject>,
 			LIMIT 1
 		]
 		.Id;
-		return Database.getQueryLocator(
-			[
-				SELECT Id, OwnerId, CreatedDate
-				FROM Commission__c
-				WHERE CreatedDate >= :commissionWindow
-			]
-		);
+
+		String query = 'SELECT OwnerId FROM Commission__c WHERE CreatedDate >= TODAY GROUP BY OwnerId';
+		return new AggregateResultIterable(query);
 	}
 
-	public void execute(Database.BatchableContext jobId, List<Commission__c> commissions) {
-		system.debug('templateId: ' + templateId);
+	public void execute(Database.BatchableContext jobId, List<AggregateResult> commissions) {
 		try {
-			for (Commission__c comm : commissions) {
+			system.debug('templateId: ' + templateId);
+			for (AggregateResult comm : commissions) {
 				CustomNotificationService.sendNotification(
-					comm.OwnerId,
+					Id.valueOf((String) comm.get('OwnerId')),
 					templateId,
 					'Provozní výpisy',
 					'V CRM Fénix máte nový provizní výpis.'
