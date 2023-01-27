@@ -400,7 +400,7 @@ private class CaseServiceTest {
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		Test.startTest();
-		c.Status = '3';
+		c.Status = '23';
 		update c;
 		Test.stopTest();
 
@@ -412,7 +412,7 @@ private class CaseServiceTest {
 			WHERE Id = :invalidRequest.Id
 		];
 
-		System.assert(c.Status == '7');
+		System.assert(c.Status == '27');
 		System.assert(c.CPECallAttempts__c == 1);
 		System.assertEquals('3', validRequest.RequestStatus__c);
 		System.assertEquals('2', invalidRequest.RequestStatus__c);
@@ -448,7 +448,7 @@ private class CaseServiceTest {
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		Test.startTest();
-		c.Status = '3';
+		c.Status = '23';
 		update c;
 		Test.stopTest();
 
