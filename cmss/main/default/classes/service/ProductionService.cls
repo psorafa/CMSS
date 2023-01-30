@@ -73,28 +73,27 @@ public with sharing class ProductionService {
 						)
 					);
 				}
-
-				if (!productionShrs.isEmpty()) {
-					Database.SaveResult[] lsr = Database.insert(productionShrs, false);
-					Integer i = 0;
-					for (Database.SaveResult sr : lsr) {
-						if (!sr.isSuccess()) {
-							Database.Error err = sr.getErrors()[0];
-							if (
-								!(err.getStatusCode() == StatusCode.FIELD_FILTER_VALIDATION_EXCEPTION &&
-								err.getMessage().contains('AccessLevel'))
-							) {
-								Logger.error(
-									'Error in ProductionService.insertProductionSharing',
-									'Unable to grant sharing access for Id=' +
-									productionShrs[i].ParentId +
-									' due to following exception: ' +
-									err.getMessage()
-								);
-							}
+			}
+			if (!productionShrs.isEmpty()) {
+				Database.SaveResult[] lsr = Database.insert(productionShrs, false);
+				Integer i = 0;
+				for (Database.SaveResult sr : lsr) {
+					if (!sr.isSuccess()) {
+						Database.Error err = sr.getErrors()[0];
+						if (
+							!(err.getStatusCode() == StatusCode.FIELD_FILTER_VALIDATION_EXCEPTION &&
+							err.getMessage().contains('AccessLevel'))
+						) {
+							Logger.error(
+								'Error in ProductionService.insertProductionSharing',
+								'Unable to grant sharing access for Id=' +
+								productionShrs[i].ParentId +
+								' due to following exception: ' +
+								err.getMessage()
+							);
 						}
-						i++;
 					}
+					i++;
 				}
 			}
 		} catch (Exception e) {
