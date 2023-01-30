@@ -55,7 +55,7 @@ class TaskTriggerHandlerTest {
 	}
 
 	@isTest
-	static void afterInsertLetterTypeTest() {
+	static void afterUpdateInsertLetterRecordTypeTest() {
         Id letterRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('Letter', 'Task');
 		Account acc1 = TestDataFactory.getAccount(new Account());
 		insert acc1;
@@ -74,6 +74,7 @@ class TaskTriggerHandlerTest {
 
 		Test.startTest();
 		insert task;
+        update task;
 		Test.stopTest();
 
 		task = [
@@ -83,7 +84,6 @@ class TaskTriggerHandlerTest {
 		];
 
 		System.assertEquals('4', task.ActivityType__c);
-        
 	}
 
 	@isTest
