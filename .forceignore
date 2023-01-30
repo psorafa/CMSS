@@ -30,12 +30,6 @@ cmss/main/default/flexipages/HomePageCMSSUser.flexipage-meta.xml
 # claim management.entitlementProcess
 
 # picklist values to ignore defined in CUSTCMSSCRM-2314
-cmss/main/default/objects/Event/listViews/DopisyZCentralyZaPoslednich30Dni.listView-meta.xm
-cmss/main/default/objects/Event/listViews/DopisyZCentralyZaPoslednich7Dni.listView-meta.xml
-cmss/main/default/objects/Event/listViews/VsechnyDopisy.listView-meta.xml
-cmss/main/default/objects/Task/listViews/DopisyZCentralyZaPoslednich30Dni.listView-meta.xml
-cmss/main/default/objects/Task/listViews/DopisyZCentralyZaPoslednich7Dni.listView-meta.xml
-cmss/main/default/objects/Task/listViews/VsechnyDopisy.listView-meta.xml
 cmss/main/default/objects/Activity/fields/LetterType__c.field-meta.xml
 cmss/main/default/objects/Activity/fields/RecipientRole__c.field-meta.xml
 cmss/main/default/objects/Account/fields/AccountStatus__c.field-meta.xml
@@ -289,3 +283,4 @@ cmss/main/default/customMetadata/Configuration.LogsNotification_ReportURL.md-met
 cmss/main/default/customMetadata/Configuration.TaskLetter_CommunityListviewLink.md-meta.xml
 cmss/main/default/customMetadata/Configuration.TaskLetter_LightningListviewLink.md-meta.xml
 cmss/main/default/customMetadata/Configuration.ThreatDetectionNotifScoreThreshold.md-meta.xml
+
