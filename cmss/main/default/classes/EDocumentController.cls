@@ -13,7 +13,7 @@ global with sharing class EDocumentController {
 	public PageReference loadDocument() {
 		Task sourceTask;
 		try {
-			sourceTask = [SELECT Id, LetterId__c, LetterType__c FROM Task WHERE Id = :recordId];
+			sourceTask = [SELECT Id, LetterId__c, LetterType__c, Type FROM Task WHERE Id = :recordId];
 
 			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
 			EDocumentSOAPService.GetDocumentBySBIdRequestBody body = new EDocumentSOAPService.GetDocumentBySBIdRequestBody();
@@ -39,6 +39,7 @@ global with sharing class EDocumentController {
 		log.TaskLetterId__c = letterId;
 		log.TaskLetterType__c = letterType;
 		log.TaskId__c = taskId;
+        log.Type__c = Task.Type;
 		insert log;
 	}
 }
