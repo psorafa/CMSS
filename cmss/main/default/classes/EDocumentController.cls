@@ -26,20 +26,20 @@ global with sharing class EDocumentController {
 			isError = true;
 			showPDF = false;
 		} finally {
-			createAccessLogRecord(sourceTask.LetterId__c, sourceTask.LetterType__c, sourceTask.Id);
+			createAccessLogRecord(sourceTask);
 			Logger.saveLogs();
 		}
 		return null;
 	}
 
 	@TestVisible
-	private void createAccessLogRecord(String letterId, String letterType, String taskId) {
+	private void createAccessLogRecord(Task sourceTask) {
 		Access_Log__c log = new Access_Log__c();
 		log.RequestedBy__c = UserInfo.getUserId();
-		log.TaskLetterId__c = letterId;
-		log.TaskLetterType__c = letterType;
-		log.TaskId__c = taskId;
-        log.Type__c = Task.Type;
+		log.TaskLetterId__c = sourceTask.LetterId__c;
+		log.TaskLetterType__c = sourceTask.LetterType__c;
+		log.TaskId__c = sourceTask.Id;
+		log.Type__c = sourceTask.Type;
 		insert log;
 	}
 }
