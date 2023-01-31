@@ -1,5 +1,10 @@
 public class TaskTriggerHandler extends TriggerHandler {
-	public static String letterRecordTypeDeveloperName = 'Letter';
+	public static String LETTER_RECORDTYPE_NAME = 'Letter';
+    private Id letterRecordTypeId;
+
+    public TaskTriggerHandler() {
+        this.letterRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName(LETTER_RECORDTYPE_NAME, 'Task');
+    }
 
 	public override void beforeInsert() {
 		TaskService.setRecordType(Trigger.new);
@@ -31,7 +36,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	public override void afterUpdate() {
-		AQMessageService.handleUpdate(Trigger.new, Trigger.oldMap, Task.SObjectType);
+        handleAQMessagingUpdate((List<Task>) Trigger.new, (Map<Id, Task>) Trigger.oldMap);
 		handleUpdatedTasksShares(Trigger.old, Trigger.new);
 		handleUpdateAccountDateFields();
 		sendDelegatedTaskNotifications(Trigger.new, Trigger.oldMap);
@@ -43,6 +48,16 @@ public class TaskTriggerHandler extends TriggerHandler {
 	public override void afterUndelete() {
 		AQMessageService.handleInsert(Trigger.new, Task.SObjectType);
 	}
+
+    public void handleAQMessagingUpdate(List<Task> newTasks, Map<Id, Task> oldTaskMap) {
+        List<Task> tasksToProcess = new List<Task>();
+        for (Task task : newTasks) {
+            if (task.RecordTypeId == this.letterRecordTypeId) {
+                tasksToProcess.add(task);
+            }
+        }
+        AQMessageService.handleUpdate(tasksToProcess, oldTaskMap, Task.SObjectType);
+    }
 
 	public void updateTaskFields(Map<Id, Task> oldTasksMap, List<Task> newTasks) {
 		Map<Id, Task> contactsToTasksToGetAlias = new Map<Id, Task>();
@@ -114,7 +129,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 		List<Id> tasksToNotifyAbout = new List<Id>();
 
 		Id letterRecordTypeId = Schema.SObjectType.Task.getRecordTypeInfosByDeveloperName()
-			.get(letterRecordTypeDeveloperName)
+			.get(LETTER_RECORDTYPE_NAME)
 			.getRecordTypeId();
 		for (Task task : (List<Task>) newTasks) {
 			if (
@@ -169,7 +184,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 				AND Category__c = '1'
 				AND (IsVisibleForNel__c = TRUE
 				OR Source__c = '54')
-				AND RecordType.DeveloperName != :letterRecordTypeDeveloperName
+				AND RecordType.DeveloperName != :LETTER_RECORDTYPE_NAME
 		];
 
 		List<Task> otherTasks = [
@@ -183,7 +198,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 				AND (Category__c != '1'
 				OR (IsVisibleForNel__c = FALSE
 				AND Source__c != '54'))
-				AND RecordType.DeveloperName != :letterRecordTypeDeveloperName
+				AND RecordType.DeveloperName != :LETTER_RECORDTYPE_NAME
 		];
 
 		createMailServiceNotifications(serviceTasks);
@@ -343,7 +358,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 			'WHERE Id IN ' +
 			idsString +
 			' AND RecordType.DeveloperName != \'' +
-			letterRecordTypeDeveloperName +
+			LETTER_RECORDTYPE_NAME +
 			'\'';
 
 		List<Task> tasks = Database.query(queryString);
