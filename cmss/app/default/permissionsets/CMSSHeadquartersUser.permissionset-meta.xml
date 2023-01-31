@@ -505,6 +505,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.HasCSOBId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.HasCryptoCurrency__c</field>
         <readable>true</readable>
     </fieldPermissions>
