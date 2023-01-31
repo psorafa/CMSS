@@ -90,14 +90,21 @@ public class EDocumentControllerTest {
 
 	@IsTest
 	static void testCreateAccessLogRecord() {
+		Task testTask = TestDataFactory.getTask(
+			new Task(LetterId__c = 'letterId', LetterType__c = 'A003', Type = 'Task Type')
+		);
 		Test.startTest();
-		new EDocumentController(null).createAccessLogRecord('letterId', 'A003', 'taskId');
+		new EDocumentController(null).createAccessLogRecord(testTask);
 		Test.stopTest();
 
-		Access_Log__c log = [SELECT Id, TaskLetterId__c, TaskLetterType__c, TaskId__c FROM Access_Log__c LIMIT 1];
+		Access_Log__c log = [
+			SELECT Id, TaskLetterId__c, TaskLetterType__c, TaskId__c, Type__c
+			FROM Access_Log__c
+			LIMIT 1
+		];
 
 		System.assertEquals('letterId', log.TaskLetterId__c);
 		System.assertEquals('A003', log.TaskLetterType__c);
-		System.assertEquals('taskId', log.TaskId__c);
+		System.assertEquals('Task Type', log.Type__c);
 	}
 }
