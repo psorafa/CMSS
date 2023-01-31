@@ -170,6 +170,45 @@ private class NewPMChangeRequestControllerTest {
 	}
 
 	@IsTest
+	static void testBehavior_userIsRM() {
+		insertRoles();
+		User user = TestDataFactory.getCmssUser(new User(UserRoleId = rmAssistRoleId));
+		TestSelector selector = new TestSelector();
+		selector.assistantRoleId = rmAssistRoleId;
+		NewPMChangeRequestController.selector = selector;
+		DmlUtilMock dml = new DmlUtilMock();
+		dml.idsToAssign.add('500000000000001');
+		dml.idsToAssign.addAll(new List<Id>{ null, null, null });
+		NewPMChangeRequestController.dml = dml;
+		System.runAs(user) {
+			NewPMChangeRequestController.SaveResult result = NewPMChangeRequestController.saveData(jsonDataComplete);
+			System.debug(result);
+			System.assertEquals(true, result.isSuccess, '' + result.error);
+			System.assertEquals('500000000000001', result.caseId);
+
+			System.assertEquals('insert', dml.operations.get(0).type);
+			Case inserted = (Case) dml.operations.get(0).singleRecord;
+			System.assert(inserted != null);
+			System.assertEquals('003000000000001', inserted.NewPortfolioManager__c);
+			System.assertEquals('type1', inserted.PortfolioManagementType__c);
+			System.assertEquals('reason1', inserted.ChangeReason__c);
+			System.assertEquals('comments1', inserted.Comments);
+			System.assertEquals(pmChangeRTId, inserted.RecordTypeId);
+			System.assertEquals('21', inserted.Status);
+			System.assertEquals('0030000000000rm', inserted.RegionalManager__c);
+			System.assertEquals('003000000assist', inserted.RegionalManagerAssistant__c);
+			System.assertEquals('4', inserted.Type);
+
+			System.assertEquals('insert', dml.operations.get(1).type);
+			for (Integer i = 0; i < 3; i++) {
+				PortfolioManagementRequest__c pmc = (PortfolioManagementRequest__c) dml.operations.get(1).listData.get(i);
+				System.assertEquals('500000000000001', pmc.Case__c);
+				System.assertEquals('00100000000000' + (i+1), pmc.Account__c);
+			}
+		}
+	}
+
+	@IsTest
 	static void testBehavior_HqUser() {
 		insertRoles();
 		User user = TestDataFactory.getCmssUser(new User());

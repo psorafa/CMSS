@@ -20,6 +20,9 @@ public class HierarchyUtil {
 		}
 		UserRole parentRole = allRolesMap.get(roleId);
 		Id x100Role;
+		if (parentRole.DeveloperName.startsWith('X100_') && !parentRole.DeveloperName.endsWith('team')) {
+			x100Role = parentRole.Id;
+		}
 		while (parentRole.ParentRoleId != null) {
 			parentRole = allRolesMap.get(parentRole.ParentRoleId);
 			if (parentRole.DeveloperName.startsWith('X100_') && !parentRole.DeveloperName.endsWith('team')) {
