@@ -168,7 +168,13 @@ export default class CommissionReportsDetailParams extends LightningElement {
 
 	handlePeriodRadioChange(event) {
 		this.value = event.detail.value;
-		this.showTo = this.value == 'sinceto' ? true : false;
+		if (this.value === 'sinceto') {
+			this.showTo = true;
+		} else {
+			this.showTo = false;
+			this.yearToValue = '';
+			this.monthToValue = '';
+		}
 		this.buildPayload();
 		publish(this.messageContext, COMMISSION_CHANNEL, this.pload);
 	}
