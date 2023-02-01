@@ -15,7 +15,6 @@ public class CommissionNotificationBatch implements Database.Batchable<Aggregate
 
 	public void execute(Database.BatchableContext jobId, List<AggregateResult> commissions) {
 		try {
-			system.debug('templateId: ' + templateId);
 			for (AggregateResult comm : commissions) {
 				CustomNotificationService.sendNotification(
 					Id.valueOf((String) comm.get('OwnerId')),
