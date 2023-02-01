@@ -179,13 +179,13 @@ private class NewPortfolioManagerSelectControllerTest {
 
 		List<UserRole> lvlAssist = new List<UserRole>{
 			new UserRole(
-				DeveloperName = 'X100_RM_1_assist',
-				Name = 'X100_RM_1_assist',
+				DeveloperName = 'X110_RM_1_assist',
+				Name = 'X110_RM_1_assist',
 				ParentRoleId = top.Id
 			),
 			new UserRole(
-				DeveloperName = 'X100_RM_2_assist',
-				Name = 'X100_RM_2_assist',
+				DeveloperName = 'X110_RM_2_assist',
+				Name = 'X110_RM_2_assist',
 				ParentRoleId = top.Id
 			)
 		};
@@ -195,13 +195,13 @@ private class NewPortfolioManagerSelectControllerTest {
 
 		List<UserRole> lvlManager = new List<UserRole>{
 			new UserRole(
-				DeveloperName = 'X100_RM_1_mng',
-				Name = 'X100_RM_1_mng',
+				DeveloperName = 'X110_RM_1_mng',
+				Name = 'X110_RM_1_mng',
 				ParentRoleId = lvlAssist.get(0).Id
 			),
 			new UserRole(
-				DeveloperName = 'X100_RM_2_mng',
-				Name = 'X100_RM_2_mng',
+				DeveloperName = 'X110_RM_2_mng',
+				Name = 'X110_RM_2_mng',
 				ParentRoleId = lvlAssist.get(1).Id
 			)
 		};
