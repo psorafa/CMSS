@@ -70,10 +70,9 @@ class TaskTriggerHandlerTest {
             RecordTypeId = letterRecordTypeId
 		);
 
-        // No HTTP mock in passing test indicates that there is no AQ notification call for record with RecordType = 'Letter'
-
 		Test.startTest();
 		insert task;
+		task.ActivityDate = Date.today().addYears(2);
         update task;
 		Test.stopTest();
 

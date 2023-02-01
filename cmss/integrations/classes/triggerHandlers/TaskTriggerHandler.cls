@@ -52,7 +52,7 @@ public class TaskTriggerHandler extends TriggerHandler {
     public void handleAQMessagingUpdate(List<Task> newTasks, Map<Id, Task> oldTaskMap) {
         List<Task> tasksToProcess = new List<Task>();
         for (Task task : newTasks) {
-            if (task.RecordTypeId == this.letterRecordTypeId) {
+			if (task.RecordTypeId != this.letterRecordTypeId) {
                 tasksToProcess.add(task);
             }
         }
