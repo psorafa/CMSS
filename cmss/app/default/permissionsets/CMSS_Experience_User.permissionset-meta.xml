@@ -475,7 +475,7 @@
         <editable>false</editable>
         <field>Account.GroupSegment__c</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>    
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.HasCryptoCurrency__c</field>
@@ -6229,6 +6229,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Position__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.ProvisionNumberCSOB__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
