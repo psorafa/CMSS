@@ -3,7 +3,7 @@ public class AccountTriggerHandler extends TriggerHandler {
 		validateAccount(Trigger.new);
 		invalidateAccount(Trigger.new);
 		setOwner(Trigger.new);
-        setHasEmailHasPhoneFields(null, (List<Account>) Trigger.new);
+		setHasEmailHasPhoneFields(null, (List<Account>) Trigger.new);
 	}
 
 	public override void beforeUpdate() {
@@ -11,7 +11,7 @@ public class AccountTriggerHandler extends TriggerHandler {
 		invalidateAccount(Trigger.new);
 		setOwner(Trigger.new);
 		setLastPortfolioManager((Map<Id, Account>) Trigger.oldMap, (List<Account>) Trigger.new);
-        setHasEmailHasPhoneFields((Map<Id, Account>) Trigger.oldMap, (List<Account>) Trigger.new);
+		setHasEmailHasPhoneFields((Map<Id, Account>) Trigger.oldMap, (List<Account>) Trigger.new);
 	}
 
 	public override void beforeDelete() {
@@ -32,35 +32,33 @@ public class AccountTriggerHandler extends TriggerHandler {
 
 	// ***************************** handlers and helping methods***************************************** //
 
-    @TestVisible
-    private static void setHasEmailHasPhoneFields(Map<Id, Account> oldMap, List<Account> newList) {
-        for (Account acc : newList) {
-            if (oldMap == null) {
-                updateHasFields(acc);
-            } else {
-                if (oldMap.get(acc.Id).Phone != acc.Phone 
-                        || oldMap.get(acc.Id).PersonEmail != acc.PersonEmail 
-                        || acc.HasEmail__c == null 
-                        || acc.HasPhone__c == null) {
+	@TestVisible
+	private static void setHasEmailHasPhoneFields(Map<Id, Account> oldMap, List<Account> newList) {
+		for (Account acc : newList) {
+			if (
+				oldMap == null ||
+				oldMap.get(acc.Id).Phone != acc.Phone ||
+				oldMap.get(acc.Id).PersonEmail != acc.PersonEmail ||
+				acc.HasEmail__c == null ||
+				acc.HasPhone__c == null
+			) {
+				updateHasFields(acc);
+			}
+		}
+	}
 
-                    updateHasFields(acc);
-                }
-            }
-        }
-    }
-
-    private static void updateHasFields(Account acc) {
-        if (acc.Phone != null) {
-            acc.HasPhone__c = true;
-        } else {
-            acc.HasPhone__c = false;
-        }
-        if (acc.PersonEmail != null) {
-            acc.HasEmail__c = true;
-        } else {
-            acc.HasEmail__c = false;
-        }
-    }
+	private static void updateHasFields(Account acc) {
+		if (acc.Phone != null) {
+			acc.HasPhone__c = true;
+		} else {
+			acc.HasPhone__c = false;
+		}
+		if (acc.PersonEmail != null) {
+			acc.HasEmail__c = true;
+		} else {
+			acc.HasEmail__c = false;
+		}
+	}
 
 	@TestVisible
 	private static void setOwner(List<Account> accounts) {
