@@ -7,6 +7,38 @@ public with sharing class CustomFilterService {
 		this.objectType = objectType;
 		this.productType = productType;
 	}
+
+	private CustomFilterItemDto getDtoItem(
+		CustomSearchFilter__c csf,
+		Map<Id, CustomSearchFilter__c> customFilterLabelMap
+	) {
+		CustomFilterItemDto dtoItem = new CustomFilterItemDto();
+		dtoItem.productType = csf.ProductType__c;
+		dtoItem.productTypeLabel = customFilterLabelMap.get(csf.Id).ProductType__c;
+		dtoItem.fieldName = csf.FieldApiName__c;
+		dtoItem.dataType = csf.RecordType.DeveloperName;
+		dtoItem.relatedObject = csf.RelatedObject__c;
+		if (dtoItem.dataType == 'Picklist') {
+			dtoItem.availableFilterList = getPicklistOptions(dtoItem.fieldName, dtoItem.relatedObject);
+		} else {
+			dtoItem.availableFilterList = getAvailableFilterList(csf.Filter__c);
+		}
+		dtoItem.objectTypeForLabel = dtoItem.relatedObject;
+		dtoItem.fieldNameForLabel = dtoItem.fieldName;
+		if (dtoItem.fieldName.indexOf('.') > -1) {
+			dtoItem.fieldLabel = csf.Name;
+		} else {
+			dtoItem.fieldLabel = Schema.getGlobalDescribe()
+				.get(dtoItem.relatedObject)
+				.getDescribe()
+				.fields.getMap()
+				.get(dtoItem.fieldName)
+				.getDescribe()
+				.getLabel();
+		}
+		return dtoItem;
+	}
+
 	public List<CustomFilterItemDto> getCustomFilterMap() {
 		List<CustomSearchFilter__c> customFilterList = [
 			SELECT
@@ -32,31 +64,8 @@ public with sharing class CustomFilterService {
 
 		List<CustomFilterItemDto> dtoItemList = new List<CustomFilterItemDto>();
 		createLabelValueMapFromFilter();
-		for (CustomSearchFilter__c csf : customFilterList) {
-			CustomFilterItemDto dtoItem = new CustomFilterItemDto();
-			dtoItem.productType = csf.ProductType__c;
-			dtoItem.productTypeLabel = customFilterLabelMap.get(csf.Id).ProductType__c;
-			dtoItem.fieldName = csf.FieldApiName__c;
-			dtoItem.dataType = csf.RecordType.DeveloperName;
-			dtoItem.relatedObject = csf.RelatedObject__c;
-			if (dtoItem.dataType == 'Picklist') {
-				dtoItem.availableFilterList = getPicklistOptions(dtoItem.fieldName, dtoItem.relatedObject);
-			} else {
-				dtoItem.availableFilterList = getAvailableFilterList(csf.Filter__c);
-			}
-			dtoItem.objectTypeForLabel = dtoItem.relatedObject;
-			dtoItem.fieldNameForLabel = dtoItem.fieldName;
-			if (dtoItem.fieldName.indexOf('.') > -1) {
-				dtoItem.fieldLabel = csf.Name;
-			} else {
-				dtoItem.fieldLabel = Schema.getGlobalDescribe()
-					.get(dtoItem.relatedObject)
-					.getDescribe()
-					.fields.getMap()
-					.get(dtoItem.fieldName)
-					.getDescribe()
-					.getLabel();
-			}
+		for (CustomSearchFilter__c customSearchFilter : customFilterList) {
+			CustomFilterItemDto dtoItem = getDtoItem(customSearchFilter, customFilterLabelMap);
 			dtoItemList.add(dtoItem);
 		}
 
@@ -102,8 +111,8 @@ public with sharing class CustomFilterService {
 			if (i == dotsCount) {
 				SObjectField targetSObjectField = targetObject.getDescribe().fields.getMap().get(targetField);
 				Schema.DescribeFieldResult targetFieldResult = targetSObjectField.getDescribe();
-				List<Schema.PicklistEntry> ple = targetFieldResult.getPicklistValues();
-				for (Schema.PicklistEntry pickListVal : ple) {
+				List<Schema.PicklistEntry> picklistEntries = targetFieldResult.getPicklistValues();
+				for (Schema.PicklistEntry pickListVal : picklistEntries) {
 					String itemLabel = pickListVal.getLabel();
 					String itemValue = pickListVal.getValue();
 					SelectOption option = new SelectOption(itemValue, itemLabel);

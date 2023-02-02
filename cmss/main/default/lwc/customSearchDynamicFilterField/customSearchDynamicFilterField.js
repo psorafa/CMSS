@@ -23,17 +23,6 @@ export default class CustomSearchDynamicFilterField extends LightningElement {
 
 	selectedValue;
 
-	/*@wire(getObjectInfo, { objectApiName: '$objectType' })
-	oppInfo({ data, error }) {
-		if (data) {
-			this.label = data.fields[this.fieldName].label;
-		}
-
-		if (error) {
-			this.errorToastMessage('', error.body.message);
-		}
-	}*/
-
 	get inputType() {
 		if (this.fieldDataType === 'Date') {
 			return 'date';

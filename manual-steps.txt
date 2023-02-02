@@ -47,7 +47,6 @@ pre     Před prvním deploymentem na prostředí zakomentovat ve .forceignore
             cmss/main/default/objects/Commission__c/fields/ProductProvider__c.field-meta.xml
             cmss/main/default/objects/Commission__c/fields/StatementType__c.field-meta.xml
             cmss/main/default/objects/Commission__c/fields/ExpenditureFlatRate__c.field-meta.xml
-post    Vyplnit custom metadata Configuration__mdt pro Threat Detection (
 pre     pred prvnim deploymentem na prostredi smazat v prostredi fieldy HasEmail__c a HasPhone__c na Account Objektu            
 post    vyplnit custom metadata Configuration__mdt pro Threat Detection (
             APIAnomalyEventNotifReceiver = emaily prijemcu oddelene carkou, 

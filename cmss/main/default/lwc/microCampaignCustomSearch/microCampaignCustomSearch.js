@@ -208,15 +208,17 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			const objType = 'PortfolioManagementRequest__c';
 			const filterCond = 'Id != null';
 			const fieldset = 'PortfolioManagementRequest';
-			this.selectedConfiguration
-				? ((this.selectedConfiguration.ObjectType__c = objType),
-				  (this.selectedConfiguration.FilterCondition__c = filterCond),
-				  (this.selectedConfiguration.FieldsetName__c = fieldset))
-				: (this.selectedConfiguration = {
-						ObjectType__c: objType,
-						FilterCondition__c: filterCond,
-						FieldsetName__c: fieldset
-				  });
+			if (this.selectedConfiguration) {
+				this.selectedConfiguration.ObjectType__c = objType;
+				this.selectedConfiguration.FilterCondition__c = filterCond;
+				this.selectedConfiguration.FieldsetName__c = fieldset;
+			} else {
+				this.selectedConfiguration = {
+					ObjectType__c: objType,
+					FilterCondition__c: filterCond,
+					FieldsetName__c: fieldset
+				};
+			}
 		} else {
 			this.addSelectedUsersToFilter();
 			this.addRecordTypeFilter();
@@ -304,27 +306,13 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	get isRequestNotValid() {
 		if (this.selectedObjectType === 'PortfolioManagementRequest__c') {
-			let hasCaseId = false;
-			let hasA = false;
-			let hasC = false;
-			for (const key in this.filterConditionList) {
-				switch (this.filterConditionList[key].fieldName) {
-					case 'Case__r.CaseID__c':
-						hasCaseId = true;
-						break;
-					case 'Case__r.Account.PortfolioMngmtA__r.CommissionAccountBase__c':
-						hasA = true;
-						break;
-					case 'Case__r.Account.PortfolioMngmtC__r.CommissionAccountBase__c':
-						hasC = true;
-						break;
-					default:
-						hasCaseId = false;
-						hasA = false;
-						hasC = false;
-						break;
-				}
-			}
+			let hasCaseId = this.filterConditionList.find((element) => element.fieldName === 'Case__r.CaseID__c');
+			let hasA = this.filterConditionList.find(
+				(element) => element.fieldName === 'Case__r.Account.PortfolioMngmtA__r.CommissionAccountBase__c'
+			);
+			let hasC = this.filterConditionList.find(
+				(element) => element.fieldName === 'Case__r.Account.PortfolioMngmtC__r.CommissionAccountBase__c'
+			);
 			if (hasCaseId || (hasA && hasC)) {
 				return false;
 			} else {
