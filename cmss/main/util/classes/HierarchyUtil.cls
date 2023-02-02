@@ -12,24 +12,24 @@ public class HierarchyUtil {
 	 *
 	 * @param roleId Id of role from which to start searching.
 	 *
-	 * @return Highest 'X100' role, see description.
+	 * @return Highest 'X110' role, see description.
 	 */
 	public Id getRegionalManagerOrAssistantRoleOf(Id roleId) {
 		if (roleId == null) {
 			return null;
 		}
 		UserRole parentRole = allRolesMap.get(roleId);
-		Id x100Role;
-		if (parentRole.DeveloperName.startsWith('X100_') && !parentRole.DeveloperName.endsWith('team')) {
-			x100Role = parentRole.Id;
+		Id x110Role;
+		if (parentRole.DeveloperName.startsWith('X110_') && !parentRole.DeveloperName.endsWith('team')) {
+			x110Role = parentRole.Id;
 		}
 		while (parentRole.ParentRoleId != null) {
 			parentRole = allRolesMap.get(parentRole.ParentRoleId);
-			if (parentRole.DeveloperName.startsWith('X100_') && !parentRole.DeveloperName.endsWith('team')) {
-				x100Role = parentRole.Id;
+			if (parentRole.DeveloperName.startsWith('X110_') && !parentRole.DeveloperName.endsWith('team')) {
+				x110Role = parentRole.Id;
 			}
 		}
-		return x100Role;
+		return x110Role;
 	}
 
 	public Set<Id> getSubordinateRolesOf(Id parentRoleId) {
@@ -57,7 +57,7 @@ public class HierarchyUtil {
 	public Boolean roleIsRegionalManagerOrAssistant(Id roleId) {
 		UserRole role = allRolesMap.get(roleId);
 		return (
-			role != null && role.DeveloperName.startsWithIgnoreCase('X100_') &&
+			role != null && role.DeveloperName.startsWithIgnoreCase('X110_') &&
 			(role.DeveloperName.endsWithIgnoreCase('ASSIST') || role.DeveloperName.endsWithIgnoreCase('MNG'))
 		);
 	}
@@ -73,7 +73,7 @@ public class HierarchyUtil {
 	}
 
 	@TestVisible
-	private virtual class Selector {
+	private without sharing virtual class Selector {
 		public virtual List<UserRole> selectRoles() {
 			return [SELECT Id, DeveloperName, ParentRoleId FROM UserRole];
 		}
