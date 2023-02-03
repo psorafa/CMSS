@@ -21,7 +21,6 @@ public with sharing class FieldsetService {
 					String displayTypeName = displayType.name();
 					String fieldLabel = member.getLabel();
 					List<SObjectType> sObjectTypes = fieldDescribe.getReferenceTo();
-
 					if (Schema.DisplayType.ID.equals(displayType) || Schema.DisplayType.REFERENCE.equals(displayType)) {
 						if (fieldDescribe.isCustom()) {
 							fieldName = fieldName.replaceAll('__c', '__r') + '.Name';
@@ -67,7 +66,7 @@ public with sharing class FieldsetService {
 					}
 					if (
 						Schema.DisplayType.PICKLIST.equals(displayType) ||
-							Schema.DisplayType.MULTIPICKLIST.equals(displayType)
+						Schema.DisplayType.MULTIPICKLIST.equals(displayType)
 					) {
 						fieldName = 'toLabel(' + fieldName + ')';
 					}

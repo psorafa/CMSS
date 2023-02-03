@@ -28,9 +28,8 @@ export default class CustomSearchDynamicFilter extends LightningElement {
 
 	handleFieldChange(event) {
 		const eventData = event.detail;
-
 		const existingItem = this.fieldsWithCustomFilters.filter(
-			item =>
+			(item) =>
 				item.fieldName === eventData.fieldName &&
 				item.objectName === eventData.objectType &&
 				item.productType === eventData.productType
@@ -44,7 +43,7 @@ export default class CustomSearchDynamicFilter extends LightningElement {
 			}
 		} else {
 			const selectedFilterItems = this.customFilterItems.filter(
-				item =>
+				(item) =>
 					item.fieldName === eventData.fieldName &&
 					item.relatedObject === eventData.objectType &&
 					item.productType === eventData.productType
@@ -76,7 +75,7 @@ export default class CustomSearchDynamicFilter extends LightningElement {
 
 	loadFromArray(fieldName, objectName, productType, array) {
 		return array.filter(
-			item => item.fieldName === fieldName && item.objectName === objectName && item.productType === productType
+			(item) => item.fieldName === fieldName && item.objectName === objectName && item.productType === productType
 		);
 	}
 

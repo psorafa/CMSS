@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
         <apexClass>APRD__ObjectDetailController</apexClass>
@@ -8175,6 +8175,10 @@
         <recordType>CustomSearchFilter__c.Text</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CustomSearchFilter__c.Picklist</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>     
     <recordTypeVisibilities>
         <recordType>Knowledge__kav.Evaluation</recordType>
         <visible>true</visible>

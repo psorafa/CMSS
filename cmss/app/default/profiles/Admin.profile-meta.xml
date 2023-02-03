@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>KnowledgeBase</application>
@@ -7939,6 +7939,10 @@
         <recordType>CustomSearchFilter__c.Text</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CustomSearchFilter__c-Custom Search Filter Layout</layout>
+        <recordType>CustomSearchFilter__c.Picklist</recordType>
+    </layoutAssignments>    
+    <layoutAssignments>
         <layout>Event-Event Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -8849,6 +8853,11 @@
         <recordType>CustomSearchFilter__c.Text</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CustomSearchFilter__c.Picklist</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>    
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Knowledge__kav.Evaluation</recordType>

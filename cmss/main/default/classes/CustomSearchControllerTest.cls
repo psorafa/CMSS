@@ -12,6 +12,7 @@ private class CustomSearchControllerTest {
 		User user4 = createUser(user2.Id, 'user4', profile.Id);
 		insert user4;
 
+		List<CustomSearchFilter__c> csfList = new List<CustomSearchFilter__c>();
 		CustomSearchFilter__c csf = new CustomSearchFilter__c(
 			FieldApiName__c = 'Name',
 			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('Text', 'CustomSearchFilter__c'),
@@ -19,7 +20,16 @@ private class CustomSearchControllerTest {
 			ProductType__c = 'PersonAccount',
 			Filter__c = 'contains'
 		);
-		insert csf;
+		csfList.add(csf);
+		CustomSearchFilter__c csfPortfolio = new CustomSearchFilter__c(
+			FieldApiName__c = 'Case__r.Account.PortfolioMngmtC__r.CommissionAccountBase__c',
+			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('Text', 'CustomSearchFilter__c'),
+			RelatedObject__c = 'PortfolioManagementRequest__c',
+			ProductType__c = 'PortfolioManagementRequest__c',
+			Filter__c = 'contains'
+		);
+		csfList.add(csfPortfolio);
+		insert csfList;
 	}
 
 	@IsTest
@@ -53,6 +63,19 @@ private class CustomSearchControllerTest {
 		Test.stopTest();
 
 		System.assertEquals(1, result.size());
+	}
+
+	@IsTest
+	static void getCustomFilterGetPicklistOptionsTest() {
+		CustomFilterService cfs = new CustomFilterService(
+			'PortfolioManagementRequest__c',
+			'PortfolioManagementRequest__c'
+		);
+		Test.startTest();
+		List<SelectOption> result = cfs.getPicklistOptions('Case__r.ChangeReason__c', 'PortfolioManagementRequest__c');
+		Test.stopTest();
+
+		System.assert(result.size() > 0);
 	}
 
 	private static User createUser(Id managerId, String roleName, Id profileId) {

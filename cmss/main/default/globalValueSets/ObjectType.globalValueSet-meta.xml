@@ -10,6 +10,11 @@
         <default>false</default>
         <label>Asset</label>
     </customValue>
+    <customValue>
+        <fullName>PortfolioManagementRequest__c</fullName>
+        <default>false</default>
+        <label>Portfolio Management Request</label>
+    </customValue>
     <masterLabel>Object Type</masterLabel>
     <sorted>false</sorted>
 </GlobalValueSet>

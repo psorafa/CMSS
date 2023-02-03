@@ -16,6 +16,8 @@ public with sharing class CustomSoqlService {
 		String queryFields = 'Id';
 		if (filterRequestDto.objectName.equals('Asset')) {
 			queryFields = 'AccountId';
+		} else if (filterRequestDto.objectName.equals('PortfolioManagementRequest__c')) {
+			queryFields = 'Account__c';
 		}
 
 		Set<Id> accountIds = new Set<Id>();
@@ -36,13 +38,13 @@ public with sharing class CustomSoqlService {
 		String queryFields = getQueryFieldsFromFieldSetService(service);
 		String query =
 			prepareQuery(queryFields) +
-				((this.filterRequestDto.sortBy != null)
-					? (' ORDER BY ' + this.filterRequestDto.sortBy + ' ' + this.filterRequestDto.sortDirection)
-					: '') +
-				' LIMIT ' +
-				this.filterRequestDto.pageSize +
-				' OFFSET ' +
-				this.filterRequestDto.pageSize * (this.filterRequestDto.pageNumber - 1);
+			((this.filterRequestDto.sortBy != null)
+				? (' ORDER BY ' + this.filterRequestDto.sortBy + ' ' + this.filterRequestDto.sortDirection)
+				: '') +
+			' LIMIT ' +
+			this.filterRequestDto.pageSize +
+			' OFFSET ' +
+			this.filterRequestDto.pageSize * (this.filterRequestDto.pageNumber - 1);
 		System.debug('data query = ' + query);
 		return Database.query(query);
 	}
@@ -68,11 +70,11 @@ public with sharing class CustomSoqlService {
 		String customFilterString = String.join(customFilters, ' AND ');
 		String baseQuery =
 			'SELECT ' +
-				queryFields +
-				' FROM ' +
-				this.filterRequestDto.configuration.ObjectType__c +
-				' WHERE ' +
-				this.filterRequestDto.configuration.FilterCondition__c;
+			queryFields +
+			' FROM ' +
+			this.filterRequestDto.configuration.ObjectType__c +
+			' WHERE ' +
+			this.filterRequestDto.configuration.FilterCondition__c;
 
 		if (!customFilters.isEmpty()) {
 			return baseQuery + ' AND ' + customFilterString;
@@ -84,6 +86,8 @@ public with sharing class CustomSoqlService {
 		Set<String> fieldList = service.getFieldsetInfoToSoql();
 		if (this.filterRequestDto.objectName.equals('Asset')) {
 			fieldList.add('AccountId');
+		} else if (this.filterRequestDto.objectName.equals('PortfolioManagementRequest__c')) {
+			fieldList.add('Account__c');
 		}
 
 		if (Test.isRunningTest() && fieldList.isEmpty()) {
@@ -101,23 +105,29 @@ public with sharing class CustomSoqlService {
 		String filterValue,
 		String dataType
 	) {
-		switch on inboundOperator {
-			when 'exact match' {
-				return dataType == 'Text' ? fieldName + ' = \'' + filterValue + '\'' : fieldName + ' = ' + filterValue;
-			}
-			when 'contains' {
-				return fieldName + ' LIKE \'%' + filterValue + '%\'';
-			}
-			when 'start with' {
-				return fieldName + ' LIKE \'' + filterValue + '%\'';
-			}
-			when 'end with' {
-				return fieldName + ' LIKE \'%' + filterValue + '\'';
-			}
-			when else {
-				return dataType == 'Text'
-					? fieldName + ' ' + inboundOperator + ' \'' + filterValue + '\''
-					: fieldName + ' ' + inboundOperator + ' ' + filterValue;
+		if (dataType == 'Picklist') {
+			return fieldName + ' = \'' + filterValue + '\'';
+		} else {
+			switch on inboundOperator {
+				when 'exact match' {
+					return dataType == 'Text'
+						? fieldName + ' = \'' + filterValue + '\''
+						: fieldName + ' = ' + filterValue;
+				}
+				when 'contains' {
+					return fieldName + ' LIKE \'%' + filterValue + '%\'';
+				}
+				when 'start with' {
+					return fieldName + ' LIKE \'' + filterValue + '%\'';
+				}
+				when 'end with' {
+					return fieldName + ' LIKE \'%' + filterValue + '\'';
+				}
+				when else {
+					return dataType == 'Text'
+						? fieldName + ' ' + inboundOperator + ' \'' + filterValue + '\''
+						: fieldName + ' ' + inboundOperator + ' ' + filterValue;
+				}
 			}
 		}
 	}

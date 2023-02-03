@@ -76,7 +76,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		LBL_SEARCH_SECTION_TITLE,
 		LBL_DATA_SECTION_TITLE,
 		LBL_CREATE_CAMPAIGN_BUTTON_TITLE,
-        LBL_CREATE_PMR_BUTTON_TITLE,
+		LBL_CREATE_PMR_BUTTON_TITLE,
 		LBL_CREATE_CAMPAIGN_MODAL_TITLE,
 		LBL_RECORDS_PER_PAGE_TITLE,
 		LBL_TOTAL_RECORDS_COUNT_LABEL,
@@ -203,8 +203,22 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			this.errorToastMessage(LBL_INVALID_REQUEST_TITLE, LBL_INVALID_REQUEST_MESSAGE);
 			return;
 		}
+
+		if (this.selectedObjectType === 'PortfolioManagementRequest__c') {
+			const objType = 'PortfolioManagementRequest__c';
+			const filterCond = 'Id != null';
+			const fieldset = 'PortfolioManagementRequest';
+			this.selectedConfiguration = {
+				ObjectType__c: objType,
+				FilterCondition__c: filterCond,
+				FieldsetName__c: fieldset,
+				OwnerFieldName__c: 'PortfolioMngmtA__c'
+			};
+		} else {
+			this.addRecordTypeFilter();
+		}
 		this.addSelectedUsersToFilter();
-		this.addRecordTypeFilter();
+
 		this.loading = true;
 
 		const request = {
@@ -287,7 +301,22 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	}
 
 	get isRequestNotValid() {
-		return this.selectedConfiguration == null;
+		if (this.selectedObjectType === 'PortfolioManagementRequest__c') {
+			let hasCaseId = this.filterConditionList.find((element) => element.fieldName === 'Case__r.CaseID__c');
+			let hasA = this.filterConditionList.find(
+				(element) => element.fieldName === 'Case__r.Account.PortfolioMngmtA__r.CommissionAccountBase__c'
+			);
+			let hasC = this.filterConditionList.find(
+				(element) => element.fieldName === 'Case__r.Account.PortfolioMngmtC__r.CommissionAccountBase__c'
+			);
+			if (hasCaseId || (hasA && hasC)) {
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			return this.selectedConfiguration == null;
+		}
 	}
 
 	get isTableVisible() {
@@ -343,6 +372,10 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 				this.selectedAccountIds.length === this.totalRecordsCount && this.totalRecordsCount !== 0;
 		} else if (this.selectedConfiguration.ObjectType__c === 'Asset') {
 			this.selectedAccountIds = selectedRows.map((row) => row.AccountId);
+			this.allAccountsSelected =
+				this.selectedAccountIds.length === this.totalRecordsCount && this.totalRecordsCount !== 0;
+		} else if (this.selectedConfiguration.ObjectType__c === 'PortfolioManagementRequest__c') {
+			this.selectedAccountIds = selectedRows.map((row) => row.Account__c);
 			this.allAccountsSelected =
 				this.selectedAccountIds.length === this.totalRecordsCount && this.totalRecordsCount !== 0;
 		} else {

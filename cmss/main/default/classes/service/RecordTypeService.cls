@@ -65,8 +65,14 @@ public with sharing class RecordTypeService {
 					if (!dependentPicklistValues.containsKey((String) controlValue)) {
 						dependentPicklistValues.put((String) controlValue, new List<String>());
 					}
+
 					dependentPicklistValues.get((String) controlValue).add(entry.getValue());
 				}
+			} else if (entry.isActive()) {
+				if (!dependentPicklistValues.containsKey('PortfolioManagementRequest__c')) {
+					dependentPicklistValues.put('PortfolioManagementRequest__c', new List<String>());
+				}
+				dependentPicklistValues.get('PortfolioManagementRequest__c').add(entry.getValue());
 			}
 		}
 		return dependentPicklistValues;

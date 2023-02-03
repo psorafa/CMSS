@@ -16,9 +16,14 @@ export default class CustomSearchSelectBaseConfiguration extends LightningElemen
 	productName;
 
 	labels = { LBL_SelectedConfiguration };
+	show = true;
 
 	@wire(getObjectInfo, { objectApiName: SEARCH_CONFIGURATION_OBJECT })
 	loadColumnsData({ error, data }) {
+		if (this.objectType === 'PortfolioManagementRequest__c') {
+			this.show = false;
+		}
+
 		if (data) {
 			const columnNameLabel = data.fields.Name.label;
 			const columnConditionLabel = data.fields.Description__c.label;

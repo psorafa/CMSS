@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Text</fullName>
     <active>true</active>
@@ -61,6 +61,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>PortfolioManagementRequest%5F%5Fc</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>RiskLifeInsurance</fullName>
             <default>false</default>
         </values>
@@ -73,6 +77,10 @@
         </values>
         <values>
             <fullName>Asset</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PortfolioManagementRequest%5F%5Fc</fullName>
             <default>false</default>
         </values>
     </picklistValues>

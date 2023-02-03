@@ -4,7 +4,7 @@ public with sharing class CustomSearchController {
 		CustomFilterService service = new CustomFilterService(objectType, productName);
 
 		return service.getCustomFilterMap();
-	}
+	} 
 
 	@AuraEnabled(Cacheable=true)
 	public static List<RecordTypeInfoDto> loadTypeList() {
@@ -22,7 +22,7 @@ public with sharing class CustomSearchController {
 	}
 
 	@AuraEnabled
-	public static Integer countResults(CustomSearchFilterRequestDto dto) {
+	public static Integer countResults(CustomSearchFilterRequestDto dto) {      
 		try {
 			CustomSoqlService service = new CustomSoqlService(dto);
 			return service.getDataCountFromDbDto();
