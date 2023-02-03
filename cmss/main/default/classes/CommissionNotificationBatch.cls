@@ -9,8 +9,9 @@ public class CommissionNotificationBatch implements Database.Batchable<Aggregate
 		]
 		.Id;
 
-		String query = 'SELECT OwnerId FROM Commission__c WHERE CreatedDate >= TODAY GROUP BY OwnerId';
-		return new AggregateResultIterable(query);
+		return new AggregateResultIterable(
+			[SELECT OwnerId FROM Commission__c WHERE CreatedDate >= TODAY GROUP BY OwnerId]
+		);
 	}
 
 	public void execute(Database.BatchableContext jobId, List<AggregateResult> commissions) {

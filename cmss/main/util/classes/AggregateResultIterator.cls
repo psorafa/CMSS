@@ -2,9 +2,9 @@ global class AggregateResultIterator implements Iterator<AggregateResult> {
 	AggregateResult[] results { get; set; }
 	Integer index { get; set; }
 
-	global AggregateResultIterator(String query) {
+	global AggregateResultIterator(AggregateResult[] aggrResult) {
 		index = 0;
-		results = Database.query(query);
+		results = aggrResult;
 	}
 
 	global boolean hasNext() {
