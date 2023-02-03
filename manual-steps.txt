@@ -71,7 +71,8 @@ post    Vyplnit custom metadata Configuration__mdt -
 post    Vyplnit custom metadata Configuration__mdt pro CPE call retry mechanismus
             - changeCPERequest_retryCalloutInterval - pocatecni interval v minutach, po kterem dojde k dalsimu pokusu 
             - changeCPERequest_retryCalloutAttempts - pocet pokusu
-post    V Dashabordu Pořadí MOT dle pilíře, Pořadí RM dle pilíře, Plnění produkce RM/MOS, Plnění produkce Manažera obchodního týmu a Produkce OZ – PPP přepsat zobrazení filtrů na H1 2023, H2 2022 a H1 2022 dle začátku období (nepodporují metadata)
+post    Po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_CommissionArticleURL (link do Fenix Docs Community na konkrétní článek)
+post    V Dashabordu Pořadí MOT dle pilíře, Pořadí RM dle pilíře, Plnění produkce RM/MOS, Plnění produkce Manažera obchodního týmu a Produkce OZ – PPP přepsat zobrazení filtrů na 1. pololetí 2023, 2. pololetí 2022 a 1. pololetí 2022 dle začátku období (nepodporují metadata)
 post    Pravděpodobně bude řeba smazat dashboard 'Úspěšnost kampaní' na každém prostředí manuálně
 post    Přidat Custom Link na report RMOT11 do komponenty "Plnění nováčků za aktuální měsíc" v Dashboardu Homepage (MOT)
 post    Naplánovat schedulable ExceededLogsNotificationSchedule - vždy 1. den v měsíci o půlnoci
