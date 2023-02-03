@@ -430,6 +430,7 @@ private class CaseServiceTest {
 					.get('PortfolioManagementChangeRequest')
 					.getRecordTypeId(),
 				NewPortfolioManager__c = u.Id,
+				OwnerId = u.Id,
 				Status = '21'
 			)
 		);
@@ -449,7 +450,9 @@ private class CaseServiceTest {
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		Test.startTest();
 		c.Status = '23';
-		update c;
+		System.runAs(u) {
+			update c;
+		}
 		Test.stopTest();
 
 		Log__c[] logs = [SELECT Payload__c FROM Log__c WHERE Message__c = 'Invalid response!'];
