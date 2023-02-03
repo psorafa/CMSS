@@ -208,21 +208,17 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 			const objType = 'PortfolioManagementRequest__c';
 			const filterCond = 'Id != null';
 			const fieldset = 'PortfolioManagementRequest';
-			if (this.selectedConfiguration) {
-				this.selectedConfiguration.ObjectType__c = objType;
-				this.selectedConfiguration.FilterCondition__c = filterCond;
-				this.selectedConfiguration.FieldsetName__c = fieldset;
-			} else {
-				this.selectedConfiguration = {
-					ObjectType__c: objType,
-					FilterCondition__c: filterCond,
-					FieldsetName__c: fieldset
-				};
-			}
+			this.selectedConfiguration = {
+				ObjectType__c: objType,
+				FilterCondition__c: filterCond,
+				FieldsetName__c: fieldset,
+				OwnerFieldName__c: 'PortfolioMngmtA__c'
+			};
 		} else {
-			this.addSelectedUsersToFilter();
 			this.addRecordTypeFilter();
 		}
+		this.addSelectedUsersToFilter();
+
 		this.loading = true;
 
 		const request = {
