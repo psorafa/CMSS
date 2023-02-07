@@ -249,7 +249,7 @@
         <name>Send_Notifications</name>
         <label>Send Notifications</label>
         <locationX>1744</locationX>
-        <locationY>3215</locationY>
+        <locationY>3767</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
@@ -388,7 +388,7 @@
         <name>Assign_collection_without_nulls</name>
         <label>Assign collection without nulls</label>
         <locationX>1744</locationX>
-        <locationY>3095</locationY>
+        <locationY>3647</locationY>
         <assignmentItems>
             <assignToReference>NotificationRecipients</assignToReference>
             <operator>Assign</operator>
@@ -417,33 +417,10 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_Notification_Recipients</name>
-        <label>Assign Notification Recipients</label>
-        <locationX>182</locationX>
-        <locationY>2543</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.RegionalManager__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.RegionalManagerAssistant__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Remove_nulls</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Assign_Notification_Recipients_2</name>
         <label>Assign Notification Recipients 2</label>
-        <locationX>622</locationX>
-        <locationY>2207</locationY>
+        <locationX>490</locationX>
+        <locationY>2327</locationY>
         <assignmentItems>
             <assignToReference>NotificationRecipients</assignToReference>
             <operator>Add</operator>
@@ -458,8 +435,8 @@
     <assignments>
         <name>Assign_Notification_Recipients_3</name>
         <label>Assign Notification Recipients 3</label>
-        <locationX>1326</locationX>
-        <locationY>2087</locationY>
+        <locationX>1194</locationX>
+        <locationY>2207</locationY>
         <assignmentItems>
             <assignToReference>NotificationRecipients</assignToReference>
             <operator>Add</operator>
@@ -474,36 +451,13 @@
     <assignments>
         <name>Assign_Notification_Recipients_4</name>
         <label>Assign Notification Recipients 4</label>
-        <locationX>1766</locationX>
-        <locationY>2087</locationY>
+        <locationX>1634</locationX>
+        <locationY>2207</locationY>
         <assignmentItems>
             <assignToReference>NotificationRecipients</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>$Record.Owner:User.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Remove_nulls</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Notification_Recipients_5</name>
-        <label>Assign Notification Recipients 5</label>
-        <locationX>2206</locationX>
-        <locationY>2663</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.Owner:User.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.NewPortfolioManager__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -539,7 +493,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Assign_Notification_Recipients</targetReference>
+            <targetReference>Is_Regional_Manager_Active</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -555,7 +509,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Assign_Notification_Recipients_2</targetReference>
+            <targetReference>Is_Owner_Active</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -571,7 +525,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Assign_Notification_Recipients_3</targetReference>
+            <targetReference>Is_Owner_Active_2</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -587,7 +541,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Assign_Notification_Recipients_4</targetReference>
+            <targetReference>Is_Owner_Active_3</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -603,7 +557,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Assign_Notification_Recipients_5</targetReference>
+            <targetReference>Is_Owner_Active_4</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -620,6 +574,70 @@
         </assignmentItems>
         <connector>
             <targetReference>Assign_Notification_Recipients_6</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Owner_Notification_Recipient</name>
+        <label>Assign Owner Notification Recipient</label>
+        <locationX>2074</locationX>
+        <locationY>2783</locationY>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_PM_Active</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_PM_Notification_Recipient</name>
+        <label>Assign PM Notification Recipient</label>
+        <locationX>2074</locationX>
+        <locationY>3119</locationY>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.NewPortfolioManager__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Remove_nulls</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_RM_as_Recipient</name>
+        <label>Assign RM as Recipient</label>
+        <locationX>50</locationX>
+        <locationY>2663</locationY>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.RegionalManager__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Regional_Manager_Ass_Active</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_RMA_as_Recipient</name>
+        <label>Assign RMA as Recipient</label>
+        <locationX>50</locationX>
+        <locationY>2999</locationY>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.RegionalManagerAssistant__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Remove_nulls</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -675,7 +693,7 @@
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Remove nulls</label>
         <locationX>1744</locationX>
-        <locationY>2975</locationY>
+        <locationY>3527</locationY>
         <assignNextValueToReference>currentItem_Remove_nulls</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>NotificationRecipients</collectionReference>
@@ -797,7 +815,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Regional_Manager_is_not_empty_2</targetReference>
+                <targetReference>Regional_Manager_is_not_empty_and_active</targetReference>
             </connector>
             <label>Schválená</label>
         </rules>
@@ -823,6 +841,106 @@
             </conditions>
             <connector>
                 <targetReference>Mail_for_New_Portfolio_Manager</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Owner_Active</name>
+        <label>Is Owner Active</label>
+        <locationX>622</locationX>
+        <locationY>2207</locationY>
+        <defaultConnector>
+            <targetReference>Remove_nulls</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YesOwnerActive</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Owner:User.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Notification_Recipients_2</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Owner_Active_2</name>
+        <label>Is Owner Active 2</label>
+        <locationX>1326</locationX>
+        <locationY>2087</locationY>
+        <defaultConnector>
+            <targetReference>Remove_nulls</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Copy_6_of_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Owner:User.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Notification_Recipients_3</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Owner_Active_3</name>
+        <label>Is Owner Active 3</label>
+        <locationX>1766</locationX>
+        <locationY>2087</locationY>
+        <defaultConnector>
+            <targetReference>Remove_nulls</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YesOwnerActive3</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Owner:User.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Notification_Recipients_4</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Owner_Active_4</name>
+        <label>Is Owner Active 4</label>
+        <locationX>2206</locationX>
+        <locationY>2663</locationY>
+        <defaultConnector>
+            <targetReference>Is_PM_Active</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YesOwnerActive4</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Owner:User.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Owner_Notification_Recipient</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
@@ -928,6 +1046,31 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_PM_Active</name>
+        <label>Is PM Active</label>
+        <locationX>2206</locationX>
+        <locationY>2999</locationY>
+        <defaultConnector>
+            <targetReference>Remove_nulls</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YesPMActive</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.NewPortfolioManager__r.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_PM_Notification_Recipient</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_Portfolio_Management_Change_Request</name>
         <label>Is Portfolio Management Change Request</label>
         <locationX>2657</locationX>
@@ -945,6 +1088,56 @@
             </conditions>
             <connector>
                 <targetReference>Get_Email_Template</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Regional_Manager_Active</name>
+        <label>Is Regional Manager Active</label>
+        <locationX>182</locationX>
+        <locationY>2543</locationY>
+        <defaultConnector>
+            <targetReference>Is_Regional_Manager_Ass_Active</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YesActiveUser</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RegionalManager__r.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_RM_as_Recipient</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Regional_Manager_Ass_Active</name>
+        <label>Is Regional Manager Assist Active</label>
+        <locationX>182</locationX>
+        <locationY>2879</locationY>
+        <defaultConnector>
+            <targetReference>Remove_nulls</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YesRMAActive</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RegionalManagerAssistant__r.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_RMA_as_Recipient</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
@@ -1058,8 +1251,8 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Regional_Manager_is_not_empty_2</name>
-        <label>Regional Manager is not empty 2</label>
+        <name>Regional_Manager_is_not_empty_and_active</name>
+        <label>Regional Manager is not empty and Active</label>
         <locationX>2910</locationX>
         <locationY>1511</locationY>
         <defaultConnectorLabel>Manager is empty</defaultConnectorLabel>
@@ -1071,6 +1264,13 @@
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RegionalManager__r.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -1192,7 +1392,7 @@
         <name>Insert_notifications</name>
         <label>Insert email notifications</label>
         <locationX>1744</locationX>
-        <locationY>3335</locationY>
+        <locationY>3887</locationY>
         <inputReference>EmailNotifications</inputReference>
     </recordCreates>
     <recordLookups>
