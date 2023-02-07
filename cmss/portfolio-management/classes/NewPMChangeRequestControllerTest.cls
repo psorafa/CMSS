@@ -6,6 +6,8 @@ private class NewPMChangeRequestControllerTest {
 		'"type" : "type1",' +
 		'"reason" : "reason1",' +
 		'"comments" : "comments1",' +
+		'"caseId" : "500000000000001",' +
+		'"isEmptyCase" : false,' +
 		'"ids" : [' +
 		'	"001000000000001", "001000000000002", "001000000000003"' +
 		']'+
@@ -15,6 +17,8 @@ private class NewPMChangeRequestControllerTest {
 		'"type" : "type1",' +
 		'"reason" : "reason1",' +
 		'"comments" : "comments1",' +
+		'"caseId" : "500000000000001",' +
+		'"isEmptyCase" : false,' +
 		'"ids" : ["001000000000001", "001000000000002", "001000000000003"]'+
 		'}';
 	private static final String jsonDataNoChangeType = '{' +
@@ -22,6 +26,8 @@ private class NewPMChangeRequestControllerTest {
 		'"type" : null,' +
 		'"reason" : "reason1",' +
 		'"comments" : "comments1",' +
+		'"caseId" : "500000000000001",' +
+		'"isEmptyCase" : false,' +
 		'"ids" : ["001000000000001", "001000000000002", "001000000000003"]'+
 		'}';
 	private static final String jsonDataNoReason = '{' +
@@ -29,6 +35,8 @@ private class NewPMChangeRequestControllerTest {
 		'"type" : "type1",' +
 		'"reason" : null,' +
 		'"comments" : "comments1",' +
+		'"caseId" : "500000000000001",' +
+		'"isEmptyCase" : false,' +
 		'"ids" : ["001000000000001", "001000000000002", "001000000000003"]'+
 		'}';
 	private static final String jsonDataEmpty = '{' +
@@ -36,6 +44,8 @@ private class NewPMChangeRequestControllerTest {
 		'"type" : "type1",' +
 		'"reason" : "reason1",' +
 		'"comments" : "comments1",' +
+		'"caseId" : "500000000000001",' +
+		'"isEmptyCase" : true,' +
 		'"ids" : []'+
 		'}';
 	private static final String jsonDataNoIds = '{' +
@@ -43,6 +53,8 @@ private class NewPMChangeRequestControllerTest {
 		'"type" : "type1",' +
 		'"reason" : "reason1",' +
 		'"comments" : "comments1",' +
+		'"caseId" : "500000000000001",' +
+		'"isEmptyCase" : true,' +
 		'"ids" : []'+
 		'}';
 
@@ -63,9 +75,8 @@ private class NewPMChangeRequestControllerTest {
 		dml.idsToAssign.addAll(new List<Id>{ null, null, null });
 		NewPMChangeRequestController.dml = dml;
 		System.runAs(user) {
-			NewPMChangeRequestController.SaveResult result = NewPMChangeRequestController.saveData(jsonDataComplete);
+			NewPMChangeRequestController.SaveResult result = NewPMChangeRequestController.createCase(jsonDataComplete);
 			System.debug(result);
-			System.assertEquals(true, result.isSuccess);
 			System.assertEquals('500000000000001', result.caseId);
 
 			System.assertEquals('insert', dml.operations.get(0).type);
@@ -76,17 +87,28 @@ private class NewPMChangeRequestControllerTest {
 			System.assertEquals('reason1', inserted.ChangeReason__c);
 			System.assertEquals('comments1', inserted.Comments);
 			System.assertEquals(pmChangeRTId, inserted.RecordTypeId);
-			System.assertEquals('21', inserted.Status);
+			System.assertEquals('25', inserted.Status);
 			System.assertEquals('0030000000000rm', inserted.RegionalManager__c);
 			System.assertEquals('003000000assist', inserted.RegionalManagerAssistant__c);
 			System.assertEquals('4', inserted.Type);
+
+			result = NewPMChangeRequestController.saveRequests(jsonDataComplete);
 
 			System.assertEquals('insert', dml.operations.get(1).type);
 			for (Integer i = 0; i < 3; i++) {
 				PortfolioManagementRequest__c pmc = (PortfolioManagementRequest__c) dml.operations.get(1).listData.get(i);
 				System.assertEquals('500000000000001', pmc.Case__c);
 				System.assertEquals('00100000000000' + (i+1), pmc.Account__c);
+				System.assertEquals('003000000000001', pmc.PortfolioManager__c);
+				System.assertEquals('type1', pmc.PortfolioManagementType__c);
 			}
+
+			result = NewPMChangeRequestController.finalize(jsonDataComplete);
+			System.assertEquals('update', dml.operations.get(2).type);
+			inserted = (Case) dml.operations.get(2).singleRecord;
+			System.assert(inserted != null);
+			System.assertEquals('21', inserted.Status);
+			System.assertEquals(1, inserted.ValidationsBypass__c);
 		}
 	}
 
@@ -102,21 +124,30 @@ private class NewPMChangeRequestControllerTest {
 		dml.idsToAssign.addAll(new List<Id>{ null, null, null });
 		NewPMChangeRequestController.dml = dml;
 		System.runAs(user) {
-			NewPMChangeRequestController.SaveResult result = NewPMChangeRequestController.saveData(jsonDataNoManager);
-			System.assertEquals(false, result.isSuccess);
-			System.assertEquals(Label.Please_fill_in_New_Portfolio_Manager, result.error);
-
-			result = NewPMChangeRequestController.saveData(jsonDataNoIds);
-			System.assertEquals(false, result.isSuccess);
-			System.assertEquals(Label.No_permission_to_create_empty_PM_requests, result.error);
-
-			result = NewPMChangeRequestController.saveData(jsonDataNoChangeType);
-			System.assertEquals(false, result.isSuccess);
-			System.assertEquals(Label.Please_fill_in_Change_Type, result.error);
-
-			result = NewPMChangeRequestController.saveData(jsonDataNoReason);
-			System.assertEquals(false, result.isSuccess);
-			System.assertEquals(Label.Please_fill_in_Change_Reason, result.error);
+			try {
+				NewPMChangeRequestController.createCase(jsonDataNoManager);
+				System.assert(false, 'should have failed');
+			} catch (AuraHandledException e) {
+				System.assertEquals(Label.Please_fill_in_New_Portfolio_Manager, e.getMessage());
+			}
+			try {
+				NewPMChangeRequestController.createCase(jsonDataNoIds);
+				System.assert(false, 'should have failed');
+			} catch (AuraHandledException e) {
+				System.assertEquals(Label.No_permission_to_create_empty_PM_requests, e.getMessage());
+			}
+			try {
+				NewPMChangeRequestController.createCase(jsonDataNoChangeType);
+				System.assert(false, 'should have failed');
+			} catch (AuraHandledException e) {
+				System.assertEquals(Label.Please_fill_in_Change_Type, e.getMessage());
+			}
+			try {
+				NewPMChangeRequestController.createCase(jsonDataNoReason);
+				System.assert(false, 'should have failed');
+			} catch (AuraHandledException e) {
+				System.assertEquals(Label.Please_fill_in_Change_Reason, e.getMessage());
+			}
 		}
 	}
 
@@ -128,13 +159,15 @@ private class NewPMChangeRequestControllerTest {
 		selector.assistantRoleId = rmAssistRoleId;
 		NewPMChangeRequestController.selector = selector;
 		System.runAs(user) {
-			NewPMChangeRequestController.SaveResult result = NewPMChangeRequestController.saveData(jsonDataComplete);
-			System.assertEquals(false, result.isSuccess);
-			System.debug(result.error);
-			System.assert(
-				result.error.startsWith('Cannot save data: Insert failed. First exception on row 0; first error:'),
-				result.error
-			);
+			try {
+				NewPMChangeRequestController.createCase(jsonDataComplete);
+				System.assert(false, 'should have failed');
+			} catch (AuraHandledException e) {
+				System.assert(
+					e.getMessage().startsWith('Cannot save data: Insert failed. First exception on row 0; first error:'),
+					e.getMessage()
+				);
+			}
 		}
 	}
 
@@ -150,7 +183,7 @@ private class NewPMChangeRequestControllerTest {
 		NewPMChangeRequestController.dml = dml;
 		System.runAs(user) {
 			try {
-				NewPMChangeRequestController.saveData(jsonDataComplete);
+				NewPMChangeRequestController.createCase(jsonDataComplete);
 				System.assert(false, 'should have failed');
 			} catch (AuraHandledException e) {
 				// ok
@@ -163,9 +196,12 @@ private class NewPMChangeRequestControllerTest {
 		insertRoles();
 		User user = TestDataFactory.getCmssUser(new User());
 		System.runAs(user) {
-			NewPMChangeRequestController.SaveResult result = NewPMChangeRequestController.saveData(jsonDataComplete);
-			System.assertEquals(false, result.isSuccess);
-			System.assertEquals(Label.Cannot_find_any_Regional_Manager_of_current_user, result.error);
+			try {
+				NewPMChangeRequestController.createCase(jsonDataComplete);
+				System.assert(false, 'should have failed');
+			} catch (AuraHandledException e) {
+				System.assertEquals(Label.Cannot_find_any_Regional_Manager_of_current_user, e.getMessage());
+			}
 		}
 	}
 
@@ -181,9 +217,8 @@ private class NewPMChangeRequestControllerTest {
 		dml.idsToAssign.addAll(new List<Id>{ null, null, null });
 		NewPMChangeRequestController.dml = dml;
 		System.runAs(user) {
-			NewPMChangeRequestController.SaveResult result = NewPMChangeRequestController.saveData(jsonDataComplete);
+			NewPMChangeRequestController.SaveResult result = NewPMChangeRequestController.createCase(jsonDataComplete);
 			System.debug(result);
-			System.assertEquals(true, result.isSuccess, '' + result.error);
 			System.assertEquals('500000000000001', result.caseId);
 
 			System.assertEquals('insert', dml.operations.get(0).type);
@@ -194,17 +229,25 @@ private class NewPMChangeRequestControllerTest {
 			System.assertEquals('reason1', inserted.ChangeReason__c);
 			System.assertEquals('comments1', inserted.Comments);
 			System.assertEquals(pmChangeRTId, inserted.RecordTypeId);
-			System.assertEquals('21', inserted.Status);
+			System.assertEquals('25', inserted.Status);
 			System.assertEquals('0030000000000rm', inserted.RegionalManager__c);
 			System.assertEquals('003000000assist', inserted.RegionalManagerAssistant__c);
 			System.assertEquals('4', inserted.Type);
 
+			result = NewPMChangeRequestController.saveRequests(jsonDataComplete);
 			System.assertEquals('insert', dml.operations.get(1).type);
 			for (Integer i = 0; i < 3; i++) {
 				PortfolioManagementRequest__c pmc = (PortfolioManagementRequest__c) dml.operations.get(1).listData.get(i);
 				System.assertEquals('500000000000001', pmc.Case__c);
 				System.assertEquals('00100000000000' + (i+1), pmc.Account__c);
 			}
+
+			result = NewPMChangeRequestController.finalize(jsonDataComplete);
+			System.assertEquals('update', dml.operations.get(2).type);
+			inserted = (Case) dml.operations.get(2).singleRecord;
+			System.assert(inserted != null);
+			System.assertEquals('21', inserted.Status);
+			System.assertEquals(1, inserted.ValidationsBypass__c);
 		}
 	}
 
@@ -225,9 +268,8 @@ private class NewPMChangeRequestControllerTest {
 		dml.idsToAssign.addAll(new List<Id>{ null, null, null });
 		NewPMChangeRequestController.dml = dml;
 		System.runAs(user) {
-			NewPMChangeRequestController.SaveResult result = NewPMChangeRequestController.saveData(jsonDataEmpty);
+			NewPMChangeRequestController.SaveResult result = NewPMChangeRequestController.createCase(jsonDataEmpty);
 			System.debug(result);
-			System.assertEquals(true, result.isSuccess);
 			System.assertEquals('500000000000001', result.caseId);
 
 			System.assertEquals('insert', dml.operations.get(0).type);
@@ -238,10 +280,16 @@ private class NewPMChangeRequestControllerTest {
 			System.assertEquals('reason1', inserted.ChangeReason__c);
 			System.assertEquals('comments1', inserted.Comments);
 			System.assertEquals(pmChangeRTId, inserted.RecordTypeId);
-			System.assertEquals('21', inserted.Status);
+			System.assertEquals('25', inserted.Status);
 			System.assertEquals(user.Id, inserted.RegionalManager__c);
 			System.assertEquals(null, inserted.RegionalManagerAssistant__c);
 			System.assertEquals('4', inserted.Type);
+
+			result = NewPMChangeRequestController.finalize(jsonDataEmpty);
+			System.assertEquals('update', dml.operations.get(1).type);
+			inserted = (Case) dml.operations.get(1).singleRecord;
+			System.assert(inserted != null);
+			System.assertEquals(1, inserted.ValidationsBypass__c);
 		}
 	}
 

@@ -35,6 +35,9 @@
                         <div if:true={validationError} class="slds-text-color_error slds-text-align_right">
                             {validationError}
                         </div>
+                        <div if:true={showSpinner}>
+                            Vytvářím: {spinnerLabel}
+                        </div>
                     </div>
                 </div>
             </div>

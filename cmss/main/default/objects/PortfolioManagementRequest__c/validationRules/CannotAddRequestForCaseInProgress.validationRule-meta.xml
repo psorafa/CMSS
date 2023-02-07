@@ -5,7 +5,9 @@
     <description>Portfolio Management Request cannot be associated with a case which is already in progress.</description>
     <errorConditionFormula>ISNEW() &amp;&amp;
 NOT(ISBLANK(Case__c)) &amp;&amp;
-NOT(ISPICKVAL(Case__r.Status, &apos;21&apos;))</errorConditionFormula>
+NOT(ISPICKVAL(Case__r.Status, &apos;21&apos;)) &amp;&amp;
+NOT(ISPICKVAL(Case__r.Status, &apos;25&apos;))
+</errorConditionFormula>
     <errorDisplayField>Case__c</errorDisplayField>
     <errorMessage>Portfolio Management Request cannot be associated with a case which is already in progress.</errorMessage>
 </ValidationRule>
