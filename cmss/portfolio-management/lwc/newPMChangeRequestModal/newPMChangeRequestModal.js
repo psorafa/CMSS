@@ -1,6 +1,8 @@
 import { LightningElement, api, track, wire } from 'lwc'
 import { NavigationMixin } from 'lightning/navigation'
-import saveData from '@salesforce/apex/NewPMChangeRequestController.saveData'
+import createCase from '@salesforce/apex/NewPMChangeRequestController.createCase'
+import saveRequests from '@salesforce/apex/NewPMChangeRequestController.saveRequests'
+import finalize from '@salesforce/apex/NewPMChangeRequestController.finalize'
 import NewPortfolioManagementChangeRequest from '@salesforce/label/c.NewPortfolioManagementChangeRequest'
 import Cancel from '@salesforce/label/c.Cancel'
 import Save from '@salesforce/label/c.Save'
@@ -48,7 +50,12 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
     show = false
     validationError = null
     showSpinner = false
+    progress = 0
     @track data = {}
+
+    get spinnerLabel() {
+        return this.progress + ' / ' + this._ids.length
+    }
 
     labels = {
         NewPortfolioManagementChangeRequest,
@@ -63,7 +70,8 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
             type : 'A',
             reason : null,
             comments : null,
-            ids : null
+            ids : null,
+            isEmptyCase : true
         }
         this.validationError = null
         this.showSpinner = false
@@ -74,25 +82,41 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
         this.dispatchEvent(new CustomEvent('close'))
     }
 
-    handleSave() {
+    async handleSave() {
         this.showSpinner = true
         this.data.ids = this._ids
-        saveData({
+        this.data.isEmptyCase = !(this._ids && this._ids.length)
+        createCase({
             jsonData : JSON.stringify(this.data)
-        }).then((result) => {
-            // check result
-            console.log('save done', JSON.stringify(result))
-            if (result.isSuccess) {
-                this.navigateTo(result.caseId)
-            } else {
-                this.validationError = result.error
-                this.showSpinner = false
-            }
-        }).catch((error) => {
+        }).then(result => {
+            this.data.caseId = result.caseId
+            return this.sendRequests()
+        }).then(result => {
+            return finalize({
+                jsonData : JSON.stringify(this.data)
+            })
+        }).then(result => {
+            this.navigateTo(this.data.caseId)
+            this.showSpinner = false
+        }).catch(error => {
             console.error(error)
             this.validationError = error.body.message
             this.showSpinner = false
+            this.data.caseId = null
         })
+    }
+
+    async sendRequests() {
+        const chunkSize = 200
+        for (let i = 0; i < this._ids.length; i += chunkSize) {
+            this.progress = i
+            const chunk = this._ids.slice(i, i + chunkSize)
+            this.data.ids = chunk
+            await saveRequests({
+                jsonData : JSON.stringify(this.data)
+            })
+        }
+        this.data.ids = this._ids
     }
 
     handleManagerChange(event) {

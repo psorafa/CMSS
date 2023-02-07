@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidationsBypass__c</fullName>
+    <description>You can skip some validations by changing value of this field. You can increment it or (if you don&apos;t know previous value) set to random number.</description>
+    <externalId>false</externalId>
+    <label>Validations Bypass</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -4,8 +4,9 @@
     <active>true</active>
     <description>Once Case is is Closed, Status can&apos;t be changed.</description>
     <errorConditionFormula>IsClosed = true  &amp;&amp;
-ISCHANGED(Status) &amp;&amp;
- $Profile.Name  &lt;&gt; &apos;IntegrationUser&apos;</errorConditionFormula>
+ ISCHANGED(Status) &amp;&amp;
+ $Profile.Name  &lt;&gt; &apos;IntegrationUser&apos; &amp;&amp;
+ NOT(ISCHANGED(ValidationsBypass__c))</errorConditionFormula>
     <errorDisplayField>Status</errorDisplayField>
     <errorMessage>Status can&apos;t be changed once case is closed.</errorMessage>
 </ValidationRule>
