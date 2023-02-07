@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Recall_approvals</name>
         <label>Recall approvals</label>
-        <locationX>176</locationX>
-        <locationY>1188</locationY>
+        <locationX>50</locationX>
+        <locationY>1308</locationY>
         <actionName>ApprovalRecallService</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -22,7 +22,7 @@
     <assignments>
         <name>Add_id_to_collection</name>
         <label>Add id to collection</label>
-        <locationX>264</locationX>
+        <locationX>270</locationX>
         <locationY>756</locationY>
         <assignmentItems>
             <assignToReference>CasesWithStatus2Ids</assignToReference>
@@ -38,7 +38,7 @@
     <assignments>
         <name>Set_status_to_6</name>
         <label>Set status to 6</label>
-        <locationX>396</locationX>
+        <locationX>402</locationX>
         <locationY>972</locationY>
         <assignmentItems>
             <assignToReference>Iterate_over_expired_requests.Status</assignToReference>
@@ -52,9 +52,34 @@
         </connector>
     </assignments>
     <decisions>
+        <name>IsNotEmpty</name>
+        <label>IsNotEmpty</label>
+        <locationX>182</locationX>
+        <locationY>1188</locationY>
+        <defaultConnector>
+            <targetReference>Update_statuses</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Empty</defaultConnectorLabel>
+        <rules>
+            <name>Not_Empty</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>CasesWithStatus2Ids</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Recall_approvals</targetReference>
+            </connector>
+            <label>Not Empty</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Status_equals_2</name>
         <label>Status equals 2</label>
-        <locationX>396</locationX>
+        <locationX>402</locationX>
         <locationY>636</locationY>
         <defaultConnector>
             <targetReference>Set_status_to_6</targetReference>
@@ -78,16 +103,21 @@
     </decisions>
     <environments>Default</environments>
     <formulas>
-        <name>expiryDateLimit</name>
+        <name>expiryDateLimitBottom</name>
         <dataType>Date</dataType>
-        <expression>DATE(YEAR(TODAY()),MONTH(TODAY()),DAY(TODAY()-1))</expression>
+        <expression>{!$Flow.CurrentDate} + (-1)</expression>
+    </formulas>
+    <formulas>
+        <name>expiryDateLimitTop</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate}</expression>
     </formulas>
     <interviewLabel>CaseOnCreate {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Case On Create Portfolio Management Change Request</label>
     <loops>
         <name>Iterate_over_expired_requests</name>
         <label>Iterate over expired requests</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>516</locationY>
         <collectionReference>Get_Expired_requests</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -95,7 +125,7 @@
             <targetReference>Status_equals_2</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>Recall_approvals</targetReference>
+            <targetReference>IsNotEmpty</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -120,13 +150,13 @@
     <recordLookups>
         <name>Get_Expired_requests</name>
         <label>Get Expired requests</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>396</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Iterate_over_expired_requests</targetReference>
         </connector>
-        <filterLogic>1 AND (2 OR 3) AND 4</filterLogic>
+        <filterLogic>1 AND (2 OR 3) AND 4 AND 5</filterLogic>
         <filters>
             <field>RecordTypeId</field>
             <operator>EqualTo</operator>
@@ -150,9 +180,16 @@
         </filters>
         <filters>
             <field>ExpiryDate__c</field>
-            <operator>EqualTo</operator>
+            <operator>GreaterThan</operator>
             <value>
-                <elementReference>expiryDateLimit</elementReference>
+                <elementReference>expiryDateLimitBottom</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>ExpiryDate__c</field>
+            <operator>LessThan</operator>
+            <value>
+                <elementReference>expiryDateLimitTop</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -162,7 +199,7 @@
     <recordLookups>
         <name>Get_Portfolio_Management_Change_Request_Record_Type_Id</name>
         <label>Get Portfolio Management Change Request Record Type Id</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>276</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -185,12 +222,12 @@
     <recordUpdates>
         <name>Update_statuses</name>
         <label>Update statuses</label>
-        <locationX>176</locationX>
-        <locationY>1308</locationY>
+        <locationX>182</locationX>
+        <locationY>1524</locationY>
         <inputReference>Get_Expired_requests</inputReference>
     </recordUpdates>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Portfolio_Management_Change_Request_Record_Type_Id</targetReference>
