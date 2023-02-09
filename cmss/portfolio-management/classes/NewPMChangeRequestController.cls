@@ -168,6 +168,9 @@ public with sharing class NewPMChangeRequestController {
 			if (String.isEmpty(userInput.type)) {
 				throw new ProcessingException(Label.Please_fill_in_Change_Type);
 			}
+			if (userInput.type != 'A') {
+				throw new ProcessingException(Label.Only_Change_Type_of_A_allowed);
+			}
 		}
 		if (String.isEmpty(userInput.reason)) {
 			throw new ProcessingException(Label.Please_fill_in_Change_Reason);
