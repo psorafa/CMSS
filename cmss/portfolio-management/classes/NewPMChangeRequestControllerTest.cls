@@ -3,7 +3,7 @@ private class NewPMChangeRequestControllerTest {
 
 	private static final String jsonDataComplete = '{' +
 		'"manager" : "003000000000001",' +
-		'"type" : "type1",' +
+		'"type" : "A",' +
 		'"reason" : "reason1",' +
 		'"comments" : "comments1",' +
 		'"caseId" : "500000000000001",' +
@@ -14,7 +14,7 @@ private class NewPMChangeRequestControllerTest {
 		'}';
 	private static final String jsonDataNoManager = '{' +
 		'"manager" : null,' +
-		'"type" : "type1",' +
+		'"type" : "A",' +
 		'"reason" : "reason1",' +
 		'"comments" : "comments1",' +
 		'"caseId" : "500000000000001",' +
@@ -30,9 +30,18 @@ private class NewPMChangeRequestControllerTest {
 		'"isEmptyCase" : false,' +
 		'"ids" : ["001000000000001", "001000000000002", "001000000000003"]'+
 		'}';
+	private static final String jsonDataChangeTypeOfC = '{' +
+		'"manager" : "003000000000001",' +
+		'"type" : "C",' +
+		'"reason" : "reason1",' +
+		'"comments" : "comments1",' +
+		'"caseId" : "500000000000001",' +
+		'"isEmptyCase" : false,' +
+		'"ids" : ["001000000000001", "001000000000002", "001000000000003"]'+
+		'}';
 	private static final String jsonDataNoReason = '{' +
 		'"manager" : "003000000000001",' +
-		'"type" : "type1",' +
+		'"type" : "A",' +
 		'"reason" : null,' +
 		'"comments" : "comments1",' +
 		'"caseId" : "500000000000001",' +
@@ -41,7 +50,7 @@ private class NewPMChangeRequestControllerTest {
 		'}';
 	private static final String jsonDataEmpty = '{' +
 		'"manager" : null,' +
-		'"type" : "type1",' +
+		'"type" : "A",' +
 		'"reason" : "reason1",' +
 		'"comments" : "comments1",' +
 		'"caseId" : "500000000000001",' +
@@ -50,7 +59,7 @@ private class NewPMChangeRequestControllerTest {
 		'}';
 	private static final String jsonDataNoIds = '{' +
 		'"manager" : "003000000000001",' +
-		'"type" : "type1",' +
+		'"type" : "A",' +
 		'"reason" : "reason1",' +
 		'"comments" : "comments1",' +
 		'"caseId" : "500000000000001",' +
@@ -83,7 +92,7 @@ private class NewPMChangeRequestControllerTest {
 			Case inserted = (Case) dml.operations.get(0).singleRecord;
 			System.assert(inserted != null);
 			System.assertEquals('003000000000001', inserted.NewPortfolioManager__c);
-			System.assertEquals('type1', inserted.PortfolioManagementType__c);
+			System.assertEquals('A', inserted.PortfolioManagementType__c);
 			System.assertEquals('reason1', inserted.ChangeReason__c);
 			System.assertEquals('comments1', inserted.Comments);
 			System.assertEquals(pmChangeRTId, inserted.RecordTypeId);
@@ -100,7 +109,7 @@ private class NewPMChangeRequestControllerTest {
 				System.assertEquals('500000000000001', pmc.Case__c);
 				System.assertEquals('00100000000000' + (i+1), pmc.Account__c);
 				System.assertEquals('003000000000001', pmc.PortfolioManager__c);
-				System.assertEquals('type1', pmc.PortfolioManagementType__c);
+				System.assertEquals('A', pmc.PortfolioManagementType__c);
 			}
 
 			result = NewPMChangeRequestController.finalize(jsonDataComplete);
@@ -141,6 +150,12 @@ private class NewPMChangeRequestControllerTest {
 				System.assert(false, 'should have failed');
 			} catch (AuraHandledException e) {
 				System.assertEquals(Label.Please_fill_in_Change_Type, e.getMessage());
+			}
+			try {
+				NewPMChangeRequestController.createCase(jsonDataChangeTypeOfC);
+				System.assert(false, 'should have failed');
+			} catch (AuraHandledException e) {
+				System.assertEquals(Label.Only_Change_Type_of_A_allowed, e.getMessage());
 			}
 			try {
 				NewPMChangeRequestController.createCase(jsonDataNoReason);
@@ -225,7 +240,7 @@ private class NewPMChangeRequestControllerTest {
 			Case inserted = (Case) dml.operations.get(0).singleRecord;
 			System.assert(inserted != null);
 			System.assertEquals('003000000000001', inserted.NewPortfolioManager__c);
-			System.assertEquals('type1', inserted.PortfolioManagementType__c);
+			System.assertEquals('A', inserted.PortfolioManagementType__c);
 			System.assertEquals('reason1', inserted.ChangeReason__c);
 			System.assertEquals('comments1', inserted.Comments);
 			System.assertEquals(pmChangeRTId, inserted.RecordTypeId);
@@ -276,7 +291,7 @@ private class NewPMChangeRequestControllerTest {
 			Case inserted = (Case) dml.operations.get(0).singleRecord;
 			System.assert(inserted != null);
 			System.assertEquals(null, inserted.NewPortfolioManager__c);
-			System.assertEquals('type1', inserted.PortfolioManagementType__c);
+			System.assertEquals('A', inserted.PortfolioManagementType__c);
 			System.assertEquals('reason1', inserted.ChangeReason__c);
 			System.assertEquals('comments1', inserted.Comments);
 			System.assertEquals(pmChangeRTId, inserted.RecordTypeId);
