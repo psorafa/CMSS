@@ -121,7 +121,11 @@ public with sharing class CaseService {
 			SObjectType.Case.getRecordTypeInfosByDeveloperName().get('ClosedGDPRClaim').getRecordTypeId()
 		};
 
-		NumericalSeriesSettings__c lastIssuedCaseID = NumericalSeriesSettings__c.getOrgDefaults();
+		NumericalSeriesSettings__c lastIssuedCaseID = [
+			SELECT ContractNumber__c, ClientClaimID__c, GDPRClaimID__c
+			FROM NumericalSeriesSettings__c
+			FOR UPDATE
+		][0];
 
 		if (lastIssuedCaseID.GDPRClaimID__c == null) {
 			lastIssuedCaseID.GDPRClaimID__c = 0;

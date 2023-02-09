@@ -10,6 +10,7 @@ private class CaseMilestoneUtils_Test {
 	static Case c4WithConfirmationSent;
 
 	static void testSetup() {
+		insert TestDataFactory.getNumericalSettings();
 		Account acc = new Account(
 			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('PersonAccount', 'Account'),
 			FirstName = 'Filip',
@@ -22,7 +23,7 @@ private class CaseMilestoneUtils_Test {
 			Name = 'Default',
 			AccountId = acc.Id,
 			SlaProcessId = [SELECT Id FROM SlaProcess WHERE Name = 'claim management' LIMIT 1]
-				.Id,
+			.Id,
 			StartDate = Date.today().addDays(-100),
 			EndDate = Date.today().addDays(20000)
 		);
@@ -45,10 +46,19 @@ private class CaseMilestoneUtils_Test {
 			ORDER BY Name
 		];
 		System.runAs(defaultCaseOwner) {
-			PermissionSetAssignment psa1 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[0].Id);
-			PermissionSetAssignment psa2 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[1].Id);
-			PermissionSetAssignment psa3 = new PermissionSetAssignment(AssigneeId = defaultCaseOwner.Id, PermissionSetId = permSets[2].Id);
-			insert new List<PermissionSetAssignment>{psa1, psa2, psa3};
+			PermissionSetAssignment psa1 = new PermissionSetAssignment(
+				AssigneeId = defaultCaseOwner.Id,
+				PermissionSetId = permSets[0].Id
+			);
+			PermissionSetAssignment psa2 = new PermissionSetAssignment(
+				AssigneeId = defaultCaseOwner.Id,
+				PermissionSetId = permSets[1].Id
+			);
+			PermissionSetAssignment psa3 = new PermissionSetAssignment(
+				AssigneeId = defaultCaseOwner.Id,
+				PermissionSetId = permSets[2].Id
+			);
+			insert new List<PermissionSetAssignment>{ psa1, psa2, psa3 };
 		}
 
 		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
@@ -138,9 +148,9 @@ private class CaseMilestoneUtils_Test {
 					completionDate,
 					cm.CompletionDate,
 					'Case Milestone Completion Date not as expected for Case Id: ' +
-						cm.CaseId +
-						' and Milestone Type: ' +
-						cm.MilestoneType.Name
+					cm.CaseId +
+					' and Milestone Type: ' +
+					cm.MilestoneType.Name
 				);
 			} else {
 				System.assertEquals(false, cm.IsCompleted, 'Case Milestone should NOT be completed yet.');
@@ -148,9 +158,9 @@ private class CaseMilestoneUtils_Test {
 					null,
 					cm.CompletionDate,
 					'Case Milestone Completion Date should be not filled for for Case Id: ' +
-						cm.CaseId +
-						' and Milestone Type: ' +
-						cm.MilestoneType.Name
+					cm.CaseId +
+					' and Milestone Type: ' +
+					cm.MilestoneType.Name
 				);
 			}
 		}
@@ -180,8 +190,8 @@ private class CaseMilestoneUtils_Test {
 		for (CaseMilestone cm : caseMilestones) {
 			if (
 				csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name &&
-					(c1WithResponseSent.Id == cm.CaseId ||
-						c2WithResponseSent.Id == cm.CaseId)
+				(c1WithResponseSent.Id == cm.CaseId ||
+				c2WithResponseSent.Id == cm.CaseId)
 			) {
 				System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed');
 				if (c1WithResponseSent.Id == cm.CaseId) {
@@ -203,9 +213,9 @@ private class CaseMilestoneUtils_Test {
 					null,
 					cm.CompletionDate,
 					'Case Milestone Completion Date should be not filled for for Case Id: ' +
-						cm.CaseId +
-						' and Milestone Type: ' +
-						cm.MilestoneType.Name
+					cm.CaseId +
+					' and Milestone Type: ' +
+					cm.MilestoneType.Name
 				);
 			}
 		}
@@ -235,8 +245,8 @@ private class CaseMilestoneUtils_Test {
 		for (CaseMilestone cm : caseMilestones) {
 			if (
 				csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name &&
-					(c3WithConfirmationSent.Id == cm.CaseId ||
-						c4WithConfirmationSent.Id == cm.CaseId)
+				(c3WithConfirmationSent.Id == cm.CaseId ||
+				c4WithConfirmationSent.Id == cm.CaseId)
 			) {
 				System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed');
 				if (c3WithConfirmationSent.Id == cm.CaseId) {
@@ -258,9 +268,9 @@ private class CaseMilestoneUtils_Test {
 					null,
 					cm.CompletionDate,
 					'Case Milestone Completion Date should be not filled for for Case Id: ' +
-						cm.CaseId +
-						' and Milestone Type: ' +
-						cm.MilestoneType.Name
+					cm.CaseId +
+					' and Milestone Type: ' +
+					cm.MilestoneType.Name
 				);
 			}
 		}

@@ -3,6 +3,7 @@ private class PortfolioManagementCalloutServiceTest {
 	@TestSetup
 	static void insertCustomSettings() {
 		insert TestDataFactory.getIntegrationSettings();
+		insert TestDataFactory.getNumericalSettings();
 	}
 
 	@IsTest

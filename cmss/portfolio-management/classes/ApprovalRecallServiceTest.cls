@@ -1,5 +1,10 @@
 @IsTest
 private class ApprovalRecallServiceTest {
+	@TestSetup
+	static void makeData() {
+		insert TestDataFactory.getNumericalSettings();
+	}
+
 	@IsTest
 	static void recallApprovalsTest() {
 		Test.setMock(HttpCalloutMock.class, new MailSOAPServiceHttpMock());

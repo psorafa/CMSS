@@ -3,6 +3,7 @@ private class CaseServiceTest {
 	@TestSetup
 	static void insertCustomSettings() {
 		insert TestDataFactory.getIntegrationSettings();
+		insert TestDataFactory.getNumericalSettings();
 	}
 
 	@IsTest
@@ -26,10 +27,13 @@ private class CaseServiceTest {
 						.getRecordTypeId()
 				)
 			);
-			NumericalSeriesSettings__c customSettingsValue = new NumericalSeriesSettings__c();
+			NumericalSeriesSettings__c customSettingsValue = [
+				SELECT ContractNumber__c, ClientClaimID__c, GDPRClaimID__c
+				FROM NumericalSeriesSettings__c
+			][0];
 			customSettingsValue.ClientClaimID__c = 2.0;
 			customSettingsValue.GDPRClaimID__c = 5.0;
-			insert customSettingsValue;
+			update customSettingsValue;
 
 			Test.startTest();
 			insert new List<Case>{ newClientCase, newGDPRCase };
@@ -71,10 +75,13 @@ private class CaseServiceTest {
 						.getRecordTypeId()
 				)
 			);
-			NumericalSeriesSettings__c customSettingsValue = new NumericalSeriesSettings__c();
+			NumericalSeriesSettings__c customSettingsValue = [
+				SELECT ContractNumber__c, ClientClaimID__c, GDPRClaimID__c
+				FROM NumericalSeriesSettings__c
+			][0];
 			customSettingsValue.ClientClaimID__c = 22222.0;
 			customSettingsValue.GDPRClaimID__c = 55555.0;
-			insert customSettingsValue;
+			update customSettingsValue;
 
 			Test.startTest();
 			insert new List<Case>{ newClientCase, newGDPRCase };
