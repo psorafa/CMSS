@@ -9,6 +9,7 @@ private class CaseTriggerHandler_Test {
 	static Case c3;
 
 	static void testSetup() {
+		insert TestDataFactory.getNumericalSettings();
 		Account acc = new Account(
 			RecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName('PersonAccount', 'Account'),
 			FirstName = 'Filip',
@@ -21,7 +22,7 @@ private class CaseTriggerHandler_Test {
 			Name = 'Default',
 			AccountId = acc.Id,
 			SlaProcessId = [SELECT Id FROM SlaProcess WHERE Name = 'claim management' LIMIT 1]
-				.Id,
+			.Id,
 			StartDate = Date.today().addDays(-100),
 			EndDate = Date.today().addDays(20000)
 		);
@@ -35,39 +36,41 @@ private class CaseTriggerHandler_Test {
 		insert csEntitlement;
 
 		String clientClaimRTId = RecordTypeUtils.getRecordTypeIdByDeveloperName('NewClientClaim', 'Case');
-		c1 = TestDataFactory.getCase(new Case(
-			RecordTypeId = clientClaimRTId,
-			ReceivedDate__c = Date.today().addDays(-50),
-			Origin = '1',
-			Source__c = '1',
-			AccountId = acc.Id,
-			EntitlementId = ent.Id
-		));
-		c2 = TestDataFactory.getCase(new Case(
-			RecordTypeId = clientClaimRTId,
-			ReceivedDate__c = Date.today().addDays(-10),
-			Origin = '1',
-			Source__c = '1',
-			AccountId = acc.Id,
-			EntitlementId = ent.Id
-		));
-		c3 = TestDataFactory.getCase(new Case(
-			RecordTypeId = clientClaimRTId,
-			ReceivedDate__c = Date.today().addDays(-3),
-			Origin = '1',
-			Source__c = '1',
-			AccountId = acc.Id,
-			EntitlementId = ent.Id
-		));
-		insert new List<Case>{
-			c1, c2, c3
-		};
+		c1 = TestDataFactory.getCase(
+			new Case(
+				RecordTypeId = clientClaimRTId,
+				ReceivedDate__c = Date.today().addDays(-50),
+				Origin = '1',
+				Source__c = '1',
+				AccountId = acc.Id,
+				EntitlementId = ent.Id
+			)
+		);
+		c2 = TestDataFactory.getCase(
+			new Case(
+				RecordTypeId = clientClaimRTId,
+				ReceivedDate__c = Date.today().addDays(-10),
+				Origin = '1',
+				Source__c = '1',
+				AccountId = acc.Id,
+				EntitlementId = ent.Id
+			)
+		);
+		c3 = TestDataFactory.getCase(
+			new Case(
+				RecordTypeId = clientClaimRTId,
+				ReceivedDate__c = Date.today().addDays(-3),
+				Origin = '1',
+				Source__c = '1',
+				AccountId = acc.Id,
+				EntitlementId = ent.Id
+			)
+		);
+		insert new List<Case>{ c1, c2, c3 };
 		CaseType__c ct1 = TestDataFactory.getCaseType(new CaseType__c(Case__c = c1.Id));
 		CaseType__c ct2 = TestDataFactory.getCaseType(new CaseType__c(Case__c = c2.Id));
 		CaseType__c ct3 = TestDataFactory.getCaseType(new CaseType__c(Case__c = c3.Id));
-		insert new List<CaseType__c>{
-			ct1, ct2, ct3
-		};
+		insert new List<CaseType__c>{ ct1, ct2, ct3 };
 	}
 
 	@IsTest
@@ -78,9 +81,7 @@ private class CaseTriggerHandler_Test {
 		TestDataFactory.defaultCaseOwner = caseManager;
 		System.runAs(caseManager) {
 			testSetup();
-			Set<Id> caseIds = new Set<Id>{
-				c1.Id, c2.Id, c3.Id
-			};
+			Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
 			Date completionDate = Date.today().addDays(-1);
 
 			c1.ReceivedDate__c = completionDate;
@@ -91,9 +92,7 @@ private class CaseTriggerHandler_Test {
 			c3.Origin = '2';
 
 			Test.startTest();
-			update new List<Case>{
-				c1, c2, c3
-			};
+			update new List<Case>{ c1, c2, c3 };
 			Test.stopTest();
 
 			List<CaseMilestone> caseMilestones = [
@@ -107,7 +106,8 @@ private class CaseTriggerHandler_Test {
 				System.assertEquals(
 					null,
 					cm.CompletionDate,
-					'Case Milestone Completion Date should be not filled for for Milestone Type: ' + cm.MilestoneType.Name
+					'Case Milestone Completion Date should be not filled for for Milestone Type: ' +
+					cm.MilestoneType.Name
 				);
 			}
 		}
@@ -121,9 +121,7 @@ private class CaseTriggerHandler_Test {
 		TestDataFactory.defaultCaseOwner = caseManager;
 		System.runAs(caseManager) {
 			testSetup();
-			Set<Id> caseIds = new Set<Id>{
-				c1.Id, c2.Id, c3.Id
-			};
+			Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
 			Date completionDate = Date.today().addDays(-2);
 
 			c1.ResponseSentDate__c = completionDate;
@@ -131,9 +129,7 @@ private class CaseTriggerHandler_Test {
 			c3.Description = 'response sent test - no milestone update for c3';
 
 			Test.startTest();
-			update new List<Case>{
-				c1, c2, c3
-			};
+			update new List<Case>{ c1, c2, c3 };
 			Test.stopTest();
 
 			List<CaseMilestone> caseMilestones = [
@@ -144,7 +140,10 @@ private class CaseTriggerHandler_Test {
 			System.assert(!caseMilestones.isEmpty(), 'Case Milestones not found.');
 			ClientClaimEntitlement__c csEntitlement = ClientClaimEntitlement__c.getOrgDefaults();
 			for (CaseMilestone cm : caseMilestones) {
-				if (c3.Id == cm.CaseId && csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name) {
+				if (
+					c3.Id == cm.CaseId &&
+					csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name
+				) {
 					System.assertEquals(false, cm.IsCompleted, 'Case Milestone should NOT be completed yet.');
 					System.assertEquals(
 						null,
@@ -164,9 +163,7 @@ private class CaseTriggerHandler_Test {
 		TestDataFactory.defaultCaseOwner = caseManager;
 		System.runAs(caseManager) {
 			testSetup();
-			Set<Id> caseIds = new Set<Id>{
-				c1.Id, c2.Id, c3.Id
-			};
+			Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
 			Date completionDate = Date.today().addDays(-2);
 
 			c1.ReceivingConfirmationDate__c = completionDate;
@@ -174,9 +171,7 @@ private class CaseTriggerHandler_Test {
 			c3.Description = 'confirmation sent test - no milestone update for c3';
 
 			Test.startTest();
-			update new List<Case>{
-				c1, c2, c3
-			};
+			update new List<Case>{ c1, c2, c3 };
 			Test.stopTest();
 
 			List<CaseMilestone> caseMilestones = [
@@ -221,9 +216,7 @@ private class CaseTriggerHandler_Test {
 		TestDataFactory.defaultCaseOwner = caseManager;
 		System.runAs(caseManager) {
 			testSetup();
-			Set<Id> caseIds = new Set<Id>{
-				c1.Id, c2.Id, c3.Id
-			};
+			Set<Id> caseIds = new Set<Id>{ c1.Id, c2.Id, c3.Id };
 			Date completionDateResponse = Date.today().addDays(-1);
 			Date completionDateConfirmation = Date.today().addDays(-2);
 
@@ -234,9 +227,7 @@ private class CaseTriggerHandler_Test {
 			c3.Description = 'confirmation and response sent test - no milestone update for c3';
 
 			Test.startTest();
-			update new List<Case>{
-				c1, c2, c3
-			};
+			update new List<Case>{ c1, c2, c3 };
 			Test.stopTest();
 
 			List<CaseMilestone> caseMilestones = [
@@ -264,19 +255,27 @@ private class CaseTriggerHandler_Test {
 					);
 				} else if (
 					csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name ||
-						csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name
+					csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name
 				) {
 					System.assertEquals(true, cm.IsCompleted, 'Case Milestone should be completed');
 					if (csEntitlement.ResponseSentMilestoneName__c == cm.MilestoneType.Name) {
 						System.assertEquals(
 							cm.Case.ResponseSentDate__c,
-							Date.newInstance(cm.CompletionDate.year(), cm.CompletionDate.month(), cm.CompletionDate.day()),
+							Date.newInstance(
+								cm.CompletionDate.year(),
+								cm.CompletionDate.month(),
+								cm.CompletionDate.day()
+							),
 							'Case Milestone Completion Date not as expected.'
 						);
 					} else if (csEntitlement.ReceivingConfirmationMilestoneName__c == cm.MilestoneType.Name) {
 						System.assertEquals(
 							cm.Case.ReceivingConfirmationDate__c,
-							Date.newInstance(cm.CompletionDate.year(), cm.CompletionDate.month(), cm.CompletionDate.day()),
+							Date.newInstance(
+								cm.CompletionDate.year(),
+								cm.CompletionDate.month(),
+								cm.CompletionDate.day()
+							),
 							'Case Milestone Completion Date not as expected.'
 						);
 					}

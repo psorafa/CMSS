@@ -161,10 +161,7 @@ public class TestDataFactory {
 		User user = getUserWithProfile(so, 'CMSS User');
 		insert user;
 		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'CMSS_User'];
-		insert new PermissionSetAssignment(
-			AssigneeId = user.Id,
-			PermissionSetId = ps.Id
-		);
+		insert new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = ps.Id);
 		return user;
 	}
 
@@ -345,6 +342,10 @@ public class TestDataFactory {
 			EsbUsername__c = 'testusername',
 			EsbPassword__c = 'testpass'
 		);
+	}
+
+	public static NumericalSeriesSettings__c getNumericalSettings() {
+		return new NumericalSeriesSettings__c(ContractNumber__c = 0, ClientClaimID__c = 0, GDPRClaimID__c = 0);
 	}
 
 	public static AssetAccountRelation__c getAssetAccountRelation(AssetAccountRelation__c so) {

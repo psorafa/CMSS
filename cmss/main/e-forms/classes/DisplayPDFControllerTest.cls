@@ -1,12 +1,12 @@
 @IsTest
 private class DisplayPDFControllerTest {
-
 	private static Account acc;
 
 	static void makeData() {
 		User user = TestDataFactory.getUser(new User());
 		insert user;
 		insert TestDataFactory.getPermissionSetAssignments(user.Id);
+		insert TestDataFactory.getNumericalSettings();
 		TestDataFactory.defaultCaseOwner = user;
 		System.runAs(user) {
 			acc = new Account();
@@ -19,10 +19,7 @@ private class DisplayPDFControllerTest {
 			item.value = '123';
 			items.add(item);
 
-			Case c1 = TestDataFactory.getCase(new Case(
-				Subject = 'Case1',
-				AccountId = acc.Id
-			));
+			Case c1 = TestDataFactory.getCase(new Case(Subject = 'Case1', AccountId = acc.Id));
 			c1.Template__c = JSON.serialize(items);
 			insert c1;
 			Apexpages.currentpage().getparameters().put('id', c1.Id);
@@ -81,5 +78,4 @@ private class DisplayPDFControllerTest {
 		String returnString = DisplayPDFController.buildPdfData(cv.VersionData.toString(), returnMap);
 		System.assertEquals('test file body', returnString);
 	}
-
 }

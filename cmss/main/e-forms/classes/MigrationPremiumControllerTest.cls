@@ -1,6 +1,5 @@
 @isTest
 public class MigrationPremiumControllerTest {
-
 	private static Account theAccount;
 	private static Product2 theProduct;
 	private static Product_Relation__c theProductRelation;
@@ -11,17 +10,31 @@ public class MigrationPremiumControllerTest {
 	private static Asset theAsset;
 	private static Opportunity theOpp;
 	private static List<MigrationPremiumTypes.PrintingProductParameter> pppList;
-/*    private static Account_Address__c theAccountAddress;
-    private static GetCardDetailMock mock;*/
+	/*    private static Account_Address__c theAccountAddress;
+	 private static GetCardDetailMock mock;*/
 	private static Migration_Process__mdt migrationPremiumProcessConfiguration {
 		get {
 			if (migrationPremiumProcessConfiguration == null) {
 				migrationPremiumProcessConfiguration = [
-					SELECT Id, DeveloperName, Icon_Path__c, Title_CZ__c, Title_EN__c, New_Product_Button_SOQL__c,
-						Assets_In_Migration_Data_ID__c, Show_Current_Account_Products__c,
-						Show_Configuration_Subtab__c, Final_Step_Validation__c, New_Subproduct_Button_SOQL__c,
-						Case_Content__c, Case_Record_Type_Developer_Name__c, Case_Status__c,
-						Case_Subject__c, Case_Type__c, Product_Relation_Record_Type_Name__c, Assets_In_Migration_Data_ID_Read_only__c
+					SELECT
+						Id,
+						DeveloperName,
+						Icon_Path__c,
+						Title_CZ__c,
+						Title_EN__c,
+						New_Product_Button_SOQL__c,
+						Assets_In_Migration_Data_ID__c,
+						Show_Current_Account_Products__c,
+						Show_Configuration_Subtab__c,
+						Final_Step_Validation__c,
+						New_Subproduct_Button_SOQL__c,
+						Case_Content__c,
+						Case_Record_Type_Developer_Name__c,
+						Case_Status__c,
+						Case_Subject__c,
+						Case_Type__c,
+						Product_Relation_Record_Type_Name__c,
+						Assets_In_Migration_Data_ID_Read_only__c
 					FROM Migration_Process__mdt
 					WHERE DeveloperName = 'CSOBS_contract_cancelation'
 					LIMIT 1
@@ -36,11 +49,24 @@ public class MigrationPremiumControllerTest {
 		get {
 			if (migrationPremiumProcessConfigurationAccountCancel == null) {
 				migrationPremiumProcessConfigurationAccountCancel = [
-					SELECT Id, Icon_Path__c, Title_CZ__c, Title_EN__c, New_Product_Button_SOQL__c,
-						Assets_In_Migration_Data_ID__c, Show_Current_Account_Products__c,
-						Show_Configuration_Subtab__c, Final_Step_Validation__c, New_Subproduct_Button_SOQL__c,
-						Case_Content__c, Case_Record_Type_Developer_Name__c, Case_Status__c,
-						Case_Subject__c, Case_Type__c, Product_Relation_Record_Type_Name__c, Assets_In_Migration_Data_ID_Read_only__c
+					SELECT
+						Id,
+						Icon_Path__c,
+						Title_CZ__c,
+						Title_EN__c,
+						New_Product_Button_SOQL__c,
+						Assets_In_Migration_Data_ID__c,
+						Show_Current_Account_Products__c,
+						Show_Configuration_Subtab__c,
+						Final_Step_Validation__c,
+						New_Subproduct_Button_SOQL__c,
+						Case_Content__c,
+						Case_Record_Type_Developer_Name__c,
+						Case_Status__c,
+						Case_Subject__c,
+						Case_Type__c,
+						Product_Relation_Record_Type_Name__c,
+						Assets_In_Migration_Data_ID_Read_only__c
 					FROM Migration_Process__mdt
 					WHERE DeveloperName = 'CSOBS_contract_cancelation'
 					LIMIT 1
@@ -55,11 +81,24 @@ public class MigrationPremiumControllerTest {
 		get {
 			if (migrationPremiumProcessSavingConfiguration == null) {
 				migrationPremiumProcessSavingConfiguration = [
-					SELECT Id, Icon_Path__c, Title_CZ__c, Title_EN__c, New_Product_Button_SOQL__c,
-						Assets_In_Migration_Data_ID__c, Show_Current_Account_Products__c,
-						Show_Configuration_Subtab__c, Final_Step_Validation__c, New_Subproduct_Button_SOQL__c,
-						Case_Content__c, Case_Record_Type_Developer_Name__c, Case_Status__c,
-						Case_Subject__c, Case_Type__c, Product_Relation_Record_Type_Name__c, Assets_In_Migration_Data_ID_Read_only__c
+					SELECT
+						Id,
+						Icon_Path__c,
+						Title_CZ__c,
+						Title_EN__c,
+						New_Product_Button_SOQL__c,
+						Assets_In_Migration_Data_ID__c,
+						Show_Current_Account_Products__c,
+						Show_Configuration_Subtab__c,
+						Final_Step_Validation__c,
+						New_Subproduct_Button_SOQL__c,
+						Case_Content__c,
+						Case_Record_Type_Developer_Name__c,
+						Case_Status__c,
+						Case_Subject__c,
+						Case_Type__c,
+						Product_Relation_Record_Type_Name__c,
+						Assets_In_Migration_Data_ID_Read_only__c
 					FROM Migration_Process__mdt
 					WHERE DeveloperName = 'CSOBS_contract_cancelation'
 					LIMIT 1
@@ -71,6 +110,7 @@ public class MigrationPremiumControllerTest {
 	}
 
 	private static void setupData() {
+		insert TestDataFactory.getNumericalSettings();
 		theAccount = TestDataFactory.getAccount();
 		//theAccount.PersonBirthdate = Date.today();
 		insert theAccount;
@@ -102,7 +142,12 @@ public class MigrationPremiumControllerTest {
 		//Product2 parentProduct = TestUtils.getProduct('dfj', '1816-34', 1, null, '1816-34');
 		//theProduct = TestUtils.getProduct('Test Product', 'Test Product', '18', 1, parentProduct.Id, 'hsvjf', 'jsdij');
 		//theProductRelation2 = TestUtils.getAndCreateProductRelation(null, null, 'Migration');
-		theProductRelation2.RecordTypeId = Schema.getGlobalDescribe().get('Product_Relation__c').getDescribe().getRecordTypeInfosByDeveloperName().get(migrationPremiumProcessConfiguration.Product_Relation_Record_Type_Name__c).getRecordTypeId();
+		theProductRelation2.RecordTypeId = Schema.getGlobalDescribe()
+			.get('Product_Relation__c')
+			.getDescribe()
+			.getRecordTypeInfosByDeveloperName()
+			.get(migrationPremiumProcessConfiguration.Product_Relation_Record_Type_Name__c)
+			.getRecordTypeId();
 		update theProductRelation2;
 
 		theProductParameter1 = new Product_Parameter__c();
@@ -139,12 +184,12 @@ public class MigrationPremiumControllerTest {
 		update theProduct;*/
 	}
 
-/*    private static void setupDataAccountCancellation(){
+	/*    private static void setupDataAccountCancellation(){
         theAccount = TestDataFactory.getAccount();
         theAccount.PersonBirthdate = Date.today();
         //theAccount.Date_of_Birth__c = Date.today();
         update theAccount;
-*//*        Product2 parentProduct = TestUtils.getProduct('dfj', '1816-34', 1, null, '1816-34');
+*/ /*        Product2 parentProduct = TestUtils.getProduct('dfj', '1816-34', 1, null, '1816-34');
         theProduct = TestUtils.getProduct('Test Product', 'Test Product', '18', 1, parentProduct.Id, 'hsvjf', 'jsdij');
         theProductRelation = TestUtils.getAndCreateProductRelation(theProduct.Id, null, 'Keep');
         theProductRelation2 = TestUtils.getAndCreateProductRelation(null, null, 'Cancel');
@@ -152,13 +197,13 @@ public class MigrationPremiumControllerTest {
         update theProductRelation2;
         theProductParameter1 = TestUtils.getAndCreateProductParameterOnRelation(theProductRelation.Id);
         theProductParameter2 = TestUtils.getAndCreateChildProductParameterOnRelation(theProductRelation.Id, theProductParameter1.Id);
-        theProductParameter3 = TestUtils.getAndCreateChildProductParameterOnRelation(theProductRelation.Id, theProductParameter2.Id);*//*
+        theProductParameter3 = TestUtils.getAndCreateChildProductParameterOnRelation(theProductRelation.Id, theProductParameter2.Id);*/ /*
         theProductParameter3.Soql__c = 'SELECT Id, Name FROM Product2';
         theProductParameter3.SOQL_Background_Query__c = 'SELECT Id, Name FROM Product2 WHERE Name= :value';
         update theProductParameter3;
         theAsset = TestUtils.getAsset(theAccount.Id, theProduct.Id, '123345');
         theAsset.Product2 = theProduct;
-*//*        TestUtils.createProductIdsCS();
+*/ /*        TestUtils.createProductIdsCS();
         TestUtils.getCcAppNameCustomSettings();
         TestUtils.setTHUBEndpointURL();
         TestUtils.setIntegrationCertificates();
@@ -166,10 +211,10 @@ public class MigrationPremiumControllerTest {
         Product2 domain = TestUtils.getProduct('domain', 'AccountNeedsRemControllerTest1', 1, null, '1816');
         Product2 category = TestUtils.getProduct('domain', 'AccountNeedsRemControllerTest2', 2, domain.Id, '1816');
         Product2 product = TestUtils.getProduct('domain', 'AccountNeedsRemControllerTest3', 2, category.Id, '551');
-        theOpp = TestUtils.getOpportunity(theAccount.Id, domain.Id, category.Id, product.Id);*//*
-    }*/
+        theOpp = TestUtils.getOpportunity(theAccount.Id, domain.Id, category.Id, product.Id);*/ /*
+	 }*/
 
-/*    private static void setupICalcCustomSettings(String hHeight, String fHeight, String tmpId, String tmp2Id, String url){
+	/*    private static void setupICalcCustomSettings(String hHeight, String fHeight, String tmpId, String tmp2Id, String url){
         List<ICalc_Printing_Properties__c> csList = new List<ICalc_Printing_Properties__c>();
         ICalc_Printing_Properties__c cs = new ICalc_Printing_Properties__c();
         cs.Name = 'Header_Height';
@@ -280,8 +325,24 @@ public class MigrationPremiumControllerTest {
 		setupData();
 		//Test.setMock(WebServiceMock.class, new DpaaSWebServiceMockImpl());
 		Test.startTest();
-		MigrationPremiumController.getRelationsOfMigratedProduct(theAccount.Id, theProduct.Id, '', null, 1, false, migrationPremiumProcessConfiguration.Id);
-		MigrationPremiumController.getRelationsOfMigratedProduct(theAccount.Id, theProduct.Id, '', theAsset.Id, 1, false, migrationPremiumProcessConfiguration.Id);
+		MigrationPremiumController.getRelationsOfMigratedProduct(
+			theAccount.Id,
+			theProduct.Id,
+			'',
+			null,
+			1,
+			false,
+			migrationPremiumProcessConfiguration.Id
+		);
+		MigrationPremiumController.getRelationsOfMigratedProduct(
+			theAccount.Id,
+			theProduct.Id,
+			'',
+			theAsset.Id,
+			1,
+			false,
+			migrationPremiumProcessConfiguration.Id
+		);
 		MigrationPremiumController.getInvestmentRelations();
 		Test.stopTest();
 	}
@@ -291,7 +352,12 @@ public class MigrationPremiumControllerTest {
 		setupData();
 		//Test.setMock(WebServiceMock.class, new DpaaSWebServiceMockImpl());
 		Test.startTest();
-		MigrationPremiumController.fillCaseFieldsForExistingCase(migrationPremiumProcessConfiguration, '', '',/* String selectedAssetMainElement, String selectedAssetChildElement,*/ '');
+		MigrationPremiumController.fillCaseFieldsForExistingCase(
+			migrationPremiumProcessConfiguration,
+			'',
+			'',
+			/* String selectedAssetMainElement, String selectedAssetChildElement,*/ ''
+		);
 		Test.stopTest();
 	}
 
@@ -310,12 +376,15 @@ public class MigrationPremiumControllerTest {
 		setupData();
 		//Test.setMock(WebServiceMock.class, new DpaaSWebServiceMockImpl());
 		Test.startTest();
-		MigrationPremiumController.ReturnObjectWrapper theWrap = MigrationPremiumController.getRecord(theAsset.Id, 'Asset');
+		MigrationPremiumController.ReturnObjectWrapper theWrap = MigrationPremiumController.getRecord(
+			theAsset.Id,
+			'Asset'
+		);
 		Test.stopTest();
 		System.assert(theWrap.objectId != null);
 	}
 
-/*    @isTest
+	/*    @isTest
     public static void loadProductCategoriesTest(){
         setupData();
 
@@ -324,7 +393,7 @@ public class MigrationPremiumControllerTest {
         Test.stopTest();
     }*/
 
-/*    @isTest
+	/*    @isTest
     public static void loadChildProductsTest(){
         setupData();
 
@@ -343,10 +412,40 @@ public class MigrationPremiumControllerTest {
 		insert theDmsDocument;*/
 
 		Test.startTest();
-		MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(theAccount.Id, null, 'conf', 'conf2', '{"ppid":{"fieldName":"Description","value":"some note"}}', 'some note', '', '', '', '', '', migrationPremiumProcessConfiguration.Id, '0', null, null, null, null, 'submit', '', 'template'/*, false, ''*/);
+		MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(
+			theAccount.Id,
+			null,
+			'conf',
+			'conf2',
+			'{"ppid":{"fieldName":"Description","value":"some note"}}',
+			'some note',
+			'',
+			'',
+			'',
+			'',
+			'',
+			migrationPremiumProcessConfiguration.Id,
+			'0',
+			null,
+			null,
+			null,
+			null,
+			'submit',
+			'',
+			'template' /*, false, ''*/
+		);
 		Test.stopTest();
 
-		Case theCase = [SELECT Id, /*Approval_Comment__c,*/ Migration_Premium_Product_List_Conf__c, Migration_Premium_Product_Relations_Conf__c, Description, PCF_Unfinished__c FROM Case WHERE Id = :createCaseWrapper.theCaseId];
+		Case theCase = [
+			SELECT
+				Id,
+				/*Approval_Comment__c,*/ Migration_Premium_Product_List_Conf__c,
+				Migration_Premium_Product_Relations_Conf__c,
+				Description,
+				PCF_Unfinished__c
+			FROM Case
+			WHERE Id = :createCaseWrapper.theCaseId
+		];
 		/*List<DMS_Document__c> docList = [SELECT Id, Case__c FROM DMS_Document__c WHERE Id = :theDmsDocument.Id LIMIT 1];*/
 		System.assertNotEquals(null, theCase);
 		System.assertEquals('conf', theCase.Migration_Premium_Product_List_Conf__c);
@@ -361,6 +460,7 @@ public class MigrationPremiumControllerTest {
 
 	@isTest
 	public static void createCaseTest2() {
+		insert TestDataFactory.getNumericalSettings();
 		//setupData();
 		Test.startTest();
 		User user = TestDataFactory.getUser(new User());
@@ -371,19 +471,55 @@ public class MigrationPremiumControllerTest {
 		Case c2 = new Case();
 		System.runAs(user) {
 			Account theAcc = TestDataFactory.getAccount();
-			c1 = TestDataFactory.getCase(new Case(
-				Subject = 'Case1',
-				AccountId = theAcc.Id
-			));
+			c1 = TestDataFactory.getCase(new Case(Subject = 'Case1', AccountId = theAcc.Id));
 
-			c2 = TestDataFactory.getCase(new Case(
-				Subject = 'Case2',
-				AccountId = theAcc.Id
-			));
+			c2 = TestDataFactory.getCase(new Case(Subject = 'Case2', AccountId = theAcc.Id));
 			insert c1;
 			insert c2;
-			MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(theAcc.Id, null, 'conf', 'conf2', '{"ppid":{"fieldName":"Description","value":"some note"}}', 'some note', '', '', '', '', '', migrationPremiumProcessConfiguration.Id, '0', null, null, null, c1.Id, 'submit', '', ''/*, false, ''*/);
-			MigrationPremiumController.CreateCaseWrapper createCaseWrapper2 = MigrationPremiumController.createCase(theAcc.Id, null, 'conf', 'conf2', '{"ppid":{"fieldName":"Description","value":"some note"}}', 'some note', '', '', '', '', '', migrationPremiumProcessConfiguration.Id, '0', null, null, null, c2.Id, 'draft', '', ''/*, false, ''*/);
+			MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(
+				theAcc.Id,
+				null,
+				'conf',
+				'conf2',
+				'{"ppid":{"fieldName":"Description","value":"some note"}}',
+				'some note',
+				'',
+				'',
+				'',
+				'',
+				'',
+				migrationPremiumProcessConfiguration.Id,
+				'0',
+				null,
+				null,
+				null,
+				c1.Id,
+				'submit',
+				'',
+				'' /*, false, ''*/
+			);
+			MigrationPremiumController.CreateCaseWrapper createCaseWrapper2 = MigrationPremiumController.createCase(
+				theAcc.Id,
+				null,
+				'conf',
+				'conf2',
+				'{"ppid":{"fieldName":"Description","value":"some note"}}',
+				'some note',
+				'',
+				'',
+				'',
+				'',
+				'',
+				migrationPremiumProcessConfiguration.Id,
+				'0',
+				null,
+				null,
+				null,
+				c2.Id,
+				'draft',
+				'',
+				'' /*, false, ''*/
+			);
 		}
 
 		Test.stopTest();
@@ -400,9 +536,39 @@ public class MigrationPremiumControllerTest {
 		insert theDmsDocument;
 		Test.setMock(WebServiceMock.class, new DpaaSWebServiceMockImpl());*/
 
-		MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(theAccount.Id, null, 'conf', '{"GENERAL":{"a2M4E000000HjDqUAK":{"selectedRelationId":"a2M4E000000HjDqUAK","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000HjDqUAK"},"Id":"a2M4E000000HjDqUAK","Default_Name__c":"Rušení účtů","RecordTypeId":"0124E000000cG99QAE"}],"productParameterDefaults":{"a0f4E000009cRrAQAU":{"value":"a0f4E000009cRrFQAU","isForFinalValidation":null,"syncElementName":"undefined","stringValue":"Majitel"},"a0f4E000009cRtCQAU":{"value":"a0f4E000009cSW4QAM","isForFinalValidation":null},"a0f4E00000AdAJiQAN":{"value":"existující klient","assetValue":"existující klient","isForFinalValidation":null},"a0f4E00000AAIo4QAH":{"value":""},"a0f4E000009cSD4QAM":{"value":""},"a0f4E000009xo6mQAA":{"value":""},"a0f4E000009xo6rQAA":{"value":""},"a0f4E000009xo7NQAQ":{"value":""},"a0f4E000009cSDaQAM":{"value":""},"a0f4E000009cSDfQAM":{"value":""},"a0f4E000009xo9RQAQ":{"value":""},"a0f4E000009xo9MQAQ":{"value":""},"a0f4E000009xoIkQAI":{"value":""},"a0f4E000009cSEBQA2":{"value":""},"a0f4E00000AlYGoQAN":{"value":""},"a0f4E000009cSEGQA2":{"value":""},"a0f4E000009cSELQA2":{"value":""},"a0f4E000009xo7SQAQ":{"value":""},"a0f4E000009cRrBQAU":{"value":"a0f4E000009cRwBQAU","isForFinalValidation":null,"syncElementName":"undefined","stringValue":"Občanský průkaz"},"a0f4E000009cRxIQAU":{"value":""},"a0f4E000009cSAZQA2":{"value":""},"a0f4E000009cSB5QAM":{"value":""},"a0f4E000009cSBAQA2":{"value":""},"a0f4E000009cSJQQA2":{"value":"a0f4E000009cSToQAM","isForFinalValidation":null,"syncElementName":"SettlementType"},"a0f4E000009cSKcQAM":{"value":""},"a0f4E000009cSKmQAM":{"value":"a0B4E000002WvL5UAK","isForFinalValidation":null},"a0f4E00000AAIptQAH":{"value":""},"a0f4E00000AAIpyQAH":{"value":""},"a0f4E00000AAIq3QAH":{"value":""},"a0f4E00000AAIqZQAX":{"value":""}},"productName":"NAME","productId":null,"isOwner":null,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":null,"assetBankSystem":null,"assetAccountNumber":null}},"999-01t4E000000H8vmQAC":{"1-01t4E000000H6nXQAS":{"selectedRelationId":"a2M4E000000h4U8UAI","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000h4U8UAI"},"Id":"a2M4E000000h4U8UAI","Default_Name__c":"Odevzdal","From__c":"01t4E000000fZm1QAE","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"1","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000fZm1QAE"},"CST_Value_ID__c":"1816-47","Name":"Debetní karty","Id":"01t4E000000fZm1QAE"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000h4UDUAY"},"Id":"a2M4E000000h4UDUAY","Default_Name__c":"Neodevzdal","From__c":"01t4E000000fZm1QAE","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"2","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000fZm1QAE"},"CST_Value_ID__c":"1816-47","Name":"Debetní karty","Id":"01t4E000000fZm1QAE"}}],"productParameterDefaults":{},"productName":"Debit MC ctls","productId":"01t4E000000H6nXQAS","isOwner":true,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":"02i4E0000027wtzQAA","assetBankSystem":"16","assetAccountNumber":"**** **** **26 5457"},"0-01t4E000000H8vmQAC":{"selectedRelationId":"a2M4E000000hMrkUAE","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMrkUAE"},"Id":"a2M4E000000hMrkUAE","Default_Name__c":"Výpověď","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"1","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000HorJUAS"},"Id":"a2M4E000000HorJUAS","Default_Name__c":"Dohoda","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"2","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMrpUAE"},"Id":"a2M4E000000hMrpUAE","Default_Name__c":"Odstoupení","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"3","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMruUAE"},"Id":"a2M4E000000hMruUAE","Default_Name__c":"Výpověď pro nesouhlas se změnou OP a Sazebníku","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"4","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}}],"productParameterDefaults":{"a0f4E00000AlM3RQAV":{"value":"1 měsíc","isForFinalValidation":null},"a0f4E00000AlXp3QAF":{"value":"30.06.2020"},"a0f4E00000AlM3SQAV":{"value":""},"a0f4E00000AlM3fQAF":{"value":"TRUE","assetValue":"TRUE","isForFinalValidation":null},"a0f4E00000AlM3aQAF":{"value":"a0f4E000009cSToQAM","isForFinalValidation":null,"syncElementName":"SettlementType","stringValue":"Převod na účet"},"a0f4E00000AlM3bQAF":{"value":"111","syncElementName":"transferBankAccount"},"a0f4E00000AlM48QAF":{"value":"111","syncElementName":"transferBankCode"},"a0f4E00000AlM3cQAF":{"value":"111","syncElementName":"transferVS"},"a0f4E00000AlM3dQAF":{"value":"111","syncElementName":"transferKS"},"a0f4E00000AlM3eQAF":{"value":"111","syncElementName":"transferSS"},"a0f4E00000AlM3uQAF":{"value":"a0B4E000002WvL5UAK","isForFinalValidation":null,"stringValue":"Okružní 207, Ruda, ČR"},"a0f4E00000AlM3wQAF":{"value":true,"assetValue":null,"isForFinalValidation":false,"syncElementName":"undefined"},"a0f4E00000AlM3xQAF":{"value":"111","syncElementName":"IBAN"},"a0f4E00000AlM3yQAF":{"value":"111","syncElementName":"BIC"},"a0f4E00000AlM3zQAF":{"value":"111","syncElementName":"recepientAddress"},"a0f4E00000AlM40QAF":{"value":"1111","syncElementName":"recepientBankAddress"},"a0f4E00000AlM41QAF":{"value":"111","syncElementName":"transferCurrency"},"a0f4E00000AlM42QAF":{"value":"a0f4E00000AlM4OQAV","isForFinalValidation":null,"syncElementName":"transferFeeCode","stringValue":"SHA"},"a0f4E00000AlM43QAF":{"value":true,"assetValue":null,"isForFinalValidation":false,"syncElementName":"transferToRussia"},"a0f4E00000AlM44QAF":{"value":"111","syncElementName":"transferBankAccountRussia"},"a0f4E00000AlM45QAF":{"value":"111","syncElementName":"BIK"},"a0f4E00000AlM3vQAF":{"value":"111","syncElementName":"VoCode"},"a0f4E00000AlM46QAF":{"value":"111","syncElementName":"transferTaxCode"},"a0f4E00000AlM47QAF":{"value":"111","syncElementName":"KPP"},"a0f4E00000AlM4CQAV":{"value":""},"a0f4E00000AlM4DQAV":{"value":""},"a0f4E00000AlM3gQAF":{"value":"a0f4E00000AlM4JQAV","isForFinalValidation":null},"a0f4E00000AlM3iQAF":{"value":""},"a0f4E00000AlM3jQAF":{"value":""},"a0f4E00000AlM3kQAF":{"value":""},"a0f4E00000AlM3lQAF":{"value":""},"a0f4E00000AlM3mQAF":{"value":""},"a0f4E00000AlM3nQAF":{"value":""},"a0f4E00000AlM3oQAF":{"value":"a0f4E00000AlM4NQAV","isForFinalValidation":null},"a0f4E00000AlM3hQAF":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3pQAF":{"value":""},"a0f4E00000AlM3qQAF":{"value":""},"a0f4E00000AlM3rQAF":{"value":""},"a0f4E00000AlM3sQAF":{"value":""},"a0f4E00000AlM3tQAF":{"value":""},"a0f4E00000AlM3XQAV":{"value":"2500","isForFinalValidation":null},"a0f4E00000AlM3WQAV":{"value":"-3 642.01","assetValue":"-3 642.01","isForFinalValidation":null},"a0f4E00000AlM3VQAV":{"value":"166","isForFinalValidation":null},"a0f4E00000AlM3TQAV":{"value":""},"a0f4E00000AlM49QAF":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3UQAV":{"value":"0","isForFinalValidation":null},"a0f4E00000AlM4BQAV":{"value":"1000","assetValue":"1000","isForFinalValidation":null},"a0f4E00000AlM3ZQAV":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3YQAV":{"value":true,"assetValue":null,"isForFinalValidation":false},"a0f4E00000ArJADQA3":{"value":"02i4E000000DlFXQA0","isForFinalValidation":null},"a0f4E00000AlM4AQAV":{"value":"ČSOB Internetové bankovnictví","assetValue":"ČSOB Internetové bankovnictví","isForFinalValidation":null}},"productName":"Běžný účet v CZK","productId":"01t4E000000H8vmQAC","isOwner":true,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":"02i4E000001OyGaQAK","assetBankSystem":"2","assetAccountNumber":"34225734"}}}0', '{"ppid":{"fieldName":"Description","value":"testcomment"}}', 'some note', '', '', '', '', '', migrationPremiumProcessConfigurationAccountCancel.Id, '0', null, null, null, null, 'submit', '', ''/*, false, ''*/);
+		MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(
+			theAccount.Id,
+			null,
+			'conf',
+			'{"GENERAL":{"a2M4E000000HjDqUAK":{"selectedRelationId":"a2M4E000000HjDqUAK","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000HjDqUAK"},"Id":"a2M4E000000HjDqUAK","Default_Name__c":"Rušení účtů","RecordTypeId":"0124E000000cG99QAE"}],"productParameterDefaults":{"a0f4E000009cRrAQAU":{"value":"a0f4E000009cRrFQAU","isForFinalValidation":null,"syncElementName":"undefined","stringValue":"Majitel"},"a0f4E000009cRtCQAU":{"value":"a0f4E000009cSW4QAM","isForFinalValidation":null},"a0f4E00000AdAJiQAN":{"value":"existující klient","assetValue":"existující klient","isForFinalValidation":null},"a0f4E00000AAIo4QAH":{"value":""},"a0f4E000009cSD4QAM":{"value":""},"a0f4E000009xo6mQAA":{"value":""},"a0f4E000009xo6rQAA":{"value":""},"a0f4E000009xo7NQAQ":{"value":""},"a0f4E000009cSDaQAM":{"value":""},"a0f4E000009cSDfQAM":{"value":""},"a0f4E000009xo9RQAQ":{"value":""},"a0f4E000009xo9MQAQ":{"value":""},"a0f4E000009xoIkQAI":{"value":""},"a0f4E000009cSEBQA2":{"value":""},"a0f4E00000AlYGoQAN":{"value":""},"a0f4E000009cSEGQA2":{"value":""},"a0f4E000009cSELQA2":{"value":""},"a0f4E000009xo7SQAQ":{"value":""},"a0f4E000009cRrBQAU":{"value":"a0f4E000009cRwBQAU","isForFinalValidation":null,"syncElementName":"undefined","stringValue":"Občanský průkaz"},"a0f4E000009cRxIQAU":{"value":""},"a0f4E000009cSAZQA2":{"value":""},"a0f4E000009cSB5QAM":{"value":""},"a0f4E000009cSBAQA2":{"value":""},"a0f4E000009cSJQQA2":{"value":"a0f4E000009cSToQAM","isForFinalValidation":null,"syncElementName":"SettlementType"},"a0f4E000009cSKcQAM":{"value":""},"a0f4E000009cSKmQAM":{"value":"a0B4E000002WvL5UAK","isForFinalValidation":null},"a0f4E00000AAIptQAH":{"value":""},"a0f4E00000AAIpyQAH":{"value":""},"a0f4E00000AAIq3QAH":{"value":""},"a0f4E00000AAIqZQAX":{"value":""}},"productName":"NAME","productId":null,"isOwner":null,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":null,"assetBankSystem":null,"assetAccountNumber":null}},"999-01t4E000000H8vmQAC":{"1-01t4E000000H6nXQAS":{"selectedRelationId":"a2M4E000000h4U8UAI","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000h4U8UAI"},"Id":"a2M4E000000h4U8UAI","Default_Name__c":"Odevzdal","From__c":"01t4E000000fZm1QAE","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"1","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000fZm1QAE"},"CST_Value_ID__c":"1816-47","Name":"Debetní karty","Id":"01t4E000000fZm1QAE"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000h4UDUAY"},"Id":"a2M4E000000h4UDUAY","Default_Name__c":"Neodevzdal","From__c":"01t4E000000fZm1QAE","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"2","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000fZm1QAE"},"CST_Value_ID__c":"1816-47","Name":"Debetní karty","Id":"01t4E000000fZm1QAE"}}],"productParameterDefaults":{},"productName":"Debit MC ctls","productId":"01t4E000000H6nXQAS","isOwner":true,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":"02i4E0000027wtzQAA","assetBankSystem":"16","assetAccountNumber":"**** **** **26 5457"},"0-01t4E000000H8vmQAC":{"selectedRelationId":"a2M4E000000hMrkUAE","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMrkUAE"},"Id":"a2M4E000000hMrkUAE","Default_Name__c":"Výpověď","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"1","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000HorJUAS"},"Id":"a2M4E000000HorJUAS","Default_Name__c":"Dohoda","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"2","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMrpUAE"},"Id":"a2M4E000000hMrpUAE","Default_Name__c":"Odstoupení","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"3","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMruUAE"},"Id":"a2M4E000000hMruUAE","Default_Name__c":"Výpověď pro nesouhlas se změnou OP a Sazebníku","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"4","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}}],"productParameterDefaults":{"a0f4E00000AlM3RQAV":{"value":"1 měsíc","isForFinalValidation":null},"a0f4E00000AlXp3QAF":{"value":"30.06.2020"},"a0f4E00000AlM3SQAV":{"value":""},"a0f4E00000AlM3fQAF":{"value":"TRUE","assetValue":"TRUE","isForFinalValidation":null},"a0f4E00000AlM3aQAF":{"value":"a0f4E000009cSToQAM","isForFinalValidation":null,"syncElementName":"SettlementType","stringValue":"Převod na účet"},"a0f4E00000AlM3bQAF":{"value":"111","syncElementName":"transferBankAccount"},"a0f4E00000AlM48QAF":{"value":"111","syncElementName":"transferBankCode"},"a0f4E00000AlM3cQAF":{"value":"111","syncElementName":"transferVS"},"a0f4E00000AlM3dQAF":{"value":"111","syncElementName":"transferKS"},"a0f4E00000AlM3eQAF":{"value":"111","syncElementName":"transferSS"},"a0f4E00000AlM3uQAF":{"value":"a0B4E000002WvL5UAK","isForFinalValidation":null,"stringValue":"Okružní 207, Ruda, ČR"},"a0f4E00000AlM3wQAF":{"value":true,"assetValue":null,"isForFinalValidation":false,"syncElementName":"undefined"},"a0f4E00000AlM3xQAF":{"value":"111","syncElementName":"IBAN"},"a0f4E00000AlM3yQAF":{"value":"111","syncElementName":"BIC"},"a0f4E00000AlM3zQAF":{"value":"111","syncElementName":"recepientAddress"},"a0f4E00000AlM40QAF":{"value":"1111","syncElementName":"recepientBankAddress"},"a0f4E00000AlM41QAF":{"value":"111","syncElementName":"transferCurrency"},"a0f4E00000AlM42QAF":{"value":"a0f4E00000AlM4OQAV","isForFinalValidation":null,"syncElementName":"transferFeeCode","stringValue":"SHA"},"a0f4E00000AlM43QAF":{"value":true,"assetValue":null,"isForFinalValidation":false,"syncElementName":"transferToRussia"},"a0f4E00000AlM44QAF":{"value":"111","syncElementName":"transferBankAccountRussia"},"a0f4E00000AlM45QAF":{"value":"111","syncElementName":"BIK"},"a0f4E00000AlM3vQAF":{"value":"111","syncElementName":"VoCode"},"a0f4E00000AlM46QAF":{"value":"111","syncElementName":"transferTaxCode"},"a0f4E00000AlM47QAF":{"value":"111","syncElementName":"KPP"},"a0f4E00000AlM4CQAV":{"value":""},"a0f4E00000AlM4DQAV":{"value":""},"a0f4E00000AlM3gQAF":{"value":"a0f4E00000AlM4JQAV","isForFinalValidation":null},"a0f4E00000AlM3iQAF":{"value":""},"a0f4E00000AlM3jQAF":{"value":""},"a0f4E00000AlM3kQAF":{"value":""},"a0f4E00000AlM3lQAF":{"value":""},"a0f4E00000AlM3mQAF":{"value":""},"a0f4E00000AlM3nQAF":{"value":""},"a0f4E00000AlM3oQAF":{"value":"a0f4E00000AlM4NQAV","isForFinalValidation":null},"a0f4E00000AlM3hQAF":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3pQAF":{"value":""},"a0f4E00000AlM3qQAF":{"value":""},"a0f4E00000AlM3rQAF":{"value":""},"a0f4E00000AlM3sQAF":{"value":""},"a0f4E00000AlM3tQAF":{"value":""},"a0f4E00000AlM3XQAV":{"value":"2500","isForFinalValidation":null},"a0f4E00000AlM3WQAV":{"value":"-3 642.01","assetValue":"-3 642.01","isForFinalValidation":null},"a0f4E00000AlM3VQAV":{"value":"166","isForFinalValidation":null},"a0f4E00000AlM3TQAV":{"value":""},"a0f4E00000AlM49QAF":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3UQAV":{"value":"0","isForFinalValidation":null},"a0f4E00000AlM4BQAV":{"value":"1000","assetValue":"1000","isForFinalValidation":null},"a0f4E00000AlM3ZQAV":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3YQAV":{"value":true,"assetValue":null,"isForFinalValidation":false},"a0f4E00000ArJADQA3":{"value":"02i4E000000DlFXQA0","isForFinalValidation":null},"a0f4E00000AlM4AQAV":{"value":"ČSOB Internetové bankovnictví","assetValue":"ČSOB Internetové bankovnictví","isForFinalValidation":null}},"productName":"Běžný účet v CZK","productId":"01t4E000000H8vmQAC","isOwner":true,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":"02i4E000001OyGaQAK","assetBankSystem":"2","assetAccountNumber":"34225734"}}}0',
+			'{"ppid":{"fieldName":"Description","value":"testcomment"}}',
+			'some note',
+			'',
+			'',
+			'',
+			'',
+			'',
+			migrationPremiumProcessConfigurationAccountCancel.Id,
+			'0',
+			null,
+			null,
+			null,
+			null,
+			'submit',
+			'',
+			'' /*, false, ''*/
+		);
 		//MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(theAccount.Id, null, 'conf', '', '{"ppid":{"fieldName":"Approval_Comment__c","value":"testcomment"}}', 'some note', '', '', '', '', '', migrationPremiumProcessConfigurationAccountCancel.Id, '0',null,null,null,null,'submit','', false, '');
-		Case theCase = [SELECT Id, /*Approval_Comment__c,*/ Migration_Premium_Product_List_Conf__c, Migration_Premium_Product_Relations_Conf__c, Description, PCF_Unfinished__c FROM Case WHERE Id = :createCaseWrapper.theCaseId];
+		Case theCase = [
+			SELECT
+				Id,
+				/*Approval_Comment__c,*/ Migration_Premium_Product_List_Conf__c,
+				Migration_Premium_Product_Relations_Conf__c,
+				Description,
+				PCF_Unfinished__c
+			FROM Case
+			WHERE Id = :createCaseWrapper.theCaseId
+		];
 		//List<DMS_Document__c> docList = [SELECT Id, Case__c FROM DMS_Document__c WHERE Id = :theDmsDocument.Id LIMIT 1];
 		Test.stopTest();
 
@@ -410,7 +576,7 @@ public class MigrationPremiumControllerTest {
 		System.assertEquals('conf', theCase.Migration_Premium_Product_List_Conf__c);
 		//System.assertEquals('conf2' + '0', theCase.Migration_Premium_Product_Relations_Conf__c);
 		System.assertEquals('testcomment', theCase.Description);
-/*        System.assertEquals('testcomment', theCase.Approval_Comment__c);
+		/*        System.assertEquals('testcomment', theCase.Approval_Comment__c);
         System.assertNotEquals(null, docList);
         System.assertNotEquals(true, docList.isEmpty());*/
 		System.assertEquals(false, theCase.PCF_Unfinished__c);
@@ -435,7 +601,7 @@ public class MigrationPremiumControllerTest {
 		 MigrationPremiumController.DeactivationCardsWrapper cardsWrapper = MigrationPremiumController.deactivateCreditCards('{"selectedRow":null,"lastIndex":0,"itemMap":{"999-01t4E000000H8vmQAC":{"theProduct":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H8vmQAC"},"Id":"01t4E000000H8vmQAC","Name":"Běžný účet v CZK","Product__c":"01t4E000000H6r9QAC","CST_Value_ID__c":"551-2","Product__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"Id":"01t4E000000H6r9QAC","CST_Value_ID__c":"1816-2"}},"theAsset":{"attributes":{"type":"Asset","url":"/services/data/v49.0/sobjects/Asset/02i4E000001OyGaQAK"},"Id":"02i4E000001OyGaQAK","Product2Id":"01t4E000000H8vmQAC","AccountId":"0014E00000908NMQAY","Account_Number__c":"34225734","Bank_System__c":"2","Brand__c":"1","Currence_CZK__c":"TRUE","RecordTypeId":"0124E0000004Ud0QAE","Assets__r":{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Asset","url":"/services/data/v49.0/sobjects/Asset/02i4E0000027wtzQAA"},"Parent_Asset__c":"02i4E000001OyGaQAK","Id":"02i4E0000027wtzQAA","Name":"Debit MC ctls","Product2Id":"01t4E000000H6nXQAS","Card_Status__c":"1","Brand__c":"1","AccountId":"0014E00000908NMQAY","Account_Number__c":"**** **** **26 5457","Bank_System__c":"16","RecordTypeId":"0124E0000004UcfQAE","Product2":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6nXQAS"},"Name":"Debit MC ctls","Product__c":"01t4E000000fZm1QAE","CST_Value_ID__c":"551-6432","Id":"01t4E000000H6nXQAS","Product__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000fZm1QAE"},"Id":"01t4E000000fZm1QAE","CST_Value_ID__c":"1816-47"}},"Account":{"attributes":{"type":"Account","url":"/services/data/v49.0/sobjects/Account/0014E00000908NMQAY"},"Name":"Alois Hubálek","CUID__c":"73051","Id":"0014E00000908NMQAY","RecordTypeId":"0124E0000004IK5QAM"}}]},"Product2":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H8vmQAC"},"Name":"Běžný účet v CZK","Id":"01t4E000000H8vmQAC"},"Account":{"attributes":{"type":"Account","url":"/services/data/v49.0/sobjects/Account/0014E00000908NMQAY"},"Name":"Alois Hubálek","CUID__c":"73051","Id":"0014E00000908NMQAY","RecordTypeId":"0124E0000004IK5QAM"}},"name":"Běžný účet v CZK","migrationProcess":{"attributes":{"type":"Migration_Process__mdt","url":"/services/data/v49.0/sobjects/Migration_Process__mdt/m064E0000008oKHQAY"},"Id":"m064E0000008oKHQAY","DeveloperName":"Account_Cancellation","Icon_Path__c":"csobIcon.png","Title_CZ__c":"Rušení účtu","Title_EN__c":"Account Cancellation","Assets_In_Migration_Data_ID__c":"1816-29;1816-24;1816-34;1816-2;1816-46;1816-47;1816-52;1816-43;1816-42;1816-26;1816-25;1816-5;1816-37","Show_Current_Account_Products__c":true,"Show_Configuration_Subtab__c":true,"Case_Content__c":"8","Case_Record_Type_Developer_Name__c":"Product_Service","Case_Status__c":"10","Case_Subject__c":"Rušení účtu","Case_Type__c":"Product Service","DMS_Document_Type_Data_ID__c":"214","Case_Branch_Data_Id__c":"6583","Product_Relation_Record_Type_Name__c":"Account_Cancellation","Sidebar_Main_Title_CZ__c":"Produkty Rušení","Sidebar_Main_Title_EN__c":"Cancellation Products","Show_KC_Authenticator__c":false,"Selected_Tab_Default__c":"General","All_DMS_Document_IDs__c":"214;1022;357","Show_File_Selector__c":true,"Show_General_Subtab__c":true,"Left_Panel_Hidator__c":false,"General_Subtab_CZ_Label__c":"OBECNÉ","General_Subtab_EN_Label__c":"Delivery address","Show_FO_Products_on_FOP__c":true,"Show_FOP_Products_on_FO__c":true,"Load_Parent_Product_Config__c":true,"At_Least_One_Attachment_Is_Required__c":false,"Transition_Subtab_CZ_Label__c":"ZPŮSOB ZRUŠENÍ PRODUKTU","Transition_Subtab_EN_Label__c":"Transitions","Configuration_Subtab_CZ_Label__c":"NASTAVENÍ","Configuration_Subtab_EN_Label__c":"Configuration","Overview_Tab_CZ_Label__c":"Tisk dokumentů a dokončení","Overview_Tab_EN_Label__c":"Overview","Configuration_Tab_CZ_Label__c":"Upřesnění rušení účtů a karet","Configuration_Tab_EN_Label__c":"Configuration","Use_Preterm_Document_List__c":false,"Assets_In_Migration_Data_ID_Read_only__c":"1816-46;1816-52;1816-43;1816-42;1816-26;1816-25;1816-5;1816-37","Assets_In_Migration_Card_ID__c":"1816-47","Document_Configurations__r":{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Document_Configuration__mdt","url":"/services/data/v49.0/sobjects/Document_Configuration__mdt/m084E000000Cs7JQAS"},"Migration_Process__c":"m064E0000008oKHQAY","Id":"m084E000000Cs7JQAS","Data_ID__c":"1933","Label_CZ__c":"Zrušení účtu","Label_EN__c":"Product Cancellation","Order__c":1,"Pre_contract_document__c":false}]}},"lastIndex":1,"isSelected":false,"isReadOnly":false,"isMigrationCard":false,"index":999,"hasSubProducts":false,"dispatcher":null,"defaultSelected":false,"childItemMap":{"0-01t4E000000H6nXQAS":{"theProduct":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6nXQAS"},"Name":"Debit MC ctls","Product__c":"01t4E000000fZm1QAE","CST_Value_ID__c":"551-6432","Id":"01t4E000000H6nXQAS","Product__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000fZm1QAE"},"Id":"01t4E000000fZm1QAE","CST_Value_ID__c":"1816-47"}},"theAsset":{"attributes":{"type":"Asset","url":"/services/data/v49.0/sobjects/Asset/02i4E0000027wtzQAA"},"Parent_Asset__c":"02i4E000001OyGaQAK","Id":"02i4E0000027wtzQAA","Name":"Debit MC ctls","Product2Id":"01t4E000000H6nXQAS","Card_Status__c":"1","Brand__c":"1","AccountId":"0014E00000908NMQAY","Account_Number__c":"**** **** **26 5457","Bank_System__c":"16","RecordTypeId":"0124E0000004UcfQAE","Product2":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6nXQAS"},"Name":"Debit MC ctls","Product__c":"01t4E000000fZm1QAE","CST_Value_ID__c":"551-6432","Id":"01t4E000000H6nXQAS","Product__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000fZm1QAE"},"Id":"01t4E000000fZm1QAE","CST_Value_ID__c":"1816-47"}},"Account":{"attributes":{"type":"Account","url":"/services/data/v49.0/sobjects/Account/0014E00000908NMQAY"},"Name":"Alois Hubálek","CUID__c":"73051","Id":"0014E00000908NMQAY","RecordTypeId":"0124E0000004IK5QAM"}},"name":"Debit MC ctls","migrationProcess":{"attributes":{"type":"Migration_Process__mdt","url":"/services/data/v49.0/sobjects/Migration_Process__mdt/m064E0000008oKHQAY"},"Id":"m064E0000008oKHQAY","DeveloperName":"Account_Cancellation","Icon_Path__c":"csobIcon.png","Title_CZ__c":"Rušení účtu","Title_EN__c":"Account Cancellation","Assets_In_Migration_Data_ID__c":"1816-29;1816-24;1816-34;1816-2;1816-46;1816-47;1816-52;1816-43;1816-42;1816-26;1816-25;1816-5;1816-37","Show_Current_Account_Products__c":true,"Show_Configuration_Subtab__c":true,"Case_Content__c":"8","Case_Record_Type_Developer_Name__c":"Product_Service","Case_Status__c":"10","Case_Subject__c":"Rušení účtu","Case_Type__c":"Product Service","DMS_Document_Type_Data_ID__c":"214","Case_Branch_Data_Id__c":"6583","Product_Relation_Record_Type_Name__c":"Account_Cancellation","Sidebar_Main_Title_CZ__c":"Produkty Rušení","Sidebar_Main_Title_EN__c":"Cancellation Products","Show_KC_Authenticator__c":false,"Selected_Tab_Default__c":"General","All_DMS_Document_IDs__c":"214;1022;357","Show_File_Selector__c":true,"Show_General_Subtab__c":true,"Left_Panel_Hidator__c":false,"General_Subtab_CZ_Label__c":"OBECNÉ","General_Subtab_EN_Label__c":"Delivery address","Show_FO_Products_on_FOP__c":true,"Show_FOP_Products_on_FO__c":true,"Load_Parent_Product_Config__c":true,"At_Least_One_Attachment_Is_Required__c":false,"Transition_Subtab_CZ_Label__c":"ZPŮSOB ZRUŠENÍ PRODUKTU","Transition_Subtab_EN_Label__c":"Transitions","Configuration_Subtab_CZ_Label__c":"NASTAVENÍ","Configuration_Subtab_EN_Label__c":"Configuration","Overview_Tab_CZ_Label__c":"Tisk dokumentů a dokončení","Overview_Tab_EN_Label__c":"Overview","Configuration_Tab_CZ_Label__c":"Upřesnění rušení účtů a karet","Configuration_Tab_EN_Label__c":"Configuration","Use_Preterm_Document_List__c":false,"Assets_In_Migration_Data_ID_Read_only__c":"1816-46;1816-52;1816-43;1816-42;1816-26;1816-25;1816-5;1816-37","Assets_In_Migration_Card_ID__c":"1816-47","Document_Configurations__r":{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Document_Configuration__mdt","url":"/services/data/v49.0/sobjects/Document_Configuration__mdt/m084E000000Cs7JQAS"},"Migration_Process__c":"m064E0000008oKHQAY","Id":"m084E000000Cs7JQAS","Data_ID__c":"1933","Label_CZ__c":"Zrušení účtu","Label_EN__c":"Product Cancellation","Order__c":1,"Pre_contract_document__c":false}]}},"lastIndex":0,"isSelected":false,"isReadOnly":false,"isMigrationCard":true,"index":0,"hasSubProducts":false,"dispatcher":null,"defaultSelected":null,"childItemMap":{}}}}}}', '{"GENERAL":{"a2M4E000000HjDqUAK":{"selectedRelationId":"a2M4E000000HjDqUAK","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000HjDqUAK"},"Id":"a2M4E000000HjDqUAK","Default_Name__c":"Rušení účtů","RecordTypeId":"0124E000000cG99QAE"}],"productParameterDefaults":{"a0f4E000009cRrAQAU":{"value":"a0f4E000009cRrFQAU","isForFinalValidation":null,"syncElementName":"undefined","stringValue":"Majitel"},"a0f4E000009cRtCQAU":{"value":"a0f4E000009cSW4QAM","isForFinalValidation":null},"a0f4E00000AdAJiQAN":{"value":"existující klient","assetValue":"existující klient","isForFinalValidation":null},"a0f4E00000AAIo4QAH":{"value":""},"a0f4E000009cSD4QAM":{"value":""},"a0f4E000009xo6mQAA":{"value":""},"a0f4E000009xo6rQAA":{"value":""},"a0f4E000009xo7NQAQ":{"value":""},"a0f4E000009cSDaQAM":{"value":""},"a0f4E000009cSDfQAM":{"value":""},"a0f4E000009xo9RQAQ":{"value":""},"a0f4E000009xo9MQAQ":{"value":""},"a0f4E000009xoIkQAI":{"value":""},"a0f4E000009cSEBQA2":{"value":""},"a0f4E00000AlYGoQAN":{"value":""},"a0f4E000009cSEGQA2":{"value":""},"a0f4E000009cSELQA2":{"value":""},"a0f4E000009xo7SQAQ":{"value":""},"a0f4E000009cRrBQAU":{"value":"a0f4E000009cRwBQAU","isForFinalValidation":null,"syncElementName":"undefined","stringValue":"Občanský průkaz"},"a0f4E000009cRxIQAU":{"value":""},"a0f4E000009cSAZQA2":{"value":""},"a0f4E000009cSB5QAM":{"value":""},"a0f4E000009cSBAQA2":{"value":""},"a0f4E000009cSJQQA2":{"value":"a0f4E000009cSToQAM","isForFinalValidation":null,"syncElementName":"SettlementType"},"a0f4E000009cSKcQAM":{"value":""},"a0f4E000009cSKmQAM":{"value":"a0B4E000002WvL5UAK","isForFinalValidation":null},"a0f4E00000AAIptQAH":{"value":""},"a0f4E00000AAIpyQAH":{"value":""},"a0f4E00000AAIq3QAH":{"value":""},"a0f4E00000AAIqZQAX":{"value":""}},"productName":"NAME","productId":null,"isOwner":null,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":null,"assetBankSystem":null,"assetAccountNumber":null}},"999-01t4E000000H8vmQAC":{"1-01t4E000000H6nXQAS":{"selectedRelationId":"a2M4E000000h4U8UAI","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000h4U8UAI"},"Id":"a2M4E000000h4U8UAI","Default_Name__c":"Odevzdal","From__c":"01t4E000000fZm1QAE","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"Account Cancellation","Type__c":"Cancel","Order__c":"1","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000fZm1QAE"},"CST_Value_ID__c":"1816-47","Name":"Debetní karty","Id":"01t4E000000fZm1QAE"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000h4UDUAY"},"Id":"a2M4E000000h4UDUAY","Default_Name__c":"Neodevzdal","From__c":"01t4E000000fZm1QAE","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"Account Cancellation","Type__c":"Cancel","Order__c":"2","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000fZm1QAE"},"CST_Value_ID__c":"1816-47","Name":"Debetní karty","Id":"01t4E000000fZm1QAE"}}],"productParameterDefaults":{},"productName":"Debit MC ctls","productId":"01t4E000000H6nXQAS","isOwner":true,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":"02i4E0000027wtzQAA","assetBankSystem":"16","assetAccountNumber":"**** **** **26 5457"},"0-01t4E000000H8vmQAC":{"selectedRelationId":"a2M4E000000hMrkUAE","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMrkUAE"},"Id":"a2M4E000000hMrkUAE","Default_Name__c":"Dohoda","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"Account Cancellation","Type__c":"Cancel","Order__c":"1","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000HorJUAS"},"Id":"a2M4E000000HorJUAS","Default_Name__c":"Dohoda","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"Account Cancellation","Type__c":"Cancel","Order__c":"2","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMrpUAE"},"Id":"a2M4E000000hMrpUAE","Default_Name__c":"Odstoupení","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"Account Cancellation","Type__c":"Cancel","Order__c":"3","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMruUAE"},"Id":"a2M4E000000hMruUAE","Default_Name__c":"Výpověď pro nesouhlas se změnou OP a Sazebníku","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"Account Cancellation","Type__c":"Cancel","Order__c":"4","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}}],"productParameterDefaults":{"a0f4E00000AlM3RQAV":{"value":"1 měsíc","isForFinalValidation":null},"a0f4E00000AlXp3QAF":{"value":"30.06.2020"},"a0f4E00000AlM3SQAV":{"value":""},"a0f4E00000AlM3fQAF":{"value":"TRUE","assetValue":"TRUE","isForFinalValidation":null},"a0f4E00000AlM3aQAF":{"value":"a0f4E000009cSToQAM","isForFinalValidation":null,"syncElementName":"SettlementType","stringValue":"Převod na účet"},"a0f4E00000AlM3bQAF":{"value":"111","syncElementName":"transferBankAccount"},"a0f4E00000AlM48QAF":{"value":"111","syncElementName":"transferBankCode"},"a0f4E00000AlM3cQAF":{"value":"111","syncElementName":"transferVS"},"a0f4E00000AlM3dQAF":{"value":"111","syncElementName":"transferKS"},"a0f4E00000AlM3eQAF":{"value":"111","syncElementName":"transferSS"},"a0f4E00000AlM3uQAF":{"value":"a0B4E000002WvL5UAK","isForFinalValidation":null,"stringValue":"Okružní 207, Ruda, ČR"},"a0f4E00000AlM3wQAF":{"value":true,"assetValue":null,"isForFinalValidation":false,"syncElementName":"undefined"},"a0f4E00000AlM3xQAF":{"value":"111","syncElementName":"IBAN"},"a0f4E00000AlM3yQAF":{"value":"111","syncElementName":"BIC"},"a0f4E00000AlM3zQAF":{"value":"111","syncElementName":"recepientAddress"},"a0f4E00000AlM40QAF":{"value":"1111","syncElementName":"recepientBankAddress"},"a0f4E00000AlM41QAF":{"value":"111","syncElementName":"transferCurrency"},"a0f4E00000AlM42QAF":{"value":"a0f4E00000AlM4OQAV","isForFinalValidation":null,"syncElementName":"transferFeeCode","stringValue":"SHA"},"a0f4E00000AlM43QAF":{"value":true,"assetValue":null,"isForFinalValidation":false,"syncElementName":"transferToRussia"},"a0f4E00000AlM44QAF":{"value":"111","syncElementName":"transferBankAccountRussia"},"a0f4E00000AlM45QAF":{"value":"111","syncElementName":"BIK"},"a0f4E00000AlM3vQAF":{"value":"111","syncElementName":"VoCode"},"a0f4E00000AlM46QAF":{"value":"111","syncElementName":"transferTaxCode"},"a0f4E00000AlM47QAF":{"value":"111","syncElementName":"KPP"},"a0f4E00000AlM4CQAV":{"value":""},"a0f4E00000AlM4DQAV":{"value":""},"a0f4E00000AlM3gQAF":{"value":"a0f4E00000AlM4JQAV","isForFinalValidation":null},"a0f4E00000AlM3iQAF":{"value":""},"a0f4E00000AlM3jQAF":{"value":""},"a0f4E00000AlM3kQAF":{"value":""},"a0f4E00000AlM3lQAF":{"value":""},"a0f4E00000AlM3mQAF":{"value":""},"a0f4E00000AlM3nQAF":{"value":""},"a0f4E00000AlM3oQAF":{"value":"a0f4E00000AlM4NQAV","isForFinalValidation":null},"a0f4E00000AlM3hQAF":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3pQAF":{"value":""},"a0f4E00000AlM3qQAF":{"value":""},"a0f4E00000AlM3rQAF":{"value":""},"a0f4E00000AlM3sQAF":{"value":""},"a0f4E00000AlM3tQAF":{"value":""},"a0f4E00000AlM3XQAV":{"value":"2500","isForFinalValidation":null},"a0f4E00000AlM3WQAV":{"value":"-3 642.01","assetValue":"-3 642.01","isForFinalValidation":null},"a0f4E00000AlM3VQAV":{"value":"166","isForFinalValidation":null},"a0f4E00000AlM3TQAV":{"value":""},"a0f4E00000AlM49QAF":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3UQAV":{"value":"0","isForFinalValidation":null},"a0f4E00000AlM4BQAV":{"value":"1000","assetValue":"1000","isForFinalValidation":null},"a0f4E00000AlM3ZQAV":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3YQAV":{"value":true,"assetValue":null,"isForFinalValidation":false},"a0f4E00000ArJADQA3":{"value":"02i4E000000DlFXQA0","isForFinalValidation":null},"a0f4E00000AlM4AQAV":{"value":"ČSOB Internetové bankovnictví","assetValue":"ČSOB Internetové bankovnictví","isForFinalValidation":null}},"productName":"Běžný účet v CZK","productId":"01t4E000000H8vmQAC","isOwner":true,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":"02i4E000001OyGaQAK","assetBankSystem":"2","assetAccountNumber":"34225734"}}}0');
 		 Test.stopTest();
 		 System.assertEquals('success', cardsWrapper.successMessage);
-		 *//*Case theCase = [SELECT Id, Approval_Comment__c, Migration_Premium_Product_List_Conf__c, Migration_Premium_Product_Relations_Conf__c, Description, PCF_Unfinished__c FROM Case WHERE Id =: createCaseWrapper.theCaseId];
+		 */ /*Case theCase = [SELECT Id, Approval_Comment__c, Migration_Premium_Product_List_Conf__c, Migration_Premium_Product_Relations_Conf__c, Description, PCF_Unfinished__c FROM Case WHERE Id =: createCaseWrapper.theCaseId];
         List<DMS_Document__c> docList = [SELECT Id, Case__c FROM DMS_Document__c WHERE Id = :theDmsDocument.Id LIMIT 1];
 
         System.assertNotEquals(null, theCase);
@@ -446,26 +612,26 @@ public class MigrationPremiumControllerTest {
         System.assertNotEquals(null, docList);
         System.assertNotEquals(true, docList.isEmpty());
         System.assertEquals(false, theCase.PCF_Unfinished__c);
-        System.assertEquals(createCaseWrapper.theCaseId, docList.get(0).Case__c);*//*
-    }*/
+        System.assertEquals(createCaseWrapper.theCaseId, docList.get(0).Case__c);*/ /*
+	 }*/
 
-//    @isTest static void assignCaseTest() {
-//        setupData();
-//
-//        Test.startTest();
-//        MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(theAccount.Id, null, 'conf', 'conf2', '{"ppid":{"fieldName":"Approval_Comment__c","value":"testcomment"}}', 'some note', null, '', '', '', '', migrationPremiumProcessConfiguration.Id, '0',null,null,null,null,'submit','', false, '');
-//        Case theCase = [SELECT Id, PCF_Unfinished__c FROM Case WHERE Id =: createCaseWrapper.theCaseId];
-//        System.assertNotEquals(null, theCase);
-//        System.assertEquals(true, theCase.PCF_Unfinished__c);
-//        String n = MigrationPremiumController.assignCase('notAnId', 'notAnId');
-//        String s = MigrationPremiumController.assignCase(theCase.Id, migrationPremiumProcessConfiguration.Id);
-//        Test.stopTest();
-//
-//        System.assertEquals(null, n);
-//        System.assertEquals(theCase.Id, s);
-//        Case assignCase = [SELECT Id, PCF_Unfinished__c FROM Case WHERE Id = :s];
-//        System.assertEquals(false, assignCase.PCF_Unfinished__c);
-//    }
+	//    @isTest static void assignCaseTest() {
+	//        setupData();
+	//
+	//        Test.startTest();
+	//        MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(theAccount.Id, null, 'conf', 'conf2', '{"ppid":{"fieldName":"Approval_Comment__c","value":"testcomment"}}', 'some note', null, '', '', '', '', migrationPremiumProcessConfiguration.Id, '0',null,null,null,null,'submit','', false, '');
+	//        Case theCase = [SELECT Id, PCF_Unfinished__c FROM Case WHERE Id =: createCaseWrapper.theCaseId];
+	//        System.assertNotEquals(null, theCase);
+	//        System.assertEquals(true, theCase.PCF_Unfinished__c);
+	//        String n = MigrationPremiumController.assignCase('notAnId', 'notAnId');
+	//        String s = MigrationPremiumController.assignCase(theCase.Id, migrationPremiumProcessConfiguration.Id);
+	//        Test.stopTest();
+	//
+	//        System.assertEquals(null, n);
+	//        System.assertEquals(theCase.Id, s);
+	//        Case assignCase = [SELECT Id, PCF_Unfinished__c FROM Case WHERE Id = :s];
+	//        System.assertEquals(false, assignCase.PCF_Unfinished__c);
+	//    }
 
 	/*   @isTest static void getTerminationFeeTest() {
 		   setupDataAccountCancellation();
@@ -518,7 +684,8 @@ public class MigrationPremiumControllerTest {
 		System.assertEquals(MigrationPremiumController.migrationProduct, null);
 	}*/
 
-	@isTest static void controllerTest2() {
+	@isTest
+	static void controllerTest2() {
 		setupData();
 		/*setupDataAccountCancellation();
 		DMS_Document__c theDmsDocument = new DMS_Document__c();
@@ -527,7 +694,9 @@ public class MigrationPremiumControllerTest {
 		insert theDmsDocument;*/
 		Test.startTest();
 		//Test.setMock(WebServiceMock.class, new DpaaSWebServiceMockImpl());
-		System.debug('migrationPremiumProcessConfigurationAccountCancel: ' + migrationPremiumProcessConfigurationAccountCancel);
+		System.debug(
+			'migrationPremiumProcessConfigurationAccountCancel: ' + migrationPremiumProcessConfigurationAccountCancel
+		);
 		System.debug('theAccount: ' + theAccount);
 		//MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(theAccount.Id, null, '{"selectedRow":null,"lastIndex":1,"itemMap":{"0-01t4E000000H6JrQAK":{"theProduct":{"attributes":{"type":"Product2","url":"/services/data/v50.0/sobjects/Product2/01t4E000000H6JrQAK"},"Id":"01t4E000000H6JrQAK","Name":"Privátní portfolio Asset Management","CST_Value_ID__c":"551-156","Product__c":"01t4E000000H75EQAS","Product__r":{"attributes":{"type":"Product2","url":"/services/data/v50.0/sobjects/Product2/01t4E000000H75EQAS"},"Id":"01t4E000000H75EQAS"}},"theAsset":null,"name":"Privátní portfolio Asset Management","migrationProcess":{"attributes":{"type":"Migration_Process__mdt","url":"/services/data/v50.0/sobjects/Migration_Process__mdt/m064E0000000S8lQAE"},"Id":"m064E0000000S8lQAE","DeveloperName":"PPF","Icon_Path__c":"Dualni-klient-csob.svg","Do_Not_Create_a_Case__c":false,"Store_Last_Generated_Doc_To_JSK_OnSubmit__c":false,"Title_CZ__c":"Zřízení PPF","Title_EN__c":"Zřízení PPF","Assets_In_Migration_Data_ID__c":"1816-32","Show_Current_Account_Products__c":false,"Show_Configuration_Subtab__c":true,"Final_Step_Validation__c":"ELB + Email","Case_Content__c":"69","Case_Record_Type_Developer_Name__c":"Product_Service","Case_Status__c":"24","Send_To_BAW_After_Document_Pairing__c":false,"Case_Subject__c":"Zřízení PPF","Case_Type__c":"Product Service","DMS_Document_Type_Data_ID__c":"188;189","Representative_Relation_ID__c":"5,89","Case_Branch_Data_Id__c":"6469","Product_Relation_Record_Type_Name__c":"PPF","Show_KC_Authenticator__c":false,"Selected_Tab_Default__c":"Configuration","All_DMS_Document_IDs__c":"188;189","Show_File_Selector__c":false,"Show_General_Subtab__c":false,"Left_Panel_Hidator__c":true,"Show_FO_Products_on_FOP__c":false,"Show_FOP_Products_on_FO__c":false,"Load_Parent_Product_Config__c":true,"At_Least_One_Attachment_Is_Required__c":false,"Hide_Transition_Subtab__c":true,"Transition_Subtab_CZ_Label__c":"Varianta","Transition_Subtab_EN_Label__c":"Transitions","Configuration_Subtab_CZ_Label__c":"Nastavení","Configuration_Subtab_EN_Label__c":"Configuration","Overview_Tab_CZ_Label__c":"Tisk smlouvy a dokončení migrace","Overview_Tab_EN_Label__c":"Overview","Configuration_Tab_CZ_Label__c":"Konfigurace","Configuration_Tab_EN_Label__c":"Configuration","Case_Sent_Message__c":"Požadavek na zpracování pojištění byl úspěšně odeslán","Use_Preterm_Document_List__c":false,"Assign_To_User__c":false},"lastIndex":0,"isSelected":true,"isReadOnly":false,"isMigrationCard":false,"index":0,"hasSubProducts":false,"dispatcher":null,"defaultSelected":true,"childItemMap":{}}}}', '{"GENERAL":{"a2M4E000000HjDqUAK":{"selectedRelationId":"a2M4E000000HjDqUAK","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000HjDqUAK"},"Id":"a2M4E000000HjDqUAK","Default_Name__c":"Rušení účtů","RecordTypeId":"0124E000000cG99QAE"}],"productParameterDefaults":{"a0f4E000009cRrAQAU":{"value":"a0f4E000009cRrFQAU","isForFinalValidation":null,"syncElementName":"undefined","stringValue":"Majitel"},"a0f4E000009cRtCQAU":{"value":"a0f4E000009cSW4QAM","isForFinalValidation":null},"a0f4E00000AdAJiQAN":{"value":"existující klient","assetValue":"existující klient","isForFinalValidation":null},"a0f4E00000AAIo4QAH":{"value":""},"a0f4E000009cSD4QAM":{"value":""},"a0f4E000009xo6mQAA":{"value":""},"a0f4E000009xo6rQAA":{"value":""},"a0f4E000009xo7NQAQ":{"value":""},"a0f4E000009cSDaQAM":{"value":""},"a0f4E000009cSDfQAM":{"value":""},"a0f4E000009xo9RQAQ":{"value":""},"a0f4E000009xo9MQAQ":{"value":""},"a0f4E000009xoIkQAI":{"value":""},"a0f4E000009cSEBQA2":{"value":""},"a0f4E00000AlYGoQAN":{"value":""},"a0f4E000009cSEGQA2":{"value":""},"a0f4E000009cSELQA2":{"value":""},"a0f4E000009xo7SQAQ":{"value":""},"a0f4E000009cRrBQAU":{"value":"a0f4E000009cRwBQAU","isForFinalValidation":null,"syncElementName":"undefined","stringValue":"Občanský průkaz"},"a0f4E000009cRxIQAU":{"value":""},"a0f4E000009cSAZQA2":{"value":""},"a0f4E000009cSB5QAM":{"value":""},"a0f4E000009cSBAQA2":{"value":""},"a0f4E000009cSJQQA2":{"value":"a0f4E000009cSToQAM","isForFinalValidation":null,"syncElementName":"SettlementType"},"a0f4E000009cSKcQAM":{"value":""},"a0f4E000009cSKmQAM":{"value":"a0B4E000002WvL5UAK","isForFinalValidation":null},"a0f4E00000AAIptQAH":{"value":""},"a0f4E00000AAIpyQAH":{"value":""},"a0f4E00000AAIq3QAH":{"value":""},"a0f4E00000AAIqZQAX":{"value":""}},"productName":"NAME","productId":null,"isOwner":null,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":null,"assetBankSystem":null,"assetAccountNumber":null}},"999-01t4E000000H8vmQAC":{"1-01t4E000000H6nXQAS":{"selectedRelationId":"a2M4E000000h4U8UAI","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000h4U8UAI"},"Id":"a2M4E000000h4U8UAI","Default_Name__c":"Odevzdal","From__c":"01t4E000000fZm1QAE","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"1","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000fZm1QAE"},"CST_Value_ID__c":"1816-47","Name":"Debetní karty","Id":"01t4E000000fZm1QAE"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000h4UDUAY"},"Id":"a2M4E000000h4UDUAY","Default_Name__c":"Neodevzdal","From__c":"01t4E000000fZm1QAE","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"2","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000fZm1QAE"},"CST_Value_ID__c":"1816-47","Name":"Debetní karty","Id":"01t4E000000fZm1QAE"}}],"productParameterDefaults":{},"productName":"Debit MC ctls","productId":"01t4E000000H6nXQAS","isOwner":true,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":"02i4E0000027wtzQAA","assetBankSystem":"16","assetAccountNumber":"**** **** **26 5457"},"0-01t4E000000H8vmQAC":{"selectedRelationId":"a2M4E000000hMrkUAE","productRelationList":[{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMrkUAE"},"Id":"a2M4E000000hMrkUAE","Default_Name__c":"Výpověď","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"1","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000HorJUAS"},"Id":"a2M4E000000HorJUAS","Default_Name__c":"Dohoda","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"2","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMrpUAE"},"Id":"a2M4E000000hMrpUAE","Default_Name__c":"Odstoupení","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"3","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}},{"attributes":{"type":"Product_Relation__c","url":"/services/data/v49.0/sobjects/Product_Relation__c/a2M4E000000hMruUAE"},"Id":"a2M4E000000hMruUAE","Default_Name__c":"Výpověď pro nesouhlas se změnou OP a Sazebníku","From__c":"01t4E000000H6r9QAC","Is_Owner_Default__c":false,"Is_Dispatcher_Default__c":false,"Record_Type_Name__c":"CSOBS_contract_cancelation","Type__c":"Cancel","Order__c":"4","RecordTypeId":"0124E000000cG99QAE","From__r":{"attributes":{"type":"Product2","url":"/services/data/v49.0/sobjects/Product2/01t4E000000H6r9QAC"},"CST_Value_ID__c":"1816-2","Name":"Běžné účty","Id":"01t4E000000H6r9QAC"}}],"productParameterDefaults":{"a0f4E00000AlM3RQAV":{"value":"1 měsíc","isForFinalValidation":null},"a0f4E00000AlXp3QAF":{"value":"30.06.2020"},"a0f4E00000AlM3SQAV":{"value":""},"a0f4E00000AlM3fQAF":{"value":"TRUE","assetValue":"TRUE","isForFinalValidation":null},"a0f4E00000AlM3aQAF":{"value":"a0f4E000009cSToQAM","isForFinalValidation":null,"syncElementName":"SettlementType","stringValue":"Převod na účet"},"a0f4E00000AlM3bQAF":{"value":"111","syncElementName":"transferBankAccount"},"a0f4E00000AlM48QAF":{"value":"111","syncElementName":"transferBankCode"},"a0f4E00000AlM3cQAF":{"value":"111","syncElementName":"transferVS"},"a0f4E00000AlM3dQAF":{"value":"111","syncElementName":"transferKS"},"a0f4E00000AlM3eQAF":{"value":"111","syncElementName":"transferSS"},"a0f4E00000AlM3uQAF":{"value":"a0B4E000002WvL5UAK","isForFinalValidation":null,"stringValue":"Okružní 207, Ruda, ČR"},"a0f4E00000AlM3wQAF":{"value":true,"assetValue":null,"isForFinalValidation":false,"syncElementName":"undefined"},"a0f4E00000AlM3xQAF":{"value":"111","syncElementName":"IBAN"},"a0f4E00000AlM3yQAF":{"value":"111","syncElementName":"BIC"},"a0f4E00000AlM3zQAF":{"value":"111","syncElementName":"recepientAddress"},"a0f4E00000AlM40QAF":{"value":"1111","syncElementName":"recepientBankAddress"},"a0f4E00000AlM41QAF":{"value":"111","syncElementName":"transferCurrency"},"a0f4E00000AlM42QAF":{"value":"a0f4E00000AlM4OQAV","isForFinalValidation":null,"syncElementName":"transferFeeCode","stringValue":"SHA"},"a0f4E00000AlM43QAF":{"value":true,"assetValue":null,"isForFinalValidation":false,"syncElementName":"transferToRussia"},"a0f4E00000AlM44QAF":{"value":"111","syncElementName":"transferBankAccountRussia"},"a0f4E00000AlM45QAF":{"value":"111","syncElementName":"BIK"},"a0f4E00000AlM3vQAF":{"value":"111","syncElementName":"VoCode"},"a0f4E00000AlM46QAF":{"value":"111","syncElementName":"transferTaxCode"},"a0f4E00000AlM47QAF":{"value":"111","syncElementName":"KPP"},"a0f4E00000AlM4CQAV":{"value":""},"a0f4E00000AlM4DQAV":{"value":""},"a0f4E00000AlM3gQAF":{"value":"a0f4E00000AlM4JQAV","isForFinalValidation":null},"a0f4E00000AlM3iQAF":{"value":""},"a0f4E00000AlM3jQAF":{"value":""},"a0f4E00000AlM3kQAF":{"value":""},"a0f4E00000AlM3lQAF":{"value":""},"a0f4E00000AlM3mQAF":{"value":""},"a0f4E00000AlM3nQAF":{"value":""},"a0f4E00000AlM3oQAF":{"value":"a0f4E00000AlM4NQAV","isForFinalValidation":null},"a0f4E00000AlM3hQAF":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3pQAF":{"value":""},"a0f4E00000AlM3qQAF":{"value":""},"a0f4E00000AlM3rQAF":{"value":""},"a0f4E00000AlM3sQAF":{"value":""},"a0f4E00000AlM3tQAF":{"value":""},"a0f4E00000AlM3XQAV":{"value":"2500","isForFinalValidation":null},"a0f4E00000AlM3WQAV":{"value":"-3 642.01","assetValue":"-3 642.01","isForFinalValidation":null},"a0f4E00000AlM3VQAV":{"value":"166","isForFinalValidation":null},"a0f4E00000AlM3TQAV":{"value":""},"a0f4E00000AlM49QAF":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3UQAV":{"value":"0","isForFinalValidation":null},"a0f4E00000AlM4BQAV":{"value":"1000","assetValue":"1000","isForFinalValidation":null},"a0f4E00000AlM3ZQAV":{"value":false,"assetValue":null,"isForFinalValidation":false},"a0f4E00000AlM3YQAV":{"value":true,"assetValue":null,"isForFinalValidation":false},"a0f4E00000ArJADQA3":{"value":"02i4E000000DlFXQA0","isForFinalValidation":null},"a0f4E00000AlM4AQAV":{"value":"ČSOB Internetové bankovnictví","assetValue":"ČSOB Internetové bankovnictví","isForFinalValidation":null}},"productName":"Běžný účet v CZK","productId":"01t4E000000H8vmQAC","isOwner":true,"isCard":false,"enhancedProductParameterDefaults":null,"disponentText":null,"disponentId":null,"assetId":"02i4E000001OyGaQAK","assetBankSystem":"2","assetAccountNumber":"34225734"}}}0', '', 'some note', '', '', '', '', '', migrationPremiumProcessConfigurationAccountCancel.Id, '0',null,null,null,null,'submit',''/*, false, ''*/);
 		ApexPages.currentPage().getParameters().put('accountId', theAccount.Id);
@@ -543,7 +712,8 @@ public class MigrationPremiumControllerTest {
 		Test.stopTest();
 	}
 
-	@isTest static void updateOppTest() {
+	@isTest
+	static void updateOppTest() {
 		//setupDataAccountCancellation();
 		theOpp = TestDataFactory.getOpportunity();
 		insert theOpp;
@@ -555,15 +725,40 @@ public class MigrationPremiumControllerTest {
 		apiWrap.wantEncryptFields = 'false';
 		Map<String, MigrationPremiumTypes.ApiFieldWrapper> mapOfApi = new Map<String, MigrationPremiumTypes.ApiFieldWrapper>();
 		mapOfApi.put('1', apiWrap);
-		MigrationPremiumController.OppWrapper theWrap = MigrationPremiumController.updateOpp(theOpp.Id, JSON.serialize(mapOfApi));
+		MigrationPremiumController.OppWrapper theWrap = MigrationPremiumController.updateOpp(
+			theOpp.Id,
+			JSON.serialize(mapOfApi)
+		);
 		Test.stopTest();
 		System.assertEquals(theWrap.theOppId, theOpp.Id);
 	}
 
-	@isTest static void saveCaseAttachmentTest() {
+	@isTest
+	static void saveCaseAttachmentTest() {
 		setupData();
 		Test.startTest();
-		MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(theAccount.Id, null, 'conf', 'conf2', '{"ppid":{"fieldName":"Description","value":"testcomment"}}', 'some note', null, '', '', '', '', migrationPremiumProcessConfiguration.Id, '0', null, null, null, null, 'submit', '', ''/*, false, ''*/);
+		MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(
+			theAccount.Id,
+			null,
+			'conf',
+			'conf2',
+			'{"ppid":{"fieldName":"Description","value":"testcomment"}}',
+			'some note',
+			null,
+			'',
+			'',
+			'',
+			'',
+			migrationPremiumProcessConfiguration.Id,
+			'0',
+			null,
+			null,
+			null,
+			null,
+			'submit',
+			'',
+			'' /*, false, ''*/
+		);
 		Case theCase = [SELECT Id, PCF_Unfinished__c FROM Case WHERE Id = :createCaseWrapper.theCaseId];
 		System.assertNotEquals(null, theCase);
 		MigrationPremiumTypes.File theFile = new MigrationPremiumTypes.File();
@@ -582,24 +777,31 @@ public class MigrationPremiumControllerTest {
 		setupData();
 
 		Test.startTest();
-		MigrationPremiumController.getProductParameters(theProductRelation.Id, null, migrationPremiumProcessConfiguration.Id, theAccount.Id, null, theProduct.Id);
+		MigrationPremiumController.getProductParameters(
+			theProductRelation.Id,
+			null,
+			migrationPremiumProcessConfiguration.Id,
+			theAccount.Id,
+			null,
+			theProduct.Id
+		);
 		Test.stopTest();
 	}
 
 	/* @isTest
 	 public static void calculateBagettaDateTest(){
 		 setupData();
-		 *//*DMS_Document__c theDmsDocument = new DMS_Document__c();
+		 */ /*DMS_Document__c theDmsDocument = new DMS_Document__c();
         theDmsDocument.Case__c = TestUtils.getCase(theAccount, migrationPremiumProcessConfigurationAccountCancel.Case_Type__c, migrationPremiumProcessConfigurationAccountCancel.Case_Content__c).Id;
         theDmsDocument.External_ID__c = '1234567890test';
-        insert theDmsDocument;*//*
+        insert theDmsDocument;*/ /*
         Test.startTest();
         String retValue = MigrationPremiumController.calculateBagettaDate('21.02.2000', false, false);
         Test.stopTest();
         system.assertEquals('7.3.2000', retValue);
     }*/
 
-/*    @isTest
+	/*    @isTest
     public static void storeToJSKTest(){
 //        TestUtils.createAddressConfigurationCustomSettings();
         Test.setMock(WebServiceMock.class, new DPaaSWebServiceSearchMock());
@@ -700,11 +902,26 @@ public class MigrationPremiumControllerTest {
 		MigrationPremiumController cntrl = new MigrationPremiumController();
 		cntrl.selectedItems = new MigrationPremiumTypes.ItemsWrapper();
 		cntrl.selectedItems.itemMap = new Map<String, MigrationPremiumTypes.Item>();
-		MigrationPremiumTypes.Item parent = new MigrationPremiumTypes.Item(migrationPremiumProcessConfiguration, theAsset, true, 1, true);
+		MigrationPremiumTypes.Item parent = new MigrationPremiumTypes.Item(
+			migrationPremiumProcessConfiguration,
+			theAsset,
+			true,
+			1,
+			true
+		);
 		parent.theProduct = theProduct;
-		MigrationPremiumTypes.Item child = new MigrationPremiumTypes.Item(migrationPremiumProcessConfiguration, theAsset, true, 1, true);
+		MigrationPremiumTypes.Item child = new MigrationPremiumTypes.Item(
+			migrationPremiumProcessConfiguration,
+			theAsset,
+			true,
+			1,
+			true
+		);
 		child.theProduct = theProduct;
-		parent.childItemMap.put(theAsset.Id, new MigrationPremiumTypes.Item(migrationPremiumProcessConfiguration, theAsset, true, 1, true));
+		parent.childItemMap.put(
+			theAsset.Id,
+			new MigrationPremiumTypes.Item(migrationPremiumProcessConfiguration, theAsset, true, 1, true)
+		);
 		parent.childItemMap.get(theAsset.Id).theProduct = theProduct;
 		cntrl.selectedItems.itemMap.put('1', parent);
 		Test.stopTest();
@@ -717,7 +934,28 @@ public class MigrationPremiumControllerTest {
 		//Test.setMock(WebServiceMock.class, new DpaaSWebServiceMockImpl());
 		Test.startTest();
 
-		MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(theAccount.Id, null, '{}', '{}', '{"ppid":{"fieldName":"Description","value":"some note"}}', 'some note', '', '', '', '', '', migrationPremiumProcessConfiguration.Id, '0', null, null, null, null, 'submit', '', ''/*, false, ''*/);
+		MigrationPremiumController.CreateCaseWrapper createCaseWrapper = MigrationPremiumController.createCase(
+			theAccount.Id,
+			null,
+			'{}',
+			'{}',
+			'{"ppid":{"fieldName":"Description","value":"some note"}}',
+			'some note',
+			'',
+			'',
+			'',
+			'',
+			'',
+			migrationPremiumProcessConfiguration.Id,
+			'0',
+			null,
+			null,
+			null,
+			null,
+			'submit',
+			'',
+			'' /*, false, ''*/
+		);
 
 		ApexPages.currentPage().getParameters().put('accountId', theAccount.Id);
 		//ApexPages.currentPage().getParameters().put('assetId', theAsset.Id);
@@ -756,28 +994,36 @@ public class MigrationPremiumControllerTest {
 		System.assertNotEquals(cntrl.selectedItemsWrapperJSON, null);
 		System.assertNotEquals(cntrl.allItemsJSON, null);
 		System.assertEquals(cntrl.debetCardsList.isEmpty(), true);
-/*        System.assertNotEquals(null, cntrl.finalStepValidation);
+		/*        System.assertNotEquals(null, cntrl.finalStepValidation);
         System.assertEquals(null, cntrl.finalStepValEmail);
         System.assertEquals(1, cntrl.finalStepValErrSize);*/
 		System.assert(!cntrl.showElDistribAgreement);
 		System.assert(cntrl.elDistribAgreement);
 		System.assertEquals(null, cntrl.firstUrlOfDmsDocument);
 		System.assertEquals(null, cntrl.firstMessageBeforePrint);
-
 	}
 
 	@isTest
 	public static void getProductParameters() {
 		setupData();
-		MigrationPremiumController.getProductParameters(theProductRelation.Id, theAsset.Id, migrationPremiumProcessConfiguration.Id, theAccount.Id, null, theProduct.Id);
+		MigrationPremiumController.getProductParameters(
+			theProductRelation.Id,
+			theAsset.Id,
+			migrationPremiumProcessConfiguration.Id,
+			theAccount.Id,
+			null,
+			theProduct.Id
+		);
 	}
 
-	@isTest static void getChildProductParametersFromSOQL() {
+	@isTest
+	static void getChildProductParametersFromSOQL() {
 		setupData();
 		MigrationPremiumController.getChildProductParametersFromSOQL(theProductParameter3);
 	}
 
-	@isTest static void getChildProductParametersFromSOQLWithEncNullChecks() {
+	@isTest
+	static void getChildProductParametersFromSOQLWithEncNullChecks() {
 		setupData();
 		Test.startTest();
 		theProductParameter3.SOQL__c = 'SELECT Id FROM Account';
@@ -785,16 +1031,37 @@ public class MigrationPremiumControllerTest {
 		Test.stopTest();
 	}
 
-	@isTest static void migrationPremiumTypesTest() {
+	@isTest
+	static void migrationPremiumTypesTest() {
 		setupData();
-		MigrationPremiumTypes.Item item1 = new MigrationPremiumTypes.Item(migrationPremiumProcessConfiguration, theAsset, 1);
-		MigrationPremiumTypes.Item item2 = new MigrationPremiumTypes.Item(migrationPremiumProcessConfiguration, theAsset, theAccount.Id, 1);
-		MigrationPremiumTypes.Item item3 = new MigrationPremiumTypes.Item(migrationPremiumProcessConfiguration, theAsset, false, 1);
+		MigrationPremiumTypes.Item item1 = new MigrationPremiumTypes.Item(
+			migrationPremiumProcessConfiguration,
+			theAsset,
+			1
+		);
+		MigrationPremiumTypes.Item item2 = new MigrationPremiumTypes.Item(
+			migrationPremiumProcessConfiguration,
+			theAsset,
+			theAccount.Id,
+			1
+		);
+		MigrationPremiumTypes.Item item3 = new MigrationPremiumTypes.Item(
+			migrationPremiumProcessConfiguration,
+			theAsset,
+			false,
+			1
+		);
 		MigrationPremiumTypes.DispatcherWrapper wrapper = new MigrationPremiumTypes.DispatcherWrapper('1', '2', '3');
 		MigrationPremiumTypes.TransitionItemDefault defaultX = new MigrationPremiumTypes.TransitionItemDefault();
 		defaultX.value = '';
 		defaultX.assetValue = '';
-		MigrationPremiumTypes.TransitionItem tItem = new MigrationPremiumTypes.TransitionItem(theAsset, String.valueOf(theAccount.Id), '1', 'a', new List<Product_Relation__c>());
+		MigrationPremiumTypes.TransitionItem tItem = new MigrationPremiumTypes.TransitionItem(
+			theAsset,
+			String.valueOf(theAccount.Id),
+			'1',
+			'a',
+			new List<Product_Relation__c>()
+		);
 	}
 
 	/*@isTest static void migrationPremiumExtension(){
@@ -850,7 +1117,8 @@ public class MigrationPremiumControllerTest {
 		Test.stopTest();
 	}*/
 
-	@isTest static void uniqueIdIsNotBlank() {
+	@isTest
+	static void uniqueIdIsNotBlank() {
 		setupData();
 		//Test.setMock(WebServiceMock.class, new DPaaSWebServiceSearchMock());
 		Test.startTest();
@@ -930,7 +1198,8 @@ public class MigrationPremiumControllerTest {
 		System.assertNotEquals(null, isCzechCheck);
 	}*/
 
-	@isTest static void getDefaultValueFromAsset() {
+	@isTest
+	static void getDefaultValueFromAsset() {
 		/*Account accountFO = TestUtils.getPersonAccount('12345');
 		Product2 domain = TestUtils.getProduct('domain', 'AccountNeedsRemControllerTest1', 1, null, '1816');
 		Product2 category = TestUtils.getProduct('domain', 'AccountNeedsRemControllerTest2', 2, domain.Id, '1816');
@@ -945,7 +1214,8 @@ public class MigrationPremiumControllerTest {
 		//MigrationPremiumController.createFakeRowsForTest();
 	}
 
-	@isTest static void getSObjectRecTest() {
+	@isTest
+	static void getSObjectRecTest() {
 		List<String> listOfString = new List<String>();
 		listOfString.add('Name');
 		Account theAcc = TestDataFactory.getAccount();
@@ -954,13 +1224,13 @@ public class MigrationPremiumControllerTest {
 	}
 
 	/* @isTest static void getDefaultValueFromAsset2(){
-		 *//*Account accountFO = TestUtils.getPersonAccount('12345');
+	 */ /*Account accountFO = TestUtils.getPersonAccount('12345');
         Product2 domain = TestUtils.getProduct('domain', 'AccountNeedsRemControllerTest1', 1, null, '1816');
         Product2 category = TestUtils.getProduct('domain', 'AccountNeedsRemControllerTest2', 2, domain.Id, '1816');
         Product2 product = TestUtils.getProduct('domain', 'AccountNeedsRemControllerTest3', 2, category.Id, '551');
         Asset theAsset = TestUtils.getAsset(accountFO.Id, product.Id, 'AccountNeedsRemControllerTest1');
         theAsset.Close_Date__c = Date.today();
-        update  theAsset;*//*
+        update  theAsset;*/ /*
 
         Product_Parameter__c theProductParameter = new Product_Parameter__c();
         theProductParameter.Algorithm_Mapping__c = 'Name';
@@ -990,7 +1260,8 @@ public class MigrationPremiumControllerTest {
 		Asset theAss = MigrationPremiumController.getAssetsFromProductParameterFormula(listOFPar, theAsset.Id);
 	}*/
 
-	@isTest static void checkDependencies() {
+	@isTest
+	static void checkDependencies() {
 		setupData();
 		Product_Parameter__c theProductParameter4 = new Product_Parameter__c();
 		theProductParameter4.Name = 'testName';
@@ -1024,12 +1295,66 @@ public class MigrationPremiumControllerTest {
 		insert threshold2;
 
 		Test.startTest();
-		MigrationPremiumController.checkDependencies(theProductParameter4.Id, '1', '2', 'valueId', 'valueText', false, true, theAccount.Id);
-		MigrationPremiumController.checkDependencies(theProductParameter4.Id, '1', '2', 'valueId', 'valueText2', false, true, theAccount.Id);
-		MigrationPremiumController.checkDependencies(theProductParameter4.Id, '1', '2', 'valueId', 'valueText', true, true, theAccount.Id);
-		MigrationPremiumController.checkDependencies(theProductParameter5.Id, '1', '2', 'valueId', 'valueText', false, true, theAccount.Id);
-		MigrationPremiumController.checkDependencies(theProductParameter5.Id, '1', '2', 'valueId', 'valueText2', false, true, theAccount.Id);
-		MigrationPremiumController.checkDependencies(theProductParameter5.Id, '1', '2', 'valueId', 'valueText', true, true, theAccount.Id);
+		MigrationPremiumController.checkDependencies(
+			theProductParameter4.Id,
+			'1',
+			'2',
+			'valueId',
+			'valueText',
+			false,
+			true,
+			theAccount.Id
+		);
+		MigrationPremiumController.checkDependencies(
+			theProductParameter4.Id,
+			'1',
+			'2',
+			'valueId',
+			'valueText2',
+			false,
+			true,
+			theAccount.Id
+		);
+		MigrationPremiumController.checkDependencies(
+			theProductParameter4.Id,
+			'1',
+			'2',
+			'valueId',
+			'valueText',
+			true,
+			true,
+			theAccount.Id
+		);
+		MigrationPremiumController.checkDependencies(
+			theProductParameter5.Id,
+			'1',
+			'2',
+			'valueId',
+			'valueText',
+			false,
+			true,
+			theAccount.Id
+		);
+		MigrationPremiumController.checkDependencies(
+			theProductParameter5.Id,
+			'1',
+			'2',
+			'valueId',
+			'valueText2',
+			false,
+			true,
+			theAccount.Id
+		);
+		MigrationPremiumController.checkDependencies(
+			theProductParameter5.Id,
+			'1',
+			'2',
+			'valueId',
+			'valueText',
+			true,
+			true,
+			theAccount.Id
+		);
 		Test.stopTest();
 	}
 
@@ -1085,8 +1410,8 @@ public class MigrationPremiumControllerTest {
 		Test.stopTest();
 	}*/
 
-
-	@isTest static void getValueFromSObjectTest() {
+	@isTest
+	static void getValueFromSObjectTest() {
 		Account localAccount = TestDataFactory.getAccount();
 		insert localAccount;
 		Asset theAsset = new Asset();
@@ -1102,7 +1427,8 @@ public class MigrationPremiumControllerTest {
 		Test.stopTest();
 	}
 
-	@isTest static void getEnhancedSoqlForMigrationObjectTest() {
+	@isTest
+	static void getEnhancedSoqlForMigrationObjectTest() {
 		Account localAccount = TestDataFactory.getAccount();
 		insert localAccount;
 		Asset theAsset = new Asset();
@@ -1116,7 +1442,8 @@ public class MigrationPremiumControllerTest {
 		Test.stopTest();
 	}
 
-	@isTest static void commonTest() {
+	@isTest
+	static void commonTest() {
 		Account accountFO = TestDataFactory.getAccount();
 		//setupValidationProdIdsCustomSettings();
 		Test.setCurrentPage(Page.MigrationPremium);
@@ -1159,7 +1486,8 @@ public class MigrationPremiumControllerTest {
 		System.assertEquals('http://url.cz', crifLink);
 	}*/
 
-	@isTest static void getInputWithSOQLValueTest() {
+	@isTest
+	static void getInputWithSOQLValueTest() {
 		setupData();
 		theProductParameter3.SOQL_Field_Name__c = 'Id';
 		theProductParameter3.Soql__c = 'SELECT Id FROM Product2';
@@ -1168,7 +1496,8 @@ public class MigrationPremiumControllerTest {
 		MigrationPremiumController.getInputWithSOQLValue(theProductParameter3);
 	}
 
-	@isTest static void translationCoverTest() {
+	@isTest
+	static void translationCoverTest() {
 		setupData();
 		//Test.setMock(WebServiceMock.class, new DPaaSWebServiceSearchMock());
 		Test.startTest();
@@ -1178,7 +1507,7 @@ public class MigrationPremiumControllerTest {
 		MigrationPremiumController mpCtrl = new MigrationPremiumController();
 		Test.stopTest();
 		System.assertNotEquals(null, MigrationPremiumController.typeTranslationMap);
-/*        System.assertNotEquals(null, mpCtrl.baseStr);
+		/*        System.assertNotEquals(null, mpCtrl.baseStr);
         System.assertNotEquals(null, mpCtrl.suplStr);
         System.assertNotEquals(null, mpCtrl.themeStr);
         System.assertNotEquals(null, mpCtrl.reginvStr);*/
@@ -1211,7 +1540,8 @@ public class MigrationPremiumControllerTest {
 		 System.assertNotEquals(null, s4);
 	 }*/
 
-	@isTest static void visibilityTypeTest() {
+	@isTest
+	static void visibilityTypeTest() {
 		setupData();
 		Test.startTest();
 		Product_Parameter__c theProductParameter4 = new Product_Parameter__c();
@@ -1229,20 +1559,29 @@ public class MigrationPremiumControllerTest {
 		threshold.Threshold_Value__c = thresholdValue.Id;
 		insert threshold;
 
-		Set<String> ppSet = new Set<String>{theProductParameter3.Id, theProductParameter4.Id};
-		MigrationPremiumTypes.ThresholdWrapper thresholdToProductParameter = MigrationPremiumController.getThresholdWrapper(ppSet);
+		Set<String> ppSet = new Set<String>{ theProductParameter3.Id, theProductParameter4.Id };
+		MigrationPremiumTypes.ThresholdWrapper thresholdToProductParameter = MigrationPremiumController.getThresholdWrapper(
+			ppSet
+		);
 		Map<String, Product_Parameter__c> l2ProductParameterMap = new Map<String, Product_Parameter__c>();
 		l2ProductParameterMap.put(theProductParameter3.Id, theProductParameter3);
 		MigrationPremiumTypes.VisibilityWrapper res = new MigrationPremiumTypes.VisibilityWrapper();
 
-		MigrationPremiumController.getVisibilityType(thresholdToProductParameter, l2ProductParameterMap, theProductParameter4, theAsset, res);
+		MigrationPremiumController.getVisibilityType(
+			thresholdToProductParameter,
+			l2ProductParameterMap,
+			theProductParameter4,
+			theAsset,
+			res
+		);
 		Test.stopTest();
 
 		System.assertEquals(0, res.visibilityCount);
 		System.assertEquals('Hide', res.visibilityType);
 	}
 
-	@isTest static void disponentTextFromAssetTest() {
+	@isTest
+	static void disponentTextFromAssetTest() {
 		setupData();
 		Test.startTest();
 		Asset a = [SELECT Id, Account.Name FROM Asset WHERE Id = :theAsset.Id];
@@ -1263,7 +1602,8 @@ public class MigrationPremiumControllerTest {
 		System.assert(cstProdDocMapJSON.startsWith('{"007-7":'));
 	}*/
 
-	@isTest static void baseUrlTest() {
+	@isTest
+	static void baseUrlTest() {
 		System.assertNotEquals(null, MigrationPremiumController.baseUrl);
 	}
 
@@ -1281,14 +1621,14 @@ public class MigrationPremiumControllerTest {
 		MigrationPremiumController.sendOutput('123', 123, 'contact', 'offerType', '', 'PPF', new List<CebNotificationUtils.FileListWrapper>());
 	}*/
 
-//    @isTest static void enhanceTransitionItemForCancellationTest(){
-//        String productRelationsConf = '';
-//        Map<String, Map<String, MigrationPremiumTypes.TransitionItem>> productRelationsMap = (Map<String, Map<String, MigrationPremiumTypes.TransitionItem>>) JSON.deserialize(productRelationsConf, Map<String, Map<String, MigrationPremiumTypes.TransitionItem>>.class);
-//        MigrationPremiumController ctnrl = new MigrationPremiumController();
-//        ctnrl.enhanceTransitionItemForCancellation(productRelationsMap);
-//    }
+	//    @isTest static void enhanceTransitionItemForCancellationTest(){
+	//        String productRelationsConf = '';
+	//        Map<String, Map<String, MigrationPremiumTypes.TransitionItem>> productRelationsMap = (Map<String, Map<String, MigrationPremiumTypes.TransitionItem>>) JSON.deserialize(productRelationsConf, Map<String, Map<String, MigrationPremiumTypes.TransitionItem>>.class);
+	//        MigrationPremiumController ctnrl = new MigrationPremiumController();
+	//        ctnrl.enhanceTransitionItemForCancellation(productRelationsMap);
+	//    }
 
-/*    @IsTest
+	/*    @IsTest
     static void callSignBiometricEnvelopeTest() {
         TestUtils.setTHUBEndpointURL();
         TestUtils.setIntegrationCertificates();
