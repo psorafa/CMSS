@@ -115,7 +115,7 @@ public with sharing class CustomFilterService {
 				for (Schema.PicklistEntry pickListVal : picklistEntries) {
 					String itemLabel = pickListVal.getLabel();
 					String itemValue = pickListVal.getValue();
-					SelectOption option = new SelectOption(itemLabel, itemValue); //apex documentation for SelectOption is wrong
+					SelectOption option = new SelectOption(itemLabel, itemValue);
 					labelValueList.add(option);
 				}
 			}
