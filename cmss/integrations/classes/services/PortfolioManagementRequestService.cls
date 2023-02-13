@@ -3,6 +3,8 @@ public without sharing class PortfolioManagementRequestService {
 	public static final String INVALID_REQUEST_RESULT = '927';
 	public static final String RETRY_INTERVAL_CONFIGURATION_MDT = 'changeCPERequest_retryCalloutInterval';
 	public static final String RETRY_MAX_ATTEMPTS_MDT = 'changeCPERequest_retryCalloutAttempts';
+	public static final String CASE_REFUSED_STATUS = '28';
+	public static final String PMR_REFUSED_STATUS = '6';
 
 	public static void setPortfolioManager(
 		List<PortfolioManagementRequest__c> newList,
@@ -170,25 +172,19 @@ public without sharing class PortfolioManagementRequestService {
 				return pmrToUpdate;
 			} else {
 				Logger.error('Invalid response!');
-				scheduleJobOfFailureCallout(
-					(new Map<Id, SObject>(pmrs)).keySet(),
-					Double.valueOf(pmrs[0].Case__r.CPECallAttempts__c + 1)
-				);
+				scheduleJobOfFailureCallout(pmrs, Double.valueOf(pmrs[0].Case__r.CPECallAttempts__c + 1));
 				return new List<PortfolioManagementRequest__c>();
 			}
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
-			scheduleJobOfFailureCallout(
-				(new Map<Id, SObject>(pmrs)).keySet(),
-				Double.valueOf(pmrs[0].Case__r.CPECallAttempts__c + 1)
-			);
+			scheduleJobOfFailureCallout(pmrs, Double.valueOf(pmrs[0].Case__r.CPECallAttempts__c + 1));
 			throw e;
 		} finally {
 			Logger.saveLogs();
 		}
 	}
 
-	public static Id scheduleJobOfFailureCallout(Set<Id> pmrIds, Double currentAttempt) {
+	public static Id scheduleJobOfFailureCallout(List<PortfolioManagementRequest__c> pmrs, Double currentAttempt) {
 		Integer maxAttempts = 1;
 		if (Configuration__mdt.getInstance(RETRY_MAX_ATTEMPTS_MDT) != null) {
 			maxAttempts = Integer.valueOf(
@@ -209,8 +205,21 @@ public without sharing class PortfolioManagementRequestService {
 			String minute = string.valueOf(dt.minute());
 			String year = string.valueOf(dt.year());
 			String scheduledTime = '0 ' + minute + ' ' + hour + ' ' + day + ' ' + month + ' ?' + ' ' + year;
-			PMRequestRetryCalloutSchedule job = new PMRequestRetryCalloutSchedule(pmrIds);
+			PMRequestRetryCalloutSchedule job = new PMRequestRetryCalloutSchedule(
+				(new Map<Id, sObject>(pmrs)).keySet()
+			);
 			return System.schedule('Schedule Job ' + dt, scheduledTime, job);
+		} else {
+			Map<Id, Case> casesToProcessMap = new Map<Id, Case>();
+			for (PortfolioManagementRequest__c pmr : pmrs) {
+				if (!casesToProcessMap.containsKey(pmr.Case__c)) {
+					casesToProcessMap.put(pmr.Case__c, new Case(Id = pmr.Case__c, Status = CASE_REFUSED_STATUS));
+				}
+				pmr.RequestStatus__c = PMR_REFUSED_STATUS;
+			}
+
+			update casesToProcessMap.values();
+			update pmrs;
 		}
 		return null;
 	}

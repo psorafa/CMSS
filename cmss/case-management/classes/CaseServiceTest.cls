@@ -469,7 +469,10 @@ private class CaseServiceTest {
 	@isTest
 	static void testScheduleJobOfFailureCallout() {
 		Test.startTest();
-		Id jobId = PortfolioManagementRequestService.scheduleJobOfFailureCallout(new Set<Id>(), 1);
+		Id jobId = PortfolioManagementRequestService.scheduleJobOfFailureCallout(
+			new List<PortfolioManagementRequest__c>(),
+			1
+		);
 		CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, State FROM CronTrigger WHERE Id = :jobId];
 		System.assert(ct != null);
 		System.assertEquals(0, ct.TimesTriggered);

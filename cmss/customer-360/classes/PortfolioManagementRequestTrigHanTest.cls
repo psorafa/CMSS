@@ -7,7 +7,7 @@ private class PortfolioManagementRequestTrigHanTest {
 	}
 
 	@isTest
-	static void testSetDefaultRequestStatus() {
+	static void testBeforeUpdate() {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
@@ -16,15 +16,16 @@ private class PortfolioManagementRequestTrigHanTest {
 			null
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
-		PortfolioManagementRequest__c request1 = TestDataFactory.getPortfolioManagementRequest(
+		PortfolioManagementRequest__c request = TestDataFactory.getPortfolioManagementRequest(
 			new PortfolioManagementRequest__c()
 		);
+		insert request;
+		request.ValidFrom__c = Date.today() + 1;
 		Test.startTest();
-		insert request1;
+		update request;
 		Test.stopTest();
-		request1 = [SELECT RequestStatus__c FROM PortfolioManagementRequest__c WHERE Id = :request1.Id];
 
-		System.assertNotEquals(null, request1.RequestStatus__c);
-		System.assertEquals('4', request1.RequestStatus__c);
+		request = [SELECT PortfolioManagerCPU__c FROM PortfolioManagementRequest__c WHERE Id = :request.Id];
+		System.assertNotEquals(null, request.PortfolioManagerCPU__c);
 	}
 }
