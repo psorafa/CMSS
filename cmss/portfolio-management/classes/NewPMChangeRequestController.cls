@@ -224,7 +224,7 @@ public with sharing class NewPMChangeRequestController {
 				return [
 					SELECT Id, UserRole.DeveloperName
 					FROM User
-					WHERE UserRoleId = :rmRole OR UserRole.ParentRoleId = :rmRole
+					WHERE (UserRoleId = :rmRole OR UserRole.ParentRoleId = :rmRole) AND IsActive = TRUE
 				];
 			}
 			return null;
