@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MyActivitiesNotPlanned</fullName>
-    <booleanFilter>1 OR 2</booleanFilter>
+    <booleanFilter>(1 OR 2) AND 3</booleanFilter>
     <columns>SUBJECT</columns>
     <columns>Alias__c</columns>
     <columns>WHO_NAME</columns>
@@ -20,6 +20,11 @@
     <filters>
         <field>PlannedToDate__c</field>
         <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Task.Task</value>
     </filters>
     <label>Moje nenaplánované aktivity</label>
 </ListView>

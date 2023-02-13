@@ -23,5 +23,10 @@
         <operation>equals</operation>
         <value>0</value>
     </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Task.Task</value>
+    </filters>
     <label>*Otevřené aktivity z (mikro)kampaní</label>
 </ListView>

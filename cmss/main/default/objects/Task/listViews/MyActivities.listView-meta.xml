@@ -12,5 +12,10 @@
     <columns>STATUS</columns>
     <columns>UPDATEDBY_USER.ALIAS</columns>
     <filterScope>Mine</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Task.Task</value>
+    </filters>
     <label>Moje aktivity</label>
 </ListView>

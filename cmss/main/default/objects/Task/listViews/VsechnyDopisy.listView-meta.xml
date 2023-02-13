@@ -13,5 +13,10 @@
         <operation>equals</operation>
         <value>Task.Letter</value>
     </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Task.Task</value>
+    </filters>
     <label>* Všechny dopisy</label>
 </ListView>
