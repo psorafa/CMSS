@@ -136,9 +136,7 @@ public with sharing class CaseService {
 			if (GDPRRecordTypes.contains(caseItem.RecordTypeId)) {
 				lastIssuedCaseID.GDPRClaimID__c += 1;
 				caseItem.CaseID__c = String.valueOf(
-						'' +
-						Integer.valueOf(lastIssuedCaseID.GDPRClaimID__c) +
-						Date.today().year()
+						'' + Integer.valueOf(lastIssuedCaseID.GDPRClaimID__c) + Date.today().year()
 					)
 					.leftPad(10, '0');
 			}
@@ -323,6 +321,76 @@ public with sharing class CaseService {
 		SharingService.upsertSharing(newCasesList, oldCasesMap, sharingSettingsMap, 'CaseId');
 	}
 
+	public static void setNameEqualsBool(List<Case> newCases, Map<Id, Case> oldCases) {
+		List<User> contractors = new List<User>();
+		List<Account> accounts = new List<Account>();
+
+		for (Case c : newCases) {
+			if (
+				oldCases.get(c.Id).ComplainerContractor__c != c.ComplainerContractor__c ||
+				oldCases.get(c.Id).ComplainerLastName__c != c.ComplainerLastName__c ||
+				oldCases.get(c.Id).ComplainerFirstName__c != c.ComplainerFirstName__c
+			) {
+				if (c.ComplainerContractor__c != null) {
+					String ComplainerName = c.ComplainerFirstName__c + ' ' + c.ComplainerLastName__c;
+					System.debug('ComplainerName>> ' + ComplainerName);
+					id userId = c.ComplainerContractor__c;
+					contractors = [SELECT FirstName, LastName FROM User WHERE id = :userId];
+					System.debug('ContractorName>> ' + contractors[0].FirstName + ' ' + contractors[0].LastName);
+					if (ComplainerName == (contractors[0].FirstName + ' ' + contractors[0].LastName)) {
+						c.ContractorNameEquals__c = true;
+					} else {
+						c.ContractorNameEquals__c = false;
+					}
+				}
+			}
+			if (
+				oldCases.get(c.Id).AccountId != c.AccountId ||
+				oldCases.get(c.Id).ComplainerContractor__c != c.ComplainerContractor__c
+			) {
+				if (c.AccountId != null && c.ComplainerContractor__c != null) {
+					if (accounts.isEmpty()) {
+						accounts = [SELECT FirstName, LastName FROM ACCOUNT WHERE id = :c.AccountId];
+					}
+					if (contractors.isEmpty()) {
+						contractors = [SELECT FirstName, LastName FROM User WHERE id = :c.ComplainerContractor__c];
+					}
+					System.debug('AccountName>> ' + accounts[0].FirstName + ' ' + accounts[0].LastName);
+
+					System.debug('ContractorName>> ' + contractors[0].FirstName + ' ' + contractors[0].LastName);
+					if (
+						(accounts[0].FirstName + ' ' + accounts[0].LastName) ==
+						(contractors[0].FirstName +
+						' ' +
+						contractors[0].LastName)
+					) {
+						c.AccountContractorNameEquals__c = true;
+					} else {
+						c.AccountContractorNameEquals__c = false;
+					}
+				}
+			}
+			if (
+				oldCases.get(c.Id).AccountId != c.AccountId ||
+				oldCases.get(c.Id).ComplainerLastName__c != c.ComplainerLastName__c ||
+				oldCases.get(c.Id).ComplainerFirstName__c != c.ComplainerFirstName__c
+			) {
+				if (c.AccountId != null) {
+					if (accounts.isEmpty()) {
+						accounts = [SELECT FirstName, LastName FROM ACCOUNT WHERE id = :c.AccountId];
+					}
+					String ComplainerName = c.ComplainerFirstName__c + ' ' + c.ComplainerLastName__c;
+					System.debug('ComplainerName2>> ' + ComplainerName);
+					System.debug('AccountName2>> ' + accounts[0].FirstName + ' ' + accounts[0].LastName);
+					if (ComplainerName == (accounts[0].FirstName + ' ' + accounts[0].LastName)) {
+						c.AccountComplainerNameEquals__c = true;
+					} else {
+						c.AccountComplainerNameEquals__c = false;
+					}
+				}
+			}
+		}
+	}
 	public class CaseOwnerPermissionMissingException extends Exception {
 	}
 }
