@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Allowed File Extensions</label>
+    <label>txt</label>
     <protected>false</protected>
     <values>
-        <field>Value__c</field>
-        <value xsi:type="xsd:string">xls,xlsm,xlsx,jpeg,jpg,msg,pdf,png,pptx,txt,snote,doc,dotx,docx,zip</value>
+        <field>Hex_Signature__c</field>
+        <value xsi:type="xsd:string">EF BB BF,
+FF FE,
+FE FF,
+FF FE 00 00,
+00 00 FE FF,
+2B 2F 76 38,
+2B 2F 76 39,
+2B 2F 76 2B,
+2B 2F 76 2F,
+0E FE FF</value>
     </values>
 </CustomMetadata>
