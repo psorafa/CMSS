@@ -54,7 +54,7 @@
         <lockerServiceNextControl>false</lockerServiceNextControl>
         <redirectionWarning>true</redirectionWarning>
         <referrerPolicy>true</referrerPolicy>
-        <requireHttpOnly>false</requireHttpOnly>
+        <requireHttpOnly>true</requireHttpOnly>
         <sessionTimeout>TwoHours</sessionTimeout>
         <useLocalStorageForLogoutUrl>false</useLocalStorageForLogoutUrl>
     </sessionSettings>
