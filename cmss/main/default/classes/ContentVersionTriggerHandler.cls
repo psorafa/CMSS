@@ -15,13 +15,37 @@ public class ContentVersionTriggerHandler extends TriggerHandler {
 	}
     
 	public override void afterInsert() {
-		for (sObject version : Trigger.new) {
-			ContentVersion docVersion = (ContentVersion) version;
-            ContentVersion thisDBVersion = [Select Id, VersionData, PathOnClient from ContentVersion Where Id = :docVersion.Id Limit 1];
-			String fileContent = EncodingUtil.base64Encode(thisDBVersion.VersionData);
-System.debug('fileContent: ' + fileContent);
-System.debug('path: ' + thisDBVersion.PathOnClient);
-System.debug('hex: ' + EncodingUtil.convertToHex(thisDBVersion.VersionData));            
+        List<ContentVersion> thisDBVersionList = [Select Id, VersionData, PathOnClient from ContentVersion Where Id IN :Trigger.new];
+        Map<String, ValidFileHeaders__mdt> validSignaturesMap = ValidFileHeaders__mdt.getAll();
+        
+		for (ContentVersion version : thisDBVersionList) {
+            String fileSignature = EncodingUtil.convertToHex(version.VersionData).Substring(0,30).toLowerCase();
+            String fileExtension = version.PathOnClient.substringAfterLast('.').toLowerCase();
+            Boolean signatureNok = True;
+            if (validSignaturesMap.containsKey(fileExtension)) {
+                List<String> hexaList = validSignaturesMap.get(fileExtension).Hex_Signature__c.deleteWhitespace().toLowerCase().split(',');
+                for(String hexa : hexaList) {
+                    if(fileSignature.contains(hexa)) {
+                        signatureNok = False;
+                    }
+System.debug('hexa/fileSignature: ' + hexa + ' / ' + fileSignature);                    
+                }
+            }
+            else{
+                Trigger.newMap.get(version.Id).addError(
+					'Soubor nemá platnou koncovku - nahrajte prosím soubor typu: ' +
+					validSignaturesMap.keySet()
+				);
+System.debug('No Key.');                  
+            }
+            
+            if(signatureNok) {
+                Trigger.newMap.get(version.Id).addError(
+					'Soubor nemá platnou koncovku - nahrajte prosím soubor typu: ' +
+					validSignaturesMap.keySet()
+				);
+System.debug('Wrong signature');                 
+            }                  
 		}
-	}    
+	}
 }
