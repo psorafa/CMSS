@@ -1290,7 +1290,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.CommissionAccountBase__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6665,7 +6665,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>User.ProvisionNumberCSOB__c</field>
         <readable>true</readable>
     </fieldPermissions>
