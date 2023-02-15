@@ -1,10 +1,10 @@
 public class TaskTriggerHandler extends TriggerHandler {
 	public static String LETTER_RECORDTYPE_NAME = 'Letter';
-    private Id letterRecordTypeId;
+	private Id letterRecordTypeId;
 
-    public TaskTriggerHandler() {
-        this.letterRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName(LETTER_RECORDTYPE_NAME, 'Task');
-    }
+	public TaskTriggerHandler() {
+		this.letterRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName(LETTER_RECORDTYPE_NAME, 'Task');
+	}
 
 	public override void beforeInsert() {
 		TaskService.setRecordType(Trigger.new);
@@ -16,6 +16,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 		TaskService.setRecordType(Trigger.new);
 		IntegrationUtility.populateDefaultExternalId(Trigger.new);
 		updateTaskFields((Map<Id, Task>) Trigger.oldMap, Trigger.new);
+		editCentralActivities((Map<Id, Task>) Trigger.oldMap, Trigger.new);
 	}
 
 	public override void beforeDelete() {
@@ -36,7 +37,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	public override void afterUpdate() {
-        handleAQMessagingUpdate((List<Task>) Trigger.new, (Map<Id, Task>) Trigger.oldMap);
+		handleAQMessagingUpdate((List<Task>) Trigger.new, (Map<Id, Task>) Trigger.oldMap);
 		handleUpdatedTasksShares(Trigger.old, Trigger.new);
 		handleUpdateAccountDateFields();
 		sendDelegatedTaskNotifications(Trigger.new, Trigger.oldMap);
@@ -49,15 +50,76 @@ public class TaskTriggerHandler extends TriggerHandler {
 		AQMessageService.handleInsert(Trigger.new, Task.SObjectType);
 	}
 
-    public void handleAQMessagingUpdate(List<Task> newTasks, Map<Id, Task> oldTaskMap) {
-        List<Task> tasksToProcess = new List<Task>();
-        for (Task task : newTasks) {
+	public void handleAQMessagingUpdate(List<Task> newTasks, Map<Id, Task> oldTaskMap) {
+		List<Task> tasksToProcess = new List<Task>();
+		for (Task task : newTasks) {
 			if (task.RecordTypeId != this.letterRecordTypeId) {
-                tasksToProcess.add(task);
+				tasksToProcess.add(task);
+			}
+		}
+		AQMessageService.handleUpdate(tasksToProcess, oldTaskMap, Task.SObjectType);
+	}
+
+	public void editCentralActivities(Map<Id, Task> oldTasksMap, List<Task> newTasks) {
+		Profile userProfile = [SELECT Id, Name FROM Profile WHERE Id = :UserInfo.getProfileId()];
+		Map<String, Schema.SObjectField> schemaFieldMap = Schema.SObjectType.Task.fields.getMap();
+
+		if (userProfile.Name == 'System Administrator') {
+			for (Task tsk : newTasks) {
+				Task oldTask = oldTasksMap.get(tsk.id);
+				Map<String, Object> diff = compareTasks(tsk, oldTask);
+				System.debug('xxx: ' + diff);
+
+				if (
+					!diff.containsKey('taskresult__c') &&
+					!diff.containsKey('isclosednegative__c') &&
+					!diff.containsKey('result__c') &&
+					!diff.containsKey('status')
+				) {
+					tsk.TaskResult__c.addError('Only taskresult__c are allowed to edit edited:' + diff.keySet());
+					break;
+				}
+			}
+		}
+	}
+
+	public static Map<String, Object> compareTasks(Task task1, Task task2) {
+		Map<String, Object> differences = new Map<String, Object>();
+
+		// Get the fields for the Task object
+		Map<String, Schema.SObjectField> fields = Schema.SObjectType.Task.fields.getMap();
+
+		// Iterate over each field
+		for (String fieldName : fields.keySet()) {
+			// Skip system fields
+			if (!fields.get(fieldName).getDescribe().isAccessible()) {
+				continue;
+			}
+
+			// Compare the values of the fields
+			Object value1 = task1.get(fieldName);
+			Object value2 = task2.get(fieldName);
+			if (value1 != value2 && value2 != null) {
+				differences.put(fieldName, value2);
+			}
+		}
+
+		return differences;
+	}
+
+	/*
+    for (Task tsk:newTasks ){
+        
+        if (tsk.TaskResult__c != oldTasksMap.get(tsk.Id).TaskResult__c) {
+                Profile userProfile = [SELECT Id, Name FROM Profile WHERE Id = :UserInfo.getProfileId()];
+              
+                if (userProfile.Name == 'System Administrator') {
+
+                tsk.TaskResult__c.addError('Only System Administrators are allowed to edit the Account Source field.');
             }
         }
-        AQMessageService.handleUpdate(tasksToProcess, oldTaskMap, Task.SObjectType);
     }
+    */
 
 	public void updateTaskFields(Map<Id, Task> oldTasksMap, List<Task> newTasks) {
 		Map<Id, Task> contactsToTasksToGetAlias = new Map<Id, Task>();
@@ -242,8 +304,8 @@ public class TaskTriggerHandler extends TriggerHandler {
 		Map<Id, EventSync__c> existingSyncsMap = new Map<Id, EventSync__c>(
 			(List<EventSync__c>) Database.query(
 				'SELECT Id, SFTaskId__c, GoogleEventId__c, IsNew__c, IsDeleted__c, ChangeFromGoogle__c FROM EventSync__c ' +
-				'WHERE (GoogleEventId__c IN :googleIds OR SFTaskId__c IN :taskIds) ' +
-				(isDeleted ? ' AND IsDeleted__c = true' : '')
+					'WHERE (GoogleEventId__c IN :googleIds OR SFTaskId__c IN :taskIds) ' +
+					(isDeleted ? ' AND IsDeleted__c = true' : '')
 			)
 		);
 

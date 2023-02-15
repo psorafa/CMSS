@@ -3,15 +3,17 @@
     <fullName>EditCentralActivities</fullName>
     <active>true</active>
     <errorConditionFormula>IF(
-$Profile.Name &lt;&gt; &quot;System Administrator&quot;,
-AND(
-OR(ISPICKVAL(Category__c, &apos;1&apos;),ISPICKVAL( Category__c,&apos;2&apos;)),				
-ISCHANGED(Subject),
-ISCHANGED(Status),
-ISCHANGED(Type)
-),
-TRUE
+AND( 
+   OR($Profile.Name == &quot;CMSS User&quot;,$Profile.Name == &quot;CMSS Headquaters User&quot;),
+			OR(ISPICKVAL(Category__c, &quot;1&quot;),ISPICKVAL(Category__c, &quot;2&quot;))
+			)
+,
+OR(
+ NOT(ISCHANGED(Status)),
+	NOT(ISCHANGED(TaskResult__c))				
+)
+,
+FALSE 
 )</errorConditionFormula>
-    <errorDisplayField>TaskResult__c</errorDisplayField>
     <errorMessage>Pro aktivity centrály můžete měnit pouze parametr Výsledek nebo Stav</errorMessage>
 </ValidationRule>
