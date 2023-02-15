@@ -333,10 +333,8 @@ public with sharing class CaseService {
 			) {
 				if (c.ComplainerContractor__c != null) {
 					String ComplainerName = c.ComplainerFirstName__c + ' ' + c.ComplainerLastName__c;
-					System.debug('ComplainerName>> ' + ComplainerName);
 					id userId = c.ComplainerContractor__c;
 					contractors = [SELECT FirstName, LastName FROM User WHERE id = :userId];
-					System.debug('ContractorName>> ' + contractors[0].FirstName + ' ' + contractors[0].LastName);
 					if (ComplainerName == (contractors[0].FirstName + ' ' + contractors[0].LastName)) {
 						c.ContractorNameEquals__c = true;
 					} else {
@@ -355,9 +353,7 @@ public with sharing class CaseService {
 					if (contractors.isEmpty()) {
 						contractors = [SELECT FirstName, LastName FROM User WHERE id = :c.ComplainerContractor__c];
 					}
-					System.debug('AccountName>> ' + accounts[0].FirstName + ' ' + accounts[0].LastName);
 
-					System.debug('ContractorName>> ' + contractors[0].FirstName + ' ' + contractors[0].LastName);
 					if (
 						(accounts[0].FirstName + ' ' + accounts[0].LastName) ==
 						(contractors[0].FirstName +
@@ -380,8 +376,6 @@ public with sharing class CaseService {
 						accounts = [SELECT FirstName, LastName FROM ACCOUNT WHERE id = :c.AccountId];
 					}
 					String ComplainerName = c.ComplainerFirstName__c + ' ' + c.ComplainerLastName__c;
-					System.debug('ComplainerName2>> ' + ComplainerName);
-					System.debug('AccountName2>> ' + accounts[0].FirstName + ' ' + accounts[0].LastName);
 					if (ComplainerName == (accounts[0].FirstName + ' ' + accounts[0].LastName)) {
 						c.AccountComplainerNameEquals__c = true;
 					} else {
