@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_PMRDescriptionLimit</fullName>
+    <active>true</active>
+    <description>Description field for PMR record type should have max 250 chars</description>
+    <errorConditionFormula>RecordType.DeveloperName = &apos;The text may not be longer than&apos; &amp;&amp; LEN(Description) &gt; 250</errorConditionFormula>
+    <errorDisplayField>Description</errorDisplayField>
+    <errorMessage>The text may not be longer than 250 characters</errorMessage>
+</ValidationRule>

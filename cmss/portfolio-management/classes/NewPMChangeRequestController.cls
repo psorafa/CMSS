@@ -1,13 +1,17 @@
 public with sharing class NewPMChangeRequestController {
-
 	@TestVisible
 	private static Selector selector = new Selector();
 	@TestVisible
 	private static DmlUtil dml = new DmlUtil();
 
 	private final Data userInput;
-	private final Boolean canCreateEmptyRequest = FeatureManagement.checkPermission('CreateEmptyPortfolioManagementCases');
-	private final Id recordType = Case.SObjectType.getDescribe().getRecordTypeInfosByDeveloperName().get('PortfolioManagementChangeRequest').getRecordTypeId();
+	private final Boolean canCreateEmptyRequest = FeatureManagement.checkPermission(
+		'CreateEmptyPortfolioManagementCases'
+	);
+	private final Id recordType = Case.SObjectType.getDescribe()
+		.getRecordTypeInfosByDeveloperName()
+		.get('PortfolioManagementChangeRequest')
+		.getRecordTypeId();
 	private Id regionalManagerId;
 	private Id regionalManagerAssistantId;
 	private Id createdCaseId;
@@ -78,7 +82,7 @@ public with sharing class NewPMChangeRequestController {
 			NewPortfolioManager__c = userInput.manager,
 			PortfolioManagementType__c = userInput.type,
 			ChangeReason__c = userInput.reason,
-			Comments = userInput.comments,
+			Description = userInput.comments,
 			RecordTypeId = recordType,
 			Status = '25',
 			RegionalManager__c = regionalManagerId,
@@ -98,12 +102,14 @@ public with sharing class NewPMChangeRequestController {
 		List<PortfolioManagementRequest__c> requestItems = new List<PortfolioManagementRequest__c>();
 		if (userInput.ids != null) {
 			for (Id accountId : userInput.ids) {
-				requestItems.add(new PortfolioManagementRequest__c(
-					Account__c = accountId,
-					PortfolioManager__c = userInput.manager,
-					PortfolioManagementType__c = userInput.type,
-					Case__c = userInput.caseId
-				));
+				requestItems.add(
+					new PortfolioManagementRequest__c(
+						Account__c = accountId,
+						PortfolioManager__c = userInput.manager,
+						PortfolioManagementType__c = userInput.type,
+						Case__c = userInput.caseId
+					)
+				);
 			}
 		}
 		try {
@@ -115,11 +121,7 @@ public with sharing class NewPMChangeRequestController {
 	}
 
 	private void finalizeCase() {
-		Case changeRequest = new Case(
-			Id = userInput.caseId,
-			Status = '21',
-			ValidationsBypass__c = 1
-		);
+		Case changeRequest = new Case(Id = userInput.caseId, Status = '21', ValidationsBypass__c = 1);
 		Savepoint savepoint = Database.setSavepoint();
 		try {
 			dml.updateData(changeRequest);
@@ -195,20 +197,29 @@ public with sharing class NewPMChangeRequestController {
 		return ex;
 	}
 
-	public class ProcessingException extends Exception {}
+	public class ProcessingException extends Exception {
+	}
 
 	public class Data {
-		@AuraEnabled public String manager;
-		@AuraEnabled public String type;
-		@AuraEnabled public String reason;
-		@AuraEnabled public String comments;
-		@AuraEnabled public String caseId;
-		@AuraEnabled public List<Id> ids;
-		@AuraEnabled public Boolean isEmptyCase;
+		@AuraEnabled
+		public String manager;
+		@AuraEnabled
+		public String type;
+		@AuraEnabled
+		public String reason;
+		@AuraEnabled
+		public String comments;
+		@AuraEnabled
+		public String caseId;
+		@AuraEnabled
+		public List<Id> ids;
+		@AuraEnabled
+		public Boolean isEmptyCase;
 	}
 
 	public class SaveResult {
-		@AuraEnabled public Id caseId;
+		@AuraEnabled
+		public Id caseId;
 
 		public SaveResult() {
 		}
