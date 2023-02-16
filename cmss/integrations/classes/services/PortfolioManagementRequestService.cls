@@ -121,7 +121,6 @@ public without sharing class PortfolioManagementRequestService {
 				if (
 					pmr.PortfolioManager__r.CommissionAccountBase__c != null &&
 					pmr.Account__c != null &&
-					pmr.PortfolioManChangeReason__c != null &&
 					pmr.PortfolioManagementType__c != null
 				) {
 					PortfolioManagementCalloutService.ListOfClientsStatesItemType item = new PortfolioManagementCalloutService.ListOfClientsStatesItemType();
