@@ -1,3 +1,3 @@
-trigger ContentVersionTrigger on ContentVersion(before insert) {
-	new ContentVersionTriggerHandler().run();
+trigger ContentVersionTrigger on ContentVersion(before insert, after insert) {
+	 new ContentVersionTriggerHandler().run();
 }
