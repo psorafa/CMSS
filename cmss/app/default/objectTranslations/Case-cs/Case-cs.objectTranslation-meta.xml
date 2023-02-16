@@ -350,6 +350,10 @@
         <name>CaseTypeMustExistStatus</name>
     </validationRules>
     <validationRules>
+        <errorMessage>Text nesmí být delší než 250 znaků</errorMessage>
+        <name>Case_PMRDescriptionLimit</name>
+    </validationRules>
+    <validationRules>
         <errorMessage>Nemáte oprávnění měnit řešitele klientského podání.</errorMessage>
         <name>ClaimChangeOwnerMustHaveClaimPerSet</name>
     </validationRules>
