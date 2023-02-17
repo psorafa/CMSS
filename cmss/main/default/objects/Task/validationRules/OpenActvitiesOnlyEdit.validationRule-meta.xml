@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OpenActvitiesOnlyEdit</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(
+   OR(
+						$Profile.Name == &quot;CMSS User&quot;,
+						$Profile.Name == &quot;CMSS Headquarters User&quot;,
+						$Profile.Name == &quot;CMSS Experience User&quot;)
+,
+OR(
+	           ISPICKVAL(Status, &apos;3&apos;),
+				ISPICKVAL(Status, &apos;4&apos;),
+				ISPICKVAL(Status, &apos;5&apos;)
+	 )
+,
+FALSE 
+)</errorConditionFormula>
+    <errorMessage>Je možné měnit pouze otevřené aktivity</errorMessage>
+</ValidationRule>

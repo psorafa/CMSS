@@ -62,22 +62,30 @@ public class TaskTriggerHandler extends TriggerHandler {
 
 	public void editCentralActivities(Map<Id, Task> oldTasksMap, List<Task> newTasks) {
 		Profile userProfile = [SELECT Id, Name FROM Profile WHERE Id = :UserInfo.getProfileId()];
-		Map<String, Schema.SObjectField> schemaFieldMap = Schema.SObjectType.Task.fields.getMap();
-
-		if (userProfile.Name == 'System Administrator') {
+		{
 			for (Task tsk : newTasks) {
 				Task oldTask = oldTasksMap.get(tsk.id);
 				Map<String, Object> diff = compareTasks(tsk, oldTask);
-				System.debug('xxx: ' + diff);
-
 				if (
-					!diff.containsKey('taskresult__c') &&
-					!diff.containsKey('isclosednegative__c') &&
-					!diff.containsKey('result__c') &&
-					!diff.containsKey('status')
+					(userProfile.Name == 'CMSS User' || userProfile.Name == 'CMSS Headquarters User') &&
+					(oldTask.Category__c == '1' ||
+					tsk.Category__c == '1' ||
+					oldTask.Category__c == '2' ||
+					tsk.Category__c == '2')
 				) {
-					tsk.TaskResult__c.addError('Only taskresult__c are allowed to edit edited:' + diff.keySet());
-					break;
+					if (
+						!diff.containsKey('taskresult__c') &&
+						!diff.containsKey('isclosednegative__c') &&
+						!diff.containsKey('result__c') &&
+						!diff.containsKey('status') &&
+						!diff.isEmpty()
+					) {
+						tsk.TaskResult__c.addError(
+							'Pro aktivity centrály můžete měnit pouze parametr Výsledek nebo Stav editovany:' +
+							diff.keySet()
+						);
+						break;
+					}
 				}
 			}
 		}
@@ -85,41 +93,19 @@ public class TaskTriggerHandler extends TriggerHandler {
 
 	public static Map<String, Object> compareTasks(Task task1, Task task2) {
 		Map<String, Object> differences = new Map<String, Object>();
-
-		// Get the fields for the Task object
 		Map<String, Schema.SObjectField> fields = Schema.SObjectType.Task.fields.getMap();
-
-		// Iterate over each field
 		for (String fieldName : fields.keySet()) {
-			// Skip system fields
 			if (!fields.get(fieldName).getDescribe().isAccessible()) {
 				continue;
 			}
-
-			// Compare the values of the fields
 			Object value1 = task1.get(fieldName);
 			Object value2 = task2.get(fieldName);
 			if (value1 != value2 && value2 != null) {
 				differences.put(fieldName, value2);
 			}
 		}
-
 		return differences;
 	}
-
-	/*
-    for (Task tsk:newTasks ){
-        
-        if (tsk.TaskResult__c != oldTasksMap.get(tsk.Id).TaskResult__c) {
-                Profile userProfile = [SELECT Id, Name FROM Profile WHERE Id = :UserInfo.getProfileId()];
-              
-                if (userProfile.Name == 'System Administrator') {
-
-                tsk.TaskResult__c.addError('Only System Administrators are allowed to edit the Account Source field.');
-            }
-        }
-    }
-    */
 
 	public void updateTaskFields(Map<Id, Task> oldTasksMap, List<Task> newTasks) {
 		Map<Id, Task> contactsToTasksToGetAlias = new Map<Id, Task>();
