@@ -10,6 +10,7 @@
     <columns>ACCOUNT.ADDRESS1_STREET</columns>
     <columns>City__c</columns>
     <columns>Age__c</columns>
+    <columns>LastInteractionDate__c</columns>
     <columns>PortfolioMngmtA__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
@@ -24,6 +25,6 @@
     </filters>
     <label>*Noví klienti za posledních 7 dní</label>
     <sharedTo>
-        <allInternalUsers/>
+        <allInternalUsers></allInternalUsers>
     </sharedTo>
 </ListView>

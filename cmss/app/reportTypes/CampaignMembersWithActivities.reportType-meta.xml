@@ -523,6 +523,11 @@
             <field>LetterId__c</field>
             <table>CampaignMember__c.Activities__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Alias__c</field>
+            <table>CampaignMember__c.Activities__r</table>
+        </columns>
         <masterLabel>Activities</masterLabel>
     </sections>
 </ReportType>

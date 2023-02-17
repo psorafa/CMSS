@@ -687,6 +687,11 @@
             <field>IsClosedNegative__c</field>
             <table>Campaign.Activities</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Alias__c</field>
+            <table>Campaign.Activities</table>
+        </columns>
         <masterLabel>Activities</masterLabel>
     </sections>
     <sections>

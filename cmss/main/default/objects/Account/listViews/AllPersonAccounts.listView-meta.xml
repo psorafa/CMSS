@@ -10,6 +10,7 @@
     <columns>ACCOUNT.ADDRESS1_STREET</columns>
     <columns>City__c</columns>
     <columns>Age__c</columns>
+    <columns>LastInteractionDate__c</columns>
     <columns>PortfolioMngmtA__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
@@ -19,6 +20,6 @@
     </filters>
     <label>*Fyzické osoby</label>
     <sharedTo>
-        <allPartnerUsers/>
+        <allPartnerUsers></allPartnerUsers>
     </sharedTo>
 </ListView>

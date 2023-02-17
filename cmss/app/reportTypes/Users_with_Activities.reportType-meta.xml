@@ -1036,6 +1036,11 @@
             <field>LetterType__c</field>
             <table>User.Activity$OwnerId</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Alias__c</field>
+            <table>User.Activity$OwnerId</table>
+        </columns>
         <masterLabel>Activities</masterLabel>
     </sections>
 </ReportType>
