@@ -24,7 +24,7 @@ private class EDocumentSOAPServiceTest {
                 CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
                 EDocumentSOAPService.GetDocumentBySBIdRequestBody body = new EDocumentSOAPService.GetDocumentBySBIdRequestBody();
                 body.documentSBId = '123131321321';
-                EDocumentSOAPService.EDocumentServicePort stub = new EDocumentSOAPService.EDocumentServicePort();
+                EDocumentSOAPService stub = new EDocumentSOAPService();
                 response = stub.getDocumentBySBId_Http(header, body);
             } catch (Exception e) {
 
@@ -65,7 +65,7 @@ private class EDocumentSOAPServiceTest {
                 CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
                 EDocumentSOAPService.GetDocumentBySBIdRequestBody body = new EDocumentSOAPService.GetDocumentBySBIdRequestBody();
                 body.documentSBId = '123131321321';
-                EDocumentSOAPService.EDocumentServicePort stub = new EDocumentSOAPService.EDocumentServicePort();
+                EDocumentSOAPService stub = new EDocumentSOAPService();
                 response = stub.getDocumentBySBId_Http(header, body);
             } catch (Exception e) {
                 System.assertEquals('EDocument not found!', e.getMessage());
@@ -107,7 +107,7 @@ private class EDocumentSOAPServiceTest {
                 CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
                 EDocumentSOAPService.GetDocumentBySBIdRequestBody body = new EDocumentSOAPService.GetDocumentBySBIdRequestBody();
                 body.documentSBId = '123131321321';
-                EDocumentSOAPService.EDocumentServicePort stub = new EDocumentSOAPService.EDocumentServicePort();
+                EDocumentSOAPService stub = new EDocumentSOAPService();
                 response = stub.getDocumentBySBId_Http(header, body);
             } catch (Exception e) {
                 System.assertEquals('Unkown error', e.getMessage());

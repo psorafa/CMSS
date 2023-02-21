@@ -3,7 +3,7 @@ public class PersonManagementSOAPService extends ESBService {
 		'v10' => 'http://service.cmss.cz/person/PersonManagementService/v10'
 	};
 
-	private static final String ENDPOINT_PATH = ':8443/PersonManagementServiceWeb_v10/PersonManagementService';
+	private static final String ENDPOINT_PATH = '/PersonManagementServiceWeb_v10/PersonManagementService';
 	private static final Integer TIMEOUT = 120000;
 
 	public PersonManagementSOAPServiceTypes.SearchCSOBSNonClientResponseBody searchCSOBSNonClient_Http(

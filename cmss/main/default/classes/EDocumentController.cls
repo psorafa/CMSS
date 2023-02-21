@@ -18,7 +18,7 @@ global with sharing class EDocumentController {
 			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
 			EDocumentSOAPService.GetDocumentBySBIdRequestBody body = new EDocumentSOAPService.GetDocumentBySBIdRequestBody();
 			body.documentSBId = sourceTask.LetterId__c;
-			EDocumentSOAPService.EDocumentServicePort stub = new EDocumentSOAPService.EDocumentServicePort();
+			EDocumentSOAPService stub = new EDocumentSOAPService();
 			base64Data = stub.getDocumentBySBId_Http(header, body);
 			showPDF = true;
 		} catch (Exception e) {

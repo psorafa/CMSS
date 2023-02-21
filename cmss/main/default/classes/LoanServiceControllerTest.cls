@@ -1,6 +1,5 @@
 @IsTest
 public class LoanServiceControllerTest {
-
 	@TestSetup
 	static void insertCustomSettings() {
 		insert TestDataFactory.getIntegrationSettings();
@@ -8,7 +7,7 @@ public class LoanServiceControllerTest {
 
 	@IsTest
 	static void succsessResponse() {
-		LoanService.certificateName = null;
+		LoanService.CERTIFICATE_NAME = null;
 		Account acc = TestDataFactory.getAccount(new Account());
 		insert acc;
 		Asset asset1 = new Asset(Name = '1200373701', AccountId = acc.Id);
@@ -26,19 +25,20 @@ public class LoanServiceControllerTest {
 		HTTPResponse rawResponse = LoanServiceController.loadPackagesListRawResponse(asset1.Name);
 		Test.stopTest();
 		String errorMessage = LoanServiceController.loadPackagesListErrorMessage(rawResponse);
-		List<UpdateLoanAssetsFlowController.LoadPackagesCalloutResult> result = LoanServiceController.loadPackagesResult(rawResponse);
+		List<UpdateLoanAssetsFlowController.LoadPackagesCalloutResult> result = LoanServiceController.loadPackagesResult(
+			rawResponse
+		);
 		system.assertEquals(getExpectedResult(), result[0].toString());
 		system.assertEquals(errorMessage, null);
 	}
 
 	@IsTest
 	static void failResponse() {
-		LoanService.certificateName = null;
+		LoanService.CERTIFICATE_NAME = null;
 		Account acc = TestDataFactory.getAccount(new Account());
 		insert acc;
 		Asset asset1 = new Asset(Name = '12003737010', AccountId = acc.Id);
 		insert asset1;
-
 
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			500,
@@ -52,9 +52,14 @@ public class LoanServiceControllerTest {
 		HTTPResponse rawResponse = LoanServiceController.loadPackagesListRawResponse(asset1.Name);
 		Test.stopTest();
 		String errorMessage = LoanServiceController.loadPackagesListErrorMessage(rawResponse);
-		List<UpdateLoanAssetsFlowController.LoadPackagesCalloutResult> result = LoanServiceController.loadPackagesResult(rawResponse);
+		List<UpdateLoanAssetsFlowController.LoadPackagesCalloutResult> result = LoanServiceController.loadPackagesResult(
+			rawResponse
+		);
 		system.assertEquals(result, null);
-		system.assertEquals(errorMessage, 'loanService.LoadPackagesListErrorMessage: Zadané číslo úvěrového případu je neplatné');
+		system.assertEquals(
+			errorMessage,
+			'loanService.LoadPackagesListErrorMessage: Zadané číslo úvěrového případu je neplatné'
+		);
 	}
 
 	public static String getExpectedResult() {
@@ -63,7 +68,7 @@ public class LoanServiceControllerTest {
 		lpcr.packageType = 'CS_PACKAGE';
 		lpcr.fee = null;
 		lpcr.discount = '0';
-		lpcr.validFrom = date.newInstance(2019, 03, 22);
+		lpcr.validFrom = date.newInstance(2019, 3, 22);
 		lpcr.validTo = null;
 
 		return lpcr.toString();
