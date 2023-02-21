@@ -65,13 +65,6 @@
             <value></value>
         </criteriaItems>
         <criteriaItems>
-            <column>Commission__c$RecordNumber__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value></value>
-        </criteriaItems>
-        <criteriaItems>
             <column>Commission__c$EntitlementAmount__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
