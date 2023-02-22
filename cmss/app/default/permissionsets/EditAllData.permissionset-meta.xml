@@ -456,6 +456,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.HasCSOBId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.GroupSegmentLastUpdate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1285,7 +1290,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.CommissionAccountBase__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1832,6 +1837,41 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.MaxPaidBase__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.MetForCommission0__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.MetForCommission1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.MetForCommission2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.MetForCommission3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.MetForCommission4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.MetForCommission5__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.MetForCommission6__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6622,6 +6662,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>User.Position__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.ProvisionNumberCSOB__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

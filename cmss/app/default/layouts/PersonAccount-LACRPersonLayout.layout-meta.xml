@@ -351,7 +351,8 @@
                 <field>BankSegmentLastUpdate__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Edit</behavior>
+                <field>HasCSOBId__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
