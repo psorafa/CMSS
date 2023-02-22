@@ -21,7 +21,7 @@ private class PersonManagementSOAPServiceTest {
 		CommonMessageService.RequestHeader requestHeader = new CommonMessageService.RequestHeader();
 		PersonManagementSOAPServiceTypes.CoupleDocumentRequestBody requestBody = new PersonManagementSOAPServiceTypes.CoupleDocumentRequestBody();
 
-		PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+		PersonManagementSOAPService port = new PersonManagementSOAPService();
 		PersonManagementSOAPServiceTypes.CoupleDocumentResponseBody coupleDocumentResponse = port.coupleDocument_Http(
 			requestHeader,
 			requestBody
@@ -46,7 +46,7 @@ private class PersonManagementSOAPServiceTest {
 		CommonMessageService.RequestHeader requestHeader = new CommonMessageService.RequestHeader();
 		PersonManagementSOAPServiceTypes.CreateClientRequestBody requestBody = new PersonManagementSOAPServiceTypes.CreateClientRequestBody();
 
-		PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+		PersonManagementSOAPService port = new PersonManagementSOAPService();
 		PersonManagementSOAPServiceTypes.CreateClientResponseBody createClientResponse = port.createClient_Http(
 			requestHeader,
 			requestBody
@@ -71,7 +71,7 @@ private class PersonManagementSOAPServiceTest {
 		CommonMessageService.RequestHeader requestHeader = new CommonMessageService.RequestHeader();
 		PersonManagementSOAPServiceTypes.CreatePersonRelationRequestBody requestBody = new PersonManagementSOAPServiceTypes.CreatePersonRelationRequestBody();
 
-		PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+		PersonManagementSOAPService port = new PersonManagementSOAPService();
 		PersonManagementSOAPServiceTypes.CreatePersonRelationResponseBody createPersonRelationResponse = port.createPersonRelation_Http(
 			requestHeader,
 			requestBody
@@ -96,7 +96,7 @@ private class PersonManagementSOAPServiceTest {
 		CommonMessageService.RequestHeader requestHeader = new CommonMessageService.RequestHeader();
 		PersonManagementSOAPServiceTypes.GetReservedGlobalIdRequestBody requestBody = new PersonManagementSOAPServiceTypes.GetReservedGlobalIdRequestBody();
 
-		PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+		PersonManagementSOAPService port = new PersonManagementSOAPService();
 		PersonManagementSOAPServiceTypes.GetReservedGlobalIdResponseBody getReservedGlobelIdResponse = port.getReservedGlobalId_Http(
 			requestHeader,
 			requestBody
@@ -121,7 +121,7 @@ private class PersonManagementSOAPServiceTest {
 		CommonMessageService.RequestHeader requestHeader = new CommonMessageService.RequestHeader();
 		PersonManagementSOAPServiceTypes.SearchCSOBSNonClientRequestBody requestBody = new PersonManagementSOAPServiceTypes.SearchCSOBSNonClientRequestBody();
 
-		PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+		PersonManagementSOAPService port = new PersonManagementSOAPService();
 		PersonManagementSOAPServiceTypes.SearchCSOBSNonClientResponseBody searchCSOBNonClientResponse = port.searchCSOBSNonClient_Http(
 			requestHeader,
 			requestBody
@@ -146,7 +146,7 @@ private class PersonManagementSOAPServiceTest {
 		CommonMessageService.RequestHeader requestHeader = new CommonMessageService.RequestHeader();
 		PersonManagementSOAPServiceTypes.SearchPersonByIdNumberRequestBody requestBody = new PersonManagementSOAPServiceTypes.SearchPersonByIdNumberRequestBody();
 
-		PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+		PersonManagementSOAPService port = new PersonManagementSOAPService();
 		PersonManagementSOAPServiceTypes.SearchPersonByIdNumberResponseBody searchPersonByIdNumberResponse = port.searchPersonByIdNumber_Http(
 			requestHeader,
 			requestBody
@@ -171,7 +171,7 @@ private class PersonManagementSOAPServiceTest {
 		CommonMessageService.RequestHeader requestHeader = new CommonMessageService.RequestHeader();
 		PersonManagementSOAPServiceTypes.UpdateClientRequestBody requestBody = new PersonManagementSOAPServiceTypes.UpdateClientRequestBody();
 
-		PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+		PersonManagementSOAPService port = new PersonManagementSOAPService();
 		PersonManagementSOAPServiceTypes.UpdateClientResponseBody updateClientResponse = port.updateClient_Http(
 			requestHeader,
 			requestBody
@@ -196,7 +196,7 @@ private class PersonManagementSOAPServiceTest {
 		CommonMessageService.RequestHeader requestHeader = new CommonMessageService.RequestHeader();
 		PersonManagementSOAPServiceTypes.UpdateCommunicationsRequestBody requestBody = new PersonManagementSOAPServiceTypes.UpdateCommunicationsRequestBody();
 
-		PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+		PersonManagementSOAPService port = new PersonManagementSOAPService();
 		PersonManagementSOAPServiceTypes.UpdateCommunicationsResponseBody updateCommunicationsResponse = port.updateCommunications_Http(
 			requestHeader,
 			requestBody
@@ -221,7 +221,7 @@ private class PersonManagementSOAPServiceTest {
 		CommonMessageService.RequestHeader requestHeader = new CommonMessageService.RequestHeader();
 		PersonManagementSOAPServiceTypes.UpdateCSOBNonClientRequestBody requestBody = new PersonManagementSOAPServiceTypes.UpdateCSOBNonClientRequestBody();
 
-		PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+		PersonManagementSOAPService port = new PersonManagementSOAPService();
 		PersonManagementSOAPServiceTypes.UpdateCSOBNonClientResponseBody updateCSOBNonClientResponse = port.updateCSOBNonClient_Http(
 			requestHeader,
 			requestBody
@@ -246,7 +246,7 @@ private class PersonManagementSOAPServiceTest {
 		CommonMessageService.RequestHeader requestHeader = new CommonMessageService.RequestHeader();
 		PersonManagementSOAPServiceTypes.ValidateClientRequestBody requestBody = new PersonManagementSOAPServiceTypes.ValidateClientRequestBody();
 
-		PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+		PersonManagementSOAPService port = new PersonManagementSOAPService();
 		PersonManagementSOAPServiceTypes.ValidateClientResponseBody validateClientResponse = port.validateClient_Http(
 			requestHeader,
 			requestBody

@@ -8,7 +8,7 @@ public without sharing class PersonManagementController {
 			requestBody.personalIdentificationNumber = birthNumber;
 			requestBody.lastName = lastName;
 
-			PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+			PersonManagementSOAPService port = new PersonManagementSOAPService();
 			response = port.searchCSOBSNonClient_Http(requestHeader, requestBody);
 
 			if (String.isEmpty(response.jsonResponse)) {
@@ -34,7 +34,7 @@ public without sharing class PersonManagementController {
 			PersonManagementSOAPServiceTypes.UpdateCSOBNonClientRequestBody requestBody = new PersonManagementSOAPServiceTypes.UpdateCSOBNonClientRequestBody();
 			requestBody.jsonRequest = serializedUpdatePersonCSOBDataRequest;
 
-			PersonManagementSOAPService.PersonManagementServicePort port = new PersonManagementSOAPService.PersonManagementServicePort();
+			PersonManagementSOAPService port = new PersonManagementSOAPService();
 			response = port.updateCSOBNonClient_Http(requestHeader, requestBody);
 		} catch (Exception e) {
 			throw new IntegrationException(e);
