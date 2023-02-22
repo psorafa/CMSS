@@ -451,6 +451,11 @@
             <field>LetterType__c</field>
             <table>Activity</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Alias__c</field>
+            <table>Activity</table>
+        </columns>
         <masterLabel>Activities</masterLabel>
     </sections>
     <sections>

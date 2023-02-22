@@ -3,6 +3,7 @@
     <fullName>MyActivitiesNotPlanned</fullName>
     <booleanFilter>1 OR 2</booleanFilter>
     <columns>SUBJECT</columns>
+    <columns>Alias__c</columns>
     <columns>WHO_NAME</columns>
     <columns>WHAT_NAME</columns>
     <columns>DUE_DATE</columns>
