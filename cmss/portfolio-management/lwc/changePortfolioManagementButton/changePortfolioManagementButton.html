@@ -1,17 +1,19 @@
 <!-- Change Portfolio Management Button -->
 <template>
-    <div class="slds-text-align_right">
-        <lightning-button
-            disabled={isRowNotSelected}
-            variant="brand"
-            label={label}
-            title={label}
-            onclick={handleClick}
-            icon-name="utility:new"
-            class="slds-p-around_xxx-small"
-        >
-        </lightning-button>
-        {recordId}
-    </div>
-    <c-new-p-m-change-request-modal data-id="modal" ids={_ids}></c-new-p-m-change-request-modal>
+	<template if:true={isVisibleToUser}>
+		<div class="slds-text-align_right">
+			<lightning-button
+				disabled={isRowNotSelected}
+				variant="brand"
+				label={label}
+				title={label}
+				onclick={handleClick}
+				icon-name="utility:new"
+				class="slds-p-around_xxx-small"
+			>
+			</lightning-button>
+			{recordId}
+		</div>
+		<c-new-p-m-change-request-modal data-id="modal" ids={_ids}></c-new-p-m-change-request-modal>
+	</template>
 </template>
