@@ -97,3 +97,11 @@ post    Po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_Commi
 			- priklad pro aktualni test org: https://csobstavebni--test.sandbox.my.salesforce.com/servlet/networks/switch?networkId=0DB3X000000TQGg&&startURL=/s/article/Vysvetlivky-k-vypisu-z-provizniho-uctu-kontakty
 post    update dat v orgu z data\custom-search\target\*.csv
 post    jednorazove nashedulovat batch job pro update accountu AccountMassUpdateBatch
+post	pustit nasledujici anonymous apex pro prirazeni permission setu pro editaci user email fieldu na vsechny system adminy:
+			List<PermissionSetAssignment> psaList = new List<PermissionSetAssignment>();
+			List<User> users = [SELECT Id FROM User WHERE profile.name = 'System Administrator' AND IsActive = true];
+			Id custPermissionSetId = [SELECT Id FROM PermissionSet WHERE PermissionSet.Name = 'UserEmailManager'].Id;
+			for (User u : users) {
+				psaList.add(new PermissionSetAssignment(PermissionSetId = custPermissionSetId, AssigneeId = u.Id));
+			}
+			upsert psaList;   
