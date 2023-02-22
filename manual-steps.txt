@@ -79,7 +79,12 @@ post    Vyplnit custom metadata Configuration__mdt -
             label: TaskLetter_CommunityListviewLink value: odkaz na listview 
 post    Vyplnit custom metadata Configuration__mdt pro CPE call retry mechanismus
             - changeCPERequest_retryCalloutInterval - pocatecni interval v minutach, po kterem dojde k dalsimu pokusu 
-            - changeCPERequest_retryCalloutAttempts - pocet pokusu
+            - changeCPERequest_retryCalloutAttempts - pocet pokusu 
+post    vyplnit custom metadata Configuration__mdt pro Logger clean-up mechanismus
+            - Logger_ErrorLevelDeleteTreshold - stari logu pro smazani ve dnech pro danou severitu
+            - Logger_WarnLevelDeleteTreshold - stari logu pro smazani ve dnech pro danou severitu
+            - Logger_InfoLevelDeleteTreshold - stari logu pro smazani ve dnech pro danou severitu
+            - Logger_DebugLevelDeleteTreshold - stari logu pro smazani ve dnech pro danou severitu           
 post    V Dashabordu Pořadí MOT dle pilíře, Pořadí RM dle pilíře, Plnění produkce RM/MOS, Plnění produkce Manažera obchodního týmu a Produkce OZ – PPP přepsat Display Text pro zobrazení filtrů na 1. pololetí 2023, 2. pololetí 2022 a 1. pololetí 2022 dle začátku období (nepodporují metadata)
 post    Pravděpodobně bude řeba smazat dashboard 'Úspěšnost kampaní' na každém prostředí manuálně
 post    Přidat Custom Link na report RMOT11 do komponenty "Plnění nováčků za aktuální měsíc" v Dashboardu Homepage (MOT) - Dashboard Edit, klik na "Plnění nováčků..." - v modalu Edit Component přidat link do kolonky Custom link
@@ -104,4 +109,4 @@ post	pustit nasledujici anonymous apex pro prirazeni permission setu pro editaci
 			for (User u : users) {
 				psaList.add(new PermissionSetAssignment(PermissionSetId = custPermissionSetId, AssigneeId = u.Id));
 			}
-			upsert psaList;   
+			upsert psaList;

@@ -373,57 +373,59 @@ private class CaseServiceTest {
 		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0', IsAgentActive__c = true));
 		insert new List<User>{ u };
 
-		Case c = TestDataFactory.getCase(
-			new Case(
-				RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
-					.get('PortfolioManagementChangeRequest')
-					.getRecordTypeId(),
-				NewPortfolioManager__c = u.Id,
-				Status = '21'
-			)
-		);
-		insert c;
-		PortfolioManagementRequest__c validRequest = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0', Case__c = c.Id)
-		);
-		PortfolioManagementRequest__c invalidRequest = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0', Case__c = c.Id)
-		);
-		insert new List<PortfolioManagementRequest__c>{ validRequest, invalidRequest };
-		Account invalidRequestAccount = new Account(
-			Id = invalidRequest.Account__c,
-			LastPtfManAChangeDate__c = System.Today() + 1
-		);
-		update invalidRequestAccount;
+		System.runAs(u) {
+			Case c = TestDataFactory.getCase(
+				new Case(
+					RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+						.get('PortfolioManagementChangeRequest')
+						.getRecordTypeId(),
+					NewPortfolioManager__c = u.Id,
+					Status = '21'
+				)
+			);
+			insert c;
+			PortfolioManagementRequest__c validRequest = TestDataFactory.getPortfolioManagementRequest(
+				new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0', Case__c = c.Id)
+			);
+			PortfolioManagementRequest__c invalidRequest = TestDataFactory.getPortfolioManagementRequest(
+				new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0', Case__c = c.Id)
+			);
+			insert new List<PortfolioManagementRequest__c>{ validRequest, invalidRequest };
+			Account invalidRequestAccount = new Account(
+				Id = invalidRequest.Account__c,
+				LastPtfManAChangeDate__c = System.Today() + 1
+			);
+			update invalidRequestAccount;
 
-		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
-			200,
-			'OK',
-			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-			validRequest.Id +
-			'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
-			null,
-			null
-		);
-		Test.setMock(HttpCalloutMock.class, fakeResponse);
-		Test.startTest();
-		c.Status = '23';
-		update c;
-		Test.stopTest();
+			CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+				200,
+				'OK',
+				'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
+				validRequest.Id +
+				'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
+				null,
+				null
+			);
+			Test.setMock(HttpCalloutMock.class, fakeResponse);
+			Test.startTest();
+			c.Status = '23';
+			update c;
+			Test.stopTest();
 
-		c = [SELECT CPECallAttempts__c, Status FROM Case WHERE Id = :c.Id];
-		validRequest = [SELECT RequestStatus__c FROM PortfolioManagementRequest__c WHERE Id = :validRequest.Id];
-		invalidRequest = [
-			SELECT RequestStatus__c, PortfolioManChangeResult__c
-			FROM PortfolioManagementRequest__c
-			WHERE Id = :invalidRequest.Id
-		];
+			c = [SELECT CPECallAttempts__c, Status FROM Case WHERE Id = :c.Id];
+			validRequest = [SELECT RequestStatus__c FROM PortfolioManagementRequest__c WHERE Id = :validRequest.Id];
+			invalidRequest = [
+				SELECT RequestStatus__c, PortfolioManChangeResult__c
+				FROM PortfolioManagementRequest__c
+				WHERE Id = :invalidRequest.Id
+			];
 
-		System.assert(c.Status == '27');
-		System.assert(c.CPECallAttempts__c == 1);
-		System.assertEquals('3', validRequest.RequestStatus__c);
-		System.assertEquals('2', invalidRequest.RequestStatus__c);
-		System.assertEquals('927', invalidRequest.PortfolioManChangeResult__c);
+			System.assert(c.Status == '27');
+			System.assert(c.CPECallAttempts__c == 1);
+			System.assertEquals('3', validRequest.RequestStatus__c);
+			System.assertEquals('2', invalidRequest.RequestStatus__c);
+			System.assertEquals('927', invalidRequest.PortfolioManChangeResult__c);
+		}
 	}
 
 	@isTest
@@ -431,39 +433,40 @@ private class CaseServiceTest {
 		User u = TestDataFactory.getUser(new User(CommissionAccountBase__c = 'CPU0', IsAgentActive__c = true));
 		insert new List<User>{ u };
 
-		Case c = TestDataFactory.getCase(
-			new Case(
-				RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
-					.get('PortfolioManagementChangeRequest')
-					.getRecordTypeId(),
-				NewPortfolioManager__c = u.Id,
-				OwnerId = u.Id,
-				Status = '21'
-			)
-		);
-		insert c;
-		PortfolioManagementRequest__c validRequest = TestDataFactory.getPortfolioManagementRequest(
-			new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0', Case__c = c.Id)
-		);
-		insert validRequest;
-
-		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
-			200,
-			'OK',
-			'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
-			null,
-			null
-		);
-		Test.setMock(HttpCalloutMock.class, fakeResponse);
-		Test.startTest();
-		c.Status = '23';
 		System.runAs(u) {
-			update c;
-		}
-		Test.stopTest();
+			Case c = TestDataFactory.getCase(
+				new Case(
+					RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+						.get('PortfolioManagementChangeRequest')
+						.getRecordTypeId(),
+					NewPortfolioManager__c = u.Id,
+					Status = '21'
+				)
+			);
+			insert c;
+			PortfolioManagementRequest__c validRequest = TestDataFactory.getPortfolioManagementRequest(
+				new PortfolioManagementRequest__c(PortfolioManagerCPU__c = 'CPU0', Case__c = c.Id)
+			);
+			insert validRequest;
 
-		Log__c[] logs = [SELECT Payload__c FROM Log__c WHERE Message__c = 'Invalid response!'];
-		System.assertEquals(1, logs.size());
+			CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
+				200,
+				'OK',
+				'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
+				null,
+				null
+			);
+			Test.setMock(HttpCalloutMock.class, fakeResponse);
+			Test.startTest();
+			c.Status = '23';
+			System.runAs(u) {
+				update c;
+			}
+			Test.stopTest();
+
+			Log__c[] logs = [SELECT Payload__c FROM Log__c WHERE Message__c = 'Invalid response!'];
+			System.assertEquals(1, logs.size());
+		}
 	}
 
 	@isTest

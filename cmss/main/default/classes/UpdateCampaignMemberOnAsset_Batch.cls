@@ -4,17 +4,17 @@ public class UpdateCampaignMemberOnAsset_Batch implements Database.Batchable<sOb
 	 */
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
 		return Database.getQueryLocator(
-		[
-			SELECT Id, AccountId, ProductCloseDate__c, ProductType__c
-			FROM Asset
-			WHERE
-				AccountId IN (
-					SELECT Account__c
-					FROM CampaignMember__c
-					WHERE CampaignStartDate__c != NULL AND CampaignEndDate__c != NULL
-				)
-				AND ProductCloseDate__c != NULL
-		]
+			[
+				SELECT Id, AccountId, ProductCloseDate__c, ProductType__c
+				FROM Asset
+				WHERE
+					AccountId IN (
+						SELECT Account__c
+						FROM CampaignMember__c
+						WHERE CampaignStartDate__c != NULL AND CampaignEndDate__c != NULL
+					)
+					AND ProductCloseDate__c != NULL
+			]
 		);
 	}
 
@@ -34,9 +34,11 @@ public class UpdateCampaignMemberOnAsset_Batch implements Database.Batchable<sOb
 			for (Asset a : assets) {
 				List<CampaignMember__c> campaignMembersToProceed = new List<CampaignMember__c>();
 				for (CampaignMember__c cm : allCampaignMembers) {
-					if (a.AccountId == cm.Account__c &&
+					if (
+						a.AccountId == cm.Account__c &&
 						a.ProductCloseDate__c > cm.CampaignStartDate__c &&
-						a.ProductCloseDate__c < cm.CampaignEndDate__c + 30
+						(a.ProductCloseDate__c < cm.CampaignEndDate__c + 30 ||
+						cm.CampaignEndDate__c == null)
 					) {
 						campaignMembersToProceed.add(cm);
 					}

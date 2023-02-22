@@ -177,7 +177,6 @@ public without sharing class PortfolioManagementRequestService {
 		} catch (Exception e) {
 			Logger.error('An unhandled exception thrown', e);
 			scheduleJobOfFailureCallout(pmrs, Double.valueOf(pmrs[0].Case__r.CPECallAttempts__c + 1));
-			throw e;
 		} finally {
 			Logger.saveLogs();
 		}

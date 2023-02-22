@@ -24,8 +24,8 @@ public class PortfolioManagementCalloutService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
-		private transient String[] field_order_type_info = new List<String>{'requestHeader', 'requestBody'};
+		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] field_order_type_info = new List<String>{ 'requestHeader', 'requestBody' };
 		public ChangeCPEClientStateRequest(
 			CommonMessageService.RequestHeader requestHeader,
 			PortfolioManagementCalloutService.ChangeCPEClientStateRequestBody requestBody
@@ -83,7 +83,7 @@ public class PortfolioManagementCalloutService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
 		private transient String[] field_order_type_info = new List<String>{
 			'batchId',
 			'commissionAccountNumber_type_info',
@@ -141,8 +141,8 @@ public class PortfolioManagementCalloutService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
-		private transient String[] field_order_type_info = new List<String>{'responseHeader', 'responseBody'};
+		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] field_order_type_info = new List<String>{ 'responseHeader', 'responseBody' };
 		public ChangeCPEClientStateResponse(DOM.XmlNode responseNode) {
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
 			DOM.XmlNode responseHeaderNode = responseNode.getChildElement(
@@ -183,8 +183,8 @@ public class PortfolioManagementCalloutService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
-		private transient String[] field_order_type_info = new List<String>{'listOfRequestStatuses'};
+		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] field_order_type_info = new List<String>{ 'listOfRequestStatuses' };
 		public ChangeCPEClientStateResponseBody(DOM.XmlNode responseNode) {
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
 			DOM.XmlNode listOfRequestStatusesTypeNode = responseNode.getChildElement(
@@ -213,8 +213,8 @@ public class PortfolioManagementCalloutService {
 			'-1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
-		private transient String[] field_order_type_info = new List<String>{'listOfRequestStatusesItem'};
+		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] field_order_type_info = new List<String>{ 'listOfRequestStatusesItem' };
 		public ListOfRequestStatusesType(DOM.XmlNode listNode) {
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
 			Dom.XmlNode[] listOfRequestStatusesItemChildren = listNode.getChildElements();
@@ -255,8 +255,8 @@ public class PortfolioManagementCalloutService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
-		private transient String[] field_order_type_info = new List<String>{'stateChangeRequestId', 'requestStatus'};
+		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] field_order_type_info = new List<String>{ 'stateChangeRequestId', 'requestStatus' };
 		public ListOfRequestStatusesItemType(DOM.XmlNode itemNode) {
 			Set<DOM.XmlNode> nodesParsed = new Set<DOM.XmlNode>();
 			DOM.XmlNode stateChangeRequestIdNode = itemNode.getChildElement(
@@ -340,7 +340,7 @@ public class PortfolioManagementCalloutService {
 			'1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
+		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
 		private transient String[] field_order_type_info = new List<String>{
 			'stateChangeRequestId',
 			'accountId',
@@ -417,8 +417,8 @@ public class PortfolioManagementCalloutService {
 			'-1',
 			'false'
 		};
-		private transient String[] apex_schema_type_info = new List<String>{s_ns0, 'true', 'false'};
-		private transient String[] field_order_type_info = new List<String>{'listOfClientsStatesItem'};
+		private transient String[] apex_schema_type_info = new List<String>{ s_ns0, 'true', 'false' };
+		private transient String[] field_order_type_info = new List<String>{ 'listOfClientsStatesItem' };
 		public ListOfClientsStatesType() {
 		}
 		public void populateXmlNode(Dom.XmlNode outerNode) {
@@ -440,7 +440,7 @@ public class PortfolioManagementCalloutService {
 	public class PortfolioManagementServicePort {
 		public String endpoint_x =
 			IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c +
-				'/PortfolioManagementServiceWeb_v10/PortfolioManagementService';
+			'/PortfolioManagementServiceWeb_v10/PortfolioManagementService';
 
 		private DOM.XmlNode populateDoc(DOM.Document doc) {
 			String env = 'http://schemas.xmlsoap.org/soap/envelope/';
@@ -482,12 +482,10 @@ public class PortfolioManagementCalloutService {
 			req.setEndpoint(endpoint_x);
 			req.setMethod('POST');
 			req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
-			req.setHeader(
-				'SOAPAction',
-				'http://service.cmss.cz/person/PortfolioManagementService/v10/changeCPEClientState'
-			);
+			req.setHeader('SOAPAction', 'http://service.cmss.cz/person/');
 			System.debug(doc.toXmlString());
 			req.setBodyDocument(doc);
+			req.setTimeout(120000);
 			Logger.debug('Outgoing request', Logger.serializeHttpRequest(req));
 			Http http = new Http();
 			HttpResponse res = http.send(req);

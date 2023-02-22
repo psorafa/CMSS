@@ -1,8 +1,10 @@
 public without sharing class AccountConsolidationUtility {
-
 	public static final String MERGE_ACTION_TYPE = '1';
 	public static final String SPLIT_ACTION_TYPE = '2';
-	public static final Id CLIENT_CONSOLIDATION_RT = Case.SObjectType.getDescribe().getRecordTypeInfosByDeveloperName().get('Client_Consolidation').recordTypeId;
+	public static final Id CLIENT_CONSOLIDATION_RT = Case.SObjectType.getDescribe()
+		.getRecordTypeInfosByDeveloperName()
+		.get('Client_Consolidation')
+		.recordTypeId;
 
 	private List<ConsolidationResult__c> toBeMerged = new List<ConsolidationResult__c>();
 	private List<ConsolidationResult__c> toCreateCases = new List<ConsolidationResult__c>();
@@ -39,17 +41,26 @@ public without sharing class AccountConsolidationUtility {
 		}
 		oldGlobalIds.remove(null);
 		newGlobalIds.remove(null);
-		oldAccountsByGlobalIdsMap = mapAccountsByGlobalId([
-			SELECT
-				Id, GlobalId__c, (SELECT Id, AccountId FROM Cases), (SELECT Id, AccountId FROM Opportunities), (SELECT Id, WhatId FROM Tasks), (SELECT Id, Account__c FROM ClientZones__r)
-			FROM Account
-			WHERE GlobalId__c IN :oldGlobalIds
-		]);
-		newAccountsByGlobalIdsMap = mapAccountsByGlobalId([
-			SELECT Id, GlobalId__c, (SELECT Id, Account__c FROM ClientZones__r)
-			FROM Account
-			WHERE GlobalId__c IN :newGlobalIds
-		]);
+		oldAccountsByGlobalIdsMap = mapAccountsByGlobalId(
+			[
+				SELECT
+					Id,
+					GlobalId__c,
+					(SELECT Id, AccountId FROM Cases),
+					(SELECT Id, AccountId FROM Opportunities),
+					(SELECT Id, WhatId FROM Tasks),
+					(SELECT Id, Account__c FROM ClientZones__r)
+				FROM Account
+				WHERE GlobalId__c IN :oldGlobalIds
+			]
+		);
+		newAccountsByGlobalIdsMap = mapAccountsByGlobalId(
+			[
+				SELECT Id, GlobalId__c, (SELECT Id, Account__c FROM ClientZones__r)
+				FROM Account
+				WHERE GlobalId__c IN :newGlobalIds
+			]
+		);
 	}
 
 	private Map<String, Account> mapAccountsByGlobalId(List<Account> accounts) {
@@ -90,48 +101,42 @@ public without sharing class AccountConsolidationUtility {
 
 	private void processCaseCreations() {
 		for (ConsolidationResult__c result : toCreateCases) {
-			casesToCreate.add(new Case(
-				RecordTypeId = CLIENT_CONSOLIDATION_RT,
-				Subject = 'Manual client consolidation',
-				AccountId = oldAccountsByGlobalIdsMap.get(result.OldGlobalID__c).Id,
-				ConsolidationResult__c = result.Id
-			));
+			if (oldAccountsByGlobalIdsMap.get(result.OldGlobalID__c) != null) {
+				casesToCreate.add(
+					new Case(
+						RecordTypeId = CLIENT_CONSOLIDATION_RT,
+						Subject = 'Manual client consolidation',
+						AccountId = oldAccountsByGlobalIdsMap.get(result.OldGlobalID__c).Id,
+						ConsolidationResult__c = result.Id
+					)
+				);
+			} else {
+				result.addError('Error during creating Manual Client Consolidation Case. No related Account found!');
+			}
 		}
 	}
 
 	private void reparentCases(List<Case> cases, Id newAccountId) {
 		for (Case c : cases) {
-			casesToUpdate.add(new Case(
-				Id = c.Id,
-				AccountId = newAccountId
-			));
+			casesToUpdate.add(new Case(Id = c.Id, AccountId = newAccountId));
 		}
 	}
 
 	private void reparentOpportunities(List<Opportunity> opportunities, Id newAccountId) {
 		for (Opportunity o : opportunities) {
-			opportunitiesToUpdate.add(new Opportunity(
-				Id = o.Id,
-				AccountId = newAccountId
-			));
+			opportunitiesToUpdate.add(new Opportunity(Id = o.Id, AccountId = newAccountId));
 		}
 	}
 
 	private void reparentTasks(List<Task> tasks, Id newAccountId) {
 		for (Task t : tasks) {
-			tasksToUpdate.add(new Task(
-				Id = t.Id,
-				WhatId = newAccountId
-			));
+			tasksToUpdate.add(new Task(Id = t.Id, WhatId = newAccountId));
 		}
 	}
 
 	private void reparentClientZones(List<ClientZone__c> clientZones, Id newAccountId) {
 		for (ClientZone__c cz : clientZones) {
-			clientZonesToUpdate.add(new ClientZone__c(
-				Id = cz.Id,
-				Account__c = newAccountId
-			));
+			clientZonesToUpdate.add(new ClientZone__c(Id = cz.Id, Account__c = newAccountId));
 		}
 	}
 }
