@@ -180,6 +180,7 @@ public without sharing class PortfolioManagementRequestService {
 		} finally {
 			Logger.saveLogs();
 		}
+		return null;
 	}
 
 	public static Id scheduleJobOfFailureCallout(List<PortfolioManagementRequest__c> pmrs, Double currentAttempt) {
