@@ -806,6 +806,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.ChannelsAllowed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.City__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -857,6 +862,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.ConsentManualChange__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Consents__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5071,6 +5081,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CreditCommission__c.HalfYearPeriod__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CreditCommission__c.IncreaseInCreditPortfolio__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5886,6 +5901,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>LoanCaseDoc__c.AcceptedAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>LoanCaseDoc__c.DueDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5901,6 +5921,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>LoanCaseDoc__c.NotAcceptedAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>LoanCaseDoc__c.Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5912,6 +5937,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>LoanCaseDoc__c.ReceiveDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>LoanCaseDoc__c.RequestedAmount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

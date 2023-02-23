@@ -29,7 +29,7 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CustomSearchController</apexClass>
+        <apexClass>CustomerSearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -317,6 +317,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.ConsentManualChange__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Consents__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3221,7 +3226,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Commission__c.AccountKeySerialNumber__c</field>
+        <field>Commission__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3807,6 +3812,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CreditCommission__c.FinalRate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CreditCommission__c.HalfYearPeriod__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4626,6 +4636,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>LoanCaseDoc__c.AcceptedAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>LoanCaseDoc__c.DueDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4637,6 +4652,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>LoanCaseDoc__c.Group__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>LoanCaseDoc__c.NotAcceptedAmount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4656,12 +4676,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>LoanCaseDoc__c.Status__c</field>
+        <field>LoanCaseDoc__c.RequestedAmount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>LoanCaseDoc__c.TextShort__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>LoanCaseDoc__c.Text__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Consents__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;Nepersonalizované oslovení: &quot; &amp; TEXT(AddressingNonpersonalized__c) &amp; BR() &amp;
+&quot;Povolené kanály: &quot; &amp; ChannelsAllowed__c</formula>
+    <label>Consents</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
