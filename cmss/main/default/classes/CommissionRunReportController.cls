@@ -1,4 +1,6 @@
 public without sharing class CommissionRunReportController {
+	private static String EXPERIENCE_USER_PROFILE = 'CMSS Experience User';
+
 	@AuraEnabled
 	public static User getUserInfo() {
 		User usr = [
@@ -54,7 +56,12 @@ public without sharing class CommissionRunReportController {
 
 	@AuraEnabled
 	public static String getKnowledgeCommissionArticleURL() {
-		String url = Configuration__mdt.getInstance('Knowledge_CommissionArticleURL').Value__c;
+		Profile experienceUserProfile = [SELECT Id FROM Profile WHERE Name = :EXPERIENCE_USER_PROFILE LIMIT 1];
+		String configurationInstance = 'Knowledge_CommissionArticleURL';
+		if (UserInfo.getProfileId() == experienceUserProfile.Id) {
+			configurationInstance = 'Knowledge_CommissionArticleURL_ExpUser';
+		}
+		String url = Configuration__mdt.getInstance(configurationInstance).Value__c;
 		return url;
 	}
 
