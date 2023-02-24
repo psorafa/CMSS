@@ -25,7 +25,7 @@
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
-        <label>Step_1</label>
+        <label>Krok</label>
         <name>Step_1</name>
     </approvalStep>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
@@ -75,7 +75,7 @@
         </action>
     </initialSubmissionActions>
     <label>Case Approval</label>
-    <processOrder>2</processOrder>
+    <processOrder>1</processOrder>
     <recallActions>
         <action>
             <name>Recall</name>
