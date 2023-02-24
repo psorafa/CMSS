@@ -1,46 +1,40 @@
-public without sharing class OpportunityExpireBatch implements Database.Batchable<sObject>, Schedulable {
-	//System.schedule('Process expired opportunities','0 0 0 * * ?', new OpportunityExpireBatch());
-
+public without sharing class OpportunityExpireBatch implements Database.Batchable<sObject>, Schedulable, Database.Stateful {
 	@testVisible
-	private final OpportunityExpirationConfig__mdt cfg;
+	private OpportunityExpirationConfig__mdt cfg;
 	@testVisible
 	private Datetime validToTreshold;
 	@testVisible
 	private Datetime validFromTreshold;
 
-	public OpportunityExpireBatch() {
+	private void loadConfig() {
 		this.cfg = [
 			SELECT ChainActivityExpireBatch__c, ExpirationDaysFromValidTo__c, ExpirationDaysFromValidFrom__c
 			FROM OpportunityExpirationConfig__mdt
 			LIMIT 1
 		];
-		System.debug('CFG: ' + JSON.serializePretty(cfg));
 
 		this.validToTreshold = System.now().addDays(-cfg.ExpirationDaysFromValidTo__c.intValue());
 		this.validFromTreshold = System.now().addDays(-cfg.ExpirationDaysFromValidFrom__c.intValue());
 	}
 
-	/**
-	 * Batchable start - do the query.
-	 */
 	public Database.QueryLocator start(Database.BatchableContext jobId) {
+		if (cfg == null) {
+			loadConfig();
+		}
 		return Database.getQueryLocator(
-		[
-			SELECT Id, Name, Reason__c
-			FROM Opportunity
-			WHERE
-				StageName != '8'
-				AND Category__c = '3'
-				AND (ValidTo__c <= :validToTreshold
-				OR (ValidTo__c = NULL
-				AND ValidFrom__c <= :validFromTreshold))
-		]
+			[
+				SELECT Id, Name, Reason__c
+				FROM Opportunity
+				WHERE
+					StageName != '8'
+					AND Category__c = '3'
+					AND (ValidTo__c <= :validToTreshold
+					OR (ValidTo__c = NULL
+					AND ValidFrom__c <= :validFromTreshold))
+			]
 		);
 	}
 
-	/**
-	 * Batchable execute - process a block of Opportunities.
-	 */
 	public void execute(Database.BatchableContext jobId, List<sObject> recordList) {
 		final Date today = System.today();
 		List<Opportunity> toUpdate = new List<Opportunity>();
@@ -55,7 +49,6 @@ public without sharing class OpportunityExpireBatch implements Database.Batchabl
 			toUpdate.add(op);
 		}
 
-		System.debug('Updating ' + toUpdate.size() + ' opportunities.');
 		update toUpdate;
 
 		List<Task> tasksToUpdate = new List<Task>();
@@ -65,14 +58,10 @@ public without sharing class OpportunityExpireBatch implements Database.Batchabl
 			tasksToUpdate.add(tsk);
 		}
 		if (tasksToUpdate.size() > 0) {
-			System.debug('Updating ' + tasksToUpdate.size() + ' tasks.');
 			update tasksToUpdate;
 		}
 	}
 
-	/**
-	 * Batchable finish - chain activity batch run.
-	 */
 	public void finish(Database.BatchableContext jobId) {
 		if (cfg.ChainActivityExpireBatch__c) {
 			ActivityExpireBatch activityBatch = new ActivityExpireBatch();
@@ -80,9 +69,6 @@ public without sharing class OpportunityExpireBatch implements Database.Batchabl
 		}
 	}
 
-	/**
-	 * Schedulable execute - start the batch.
-	 */
 	public void execute(SchedulableContext sc) {
 		Database.executeBatch(this);
 	}

@@ -13,6 +13,7 @@ public with sharing class OpportunityExpireBatchTest {
 	@IsTest
 	static void finishTest() {
 		OpportunityExpireBatch batch = new OpportunityExpireBatch();
+		batch.cfg = new OpportunityExpirationConfig__mdt();
 		batch.cfg.ChainActivityExpireBatch__c = true;
 
 		List<AsyncApexJob> jobsBefore = [SELECT Id, ApexClassID, ApexClass.Name, Status, JobType FROM AsyncApexJob];
@@ -33,8 +34,8 @@ public with sharing class OpportunityExpireBatchTest {
 	@IsTest
 	static void executeShedulableTest() {
 		OpportunityExpireBatch batch = new OpportunityExpireBatch();
+		batch.cfg = new OpportunityExpirationConfig__mdt();
 		batch.cfg.ChainActivityExpireBatch__c = false;
-
 		List<AsyncApexJob> jobsBefore = [SELECT Id, ApexClassID, ApexClass.Name, Status, JobType FROM AsyncApexJob];
 
 		Test.startTest();
@@ -46,7 +47,6 @@ public with sharing class OpportunityExpireBatchTest {
 			WHERE Id NOT IN :jobsBefore
 		];
 		System.assertEquals(1, jobsAfter.size(), 'The expected job is not scheduled');
-		System.debug('First new job: ' + jobsAfter[0]);
 		Test.stopTest();
 	}
 
@@ -122,6 +122,7 @@ public with sharing class OpportunityExpireBatchTest {
 	@IsTest
 	static void executeBatchableTest() {
 		OpportunityExpireBatch batch = new OpportunityExpireBatch();
+		batch.cfg = new OpportunityExpirationConfig__mdt();
 		batch.cfg.ChainActivityExpireBatch__c = false;
 		batch.validToTreshold = validToTreshold;
 		batch.validFromTreshold = validFromTreshold;
@@ -129,7 +130,6 @@ public with sharing class OpportunityExpireBatchTest {
 		createData();
 		Test.startTest();
 
-		//List<Opportunity> opps = [SELECT Id, Name, StageName, Reason__c FROM Opportunity ORDER BY Name];
 		Database.executeBatch(batch);
 		Test.stopTest();
 		List<Opportunity> postOpps = [SELECT Id, Name, StageName, Reason__c FROM Opportunity ORDER BY Name];
@@ -156,7 +156,6 @@ public with sharing class OpportunityExpireBatchTest {
 		};
 		Integer idx = 0;
 		for (Opportunity po : postOpps) {
-			System.debug(po);
 			System.assertEquals(expectedStage[idx], po.StageName, 'Invalid StageName in ' + po.Name);
 			idx++;
 		}
@@ -178,7 +177,6 @@ public with sharing class OpportunityExpireBatchTest {
 		idx = 0;
 		List<Task> postTasks = [SELECT Id, Subject, Status FROM Task ORDER BY Subject];
 		for (Task t : postTasks) {
-			System.debug(t);
 			System.assertEquals(expectedStatus[idx], t.Status, 'Invalid Status in ' + t.Subject);
 			idx++;
 		}

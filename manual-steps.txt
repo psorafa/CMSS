@@ -65,7 +65,7 @@ post    vyplnit custom metadata Configuration__mdt pro Threat Detection (
         ) -- defaultni hodnota pro reciever metadata (pro prvni ctyri) = 'CRM_monitoring@csobstavebni.cz'
 post    Vytvořit záznam pro custom metadata Configuration 
         * Name = LogsNotification_Limit, Value = '30' 
-        * Name = LogsNotification_Receivers, Value = 'crm_podpora@csobstavebni.cz, TODO (p. Kožušková)' 
+        * Name = LogsNotification_Receivers, Value = 'crm_podpora@csobstavebni.cz, katerina_kozuskova@csobstavebni.cz' 
         * Name = LogsNotification_ReportURL, Value = 'TODO' 
 post    Vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__mdt pro vsechny dashboardType
             - LinkMOTDashboard - Plnění produkce Manažera obchodního týmu (v Lighnitning)
@@ -102,7 +102,7 @@ post    Po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_Commi
 			- priklad pro aktualni test org: https://csobstavebni--test.sandbox.my.salesforce.com/servlet/networks/switch?networkId=0DB3X000000TQGg&&startURL=/s/article/Vysvetlivky-k-vypisu-z-provizniho-uctu-kontakty
 post    update dat v orgu z data\custom-search\target\*.csv
 post    jednorazove nashedulovat batch job pro update accountu AccountMassUpdateBatch
-post	pustit nasledujici anonymous apex pro prirazeni permission setu pro editaci user email fieldu na vsechny system adminy:
+post	pustit nasledujici anonymous apex pro prirazeni permission setu pro editaci user email fieldu na vsechny system adminy a integrační usery:
 			List<PermissionSetAssignment> psaList = new List<PermissionSetAssignment>();
 			List<User> users = [SELECT Id FROM User WHERE profile.name = 'System Administrator' AND IsActive = true];
 			Id custPermissionSetId = [SELECT Id FROM PermissionSet WHERE PermissionSet.Name = 'UserEmailManager'].Id;
