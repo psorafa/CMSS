@@ -101,7 +101,7 @@ public with sharing class NewPMChangeRequestController {
 	private void insertRequests() {
 		List<PortfolioManagementRequest__c> requestItems = new List<PortfolioManagementRequest__c>();
 		if (userInput.ids != null) {
-			for (Id accountId : userInput.ids) {
+			for (Id accountId : new Set<Id>(userInput.ids)) {
 				requestItems.add(
 					new PortfolioManagementRequest__c(
 						Account__c = accountId,
@@ -115,6 +115,13 @@ public with sharing class NewPMChangeRequestController {
 		try {
 			dml.insertData(requestItems);
 		} catch (DmlException e) {
+			if (
+				e.getMessage().contains('INSUFFICIENT_ACCESS_ON_CROSS_REFERENCE_ENTITY') &&
+				e.getMessage().contains(Schema.getGlobalDescribe().get('Account').getDescribe().getKeyPrefix())
+			) {
+				Logger.error('Cannot save requests.', e);
+				throw new ProcessingException(Label.Cannot_save_data_insufficient_access_account);
+			}
 			Logger.error('Cannot save requests.', e);
 			throw new ProcessingException(Label.Cannot_save_data + ': ' + e.getMessage(), e);
 		}

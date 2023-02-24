@@ -73,6 +73,10 @@
         <name>Cannot_save_data</name>
     </customLabels>
     <customLabels>
+        <label>Data nelze uložit: Není možné převádět správu stavu u klientů, kteří nejsou ve správě stavu vaší nebo OZ z vaší podřazené struktury. Prosím zvolte pro převod jen odpovídající záznamy.</label>
+        <name>Cannot_save_data_insufficient_access_account</name>
+    </customLabels>
+    <customLabels>
         <label>Klient</label>
         <name>Client</name>
     </customLabels>
