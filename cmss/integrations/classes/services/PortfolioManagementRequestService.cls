@@ -111,6 +111,7 @@ public without sharing class PortfolioManagementRequestService {
 				processedCases.add(
 					new Case(
 						Id = caseId,
+						Status = '27',
 						CPECallAttempts__c = wrapper.pmrsByCaseId.get(caseId)[0].Case__r.CPECallAttempts__c + 1
 					)
 				);
