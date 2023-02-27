@@ -18,7 +18,8 @@ ISPICKVAL(ChangeReason__c, &apos;406&apos;) ||
 ISPICKVAL(ChangeReason__c, &apos;407&apos;) ||
 ISPICKVAL(ChangeReason__c, &apos;408&apos;) ||
 ISPICKVAL(ChangeReason__c, &apos;409&apos;)
-)</errorConditionFormula>
+) &amp;&amp;
+NOT(ISBLANK(TEXT(ChangeReason__c)))</errorConditionFormula>
     <errorDisplayField>ChangeReason__c</errorDisplayField>
     <errorMessage>Invalid Change Reason. Please select Change Reason 400-409.</errorMessage>
 </ValidationRule>
