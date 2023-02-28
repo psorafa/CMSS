@@ -31,6 +31,20 @@ public without sharing class PortfolioManagementRequestService {
 		}
 	}
 
+	public static void setExternalId(List<PortfolioManagementRequest__c> newList) {
+		List<PortfolioManagementRequest__c> updatedPMRs = new List<PortfolioManagementRequest__c>();
+		for (PortfolioManagementRequest__c pmr : newList) {
+			if (pmr.ExternalId__c == null) {
+				PortfolioManagementRequest__c updatedPMR = new PortfolioManagementRequest__c(
+					Id = pmr.Id,
+					ExternalId__c = pmr.Id
+				);
+				updatedPMRs.add(updatedPMR);
+			}
+		}
+		update updatedPMRs;
+	}
+
 	public static RequestsWrapper preparePMRs(Set<Id> caseIds) {
 		Map<Id, List<PortfolioManagementRequest__c>> pmrByCaseId = new Map<Id, List<PortfolioManagementRequest__c>>();
 		List<PortfolioManagementRequest__c> invalidRequests = new List<PortfolioManagementRequest__c>();
