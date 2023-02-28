@@ -86,6 +86,7 @@ public without sharing class PortfolioManagementRequestService {
 				Case__r.CPECallAttempts__c,
 				Case__r.PortfolioManagementType__c,
 				Case__r.NewPortfolioManager__c,
+				Case__r.ChangeReason__c,
 				Account__c,
 				Account__r.GlobalId__c,
 				Account__r.LastPtfManAChangeDate__c,
