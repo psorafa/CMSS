@@ -5,7 +5,7 @@
         <name>SetFieldsFromRelatedCase</name>
         <label>Set Fields From Related Case</label>
         <locationX>182</locationX>
-        <locationY>983</locationY>
+        <locationY>1319</locationY>
         <assignmentItems>
             <assignToReference>$Record.OriginalPortfolioManagerA__c</assignToReference>
             <operator>Assign</operator>
@@ -22,6 +22,22 @@
         </assignmentItems>
     </assignments>
     <assignments>
+        <name>SetPortfolioManagementChangeReason</name>
+        <label>Set Portfolio Management Change Reason</label>
+        <locationX>50</locationX>
+        <locationY>1103</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.PortfolioManChangeReason__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Case__r.ChangeReason__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>SetFieldsFromRelatedCase</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>SetPortfolioManagementType</name>
         <label>Set Portfolio Management Type</label>
         <locationX>50</locationX>
@@ -34,7 +50,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>SetFieldsFromRelatedCase</targetReference>
+            <targetReference>IsCaseChangeReasonProvided</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -54,12 +70,37 @@
         </connector>
     </assignments>
     <decisions>
+        <name>IsCaseChangeReasonProvided</name>
+        <label>Is Case Change Reason Provided</label>
+        <locationX>182</locationX>
+        <locationY>983</locationY>
+        <defaultConnector>
+            <targetReference>SetFieldsFromRelatedCase</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>CaseChangeReasonProvided</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Case__r.ChangeReason__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SetPortfolioManagementChangeReason</targetReference>
+            </connector>
+            <label>Case Change Reason Provided</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>IsCasePortfolioManagementTypeProvided</name>
         <label>Is Case Portfolio Management Type Provided?</label>
         <locationX>182</locationX>
         <locationY>647</locationY>
         <defaultConnector>
-            <targetReference>SetFieldsFromRelatedCase</targetReference>
+            <targetReference>IsCaseChangeReasonProvided</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>

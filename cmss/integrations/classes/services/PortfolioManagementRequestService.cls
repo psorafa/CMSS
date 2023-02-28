@@ -56,6 +56,9 @@ public without sharing class PortfolioManagementRequestService {
 				pmr.PortfolioManChangeResult__c = INVALID_REQUEST_RESULT;
 				invalidRequests.add(pmr);
 			}
+			if (pmr.Case__r.ChangeReason__c != null) {
+				pmr.PortfolioManChangeReason__c = pmr.Case__r.ChangeReason__c;
+			}
 		}
 		RequestsWrapper wrapper = new RequestsWrapper(pmrByCaseId, invalidRequests);
 		return wrapper;

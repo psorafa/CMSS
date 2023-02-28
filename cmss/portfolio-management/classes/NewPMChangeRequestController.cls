@@ -189,7 +189,7 @@ public with sharing class NewPMChangeRequestController {
 				throw new ProcessingException(Label.Only_Change_Type_of_A_allowed);
 			}
 		}
-		if (String.isEmpty(userInput.reason)) {
+		if (String.isEmpty(userInput.reason) && userInput.isEmptyCase == false) {
 			throw new ProcessingException(Label.Please_fill_in_Change_Reason);
 		}
 	}
