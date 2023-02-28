@@ -62,40 +62,71 @@ public class TaskTriggerHandler extends TriggerHandler {
 
 	public void editCentralActivities(Map<Id, Task> oldTasksMap, List<Task> newTasks) {
 		Profile userProfile = [SELECT Id, Name FROM Profile WHERE Id = :UserInfo.getProfileId()];
-		{
-			for (Task tsk : newTasks) {
-				Task oldTask = oldTasksMap.get(tsk.id);
-				Map<String, Object> diff = compareTasks(tsk, oldTask);
+		Map<String, Schema.SObjectField> accessibleFieldsMap = Schema.SObjectType.Task.fields.getMap();
+
+		if (
+			userProfile.Name == 'CMSS User' ||
+			userProfile.Name == 'CMSS Headquarters User' ||
+			userProfile.Name == 'CMSS Experience User'
+		) {
+			List<Task> tasksToCheckDiff = new List<Task>();
+			for (Task task : newTasks) {
+				Task oldTask = oldTasksMap.get(task.id);
 				if (
-					(userProfile.Name == 'CMSS User' || userProfile.Name == 'CMSS Headquarters User') &&
 					(oldTask.Category__c == '1' ||
-					tsk.Category__c == '1' ||
+					task.Category__c == '1' ||
 					oldTask.Category__c == '2' ||
-					tsk.Category__c == '2')
+					task.Category__c == '2')
 				) {
-					if (
-						!diff.containsKey('taskresult__c') &&
-						!diff.containsKey('isclosednegative__c') &&
-						!diff.containsKey('result__c') &&
-						!diff.containsKey('status') &&
-						!diff.isEmpty()
-					) {
-						tsk.TaskResult__c.addError(
-							'Pro aktivity centrály můžete měnit pouze parametr Výsledek nebo Stav editovany:' +
-							diff.keySet()
-						);
-						break;
-					}
+					tasksToCheckDiff.add(task);
+				}
+			}
+			for (Task task : tasksToCheckDiff) {
+				Task oldTask = oldTasksMap.get(task.id);
+				Map<String, Object> diff = compareTasks(task, oldTask, accessibleFieldsMap);
+				if (
+					!((diff.containsKey('taskresult__c') && diff.size() == 1) ||
+					(diff.containsKey('status') && diff.size() == 1) ||
+					(diff.containsKey('status') &&
+					diff.containsKey('isclosedpositive__c') &&
+					diff.size() == 2) ||
+					(diff.containsKey('status') &&
+					diff.containsKey('isclosedpositive__c') &&
+					diff.containsKey('isclosednegative__c') &&
+					diff.size() == 3) ||
+					(diff.containsKey('taskresult__c') &&
+					diff.containsKey('status') &&
+					diff.size() == 2) ||
+					(diff.containsKey('taskresult__c') &&
+					diff.containsKey('status') &&
+					diff.containsKey('isclosedpositive__c') &&
+					diff.size() == 3) ||
+					(diff.containsKey('taskresult__c') &&
+					diff.containsKey('status') &&
+					diff.containsKey('isclosednegative__c') &&
+					diff.size() == 3) ||
+					(diff.containsKey('taskresult__c') &&
+					diff.containsKey('status') &&
+					diff.containsKey('isclosedpositive__c') &&
+					diff.containsKey('isclosednegative__c') &&
+					diff.size() == 4) ||
+					diff.isEmpty())
+				) {
+					task.addError('Pro aktivity centrály můžete měnit pouze parametr Výsledek nebo Stav');
+					break;
 				}
 			}
 		}
 	}
 
-	public static Map<String, Object> compareTasks(Task task1, Task task2) {
+	public static Map<String, Object> compareTasks(
+		Task task1,
+		Task task2,
+		Map<String, Schema.SObjectField> accessibleFieldsMap
+	) {
 		Map<String, Object> differences = new Map<String, Object>();
-		Map<String, Schema.SObjectField> fields = Schema.SObjectType.Task.fields.getMap();
-		for (String fieldName : fields.keySet()) {
-			if (!fields.get(fieldName).getDescribe().isAccessible()) {
+		for (String fieldName : accessibleFieldsMap.keySet()) {
+			if (!accessibleFieldsMap.get(fieldName).getDescribe().isAccessible()) {
 				continue;
 			}
 			Object value1 = task1.get(fieldName);
