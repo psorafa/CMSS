@@ -21,7 +21,6 @@ public with sharing class CaseService {
 				newCase.Status == '23' &&
 				oldCases.get(newCase.Id).Status != '23'
 			) {
-				newCase.Status = '27';
 				pmrCaseIds.add(newCase.Id);
 			}
 		}

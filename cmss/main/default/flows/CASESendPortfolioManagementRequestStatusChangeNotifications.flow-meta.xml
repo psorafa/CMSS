@@ -1,259 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Mail_for_New_Portfolio_Manager</name>
-        <label>Mail for New Portfolio Manager</label>
-        <locationX>2074</locationX>
-        <locationY>2207</locationY>
-        <actionName>InvocableMailNotificationsHandler</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Add_Emails_To_Collection_5</targetReference>
-        </connector>
-        <dataTypeMappings>
-            <typeName>T__sourceRecord</typeName>
-            <typeValue>Case</typeValue>
-        </dataTypeMappings>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailTemplate</name>
-            <value>
-                <elementReference>Get_Email_Template</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>receiverEmail</name>
-            <value>
-                <elementReference>$Record.NewPortfolioManager__r.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sourceRecord</name>
-            <value>
-                <elementReference>$Record</elementReference>
-            </value>
-        </inputParameters>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
-        <name>Mail_for_Owner</name>
-        <label>Mail for Owner</label>
-        <locationX>490</locationX>
-        <locationY>1751</locationY>
-        <actionName>InvocableMailNotificationsHandler</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Add_Emails_To_Collection_2</targetReference>
-        </connector>
-        <dataTypeMappings>
-            <typeName>T__sourceRecord</typeName>
-            <typeValue>Case</typeValue>
-        </dataTypeMappings>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailTemplate</name>
-            <value>
-                <elementReference>Get_Email_Template</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>receiverEmail</name>
-            <value>
-                <elementReference>$Record.Owner:User.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sourceRecord</name>
-            <value>
-                <elementReference>$Record</elementReference>
-            </value>
-        </inputParameters>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
-        <name>Mail_for_Owner_2</name>
-        <label>Mail for Owner 2</label>
-        <locationX>1194</locationX>
-        <locationY>1631</locationY>
-        <actionName>InvocableMailNotificationsHandler</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Add_Emails_To_Collection_3</targetReference>
-        </connector>
-        <dataTypeMappings>
-            <typeName>T__sourceRecord</typeName>
-            <typeValue>Case</typeValue>
-        </dataTypeMappings>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailTemplate</name>
-            <value>
-                <elementReference>Get_Email_Template</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>receiverEmail</name>
-            <value>
-                <elementReference>$Record.Owner:User.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sourceRecord</name>
-            <value>
-                <elementReference>$Record</elementReference>
-            </value>
-        </inputParameters>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
-        <name>Mail_for_Owner_3</name>
-        <label>Mail for Owner 3</label>
-        <locationX>1634</locationX>
-        <locationY>1631</locationY>
-        <actionName>InvocableMailNotificationsHandler</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Add_Emails_To_Collection_4</targetReference>
-        </connector>
-        <dataTypeMappings>
-            <typeName>T__sourceRecord</typeName>
-            <typeValue>Case</typeValue>
-        </dataTypeMappings>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailTemplate</name>
-            <value>
-                <elementReference>Get_Email_Template</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>receiverEmail</name>
-            <value>
-                <elementReference>$Record.Owner:User.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sourceRecord</name>
-            <value>
-                <elementReference>$Record</elementReference>
-            </value>
-        </inputParameters>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
-        <name>Mail_for_Owner_4</name>
-        <label>Mail for Owner 4</label>
-        <locationX>2074</locationX>
-        <locationY>1751</locationY>
-        <actionName>InvocableMailNotificationsHandler</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Copy_1_of_Add_Emails_To_Collection_5</targetReference>
-        </connector>
-        <dataTypeMappings>
-            <typeName>T__sourceRecord</typeName>
-            <typeValue>Case</typeValue>
-        </dataTypeMappings>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailTemplate</name>
-            <value>
-                <elementReference>Get_Email_Template</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>receiverEmail</name>
-            <value>
-                <elementReference>$Record.Owner:User.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sourceRecord</name>
-            <value>
-                <elementReference>$Record</elementReference>
-            </value>
-        </inputParameters>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
-        <name>Mail_for_Regional_Manager</name>
-        <label>Mail for Regional Manager</label>
-        <locationX>50</locationX>
-        <locationY>1631</locationY>
-        <actionName>InvocableMailNotificationsHandler</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Add_Notification_To_Collection</targetReference>
-        </connector>
-        <dataTypeMappings>
-            <typeName>T__sourceRecord</typeName>
-            <typeValue>Case</typeValue>
-        </dataTypeMappings>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailTemplate</name>
-            <value>
-                <elementReference>Get_Email_Template</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>receiverEmail</name>
-            <value>
-                <elementReference>$Record.RegionalManager__r.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sourceRecord</name>
-            <value>
-                <elementReference>$Record</elementReference>
-            </value>
-        </inputParameters>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
-        <name>Mail_for_Regional_Manager_Assistant</name>
-        <label>Mail for Regional Manager Assistant</label>
-        <locationX>50</locationX>
-        <locationY>2087</locationY>
-        <actionName>InvocableMailNotificationsHandler</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Add_Email_To_Collection_2</targetReference>
-        </connector>
-        <dataTypeMappings>
-            <typeName>T__sourceRecord</typeName>
-            <typeValue>Case</typeValue>
-        </dataTypeMappings>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailTemplate</name>
-            <value>
-                <elementReference>Get_Email_Template</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>receiverEmail</name>
-            <value>
-                <elementReference>$Record.RegionalManagerAssistant__r.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sourceRecord</name>
-            <value>
-                <elementReference>$Record</elementReference>
-            </value>
-        </inputParameters>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
         <name>Send_Notifications</name>
         <label>Send Notifications</label>
-        <locationX>1744</locationX>
-        <locationY>3767</locationY>
+        <locationX>1106</locationX>
+        <locationY>2183</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
-            <targetReference>Insert_notifications</targetReference>
+            <targetReference>Add_emails_to_collection</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -277,7 +32,7 @@
         <inputParameters>
             <name>recipientIds</name>
             <value>
-                <elementReference>NotificationRecipients</elementReference>
+                <elementReference>Remove_nulls</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -289,121 +44,67 @@
     </actionCalls>
     <apiVersion>56.0</apiVersion>
     <assignments>
-        <name>Add_Email_To_Collection_2</name>
-        <label>Add Email To Collection 2</label>
-        <locationX>50</locationX>
-        <locationY>2207</locationY>
+        <name>Add_emails_to_collection</name>
+        <label>Add emails to collection</label>
+        <locationX>1106</locationX>
+        <locationY>2303</locationY>
         <assignmentItems>
             <assignToReference>EmailNotifications</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>Mail_for_Regional_Manager_Assistant</elementReference>
+                <elementReference>Add_email_for_1st_Assistant.MailServiceNotification</elementReference>
             </value>
         </assignmentItems>
-        <connector>
-            <targetReference>Assign_Notification_Text</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_Emails_To_Collection_2</name>
-        <label>Add Email To Collection 2</label>
-        <locationX>490</locationX>
-        <locationY>1871</locationY>
         <assignmentItems>
             <assignToReference>EmailNotifications</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>Mail_for_Owner</elementReference>
+                <elementReference>Add_email_for_New_Portfolio_Manager.MailServiceNotification</elementReference>
             </value>
         </assignmentItems>
-        <connector>
-            <targetReference>Assign_Notification_Text_2</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_Emails_To_Collection_3</name>
-        <label>Add Email To Collection 3</label>
-        <locationX>1194</locationX>
-        <locationY>1751</locationY>
         <assignmentItems>
             <assignToReference>EmailNotifications</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>Mail_for_Owner_2</elementReference>
+                <elementReference>Add_email_for_Owner_1.MailServiceNotification</elementReference>
             </value>
         </assignmentItems>
-        <connector>
-            <targetReference>Assign_Notification_Text_3</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_Emails_To_Collection_4</name>
-        <label>Add Email To Collection 4</label>
-        <locationX>1634</locationX>
-        <locationY>1751</locationY>
         <assignmentItems>
             <assignToReference>EmailNotifications</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>Mail_for_Owner_3</elementReference>
+                <elementReference>Add_email_for_Owner_2.MailServiceNotification</elementReference>
             </value>
         </assignmentItems>
-        <connector>
-            <targetReference>Assign_Notification_Text_4</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_Emails_To_Collection_5</name>
-        <label>Add Email To Collection 6</label>
-        <locationX>2074</locationX>
-        <locationY>2327</locationY>
         <assignmentItems>
             <assignToReference>EmailNotifications</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>Mail_for_New_Portfolio_Manager</elementReference>
+                <elementReference>Add_email_for_Owner_3.MailServiceNotification</elementReference>
             </value>
         </assignmentItems>
-        <connector>
-            <targetReference>Assign_Notification_Text_5</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_Notification_To_Collection</name>
-        <label>Add Email To Collection</label>
-        <locationX>50</locationX>
-        <locationY>1751</locationY>
         <assignmentItems>
             <assignToReference>EmailNotifications</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>Mail_for_Regional_Manager</elementReference>
+                <elementReference>Add_email_for_Owner_4.MailServiceNotification</elementReference>
             </value>
         </assignmentItems>
-        <connector>
-            <targetReference>Is_Regional_Manager_Assistant_Lightning_user</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_collection_without_nulls</name>
-        <label>Assign collection without nulls</label>
-        <locationX>1744</locationX>
-        <locationY>3647</locationY>
         <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Assign</operator>
+            <assignToReference>EmailNotifications</assignToReference>
+            <operator>Add</operator>
             <value>
-                <elementReference>Remove_nulls</elementReference>
+                <elementReference>Add_email_for_Regional_Manager.MailServiceNotification</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Send_Notifications</targetReference>
+            <targetReference>Insert_notifications</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_error_result</name>
         <label>Assign error result</label>
-        <locationX>1744</locationX>
+        <locationX>1106</locationX>
         <locationY>1055</locationY>
         <assignmentItems>
             <assignToReference>ResultSuccessText</assignToReference>
@@ -417,233 +118,9 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_Notification_Recipients_2</name>
-        <label>Assign Notification Recipients 2</label>
-        <locationX>490</locationX>
-        <locationY>2327</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.Owner:User.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Remove_nulls</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Notification_Recipients_3</name>
-        <label>Assign Notification Recipients 3</label>
-        <locationX>1194</locationX>
-        <locationY>2207</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.Owner:User.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Remove_nulls</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Notification_Recipients_4</name>
-        <label>Assign Notification Recipients 4</label>
-        <locationX>1634</locationX>
-        <locationY>2207</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.Owner:User.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Remove_nulls</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Notification_Recipients_6</name>
-        <label>Assign Notification Recipients 6</label>
-        <locationX>2778</locationX>
-        <locationY>1751</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.Owner:User.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Remove_nulls</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Notification_Text</name>
-        <label>Assign Notification Text</label>
-        <locationX>182</locationX>
-        <locationY>2423</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationText</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Value_CekaNaSchvaleni</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_Regional_Manager_Active</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Notification_Text_2</name>
-        <label>Assign Notification Text 2</label>
-        <locationX>622</locationX>
-        <locationY>2087</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationText</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Value_Zamitnuta</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_Owner_Active</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Notification_Text_3</name>
-        <label>Assign Notification Text 3</label>
-        <locationX>1326</locationX>
-        <locationY>1967</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationText</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Value_OdmitnutoZpracovani</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_Owner_Active_2</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Notification_Text_4</name>
-        <label>Assign Notification Text 4</label>
-        <locationX>1766</locationX>
-        <locationY>1967</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationText</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Value_Expirovana</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_Owner_Active_3</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Notification_Text_5</name>
-        <label>Assign Notification Text 5</label>
-        <locationX>2206</locationX>
-        <locationY>2543</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationText</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Value_Zpracovana</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_Owner_Active_4</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Notification_Text_6</name>
-        <label>Assign Notification Text 6</label>
-        <locationX>2778</locationX>
-        <locationY>1631</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationText</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Value_Schvalena</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Assign_Notification_Recipients_6</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Owner_Notification_Recipient</name>
-        <label>Assign Owner Notification Recipient</label>
-        <locationX>2074</locationX>
-        <locationY>2783</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.Owner:User.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_PM_Active</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_PM_Notification_Recipient</name>
-        <label>Assign PM Notification Recipient</label>
-        <locationX>2074</locationX>
-        <locationY>3119</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.NewPortfolioManager__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Remove_nulls</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_RM_as_Recipient</name>
-        <label>Assign RM as Recipient</label>
-        <locationX>50</locationX>
-        <locationY>2663</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.RegionalManager__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_Regional_Manager_Ass_Active</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_RMA_as_Recipient</name>
-        <label>Assign RMA as Recipient</label>
-        <locationX>50</locationX>
-        <locationY>2999</locationY>
-        <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.RegionalManagerAssistant__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Remove_nulls</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Assign_success_result</name>
         <label>Assign success result</label>
-        <locationX>1480</locationX>
+        <locationX>842</locationX>
         <locationY>1055</locationY>
         <assignmentItems>
             <assignToReference>ResultSuccessText</assignToReference>
@@ -657,25 +134,161 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Copy_1_of_Add_Emails_To_Collection_5</name>
-        <label>Add Email To Collection 5</label>
-        <locationX>2074</locationX>
-        <locationY>1871</locationY>
+        <name>Set_Bell_Notification</name>
+        <label>Set Bell Notification</label>
+        <locationX>842</locationX>
+        <locationY>1631</locationY>
         <assignmentItems>
-            <assignToReference>EmailNotifications</assignToReference>
+            <assignToReference>NotificationText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Value_OdmitnutoZpracovani</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>Mail_for_Owner_4</elementReference>
+                <elementReference>$Record.OwnerId</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Is_New_Portfolio_Manager_Lightning_user</targetReference>
+            <targetReference>Remove_nulls</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Bell_Notification3</name>
+        <label>Set Bell Notification</label>
+        <locationX>1106</locationX>
+        <locationY>1631</locationY>
+        <assignmentItems>
+            <assignToReference>NotificationText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Value_Expirovana</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Remove_nulls</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Bell_Notification4</name>
+        <label>Set Bell Notification</label>
+        <locationX>1898</locationX>
+        <locationY>1631</locationY>
+        <assignmentItems>
+            <assignToReference>NotificationText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Value_Schvalena</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Remove_nulls</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Bell_Notification5</name>
+        <label>Set Bell Notification</label>
+        <locationX>578</locationX>
+        <locationY>1751</locationY>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NotificationText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Value_Zamitnuta</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Remove_nulls</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Bell_Notifications</name>
+        <label>Set Bell Notifications</label>
+        <locationX>50</locationX>
+        <locationY>1751</locationY>
+        <assignmentItems>
+            <assignToReference>NotificationText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Value_CekaNaSchvaleni</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.RegionalManager__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.RegionalManagerAssistant__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Remove_nulls</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Bell_Notifications2</name>
+        <label>Set Bell Notifications</label>
+        <locationX>1370</locationX>
+        <locationY>1751</locationY>
+        <assignmentItems>
+            <assignToReference>NotificationText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Value_Zpracovana</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.NewPortfolioManager__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Remove_nulls</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Update_Email_Body</name>
         <label>Update Email Body</label>
-        <locationX>1744</locationX>
+        <locationX>1106</locationX>
         <locationY>1271</locationY>
         <assignmentItems>
             <assignToReference>Get_Email_Template.HtmlValue</assignToReference>
@@ -692,34 +305,34 @@
         <name>Remove_nulls</name>
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Remove nulls</label>
-        <locationX>1744</locationX>
-        <locationY>3527</locationY>
-        <assignNextValueToReference>currentItem_Remove_nulls</assignNextValueToReference>
+        <locationX>1106</locationX>
+        <locationY>2063</locationY>
+        <assignNextValueToReference>currentItem_Remove_nulls_0</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>NotificationRecipients</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Remove_nulls</leftValueReference>
+            <leftValueReference>currentItem_Remove_nulls_0</leftValueReference>
             <operator>NotEqualTo</operator>
             <rightValue>
                 <stringValue></stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Remove_nulls</leftValueReference>
+            <leftValueReference>currentItem_Remove_nulls_0</leftValueReference>
             <operator>IsNull</operator>
             <rightValue>
                 <booleanValue>false</booleanValue>
             </rightValue>
         </conditions>
         <connector>
-            <targetReference>Assign_collection_without_nulls</targetReference>
+            <targetReference>Send_Notifications</targetReference>
         </connector>
     </collectionProcessors>
     <decisions>
         <name>Determine_Case_Status</name>
         <label>Determine Case Status</label>
-        <locationX>1744</locationX>
+        <locationX>1106</locationX>
         <locationY>1391</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -733,7 +346,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Is_Regional_Manager_Lightning_user</targetReference>
+                <targetReference>Add_email_for_Regional_Manager</targetReference>
             </connector>
             <label>Čeká na schválení</label>
         </rules>
@@ -748,7 +361,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Regional_Manager_is_not_empty</targetReference>
+                <targetReference>Is_approver_the_same_as_owner1</targetReference>
             </connector>
             <label>Zamítnutá</label>
         </rules>
@@ -763,7 +376,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Is_Owner_Lightning_user_2</targetReference>
+                <targetReference>Add_email_for_Owner_2</targetReference>
             </connector>
             <label>Odmítnuto zpracování</label>
         </rules>
@@ -778,7 +391,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Is_Owner_Lightning_user_3</targetReference>
+                <targetReference>Add_email_for_Owner_3</targetReference>
             </connector>
             <label>Expirovaná</label>
         </rules>
@@ -800,7 +413,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Portfolio_Manager_is_not_empty</targetReference>
+                <targetReference>Add_email_for_Owner_4</targetReference>
             </connector>
             <label>Zpracováno s chybou či bez chyby</label>
         </rules>
@@ -815,265 +428,59 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Regional_Manager_is_not_empty_and_active</targetReference>
+                <targetReference>Is_approver_the_same_as_owner</targetReference>
             </connector>
             <label>Schválená</label>
         </rules>
     </decisions>
     <decisions>
-        <name>Is_New_Portfolio_Manager_Lightning_user</name>
-        <label>Is New Portfolio Manager Lightning user</label>
-        <locationX>2206</locationX>
-        <locationY>2087</locationY>
-        <defaultConnector>
-            <targetReference>Assign_Notification_Text_5</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Copy_5_of_Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.NewPortfolioManager__r.ProfileId</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Experience_User_Profile.Id</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Mail_for_New_Portfolio_Manager</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Owner_Active</name>
-        <label>Is Owner Active</label>
-        <locationX>622</locationX>
-        <locationY>2207</locationY>
-        <defaultConnector>
-            <targetReference>Remove_nulls</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>YesOwnerActive</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Owner:User.IsActive</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Notification_Recipients_2</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Owner_Active_2</name>
-        <label>Is Owner Active 2</label>
-        <locationX>1326</locationX>
-        <locationY>2087</locationY>
-        <defaultConnector>
-            <targetReference>Remove_nulls</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Copy_6_of_Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Owner:User.IsActive</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Notification_Recipients_3</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Owner_Active_3</name>
-        <label>Is Owner Active 3</label>
-        <locationX>1766</locationX>
-        <locationY>2087</locationY>
-        <defaultConnector>
-            <targetReference>Remove_nulls</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>YesOwnerActive3</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Owner:User.IsActive</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Notification_Recipients_4</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Owner_Active_4</name>
-        <label>Is Owner Active 4</label>
-        <locationX>2206</locationX>
-        <locationY>2663</locationY>
-        <defaultConnector>
-            <targetReference>Is_PM_Active</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>YesOwnerActive4</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Owner:User.IsActive</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Owner_Notification_Recipient</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Owner_Lightning_user</name>
-        <label>Is Owner Lightning user</label>
-        <locationX>622</locationX>
-        <locationY>1631</locationY>
-        <defaultConnector>
-            <targetReference>Assign_Notification_Text_2</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Copy_1_of_Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Owner:User.ProfileId</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Experience_User_Profile.Id</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Mail_for_Owner</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Owner_Lightning_user_2</name>
-        <label>Is Owner Lightning user 2</label>
-        <locationX>1326</locationX>
-        <locationY>1511</locationY>
-        <defaultConnector>
-            <targetReference>Assign_Notification_Text_3</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Copy_2_of_Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Owner:User.ProfileId</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Experience_User_Profile.Id</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Mail_for_Owner_2</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Owner_Lightning_user_3</name>
-        <label>Is Owner Lightning user 3</label>
+        <name>Is_approver_the_same_as_owner</name>
+        <label>Is approver the same as owner?</label>
         <locationX>1766</locationX>
         <locationY>1511</locationY>
         <defaultConnector>
-            <targetReference>Assign_Notification_Text_4</targetReference>
+            <targetReference>Set_Bell_Notification4</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
-            <name>Copy_3_of_Yes</name>
+            <name>Yes1</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Owner:User.ProfileId</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Experience_User_Profile.Id</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Mail_for_Owner_3</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Owner_Lightning_user_4</name>
-        <label>Is Owner Lightning user 4</label>
-        <locationX>2206</locationX>
-        <locationY>1631</locationY>
-        <defaultConnector>
-            <targetReference>Is_New_Portfolio_Manager_Lightning_user</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Copy_4_of_Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Owner:User.ProfileId</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Experience_User_Profile.Id</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Mail_for_Owner_4</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_PM_Active</name>
-        <label>Is PM Active</label>
-        <locationX>2206</locationX>
-        <locationY>2999</locationY>
-        <defaultConnector>
-            <targetReference>Remove_nulls</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>YesPMActive</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.NewPortfolioManager__r.IsActive</leftValueReference>
+                <leftValueReference>$Record.Approver__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <elementReference>$Record.OwnerId</elementReference>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Assign_PM_Notification_Recipient</targetReference>
-            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_approver_the_same_as_owner1</name>
+        <label>Is approver the same as owner?</label>
+        <locationX>446</locationX>
+        <locationY>1511</locationY>
+        <defaultConnector>
+            <targetReference>Add_email_for_Owner_1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approver__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.OwnerId</elementReference>
+                </rightValue>
+            </conditions>
             <label>Yes</label>
         </rules>
     </decisions>
     <decisions>
         <name>Is_Portfolio_Management_Change_Request</name>
         <label>Is Portfolio Management Change Request</label>
-        <locationX>2657</locationX>
+        <locationX>1766</locationX>
         <locationY>455</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -1093,196 +500,9 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Is_Regional_Manager_Active</name>
-        <label>Is Regional Manager Active</label>
-        <locationX>182</locationX>
-        <locationY>2543</locationY>
-        <defaultConnector>
-            <targetReference>Is_Regional_Manager_Ass_Active</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>YesActiveUser</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.RegionalManager__r.IsActive</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_RM_as_Recipient</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Regional_Manager_Ass_Active</name>
-        <label>Is Regional Manager Assist Active</label>
-        <locationX>182</locationX>
-        <locationY>2879</locationY>
-        <defaultConnector>
-            <targetReference>Remove_nulls</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>YesRMAActive</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.RegionalManagerAssistant__r.IsActive</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_RMA_as_Recipient</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Regional_Manager_Assistant_Lightning_user</name>
-        <label>Is Regional Manager Assistant Lightning user</label>
-        <locationX>182</locationX>
-        <locationY>1967</locationY>
-        <defaultConnector>
-            <targetReference>Assign_Notification_Text</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Lightning2_Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.RegionalManagerAssistant__r.ProfileId</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Experience_User_Profile.Id</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.RegionalManagerAssistant__r.Email</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Mail_for_Regional_Manager_Assistant</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Regional_Manager_Lightning_user</name>
-        <label>Is Regional Manager Lightning user</label>
-        <locationX>182</locationX>
-        <locationY>1511</locationY>
-        <defaultConnector>
-            <targetReference>Is_Regional_Manager_Assistant_Lightning_user</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>IsLightning1_Yes</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.RegionalManager__r.ProfileId</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>Get_Experience_User_Profile.Id</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.RegionalManager__r.Email</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Mail_for_Regional_Manager</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Portfolio_Manager_is_not_empty</name>
-        <label>New Portfolio Manager is not empty</label>
-        <locationX>2360</locationX>
-        <locationY>1511</locationY>
-        <defaultConnectorLabel>Empty</defaultConnectorLabel>
-        <rules>
-            <name>New_Portfolio_Manager_is_not_empty</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.NewPortfolioManager__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Is_Owner_Lightning_user_4</targetReference>
-            </connector>
-            <label>Not Empty</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Regional_Manager_is_not_empty</name>
-        <label>Regional Manager is not empty</label>
-        <locationX>776</locationX>
-        <locationY>1511</locationY>
-        <defaultConnectorLabel>Manager is empty</defaultConnectorLabel>
-        <rules>
-            <name>Manager_is_not_empty</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.RegionalManager__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Is_Owner_Lightning_user</targetReference>
-            </connector>
-            <label>Manager is not empty</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Regional_Manager_is_not_empty_and_active</name>
-        <label>Regional Manager is not empty and Active</label>
-        <locationX>2910</locationX>
-        <locationY>1511</locationY>
-        <defaultConnectorLabel>Manager is empty</defaultConnectorLabel>
-        <rules>
-            <name>Manager_is_not_empty_2</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.RegionalManager__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.RegionalManager__r.IsActive</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Notification_Text_6</targetReference>
-            </connector>
-            <label>Manager is not empty 2</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Success_or_error</name>
         <label>Is Success Or Error</label>
-        <locationX>1744</locationX>
+        <locationX>1106</locationX>
         <locationY>935</locationY>
         <defaultConnector>
             <targetReference>Update_Email_Body</targetReference>
@@ -1391,18 +611,18 @@
     <recordCreates>
         <name>Insert_notifications</name>
         <label>Insert email notifications</label>
-        <locationX>1744</locationX>
-        <locationY>3887</locationY>
+        <locationX>1106</locationX>
+        <locationY>2423</locationY>
         <inputReference>EmailNotifications</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_Custom_Notification_Type</name>
         <label>Get Custom Notification Type</label>
-        <locationX>1744</locationX>
+        <locationX>1106</locationX>
         <locationY>695</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Experience_User_Profile</targetReference>
+            <targetReference>Get_recipients_users</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -1420,7 +640,7 @@
     <recordLookups>
         <name>Get_Email_Template</name>
         <label>Get Email Template</label>
-        <locationX>1744</locationX>
+        <locationX>1106</locationX>
         <locationY>575</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1439,31 +659,9 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>Get_Experience_User_Profile</name>
-        <label>Get Experience User Profile Id</label>
-        <locationX>1744</locationX>
-        <locationY>815</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Success_or_error</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Name</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>CMSS Experience User</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Profile</object>
-        <queriedFields>Id</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>GetPortfoli_ManagemntChangeRequestRecordType</name>
         <label>GetPortfoli ManagemntChangeRequestRecordType</label>
-        <locationX>2657</locationX>
+        <locationX>1766</locationX>
         <locationY>335</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1483,13 +681,12 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>2531</locationX>
+        <locationX>1640</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>GetPortfoli_ManagemntChangeRequestRecordType</targetReference>
         </connector>
-        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-        <filterLogic>or</filterLogic>
+        <filterLogic>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7) AND 8</filterLogic>
         <filters>
             <field>Status</field>
             <operator>EqualTo</operator>
@@ -1539,13 +736,240 @@
                 <stringValue>30</stringValue>
             </value>
         </filters>
+        <filters>
+            <field>Status</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <object>Case</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Add_email_for_1st_Assistant</name>
+        <label>Add email for 1st Assistant</label>
+        <locationX>50</locationX>
+        <locationY>1631</locationY>
+        <connector>
+            <targetReference>Set_Bell_Notifications</targetReference>
+        </connector>
+        <flowName>Subflow_Create_Mail_Service_Notification</flowName>
+        <inputAssignments>
+            <name>Case</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>EmailTemplate</name>
+            <value>
+                <elementReference>Get_Email_Template</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Recipient</name>
+            <value>
+                <elementReference>Get_recipients_users.Assistant_1</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>Add_email_for_New_Portfolio_Manager</name>
+        <label>Add email for New Portfolio Manager</label>
+        <locationX>1370</locationX>
+        <locationY>1631</locationY>
+        <connector>
+            <targetReference>Set_Bell_Notifications2</targetReference>
+        </connector>
+        <flowName>Subflow_Create_Mail_Service_Notification</flowName>
+        <inputAssignments>
+            <name>Case</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>EmailTemplate</name>
+            <value>
+                <elementReference>Get_Email_Template</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Recipient</name>
+            <value>
+                <elementReference>Get_recipients_users.NewPortfolioManager</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>Add_email_for_Owner_1</name>
+        <label>Add email for Owner 1</label>
+        <locationX>578</locationX>
+        <locationY>1631</locationY>
+        <connector>
+            <targetReference>Set_Bell_Notification5</targetReference>
+        </connector>
+        <flowName>Subflow_Create_Mail_Service_Notification</flowName>
+        <inputAssignments>
+            <name>Case</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>EmailTemplate</name>
+            <value>
+                <elementReference>Get_Email_Template</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Recipient</name>
+            <value>
+                <elementReference>Get_recipients_users.CaseOwner</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>Add_email_for_Owner_2</name>
+        <label>Add email for Owner 2</label>
+        <locationX>842</locationX>
+        <locationY>1511</locationY>
+        <connector>
+            <targetReference>Set_Bell_Notification</targetReference>
+        </connector>
+        <flowName>Subflow_Create_Mail_Service_Notification</flowName>
+        <inputAssignments>
+            <name>Case</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>EmailTemplate</name>
+            <value>
+                <elementReference>Get_Email_Template</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Recipient</name>
+            <value>
+                <elementReference>Get_recipients_users.CaseOwner</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>Add_email_for_Owner_3</name>
+        <label>Add email for Owner 3</label>
+        <locationX>1106</locationX>
+        <locationY>1511</locationY>
+        <connector>
+            <targetReference>Set_Bell_Notification3</targetReference>
+        </connector>
+        <flowName>Subflow_Create_Mail_Service_Notification</flowName>
+        <inputAssignments>
+            <name>Case</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>EmailTemplate</name>
+            <value>
+                <elementReference>Get_Email_Template</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Recipient</name>
+            <value>
+                <elementReference>Get_recipients_users.CaseOwner</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>Add_email_for_Owner_4</name>
+        <label>Add email for Owner 4</label>
+        <locationX>1370</locationX>
+        <locationY>1511</locationY>
+        <connector>
+            <targetReference>Add_email_for_New_Portfolio_Manager</targetReference>
+        </connector>
+        <flowName>Subflow_Create_Mail_Service_Notification</flowName>
+        <inputAssignments>
+            <name>Case</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>EmailTemplate</name>
+            <value>
+                <elementReference>Get_Email_Template</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Recipient</name>
+            <value>
+                <elementReference>Get_recipients_users.CaseOwner</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>Add_email_for_Regional_Manager</name>
+        <label>Add email for Regional Manager</label>
+        <locationX>50</locationX>
+        <locationY>1511</locationY>
+        <connector>
+            <targetReference>Add_email_for_1st_Assistant</targetReference>
+        </connector>
+        <flowName>Subflow_Create_Mail_Service_Notification</flowName>
+        <inputAssignments>
+            <name>Case</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>EmailTemplate</name>
+            <value>
+                <elementReference>Get_Email_Template</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Recipient</name>
+            <value>
+                <elementReference>Get_recipients_users.RegionalManager</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>Get_recipients_users</name>
+        <label>Get recipients users</label>
+        <locationX>1106</locationX>
+        <locationY>815</locationY>
+        <connector>
+            <targetReference>Success_or_error</targetReference>
+        </connector>
+        <flowName>Subflow_Get_recipients_users</flowName>
+        <inputAssignments>
+            <name>Case</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
     <variables>
-        <name>currentItem_Remove_nulls</name>
+        <name>currentItem_Remove_nulls_0</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

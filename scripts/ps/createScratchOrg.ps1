@@ -89,7 +89,7 @@ try {
         CheckLastExitCode
 
         # add some permissions:
-        sfdx force:user:permset:assign --permsetname "ReadAllData,EditAllData,CustomSearchConfiguration,CustomSearchFilter" --targetusername $ALIAS
+        sfdx force:user:permset:assign --permsetname "ReadAllData,EditAllData,CustomSearchConfiguration,CustomSearchFilter,UserEmailManager" --targetusername $ALIAS
         CheckLastExitCode
     }
 
