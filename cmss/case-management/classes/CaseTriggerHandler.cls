@@ -18,6 +18,8 @@ public class CaseTriggerHandler extends TriggerHandler {
 
 	public override void afterInsert() {
 		CaseService.setGDPRAndClientCaseOnAccount((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
+		Map<Id, Case> oldMap = new Map<Id, Case>();
+		CaseService.upsertCaseSharing(Trigger.newMap, oldMap);
 	}
 
 	public override void afterUpdate() {
@@ -27,6 +29,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 		handleMilestoneCompletion(newList, oldMap);
 		handleMilestoneForCloseCases(newList);
 		CaseService.setGDPRAndClientCaseOnAccount((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
+		CaseService.upsertCaseSharing(Trigger.newMap, Trigger.oldMap);
 	}
 
 	public override void beforeDelete() {

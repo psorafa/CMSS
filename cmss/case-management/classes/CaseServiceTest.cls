@@ -6,6 +6,120 @@ private class CaseServiceTest {
 		insert TestDataFactory.getNumericalSettings();
 	}
 
+	private static List<CaseShare> getCaseShare(Id caseId) {
+		List<CaseShare> mgrs = [
+			SELECT Id, CaseId, UserOrGroupId, RowCause
+			FROM CaseShare
+			WHERE CaseId = :caseId AND RowCause IN (:Schema.CaseShare.rowCause.Manual)
+		];
+		return mgrs;
+	}
+
+	@IsTest
+	static void caseTriggerInsertTest() {
+		User caseUser = TestDataFactory.getUser(new User());
+		insert caseUser;
+		insert TestDataFactory.getPermissionSetAssignments(caseUser.Id);
+		TestDataFactory.defaultCaseOwner = caseUser;
+
+		System.runAs(caseUser) {
+			User regionalManager = TestDataFactory.getUser(new User());
+			User regionalManagerAssistant = TestDataFactory.getUser(new User());
+			User NewPortfolioManager = TestDataFactory.getUser(new User());
+			List<User> insertUsers = new List<User>();
+			insertUsers.add(regionalManager);
+			insertUsers.add(regionalManagerAssistant);
+			insertUsers.add(NewPortfolioManager);
+
+			insert insertUsers;
+
+			Case clientClaimCase = TestDataFactory.getCase(
+				new Case(
+					RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+						.get('NewClientClaim')
+						.getRecordTypeId(),
+					RegionalManager__c = regionalManager.Id,
+					RegionalManagerAssistant__c = regionalManagerAssistant.Id,
+					NewPortfolioManager__c = NewPortfolioManager.Id
+				)
+			);
+			Test.startTest();
+			insert clientClaimCase;
+			Test.stopTest();
+
+			Integer shareCounter = 0;
+			for (CaseShare c : getCaseShare(clientClaimCase.Id)) {
+				if (c.UserOrGroupId == regionalManager.Id && c.RowCause == Schema.CaseShare.rowCause.Manual) {
+					shareCounter++;
+				} else if (
+					c.UserOrGroupId == regionalManagerAssistant.Id &&
+					c.RowCause == Schema.CaseShare.rowCause.Manual
+				) {
+					shareCounter++;
+				} else if (
+					c.UserOrGroupId == NewPortfolioManager.Id &&
+					c.RowCause == Schema.CaseShare.rowCause.Manual
+				) {
+					shareCounter++;
+				}
+			}
+			System.assertEquals(3, shareCounter, 'CaseShare records not as expected.');
+		}
+	}
+
+	@IsTest
+	static void caseTriggerUpdateTest() {
+		User caseUser = TestDataFactory.getUser(new User());
+		insert caseUser;
+		insert TestDataFactory.getPermissionSetAssignments(caseUser.Id);
+		TestDataFactory.defaultCaseOwner = caseUser;
+
+		System.runAs(caseUser) {
+			User regionalManager = TestDataFactory.getUser(new User());
+			User regionalManagerAssistant = TestDataFactory.getUser(new User());
+			User NewPortfolioManager = TestDataFactory.getUser(new User());
+			User updateUser = TestDataFactory.getUser(new User());
+			List<User> insertUsers = new List<User>();
+			insertUsers.add(regionalManager);
+			insertUsers.add(regionalManagerAssistant);
+			insertUsers.add(NewPortfolioManager);
+			insertUsers.add(updateUser);
+
+			insert insertUsers;
+
+			Case clientClaimCase = TestDataFactory.getCase(
+				new Case(
+					RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+						.get('NewClientClaim')
+						.getRecordTypeId(),
+					RegionalManager__c = regionalManager.Id,
+					RegionalManagerAssistant__c = regionalManagerAssistant.Id,
+					NewPortfolioManager__c = NewPortfolioManager.Id
+				)
+			);
+			Test.startTest();
+			insert clientClaimCase;
+			clientClaimCase.RegionalManager__c = updateUser.Id;
+			clientClaimCase.RegionalManagerAssistant__c = updateUser.Id;
+			clientClaimCase.NewPortfolioManager__c = updateUser.Id;
+			update clientClaimCase;
+			Test.stopTest();
+
+			Integer shareCounter = 0;
+			for (CaseShare c : getCaseShare(clientClaimCase.Id)) {
+				shareCounter++;
+				System.assertEquals(
+					c.UserOrGroupId,
+					updateUser.Id,
+					'UserOrGroupId for ' +
+					c.RowCause +
+					' after update not as expected.'
+				);
+			}
+			System.assertEquals(1, shareCounter, 'CaseShare records not as expected.');
+		}
+	}
+
 	@IsTest
 	static void assignCaseIDTest() {
 		User user = TestDataFactory.getUser(new User());
