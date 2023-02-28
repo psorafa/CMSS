@@ -52,24 +52,33 @@ public with sharing class NewPortfolioManagerSelectController {
 
 	@TestVisible
 	private virtual class Selector {
-
 		public virtual List<User> searchUsersWithRole(String value, Set<Id> rolesIds) {
 			return [
-				SELECT Id, Name, CommissionAccountNrAll__c FROM User
+				SELECT Id, Name, CommissionAccountNrAll__c
+				FROM User
 				WHERE
-					(Name LIKE :value OR CommissionAccountNr__c LIKE :value OR CommissionAccountNrAll__c LIKE :value)
-				AND IsAgentActive__c = TRUE AND PortfolioManType__c = 'A' AND UserRoleId IN :rolesIds
-				ORDER BY Name LIMIT 5
+					(Name LIKE :value
+					OR CommissionAccountNr__c LIKE :value
+					OR CommissionAccountBase__c = :value)
+					AND IsAgentActive__c = TRUE
+					AND PortfolioManType__c = 'A'
+					AND UserRoleId IN :rolesIds
+				ORDER BY Name
+				LIMIT 5
 			];
 		}
 
 		public virtual List<User> searchUsers(String value) {
 			return [
-				SELECT Id, Name, CommissionAccountNrAll__c FROM User
+				SELECT Id, Name, CommissionAccountNrAll__c
+				FROM User
 				WHERE
-					(Name LIKE :value OR CommissionAccountNr__c LIKE :value OR CommissionAccountNrAll__c LIKE :value)
-				AND IsAgentActive__c = TRUE
-				ORDER BY Name LIMIT 5
+					(Name LIKE :value
+					OR CommissionAccountNr__c LIKE :value
+					OR CommissionAccountBase__c = :value)
+					AND IsAgentActive__c = TRUE
+				ORDER BY Name
+				LIMIT 5
 			];
 		}
 	}
