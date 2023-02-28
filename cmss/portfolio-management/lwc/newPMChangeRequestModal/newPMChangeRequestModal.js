@@ -3,13 +3,24 @@ import { NavigationMixin } from 'lightning/navigation';
 import createCase from '@salesforce/apex/NewPMChangeRequestController.createCase';
 import saveRequests from '@salesforce/apex/NewPMChangeRequestController.saveRequests';
 import finalize from '@salesforce/apex/NewPMChangeRequestController.finalize';
+import checkUserPermission from '@salesforce/apex/NewPMChangeRequestController.checkUserPermission';
 import NewPortfolioManagementChangeRequest from '@salesforce/label/c.NewPortfolioManagementChangeRequest';
 import Cancel from '@salesforce/label/c.Cancel';
 import Save from '@salesforce/label/c.Save';
-
+import unauthorizedUserLabel from '@salesforce/label/c.Unauthorized_User';
 import { getObjectInfo, getPicklistValues } from 'lightning/uiObjectInfoApi';
 
 export default class NewPMChangeRequestModal extends NavigationMixin(LightningElement) {
+	connectedCallback() {
+		checkUserPermission().then(result => {
+			if (result.hasPermission) {
+				this.authorizedUser = true;
+			} else {
+				this.validationError = unauthorizedUserLabel;
+			}
+		});
+	}
+
 	@api
 	get ids() {
 		return this.data.ids;
@@ -45,6 +56,7 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
 	show = false;
 	validationError = null;
 	showSpinner = false;
+	authorizedUser = false;
 	progress = 0;
 	@track data = {};
 
@@ -79,26 +91,25 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
 
 	async handleSave() {
 		this.showSpinner = true;
-		this._ids = [...new Set(this._ids)];
-		this.data.ids = [...this._ids];
+		this.data.ids = this._ids;
 		this.data.isEmptyCase = !(this._ids && this._ids.length);
 		createCase({
 			jsonData: JSON.stringify(this.data)
 		})
-			.then((result) => {
+			.then(result => {
 				this.data.caseId = result.caseId;
 				return this.sendRequests();
 			})
-			.then((result) => {
+			.then(result => {
 				return finalize({
 					jsonData: JSON.stringify(this.data)
 				});
 			})
-			.then((result) => {
+			.then(result => {
 				this.navigateTo(this.data.caseId);
 				this.showSpinner = false;
 			})
-			.catch((error) => {
+			.catch(error => {
 				console.error(error);
 				this.validationError = error.body.message;
 				this.showSpinner = false;

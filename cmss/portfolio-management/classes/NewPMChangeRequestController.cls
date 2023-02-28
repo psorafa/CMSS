@@ -67,6 +67,14 @@ public with sharing class NewPMChangeRequestController {
 		}
 	}
 
+	@AuraEnabled(cacheable=true)
+	public static PermissionWrapper checkUserPermission() {
+		NewPMChangeRequestController controller = new NewPMChangeRequestController(JSON.serialize(new Data()));
+		PermissionWrapper wrap = new PermissionWrapper();
+		wrap.hasPermission = controller.canCreateEmptyRequest;
+		return wrap;
+	}
+
 	private NewPMChangeRequestController(String jsonData) {
 		userInput = (Data) JSON.deserialize(jsonData, Data.class);
 		prepareManagerAndAssistantIds();
@@ -222,6 +230,9 @@ public with sharing class NewPMChangeRequestController {
 		public List<Id> ids;
 		@AuraEnabled
 		public Boolean isEmptyCase;
+
+		public Data() {
+		}
 	}
 
 	public class SaveResult {
@@ -233,6 +244,11 @@ public with sharing class NewPMChangeRequestController {
 		public SaveResult(Id caseId) {
 			this.caseId = caseId;
 		}
+	}
+
+	public class PermissionWrapper {
+		@AuraEnabled
+		public Boolean hasPermission;
 	}
 
 	@TestVisible
