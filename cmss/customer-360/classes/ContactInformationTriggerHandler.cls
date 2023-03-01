@@ -17,7 +17,7 @@ public with sharing class ContactInformationTriggerHandler extends TriggerHandle
 				String country = countryValueLabelMap.get(contactInfoItem.Country__c) == null
 					? ''
 					: countryValueLabelMap.get(contactInfoItem.Country__c);
-				contactInfoItem.Value__c = street + ' ' + houseNumber + ' ' + city + ' ' + postalCode + ' ' + country;
+				contactInfoItem.Value__c = street + ' ' + houseNumber + ', ' + city + ' ' + postalCode + ' ' + country;
 			}
 			if (contactInfoItem.Type__c == '2') {
 				String phoneNumber = contactInfoItem.PhoneNumber__c == null ? '' : contactInfoItem.PhoneNumber__c;
