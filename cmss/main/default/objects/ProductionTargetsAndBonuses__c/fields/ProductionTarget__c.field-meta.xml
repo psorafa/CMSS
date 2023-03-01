@@ -3,7 +3,32 @@
     <fullName>ProductionTarget__c</fullName>
     <description>Serves for formatting ProductionTargetForCalc__c</description>
     <externalId>false</externalId>
-    <formula>TEXT(ProductionTargetForCalc__c) &amp;
+    <formula>CASE(LEN(TEXT(ProductionTargetForCalc__c)),
+1, TEXT(ProductionTargetForCalc__c),
+
+2, TEXT(ProductionTargetForCalc__c),
+
+3, TEXT(ProductionTargetForCalc__c),
+
+4, LEFT(TEXT(ProductionTargetForCalc__c), 1) &amp; &quot; &quot; &amp; RIGHT(TEXT(ProductionTargetForCalc__c), 3),
+
+5, LEFT(TEXT(ProductionTargetForCalc__c), 2) &amp; &quot; &quot; &amp; RIGHT(TEXT(ProductionTargetForCalc__c), 3),
+
+6, LEFT(TEXT(ProductionTargetForCalc__c), 3) &amp; &quot; &quot; &amp; RIGHT(TEXT(ProductionTargetForCalc__c), 3),
+
+7, LEFT(TEXT(ProductionTargetForCalc__c), 1) &amp; &quot; &quot; &amp; MID(TEXT(ProductionTargetForCalc__c), 2,3) &amp; &quot; &quot; &amp; RIGHT(TEXT(ProductionTargetForCalc__c), 3),
+
+8, LEFT(TEXT(ProductionTargetForCalc__c), 2) &amp; &quot; &quot; &amp; MID(TEXT(ProductionTargetForCalc__c), 3,3) &amp; &quot; &quot; &amp; RIGHT(TEXT(ProductionTargetForCalc__c), 3),
+
+9, LEFT(TEXT(ProductionTargetForCalc__c), 3) &amp; &quot; &quot; &amp; MID(TEXT(ProductionTargetForCalc__c), 4,3) &amp; &quot; &quot; &amp; RIGHT(TEXT(ProductionTargetForCalc__c), 3),
+
+10, LEFT(TEXT(ProductionTargetForCalc__c), 1) &amp; &quot; &quot; &amp; MID(TEXT(ProductionTargetForCalc__c), 2,3) &amp; &quot; &quot; &amp; MID(TEXT(ProductionTargetForCalc__c), 5, 3) &amp; &quot; &quot; &amp; RIGHT(TEXT(ProductionTargetForCalc__c), 3),
+
+11, LEFT(TEXT(ProductionTargetForCalc__c), 2) &amp; &quot; &quot; &amp; MID(TEXT(ProductionTargetForCalc__c), 3,3) &amp; &quot; &quot; &amp; MID(TEXT(ProductionTargetForCalc__c), 6, 3) &amp; &quot; &quot; &amp; RIGHT(TEXT(ProductionTargetForCalc__c), 3),
+
+12, LEFT(TEXT(ProductionTargetForCalc__c), 3) &amp; &quot; &quot; &amp; MID(TEXT(ProductionTargetForCalc__c), 4,3) &amp; &quot; &quot; &amp; MID(TEXT(ProductionTargetForCalc__c), 7, 3) &amp; &quot; &quot; &amp; RIGHT(TEXT(ProductionTargetForCalc__c), 3),
+null)
+ &amp;
 CASE(
 MetricType__c,
 &quot;COUNT&quot;, &quot; ks&quot;,

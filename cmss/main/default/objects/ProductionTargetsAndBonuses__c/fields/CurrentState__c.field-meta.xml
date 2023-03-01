@@ -3,7 +3,31 @@
     <fullName>CurrentState__c</fullName>
     <description>Serves for formatting of CurrentStateForCalc__c</description>
     <externalId>false</externalId>
-    <formula>TEXT(CurrentStateForCalc__c) &amp; 
+    <formula>CASE(LEN(TEXT(CurrentStateForCalc__c)),
+1, TEXT(CurrentStateForCalc__c),
+
+2, TEXT(CurrentStateForCalc__c),
+
+3, TEXT(CurrentStateForCalc__c),
+
+4, LEFT(TEXT(CurrentStateForCalc__c), 1) &amp; &quot; &quot; &amp; RIGHT(TEXT(CurrentStateForCalc__c), 3),
+
+5, LEFT(TEXT(CurrentStateForCalc__c), 2) &amp; &quot; &quot; &amp; RIGHT(TEXT(CurrentStateForCalc__c), 3),
+
+6, LEFT(TEXT(CurrentStateForCalc__c), 3) &amp; &quot; &quot; &amp; RIGHT(TEXT(CurrentStateForCalc__c), 3),
+
+7, LEFT(TEXT(CurrentStateForCalc__c), 1) &amp; &quot; &quot; &amp; MID(TEXT(CurrentStateForCalc__c), 2,3) &amp; &quot; &quot; &amp; RIGHT(TEXT(CurrentStateForCalc__c), 3),
+
+8, LEFT(TEXT(CurrentStateForCalc__c), 2) &amp; &quot; &quot; &amp; MID(TEXT(CurrentStateForCalc__c), 3,3) &amp; &quot; &quot; &amp; RIGHT(TEXT(CurrentStateForCalc__c), 3),
+
+9, LEFT(TEXT(CurrentStateForCalc__c), 3) &amp; &quot; &quot; &amp; MID(TEXT(CurrentStateForCalc__c), 4,3) &amp; &quot; &quot; &amp; RIGHT(TEXT(CurrentStateForCalc__c), 3),
+
+10, LEFT(TEXT(CurrentStateForCalc__c), 1) &amp; &quot; &quot; &amp; MID(TEXT(CurrentStateForCalc__c), 2,3) &amp; &quot; &quot; &amp; MID(TEXT(CurrentStateForCalc__c), 5, 3) &amp; &quot; &quot; &amp; RIGHT(TEXT(CurrentStateForCalc__c), 3),
+
+11, LEFT(TEXT(CurrentStateForCalc__c), 2) &amp; &quot; &quot; &amp; MID(TEXT(CurrentStateForCalc__c), 3,3) &amp; &quot; &quot; &amp; MID(TEXT(CurrentStateForCalc__c), 6, 3) &amp; &quot; &quot; &amp; RIGHT(TEXT(CurrentStateForCalc__c), 3),
+
+12, LEFT(TEXT(CurrentStateForCalc__c), 3) &amp; &quot; &quot; &amp; MID(TEXT(CurrentStateForCalc__c), 4,3) &amp; &quot; &quot; &amp; MID(TEXT(CurrentStateForCalc__c), 7, 3) &amp; &quot; &quot; &amp; RIGHT(TEXT(CurrentStateForCalc__c), 3),
+null) &amp; 
 CASE(
  MetricType__c,
 &quot;COUNT&quot;, &quot; ks&quot;,

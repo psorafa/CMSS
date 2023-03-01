@@ -3,7 +3,21 @@
     <fullName>NextBonusLevel__c</fullName>
     <description>Serves for formatting of NextBonusLevelForCalc</description>
     <externalId>false</externalId>
-    <formula>&quot;+ &quot; &amp;   TEXT(NextBonusLevelForCalc__c) &amp; &quot; Kč&quot;</formula>
+    <formula>&quot;+ &quot; &amp;   
+CASE(LEN(TEXT(NextBonusLevelForCalc__c)),
+1, TEXT(NextBonusLevelForCalc__c),
+
+2, TEXT(NextBonusLevelForCalc__c),
+
+3, TEXT(NextBonusLevelForCalc__c),
+
+4, LEFT(TEXT(NextBonusLevelForCalc__c), 1) &amp; &quot; &quot; &amp; RIGHT(TEXT(NextBonusLevelForCalc__c), 3),
+
+5, LEFT(TEXT(NextBonusLevelForCalc__c), 2) &amp; &quot; &quot; &amp; RIGHT(TEXT(NextBonusLevelForCalc__c), 3),
+
+6, LEFT(TEXT(NextBonusLevelForCalc__c), 3) &amp; &quot; &quot; &amp; RIGHT(TEXT(NextBonusLevelForCalc__c), 3),
+null) &amp; 
+&quot; Kč&quot;</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Next Bonus Level</label>
     <required>false</required>
