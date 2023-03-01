@@ -259,6 +259,43 @@
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "a694eec9-4f55-4a80-9ddb-2ed9d6d8a270",
+          "columns" : [ {
+            "UUID" : "a895a725-234b-4765-a349-66e9e3cd1b35",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "a694eec9-4f55-4a80-9ddb-2ed9d6d8a270",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:chatbotSite",
+          "id" : "c25b66f1-19b0-4154-8fbf-a6622949f9c7",
+          "renderPriority" : "HIGHEST",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "a895a725-234b-4765-a349-66e9e3cd1b35",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
     } ],
     "id" : "d6980d69-860e-414b-9940-fc44453d2d2d",
     "regionName" : "content",
