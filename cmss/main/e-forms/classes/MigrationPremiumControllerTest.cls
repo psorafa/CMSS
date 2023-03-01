@@ -12,6 +12,12 @@ public class MigrationPremiumControllerTest {
 	private static List<MigrationPremiumTypes.PrintingProductParameter> pppList;
 	/*    private static Account_Address__c theAccountAddress;
 	 private static GetCardDetailMock mock;*/
+
+	@TestSetup
+	static void insertCustomSettings() {
+		insert TestDataFactory.getNumericalSettings();
+	}
+
 	private static Migration_Process__mdt migrationPremiumProcessConfiguration {
 		get {
 			if (migrationPremiumProcessConfiguration == null) {
@@ -110,7 +116,6 @@ public class MigrationPremiumControllerTest {
 	}
 
 	private static void setupData() {
-		insert TestDataFactory.getNumericalSettings();
 		theAccount = TestDataFactory.getAccount();
 		//theAccount.PersonBirthdate = Date.today();
 		insert theAccount;
@@ -460,7 +465,6 @@ public class MigrationPremiumControllerTest {
 
 	@isTest
 	public static void createCaseTest2() {
-		insert TestDataFactory.getNumericalSettings();
 		//setupData();
 		Test.startTest();
 		User user = TestDataFactory.getUser(new User());
@@ -762,9 +766,9 @@ public class MigrationPremiumControllerTest {
 		Case theCase = [SELECT Id, PCF_Unfinished__c FROM Case WHERE Id = :createCaseWrapper.theCaseId];
 		System.assertNotEquals(null, theCase);
 		MigrationPremiumTypes.File theFile = new MigrationPremiumTypes.File();
-		theFile.name = 'fName.txt';
+		theFile.name = 'GoodFile.pdf';
 		theFile.size = '4';
-		theFile.data = 'data';
+		theFile.data = '255044462dbbbbbbbbbbbbbbbbbbbbbbba';
 		theFile.uniqueId = '7007';
 		String size = MigrationPremiumController.saveCaseAttachment(JSON.serialize(theFile), theCase.Id);
 		Test.stopTest();

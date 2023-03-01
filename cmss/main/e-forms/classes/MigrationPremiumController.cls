@@ -1,26 +1,28 @@
 global class MigrationPremiumController {
-
 	private static final String TYPE_INPUT_WITH_BACKGROUND_QUERY = 'Input With Background Query';
 	private static final String TYPE_SELECT_WITH_BACKGROUND_QUERY = 'Select With Background Query';
 	private static final String TYPE_MULTIPLE_INPUT_WITH_BACKGROUND_QUERY = 'Multiple Input With Background Query';
 	private static final String TYPE_INPUT = 'Input parameters';
 	private static final String TYPE_FORMULA = 'Formula';
 	private static final String TYPE_INPUT_WITH_SOQL = 'Input with SOQL';
-	@TestVisible private static final String TYPE_EXTERNAL_LINK = 'External Link';
+	@TestVisible
+	private static final String TYPE_EXTERNAL_LINK = 'External Link';
 	private static final String TYPE_HIDDEN = 'Hidden';
 	private static final String TYPE_DATE = 'Date';
-	@TestVisible private static final String SUBFLOW_CREATE_NEW_PROSPECT_TRANSACTION_ID = '202214';
+	@TestVisible
+	private static final String SUBFLOW_CREATE_NEW_PROSPECT_TRANSACTION_ID = '202214';
 	private static final String INVESTMENT_CALCULATOR_CONFIG_REC_TYPE = 'Investment_Calculator_Config';
 	private static final String BASE_STR = 'Base';
 	private static final String SUPL_STR = 'Supplement';
 	private static final String THEME_STR = 'Theme';
 	private static final String REGINV_STR = 'Regular Investment';
-	private static final List<String> TYPE_LABELS = new List<String>{
-		BASE_STR, SUPL_STR, THEME_STR, REGINV_STR
-	};
+	private static final List<String> TYPE_LABELS = new List<String>{ BASE_STR, SUPL_STR, THEME_STR, REGINV_STR };
 	private static final String MIGRATION_PROCESS_QUEUES_QUERY = 'SELECT Id,Case_subject__c,L2_CST_Value_ID__c,PR_Default_Name__c,Priority__c,PR_From_Product__c,Case_Branch_Data_ID__c,Case_Queue_Name__c FROM Migration_Process_Queues__r';
 	private static final String DOCUMENT_CONFIGURATIONS_QUERY = 'SELECT Data_ID__c, Template_Code__c, Label_CZ__c, Label_EN__c, URL__c, Order__c, Message_Before_Print__c, Pre_contract_document__c, Biometric_Signature__c, Open_In_New_Window__c, Local_Upload__c FROM Document_Configurations__r ORDER BY Order__c ASC';
-	private static final String MIGRATION_PROCESS_METADATA_QUERY = 'SELECT Id, Save_for_Later__c, DeveloperName, Icon_Path__c, Do_Not_Create_a_Case__c, Do_Not_Load_PretermDoc_From_CST__c, Store_Last_Generated_Doc_To_JSK_OnSubmit__c, Title_CZ__c, Title_EN__c, New_Product_Button_SOQL__c, Assets_In_Migration_Data_ID__c, Show_Current_Account_Products__c, Hide_Remove_Buttons__c, Show_Configuration_Subtab__c, Final_Step_Validation__c, New_Subproduct_Button_SOQL__c,Case_Content__c, Case_Record_Type_Developer_Name__c, Case_Status__c, Send_To_BAW_After_Document_Pairing__c, Case_Subject__c, Case_Type__c, DMS_Document_Type_Data_ID__c, Representative_Relation_ID__c,Case_Branch_Data_Id__c, Product_Relation_Record_Type_Name__c, Sidebar_Main_Title_CZ__c,Sidebar_Main_Title_EN__c, Show_KC_Authenticator__c, Selected_Tab_Default__c,All_DMS_Document_IDs__c, Required_DMS_Document_IDs__c, Show_File_Selector__c,Show_General_Subtab__c, Left_Panel_Hidator__c, General_Subtab_CZ_Label__c, General_Subtab_EN_Label__c,Show_FO_Products_on_FOP__c, Show_FOP_Products_on_FO__c, Case_Queue_Name__c, Blacklisted_Products__c, Load_Parent_Product_Config__c,At_Least_One_Attachment_Is_Required__c, Hide_Transition_Subtab__c, Transition_Subtab_CZ_Label__c, Transition_Subtab_EN_Label__c,Configuration_Subtab_CZ_Label__c, Configuration_Subtab_EN_Label__c, Overview_Tab_CZ_Label__c, Overview_Tab_EN_Label__c,Configuration_Tab_CZ_Label__c, Configuration_Tab_EN_Label__c, Default_Selected_Products__c,Case_Sent_Message__c, Print_Button_Label__c, Use_Preterm_Document_List__c, Button_Generate_Label__c, Button_Send_Label__c, Assets_In_Migration_Data_ID_Read_only__c, Assets_In_Migration_Card_ID__c, Asset_From_Case__c, Assign_To_User__c, Assign_To_User_Always__c, Use_Already_Created_Case__c, Send_Output_On_Submit__c, Sent_OutputType__c, (' + DOCUMENT_CONFIGURATIONS_QUERY + ') FROM Migration_Process__mdt';
+	private static final String MIGRATION_PROCESS_METADATA_QUERY =
+		'SELECT Id, Save_for_Later__c, DeveloperName, Icon_Path__c, Do_Not_Create_a_Case__c, Do_Not_Load_PretermDoc_From_CST__c, Store_Last_Generated_Doc_To_JSK_OnSubmit__c, Title_CZ__c, Title_EN__c, New_Product_Button_SOQL__c, Assets_In_Migration_Data_ID__c, Show_Current_Account_Products__c, Hide_Remove_Buttons__c, Show_Configuration_Subtab__c, Final_Step_Validation__c, New_Subproduct_Button_SOQL__c,Case_Content__c, Case_Record_Type_Developer_Name__c, Case_Status__c, Send_To_BAW_After_Document_Pairing__c, Case_Subject__c, Case_Type__c, DMS_Document_Type_Data_ID__c, Representative_Relation_ID__c,Case_Branch_Data_Id__c, Product_Relation_Record_Type_Name__c, Sidebar_Main_Title_CZ__c,Sidebar_Main_Title_EN__c, Show_KC_Authenticator__c, Selected_Tab_Default__c,All_DMS_Document_IDs__c, Required_DMS_Document_IDs__c, Show_File_Selector__c,Show_General_Subtab__c, Left_Panel_Hidator__c, General_Subtab_CZ_Label__c, General_Subtab_EN_Label__c,Show_FO_Products_on_FOP__c, Show_FOP_Products_on_FO__c, Case_Queue_Name__c, Blacklisted_Products__c, Load_Parent_Product_Config__c,At_Least_One_Attachment_Is_Required__c, Hide_Transition_Subtab__c, Transition_Subtab_CZ_Label__c, Transition_Subtab_EN_Label__c,Configuration_Subtab_CZ_Label__c, Configuration_Subtab_EN_Label__c, Overview_Tab_CZ_Label__c, Overview_Tab_EN_Label__c,Configuration_Tab_CZ_Label__c, Configuration_Tab_EN_Label__c, Default_Selected_Products__c,Case_Sent_Message__c, Print_Button_Label__c, Use_Preterm_Document_List__c, Button_Generate_Label__c, Button_Send_Label__c, Assets_In_Migration_Data_ID_Read_only__c, Assets_In_Migration_Card_ID__c, Asset_From_Case__c, Assign_To_User__c, Assign_To_User_Always__c, Use_Already_Created_Case__c, Send_Output_On_Submit__c, Sent_OutputType__c, (' +
+		DOCUMENT_CONFIGURATIONS_QUERY +
+		') FROM Migration_Process__mdt';
 	private static final String INNER_SOQL_SEPARATOR = '--soqlSeparator--';
 	private static final String INNER_SOQL_ID_SEPARATOR = '--soqlIdSeparator--';
 	private static final Map<String, String> PPF_TEMPLATE_CODE_MAP = new Map<String, String>{
@@ -56,7 +58,7 @@ global class MigrationPremiumController {
 		private set;
 	}
 
-/*    public static String cstProdDocMapJSON {
+	/*    public static String cstProdDocMapJSON {
         get {
             if (String.isBlank(cstProdDocMapJSON)) {
                 cstProdDocMapJSON = JSON.serialize(cstProdDocMap);
@@ -118,7 +120,7 @@ global class MigrationPremiumController {
 		private set;
 	}
 
-/*    private static Map<String, List<cstProdDocWrapper>> cstProdDocMap {
+	/*    private static Map<String, List<cstProdDocWrapper>> cstProdDocMap {
         get {
             if (cstProdDocMap == null) {
                 cstProdDocMap = new Map<String, List<cstProdDocWrapper>>();
@@ -139,7 +141,7 @@ global class MigrationPremiumController {
         private set;
     }*/
 
-/*    global class cstProdDocWrapper {
+	/*    global class cstProdDocWrapper {
         global String cstValueId;
         global String guid;
         global String docDesc;
@@ -150,16 +152,10 @@ global class MigrationPremiumController {
         }
     }*/
 
-	public String caseIdFromPage {
-		get;
-		set;
-	}
+	public String caseIdFromPage { get; set; }
 
-	public String originalCaseId {
-		get;
-		private set;
-	}
-/*
+	public String originalCaseId { get; private set; }
+	/*
     public String baseStr {
         get {
             return BASE_STR;
@@ -185,7 +181,7 @@ global class MigrationPremiumController {
         private set;
     }*/
 
-/*    public String linkToScube {
+	/*    public String linkToScube {
         get {
             if (String.isBlank(linkToScube)) {
                 linkToScube = Utils.getLinkToScube();
@@ -195,17 +191,17 @@ global class MigrationPremiumController {
         private set;
     }*/
 
-//    public Map<String, String> mapOfTerminationFeePerProduct{
-//        get{
-//            if(mapOfTerminationFeePerProduct == null){
-//                mapOfTerminationFeePerProduct = new Map<String, String>();
-//            }
-//            return mapOfTerminationFeePerProduct;
-//        }
-//        private set;
-//    }
+	//    public Map<String, String> mapOfTerminationFeePerProduct{
+	//        get{
+	//            if(mapOfTerminationFeePerProduct == null){
+	//                mapOfTerminationFeePerProduct = new Map<String, String>();
+	//            }
+	//            return mapOfTerminationFeePerProduct;
+	//        }
+	//        private set;
+	//    }
 
-/*    public String linkToCRIF {
+	/*    public String linkToCRIF {
         get {
             if (String.isBlank(linkToCRIF)) {
                 linkToCRIF = Utils.getLinkToCRIF();
@@ -215,7 +211,7 @@ global class MigrationPremiumController {
         private set;
     }*/
 
-/*    @TestVisible
+	/*    @TestVisible
     private static String accountCuid {
         get {
             if (String.isBlank(accountCuid) && theAccount != null) {
@@ -236,7 +232,12 @@ global class MigrationPremiumController {
 	private static User theUser {
 		get {
 			if (theUser == null) {
-				theUser = [SELECT Id, Username,/* Preferred_Branch__c, Preferred_Branch_ID__c,*/ Profile.Name /*Organization_Unit_ID__c*/ FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1];
+				theUser = [
+					SELECT Id, Username, /* Preferred_Branch__c, Preferred_Branch_ID__c,*/ Profile.Name
+					/*Organization_Unit_ID__c*/ FROM User
+					WHERE Id = :UserInfo.getUserId()
+					LIMIT 1
+				];
 			}
 			return theUser;
 		}
@@ -266,12 +267,9 @@ global class MigrationPremiumController {
 		set;
 	}
 
-	public Map<String, Boolean> mapOfProducts {
-		get;
-		set;
-	}
+	public Map<String, Boolean> mapOfProducts { get; set; }
 
-/*    public String userOrgUnitId {
+	/*    public String userOrgUnitId {
         get {
             return theUser.Organization_Unit_ID__c;
         }
@@ -287,7 +285,9 @@ global class MigrationPremiumController {
 		get {
 			if (allDmsDocumentIdSet == null) {
 				if (!String.isBlank(migrationProcessConfiguration.All_DMS_Document_IDs__c)) {
-					allDmsDocumentIdSet = new Set<String>(migrationProcessConfiguration.All_DMS_Document_IDs__c.split(';'));
+					allDmsDocumentIdSet = new Set<String>(
+						migrationProcessConfiguration.All_DMS_Document_IDs__c.split(';')
+					);
 				}
 			}
 			return allDmsDocumentIdSet;
@@ -299,7 +299,9 @@ global class MigrationPremiumController {
 		get {
 			if (requiredDmsDocumentIdSet == null) {
 				if (!String.isBlank(migrationProcessConfiguration.Required_DMS_Document_IDs__c)) {
-					requiredDmsDocumentIdSet = new Set<String>(migrationProcessConfiguration.Required_DMS_Document_IDs__c.split(';'));
+					requiredDmsDocumentIdSet = new Set<String>(
+						migrationProcessConfiguration.Required_DMS_Document_IDs__c.split(';')
+					);
 				}
 			}
 			return requiredDmsDocumentIdSet;
@@ -316,7 +318,11 @@ global class MigrationPremiumController {
 	public Integer numOfDocumentsForPrint {
 		get {
 			if (numOfDocumentsForPrint == null) {
-				if (migrationProcessConfiguration == null || migrationProcessConfiguration.Document_Configurations__r == null || migrationProcessConfiguration.Document_Configurations__r.isEmpty()) {
+				if (
+					migrationProcessConfiguration == null ||
+					migrationProcessConfiguration.Document_Configurations__r == null ||
+					migrationProcessConfiguration.Document_Configurations__r.isEmpty()
+				) {
 					numOfDocumentsForPrint = 0;
 				} else {
 					numOfDocumentsForPrint = migrationProcessConfiguration.Document_Configurations__r.size();
@@ -330,8 +336,12 @@ global class MigrationPremiumController {
 	public String firstTemplateCodeOfDmsDocument {
 		get {
 			if (String.isBlank(firstTemplateCodeOfDmsDocument)) {
-				if (migrationProcessConfiguration != null && !migrationProcessConfiguration.Document_Configurations__r.isEmpty())
-					firstTemplateCodeOfDmsDocument = migrationProcessConfiguration.Document_Configurations__r.get(0).Template_Code__c;
+				if (
+					migrationProcessConfiguration != null &&
+					!migrationProcessConfiguration.Document_Configurations__r.isEmpty()
+				)
+					firstTemplateCodeOfDmsDocument = migrationProcessConfiguration.Document_Configurations__r.get(0)
+						.Template_Code__c;
 			}
 			return firstTemplateCodeOfDmsDocument;
 		}
@@ -341,8 +351,12 @@ global class MigrationPremiumController {
 	public String firstDataIdOfDmsDocument {
 		get {
 			if (String.isBlank(firstDataIdOfDmsDocument)) {
-				if (migrationProcessConfiguration != null && !migrationProcessConfiguration.Document_Configurations__r.isEmpty())
-					firstDataIdOfDmsDocument = migrationProcessConfiguration.Document_Configurations__r.get(0).Data_ID__c;
+				if (
+					migrationProcessConfiguration != null &&
+					!migrationProcessConfiguration.Document_Configurations__r.isEmpty()
+				)
+					firstDataIdOfDmsDocument = migrationProcessConfiguration.Document_Configurations__r.get(0)
+						.Data_ID__c;
 			}
 			return firstDataIdOfDmsDocument;
 		}
@@ -351,7 +365,11 @@ global class MigrationPremiumController {
 
 	public String metadataDocumentsJSON {
 		get {
-			if (String.isBlank(metadataDocumentsJSON) && migrationProcessConfiguration != null && !migrationProcessConfiguration.Document_Configurations__r.isEmpty()) {
+			if (
+				String.isBlank(metadataDocumentsJSON) &&
+				migrationProcessConfiguration != null &&
+				!migrationProcessConfiguration.Document_Configurations__r.isEmpty()
+			) {
 				metadataDocumentsJSON = JSON.serialize(migrationProcessConfiguration.Document_Configurations__r);
 			} else {
 				metadataDocumentsJSON = '{}';
@@ -364,8 +382,12 @@ global class MigrationPremiumController {
 	public String firstMessageBeforePrint {
 		get {
 			if (String.isBlank(firstMessageBeforePrint)) {
-				if (migrationProcessConfiguration != null && !migrationProcessConfiguration.Document_Configurations__r.isEmpty())
-					firstMessageBeforePrint = migrationProcessConfiguration.Document_Configurations__r.get(0).Message_Before_Print__c;
+				if (
+					migrationProcessConfiguration != null &&
+					!migrationProcessConfiguration.Document_Configurations__r.isEmpty()
+				)
+					firstMessageBeforePrint = migrationProcessConfiguration.Document_Configurations__r.get(0)
+						.Message_Before_Print__c;
 			}
 			return firstMessageBeforePrint;
 		}
@@ -375,7 +397,10 @@ global class MigrationPremiumController {
 	public String firstUrlOfDmsDocument {
 		get {
 			if (String.isBlank(firstUrlOfDmsDocument)) {
-				if (migrationProcessConfiguration != null && !migrationProcessConfiguration.Document_Configurations__r.isEmpty())
+				if (
+					migrationProcessConfiguration != null &&
+					!migrationProcessConfiguration.Document_Configurations__r.isEmpty()
+				)
 					firstUrlOfDmsDocument = migrationProcessConfiguration.Document_Configurations__r.get(0).URL__c;
 			}
 			return firstUrlOfDmsDocument;
@@ -385,7 +410,10 @@ global class MigrationPremiumController {
 
 	public Boolean bioSigns {
 		get {
-			if (migrationProcessConfiguration != null && !migrationProcessConfiguration.Document_Configurations__r.isEmpty()) {
+			if (
+				migrationProcessConfiguration != null &&
+				!migrationProcessConfiguration.Document_Configurations__r.isEmpty()
+			) {
 				for (Document_Configuration__mdt d : migrationProcessConfiguration.Document_Configurations__r) {
 					if (d.Biometric_Signature__c) {
 						return true;
@@ -424,14 +452,14 @@ global class MigrationPremiumController {
 		}
 		set;
 	}
-/*    public String printButtonMapJSON {
+	/*    public String printButtonMapJSON {
         get {
             System.debug(printButtonMap);
             return JSON.serialize(printButtonMap);
         }
     }*/
 
-/*    @TestVisible
+	/*    @TestVisible
     private static String userPreferredBranchId {
         get {
             if (userPreferredBranchId == null) {
@@ -442,7 +470,6 @@ global class MigrationPremiumController {
         set;
     }*/
 
-
 	// Public properties
 	global static Account theAccount {
 		get {
@@ -451,7 +478,12 @@ global class MigrationPremiumController {
 				if (migrationSoql != null && String.isNotBlank(migrationSoql.SOQL__c)) {
 					theAccount = Database.query(migrationSoql.SOQL__c);
 				} else {*/
-				theAccount = [SELECT Id, Name, FirstName, LastName, PersonalIdentificationNr__c FROM Account WHERE Id = :accountId LIMIT 1];
+				theAccount = [
+					SELECT Id, Name, FirstName, LastName, PersonalIdentificationNr__c
+					FROM Account
+					WHERE Id = :accountId
+					LIMIT 1
+				];
 				//}
 			}
 			return theAccount;
@@ -599,8 +631,8 @@ global class MigrationPremiumController {
 		set;
 	}
 
-//    global static Map<String, String> decryptedAssetNameByIdMap {get; set;}
-//    global static Map<String, String> decryptedAssetNumberByIdMap {get; set;}
+	//    global static Map<String, String> decryptedAssetNameByIdMap {get; set;}
+	//    global static Map<String, String> decryptedAssetNumberByIdMap {get; set;}
 	global static Map<String, String> assetNumberByIdMap { get; set; }
 	global final string CONFIG = 'config';
 	global Map<String, Map<String, MigrationPremiumTypes.TransitionItem>> assetProductRelationMap {
@@ -620,15 +652,32 @@ global class MigrationPremiumController {
 					}
 				}
 				List<Product_Relation__c> allProductRelationList = [
-					SELECT Id, Default_Name__c, From__c, From__r.Name, /*From__r.CST_Value_ID__c,*/ To__r.Name, To__c, /*To__r.CST_Value_ID__c,*/ Is_Owner_Default__c, Is_Dispatcher_Default__c, Type__c, Record_Type_Name__c, Order__c
+					SELECT
+						Id,
+						Default_Name__c,
+						From__c,
+						From__r.Name,
+						/*From__r.CST_Value_ID__c,*/ To__r.Name,
+						To__c,
+						/*To__r.CST_Value_ID__c,*/ Is_Owner_Default__c,
+						Is_Dispatcher_Default__c,
+						Type__c,
+						Record_Type_Name__c,
+						Order__c
 					FROM Product_Relation__c
-					WHERE From__c = :productIdSet AND RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c
-					AND Product_Config_Type__c = :CONFIG
+					WHERE
+						From__c = :productIdSet
+						AND RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c
+						AND Product_Config_Type__c = :CONFIG
 					ORDER BY Order__c
 				];
 				Map<String, List<Product_Relation__c>> productRelationPerProductMap = new Map<String, List<Product_Relation__c>>();
 				for (Product_Relation__c theProductRelation : allProductRelationList) {
-					if (theProductRelation.From__c == theProductRelation.To__c && (migrationProcessConfiguration.DeveloperName != 'Account_Migration' || theProductRelation.Type__c == 'Create')) {
+					if (
+						theProductRelation.From__c == theProductRelation.To__c &&
+						(migrationProcessConfiguration.DeveloperName != 'Account_Migration' ||
+						theProductRelation.Type__c == 'Create')
+					) {
 						continue;
 					}
 					if (productRelationPerProductMap.containsKey(theProductRelation.From__c)) {
@@ -639,7 +688,8 @@ global class MigrationPremiumController {
 						productRelationPerProductMap.put(theProductRelation.From__c, productRelationList);
 					}
 				}
-				if (Test.isRunningTest()) migrationProcessConfiguration.Load_Parent_Product_Config__c = true;
+				if (Test.isRunningTest())
+					migrationProcessConfiguration.Load_Parent_Product_Config__c = true;
 				if (migrationProcessConfiguration.Load_Parent_Product_Config__c) {
 					Map<String, String> parentProductIdSet = new Map<String, String>();
 					for (String productId : productIdSet) {
@@ -682,13 +732,26 @@ global class MigrationPremiumController {
 							}
 						}
 					}
-					Map< String, List<Product_Relation__c>> allParentProductRelationList = new Map<String, List<Product_Relation__c>>();
+					Map<String, List<Product_Relation__c>> allParentProductRelationList = new Map<String, List<Product_Relation__c>>();
 					if (!parentProductIdSet.isEmpty()) {
 						for (Product_Relation__c p : [
-							SELECT Id, Default_Name__c, From__c, From__r.Name,/* From__r.CST_Value_ID__c,*/ To__r.Name, To__c, /*To__r.CST_Value_ID__c,*/ Is_Owner_Default__c, Is_Dispatcher_Default__c, Type__c, Record_Type_Name__c, Order__c
+							SELECT
+								Id,
+								Default_Name__c,
+								From__c,
+								From__r.Name,
+								/* From__r.CST_Value_ID__c,*/ To__r.Name,
+								To__c,
+								/*To__r.CST_Value_ID__c,*/ Is_Owner_Default__c,
+								Is_Dispatcher_Default__c,
+								Type__c,
+								Record_Type_Name__c,
+								Order__c
 							FROM Product_Relation__c
-							WHERE From__c = :parentProductIdSet.values() AND RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c
-							AND Product_Config_Type__c = :CONFIG
+							WHERE
+								From__c = :parentProductIdSet.values()
+								AND RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c
+								AND Product_Config_Type__c = :CONFIG
 							ORDER BY Order__c
 						]) {
 							if (allParentProductRelationList.get(p.From__c) != null) {
@@ -706,8 +769,13 @@ global class MigrationPremiumController {
 								continue;
 							} else {
 								List<Product_Relation__c> productRelationList = new List<Product_Relation__c>();
-								if (parentProductIdSet.containsKey(prodID) && allParentProductRelationList.containsKey(parentProductIdSet.get(prodID))) {
-									productRelationList.addAll(allParentProductRelationList.get(parentProductIdSet.get(prodID)));
+								if (
+									parentProductIdSet.containsKey(prodID) &&
+									allParentProductRelationList.containsKey(parentProductIdSet.get(prodID))
+								) {
+									productRelationList.addAll(
+										allParentProductRelationList.get(parentProductIdSet.get(prodID))
+									);
 									productRelationPerProductMap.put(prodID, productRelationList);
 								}
 							}
@@ -781,7 +849,9 @@ global class MigrationPremiumController {
 							theTransitionItemChild.productName = childItem.Name;
 							theTransitionItemChild.productId = theItem.theProduct.Id;
 							//theTransitionItemChild.setAssetId(childItem.getAssetId());
-							theTransitionItemChild.productRelationList = productRelationPerProductMap.get(childItem.theProduct.Id);
+							theTransitionItemChild.productRelationList = productRelationPerProductMap.get(
+								childItem.theProduct.Id
+							);
 							//theTransitionItemChild.isOwner = (childItem.theAsset != null && childItem.theAsset.AccountId == (theAccount != null ? theAccount.Id : null));
 							theTransitionItemChild.isCard = true;
 							//theTransitionItemChild.setParrentAccNumber(theItem.getAssetId());
@@ -813,7 +883,10 @@ global class MigrationPremiumController {
 				List<Product_Relation__c> generalProductRelationList = [
 					SELECT Id, Default_Name__c, Order__c
 					FROM Product_Relation__c
-					WHERE RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c AND From__c = null AND To__c = null
+					WHERE
+						RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c
+						AND From__c = NULL
+						AND To__c = NULL
 					ORDER BY Order__c
 				];
 				for (Product_Relation__c theRelation : generalProductRelationList) {
@@ -861,7 +934,9 @@ global class MigrationPremiumController {
 	global static List<Product2> productsTosHow { get; set; }
 	global List<Product2> debetCardsList {
 		get {
-			if (debetCardsList == null && !String.isBlank(migrationProcessConfiguration.New_Subproduct_Button_SOQL__c)) {
+			if (
+				debetCardsList == null && !String.isBlank(migrationProcessConfiguration.New_Subproduct_Button_SOQL__c)
+			) {
 				debetCardsList = Database.query(migrationProcessConfiguration.New_Subproduct_Button_SOQL__c);
 			} else if (debetCardsList == null) {
 				debetCardsList = new List<Product2>();
@@ -896,7 +971,14 @@ global class MigrationPremiumController {
 		Case theCase;
 		if (String.isNotBlank(caseId)) {
 			theCase = [
-				SELECT Id, AccountId, Migration_Premium_Product_List_Conf__c, Migration_Premium_Product_Relations_Conf__c, Description, PCF_Unfinished__c, Type_of_Process__c
+				SELECT
+					Id,
+					AccountId,
+					Migration_Premium_Product_List_Conf__c,
+					Migration_Premium_Product_Relations_Conf__c,
+					Description,
+					PCF_Unfinished__c,
+					Type_of_Process__c
 				FROM Case
 				WHERE Id = :caseId
 				LIMIT 1
@@ -911,7 +993,10 @@ global class MigrationPremiumController {
 		System.debug(migrationProcessConfiguration);
 		pretermDocSwitch = this.migrationProcessConfiguration.Use_Preterm_Document_List__c;
 		System.debug('*** pretermDocSwitch: ' + pretermDocSwitch);
-		System.debug('*** migrationProcessConfiguration.Representative_Relation_ID__c: ' + migrationProcessConfiguration.Representative_Relation_ID__c);
+		System.debug(
+			'*** migrationProcessConfiguration.Representative_Relation_ID__c: ' +
+			migrationProcessConfiguration.Representative_Relation_ID__c
+		);
 		typeOfRelation = getSetFromStringCommaDelimited(migrationProcessConfiguration.Representative_Relation_ID__c);
 		editMode = ApexPages.currentPage().getParameters().get('edit');
 		if (String.isBlank(migrationProcessConfiguration.New_Product_Button_SOQL__c)) {
@@ -1043,7 +1128,9 @@ global class MigrationPremiumController {
 			system.debug('allItems.itemMap: ' + allItems.itemMap);
 			system.debug('selectedItems: ' + selectedItems);
 			system.debug('selectedItems.itemMap: ' + selectedItems.itemMap);
-		} else */if (String.isNotBlank(caseId)) {
+		} else */ if (
+			String.isNotBlank(caseId)
+		) {
 			system.debug('case');
 			if (!theCase.PCF_Unfinished__c) {
 				if (editMode == '1') {
@@ -1057,14 +1144,19 @@ global class MigrationPremiumController {
 			system.debug('case ' + theCase);
 			system.debug('pcfUnfinished ' + pcfUnfinished);
 			system.debug('savedConfiguration ' + savedConfiguration);
-			system.debug('theCase.Migration_Premium_Product_List_Conf__c ' + theCase.Migration_Premium_Product_List_Conf__c);
+			system.debug(
+				'theCase.Migration_Premium_Product_List_Conf__c ' + theCase.Migration_Premium_Product_List_Conf__c
+			);
 			accountId = theCase.AccountId;
 			//theAccount = [SELECT Id, Name, CUID__c FROM Account WHERE Id = :theCase.AccountId LIMIT 1];
 			//accountCuid = theAccount != null ? theAccount.CUID__c : null;
-			selectedItems = (MigrationPremiumTypes.ItemsWrapper) JSON.deserialize(theCase.Migration_Premium_Product_List_Conf__c, MigrationPremiumTypes.ItemsWrapper.class);
+			selectedItems = (MigrationPremiumTypes.ItemsWrapper) JSON.deserialize(
+				theCase.Migration_Premium_Product_List_Conf__c,
+				MigrationPremiumTypes.ItemsWrapper.class
+			);
 			//Map<String, Boolean> mapOfIdsPerBoolean = new Map<String, Boolean>();
 			mapOfProducts = new Map<String, Boolean>();
-/*            if (pcfUnfinished && migrationProcessConfiguration.DeveloperName == 'Account_Cancellation') {
+			/*            if (pcfUnfinished && migrationProcessConfiguration.DeveloperName == 'Account_Cancellation') {
                 List<MigrationPremiumTypes.CancellationInfo> infoList = (List<MigrationPremiumTypes.CancellationInfo>) JSON.deserialize(theCase.Case_Cancellation_Info__c, List<MigrationPremiumTypes.CancellationInfo>.class);
                 for (MigrationPremiumTypes.CancellationInfo theCancel : infoList) {
                     boolean moreThanFiveDays = false;
@@ -1103,7 +1195,7 @@ global class MigrationPremiumController {
 			System.debug(JSON.serialize(selectedItems));
 			//pairAssetIdToAssetAccountNumber(selectedItems);
 			/*System.debug(selectedItems);
-			System.debug(JSON.serialize(selectedItems));*/
+			 System.debug(JSON.serialize(selectedItems));*/
 			String prConf = theCase.Migration_Premium_Product_Relations_Conf__c;
 			String elDistribAgreementStr = prConf.substringAfterLast('}');
 			if (String.isNotBlank(elDistribAgreementStr)) {
@@ -1118,7 +1210,9 @@ global class MigrationPremiumController {
 					prConf = prConf.removeEnd('0');
 				}
 			} else {
-				Map<String, Product_Parameter__c> elDistribAgreementPPMap = new Map<String, Product_Parameter__c>([SELECT Id FROM Product_Parameter__c WHERE ISTS_Element_Name__c = 'docDistAgreement']);
+				Map<String, Product_Parameter__c> elDistribAgreementPPMap = new Map<String, Product_Parameter__c>(
+					[SELECT Id FROM Product_Parameter__c WHERE ISTS_Element_Name__c = 'docDistAgreement']
+				);
 				Set<String> elDistribAgrPPSet = elDistribAgreementPPMap.keySet();
 				for (String s : elDistribAgrPPSet) {
 					if (prConf.contains(s)) {
@@ -1127,7 +1221,8 @@ global class MigrationPremiumController {
 				}
 			}
 			assetProductRelationMap = (Map<String, Map<String, MigrationPremiumTypes.TransitionItem>>) JSON.deserialize(
-				prConf, Map<String, Map<String, MigrationPremiumTypes.TransitionItem>>.class
+				prConf,
+				Map<String, Map<String, MigrationPremiumTypes.TransitionItem>>.class
 			);
 			savedProductRelationsData = prConf;
 			//defaultNoteText = String.isBlank(theCase.Description) ? theCase.Description : String.escapeSingleQuotes(theCase.Description.stripHtmlTags());
@@ -1248,7 +1343,7 @@ global class MigrationPremiumController {
 		}
 	}
 
-/*    @RemoteAction
+	/*    @RemoteAction
     global static String getTerminationFee(String assetId, String productCstValueId) {
         String cst564 = '3';
         Set<String> cst566 = new Set<String>();
@@ -1305,7 +1400,7 @@ global class MigrationPremiumController {
                 system.debug('som tu2 theAsset.Currency_Code__c: ' + theAsset.Currency_Code__c);
                 system.debug('som tu2: theValue.Multipurpose_Text_1__c ' + theValue.Multipurpose_Text_1__c);
                 system.debug('som tu2: theAsset.CST_Value__r.Related_Value_4__r.Data_ID__c ' + theAsset.CST_Value__r.Related_Value_4__r.Data_ID__c);
-                if (theValue.Related_Value__r.Data_ID__c == theAsset.Currency_Code__c *//*&& theValue.Multipurpose_Text_1__c == theAsset.CST_Value__r.Related_Value_4__r.Data_ID__c*//*) {
+                if (theValue.Related_Value__r.Data_ID__c == theAsset.Currency_Code__c */ /*&& theValue.Multipurpose_Text_1__c == theAsset.CST_Value__r.Related_Value_4__r.Data_ID__c*/ /*) {
                     system.debug('som tu3: ');
                     //sporak vim ze obsahy ifu jsou stejne ale davam to tu dopredu kdyby bylo potreba rozlisit terminaky a sporaky
                     system.debug('som tu4 sporak: ');
@@ -1319,7 +1414,7 @@ global class MigrationPremiumController {
         return null;
     }*/
 
-/*    private static String getAssetElementsForReadOnlyMode(MigrationPremiumTypes.ItemsWrapper items) {
+	/*    private static String getAssetElementsForReadOnlyMode(MigrationPremiumTypes.ItemsWrapper items) {
         Integer minIndex = 999999;
         String index = '';
         for (String s : items.itemMap.keySet()) {
@@ -1333,12 +1428,11 @@ global class MigrationPremiumController {
         return index;
     }*/
 
-/*    @RemoteAction
+	/*    @RemoteAction
     global static MigrationValidation.Result getCancellationValidation(List<String> assetIds, String accountId) {
         MigrationValidation.Result result = MigrationValidation.getAccountCancellationValidation(accountId, assetIds, false, System.Label.Migration_Premium_Signature_Error, System.Label.Migration_Premium_Investment_Error, System.Label.Migration_Premium_ELB_Validation_Error);
         return result;
     }*/
-
 
 	// ------------------------------------------------------------------------------------------------------------
 	// ---------------------------------------   REMOTE ACTIONS   -------------------------------------------------
@@ -1353,7 +1447,15 @@ global class MigrationPremiumController {
 	 * @return           [JSON representation of TransitionData object]
 	 */
 	@RemoteAction
-	global static String getRelationsOfMigratedProduct(String accountId, String productId, String parentProductId, String assetId, Integer index, Boolean addedProductIsCard, String metadataConfigurationId) {
+	global static String getRelationsOfMigratedProduct(
+		String accountId,
+		String productId,
+		String parentProductId,
+		String assetId,
+		Integer index,
+		Boolean addedProductIsCard,
+		String metadataConfigurationId
+	) {
 		Migration_Process__mdt migrationProcessConfiguration = getProcessConfigurationById(metadataConfigurationId);
 		MigrationPremiumTypes.TransitionData result = new MigrationPremiumTypes.TransitionData();
 		if (String.isBlank(parentProductId)) {
@@ -1371,7 +1473,12 @@ global class MigrationPremiumController {
 		Integer i = 0;
 		if (!String.isBlank(assetId)) {
 			theAsset = [
-				SELECT Id, Product2Id, Product2.Name, AccountId, Account.Name/*, (SELECT Id, Name, Product2.Name, AccountId, Account.Name, Product2.Product__r.Id FROM Assets__r)*/
+				SELECT
+					Id,
+					Product2Id,
+					Product2.Name,
+					AccountId,
+					Account.Name /*, (SELECT Id, Name, Product2.Name, AccountId, Account.Name, Product2.Product__r.Id FROM Assets__r)*/
 				FROM Asset
 				WHERE Id = :assetId
 				LIMIT 1
@@ -1381,7 +1488,7 @@ global class MigrationPremiumController {
 			List<Asset> assetList = new List<Asset>();
 			assetList.add(theAsset);
 			System.debug(theAsset);
-//            addAllDecryptedDispatcherAssetsName(assetList, accountId);
+			//            addAllDecryptedDispatcherAssetsName(assetList, accountId);
 			//addAllAssetsNumber(assetList);
 
 			productIdToAssetMap.put(i + '-' + theAsset.Product2Id, theAsset);
@@ -1412,28 +1519,71 @@ global class MigrationPremiumController {
 		List<Product_Relation__c> productRelationList;
 		if (String.isBlank(assetId)) {
 			productRelationList = [
-				SELECT Id, Default_Name__c, From__c, From__r.Name, To__c, To__r.Name, Is_Owner_Default__c, Is_Dispatcher_Default__c, Record_Type_Name__c, Type__c, Order__c
+				SELECT
+					Id,
+					Default_Name__c,
+					From__c,
+					From__r.Name,
+					To__c,
+					To__r.Name,
+					Is_Owner_Default__c,
+					Is_Dispatcher_Default__c,
+					Record_Type_Name__c,
+					Type__c,
+					Order__c
 				FROM Product_Relation__c
-				WHERE From__c = :productIdSet AND Type__c = 'Create' AND RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c
+				WHERE
+					From__c = :productIdSet
+					AND Type__c = 'Create'
+					AND RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c
 				ORDER BY Order__c
 			];
 		} else {
 			productRelationList = [
-				SELECT Id, Default_Name__c, From__c, From__r.Name, To__c, To__r.Name, Is_Owner_Default__c, Is_Dispatcher_Default__c, Record_Type_Name__c, Type__c, Order__c
+				SELECT
+					Id,
+					Default_Name__c,
+					From__c,
+					From__r.Name,
+					To__c,
+					To__r.Name,
+					Is_Owner_Default__c,
+					Is_Dispatcher_Default__c,
+					Record_Type_Name__c,
+					Type__c,
+					Order__c
 				FROM Product_Relation__c
-				WHERE From__c = :productIdSet AND To__c != :productId AND RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c
+				WHERE
+					From__c = :productIdSet
+					AND To__c != :productId
+					AND RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c
 				ORDER BY Order__c
 			];
 		}
 
 		List<Product_Relation__c> parentProductRelationsList;
 		Map<String, List<Product_Relation__c>> parentProductRelationsMap = new Map<String, List<Product_Relation__c>>();
-		if (Test.isRunningTest()) migrationProcessConfiguration.Load_Parent_Product_Config__c = true;
+		if (Test.isRunningTest())
+			migrationProcessConfiguration.Load_Parent_Product_Config__c = true;
 		if (migrationProcessConfiguration.Load_Parent_Product_Config__c) {
 			parentProductRelationsList = [
-				SELECT Id, Default_Name__c, From__c, From__r.Name, To__c, To__r.Name, Is_Owner_Default__c, Is_Dispatcher_Default__c, Record_Type_Name__c, Type__c, Order__c
+				SELECT
+					Id,
+					Default_Name__c,
+					From__c,
+					From__r.Name,
+					To__c,
+					To__r.Name,
+					Is_Owner_Default__c,
+					Is_Dispatcher_Default__c,
+					Record_Type_Name__c,
+					Type__c,
+					Order__c
 				FROM Product_Relation__c
-				WHERE From__c = :productParentIdMap.values() AND To__c != :productId AND RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c
+				WHERE
+					From__c = :productParentIdMap.values()
+					AND To__c != :productId
+					AND RecordType.DeveloperName = :migrationProcessConfiguration.Product_Relation_Record_Type_Name__c
 				ORDER BY Order__c
 			];
 
@@ -1485,7 +1635,6 @@ global class MigrationPremiumController {
 			}
 		}
 
-
 		String transitionItemIndex = index + '-' + productId;
 		result.transitionItemMap.put(transitionItemIndex, new Map<String, MigrationPremiumTypes.TransitionItem>());
 		for (String productItemId : productIdToAssetMap.keySet()) {
@@ -1531,8 +1680,15 @@ global class MigrationPremiumController {
 			result.transitionItemMap.get(transitionItemIndex).put(productItemId, theTransitionItem);
 		}
 
-		result.theItem = new MigrationPremiumTypes.Item(migrationProcessConfiguration, theAsset, false, index, false, theProduct);
-/*        if (theAsset != null && theAsset.Assets__r != null && migrationProcessConfiguration.DeveloperName != 'Heritage') {
+		result.theItem = new MigrationPremiumTypes.Item(
+			migrationProcessConfiguration,
+			theAsset,
+			false,
+			index,
+			false,
+			theProduct
+		);
+		/*        if (theAsset != null && theAsset.Assets__r != null && migrationProcessConfiguration.DeveloperName != 'Heritage') {
             Integer j = 0;
             for (Asset childAsset : theAsset.Assets__r) {
                 result.theItem.childItemMap.put(j + '-' + childAsset.Product2Id, new MigrationPremiumTypes.Item(migrationProcessConfiguration, childAsset, accountId, j));
@@ -1566,10 +1722,10 @@ global class MigrationPremiumController {
 			}
 		}
 	}*/
-/*        return finalList;
-    }*/
+	/*        return finalList;
+	 }*/
 
-/*    @RemoteAction
+	/*    @RemoteAction
     global static List<Product2> loadChildProducts(String parentProductId) {
         List<Product2> childProducts = new List<Product2>();
         Product2 prod = [SELECT Requires_Product_Category__c FROM Product2 WHERE Id = :parentProductId];
@@ -1585,17 +1741,35 @@ global class MigrationPremiumController {
     }*/
 
 	@TestVisible
-	private static Case fillCaseFieldsForExistingCase(Migration_Process__mdt migrationProcessConfiguration, String productListConf, String productRelationsConf,/* String selectedAssetMainElement, String selectedAssetChildElement,*/ String elDocDistrib) {
+	private static Case fillCaseFieldsForExistingCase(
+		Migration_Process__mdt migrationProcessConfiguration,
+		String productListConf,
+		String productRelationsConf,
+		/* String selectedAssetMainElement, String selectedAssetChildElement,*/ String elDocDistrib
+	) {
 		Case theCase = new Case();
 		theCase.Migration_Premium_Product_List_Conf__c = productListConf;
 		theCase.Migration_Premium_Product_Relations_Conf__c = productRelationsConf + elDocDistrib;
-/*        theCase.Migration_Premium_Parent_Id__c = selectedAssetMainElement;
-        theCase.Migration_Premium_Child_Id__c = selectedAssetChildElement;*/
+		/*        theCase.Migration_Premium_Parent_Id__c = selectedAssetMainElement;
+		 theCase.Migration_Premium_Child_Id__c = selectedAssetChildElement;*/
 		theCase.Type_of_Process__c = migrationProcessConfiguration.DeveloperName;
 		return theCase;
 	}
 
-	private static Case createCaseQueueFromMetadata(Migration_Process__mdt migrationProcessConfiguration, String accountId, String productListConf, String productRelationsConf/*, String selectedAssetMainElement, String selectedAssetChildElement*/, String elDocDistrib, String note, String assetId, String selectedProductRelationId, String lowestPriority, List<String> docIdList, String typeOfOperation, String pdfTemplateItemsJSON/*, Boolean forVerification, String assetsForVerification*/) {
+	private static Case createCaseQueueFromMetadata(
+		Migration_Process__mdt migrationProcessConfiguration,
+		String accountId,
+		String productListConf,
+		String productRelationsConf /*, String selectedAssetMainElement, String selectedAssetChildElement*/,
+		String elDocDistrib,
+		String note,
+		String assetId,
+		String selectedProductRelationId,
+		String lowestPriority,
+		List<String> docIdList,
+		String typeOfOperation,
+		String pdfTemplateItemsJSON /*, Boolean forVerification, String assetsForVerification*/
+	) {
 		Case theCase = new Case();
 		System.debug(accountId);
 		theCase.AccountId = String.isNotBlank(accountId) ? accountId : null;
@@ -1616,8 +1790,8 @@ global class MigrationPremiumController {
 		System.debug('pak2: ' + productRelationsConf);
 		theCase.Migration_Premium_Product_List_Conf__c = productListConf;
 		theCase.Migration_Premium_Product_Relations_Conf__c = productRelationsConf + elDocDistrib;
-/*        theCase.Migration_Premium_Parent_Id__c = selectedAssetMainElement;
-        theCase.Migration_Premium_Child_Id__c = selectedAssetChildElement;*/
+		/*        theCase.Migration_Premium_Parent_Id__c = selectedAssetMainElement;
+		 theCase.Migration_Premium_Child_Id__c = selectedAssetChildElement;*/
 		theCase.Description = note;
 		//theCase.Receive_Date__c = Date.today();
 		theCase.Type_of_Process__c = migrationProcessConfiguration.DeveloperName;
@@ -1625,10 +1799,10 @@ global class MigrationPremiumController {
 			theCase.Template__c = pdfTemplateItemsJSON;
 		}
 		/*theCase.Contains_Product_For_Verification__c = forVerification;
-		theCase.Assets_For_Verification__c = assetsForVerification;*/
+		 theCase.Assets_For_Verification__c = assetsForVerification;*/
 		//List<Asset> assetList = [SELECT Id,Product2.CST_Value_ID__c, Product2.Product__r.CST_Value_ID__c FROM Asset WHERE Id = :assetId];
 		//Asset asset = assetList != null && !assetList.isEmpty() ? assetList.get(0) : null;
-/*        String L2CSTValueId = asset != null && asset.Product2 != null && asset.Product2.Product__r != null ? asset.Product2.Product__r.CST_Value_ID__c : null;
+		/*        String L2CSTValueId = asset != null && asset.Product2 != null && asset.Product2.Product__r != null ? asset.Product2.Product__r.CST_Value_ID__c : null;
         String L3CSTValueID = asset != null && asset.Product2 != null ? asset.Product2.CST_Value_ID__c : null;
         List<Product_Relation__c> productRelations = [SELECT Id,From__r.CST_Value_ID__c,Default_Name__c, Order__c FROM Product_Relation__c WHERE Id = :selectedProductRelationId ORDER BY Order__c];
         Product_Relation__c productRelation = productRelations != null && !productRelations.isEmpty() ? productRelations.get(0) : null;
@@ -1686,7 +1860,7 @@ global class MigrationPremiumController {
 		return theCase;
 	}
 
-/*    private static void fillCaseOwner(Case theCase, Id ownerId) {
+	/*    private static void fillCaseOwner(Case theCase, Id ownerId) {
         if (ownerId.getSobjectType() == Branch__c.getSObjectType()) {
             theCase.OwnerId = UserUtils.getUtvarUserId();
             theCase.Branch__c = ownerId;
@@ -1695,7 +1869,7 @@ global class MigrationPremiumController {
         }
     }*/
 
-/*    private static Migration_Process_Queue__mdt getMigrationProcessQueuesMetadataForSUFO(Migration_Process__mdt migrationProcessConfiguration, String L2ProductDataId, String L3ProductDataID, String prDefaultName, String prFromProductCstValueId, Decimal SufoPriority) {
+	/*    private static Migration_Process_Queue__mdt getMigrationProcessQueuesMetadataForSUFO(Migration_Process__mdt migrationProcessConfiguration, String L2ProductDataId, String L3ProductDataID, String prDefaultName, String prFromProductCstValueId, Decimal SufoPriority) {
         Migration_Process_Queue__mdt L2queueMetadata;
         if (migrationProcessConfiguration.Migration_Process_Queues__r != null && !migrationProcessConfiguration.Migration_Process_Queues__r.isEmpty()) {
             for (Migration_Process_Queue__mdt qMdt : migrationProcessConfiguration.Migration_Process_Queues__r) {
@@ -1711,7 +1885,7 @@ global class MigrationPremiumController {
         return L2queueMetadata;
     }*/
 
-/*    private static Map<String, Id> getBranchIDsByDataIds(List<String> dataIds) {
+	/*    private static Map<String, Id> getBranchIDsByDataIds(List<String> dataIds) {
         return getIdsByStrings(dataIds, Branch__c.getSObjectType(), 'Data_ID__c', null);
     }
 
@@ -1719,7 +1893,7 @@ global class MigrationPremiumController {
         return getIdsByStrings(developerNames, Group.getSObjectType(), 'DeveloperName', 'Type = \'Queue\'');
     }*/
 
-/*    private static Map<String, Id> getIdsByStrings(List<String> values, SObjectType sObjectType, String fieldName, String additionalCondition) {
+	/*    private static Map<String, Id> getIdsByStrings(List<String> values, SObjectType sObjectType, String fieldName, String additionalCondition) {
         Set<String> filteredValues = new Set<String>();
         for (String val : values) {
             if (String.isNotBlank(val)) {
@@ -1779,7 +1953,10 @@ global class MigrationPremiumController {
 		//try {
 		Map<String, MigrationPremiumTypes.ApiFieldWrapper> apiFieldsMap;
 		if (String.isNotBlank(oppId) && String.isNotBlank(apiFields)) {
-			apiFieldsMap = (Map<String, MigrationPremiumTypes.ApiFieldWrapper>) JSON.deserialize(apiFields, Map<String, MigrationPremiumTypes.ApiFieldWrapper>.class);
+			apiFieldsMap = (Map<String, MigrationPremiumTypes.ApiFieldWrapper>) JSON.deserialize(
+				apiFields,
+				Map<String, MigrationPremiumTypes.ApiFieldWrapper>.class
+			);
 		}
 		Map<String, Schema.SObjectField> oppFieldMap = Schema.SObjectType.Opportunity.fields.getMap();
 		Opportunity theOpp = new Opportunity();
@@ -1803,13 +1980,13 @@ global class MigrationPremiumController {
 		}
 		update theOpp;
 		return new OppWrapper(oppId, null);
-//        } catch (Exception ex) {
-//            return new OppWrapper(oppId, ex.getMessage());
-//        }
+		//        } catch (Exception ex) {
+		//            return new OppWrapper(oppId, ex.getMessage());
+		//        }
 	}
 
 	/*@RemoteAction
-	global static String checkElbValid(String productConfigFromPage, boolean savedConfig) {*/
+	 global static String checkElbValid(String productConfigFromPage, boolean savedConfig) {*/
 	/*Map<String, Map<String, MigrationPremiumTypes.TransitionItem>> productRelations = null;
 	if (String.isNotBlank(productConfigFromPage)) {
 		System.debug('SOM TU, TAKZE JE TU NECO PROHNILEHO...');
@@ -1882,12 +2059,12 @@ global class MigrationPremiumController {
 			}
 		}
 	}*/
-/*        return 'error';
-    }*/
+	/*        return 'error';
+	 }*/
 
 	/*@RemoteAction
 	global static String checkHeirsData(String productConfigFromPage, String accountCuidFromPage, boolean checkDraftCase) {
-		*//*Map<String, Map<String, MigrationPremiumTypes.TransitionItem>> productRelations = null;
+		*/ /*Map<String, Map<String, MigrationPremiumTypes.TransitionItem>> productRelations = null;
         String cuidFromConfig = '';
         String nameOfClient = '';
         String surnameOfClient = '';
@@ -2134,11 +2311,11 @@ global class MigrationPremiumController {
                 }
             }
             return 'ok';
-        }*//*
+        }*/ /*
         return 'ok';
     }*/
 
-/*    private static String updateCaseStatusAndReturnNok(Case c, Boolean check) {
+	/*    private static String updateCaseStatusAndReturnNok(Case c, Boolean check) {
         if (check) {
             c.Status = '34';
             update c;
@@ -2146,36 +2323,81 @@ global class MigrationPremiumController {
         return 'nok';
     }*/
 
-/*    public static String formatStringDate(String d) {
+	/*    public static String formatStringDate(String d) {
         List<String> listOfStringsDate = new List<String>();
         listOfStringsDate = d.split('-');
         return listOfStringsDate[2] + '.' + listOfStringsDate[1] + '.' + listOfStringsDate[0];
     }*/
 
 	@RemoteAction
-	global static CreateCaseWrapper createCase(String accountId, String assetId, String productListConf, String productRelationsConf, String apiFields,
-		String note, String generatedDocumentMapJSON, String selectedAssetMainElement, String exceptionDate, String exceptionType,
-		String selectedAssetChildElement, String migrationProcessConfigurationId, String elDocDistrib, String mobilityCourierBranch, String selectedProductRelationId, String lowestPriority, String caseIdFromUrl, String typeOfOperation, String editMode, String pdfTemplateItemsJSON/*, Boolean forVerification, String assetsForVerification*/) {
+	global static CreateCaseWrapper createCase(
+		String accountId,
+		String assetId,
+		String productListConf,
+		String productRelationsConf,
+		String apiFields,
+		String note,
+		String generatedDocumentMapJSON,
+		String selectedAssetMainElement,
+		String exceptionDate,
+		String exceptionType,
+		String selectedAssetChildElement,
+		String migrationProcessConfigurationId,
+		String elDocDistrib,
+		String mobilityCourierBranch,
+		String selectedProductRelationId,
+		String lowestPriority,
+		String caseIdFromUrl,
+		String typeOfOperation,
+		String editMode,
+		String pdfTemplateItemsJSON /*, Boolean forVerification, String assetsForVerification*/
+	) {
 		/*if (!Utils.isCreatableObject(Case.class.getName()) || !Utils.isUpdateableObject(Case.class.getName())) {
 			return new CreateCaseWrapper(null, null, Label.NotSufficientPrivileges);
 		}*/
 		Map<String, MigrationPremiumTypes.ApiFieldWrapper> apiFieldsMap;
 		if (String.isNotBlank(apiFields)) {
-			apiFieldsMap = (Map<String, MigrationPremiumTypes.ApiFieldWrapper>) JSON.deserialize(apiFields, Map<String, MigrationPremiumTypes.ApiFieldWrapper>.class);
+			apiFieldsMap = (Map<String, MigrationPremiumTypes.ApiFieldWrapper>) JSON.deserialize(
+				apiFields,
+				Map<String, MigrationPremiumTypes.ApiFieldWrapper>.class
+			);
 		}
 		System.debug(generatedDocumentMapJSON);
 		Map<String, String> generatedDocumentMap = new Map<String, String>();
 		if (String.isNotBlank(generatedDocumentMapJSON)) {
-			generatedDocumentMap = (Map<String, String>) JSON.deserialize(generatedDocumentMapJSON, Map<String, String>.class);
+			generatedDocumentMap = (Map<String, String>) JSON.deserialize(
+				generatedDocumentMapJSON,
+				Map<String, String>.class
+			);
 		}
-		Migration_Process__mdt migrationProcessConfiguration = getProcessConfigurationById(migrationProcessConfigurationId);
+		Migration_Process__mdt migrationProcessConfiguration = getProcessConfigurationById(
+			migrationProcessConfigurationId
+		);
 		Case theCase;
 		if (migrationProcessConfiguration.Use_Already_Created_Case__c) {
-			theCase = fillCaseFieldsForExistingCase(migrationProcessConfiguration, productListConf, productRelationsConf/*, selectedAssetMainElement, selectedAssetChildElement*/, elDocDistrib);
+			theCase = fillCaseFieldsForExistingCase(
+				migrationProcessConfiguration,
+				productListConf,
+				productRelationsConf /*, selectedAssetMainElement, selectedAssetChildElement*/,
+				elDocDistrib
+			);
 		} else {
-			theCase = createCaseQueueFromMetadata(migrationProcessConfiguration, accountId, productListConf, productRelationsConf, /*selectedAssetMainElement, selectedAssetChildElement, */elDocDistrib, note, assetId, selectedProductRelationId, lowestPriority, generatedDocumentMap.values(), typeOfOperation, pdfTemplateItemsJSON/*, forVerification, assetsForVerification*/);
+			theCase = createCaseQueueFromMetadata(
+				migrationProcessConfiguration,
+				accountId,
+				productListConf,
+				productRelationsConf,
+				/*selectedAssetMainElement, selectedAssetChildElement, */ elDocDistrib,
+				note,
+				assetId,
+				selectedProductRelationId,
+				lowestPriority,
+				generatedDocumentMap.values(),
+				typeOfOperation,
+				pdfTemplateItemsJSON /*, forVerification, assetsForVerification*/
+			);
 		}
-/*
+		/*
         if (String.isNotBlank(mobilityCourierBranch)) {
             List<Branch__c> bList = [SELECT Id FROM Branch__c WHERE Data_ID__c = :mobilityCourierBranch];
             System.debug(bList);
@@ -2239,23 +2461,23 @@ global class MigrationPremiumController {
 				insert theCase;
 			}
 		}
-/*        if (String.isNotBlank(exceptionDate) && String.isNotBlank(exceptionType)) {
+		/*        if (String.isNotBlank(exceptionDate) && String.isNotBlank(exceptionType)) {
             MigrationPremiumUtils.insertFlag(exceptionDate, exceptionType, assetId);
         }*/
 
-//        if(!String.isBlank(generatedDocumentId)){
-//            List<DMS_Document__c> docList = [SELECT Id, Case__c FROM DMS_Document__c WHERE Id =: generatedDocumentId];
-//            if (docList != null && !docList.isEmpty()) {
-//                for (DMS_Document__c doc : docList) {
-//                    doc.Case__c = theCase.Id;
-//                }
-//                update docList;
-//            }
-//        }
+		//        if(!String.isBlank(generatedDocumentId)){
+		//            List<DMS_Document__c> docList = [SELECT Id, Case__c FROM DMS_Document__c WHERE Id =: generatedDocumentId];
+		//            if (docList != null && !docList.isEmpty()) {
+		//                for (DMS_Document__c doc : docList) {
+		//                    doc.Case__c = theCase.Id;
+		//                }
+		//                update docList;
+		//            }
+		//        }
 
-//      not just one document, but multiple docs can be generated
+		//      not just one document, but multiple docs can be generated
 
-/*        if (!generatedDocumentMap.isEmpty()) {
+		/*        if (!generatedDocumentMap.isEmpty()) {
             List<DMS_Document__c> docsForUpdate = new List<DMS_Document__c>();
             for (String d : generatedDocumentMap.values()) {
                 DMS_Document__c doc = new DMS_Document__c();
@@ -2298,11 +2520,11 @@ global class MigrationPremiumController {
 	}
 
 	/**
-	* @author PJ
-	* @description If input parameter value is id of the Product_Parameter__c object, returns String_Value__c field of that object, otherwise returns the same value of input parameter.
-	* @param String value
-	* @returns String_Value__c field of the corresponding Product_Parameter__c object if the input parameter value is id of the Product_Parameter__c object. Otherwise returns the same value of the input parameter.
-	*/
+	 * @author PJ
+	 * @description If input parameter value is id of the Product_Parameter__c object, returns String_Value__c field of that object, otherwise returns the same value of input parameter.
+	 * @param String value
+	 * @returns String_Value__c field of the corresponding Product_Parameter__c object if the input parameter value is id of the Product_Parameter__c object. Otherwise returns the same value of the input parameter.
+	 */
 	@TestVisible
 	private static String getValueForCaseField(String val) {
 		if (val.length() == 18 && ((Id) val).getSobjectType().getDescribe().getName() == 'Product_Parameter__c') {
@@ -2443,74 +2665,74 @@ global class MigrationPremiumController {
 		   return new DeactivationCardsWrapper('no credit cards deactivated', null);
 	}*/
 
-//    @RemoteAction
-//    global static DeactivationCardsWrapper deactivateCreditCards(String selectedItems, String productRelationsConf) {
-//        system.debug('selitems: ' + selectedItems);
-//        MigrationPremiumTypes.ItemsWrapper itemsFromPage = null;
-//        Map<String, Map<String, MigrationPremiumTypes.TransitionItem>> productRelations = null;
-//        Set<String> setOfAssetIds = new Set<String>();
-//        PermanentBlockCardApiTypes.CardList_element request = new PermanentBlockCardApiTypes.CardList_element();
-//        List<PermanentBlockCardApiTypes.Card_element> listToRequest = new List<PermanentBlockCardApiTypes.Card_element>();
-//        Map<String, Asset> mapOfParentAccNumberPerChildAssetId = new Map<String, Asset>();
-//        if (String.isNotBlank(productRelationsConf)) {
-//            productRelations = (Map<String, Map<String, MigrationPremiumTypes.TransitionItem>>) JSON.deserialize(
-//                    productRelationsConf, Map<String, Map<String, MigrationPremiumTypes.TransitionItem>>.class
-//            );
-//            enhanceTransitionItemForCancellation(productRelations);
-//        }
-//        if (String.isNotBlank(selectedItems)) {
-//            itemsFromPage = (MigrationPremiumTypes.ItemsWrapper) JSON.deserialize(selectedItems, MigrationPremiumTypes.ItemsWrapper.class);
-//        }
-//
-//        if (productRelations != null) {
-//            for (Map<String, MigrationPremiumTypes.TransitionItem> theItemMap : productRelations.values()) {
-//                for (MigrationPremiumTypes.TransitionItem theItem : theItemMap.values()) {
-//                    for (Product_Relation__c productRel : theItem.productRelationList) {
-//                        if (String.isNotBlank(theItem.assetId) && theItem.selectedRelationId == productRel.Id && productRel.Default_Name__c != 'Výpověď') {
-//                            setOfAssetIds.add(theItem.assetId);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        if (itemsFromPage != null && itemsFromPage.itemMap != null) {
-//            User theUser = [SELECT Id, Data_ID__c, Preferred_Branch__c FROM User WHERE Id = :UserInfo.getUserId()];
-//            String currentInfo = Utils.getCurrentUserScubeInfo().brand;
-//            for (MigrationPremiumTypes.Item itemFromPageMap : itemsFromPage.itemMap.values()) {
-//                for (MigrationPremiumTypes.Item itemInChildMap : itemFromPageMap.childItemMap.values()) {
-//                    if (itemInChildMap.theAsset != null && itemInChildMap.theAsset.Card_Status__c != null && setOfAssetIds.contains(itemInChildMap.theAsset.Parent_Asset__c)) {
-//                        DeactivationCardsWrapper returnedTheWrap = getCardDetailFromData(theUser, itemFromPageMap, itemInChildMap, currentInfo, listToRequest, mapOfParentAccNumberPerChildAssetId);
-//                        if (returnedTheWrap != null && String.isNotBlank(returnedTheWrap.errorMessage)) {
-//                            return returnedTheWrap;
-//                        }
-//                    }
-//                }
-//            }
-//            PermanentBlockCardApi.PermanentBlockCard_v1_Dir2_PortTypeBindingHttpPort port = new PermanentBlockCardApi.PermanentBlockCard_v1_Dir2_PortTypeBindingHttpPort();
-//            try {
-//                if (listToRequest != null && !listToRequest.isEmpty()) {
-//                    request.Card = listToRequest;
-//                    system.debug('request.Card: ' + request.Card);
-//                    if (!Test.isRunningTest()) {
-//                        PermanentBlockCardApiTypes.CardListRes_element responseFromDeactivation = port.PermanentBlockCard_v1(request);
-//                        system.debug('responseFromDeactivation: ' + responseFromDeactivation);
-//                    }
-//                    DeactivationCardsWrapper theWrap = new DeactivationCardsWrapper('success', null);
-//                    IntegrationLogger.flushOutboundV2(null, null, 'Asset', 'UNICARD', 'PermanentBlockCard_v1', GlobalConstants.WEBSERVICE_OK_CODE, 'OK', port.MetaHeader_v2);
-//                    return theWrap;
-//                }
-//            } catch (Exception ex) {
-//                Integer resultCode = 0; // OK assumed
-//                String resultDescription = null;
-//                IntegrationLogger.flushOutboundV2(null, null, 'Asset', 'UNICARD', 'PermanentBlockCard_v1', resultCode, resultDescription, port.MetaHeader_v2);
-//                resultCode = IntegrationExceptions.getErrorCodeForExceptionType(ex);
-//                resultDescription = ex.getMessage();
-//                DeactivationCardsWrapper theWrap = new DeactivationCardsWrapper(null, 'error ' + port.MetaHeader_v2.CallContext.Sid + ' ex: ' + ex);
-//                return theWrap;
-//            }
-//        }
-//        return new DeactivationCardsWrapper('no credit cards deactivated', null);
-//    }
+	//    @RemoteAction
+	//    global static DeactivationCardsWrapper deactivateCreditCards(String selectedItems, String productRelationsConf) {
+	//        system.debug('selitems: ' + selectedItems);
+	//        MigrationPremiumTypes.ItemsWrapper itemsFromPage = null;
+	//        Map<String, Map<String, MigrationPremiumTypes.TransitionItem>> productRelations = null;
+	//        Set<String> setOfAssetIds = new Set<String>();
+	//        PermanentBlockCardApiTypes.CardList_element request = new PermanentBlockCardApiTypes.CardList_element();
+	//        List<PermanentBlockCardApiTypes.Card_element> listToRequest = new List<PermanentBlockCardApiTypes.Card_element>();
+	//        Map<String, Asset> mapOfParentAccNumberPerChildAssetId = new Map<String, Asset>();
+	//        if (String.isNotBlank(productRelationsConf)) {
+	//            productRelations = (Map<String, Map<String, MigrationPremiumTypes.TransitionItem>>) JSON.deserialize(
+	//                    productRelationsConf, Map<String, Map<String, MigrationPremiumTypes.TransitionItem>>.class
+	//            );
+	//            enhanceTransitionItemForCancellation(productRelations);
+	//        }
+	//        if (String.isNotBlank(selectedItems)) {
+	//            itemsFromPage = (MigrationPremiumTypes.ItemsWrapper) JSON.deserialize(selectedItems, MigrationPremiumTypes.ItemsWrapper.class);
+	//        }
+	//
+	//        if (productRelations != null) {
+	//            for (Map<String, MigrationPremiumTypes.TransitionItem> theItemMap : productRelations.values()) {
+	//                for (MigrationPremiumTypes.TransitionItem theItem : theItemMap.values()) {
+	//                    for (Product_Relation__c productRel : theItem.productRelationList) {
+	//                        if (String.isNotBlank(theItem.assetId) && theItem.selectedRelationId == productRel.Id && productRel.Default_Name__c != 'Výpověď') {
+	//                            setOfAssetIds.add(theItem.assetId);
+	//                        }
+	//                    }
+	//                }
+	//            }
+	//        }
+	//        if (itemsFromPage != null && itemsFromPage.itemMap != null) {
+	//            User theUser = [SELECT Id, Data_ID__c, Preferred_Branch__c FROM User WHERE Id = :UserInfo.getUserId()];
+	//            String currentInfo = Utils.getCurrentUserScubeInfo().brand;
+	//            for (MigrationPremiumTypes.Item itemFromPageMap : itemsFromPage.itemMap.values()) {
+	//                for (MigrationPremiumTypes.Item itemInChildMap : itemFromPageMap.childItemMap.values()) {
+	//                    if (itemInChildMap.theAsset != null && itemInChildMap.theAsset.Card_Status__c != null && setOfAssetIds.contains(itemInChildMap.theAsset.Parent_Asset__c)) {
+	//                        DeactivationCardsWrapper returnedTheWrap = getCardDetailFromData(theUser, itemFromPageMap, itemInChildMap, currentInfo, listToRequest, mapOfParentAccNumberPerChildAssetId);
+	//                        if (returnedTheWrap != null && String.isNotBlank(returnedTheWrap.errorMessage)) {
+	//                            return returnedTheWrap;
+	//                        }
+	//                    }
+	//                }
+	//            }
+	//            PermanentBlockCardApi.PermanentBlockCard_v1_Dir2_PortTypeBindingHttpPort port = new PermanentBlockCardApi.PermanentBlockCard_v1_Dir2_PortTypeBindingHttpPort();
+	//            try {
+	//                if (listToRequest != null && !listToRequest.isEmpty()) {
+	//                    request.Card = listToRequest;
+	//                    system.debug('request.Card: ' + request.Card);
+	//                    if (!Test.isRunningTest()) {
+	//                        PermanentBlockCardApiTypes.CardListRes_element responseFromDeactivation = port.PermanentBlockCard_v1(request);
+	//                        system.debug('responseFromDeactivation: ' + responseFromDeactivation);
+	//                    }
+	//                    DeactivationCardsWrapper theWrap = new DeactivationCardsWrapper('success', null);
+	//                    IntegrationLogger.flushOutboundV2(null, null, 'Asset', 'UNICARD', 'PermanentBlockCard_v1', GlobalConstants.WEBSERVICE_OK_CODE, 'OK', port.MetaHeader_v2);
+	//                    return theWrap;
+	//                }
+	//            } catch (Exception ex) {
+	//                Integer resultCode = 0; // OK assumed
+	//                String resultDescription = null;
+	//                IntegrationLogger.flushOutboundV2(null, null, 'Asset', 'UNICARD', 'PermanentBlockCard_v1', resultCode, resultDescription, port.MetaHeader_v2);
+	//                resultCode = IntegrationExceptions.getErrorCodeForExceptionType(ex);
+	//                resultDescription = ex.getMessage();
+	//                DeactivationCardsWrapper theWrap = new DeactivationCardsWrapper(null, 'error ' + port.MetaHeader_v2.CallContext.Sid + ' ex: ' + ex);
+	//                return theWrap;
+	//            }
+	//        }
+	//        return new DeactivationCardsWrapper('no credit cards deactivated', null);
+	//    }
 
 	/* public static DeactivationCardsWrapper getCardDetailFromData(User u, MigrationPremiumTypes.Item itemInMap, MigrationPremiumTypes.Item itemInChildMap, String currentInfo, List<PermanentBlockCardApiTypes.Card_element> listToRequest, Map<String, Asset> mapOfParentAccNumberPerChildAssetId) {
 		 //if(isValidToCancel){
@@ -2557,7 +2779,7 @@ global class MigrationPremiumController {
 			 oneCardReq.CmtKnd = 1;
 			 oneCardReq.LstMdfDt = response.LastLogicalStatusChangeDate;
 			 oneCardReq.Vld = Datetime.now();
-			 *//*if(mapOfParentAccNumberPerChildAssetId != null && !mapOfParentAccNumberPerChildAssetId.isEmpty() && mapOfParentAccNumberPerChildAssetId.containsKey(itemInMap.theAsset.Id)){
+			 */ /*if(mapOfParentAccNumberPerChildAssetId != null && !mapOfParentAccNumberPerChildAssetId.isEmpty() && mapOfParentAccNumberPerChildAssetId.containsKey(itemInMap.theAsset.Id)){
                 oneCardReq.Vld = mapOfParentAccNumberPerChildAssetId.get(itemInMap.theAsset.Id).PurchaseDate;
                 //oneCardReq.Vld = '20200827000000';
             } else{
@@ -2566,7 +2788,7 @@ global class MigrationPremiumController {
                     //oneCardReq.Vld = '20200827000000';
 
                 }
-            }*//*
+            }*/ /*
             listToRequest.add(oneCardReq);
             resultDescription = 'CardUnicardId: ' + response.CardUnicardId + ', CardNumber: ' + response.CardNumber + ', AccountNumber: ' + response.AccountNumber;
             return new DeactivationCardsWrapper('success', null);
@@ -2627,7 +2849,7 @@ global class MigrationPremiumController {
 		}
 	}
 
-/*    global class NonClientWrapper {
+	/*    global class NonClientWrapper {
         global String firstName;
         global String lastName;
         global String birthDate;
@@ -2638,32 +2860,35 @@ global class MigrationPremiumController {
         }
     }*/
 
-//    @RemoteAction
-//    global static String assignCase(String caseId, String migrationProcessConfigurationId){
-//        List<Case> caseList = [SELECT Id FROM Case WHERE Id = :caseId];
-//        if (caseList != null && !caseList.isEmpty()) {
-//            Case theCase = caseList.get(0);
-//            Migration_Process__mdt migrationProcessConfiguration = getProcessConfigurationById(migrationProcessConfigurationId);
-//            if (String.isNotBlank(migrationProcessConfiguration.Case_Queue_Name__c)) {
-//                List<Group> qList = [SELECT Id FROM Group WHERE Type = 'Queue' AND DeveloperName = :migrationProcessConfiguration.Case_Queue_Name__c LIMIT 1];
-//                if (qList != null && !qList.isEmpty()) {
-//                    theCase.OwnerId = qList.get(0).Id;
-//                }
-//            } else {
-//                theCase.OwnerId = Utils.getUtvarUserId();
-//            }
-//            theCase.PCF_Unfinished__c = false;
-//            update theCase;
-//            return theCase.Id;
-//        }
-//        return null;
-//    }
+	//    @RemoteAction
+	//    global static String assignCase(String caseId, String migrationProcessConfigurationId){
+	//        List<Case> caseList = [SELECT Id FROM Case WHERE Id = :caseId];
+	//        if (caseList != null && !caseList.isEmpty()) {
+	//            Case theCase = caseList.get(0);
+	//            Migration_Process__mdt migrationProcessConfiguration = getProcessConfigurationById(migrationProcessConfigurationId);
+	//            if (String.isNotBlank(migrationProcessConfiguration.Case_Queue_Name__c)) {
+	//                List<Group> qList = [SELECT Id FROM Group WHERE Type = 'Queue' AND DeveloperName = :migrationProcessConfiguration.Case_Queue_Name__c LIMIT 1];
+	//                if (qList != null && !qList.isEmpty()) {
+	//                    theCase.OwnerId = qList.get(0).Id;
+	//                }
+	//            } else {
+	//                theCase.OwnerId = Utils.getUtvarUserId();
+	//            }
+	//            theCase.PCF_Unfinished__c = false;
+	//            update theCase;
+	//            return theCase.Id;
+	//        }
+	//        return null;
+	//    }
 
 	@RemoteAction
 	global static String saveCaseAttachment(String serializedAttachment, String caseId) {
 		MigrationPremiumTypes.File theFile;
 		if (!String.isBlank(serializedAttachment)) {
-			theFile = (MigrationPremiumTypes.File) JSON.deserialize(serializedAttachment, MigrationPremiumTypes.File.class);
+			theFile = (MigrationPremiumTypes.File) JSON.deserialize(
+				serializedAttachment,
+				MigrationPremiumTypes.File.class
+			);
 		}
 		// Attachment caseAttachment = new Attachment();
 		// if(theFile != null){
@@ -2677,23 +2902,36 @@ global class MigrationPremiumController {
 	}
 
 	/**
-	* @author PJ
-	* @description Method saves the file and links it to the parent object.
-	* @param MigrationPremiumTypes.File theFile
-	* @param String parentIdR
-	* @returns the downloadable file url if the file was saved, null otherwise
-	*/
+	 * @author PJ
+	 * @description Method saves the file and links it to the parent object.
+	 * @param MigrationPremiumTypes.File theFile
+	 * @param String parentIdR
+	 * @returns the downloadable file url if the file was saved, null otherwise
+	 */
 	private static String saveFile(MigrationPremiumTypes.File theFile, String parentId) {
 		try {
-			ContentVersion cv = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = :createContentVersion(theFile)]; // creates ContentVersion and gets ContentDocumentId
+			ContentVersion cv = [
+				SELECT Id, ContentDocumentId
+				FROM ContentVersion
+				WHERE Id = :createContentVersion(theFile)
+			]; // creates ContentVersion and gets ContentDocumentId
 			// create ContentDocumentLink - link between created ContentDocument and parent object (Case in our case)
 			ContentDocumentLink cdl = new ContentDocumentLink();
 			cdl.ContentDocumentId = cv.ContentDocumentId;
 			cdl.LinkedEntityId = parentId;
 			cdl.ShareType = 'I'; // 'I' = Inferred permission (determined by the related record), 'C' = Collaborator permission (the user can explicitly view and edit the shared file), 'V' = Viewer permission (the user can explicitly view but not edit the shared file)
 			insert cdl;
-			insert new ContentDistribution(name = theFile.name, contentVersionId = cv.id, PreferencesAllowViewInBrowser = true, PreferencesNotifyOnVisit = false);
-			ContentDistribution cd = [Select Id, ContentDocumentId, ContentDownloadUrl, DistributionPublicUrl from ContentDistribution where ContentDocumentId = :cv.ContentDocumentId];
+			insert new ContentDistribution(
+				name = theFile.name,
+				contentVersionId = cv.id,
+				PreferencesAllowViewInBrowser = true,
+				PreferencesNotifyOnVisit = false
+			);
+			ContentDistribution cd = [
+				SELECT Id, ContentDocumentId, ContentDownloadUrl, DistributionPublicUrl
+				FROM ContentDistribution
+				WHERE ContentDocumentId = :cv.ContentDocumentId
+			];
 			return encodingUtil.urlEncode(cd.ContentDownloadUrl, 'UTF-8');
 		} catch (Exception e) {
 			System.debug('Filesaving failed: ' + e.getMessage());
@@ -2702,27 +2940,37 @@ global class MigrationPremiumController {
 	}
 
 	/**
-	* @author PJ
-	* @description Method creates ContentVersion from the MigrationPremiumTypes.File parameter. Creation of ContentVersion also automatically creates ContentDocument and links it with ContentVersion. Note: ContentVersion.ContentDocumentId is not populated automatically after insert of ContentVersion; it must be selected afterwards.
-	* @param MigrationPremiumTypes.File theFile
-	* @returns Id of inserted ContentVersion
-	*/
+	 * @author PJ
+	 * @description Method creates ContentVersion from the MigrationPremiumTypes.File parameter. Creation of ContentVersion also automatically creates ContentDocument and links it with ContentVersion. Note: ContentVersion.ContentDocumentId is not populated automatically after insert of ContentVersion; it must be selected afterwards.
+	 * @param MigrationPremiumTypes.File theFile
+	 * @returns Id of inserted ContentVersion
+	 */
 	private static String createContentVersion(MigrationPremiumTypes.File theFile) {
 		ContentVersion cv = new ContentVersion();
 		cv.ContentLocation = 'S'; // 'S' = document in SF, 'E' = external document
 		cv.PathOnClient = theFile.name;
 		cv.Title = theFile.name;
-		cv.VersionData = EncodingUtil.base64Decode(theFile.data);
+		cv.VersionData = EncodingUtil.convertFromHex(theFile.data);
 		insert cv;
 		return cv.Id;
 	}
 
 	@RemoteAction
-	global static List<MigrationPremiumTypes.ProductParameterWrapper> getProductParameters(String productRelationId, String ppAssetId, String metadataConfigurationId, Id accountIdParam, String disponentId, String productId) {
+	global static List<MigrationPremiumTypes.ProductParameterWrapper> getProductParameters(
+		String productRelationId,
+		String ppAssetId,
+		String metadataConfigurationId,
+		Id accountIdParam,
+		String disponentId,
+		String productId
+	) {
 		Set<String> l2ProductParameterIdSet = new Set<String>();
 		Map<String, List<Product_Parameter__c>> l2ProductParameterPerParentIdMap = new Map<String, List<Product_Parameter__c>>();
 		Map<String, Product_Parameter__c> sectionParameterMap = getL1ProductParameterMap(productRelationId);
-		Map<String, Product_Parameter__c> productParameterL2WithChildMap = getL2ProductParameterWithChildMap(productRelationId, sectionParameterMap.keySet());
+		Map<String, Product_Parameter__c> productParameterL2WithChildMap = getL2ProductParameterWithChildMap(
+			productRelationId,
+			sectionParameterMap.keySet()
+		);
 
 		System.debug('getting parameters');
 		System.debug('L1: ' + sectionParameterMap);
@@ -2747,16 +2995,25 @@ global class MigrationPremiumController {
 		assetId = ppAssetId;
 		product2Id = productId;
 		typeOfRelation = getSetFromStringCommaDelimited(migrationProcessConfiguration.Representative_Relation_ID__c);
-		Asset assetFromProductParameter = getAssetsFromProductParameterFormula(productParameterL2WithChildMap.values(), ppAssetId);
-		MigrationPremiumTypes.ThresholdWrapper thresholdToProductParameter = getThresholdWrapper(l2ProductParameterIdSet);
+		Asset assetFromProductParameter = getAssetsFromProductParameterFormula(
+			productParameterL2WithChildMap.values(),
+			ppAssetId
+		);
+		MigrationPremiumTypes.ThresholdWrapper thresholdToProductParameter = getThresholdWrapper(
+			l2ProductParameterIdSet
+		);
 
 		Map<String, MigrationPremiumTypes.ProductParameterWrapper> productParameterResultMap = new Map<String, MigrationPremiumTypes.ProductParameterWrapper>();
 		for (Product_Parameter__c l1ProductParameter : sectionParameterMap.values()) {
-			List<Product_Parameter__c> l2ProductParameterList = l2ProductParameterPerParentIdMap.get(l1ProductParameter.Id);
+			List<Product_Parameter__c> l2ProductParameterList = l2ProductParameterPerParentIdMap.get(
+				l1ProductParameter.Id
+			);
 			if (productParameterResultMap.containsKey(l1ProductParameter.Id)) {
 				productParameterResultMap.get(l1ProductParameter.Id).productParameter = l1ProductParameter;
 			} else {
-				MigrationPremiumTypes.ProductParameterWrapper data = new MigrationPremiumTypes.ProductParameterWrapper(l1ProductParameter);
+				MigrationPremiumTypes.ProductParameterWrapper data = new MigrationPremiumTypes.ProductParameterWrapper(
+					l1ProductParameter
+				);
 				data.setVisibility(getVisibilityTypeFromParameter(l1ProductParameter, theUser.Profile.Name));
 				productParameterResultMap.put(l1ProductParameter.Id, data);
 			}
@@ -2777,10 +3034,18 @@ global class MigrationPremiumController {
 					defaultValueFromAsset = getDefaultValueFromAsset(l2ProductParameter, assetFromProductParameter);
 					System.debug(defaultValueFromAsset);
 				}
-				if (l2ProductParameter.Type__c == TYPE_INPUT_WITH_SOQL || ((l2ProductParameter.Type__c == TYPE_HIDDEN && String.isNotBlank(l2ProductParameter.SOQL__c) || (l2ProductParameter.Type__c == TYPE_DATE && String.isNotBlank(l2ProductParameter.SOQL__c))) && String.isNotBlank(l2ProductParameter.SOQL_Field_Name__c))) {
+				if (
+					l2ProductParameter.Type__c == TYPE_INPUT_WITH_SOQL ||
+					((l2ProductParameter.Type__c == TYPE_HIDDEN && String.isNotBlank(l2ProductParameter.SOQL__c) ||
+					(l2ProductParameter.Type__c == TYPE_DATE && String.isNotBlank(l2ProductParameter.SOQL__c))) &&
+					String.isNotBlank(l2ProductParameter.SOQL_Field_Name__c))
+				) {
 					defaultValueFromAsset = getInputWithSOQLValue(l2ProductParameter);
 				}
-				MigrationPremiumTypes.ProductParameterWrapper wrapper = new MigrationPremiumTypes.ProductParameterWrapper(l2ProductParameter, defaultValueFromAsset);
+				MigrationPremiumTypes.ProductParameterWrapper wrapper = new MigrationPremiumTypes.ProductParameterWrapper(
+					l2ProductParameter,
+					defaultValueFromAsset
+				);
 				/*if (l2ProductParameter.Type__c == TYPE_EXTERNAL_LINK) {
 					wrapper.data = getExternalLinkData(l2ProductParameter);
 				}*/
@@ -2789,9 +3054,20 @@ global class MigrationPremiumController {
 				if (thresholdToProductParameter.parentByMap.containsKey(l2ProductParameter.Id)) {
 					wrapper.hasDependencies = true;
 				}
-				wrapper.setVisibility(getVisibilityType(thresholdToProductParameter, productParameterL2WithChildMap, l2ProductParameter, assetFromProductParameter, wrapper.visibility));
+				wrapper.setVisibility(
+					getVisibilityType(
+						thresholdToProductParameter,
+						productParameterL2WithChildMap,
+						l2ProductParameter,
+						assetFromProductParameter,
+						wrapper.visibility
+					)
+				);
 				System.debug(wrapper.visibility);
-				if ((l2ProductParameter.Type__c == 'Calculated Select' || l2ProductParameter.Type__c == 'Multi Select') && !String.isBlank(l2ProductParameter.Soql__c)) {
+				if (
+					(l2ProductParameter.Type__c == 'Calculated Select' ||
+					l2ProductParameter.Type__c == 'Multi Select') && !String.isBlank(l2ProductParameter.Soql__c)
+				) {
 					system.debug('*** CS: ' + l2ProductParameter.Name);
 					system.debug(assetId);
 					wrapper.childParameterList = getChildProductParametersFromSOQL(l2ProductParameter);
@@ -2809,16 +3085,32 @@ global class MigrationPremiumController {
 
 				for (Product_Parameter__c l3ProductParameter : l2ProductParameter.Product_Parameters__r) {
 					if (productParameterResultMap.containsKey(l1ProductParameter.Id)) {
-						MigrationPremiumTypes.ProductParameterWrapper sectionWrapper = productParameterResultMap.get(l1ProductParameter.Id);
-						sectionWrapper.setVisibility(getVisibilityTypeFromParameter(l3ProductParameter, theUser.Profile.Name));
+						MigrationPremiumTypes.ProductParameterWrapper sectionWrapper = productParameterResultMap.get(
+							l1ProductParameter.Id
+						);
+						sectionWrapper.setVisibility(
+							getVisibilityTypeFromParameter(l3ProductParameter, theUser.Profile.Name)
+						);
 						if (sectionWrapper.childParameterList.containsKey(l2ProductParameter.Id)) {
-							MigrationPremiumTypes.ProductParameterWrapper parentParameter = sectionWrapper.childParameterList.get(l2ProductParameter.Id);
-							parentParameter.addChildParameter(new MigrationPremiumTypes.ProductParameterWrapper(l3ProductParameter));
+							MigrationPremiumTypes.ProductParameterWrapper parentParameter = sectionWrapper.childParameterList.get(
+								l2ProductParameter.Id
+							);
+							parentParameter.addChildParameter(
+								new MigrationPremiumTypes.ProductParameterWrapper(l3ProductParameter)
+							);
 						} else {
-							System.debug('Product parameter with ID: ' + l2ProductParameter.Id + ' did not found in the map.');
+							System.debug(
+								'Product parameter with ID: ' +
+								l2ProductParameter.Id +
+								' did not found in the map.'
+							);
 						}
 					} else {
-						System.debug('Product parameter with ID: ' + l1ProductParameter.Id + ' did not found in the map.');
+						System.debug(
+							'Product parameter with ID: ' +
+							l1ProductParameter.Id +
+							' did not found in the map.'
+						);
 					}
 				}
 			}
@@ -2826,20 +3118,29 @@ global class MigrationPremiumController {
 		return productParameterResultMap.values();
 	}
 
-/*    @RemoteAction
+	/*    @RemoteAction
     global static boolean checkHeritageCasesDraft(String accountIdFromPage) {
-        *//*List<Case> listOfCases = new List<Case>();
+        */ /*List<Case> listOfCases = new List<Case>();
         listOfCases = [select id from Case where Type_of_Process__c = 'Heritage' and Status = '10' and AccountId = :accountIdFromPage];
         if(!listOfCases.isEmpty() && listOfCases.size() > 0){
             return true;
         }else{
             return false;
-        }*//*
+        }*/ /*
         return false;
     }*/
 
 	@RemoteAction
-	global static List<MigrationPremiumTypes.DependencyWrapper> checkDependencies(String parentProductParameter, String parentProductId, String productId, String valueId, String valueText, Boolean hasBackgroundQuery, Boolean hideAllDependentParams, String accId) {
+	global static List<MigrationPremiumTypes.DependencyWrapper> checkDependencies(
+		String parentProductParameter,
+		String parentProductId,
+		String productId,
+		String valueId,
+		String valueText,
+		Boolean hasBackgroundQuery,
+		Boolean hideAllDependentParams,
+		String accId
+	) {
 		System.debug('checking dependencies for: ' + valueId + ' - ' + valueText);
 		System.debug('parentProdParam: ' + parentProductParameter);
 		System.debug('parentProductId: ' + parentProductId);
@@ -2857,11 +3158,24 @@ global class MigrationPremiumController {
 			System.debug('1');
 			if (hasBackgroundQuery) {
 				System.debug('2');
-				List<Product_Parameter__c> productParameterList = [SELECT Id, Type__c, SOQL_Background_Query__c, SOQL_Filter_Query__c, SOQL_Background_Query_Search_Using_DPaaS__c FROM Product_Parameter__c WHERE Id = :parentProductParameter];
+				List<Product_Parameter__c> productParameterList = [
+					SELECT
+						Id,
+						Type__c,
+						SOQL_Background_Query__c,
+						SOQL_Filter_Query__c,
+						SOQL_Background_Query_Search_Using_DPaaS__c
+					FROM Product_Parameter__c
+					WHERE Id = :parentProductParameter
+				];
 				if (productParameterList != null && !productParameterList.isEmpty()) {
 					System.debug('3');
 					theProductParameter = productParameterList.get(0);
-					if (!String.isEmpty(theProductParameter.SOQL_Background_Query__c)/* && !String.isEmpty(theProductParameter.SOQL_Background_Query__c)*/) {
+					if (
+						!String.isEmpty(
+							theProductParameter.SOQL_Background_Query__c
+						) /* && !String.isEmpty(theProductParameter.SOQL_Background_Query__c)*/
+					) {
 						System.debug('4');
 						/*if (!Utils.isJiraEnabled(GlobalConstants.JIRA_SHIELD) && theProductParameter.SOQL_Background_Query_Search_Using_DPaaS__c) {
 							System.debug('5');
@@ -2882,7 +3196,9 @@ global class MigrationPremiumController {
 						if (theProductParameter.SOQL_Background_Query__c.toLowerCase().contains('select ')) {
 							backgroundSoqlResult = Database.query(theProductParameter.SOQL_Background_Query__c);
 						} else if (theProductParameter.SOQL_Background_Query__c.toLowerCase().contains('find ')) {
-							String o = theProductParameter.SOQL_Background_Query__c.toLowerCase().substringAfter('returning ').substringBefore('(');
+							String o = theProductParameter.SOQL_Background_Query__c.toLowerCase()
+								.substringAfter('returning ')
+								.substringBefore('(');
 							List<String> soslParts = theProductParameter.SOQL_Background_Query__c.split('\\|');
 							String sosl = soslParts.get(0);
 							System.debug(theProductParameter.SOQL_Background_Query__c);
@@ -2911,24 +3227,36 @@ global class MigrationPremiumController {
 								for (SObject so : backgroundSoqlResult) {
 									idSet.add(String.valueOf(so.get('id')));
 								}
-								backgroundSoqlResult = Database.query(theProductParameter.SOQL_Filter_Query__c + ' WHERE Id IN :idSet');
+								backgroundSoqlResult = Database.query(
+									theProductParameter.SOQL_Filter_Query__c + ' WHERE Id IN :idSet'
+								);
 							}
 						}
 						//}
 					}
 				}
 			}
-			for (List<Threshold_Product_Parameter__c> thresholdList : theThresholdWrapper.parentByMap.get(parentProductParameter).values()) {
+			for (
+				List<Threshold_Product_Parameter__c> thresholdList : theThresholdWrapper.parentByMap.get(
+						parentProductParameter
+					)
+					.values()
+			) {
 				if (hasBackgroundQuery) {
 					for (Threshold_Product_Parameter__c threshold : thresholdList) {
 						List<sObject> dependentSoqlResult;
 						if (String.isNotBlank(threshold.Dependent_Product_Parameter__r.Soql__c)) {
-							String soql = threshold.Dependent_Product_Parameter__r.Soql__c.replaceFirst(': *[a-zA-Z]*', ':value');
+							String soql = threshold.Dependent_Product_Parameter__r.Soql__c.replaceFirst(
+								': *[a-zA-Z]*',
+								':value'
+							);
 
 							System.debug('*** SOQL: ' + soql);
 							dependentSoqlResult = Database.query(soql);
 						} else {
-							dependentSoqlResult = backgroundSoqlResult == null ? new List<sObject>() : backgroundSoqlResult;
+							dependentSoqlResult = backgroundSoqlResult == null
+								? new List<sObject>()
+								: backgroundSoqlResult;
 						}
 						System.debug('9: ' + dependentSoqlResult);
 						System.debug(threshold.Id);
@@ -2937,22 +3265,40 @@ global class MigrationPremiumController {
 						if (hasBackgroundQuery) {
 							System.debug('10');
 							System.debug(theProductParameter);
-							if (theProductParameter.Type__c == TYPE_INPUT_WITH_BACKGROUND_QUERY /*|| theProductParameter.Type__c == TYPE_SELECT_WITH_BACKGROUND_QUERY*/) {
+							if (
+								theProductParameter.Type__c ==
+								TYPE_INPUT_WITH_BACKGROUND_QUERY /*|| theProductParameter.Type__c == TYPE_SELECT_WITH_BACKGROUND_QUERY*/
+							) {
 								System.debug('11');
 								item.visibilityType = MigrationPremiumTypes.VISIBILITY_TYPE_DISABLE;
 								if (backgroundSoqlResult != null && !backgroundSoqlResult.isEmpty()) {
 									System.debug('12');
-									item.initialValue = getResultFromSOQLOfThresholdValue(threshold, backgroundSoqlResult.get(0));
+									item.initialValue = getResultFromSOQLOfThresholdValue(
+										threshold,
+										backgroundSoqlResult.get(0)
+									);
 								}
-							} else if (theProductParameter.Type__c == TYPE_MULTIPLE_INPUT_WITH_BACKGROUND_QUERY || theProductParameter.Type__c == TYPE_SELECT_WITH_BACKGROUND_QUERY) {
+							} else if (
+								theProductParameter.Type__c == TYPE_MULTIPLE_INPUT_WITH_BACKGROUND_QUERY ||
+								theProductParameter.Type__c == TYPE_SELECT_WITH_BACKGROUND_QUERY
+							) {
 								System.debug('13');
 								item.visibilityType = MigrationPremiumTypes.VISIBILITY_TYPE_SHOW;
 								item.multipleInitialValueList = new List<MigrationPremiumTypes.DependencyValueWrapper>();
 								for (sObject theItem : dependentSoqlResult) {
 									System.debug('14');
 									String thresholdSoqlResult = getResultFromSOQLOfThresholdValue(threshold, theItem);
-									if (thresholdSoqlResult != null && thresholdSoqlResult.contains('[[') && thresholdSoqlResult.contains(']]') && thresholdSoqlResult.contains(INNER_SOQL_SEPARATOR) && thresholdSoqlResult.contains(INNER_SOQL_ID_SEPARATOR)) {
-										List<String> thresholdSoqlResults = thresholdSoqlResult.removeStart('[[').removeEnd(']]').removeEnd(INNER_SOQL_SEPARATOR).split(INNER_SOQL_SEPARATOR);
+									if (
+										thresholdSoqlResult != null &&
+										thresholdSoqlResult.contains('[[') &&
+										thresholdSoqlResult.contains(']]') &&
+										thresholdSoqlResult.contains(INNER_SOQL_SEPARATOR) &&
+										thresholdSoqlResult.contains(INNER_SOQL_ID_SEPARATOR)
+									) {
+										List<String> thresholdSoqlResults = thresholdSoqlResult.removeStart('[[')
+											.removeEnd(']]')
+											.removeEnd(INNER_SOQL_SEPARATOR)
+											.split(INNER_SOQL_SEPARATOR);
 										for (String tsr : thresholdSoqlResults) {
 											List<String> tsrp = tsr.split(INNER_SOQL_ID_SEPARATOR);
 											MigrationPremiumTypes.DependencyValueWrapper newItem = new MigrationPremiumTypes.DependencyValueWrapper();
@@ -2969,7 +3315,12 @@ global class MigrationPremiumController {
 								}
 							}
 						}
-						item.composedId = parentProductId + '-' + productId + '-' + threshold.Dependent_Product_Parameter__c;
+						item.composedId =
+							parentProductId +
+							'-' +
+							productId +
+							'-' +
+							threshold.Dependent_Product_Parameter__c;
 						item.isHidden = hideAllDependentParams;
 						dependencyList.add(item);
 					}
@@ -2985,10 +3336,18 @@ global class MigrationPremiumController {
 						System.debug(counter);
 						System.debug(thresholdList.size());
 						if (threshold.Threshold_Value__r.Text_Value__c == valueText) {
-							MigrationPremiumTypes.DependencyWrapper result = getResultThresholdVsValue(threshold, valueText);
+							MigrationPremiumTypes.DependencyWrapper result = getResultThresholdVsValue(
+								threshold,
+								valueText
+							);
 							item.visibilityType = result.visibilityType;
 							item.initialValue = result.initialValue;
-							item.composedId = parentProductId + '-' + productId + '-' + threshold.Dependent_Product_Parameter__c;
+							item.composedId =
+								parentProductId +
+								'-' +
+								productId +
+								'-' +
+								threshold.Dependent_Product_Parameter__c;
 							item.isHidden = hideAllDependentParams;
 							if (threshold.Dependent_Product_Parameter__r.Type__c == TYPE_INPUT_WITH_SOQL) {
 								accountId = Id.valueOf(accId);
@@ -2999,10 +3358,18 @@ global class MigrationPremiumController {
 							break;
 						} else if (thresholdList.size() == counter) {
 							System.debug('----------');
-							MigrationPremiumTypes.DependencyWrapper result = getResultThresholdVsValue(threshold, valueText);
+							MigrationPremiumTypes.DependencyWrapper result = getResultThresholdVsValue(
+								threshold,
+								valueText
+							);
 							item.visibilityType = result.visibilityType;
 							item.initialValue = result.initialValue;
-							item.composedId = parentProductId + '-' + productId + '-' + threshold.Dependent_Product_Parameter__c;
+							item.composedId =
+								parentProductId +
+								'-' +
+								productId +
+								'-' +
+								threshold.Dependent_Product_Parameter__c;
 							item.isHidden = hideAllDependentParams;
 							if (threshold.Dependent_Product_Parameter__r.Type__c == TYPE_INPUT_WITH_SOQL) {
 								accountId = Id.valueOf(accId);
@@ -3023,7 +3390,7 @@ global class MigrationPremiumController {
 		return dependencyList;
 	}
 
-/*    @RemoteAction
+	/*    @RemoteAction
     global static void sendOutput(String cuid, Integer typeId, String contact, String offerType, String outputType, String processName, List<CebNotificationUtils.FileListWrapper> fileList) {
         if (!fileList.isEmpty()) {
             SendOutputV3Api.SendOutput_v3_Dir2_PortTypeBindingHttpPort port = new SendOutputV3Api.SendOutput_v3_Dir2_PortTypeBindingHttpPort();
@@ -3126,7 +3493,7 @@ global class MigrationPremiumController {
 		return null;
 	}*/
 
-/*    @RemoteAction
+	/*    @RemoteAction
     global static String storeJsonToCache(string json) {
         return IntegrationUtils.storeJsonToCache(json);
     }*/
@@ -3138,14 +3505,21 @@ global class MigrationPremiumController {
 		if (String.isBlank(parentProductId)) {
 			return emptyList;
 		}
-		Product2 theProduct = [SELECT Id/* Subproduct_SOQL__c, CST_Value_ID__c*/ FROM Product2 WHERE Id = :parentProductId];
+		Product2 theProduct = [
+			SELECT Id
+			/* Subproduct_SOQL__c, CST_Value_ID__c*/ FROM Product2
+			WHERE Id = :parentProductId
+		];
 		if (theProduct == null /*|| String.isBlank(theProduct.Subproduct_SOQL__c)*/) {
 			return emptyList;
 		}
 
 		String recType = '';
 		if (migrationProcessConfiguration != null) {
-			recType = 'RecordType.DeveloperName = \'' + migrationProcessConfiguration.Product_Relation_Record_Type_Name__c + '\' AND ';
+			recType =
+				'RecordType.DeveloperName = \'' +
+				migrationProcessConfiguration.Product_Relation_Record_Type_Name__c +
+				'\' AND ';
 		}
 		//and ' + recType + 'From__c IN (' + theProduct.Subproduct_SOQL__c + ')
 		String query = 'SELECT To__c FROM Product_Relation__c WHERE Type__c=\'Create\' ';
@@ -3164,9 +3538,15 @@ global class MigrationPremiumController {
 		return res;
 	}
 
-	private static MigrationPremiumTypes.DependencyWrapper getResultThresholdVsValue(Threshold_Product_Parameter__c theThreshold, String value) {
+	private static MigrationPremiumTypes.DependencyWrapper getResultThresholdVsValue(
+		Threshold_Product_Parameter__c theThreshold,
+		String value
+	) {
 		MigrationPremiumTypes.DependencyWrapper result = new MigrationPremiumTypes.DependencyWrapper();
-		if (theThreshold.Dependent_Product_Parameter__r.Value__c != null || !String.isBlank(theThreshold.Dependent_Product_Parameter__r.String_Value__c)) {
+		if (
+			theThreshold.Dependent_Product_Parameter__r.Value__c != null ||
+			!String.isBlank(theThreshold.Dependent_Product_Parameter__r.String_Value__c)
+		) {
 			if (theThreshold.Dependent_Product_Parameter__r.Value__c != null) {
 				result.initialValue = String.valueOf(theThreshold.Dependent_Product_Parameter__r.Value__c);
 			} else {
@@ -3184,7 +3564,10 @@ global class MigrationPremiumController {
 		return result;
 	}
 
-	private static String getResultFromSOQLOfThresholdValue(Threshold_Product_Parameter__c theThreshold, sObject theItem) {
+	private static String getResultFromSOQLOfThresholdValue(
+		Threshold_Product_Parameter__c theThreshold,
+		sObject theItem
+	) {
 		if (theItem == null || String.isBlank(theThreshold.Threshold_Value__r.Text_Value__c)) {
 			return '';
 		} else {
@@ -3192,7 +3575,7 @@ global class MigrationPremiumController {
 		}
 	}
 
-/*    @TestVisible
+	/*    @TestVisible
     private static String getDefaultBranchId() {
         Branch__c defaultBranch;
         List<Branch__c> branchList = [select Name from Branch__c WHERE Data_Id__c = :theUser.Preferred_Branch__c];
@@ -3216,8 +3599,7 @@ global class MigrationPremiumController {
 			System.debug('recursing');
 			System.debug('recursing theSObject: ' + theSObject);
 			System.debug('recursing fieldName: ' + fieldName);
-			return getSObjectRec(theSObject.getSObject(fieldName),
-				fieldList);
+			return getSObjectRec(theSObject.getSObject(fieldName), fieldList);
 		}
 		System.debug('nulling');
 		return null;
@@ -3262,9 +3644,11 @@ global class MigrationPremiumController {
 						objValue += '[[';
 						for (SObject theSObject : soList) {
 							List<String> fieldBuffer = new List<String>(fieldNameList);
-							objValue += getSObjectRec(theSObject, new List<String>{
-								'Id'
-							}) + INNER_SOQL_ID_SEPARATOR + getSObjectRec(theSObject, fieldNameList) + INNER_SOQL_SEPARATOR;
+							objValue +=
+								getSObjectRec(theSObject, new List<String>{ 'Id' }) +
+								INNER_SOQL_ID_SEPARATOR +
+								getSObjectRec(theSObject, fieldNameList) +
+								INNER_SOQL_SEPARATOR;
 							fieldNameList = new List<String>(fieldBuffer);
 						}
 						//objValue = objValue.removeEnd(INNER_SOQL_SEPARATOR);
@@ -3273,10 +3657,12 @@ global class MigrationPremiumController {
 				}
 			} else {
 				Map<String, Schema.SObjectField> fieldMap = item.getSObjectType().getDescribe().fields.getMap();
-//                System.debug(JSON.serialize(fieldMap));
+				//                System.debug(JSON.serialize(fieldMap));
 				System.debug(JSON.serialize(item));
 				System.debug('*** fieldMap.get(' + val + '): ' + fieldMap.get(val));
-				Schema.DisplayType fieldType = fieldMap.get(val) != null ? fieldMap.get(val).getDescribe().getType() : null;
+				Schema.DisplayType fieldType = fieldMap.get(val) != null
+					? fieldMap.get(val).getDescribe().getType()
+					: null;
 				if (fieldType == Schema.DisplayType.DATE) {
 					Date d = (Date) item.get(val);
 					if (d != null) {
@@ -3328,7 +3714,9 @@ global class MigrationPremiumController {
 	}
 
 	@TestVisible
-	private static Map<String, MigrationPremiumTypes.ProductParameterWrapper> getChildProductParametersFromSOQL(Product_Parameter__c theProductParameter/*, String defaultValue*/) {
+	private static Map<String, MigrationPremiumTypes.ProductParameterWrapper> getChildProductParametersFromSOQL(
+		Product_Parameter__c theProductParameter /*, String defaultValue*/
+	) {
 		Map<String, MigrationPremiumTypes.ProductParameterWrapper> result = new Map<String, MigrationPremiumTypes.ProductParameterWrapper>();
 
 		String soql;
@@ -3391,10 +3779,18 @@ global class MigrationPremiumController {
 	public static MigrationPremiumTypes.ThresholdWrapper getThresholdWrapper(Set<String> productParameterSet) {
 		MigrationPremiumTypes.ThresholdWrapper result = new MigrationPremiumTypes.ThresholdWrapper();
 		List<Threshold_Product_Parameter__c> thresholdList = [
-			SELECT Id, Threshold_Value__r.Text_Value__c, Dependent_Product_Parameter__c, Product_Parameter__c,
-				Product_Parameter__r.Product_Parameter__c, Threshold_Value__r.Type__c, Dependent_Product_Parameter__r.SOQL_Field_Name__c,
-				Dependent_Product_Parameter__r.Type__c, Dependent_Product_Parameter__r.Value__c,
-				Dependent_Product_Parameter__r.SOQL__c, Dependent_Product_Parameter__r.String_Value__c
+			SELECT
+				Id,
+				Threshold_Value__r.Text_Value__c,
+				Dependent_Product_Parameter__c,
+				Product_Parameter__c,
+				Product_Parameter__r.Product_Parameter__c,
+				Threshold_Value__r.Type__c,
+				Dependent_Product_Parameter__r.SOQL_Field_Name__c,
+				Dependent_Product_Parameter__r.Type__c,
+				Dependent_Product_Parameter__r.Value__c,
+				Dependent_Product_Parameter__r.SOQL__c,
+				Dependent_Product_Parameter__r.String_Value__c
 			FROM Threshold_Product_Parameter__c
 			WHERE Product_Parameter__c = :productParameterSet
 		];
@@ -3414,13 +3810,19 @@ global class MigrationPremiumController {
 				}
 			}
 			if (parentByMap.containsKey(threshold.Product_Parameter__c)) {
-				if (parentByMap.get(threshold.Product_Parameter__c).containsKey(threshold.Dependent_Product_Parameter__c)) {
-					parentByMap.get(threshold.Product_Parameter__c).get(threshold.Dependent_Product_Parameter__c).add(threshold);
+				if (
+					parentByMap.get(threshold.Product_Parameter__c)
+						.containsKey(threshold.Dependent_Product_Parameter__c)
+				) {
+					parentByMap.get(threshold.Product_Parameter__c)
+						.get(threshold.Dependent_Product_Parameter__c)
+						.add(threshold);
 				} else {
 					Map<String, List<Threshold_Product_Parameter__c>> data = new Map<String, List<Threshold_Product_Parameter__c>>();
 					List<Threshold_Product_Parameter__c> dataList = new List<Threshold_Product_Parameter__c>();
 					dataList.add(threshold);
-					parentByMap.get(threshold.Product_Parameter__c).put(threshold.Dependent_Product_Parameter__c, dataList);
+					parentByMap.get(threshold.Product_Parameter__c)
+						.put(threshold.Dependent_Product_Parameter__c, dataList);
 				}
 				//parentByMap.get(threshold.Product_Parameter__c).add(threshold);
 			} else {
@@ -3438,7 +3840,10 @@ global class MigrationPremiumController {
 	}
 
 	@TestVisible
-	private static Asset getAssetsFromProductParameterFormula(List<Product_Parameter__c> l2ProductParameterList, String assetId) {
+	private static Asset getAssetsFromProductParameterFormula(
+		List<Product_Parameter__c> l2ProductParameterList,
+		String assetId
+	) {
 		if (String.isBlank(assetId)) {
 			return null;
 		}
@@ -3453,9 +3858,9 @@ global class MigrationPremiumController {
 				/*if(!validateAlgorithmMapping(theProductParameter.Algorithm_Mapping__c)){
 					continue;
 				}*/
-//                if (String.isBlank(theProductParameter.Algorithm_Mapping__c)) {
-//                    continue;
-//                }
+				//                if (String.isBlank(theProductParameter.Algorithm_Mapping__c)) {
+				//                    continue;
+				//                }
 				List<String> fieldList = theProductParameter.Algorithm_Mapping__c.split('\\.');
 				if (fieldList.size() == 1) {
 					soqlColumnsSet.add(fieldList.get(0));
@@ -3482,7 +3887,10 @@ global class MigrationPremiumController {
 	}
 
 	@TestVisible
-	private static String getDefaultValueFromAsset(Product_Parameter__c theProductParameter, Asset assetFromProductParameter) {
+	private static String getDefaultValueFromAsset(
+		Product_Parameter__c theProductParameter,
+		Asset assetFromProductParameter
+	) {
 		theProductParameter.Algorithm_Mapping__c = theProductParameter.Algorithm_Mapping__c.toLowerCase();
 		if (theProductParameter.Algorithm_Mapping__c.contains('.')) {
 			List<String> conditionChunksList = theProductParameter.Algorithm_Mapping__c.split('\\.');
@@ -3505,18 +3913,25 @@ global class MigrationPremiumController {
 			}*/
 		} else {
 			String fieldName;
-			if (String.isNotBlank(theProductParameter.Algorithm_Mapping__c) && theProductParameter.Algorithm_Mapping__c.contains('tolabel')) {
+			if (
+				String.isNotBlank(theProductParameter.Algorithm_Mapping__c) &&
+				theProductParameter.Algorithm_Mapping__c.contains('tolabel')
+			) {
 				fieldName = theProductParameter.Algorithm_Mapping__c.replace('tolabel(', '');
 				fieldName = fieldName.replace(')', '');
 			} else {
 				fieldName = theProductParameter.Algorithm_Mapping__c;
 			}
-			Map<String, Schema.SObjectField> fieldMap = assetFromProductParameter.getSObjectType().getDescribe().fields.getMap();
+			Map<String, Schema.SObjectField> fieldMap = assetFromProductParameter.getSObjectType()
+				.getDescribe()
+				.fields.getMap();
 			Schema.DisplayType fieldType = fieldMap.get(fieldName).getDescribe().getType();
 			if (fieldType == Schema.DisplayType.DATE && (Date) assetFromProductParameter.get(fieldName) != null) {
 				System.debug('fieldName: ' + fieldName);
 				Date d = (Date) assetFromProductParameter.get(fieldName);
-				System.debug('(Date)assetFromProductParameter.get(fieldName);' + (Date) assetFromProductParameter.get(fieldName));
+				System.debug(
+					'(Date)assetFromProductParameter.get(fieldName);' + (Date) assetFromProductParameter.get(fieldName)
+				);
 				Datetime retDate = Datetime.newInstance(d.year(), d.month(), d.day());
 				return retDate.format('dd.MM.yyyy');
 			}
@@ -3530,36 +3945,36 @@ global class MigrationPremiumController {
 		return theAsset.Account.Name /*+ ' (CUID: ' + theAsset.Account.CUID__c + ')'*/;
 	}
 
-//    private static Map<String, String> addAllDecryptedDispatcherAssetsName(List<Asset> assetList, String accountId){
-//        DpaaSSoapWebService.DataProtectionWebServiceImplPort dpaasSoapApi = new DpaaSSoapWebService.DataProtectionWebServiceImplPort();
-//        Map<String, String> encryptedValuesMap = new Map<String, String>();
-//        decryptedAssetNameByIdMap = new Map<String, String>();
-//        for(Asset theAsset : assetList){
-//            getEncryptedDispatcherAssetsName(theAsset, accountId, encryptedValuesMap);
-//        }
-//
-//        if(encryptedValuesMap != null && !encryptedValuesMap.isEmpty()){
-//            Map<String, String> decryptionDictionaryMap = Utils.detokenizeTextValues(encryptedValuesMap.values(), dpaasSoapApi);
-//            for(String encryptedAAccountId : encryptedValuesMap.keySet()){
-//                String encryptedValue = encryptedValuesMap.get(encryptedAAccountId);
-//                decryptedAssetNameByIdMap.put(encryptedAAccountId, decryptionDictionaryMap.get(encryptedValue));
-//            }
-//            //this.accountName = decryptionDictionaryMap.get(rel.Second_Party__r.Name);
-//        }
-//
-//        return decryptedAssetNameByIdMap;
-//    }
-//
-//    private static void getEncryptedDispatcherAssetsName(Asset theAsset, String accountId, Map<String, String> encryptedValuesMap){
-//        encryptedValuesMap.put(theAsset.AccountId, theAsset.Account.Name);
-//        for(Asset childAsset : theAsset.Assets__r){
-//            if(childAsset.AccountId != accountId){
-//                encryptedValuesMap.put(childAsset.AccountId, childAsset.Account.Name);
-//            }
-//        }
-//    }
+	//    private static Map<String, String> addAllDecryptedDispatcherAssetsName(List<Asset> assetList, String accountId){
+	//        DpaaSSoapWebService.DataProtectionWebServiceImplPort dpaasSoapApi = new DpaaSSoapWebService.DataProtectionWebServiceImplPort();
+	//        Map<String, String> encryptedValuesMap = new Map<String, String>();
+	//        decryptedAssetNameByIdMap = new Map<String, String>();
+	//        for(Asset theAsset : assetList){
+	//            getEncryptedDispatcherAssetsName(theAsset, accountId, encryptedValuesMap);
+	//        }
+	//
+	//        if(encryptedValuesMap != null && !encryptedValuesMap.isEmpty()){
+	//            Map<String, String> decryptionDictionaryMap = Utils.detokenizeTextValues(encryptedValuesMap.values(), dpaasSoapApi);
+	//            for(String encryptedAAccountId : encryptedValuesMap.keySet()){
+	//                String encryptedValue = encryptedValuesMap.get(encryptedAAccountId);
+	//                decryptedAssetNameByIdMap.put(encryptedAAccountId, decryptionDictionaryMap.get(encryptedValue));
+	//            }
+	//            //this.accountName = decryptionDictionaryMap.get(rel.Second_Party__r.Name);
+	//        }
+	//
+	//        return decryptedAssetNameByIdMap;
+	//    }
+	//
+	//    private static void getEncryptedDispatcherAssetsName(Asset theAsset, String accountId, Map<String, String> encryptedValuesMap){
+	//        encryptedValuesMap.put(theAsset.AccountId, theAsset.Account.Name);
+	//        for(Asset childAsset : theAsset.Assets__r){
+	//            if(childAsset.AccountId != accountId){
+	//                encryptedValuesMap.put(childAsset.AccountId, childAsset.Account.Name);
+	//            }
+	//        }
+	//    }
 
-/*    private static Map<String, String> addAllAssetsNumber(List<Asset> assetList) {
+	/*    private static Map<String, String> addAllAssetsNumber(List<Asset> assetList) {
         assetNumberByIdMap = new Map<String, String>();
         for (Asset theAsset : assetList) {
             assetNumberByIdMap.put(theAsset.Id, theAsset.Account_Number__c);
@@ -3570,32 +3985,32 @@ global class MigrationPremiumController {
         return assetNumberByIdMap;
     }*/
 
-//    private static Map<String, String> addAllDecryptedAssetsNumber(List<Asset> assetList){
-//        DpaaSSoapWebService.DataProtectionWebServiceImplPort dpaasSoapApi = new DpaaSSoapWebService.DataProtectionWebServiceImplPort();
-//        Map<String, String> encryptedValuesMap = new Map<String, String>();
-//        decryptedAssetNumberByIdMap = new Map<String, String>();
-//        for(Asset theAsset : assetList){
-//            getEncryptedAssetsNumber(theAsset, encryptedValuesMap);
-//        }
-//
-//        if(encryptedValuesMap != null && !encryptedValuesMap.isEmpty()){
-//            Map<String, String> decryptionDictionaryMap = Utils.detokenizeTextValues(encryptedValuesMap.values(), dpaasSoapApi);
-//            for(String encryptedAssetId : encryptedValuesMap.keySet()){
-//                String encryptedValue = encryptedValuesMap.get(encryptedAssetId);
-//                decryptedAssetNumberByIdMap.put(encryptedAssetId, decryptionDictionaryMap.get(encryptedValue));
-//            }
-//            //this.accountName = decryptionDictionaryMap.get(rel.Second_Party__r.Name);
-//        }
-//
-//        return decryptedAssetNumberByIdMap;
-//    }
+	//    private static Map<String, String> addAllDecryptedAssetsNumber(List<Asset> assetList){
+	//        DpaaSSoapWebService.DataProtectionWebServiceImplPort dpaasSoapApi = new DpaaSSoapWebService.DataProtectionWebServiceImplPort();
+	//        Map<String, String> encryptedValuesMap = new Map<String, String>();
+	//        decryptedAssetNumberByIdMap = new Map<String, String>();
+	//        for(Asset theAsset : assetList){
+	//            getEncryptedAssetsNumber(theAsset, encryptedValuesMap);
+	//        }
+	//
+	//        if(encryptedValuesMap != null && !encryptedValuesMap.isEmpty()){
+	//            Map<String, String> decryptionDictionaryMap = Utils.detokenizeTextValues(encryptedValuesMap.values(), dpaasSoapApi);
+	//            for(String encryptedAssetId : encryptedValuesMap.keySet()){
+	//                String encryptedValue = encryptedValuesMap.get(encryptedAssetId);
+	//                decryptedAssetNumberByIdMap.put(encryptedAssetId, decryptionDictionaryMap.get(encryptedValue));
+	//            }
+	//            //this.accountName = decryptionDictionaryMap.get(rel.Second_Party__r.Name);
+	//        }
+	//
+	//        return decryptedAssetNumberByIdMap;
+	//    }
 
-//    private static void getEncryptedAssetsNumber(Asset theAsset, Map<String, String> encryptedValuesMap){
-//        encryptedValuesMap.put(theAsset.Id, theAsset.Account_Number__c);
-//        for(Asset childAsset : theAsset.Assets__r){
-//            encryptedValuesMap.put(childAsset.Id, childAsset.Account_Number__c);
-//        }
-//    }
+	//    private static void getEncryptedAssetsNumber(Asset theAsset, Map<String, String> encryptedValuesMap){
+	//        encryptedValuesMap.put(theAsset.Id, theAsset.Account_Number__c);
+	//        for(Asset childAsset : theAsset.Assets__r){
+	//            encryptedValuesMap.put(childAsset.Id, childAsset.Account_Number__c);
+	//        }
+	//    }
 
 	private static Migration_Process__mdt getProcessConfigurationByName(String name) {
 		return getProcessConfiguration(null, name);
@@ -3607,8 +4022,14 @@ global class MigrationPremiumController {
 
 	private static Migration_Process__mdt getProcessConfiguration(String processId, String processName) {
 		processName = String.isBlank(processName) ? 'Premium' : processName;
-		String migrationProcessCondition = String.isNotBlank(processId) ? 'Id = :processId' : 'DeveloperName = :processName';
-		List<Migration_Process__mdt> processList = (List<Migration_Process__mdt>) Database.query(MIGRATION_PROCESS_METADATA_QUERY + ' WHERE ' + (!String.isBlank(processId) ? 'Id = :processId' : 'DeveloperName = :processName'));
+		String migrationProcessCondition = String.isNotBlank(processId)
+			? 'Id = :processId'
+			: 'DeveloperName = :processName';
+		List<Migration_Process__mdt> processList = (List<Migration_Process__mdt>) Database.query(
+			MIGRATION_PROCESS_METADATA_QUERY +
+			' WHERE ' +
+			(!String.isBlank(processId) ? 'Id = :processId' : 'DeveloperName = :processName')
+		);
 		return processList == null || processList.isEmpty() ? null : processList.get(0);
 	}
 
@@ -3655,7 +4076,7 @@ global class MigrationPremiumController {
 		allItems.itemMap.put(i + '-' + theAsset.Product2Id, theItem);
 	}*/
 
-/*    private void addProductToAllAndSelectedMap(Product2 theProduct, String accountId, Integer i) {
+	/*    private void addProductToAllAndSelectedMap(Product2 theProduct, String accountId, Integer i) {
         MigrationPremiumTypes.Item theItem;
         Boolean hasSubProducts = String.isNotBlank(theProduct.Subproduct_SOQL__c) ? true : false;
         System.debug('*** hasSubProducts (' + theProduct + '): ' + hasSubProducts);
@@ -3683,7 +4104,7 @@ global class MigrationPremiumController {
 		allItems.itemMap.put(i + '-' + theAsset.Product2Id, theItem);
 	}*/
 
-/*    @TestVisible
+	/*    @TestVisible
     private String getAssetIdForReadOnlyMode(MigrationPremiumTypes.ItemsWrapper selectedItems) {
         for (MigrationPremiumTypes.Item theItem : selectedItems.itemMap.values()) {
             if (theItem.defaultSelected && theItem.theAsset != null) {
@@ -3693,7 +4114,7 @@ global class MigrationPremiumController {
         return null;
     }*/
 
-/*    @TestVisible
+	/*    @TestVisible
     private void pairAssetIdToAssetAccountNumber(MigrationPremiumTypes.ItemsWrapper selectedItems) {
         Set<String> assetIdSet = new Set<String>();
         System.debug('UUUIIIIII: ');
@@ -3729,66 +4150,190 @@ global class MigrationPremiumController {
 
 	private static Map<String, Product_Parameter__c> getL1ProductParameterMap(String productRelationId) {
 		Id confRecTypeId;
-		RecordTypeInfo rti = Schema.getGlobalDescribe().get('Product_Parameter__c').getDescribe().getRecordTypeInfosByDeveloperName().get(INVESTMENT_CALCULATOR_CONFIG_REC_TYPE);
+		RecordTypeInfo rti = Schema.getGlobalDescribe()
+			.get('Product_Parameter__c')
+			.getDescribe()
+			.getRecordTypeInfosByDeveloperName()
+			.get(INVESTMENT_CALCULATOR_CONFIG_REC_TYPE);
 		if (rti != null) {
 			confRecTypeId = rti.getRecordTypeId();
 		}
 
-		return new Map<String, Product_Parameter__c>([
-			SELECT Id, Name, Parameter_Label__c, Value__c, Type__c, Field_API__c, Encrypt_Api_Field_Data__c,
-				Product_Parameter__r.Name, Product_Parameter__r.Value__c,
-				Is_Default__c, Required__c, Initial_State__c, Lx__c, Product_Parameter__c,
-				Product_Parameter__r.Product_Parameter__c, Algorithm_Mapping__c, Load_Hidden_RO__c,
-				Soql__c, SOQL_Field_ID__c, SOQL_Field_Name__c, Is_Read_Only__c, Load_Hidden__c, Priority_SUFO__c,
-				Is_For_Final_Validation__c, String_Value__c, Visibility__c, Formula__c, sync_element_name__c,
-				Cleave_Type__c, Cleave_Data__c, ISTS_Element_Name__c, SyblingPP__c, Min__c, Max__c
-			FROM Product_Parameter__c
-			WHERE Product_Relation__c = :productRelationId AND Lx__c = 'L1'
-			AND ((Valid_From__c = null OR Valid_From__c < :Date.today()) AND (Valid_To__c = null OR Valid_To__c > :Date.today()))
-			AND RecordTypeId != :confRecTypeId
-			AND (Visibility__c INCLUDES ('All') OR Visibility__c INCLUDES (:theUser.Profile.Name))
-			ORDER BY Lx__c, Order_in_section__c
-		]);
+		return new Map<String, Product_Parameter__c>(
+			[
+				SELECT
+					Id,
+					Name,
+					Parameter_Label__c,
+					Value__c,
+					Type__c,
+					Field_API__c,
+					Encrypt_Api_Field_Data__c,
+					Product_Parameter__r.Name,
+					Product_Parameter__r.Value__c,
+					Is_Default__c,
+					Required__c,
+					Initial_State__c,
+					Lx__c,
+					Product_Parameter__c,
+					Product_Parameter__r.Product_Parameter__c,
+					Algorithm_Mapping__c,
+					Load_Hidden_RO__c,
+					Soql__c,
+					SOQL_Field_ID__c,
+					SOQL_Field_Name__c,
+					Is_Read_Only__c,
+					Load_Hidden__c,
+					Priority_SUFO__c,
+					Is_For_Final_Validation__c,
+					String_Value__c,
+					Visibility__c,
+					Formula__c,
+					sync_element_name__c,
+					Cleave_Type__c,
+					Cleave_Data__c,
+					ISTS_Element_Name__c,
+					SyblingPP__c,
+					Min__c,
+					Max__c
+				FROM Product_Parameter__c
+				WHERE
+					Product_Relation__c = :productRelationId
+					AND Lx__c = 'L1'
+					AND (Valid_From__c = NULL
+					OR Valid_From__c < :Date.today())
+					AND (Valid_To__c = NULL
+					OR Valid_To__c > :Date.today())
+					AND RecordTypeId != :confRecTypeId
+					AND (Visibility__c INCLUDES ('All')
+					OR Visibility__c INCLUDES (:theUser.Profile.Name))
+				ORDER BY Lx__c, Order_in_section__c
+			]
+		);
 		//AND (Visibility__c =: typeOfLoggedUser OR Visibility__c =: SHOW_ALL OR Visibility__c = '')
 	}
 
-	private static Map<String, Product_Parameter__c> getL2ProductParameterWithChildMap(String productRelationId, Set<String> l1ProductParameterIdSet) {
-		return new Map<String, Product_Parameter__c>([
-			SELECT Id, Name, Parameter_Label__c, Value__c, Type__c, Field_API__c,
-				Product_Parameter__r.Name, Product_Parameter__r.Value__c, Encrypt_Api_Field_Data__c,
-				Is_Default__c, Required__c, Initial_State__c, Lx__c, Product_Parameter__c,
-				Product_Parameter__r.Product_Parameter__c, Algorithm_Mapping__c, Load_Hidden_RO__c,
-				Soql__c, SOQL_Field_ID__c, SOQL_Field_Name__c, Is_Read_Only__c, Load_Hidden__c, Priority_SUFO__c,
-				Is_For_Final_Validation__c, String_Value__c, Visibility__c, Formula__c, SOQL_Background_Query__c,
-				System__c, Transaction_ID__c, Specific_External_Link__c, SCUBE_Transaction_Type__c, Help_Text__c, sync_element_name__c, Csv_Export_Column__c,
-				Cleave_Type__c, Cleave_Data__c, ISTS_Element_Name__c, Show_ElDistrib_Agreement__c, SyblingPP__c, Min__c, Max__c, /*Product_Relation__r.From__r.CST_Value_ID__c,*/ (
-				SELECT Id, Name, Parameter_Label__c, Value__c, Type__c, Field_API__c,
-					Product_Parameter__r.Name, Product_Parameter__r.Value__c, Encrypt_Api_Field_Data__c,
-					Is_Default__c, Required__c, Initial_State__c, Lx__c, Product_Parameter__c,
-					Product_Parameter__r.Product_Parameter__c, Algorithm_Mapping__c, Load_Hidden_RO__c,
-					Soql__c, SOQL_Field_ID__c, SOQL_Field_Name__c, Is_Read_Only__c, Load_Hidden__c, Priority_SUFO__c,
-					Is_For_Final_Validation__c, String_Value__c, Visibility__c, Formula__c, sync_element_name__c,
-					Cleave_Type__c, Cleave_Data__c, ISTS_Element_Name__c, /*Product__r.CST_Value_ID__c,*/ Product__r.Name, Show_ElDistrib_Agreement__c, SyblingPP__c, Min__c, Max__c
-				FROM Product_Parameters__r
-				WHERE Product_Relation__c = :productRelationId
-				AND ((Valid_From__c = null OR Valid_From__c < :Date.today()) AND (Valid_To__c = null OR Valid_To__c > :Date.today()))
-
+	private static Map<String, Product_Parameter__c> getL2ProductParameterWithChildMap(
+		String productRelationId,
+		Set<String> l1ProductParameterIdSet
+	) {
+		return new Map<String, Product_Parameter__c>(
+			[
+				SELECT
+					Id,
+					Name,
+					Parameter_Label__c,
+					Value__c,
+					Type__c,
+					Field_API__c,
+					Product_Parameter__r.Name,
+					Product_Parameter__r.Value__c,
+					Encrypt_Api_Field_Data__c,
+					Is_Default__c,
+					Required__c,
+					Initial_State__c,
+					Lx__c,
+					Product_Parameter__c,
+					Product_Parameter__r.Product_Parameter__c,
+					Algorithm_Mapping__c,
+					Load_Hidden_RO__c,
+					Soql__c,
+					SOQL_Field_ID__c,
+					SOQL_Field_Name__c,
+					Is_Read_Only__c,
+					Load_Hidden__c,
+					Priority_SUFO__c,
+					Is_For_Final_Validation__c,
+					String_Value__c,
+					Visibility__c,
+					Formula__c,
+					SOQL_Background_Query__c,
+					System__c,
+					Transaction_ID__c,
+					Specific_External_Link__c,
+					SCUBE_Transaction_Type__c,
+					Help_Text__c,
+					sync_element_name__c,
+					Csv_Export_Column__c,
+					Cleave_Type__c,
+					Cleave_Data__c,
+					ISTS_Element_Name__c,
+					Show_ElDistrib_Agreement__c,
+					SyblingPP__c,
+					Min__c,
+					Max__c,
+					/*Product_Relation__r.From__r.CST_Value_ID__c,*/ (
+						SELECT
+							Id,
+							Name,
+							Parameter_Label__c,
+							Value__c,
+							Type__c,
+							Field_API__c,
+							Product_Parameter__r.Name,
+							Product_Parameter__r.Value__c,
+							Encrypt_Api_Field_Data__c,
+							Is_Default__c,
+							Required__c,
+							Initial_State__c,
+							Lx__c,
+							Product_Parameter__c,
+							Product_Parameter__r.Product_Parameter__c,
+							Algorithm_Mapping__c,
+							Load_Hidden_RO__c,
+							Soql__c,
+							SOQL_Field_ID__c,
+							SOQL_Field_Name__c,
+							Is_Read_Only__c,
+							Load_Hidden__c,
+							Priority_SUFO__c,
+							Is_For_Final_Validation__c,
+							String_Value__c,
+							Visibility__c,
+							Formula__c,
+							sync_element_name__c,
+							Cleave_Type__c,
+							Cleave_Data__c,
+							ISTS_Element_Name__c,
+							/*Product__r.CST_Value_ID__c,*/ Product__r.Name,
+							Show_ElDistrib_Agreement__c,
+							SyblingPP__c,
+							Min__c,
+							Max__c
+						FROM Product_Parameters__r
+						WHERE
+							Product_Relation__c = :productRelationId
+							AND (Valid_From__c = NULL
+							OR Valid_From__c < :Date.today())
+							AND (Valid_To__c = NULL
+							OR Valid_To__c > :Date.today())
+						ORDER BY Lx__c, Order_in_section__c
+					),
+					(
+						SELECT Id
+						FROM Syblings__r
+					)
+				FROM Product_Parameter__c
+				WHERE
+					Product_Relation__c = :productRelationId
+					AND Product_Parameter__c = :l1ProductParameterIdSet
+					AND (Valid_From__c = NULL
+					OR Valid_From__c < :Date.today())
+					AND (Valid_To__c = NULL
+					OR Valid_To__c > :Date.today())
 				ORDER BY Lx__c, Order_in_section__c
-			), (
-				SELECT Id
-				FROM Syblings__r
-			)
-
-			FROM Product_Parameter__c
-			WHERE Product_Relation__c = :productRelationId AND Product_Parameter__c = :l1ProductParameterIdSet
-			AND ((Valid_From__c = null OR Valid_From__c < :Date.today()) AND (Valid_To__c = null OR Valid_To__c > :Date.today()))
-
-			ORDER BY Lx__c, Order_in_section__c
-		]);
+			]
+		);
 	}
 
 	@TestVisible
-	private static MigrationPremiumTypes.VisibilityWrapper getVisibilityType(MigrationPremiumTypes.ThresholdWrapper thresholdToProductParameter, Map<String, Product_Parameter__c> l2ProductParameterMap, Product_Parameter__c theProductParameter, Asset theAsset, MigrationPremiumTypes.VisibilityWrapper result) {
+	private static MigrationPremiumTypes.VisibilityWrapper getVisibilityType(
+		MigrationPremiumTypes.ThresholdWrapper thresholdToProductParameter,
+		Map<String, Product_Parameter__c> l2ProductParameterMap,
+		Product_Parameter__c theProductParameter,
+		Asset theAsset,
+		MigrationPremiumTypes.VisibilityWrapper result
+	) {
 		System.debug('Sosam visibilitu');
 		System.debug(theProductParameter.Name + ': ' + theProductParameter.Id);
 		System.debug(thresholdToProductParameter.dependentByMap);
@@ -3800,14 +4345,20 @@ global class MigrationPremiumController {
 			Integer counter = 0;
 			Boolean tresholdValueAlreadyMatched = false;
 			Integer thresholdListSize = thresholdToProductParameter.dependentByMap.get(theProductParameter.Id).size();
-			for (Threshold_Product_Parameter__c theThreshold : thresholdToProductParameter.dependentByMap.get(theProductParameter.Id)) {
+			for (
+				Threshold_Product_Parameter__c theThreshold : thresholdToProductParameter.dependentByMap.get(
+					theProductParameter.Id
+				)
+			) {
 				counter++;
 				System.debug(theThreshold);
 				System.debug('Parent: ' + theThreshold.Product_Parameter__c);
 				System.debug('Counter: ' + counter);
 				if (l2ProductParameterMap.containsKey(theThreshold.Product_Parameter__c)) {
 					System.debug('Som v l2prodparmap.contains ifu');
-					Product_Parameter__c parentProductParameter = l2ProductParameterMap.get(theThreshold.Product_Parameter__c);
+					Product_Parameter__c parentProductParameter = l2ProductParameterMap.get(
+						theThreshold.Product_Parameter__c
+					);
 					String defaultValueFromAsset;
 					if (String.isNotBlank(parentProductParameter.Algorithm_Mapping__c) && theAsset != null) {
 						defaultValueFromAsset = getDefaultValueFromAsset(parentProductParameter, theAsset);
@@ -3830,11 +4381,18 @@ global class MigrationPremiumController {
 							}
 						} else {
 							System.debug('NEJSEM CHECKBOX...');
-							value = getValueWithHighPriority(defaultValueFromAsset, parentProductParameter.String_Value__c, String.valueOf(parentProductParameter.Value__c));
+							value = getValueWithHighPriority(
+								defaultValueFromAsset,
+								parentProductParameter.String_Value__c,
+								String.valueOf(parentProductParameter.Value__c)
+							);
 						}
 						if (theThreshold.Threshold_Value__r.Text_Value__c == value) {
 							tresholdValueAlreadyMatched = true;
-							MigrationPremiumTypes.DependencyWrapper typeRes = getResultThresholdVsValue(theThreshold, value);
+							MigrationPremiumTypes.DependencyWrapper typeRes = getResultThresholdVsValue(
+								theThreshold,
+								value
+							);
 							system.debug('puvodni result: ' + result);
 							result.visibilityType = typeRes.visibilityType;
 							system.debug('nastavuji visType na: ' + result.visibilityType);
@@ -3847,30 +4405,46 @@ global class MigrationPremiumController {
 						}
 					} else {
 						/* Default value is from the parameter regard this rules:
-								** If the select contains parameter with Is_Default__c flag marked as true
-								** If not, the default value is choose base on the order in section - first item in the list - the sorting is made in the SOQL
-						*/
+						 ** If the select contains parameter with Is_Default__c flag marked as true
+						 ** If not, the default value is choose base on the order in section - first item in the list - the sorting is made in the SOQL
+						 */
 						System.debug('jsem select a to me netankuje');
 						String defaultValueFromParameter;
 						Boolean isDefaultIsSetted = false;
-						for (Product_Parameter__c selectProductParameter : parentProductParameter.Product_Parameters__r) {
+						for (
+							Product_Parameter__c selectProductParameter : parentProductParameter.Product_Parameters__r
+						) {
 							if (selectProductParameter.Is_Default__c) {
 								isDefaultIsSetted = true;
-								defaultValueFromParameter = getValueWithHighPriority(null, null, selectProductParameter.Parameter_Label__c);
+								defaultValueFromParameter = getValueWithHighPriority(
+									null,
+									null,
+									selectProductParameter.Parameter_Label__c
+								);
 								break;
 							}
 						}
 						if (!isDefaultIsSetted) {
 							if (!parentProductParameter.Product_Parameters__r.isEmpty()) {
-								defaultValueFromParameter = getValueWithHighPriority(null, null, parentProductParameter.Product_Parameters__r[0].Parameter_Label__c);
+								defaultValueFromParameter = getValueWithHighPriority(
+									null,
+									null,
+									parentProductParameter.Product_Parameters__r[0].Parameter_Label__c
+								);
 							}
 						}
 						System.debug(defaultValueFromParameter);
 						System.debug(theThreshold);
 						System.debug('----');
-						if (theThreshold.Threshold_Value__r.Text_Value__c == defaultValueFromParameter || (thresholdListSize == counter && !tresholdValueAlreadyMatched)) {
+						if (
+							theThreshold.Threshold_Value__r.Text_Value__c == defaultValueFromParameter ||
+							(thresholdListSize == counter && !tresholdValueAlreadyMatched)
+						) {
 							tresholdValueAlreadyMatched = true;
-							MigrationPremiumTypes.DependencyWrapper typeRes = getResultThresholdVsValue(theThreshold, defaultValueFromParameter);
+							MigrationPremiumTypes.DependencyWrapper typeRes = getResultThresholdVsValue(
+								theThreshold,
+								defaultValueFromParameter
+							);
 							system.debug('puvodni result: ' + result);
 							result.visibilityType = typeRes.visibilityType;
 							system.debug('nastavuji visType na: ' + result.visibilityType);
@@ -3888,7 +4462,10 @@ global class MigrationPremiumController {
 		return result;
 	}
 
-	private static String getVisibilityTypeFromParameter(Product_Parameter__c theProductParameter, String currentUserProfile) {
+	private static String getVisibilityTypeFromParameter(
+		Product_Parameter__c theProductParameter,
+		String currentUserProfile
+	) {
 		system.debug('*** getting visibilityTypeFrom for profile: ' + currentUserProfile);
 		system.debug(theProductParameter);
 		system.debug(theProductParameter.Visibility__c);
@@ -3908,7 +4485,7 @@ global class MigrationPremiumController {
 		}
 	}
 
-/*    @TestVisible
+	/*    @TestVisible
     private static IntegrationUtils.jsonWithEndpoint getExternalLinkData(Product_Parameter__c theProductParameter) {
         if (theProductParameter.Type__c != TYPE_EXTERNAL_LINK) {
             return null;
@@ -3928,7 +4505,32 @@ global class MigrationPremiumController {
 
 	@RemoteAction
 	global static List<Product_Relation__c> getInvestmentRelations() {
-		List<Product_Relation__c> investmentRelations = [Select id, name, Type__c, Base__c, Supplement__c, Theme__c, Default_Name__c, (SELECT id, name, Parameter_Label__c, toLabel(Type__c), Calc_Max_Percentage__c, Calc_Min_Value__c, Order_in_Section__c, sync_element_name__c from Product_Parameters__r ORDER BY Type__c, Order_in_Section__c ASC) from Product_Relation__c where RecordType.Name = 'Investment Calculator Config' ORDER BY Default_Name__c];
+		List<Product_Relation__c> investmentRelations = [
+			SELECT
+				id,
+				name,
+				Type__c,
+				Base__c,
+				Supplement__c,
+				Theme__c,
+				Default_Name__c,
+				(
+					SELECT
+						id,
+						name,
+						Parameter_Label__c,
+						toLabel(Type__c),
+						Calc_Max_Percentage__c,
+						Calc_Min_Value__c,
+						Order_in_Section__c,
+						sync_element_name__c
+					FROM Product_Parameters__r
+					ORDER BY Type__c, Order_in_Section__c ASC
+				)
+			FROM Product_Relation__c
+			WHERE RecordType.Name = 'Investment Calculator Config'
+			ORDER BY Default_Name__c
+		];
 		return investmentRelations;
 	}
 
@@ -4118,7 +4720,7 @@ global class MigrationPremiumController {
 		}
 	}*/
 
-/*    private static Boolean checkPageSpace(Boolean breakable) {
+	/*    private static Boolean checkPageSpace(Boolean breakable) {
         if (prodCounter >= 5) {
             prodCounter = 0;
             return true;
@@ -4126,12 +4728,12 @@ global class MigrationPremiumController {
         return false;
     }*/
 
-/*    private static String pageBreak(Boolean inTable) {
+	/*    private static String pageBreak(Boolean inTable) {
         String endTableBrString = '</table><br /><br /><br /><br />';
         return inTable ? endTableBrString + '<br /><br /><br /><br /><table style="width:100%; margin:0;" border="1">' : endTableBrString;
     }*/
 
-/*    private static Integer getNextOfferNumber(List<Quote> quoteList) {
+	/*    private static Integer getNextOfferNumber(List<Quote> quoteList) {
         Integer i = 0;
         for (Quote q : quoteList) {
             List<String> quoteNameParts = q.Name.split(' ');
@@ -4141,7 +4743,7 @@ global class MigrationPremiumController {
         return ++i;
     }*/
 
-/*    @TestVisible
+	/*    @TestVisible
     private static String getCaseStatusForSendingToBAW(List<String> docIdList) {
         if (docIdList != null && !docIdList.isEmpty()) {
             List<DMS_Document__c> docList = [SELECT Id, Document_Version_ID__c FROM DMS_Document__c WHERE ID IN :docIdList];
@@ -4154,21 +4756,21 @@ global class MigrationPremiumController {
         return GlobalConstants.CASE_OPEN_CST;
     }*/
 
-//    @RemoteAction
-//    public static String getGetResourceURL(String resourceName) {
-//        List<StaticResource> resourceList = [SELECT Name, NamespacePrefix, SystemModStamp FROM StaticResource WHERE Name = :resourceName];
-//        //Checking if the result is returned or not
-//        if(resourceList.size() == 1) {
-//            //Getting namespace
-//            String namespace = resourceList[0].NamespacePrefix;
-//            //Resource URL
-//            return '/resource/' + resourceList[0].SystemModStamp.getTime() + '/' + (namespace != null && namespace != '' ? namespace + '__' : '') + resourceName;
-//        }
-//        else return '';
-//    }
+	//    @RemoteAction
+	//    public static String getGetResourceURL(String resourceName) {
+	//        List<StaticResource> resourceList = [SELECT Name, NamespacePrefix, SystemModStamp FROM StaticResource WHERE Name = :resourceName];
+	//        //Checking if the result is returned or not
+	//        if(resourceList.size() == 1) {
+	//            //Getting namespace
+	//            String namespace = resourceList[0].NamespacePrefix;
+	//            //Resource URL
+	//            return '/resource/' + resourceList[0].SystemModStamp.getTime() + '/' + (namespace != null && namespace != '' ? namespace + '__' : '') + resourceName;
+	//        }
+	//        else return '';
+	//    }
 
 	/* TODO: Place this method to Utils if possible
-	*/
+	 */
 	private static String getTransLabel(String objName, String picklistField, String value) {
 		SObjectType obj = Schema.getGlobalDescribe().get(objName);
 		DescribeSObjectResult objRes = obj.getDescribe();
@@ -4184,12 +4786,12 @@ global class MigrationPremiumController {
 	}
 
 	/**
-	* @author Ondrej Srom
-	* @description Method for round down to thousands of limit for kontokorent. Then check BALCMP__c field and choose product relation.
-	* @param value -  Limit_Account__c
-	* @param value -  BALCMP__c
-	* Update: Commented 25.07.2019 on BOBOT command.
-	*/
+	 * @author Ondrej Srom
+	 * @description Method for round down to thousands of limit for kontokorent. Then check BALCMP__c field and choose product relation.
+	 * @param value -  Limit_Account__c
+	 * @param value -  BALCMP__c
+	 * Update: Commented 25.07.2019 on BOBOT command.
+	 */
 	/*private static String roundToThousandAndSelectRelation(Decimal accLimit, Decimal balcmp){
 		List<String> splitString;
 		String s = String.valueOf(accLimit/1000);
@@ -4280,7 +4882,7 @@ global class MigrationPremiumController {
 		}
 	}*/
 
-/*    public class DeactivateDataWrapper{
+	/*    public class DeactivateDataWrapper{
         public String stateOfGivingCard { get; set; }
         public boolean canSendToDeactivate { get; set; }
 
@@ -4290,14 +4892,14 @@ global class MigrationPremiumController {
         }
     }*/
 
-/*    @RemoteAction
+	/*    @RemoteAction
     global static String calculateBagettaDate(String appDate, Boolean sipo, Boolean pension) {
         Date inputDate = Date.parse(appDate);
         Date outputDate = BagettaDayController.getBagettaDay(inputDate, sipo, pension, false);
         return outputDate != null ? outputDate.format() : null;
     }*/
 
-/*    @RemoteAction
+	/*    @RemoteAction
     global static StoreDocumentApiTypes.Result_element storeToJSK(String dmsDocId, Boolean reservation, String prodNumber, Boolean showToClient) {
         List<DMS_Document__c> jskDocList = [SELECT Id, Document_URL__c, Print_ID__c, Type_Of_Document__c, Account__c, Account__r.CUID__c, Case__c, Case__r.Account.CUID__c, LastModifiedDate FROM DMS_Document__c WHERE Id = :dmsDocId];
         if (!jskDocList.isEmpty()) {

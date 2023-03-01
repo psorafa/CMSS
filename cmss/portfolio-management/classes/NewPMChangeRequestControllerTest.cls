@@ -1,4 +1,4 @@
-@IsTest
+@IsTest(isParallel=false)
 private class NewPMChangeRequestControllerTest {
 	private static final String jsonDataComplete =
 		'{' +

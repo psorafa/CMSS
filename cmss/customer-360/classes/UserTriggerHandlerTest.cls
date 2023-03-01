@@ -1,15 +1,11 @@
-@IsTest
+@IsTest(isParallel=false)
 private class UserTriggerHandlerTest {
-	@TestSetup
-	static void makeData() {
-		UserRole userRole = new UserRole(Name = 'TestRole');
-		insert userRole;
-	}
-
 	@IsTest
 	static void contactInfoUpdatedTest() {
+		UserRole userRole = new UserRole(Name = 'TestRole');
+		insert userRole;
 		Profile adminProfile = [SELECT id, Name FROM Profile WHERE name = 'System Administrator'].get(0);
-		UserRole userRole = [SELECT Id FROM UserRole WHERE Name = 'TestRole'];
+		//UserRole userRole = [SELECT Id FROM UserRole WHERE Name = 'TestRole'];
 
 		User runningUser = TestDataFactory.getUser(
 			new User(
@@ -51,7 +47,7 @@ private class UserTriggerHandlerTest {
 		}
 
 		Test.startTest();
-		UserTriggerHandler.updateCommunityUsersContacts(new Set<Id>{communityUser.Id});
+		UserTriggerHandler.updateCommunityUsersContacts(new Set<Id>{ communityUser.Id });
 		Test.stopTest();
 
 		portalContact = [

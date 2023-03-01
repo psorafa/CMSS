@@ -2,11 +2,15 @@
 private class DisplayPDFControllerTest {
 	private static Account acc;
 
+	@TestSetup
+	static void insertCustomSettings() {
+		insert TestDataFactory.getNumericalSettings();
+	}
+
 	static void makeData() {
 		User user = TestDataFactory.getUser(new User());
 		insert user;
 		insert TestDataFactory.getPermissionSetAssignments(user.Id);
-		insert TestDataFactory.getNumericalSettings();
 		TestDataFactory.defaultCaseOwner = user;
 		System.runAs(user) {
 			acc = new Account();
@@ -34,7 +38,7 @@ private class DisplayPDFControllerTest {
 			cv.Description = 'test description';
 			cv.PathOnClient = 'test_file.txt';
 			cv.Title = 'test file';
-			cv.VersionData = Blob.valueOf('test file body');
+			cv.VersionData = EncodingUtil.convertFromHex('efbbbfaaaaaaaaaaaaaaaaaaaaaaafaaaa');
 			insert cv;
 		}
 	}
@@ -71,11 +75,11 @@ private class DisplayPDFControllerTest {
 		cv.Description = 'test description';
 		cv.PathOnClient = 'test_file.txt';
 		cv.Title = 'test file';
-		cv.VersionData = Blob.valueOf('test file body');
+		cv.VersionData = EncodingUtil.convertFromHex('efbbbfaaaaaaaaaaaaaaaaaaaaaaafaaaa');
 		insert cv;
 
 		Map<String, String> returnMap = DisplayPDFController.buildPlaceholderMap(items);
-		String returnString = DisplayPDFController.buildPdfData(cv.VersionData.toString(), returnMap);
-		System.assertEquals('test file body', returnString);
+		String returnString = DisplayPDFController.buildPdfData(EncodingUtil.base64Encode(cv.VersionData), returnMap);
+		System.assertEquals(EncodingUtil.base64Encode(cv.VersionData), returnString);
 	}
 }

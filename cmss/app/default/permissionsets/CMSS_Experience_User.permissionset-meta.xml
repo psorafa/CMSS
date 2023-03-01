@@ -313,11 +313,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Consents__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.ConsolidatedPersonNr__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2968,11 +2963,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.CreatedByCust__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.DecisionDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3198,7 +3188,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Commission__c.Account__c</field>
+        <field>Commission__c.AccountKeySerialNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3659,11 +3649,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CreditCommission__c.FinalRate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CreditCommission__c.HalfYearPeriod__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4468,11 +4453,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>LoanCaseDoc__c.AcceptedAmount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>LoanCaseDoc__c.DueDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4484,11 +4464,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>LoanCaseDoc__c.Group__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>LoanCaseDoc__c.NotAcceptedAmount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4508,17 +4483,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>LoanCaseDoc__c.RequestedAmount__c</field>
+        <field>LoanCaseDoc__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>LoanCaseDoc__c.TextShort__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>LoanCaseDoc__c.Text__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5132,18 +5102,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>PortfolioManagementRequest__c.CaseCreatedByName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>PortfolioManagementRequest__c.Case__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>PortfolioManagementRequest__c.ErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PortfolioManagementRequest__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PortfolioManagementRequest__c.OriginalPortfolioManagerA__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
