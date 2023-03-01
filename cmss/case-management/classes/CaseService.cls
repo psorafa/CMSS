@@ -137,6 +137,7 @@ public with sharing class CaseService {
 				lastIssuedCaseID.GDPRClaimID__c += 1;
 				caseItem.CaseID__c = String.valueOf(
 						'' + Integer.valueOf(lastIssuedCaseID.GDPRClaimID__c) + Date.today().year()
+						'' + Integer.valueOf(lastIssuedCaseID.GDPRClaimID__c) + Date.today().year()
 					)
 					.leftPad(10, '0');
 			}
@@ -321,70 +322,76 @@ public with sharing class CaseService {
 		SharingService.upsertSharing(newCasesList, oldCasesMap, sharingSettingsMap, 'CaseId');
 	}
 
-	public static void setNameEqualsBool(List<Case> newCases, Map<Id, Case> oldCases) {
-		List<User> contractors = new List<User>();
-		List<Account> accounts = new List<Account>();
-
+	public static void setNameEqualsFields(List<Case> newCases) {
+		List<Id> userIds = new List<Id>();
+		List<Id> accIds = new List<Id>();
 		for (Case c : newCases) {
-			if (
-				oldCases.get(c.Id).ComplainerContractor__c != c.ComplainerContractor__c ||
-				oldCases.get(c.Id).ComplainerLastName__c != c.ComplainerLastName__c ||
-				oldCases.get(c.Id).ComplainerFirstName__c != c.ComplainerFirstName__c
-			) {
-				if (c.ComplainerContractor__c != null) {
-					String ComplainerName = c.ComplainerFirstName__c + ' ' + c.ComplainerLastName__c;
-					id userId = c.ComplainerContractor__c;
-					contractors = [SELECT FirstName, LastName FROM User WHERE id = :userId];
-					if (ComplainerName == (contractors[0].FirstName + ' ' + contractors[0].LastName)) {
-						c.ContractorNameEquals__c = true;
-					} else {
-						c.ContractorNameEquals__c = false;
-					}
-				}
+			if (c.ComplainerContractor__c != null) {
+				userIds.add(c.ComplainerContractor__c);
 			}
-			if (
-				oldCases.get(c.Id).AccountId != c.AccountId ||
-				oldCases.get(c.Id).ComplainerContractor__c != c.ComplainerContractor__c
-			) {
-				if (c.AccountId != null && c.ComplainerContractor__c != null) {
-					if (accounts.isEmpty()) {
-						accounts = [SELECT FirstName, LastName FROM ACCOUNT WHERE id = :c.AccountId];
-					}
-					if (contractors.isEmpty()) {
-						contractors = [SELECT FirstName, LastName FROM User WHERE id = :c.ComplainerContractor__c];
-					}
-
-					if (
-						(accounts[0].FirstName + ' ' + accounts[0].LastName) ==
-						(contractors[0].FirstName +
-						' ' +
-						contractors[0].LastName)
-					) {
-						c.AccountContractorNameEquals__c = true;
-					} else {
-						c.AccountContractorNameEquals__c = false;
-					}
-				}
-			}
-			if (
-				oldCases.get(c.Id).AccountId != c.AccountId ||
-				oldCases.get(c.Id).ComplainerLastName__c != c.ComplainerLastName__c ||
-				oldCases.get(c.Id).ComplainerFirstName__c != c.ComplainerFirstName__c
-			) {
-				if (c.AccountId != null) {
-					if (accounts.isEmpty()) {
-						accounts = [SELECT FirstName, LastName FROM ACCOUNT WHERE id = :c.AccountId];
-					}
-					String ComplainerName = c.ComplainerFirstName__c + ' ' + c.ComplainerLastName__c;
-					if (ComplainerName == (accounts[0].FirstName + ' ' + accounts[0].LastName)) {
-						c.AccountComplainerNameEquals__c = true;
-					} else {
-						c.AccountComplainerNameEquals__c = false;
-					}
-				}
+			if (c.AccountId != null) {
+				accIds.add(c.AccountId);
 			}
 		}
+		Map<ID, User> contractorMap = new Map<ID, User>(
+			[
+				SELECT Id, LastName, FirstName
+				FROM User
+				WHERE Id IN :userIds
+			]
+		);
+		Map<ID, Account> accountMap = new Map<ID, Account>(
+			[
+				SELECT Id, LastName, FirstName
+				FROM Account
+				WHERE Id IN :accIds
+			]
+		);
+		for (Case c : newCases) {
+			Account acc = accountMap.get(c.AccountId);
+			User contractor = contractorMap.get(c.ComplainerContractor__c);
+
+			setContractorNameEquals(c, contractor);
+			setAccountContractorNameEquals(c, acc, contractor);
+			setAccountComplainerNameEquals(c, acc);
+		}
 	}
+	private static void setContractorNameEquals(Case c, User contractor) {
+		if (contractor != null) {
+			if (c.ComplainerFirstName__c == contractor.FirstName && c.ComplainerLastName__c == contractor.LastName) {
+				c.ContractorNameEquals__c = true;
+			} else {
+				c.ContractorNameEquals__c = false;
+			}
+		} else {
+			c.ContractorNameEquals__c = false;
+		}
+	}
+
+	private static void setAccountContractorNameEquals(Case c, Account acc, User contractor) {
+		if (acc != null && contractor != null) {
+			if (acc.FirstName == contractor.FirstName && acc.LastName == contractor.LastName) {
+				c.AccountContractorNameEquals__c = true;
+			} else {
+				c.AccountContractorNameEquals__c = false;
+			}
+		} else {
+			c.AccountContractorNameEquals__c = false;
+		}
+	}
+	private static void setAccountComplainerNameEquals(Case c, Account acc) {
+		if (acc != null) {
+			if (c.ComplainerFirstName__c == acc.FirstName && c.ComplainerLastName__c == acc.LastName) {
+				c.AccountComplainerNameEquals__c = true;
+			} else {
+				c.AccountComplainerNameEquals__c = false;
+			}
+		} else {
+			c.AccountComplainerNameEquals__c = false;
+		}
+	}
+
 	public class CaseOwnerPermissionMissingException extends Exception {
 	}
 }
+

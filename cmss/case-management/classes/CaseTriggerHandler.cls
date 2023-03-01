@@ -7,7 +7,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 		CaseService.assignCaseID(Trigger.new);
 		CaseService.populateUserLookupsFromCPU(Trigger.new, null);
 		CaseService.setupCaseStatuses((List<Case>) Trigger.new);
-        CaseService.setNameEqualsBool((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
+        CaseService.setNameEqualsFields((List<Case>) Trigger.new);
 	}
 
 	public override void beforeUpdate() {
@@ -15,7 +15,7 @@ public class CaseTriggerHandler extends TriggerHandler {
 		CaseService.populateUserLookupsFromCPU(Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 		CaseService.changeCPEClientState((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
 		CaseService.setupCaseStatuses((List<Case>) Trigger.new);
-        CaseService.setNameEqualsBool((List<Case>) Trigger.new, (Map<Id, Case>) Trigger.oldMap);
+        CaseService.setNameEqualsFields((List<Case>) Trigger.new);
 	}
 
 	public override void afterInsert() {
