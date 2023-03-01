@@ -23,6 +23,10 @@
                 <behavior>Edit</behavior>
                 <field>FinalBalance__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>HalfYearPeriod__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
