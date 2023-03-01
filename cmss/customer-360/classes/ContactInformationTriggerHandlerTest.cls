@@ -8,7 +8,7 @@ private class ContactInformationTriggerHandlerTest {
 		);
 
 		Test.startTest();
-		insert new List<ContactInformation__c>{contactInfo, contactInfo2};
+		insert new List<ContactInformation__c>{ contactInfo, contactInfo2 };
 		Test.stopTest();
 
 		List<ContactInformation__c> contactInfoValues = [
@@ -24,7 +24,7 @@ private class ContactInformationTriggerHandlerTest {
 
 		for (ContactInformation__c cItem : contactInfoValues) {
 			String cItemValue = cItem.Value__c;
-			System.assertEquals('Street 52 City 100 00 CZ', cItemValue);
+			System.assertEquals('Street 52, City 100 00 CZ', cItemValue);
 		}
 		for (ContactInformation__c cItemPhone : contactInfoPhoneValues) {
 			String cItemPhoneValue = cItemPhone.Value__c;
@@ -42,7 +42,7 @@ private class ContactInformationTriggerHandlerTest {
 		);
 
 		Test.startTest();
-		insert new List<ContactInformation__c>{contactInfo, contactInfo2};
+		insert new List<ContactInformation__c>{ contactInfo, contactInfo2 };
 		Test.stopTest();
 
 		List<ContactInformation__c> contactInfoValues = [SELECT Value__c FROM ContactInformation__c];
