@@ -1,4 +1,4 @@
-@IsTest
+@IsTest(isParallel=false)
 private class NewPortfolioManagerSelectControllerTest {
 	private static Id rmAssistRoleId;
 	private static Id otherRmAssistRoleId;
