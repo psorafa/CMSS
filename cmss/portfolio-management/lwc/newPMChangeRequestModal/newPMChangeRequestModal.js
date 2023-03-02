@@ -12,15 +12,12 @@ import { getObjectInfo, getPicklistValues } from 'lightning/uiObjectInfoApi';
 
 export default class NewPMChangeRequestModal extends NavigationMixin(LightningElement) {
 	connectedCallback() {
-		checkUserPermission().then(result => {
+		checkUserPermission().then((result) => {
 			if (result.hasPermission) {
 				this.authorizedUser = true;
 			} else {
-				console.log('sem tu');
 				this.authorizedUser = false;
 				this.validationError = unauthorizedUserLabel;
-				console.log(this.authorizedUser);
-				console.log(this.validationError);
 			}
 		});
 	}
@@ -99,20 +96,20 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
 		createCase({
 			jsonData: JSON.stringify(this.data)
 		})
-			.then(result => {
+			.then((result) => {
 				this.data.caseId = result.caseId;
 				return this.sendRequests();
 			})
-			.then(result => {
+			.then((_) => {
 				return finalize({
 					jsonData: JSON.stringify(this.data)
 				});
 			})
-			.then(result => {
+			.then((_) => {
 				this.navigateTo(this.data.caseId);
 				this.showSpinner = false;
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.error(error);
 				this.validationError = error.body.message;
 				this.showSpinner = false;
