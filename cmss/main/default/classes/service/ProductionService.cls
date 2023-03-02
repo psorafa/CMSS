@@ -1,92 +1,31 @@
 public with sharing class ProductionService {
-	public static void upsertProductionSharing(Map<Id, sObject> newProductionsMap, Map<Id, sObject> oldProductionsMap) {
-		List<sObject> productionShrsInsert = new List<sObject>();
-		Set<String> productionShrsDeleteSet = new Set<String>();
-		Set<Id> productionIdSet = new Set<Id>();
-
-		for (sObject production : newProductionsMap.values()) {
-			if (
-				production.get('CurrentTeamManager__c') != production.get('TeamManager__c') &&
-				(oldProductionsMap.size() == 0 ||
-				(oldProductionsMap.size() > 0 &&
-				newProductionsMap.get(production.Id).get('TeamManager__c') !=
-				oldProductionsMap.get(production.Id).get('TeamManager__c')))
-			) {
-				productionShrsInsert.add(
-					SharingService.prepareCustomShareRecord(
-						'Production__Share',
-						(Id) production.get('Id'),
-						(Id) production.get('TeamManager__c'),
-						'Read',
-						Schema.Production__Share.rowCause.TeamManager__c
-					)
-				);
-				if (oldProductionsMap.size() > 0) {
-					productionShrsDeleteSet.add(
-						Id.valueOf(production.Id) +
-						'_' +
-						Schema.Production__Share.rowCause.TeamManager__c
-					);
-					productionIdSet.add(production.Id);
-				}
+	public static void upsertProductionSharing(List<sObject> newProductionList, Map<Id, sObject> oldProductionMap) {
+		Map<String, List<String>> fieldNamesMap = new Map<String, List<String>>{
+			'TeamManager__c' => new List<String>{
+				'CurrentTeamManager__c',
+				Schema.Production__Share.rowCause.TeamManager__c
+			},
+			'RegionManager__c' => new List<String>{
+				'CurrentRegionManager__c',
+				Schema.Production__Share.rowCause.RegionManager__c
+			},
+			'SalesNetManager__c' => new List<String>{
+				'CurrentSalesNetManager__c',
+				Schema.Production__Share.rowCause.SalesNetManager__c
 			}
-			if (
-				production.get('CurrentRegionManager__c') != production.get('RegionManager__c') &&
-				(oldProductionsMap.size() == 0 ||
-				(oldProductionsMap.size() > 0 &&
-				newProductionsMap.get(production.Id).get('RegionManager__c') !=
-				oldProductionsMap.get(production.Id).get('RegionManager__c')))
-			) {
-				productionShrsInsert.add(
-					SharingService.prepareCustomShareRecord(
-						'Production__Share',
-						(Id) production.get('Id'),
-						(Id) production.get('RegionManager__c'),
-						'Read',
-						Schema.Production__Share.rowCause.RegionManager__c
-					)
-				);
-				if (oldProductionsMap.size() > 0) {
-					productionShrsDeleteSet.add(
-						Id.valueOf(production.Id) +
-						'_' +
-						Schema.Production__Share.rowCause.RegionManager__c
-					);
-					productionIdSet.add(production.Id);
-				}
-			}
-			if (
-				production.get('CurrentSalesNetManager__c') != production.get('SalesNetManager__c') &&
-				(oldProductionsMap.size() == 0 ||
-				(oldProductionsMap.size() > 0 &&
-				newProductionsMap.get(production.Id).get('SalesNetManager__c') !=
-				oldProductionsMap.get(production.Id).get('SalesNetManager__c')))
-			) {
-				productionShrsInsert.add(
-					SharingService.prepareCustomShareRecord(
-						'Production__Share',
-						(Id) production.get('Id'),
-						(Id) production.get('SalesNetManager__c'),
-						'Read',
-						Schema.Production__Share.rowCause.SalesNetManager__c
-					)
-				);
-				if (oldProductionsMap.size() > 0) {
-					productionShrsDeleteSet.add(
-						Id.valueOf(production.Id) +
-						'_' +
-						Schema.Production__Share.rowCause.SalesNetManager__c
-					);
-					productionIdSet.add(production.Id);
-				}
-			}
+		};
+		Map<String, SharingService.sharingSettingsWrap> sharingSettingsMap = new Map<String, SharingService.sharingSettingsWrap>();
+		for (String field : fieldNamesMap.keySet()) {
+			sharingSettingsMap.put(
+				field,
+				new SharingService.sharingSettingsWrap(
+					'AccessLevel',
+					'Read',
+					fieldNamesMap.get(field)[1],
+					fieldNamesMap.get(field)[0]
+				)
+			);
 		}
-		if (!productionShrsDeleteSet.isEmpty()) {
-			SharingService.deleteSharingRecords(productionShrsDeleteSet, 'Production__Share', productionIdSet);
-		}
-
-		if (!productionShrsInsert.isEmpty()) {
-			SharingService.insertShareRecords(productionShrsInsert);
-		}
+		SharingService.upsertSharing(newProductionList, oldProductionMap, sharingSettingsMap, 'ParentId');
 	}
 }

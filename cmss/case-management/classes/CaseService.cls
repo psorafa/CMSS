@@ -307,85 +307,20 @@ public with sharing class CaseService {
 		}
 	}
 
-	public static void upsertCaseSharing(Map<Id, sObject> newCasesMap, Map<Id, sObject> oldCasesMap) {
-		List<sObject> caseShrsInsert = new List<sObject>();
-		Set<String> caseShrsDeleteSet = new Set<String>();
-		Set<Id> caseIdSet = new Set<Id>();
-
-		for (sObject c : newCasesMap.values()) {
-			if (
-				oldCasesMap.size() == 0 ||
-				(oldCasesMap.size() > 0 &&
-				newCasesMap.get(c.Id).get('RegionalManager__c') != oldCasesMap.get(c.Id).get('RegionalManager__c'))
-			) {
-				caseShrsInsert.add(
-					SharingService.prepareStandardShareRecord(
-						'CaseShare',
-						(Id) c.get('Id'),
-						'CaseId',
-						(Id) c.get('RegionalManager__c'),
-						'Read',
-						'CaseAccessLevel',
-						Schema.CaseShare.rowCause.Manual
-					)
-				);
-				if (oldCasesMap.size() > 0) {
-					caseShrsDeleteSet.add(Id.valueOf(c.Id) + '_' + Schema.CaseShare.rowCause.Manual);
-					caseIdSet.add(c.Id);
-				}
-			}
-			if (
-				oldCasesMap.size() == 0 ||
-				(oldCasesMap.size() > 0 &&
-				newCasesMap.get(c.Id).get('RegionalManagerAssistant__c') !=
-				oldCasesMap.get(c.Id).get('RegionalManagerAssistant__c'))
-			) {
-				caseShrsInsert.add(
-					SharingService.prepareStandardShareRecord(
-						'CaseShare',
-						(Id) c.get('Id'),
-						'CaseId',
-						(Id) c.get('RegionalManagerAssistant__c'),
-						'Read',
-						'CaseAccessLevel',
-						Schema.CaseShare.rowCause.Manual
-					)
-				);
-				if (oldCasesMap.size() > 0) {
-					caseShrsDeleteSet.add(Id.valueOf(c.Id) + '_' + Schema.CaseShare.rowCause.Manual);
-					caseIdSet.add(c.Id);
-				}
-			}
-			if (
-				oldCasesMap.size() == 0 ||
-				(oldCasesMap.size() > 0 &&
-				newCasesMap.get(c.Id).get('NewPortfolioManager__c') !=
-				oldCasesMap.get(c.Id).get('NewPortfolioManager__c'))
-			) {
-				caseShrsInsert.add(
-					SharingService.prepareStandardShareRecord(
-						'CaseShare',
-						(Id) c.get('Id'),
-						'CaseId',
-						(Id) c.get('NewPortfolioManager__c'),
-						'Read',
-						'CaseAccessLevel',
-						Schema.CaseShare.rowCause.Manual
-					)
-				);
-				if (oldCasesMap.size() > 0) {
-					caseShrsDeleteSet.add(Id.valueOf(c.Id) + '_' + Schema.CaseShare.rowCause.Manual);
-					caseIdSet.add(c.Id);
-				}
-			}
+	public static void upsertCaseSharing(List<sObject> newCasesList, Map<Id, sObject> oldCasesMap) {
+		List<String> fieldNamesList = new List<String>{
+			'RegionalManager__c',
+			'RegionalManagerAssistant__c',
+			'NewPortfolioManager__c'
+		};
+		Map<String, SharingService.sharingSettingsWrap> sharingSettingsMap = new Map<String, SharingService.sharingSettingsWrap>();
+		for (String field : fieldNamesList) {
+			sharingSettingsMap.put(
+				field,
+				new SharingService.sharingSettingsWrap('CaseAccessLevel', 'Read', 'Manual', '')
+			);
 		}
-		if (!caseShrsDeleteSet.isEmpty()) {
-			SharingService.deleteSharingRecords(caseShrsDeleteSet, 'CaseShare', caseIdSet, 'CaseId');
-		}
-
-		if (!caseShrsInsert.isEmpty()) {
-			SharingService.insertShareRecords(caseShrsInsert);
-		}
+		SharingService.upsertSharing(newCasesList, oldCasesMap, sharingSettingsMap, 'CaseId');
 	}
 
 	public class CaseOwnerPermissionMissingException extends Exception {

@@ -17,9 +17,8 @@ public class ProductionSharingRecalc implements Database.Batchable<sObject> {
 
 	public void execute(Database.BatchableContext BC, List<Production__c> scope) {
 		SharingService.deleteSharingRecords(scope, 'Production__Share');
-		Map<Id, Production__c> newMap = new Map<Id, Production__c>(scope);
 		Map<Id, Production__c> oldMap = new Map<Id, Production__c>();
-		ProductionService.upsertProductionSharing(newMap, oldMap);
+		ProductionService.upsertProductionSharing(scope, oldMap);
 	}
 
 	public void finish(Database.BatchableContext BC) {
