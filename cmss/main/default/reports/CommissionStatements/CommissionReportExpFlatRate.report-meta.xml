@@ -21,6 +21,7 @@
         <field>Commission__c$CPUSuffix__c</field>
     </columns>
     <filter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND (8 OR 9 OR 10)</booleanFilter>
         <criteriaItems>
             <column>Commission__c$RecordType</column>
             <columnToColumn>false</columnToColumn>
@@ -71,11 +72,25 @@
             <value></value>
         </criteriaItems>
         <criteriaItems>
+            <column>Commission__c$StatementType__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>190</value>
+        </criteriaItems>
+        <criteriaItems>
             <column>Commission__c$EntitlementAmount__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>notEqual</operator>
-            <value></value>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Commission__c$PendingAmount__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>0</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
