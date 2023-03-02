@@ -2,7 +2,11 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CreatedByCust__c</fullName>
     <externalId>false</externalId>
-    <formula>CreatedBy.FirstName  +&apos; &apos;+ CreatedBy.LastName</formula>
+    <formula>HYPERLINK(
+  &quot;/&quot; &amp; CreatedBy.Id,
+  CreatedBy.FirstName  +&apos; &apos;+ CreatedBy.LastName,
+  &quot;_self&quot;
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Created By</label>
     <required>false</required>
