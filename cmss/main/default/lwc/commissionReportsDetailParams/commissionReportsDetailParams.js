@@ -8,6 +8,9 @@ import { publish, subscribe, MessageContext } from 'lightning/messageService';
 import COMMISSION_CHANNEL from '@salesforce/messageChannel/Commission_Reports__c';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
+import LBL_SELECT_MONTH from '@salesforce/label/c.SelectMonth';
+import LBL_SELECT_YEAR from '@salesforce/label/c.SelectYear';
+
 export default class CommissionReportsDetailParams extends LightningElement {
 	@track value = 'monthyear';
 	initYearValue;
@@ -34,6 +37,8 @@ export default class CommissionReportsDetailParams extends LightningElement {
 	showTribeCPU = false;
 	accountBaseCombinedName;
 	profiles = ['System Administrator', 'Správce systému'];
+
+	labels = { LBL_SELECT_MONTH, LBL_SELECT_YEAR };
 
 	@wire(MessageContext)
 	messageContext;
