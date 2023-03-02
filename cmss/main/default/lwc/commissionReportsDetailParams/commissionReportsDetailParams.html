@@ -1,4 +1,3 @@
-<!--TODO: USE CUSTOM LABELS AND TRANSLATIONS!-->
 <template>
 	<lightning-card title="Upřesňující parametry">
 		<lightning-spinner if:true={loading}></lightning-spinner>
@@ -21,7 +20,7 @@
 						name="year"
 						label="Rok"
 						value={yearValue}
-						placeholder="Vybrat rok"
+						placeholder={labels.LBL_SELECT_YEAR}
 						variant="label-inline"
 						options={yearOptions}
 						onchange={handleYearChange}
@@ -31,7 +30,7 @@
 						name="month"
 						label="Měsíc"
 						value={monthValue}
-						placeholder="Vybrat měsíc"
+						placeholder={labels.LBL_SELECT_MONTH}
 						variant="label-inline"
 						options={monthOptions}
 						onchange={handleMonthChange}
@@ -44,7 +43,7 @@
 							name="yearTo"
 							label="Rok"
 							value={yearToValue}
-							placeholder="Vybrat rok"
+							placeholder={labels.LBL_SELECT_YEAR}
 							variant="label-inline"
 							options={yearOptions}
 							onchange={handleYearToChange}
@@ -54,7 +53,7 @@
 							name="monthTo"
 							label="Měsíc"
 							value={monthToValue}
-							placeholder="Vybrat měsíc"
+							placeholder={labels.LBL_SELECT_MONTH}
 							variant="label-inline"
 							options={monthToOptions}
 							onchange={handleMonthToChange}
