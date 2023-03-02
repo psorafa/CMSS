@@ -1,5 +1,4 @@
 public with sharing class NewPortfolioManagerSelectController {
-
 	@TestVisible
 	private static Selector selector = new Selector();
 
@@ -7,8 +6,9 @@ public with sharing class NewPortfolioManagerSelectController {
 	public static List<SearchResult> search(String term) {
 		try {
 			List<SearchResult> results = new List<SearchResult>();
-			term = '%' + term.replace('%', '').replace('_', '') + '%';
-			for (User user : searchUsers(term)) {
+			term = term.replace('%', '').replace('_', '');
+			String likeTerm = '%' + term + '%';
+			for (User user : searchUsers(term, likeTerm)) {
 				results.add(new SearchResult(user));
 			}
 			return results;
@@ -20,9 +20,9 @@ public with sharing class NewPortfolioManagerSelectController {
 		}
 	}
 
-	private static List<User> searchUsers(String searchTerm) {
+	private static List<User> searchUsers(String searchTerm, String searchLikeTerm) {
 		if (FeatureManagement.checkPermission('CreateEmptyPortfolioManagementCases')) {
-			return selector.searchUsers(searchTerm);
+			return selector.searchUsers(searchTerm, searchLikeTerm);
 		} else {
 			HierarchyUtil hierarchyUtil = new HierarchyUtil();
 			Id rmRole = hierarchyUtil.getRegionalManagerOrAssistantRoleOf(UserInfo.getUserRoleId());
@@ -34,14 +34,17 @@ public with sharing class NewPortfolioManagerSelectController {
 			if (hierarchyUtil.roleIsRegionalManagerOrAssistant(UserInfo.getUserRoleId())) {
 				rolesToSearch.addAll(hierarchyUtil.getRmRoles());
 			}
-			return selector.searchUsersWithRole(searchTerm, rolesToSearch);
+			return selector.searchUsersWithRole(searchTerm, searchLikeTerm, rolesToSearch);
 		}
 	}
 
 	public class SearchResult {
-		@AuraEnabled public Id id;
-		@AuraEnabled public String name;
-		@AuraEnabled public String cpu;
+		@AuraEnabled
+		public Id id;
+		@AuraEnabled
+		public String name;
+		@AuraEnabled
+		public String cpu;
 
 		public SearchResult(User user) {
 			id = user.Id;
@@ -52,13 +55,12 @@ public with sharing class NewPortfolioManagerSelectController {
 
 	@TestVisible
 	private virtual class Selector {
-		public virtual List<User> searchUsersWithRole(String value, Set<Id> rolesIds) {
+		public virtual List<User> searchUsersWithRole(String value, String likeValue, Set<Id> rolesIds) {
 			return [
 				SELECT Id, Name, CommissionAccountNrAll__c
 				FROM User
 				WHERE
-					(Name LIKE :value
-					OR CommissionAccountNr__c LIKE :value
+					(Name LIKE :likeValue
 					OR CommissionAccountBase__c = :value)
 					AND IsAgentActive__c = TRUE
 					AND PortfolioManType__c = 'A'
@@ -68,15 +70,11 @@ public with sharing class NewPortfolioManagerSelectController {
 			];
 		}
 
-		public virtual List<User> searchUsers(String value) {
+		public virtual List<User> searchUsers(String value, String likeValue) {
 			return [
 				SELECT Id, Name, CommissionAccountNrAll__c
 				FROM User
-				WHERE
-					(Name LIKE :value
-					OR CommissionAccountNr__c LIKE :value
-					OR CommissionAccountBase__c = :value)
-					AND IsAgentActive__c = TRUE
+				WHERE (Name LIKE :likeValue OR CommissionAccountBase__c = :value) AND IsAgentActive__c = TRUE
 				ORDER BY Name
 				LIMIT 5
 			];

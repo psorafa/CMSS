@@ -36,7 +36,8 @@ private class NewPortfolioManagerSelectControllerTest {
 			System.assert(selector.rolesIds.contains(ozRoleId));
 			System.assert(selector.rolesIds.contains(rmManagerRoleId));
 			System.assert(selector.rolesIds.contains(rmAssistRoleId));
-			System.assertEquals('%term%', selector.value);
+			System.assertEquals('term', selector.value);
+			System.assertEquals('%term%', selector.likeValue);
 		}
 	}
 
@@ -72,7 +73,7 @@ private class NewPortfolioManagerSelectControllerTest {
 			System.assert(selector.rolesIds.contains(rmAssistRoleId));
 			System.assert(selector.rolesIds.contains(otherRmManagerRoleId));
 			System.assert(selector.rolesIds.contains(otherRmAssistRoleId));
-			System.assertEquals('%term%', selector.value);
+			System.assertEquals('term', selector.value);
 		}
 	}
 
@@ -89,7 +90,8 @@ private class NewPortfolioManagerSelectControllerTest {
 			System.assertEquals(0, results.size());
 			System.assertEquals(1, selector.rolesIds.size());
 			System.assert(selector.rolesIds.contains(null));
-			System.assertEquals('%term%', selector.value);
+			System.assertEquals('term', selector.value);
+			System.assertEquals('%term%', selector.likeValue);
 		}
 	}
 
@@ -123,7 +125,8 @@ private class NewPortfolioManagerSelectControllerTest {
 			System.assertEquals('fake cpu', results.get(0).cpu);
 
 			System.assertEquals(null, selector.rolesIds);
-			System.assertEquals('%term%', selector.value);
+			System.assertEquals('term', selector.value);
+			System.assertEquals('%term%', selector.likeValue);
 		}
 	}
 
@@ -145,29 +148,32 @@ private class NewPortfolioManagerSelectControllerTest {
 	@IsTest
 	static void coverSelector() {
 		NewPortfolioManagerSelectController.Selector selector = new NewPortfolioManagerSelectController.Selector();
-		selector.searchUsers('');
-		selector.searchUsersWithRole('', new Set<Id>());
+		selector.searchUsers('', '');
+		selector.searchUsersWithRole('', '', new Set<Id>());
 	}
 
 	private class TestSelector extends NewPortfolioManagerSelectController.Selector {
 		public String value;
+		public String likeValue;
 		public Set<Id> rolesIds;
 		public List<User> searchResults = new List<User>();
 
-		public override List<User> searchUsersWithRole(String value, Set<Id> rolesIds) {
+		public override List<User> searchUsersWithRole(String value, String likeValue, Set<Id> rolesIds) {
 			this.value = value;
+			this.likeValue = '%' + value + '%';
 			this.rolesIds = rolesIds;
 			return searchResults;
 		}
 
-		public override List<User> searchUsers(String value) {
+		public override List<User> searchUsers(String value, String likeValue) {
 			this.value = value;
+			this.likeValue = '%' + value + '%';
 			return searchResults;
 		}
 	}
 
 	public class ErrorThrowingSelector extends NewPortfolioManagerSelectController.Selector {
-		public override List<User> searchUsersWithRole(String value, Set<Id> rolesIds) {
+		public override List<User> searchUsersWithRole(String value, String likeValue, Set<Id> rolesIds) {
 			String x = null;
 			x.toLowerCase();
 			return null;
