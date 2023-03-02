@@ -16,7 +16,11 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
 			if (result.hasPermission) {
 				this.authorizedUser = true;
 			} else {
+				console.log('sem tu');
+				this.authorizedUser = false;
 				this.validationError = unauthorizedUserLabel;
+				console.log(this.authorizedUser);
+				console.log(this.validationError);
 			}
 		});
 	}
@@ -80,7 +84,6 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
 			ids: null,
 			isEmptyCase: true
 		};
-		this.validationError = null;
 		this.showSpinner = false;
 	}
 

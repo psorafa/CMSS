@@ -182,14 +182,11 @@ public with sharing class NewPMChangeRequestController {
 			if (String.isEmpty(userInput.manager)) {
 				throw new ProcessingException(Label.Please_fill_in_New_Portfolio_Manager);
 			}
-			if (String.isEmpty(userInput.type)) {
-				throw new ProcessingException(Label.Please_fill_in_Change_Type);
-			}
 			if (userInput.type != 'A') {
 				throw new ProcessingException(Label.Only_Change_Type_of_A_allowed);
 			}
 		}
-		if (String.isEmpty(userInput.reason) && userInput.isEmptyCase == false) {
+		if (String.isEmpty(userInput.reason) && userInput.ids != null && !userInput.ids.isEmpty()) {
 			throw new ProcessingException(Label.Please_fill_in_Change_Reason);
 		}
 	}
