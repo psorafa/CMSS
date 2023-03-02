@@ -62,7 +62,14 @@ public class TaskTriggerHandler extends TriggerHandler {
 
 	public void editCentralActivities(Map<Id, Task> oldTasksMap, List<Task> newTasks) {
 		Profile userProfile = [SELECT Id, Name FROM Profile WHERE Id = :UserInfo.getProfileId()];
+		Map<String, Object> differences = new Map<String, Object>();
 		Map<String, Schema.SObjectField> accessibleFieldsMap = Schema.SObjectType.Task.fields.getMap();
+		Schema.FieldSet fieldSetToIgnore = Schema.SObjectType.Task.FieldSets.Edit_Central_activities_to_ignore;
+		List<Schema.FieldSetMember> fieldSetToIgnoreList = fieldSetToIgnore.getFields();
+		Set<String> fieldSetToIgnoreSet = new Set<String>();
+		for (Schema.FieldSetMember member : fieldSetToIgnoreList) {
+			fieldSetToIgnoreSet.add(member.getFieldPath().toLowerCase());
+		}
 
 		if (
 			userProfile.Name == 'CMSS User' ||
@@ -72,46 +79,14 @@ public class TaskTriggerHandler extends TriggerHandler {
 			List<Task> tasksToCheckDiff = new List<Task>();
 			for (Task task : newTasks) {
 				Task oldTask = oldTasksMap.get(task.id);
-				if (
-					(oldTask.Category__c == '1' ||
-					task.Category__c == '1' ||
-					oldTask.Category__c == '2' ||
-					task.Category__c == '2')
-				) {
+				if ((task.Category__c == '1' || task.Category__c == '2')) {
 					tasksToCheckDiff.add(task);
 				}
 			}
 			for (Task task : tasksToCheckDiff) {
 				Task oldTask = oldTasksMap.get(task.id);
-				Map<String, Object> diff = compareTasks(task, oldTask, accessibleFieldsMap);
-				if (
-					!((diff.containsKey('taskresult__c') && diff.size() == 1) ||
-					(diff.containsKey('status') && diff.size() == 1) ||
-					(diff.containsKey('status') &&
-					diff.containsKey('isclosedpositive__c') &&
-					diff.size() == 2) ||
-					(diff.containsKey('status') &&
-					diff.containsKey('isclosedpositive__c') &&
-					diff.containsKey('isclosednegative__c') &&
-					diff.size() == 3) ||
-					(diff.containsKey('taskresult__c') &&
-					diff.containsKey('status') &&
-					diff.size() == 2) ||
-					(diff.containsKey('taskresult__c') &&
-					diff.containsKey('status') &&
-					diff.containsKey('isclosedpositive__c') &&
-					diff.size() == 3) ||
-					(diff.containsKey('taskresult__c') &&
-					diff.containsKey('status') &&
-					diff.containsKey('isclosednegative__c') &&
-					diff.size() == 3) ||
-					(diff.containsKey('taskresult__c') &&
-					diff.containsKey('status') &&
-					diff.containsKey('isclosedpositive__c') &&
-					diff.containsKey('isclosednegative__c') &&
-					diff.size() == 4) ||
-					diff.isEmpty())
-				) {
+				Map<String, Object> diff = compareTasks(task, oldTask, accessibleFieldsMap, fieldSetToIgnoreSet);
+				if (!diff.isEmpty()) {
 					task.addError('Pro aktivity centrály můžete měnit pouze parametr Výsledek nebo Stav');
 					break;
 				}
@@ -122,7 +97,8 @@ public class TaskTriggerHandler extends TriggerHandler {
 	public static Map<String, Object> compareTasks(
 		Task task1,
 		Task task2,
-		Map<String, Schema.SObjectField> accessibleFieldsMap
+		Map<String, Schema.SObjectField> accessibleFieldsMap,
+		Set<String> fieldsToIgnore
 	) {
 		Map<String, Object> differences = new Map<String, Object>();
 		for (String fieldName : accessibleFieldsMap.keySet()) {
@@ -131,8 +107,10 @@ public class TaskTriggerHandler extends TriggerHandler {
 			}
 			Object value1 = task1.get(fieldName);
 			Object value2 = task2.get(fieldName);
-			if (value1 != value2 && value2 != null) {
-				differences.put(fieldName, value2);
+			if (value1 != value2 && value2 != null && !fieldsToIgnore.contains(fieldName.toLowerCase())) {
+				{
+					differences.put(fieldName, value2);
+				}
 			}
 		}
 		return differences;
