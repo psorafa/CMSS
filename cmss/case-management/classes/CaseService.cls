@@ -307,6 +307,22 @@ public with sharing class CaseService {
 		}
 	}
 
+	public static void upsertCaseSharing(List<sObject> newCasesList, Map<Id, sObject> oldCasesMap) {
+		List<String> fieldNamesList = new List<String>{
+			'RegionalManager__c',
+			'RegionalManagerAssistant__c',
+			'NewPortfolioManager__c'
+		};
+		Map<String, SharingService.sharingSettingsWrap> sharingSettingsMap = new Map<String, SharingService.sharingSettingsWrap>();
+		for (String field : fieldNamesList) {
+			sharingSettingsMap.put(
+				field,
+				new SharingService.sharingSettingsWrap('CaseAccessLevel', 'Read', 'Manual', '')
+			);
+		}
+		SharingService.upsertSharing(newCasesList, oldCasesMap, sharingSettingsMap, 'CaseId');
+	}
+
 	public class CaseOwnerPermissionMissingException extends Exception {
 	}
 }

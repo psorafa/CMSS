@@ -1,10 +1,9 @@
 public class ProductionTriggerHandler extends TriggerHandler {
 	public override void afterInsert() {
-		ProductionService.insertProductionSharing(Trigger.new);
+		ProductionService.upsertProductionSharing(Trigger.new, new Map<Id, Production__c>());
 	}
 
 	public override void afterUpdate() {
-		ProductionService.deleteProductionSharing(Trigger.old);
-		ProductionService.insertProductionSharing(Trigger.new);
+		ProductionService.upsertProductionSharing(Trigger.new, Trigger.oldMap);
 	}
 }

@@ -1,105 +1,31 @@
 public with sharing class ProductionService {
-	public static void deleteProductionSharing(List<Production__c> oldProductions) {
-		try {
-			List<Id> oldProductionIDs = new List<Id>();
-			for (Production__c prod : oldProductions) {
-				oldProductionIDs.add(prod.Id);
+	public static void upsertProductionSharing(List<sObject> newProductionList, Map<Id, sObject> oldProductionMap) {
+		Map<String, List<String>> fieldNamesMap = new Map<String, List<String>>{
+			'TeamManager__c' => new List<String>{
+				'CurrentTeamManager__c',
+				Schema.Production__Share.rowCause.TeamManager__c
+			},
+			'RegionManager__c' => new List<String>{
+				'CurrentRegionManager__c',
+				Schema.Production__Share.rowCause.RegionManager__c
+			},
+			'SalesNetManager__c' => new List<String>{
+				'CurrentSalesNetManager__c',
+				Schema.Production__Share.rowCause.SalesNetManager__c
 			}
-
-			List<Production__Share> oldProductionShrs = [
-				SELECT Id
-				FROM Production__Share
-				WHERE
-					ParentId IN :oldProductionIDs
-					AND (RowCause = :Schema.Production__Share.rowCause.TeamManager__c
-					OR RowCause = :Schema.Production__Share.rowCause.RegionManager__c
-					OR RowCause = :Schema.Production__Share.rowCause.SalesNetManager__c)
-			];
-			delete oldProductionShrs;
-		} catch (Exception e) {
-			Logger.error('Error in ProductionService.deleteProductionSharing', e);
-		} finally {
-			Logger.saveLogs();
+		};
+		Map<String, SharingService.sharingSettingsWrap> sharingSettingsMap = new Map<String, SharingService.sharingSettingsWrap>();
+		for (String field : fieldNamesMap.keySet()) {
+			sharingSettingsMap.put(
+				field,
+				new SharingService.sharingSettingsWrap(
+					'AccessLevel',
+					'Read',
+					fieldNamesMap.get(field)[1],
+					fieldNamesMap.get(field)[0]
+				)
+			);
 		}
-	}
-
-	private static Production__Share prepareProductionShare(
-		Id productionId,
-		Id userId,
-		String accessLevel,
-		String rowCause
-	) {
-		Production__Share mngrShr = new Production__Share(
-			ParentId = productionId,
-			UserOrGroupId = userId,
-			AccessLevel = accessLevel,
-			RowCause = rowCause
-		);
-		return mngrShr;
-	}
-
-	public static void insertProductionSharing(List<Production__c> newProductions) {
-		try {
-			List<Production__Share> productionShrs = new List<Production__Share>();
-
-			for (Production__c production : newProductions) {
-				if (production.CurrentTeamManager__c != production.TeamManager__c) {
-					productionShrs.add(
-						prepareProductionShare(
-							production.Id,
-							production.TeamManager__c,
-							'Read',
-							Schema.Production__Share.rowCause.TeamManager__c
-						)
-					);
-				}
-				if (production.CurrentRegionManager__c != production.RegionManager__c) {
-					productionShrs.add(
-						prepareProductionShare(
-							production.Id,
-							production.RegionManager__c,
-							'Read',
-							Schema.Production__Share.rowCause.RegionManager__c
-						)
-					);
-				}
-				if (production.CurrentSalesNetManager__c != production.SalesNetManager__c) {
-					productionShrs.add(
-						prepareProductionShare(
-							production.Id,
-							production.SalesNetManager__c,
-							'Read',
-							Schema.Production__Share.rowCause.SalesNetManager__c
-						)
-					);
-				}
-			}
-			if (!productionShrs.isEmpty()) {
-				Database.SaveResult[] lsr = Database.insert(productionShrs, false);
-				Integer i = 0;
-				for (Database.SaveResult sr : lsr) {
-					if (!sr.isSuccess()) {
-						Database.Error err = sr.getErrors()[0];
-						if (
-							!(err.getStatusCode() == StatusCode.FIELD_FILTER_VALIDATION_EXCEPTION &&
-							err.getMessage().contains('AccessLevel'))
-						) {
-							Logger.error(
-								'Error in ProductionService.insertProductionSharing',
-								'Unable to grant sharing access for Id=' +
-								productionShrs[i].ParentId +
-								' due to following exception: ' +
-								err.getMessage()
-							);
-						}
-					}
-					i++;
-				}
-			}
-		} catch (Exception e) {
-			Logger.error('Error in ProductionService.insertProductionSharing', e);
-		} finally {
-			Logger.saveLogs();
-		}
+		SharingService.upsertSharing(newProductionList, oldProductionMap, sharingSettingsMap, 'ParentId');
 	}
 }
