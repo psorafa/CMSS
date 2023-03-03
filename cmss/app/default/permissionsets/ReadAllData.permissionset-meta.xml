@@ -3810,6 +3810,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Commission__c.IsNotIncludedExpenditureFlatRate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Commission__c.Modulo10Indicator__c</field>
         <readable>true</readable>
     </fieldPermissions>

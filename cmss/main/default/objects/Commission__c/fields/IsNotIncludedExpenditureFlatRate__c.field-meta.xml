@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsNotIncludedExpenditureFlatRate__c</fullName>
+    <externalId>false</externalId>
+    <formula>AND(
+ISPICKVAL(StatementType__c, &quot;190&quot;),
+EntitlementAmount__c = 0,
+PendingAmount__c = 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Not Included Expenditure Flat Rate</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
