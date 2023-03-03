@@ -102,16 +102,6 @@
         </rules>
     </decisions>
     <environments>Default</environments>
-    <formulas>
-        <name>expiryDateLimitBottom</name>
-        <dataType>Date</dataType>
-        <expression>{!$Flow.CurrentDate} + (-1)</expression>
-    </formulas>
-    <formulas>
-        <name>expiryDateLimitTop</name>
-        <dataType>Date</dataType>
-        <expression>{!$Flow.CurrentDate}</expression>
-    </formulas>
     <interviewLabel>CaseOnCreate {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Case On Create Portfolio Management Change Request</label>
     <loops>
@@ -156,7 +146,7 @@
         <connector>
             <targetReference>Iterate_over_expired_requests</targetReference>
         </connector>
-        <filterLogic>1 AND (2 OR 3) AND 4 AND 5</filterLogic>
+        <filterLogic>1 AND (2 OR 3) AND 4</filterLogic>
         <filters>
             <field>RecordTypeId</field>
             <operator>EqualTo</operator>
@@ -180,16 +170,9 @@
         </filters>
         <filters>
             <field>ExpiryDate__c</field>
-            <operator>GreaterThan</operator>
-            <value>
-                <elementReference>expiryDateLimitBottom</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>ExpiryDate__c</field>
             <operator>LessThan</operator>
             <value>
-                <elementReference>expiryDateLimitTop</elementReference>
+                <elementReference>$Flow.CurrentDate</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
