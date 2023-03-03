@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
         <apexClass>APRD__ObjectDetailController</apexClass>
@@ -65,17 +65,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Access_Log__c.Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Access_Log__c.TaskLetterId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Access_Log__c.TaskLetterType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Access_Log__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -236,6 +236,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.ConsentManualChange__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Consents__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -440,17 +445,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.HasCSOBId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.GroupSegmentLastUpdate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.HasCryptoCurrency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.HasCSOBId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -471,6 +476,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.HasSbProduct__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.ChannelsAllowed__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2985,11 +2995,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.CPECallAttempts__c</field>
-        <readable>true</readable>
-    </fieldPermissions>        
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.CaseID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3106,6 +3111,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.CPECallAttempts__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3686,11 +3696,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Commission__c.BillingDate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Commission__c.BusinessCaseDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4306,6 +4311,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CreditCommission__c.FinalRate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CreditCommission__c.HalfYearPeriod__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5085,6 +5095,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>LoanCaseDoc__c.AcceptedAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>LoanCaseDoc__c.DueDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5100,6 +5115,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>LoanCaseDoc__c.NotAcceptedAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>LoanCaseDoc__c.Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5111,6 +5131,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>LoanCaseDoc__c.ReceiveDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>LoanCaseDoc__c.RequestedAmount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5840,12 +5865,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementRequest__c.CaseStatus__c</field>
+        <field>PortfolioManagementRequest__c.CaseChangeReason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>PortfolioManagementRequest__c.CaseChangeReason__c</field>
+        <field>PortfolioManagementRequest__c.CaseStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8222,13 +8247,13 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>CustomSearchFilter__c.Text</recordType>
+        <recordType>CustomSearchFilter__c.Picklist</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>CustomSearchFilter__c.Picklist</recordType>
+        <recordType>CustomSearchFilter__c.Text</recordType>
         <visible>true</visible>
-    </recordTypeVisibilities>     
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Knowledge__kav.Evaluation</recordType>
         <visible>true</visible>
