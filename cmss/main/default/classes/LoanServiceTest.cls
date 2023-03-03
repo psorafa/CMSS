@@ -28,7 +28,6 @@ public class LoanServiceTest {
 		DOM.Document doc = new DOM.Document();
 		DOM.XmlNode mockNode = doc.createRootElement('Envelope', 'http://schemas.xmlsoap.org/soap/envelope/', 'env');
 
-
 		LoanServiceDataTypes.ListOfPackagesType Obj1 = new LoanServiceDataTypes.ListOfPackagesType();
 		Obj1.populateXmlNode(mockNode);
 		LoanServiceDataTypes.LoadPackagesListRequestType Obj2 = new LoanServiceDataTypes.LoadPackagesListRequestType();
@@ -38,5 +37,4 @@ public class LoanServiceTest {
 		LoanServiceDataTypes.PackagesItemType Obj5 = new LoanServiceDataTypes.PackagesItemType();
 		Obj5.populateXmlNode(mockNode);
 	}
-
 }

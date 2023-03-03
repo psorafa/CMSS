@@ -19,7 +19,7 @@ public class PersonManagementSOAPService extends ESBService {
 		);
 		request_x.populateXmlNode(methodNode);
 
-		HttpResponse res = new Callout(this.ENDPOINT_BASE + ENDPOINT_PATH)
+		HttpResponse res = new Callout(this.MTLS_ENDPOINT_BASE + ENDPOINT_PATH)
 			.setClientCertificateName(CERTIFICATE_NAME)
 			.setHeader('SOAPAction', 'http://service.cmss.cz/person/PersonManagementService/v10/searchCSOBSNonClient')
 			.setTimeout(TIMEOUT)
@@ -53,7 +53,7 @@ public class PersonManagementSOAPService extends ESBService {
 		);
 		request_x.populateXmlNode(methodNode);
 
-		HttpResponse res = new Callout(this.ENDPOINT_BASE + ENDPOINT_PATH)
+		HttpResponse res = new Callout(this.MTLS_ENDPOINT_BASE + ENDPOINT_PATH)
 			.setClientCertificateName(CERTIFICATE_NAME)
 			.setHeader('SOAPAction', 'http://service.cmss.cz/person/PersonManagementService/v10/updateCSOBNonClient')
 			.setTimeout(TIMEOUT)

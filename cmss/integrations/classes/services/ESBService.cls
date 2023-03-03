@@ -8,6 +8,8 @@ public virtual class ESBService {
 	protected String CERTIFICATE_NAME = IntegrationSettings__c.getOrgDefaults().CertificateName__c;
 	@testVisible
 	protected String ENDPOINT_BASE = IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c;
+	@testVisible
+	protected String MTLS_ENDPOINT_BASE = IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c + ':8443';
 
 	@testVisible
 	protected DOM.XmlNode populateDoc(DOM.Document doc, Map<String, String> namespaces) {

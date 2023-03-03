@@ -18,7 +18,7 @@ public class LoanDetailInfoService extends ESBService {
 		);
 		request_x.populateXmlNode(methodNode);
 
-		HttpResponse res = new Callout(this.ENDPOINT_BASE + ENDPOINT_PATH)
+		HttpResponse res = new Callout(this.MTLS_ENDPOINT_BASE + ENDPOINT_PATH)
 			.setClientCertificateName(CERTIFICATE_NAME)
 			.setHeader('SOAPAction', SOAP_ACTION)
 			.post(doc);

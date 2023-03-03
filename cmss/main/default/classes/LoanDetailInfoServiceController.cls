@@ -15,6 +15,7 @@ public without sharing class LoanDetailInfoServiceController {
 		System.debug('rawResponse ' + rawResponse.getBody());
 		return rawResponse;
 	}
+
 	public static String loanDetailInfoErrorMessage(HTTPResponse rawResponse) {
 		Integer responseStatusCode = rawResponse.getStatusCode();
 		if (responseStatusCode == 500) {
@@ -26,6 +27,7 @@ public without sharing class LoanDetailInfoServiceController {
 			return null;
 		}
 	}
+
 	public static UpdateLoanAssetsFlowController.LoanDetailInfoResult loanDetailInfoResult(HTTPResponse rawResponse) {
 		if (rawResponse.getStatusCode() != 500) {
 			Dom.Document responseDoc = rawResponse.getBodyDocument();
