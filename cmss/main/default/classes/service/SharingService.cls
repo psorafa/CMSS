@@ -119,6 +119,7 @@ public class SharingService {
 	) {
 		String sObjectName = String.valueOf(newSObjectVersionList[0].getSObjectType());
 		Boolean isCustom = newSObjectVersionList[0].getSObjectType().getDescribe().isCustom();
+		Set<Id> activeUserIDsSet = new Map<Id, SObject>([SELECT Id, IsActive FROM User WHERE IsActive = TRUE]).keySet();
 		String shareObjectName;
 		Boolean compareFieldCondition = true;
 
@@ -143,7 +144,8 @@ public class SharingService {
 				if (
 					(oldSObjectVersionMap.size() == 0 ||
 					(obj.get(objectFieldName) != oldSObjectVersionMap.get(obj.Id).get(objectFieldName))) &&
-					compareFieldCondition
+					compareFieldCondition &&
+					activeUserIDsSet.contains((Id) obj.get(objectFieldName))
 				) {
 					shareInsertList.add(
 						prepareShareRecord(
