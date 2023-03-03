@@ -10,6 +10,10 @@
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
+            <values>LAST_MONTH</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
             <values>THIS_YEAR</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
