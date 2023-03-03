@@ -12,14 +12,30 @@ import { getObjectInfo, getPicklistValues } from 'lightning/uiObjectInfoApi';
 
 export default class NewPMChangeRequestModal extends NavigationMixin(LightningElement) {
 	connectedCallback() {
-		checkUserPermission().then((result) => {
-			if (result.hasPermission) {
-				this.authorizedUser = true;
-			} else {
-				this.authorizedUser = false;
-				this.validationError = unauthorizedUserLabel;
-			}
-		});
+		this.showSpinner = true;
+		checkUserPermission()
+			.then(result => {
+				this.hasPermission = result;
+			})
+			.then(_ => {
+				this.evaluatePermissionToShowModal();
+				this.showSpinner = false;
+			})
+			.catch(error => {
+				console.error(error);
+				this.validationError = error.body.message;
+				this.showSpinner = false;
+			});
+	}
+
+	evaluatePermissionToShowModal() {
+		if (!this.hasPermission && (this._ids == null || this._ids.length == 0)) {
+			this.showModal = false;
+			this.validationError = unauthorizedUserLabel;
+		} else {
+			this.showModal = true;
+			this.validationError = null;
+		}
 	}
 
 	@api
@@ -36,6 +52,7 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
 		} else {
 			this._ids = null;
 		}
+		this.evaluatePermissionToShowModal();
 	}
 
 	@wire(getObjectInfo, { objectApiName: 'Case' })
@@ -57,7 +74,8 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
 	show = false;
 	validationError = null;
 	showSpinner = false;
-	authorizedUser = false;
+	hasPermission = false;
+	showModal = false;
 	progress = 0;
 	@track data = {};
 
