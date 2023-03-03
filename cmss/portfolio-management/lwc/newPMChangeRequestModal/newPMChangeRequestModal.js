@@ -12,10 +12,8 @@ import { getObjectInfo, getPicklistValues } from 'lightning/uiObjectInfoApi';
 
 export default class NewPMChangeRequestModal extends NavigationMixin(LightningElement) {
 	connectedCallback() {
-		checkUserPermission().then((result) => {
-			if (result.hasPermission) {
-				this.authorizedUser = true;
-			} else {
+		checkUserPermission().then(result => {
+			if (!result.hasPermission && (this._ids == null || this._ids.length == 0)) {
 				this.authorizedUser = false;
 				this.validationError = unauthorizedUserLabel;
 			}
@@ -57,7 +55,7 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
 	show = false;
 	validationError = null;
 	showSpinner = false;
-	authorizedUser = false;
+	authorizedUser = true;
 	progress = 0;
 	@track data = {};
 
