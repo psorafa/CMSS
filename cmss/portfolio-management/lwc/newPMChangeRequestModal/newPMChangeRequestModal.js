@@ -13,11 +13,19 @@ import { getObjectInfo, getPicklistValues } from 'lightning/uiObjectInfoApi';
 export default class NewPMChangeRequestModal extends NavigationMixin(LightningElement) {
 	connectedCallback() {
 		this.showSpinner = true;
-		checkUserPermission().then(result => {
-			this.hasPermission = result;
-			this.showSpinner = false;
-			this.evaluatePermissionToShowModal();
-		});
+		checkUserPermission()
+			.then(result => {
+				this.hasPermission = result;
+			})
+			.then(_ => {
+				this.evaluatePermissionToShowModal();
+				this.showSpinner = false;
+			})
+			.catch(error => {
+				console.error(error);
+				this.validationError = error.body.message;
+				this.showSpinner = false;
+			});
 	}
 
 	evaluatePermissionToShowModal() {
