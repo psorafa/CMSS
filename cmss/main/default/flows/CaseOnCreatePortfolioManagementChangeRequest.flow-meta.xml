@@ -44,7 +44,7 @@
             <assignToReference>Iterate_over_expired_requests.Status</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>6</stringValue>
+                <stringValue>26</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -92,7 +92,7 @@
                 <leftValueReference>Iterate_over_expired_requests.Status</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>2</stringValue>
+                    <stringValue>22</stringValue>
                 </rightValue>
             </conditions>
             <connector>
