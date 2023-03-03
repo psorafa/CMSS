@@ -105,9 +105,9 @@ public class Callout {
 
 	private HttpResponse executeCallout(String httpVerb, Object requestBody) {
 		this.request.setMethod(httpVerb);
+		this.setRequestBody(requestBody);
 		this.setHeaders();
 		this.setEndpointAndParameters();
-		this.setRequestBody(requestBody);
 
 		HttpResponse response;
 		try {
