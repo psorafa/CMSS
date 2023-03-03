@@ -9,7 +9,7 @@
     <columns>RecipientRole__c</columns>
     <filterScope>Team</filterScope>
     <filters>
-        <field>CREATED_DATE</field>
+        <field>DUE_DATE</field>
         <operation>lessOrEqual</operation>
         <value>LAST_N_DAYS:30</value>
     </filters>
