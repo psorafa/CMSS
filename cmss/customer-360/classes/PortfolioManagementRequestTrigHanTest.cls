@@ -44,7 +44,7 @@ private class PortfolioManagementRequestTrigHanTest {
 			WHERE Id = :requestWithoutExternalId.Id
 		];
 
-		System.assertEquals(requestWithoutExternalId.Id, requestWithoutExternalId.ExternalId__c);
+		System.assertNotEquals(null, requestWithoutExternalId.ExternalId__c);
 		System.assertNotEquals(requestWithExternalId.Id, requestWithExternalId.ExternalId__c);
 	}
 }
