@@ -76,11 +76,7 @@ class TaskTriggerHandlerTest {
 		update task;
 		Test.stopTest();
 
-		task = [
-			SELECT ActivityType__c
-			FROM Task
-			WHERE Id = :task.Id
-		];
+		task = [SELECT ActivityType__c FROM Task WHERE Id = :task.Id];
 
 		System.assertEquals('4', task.ActivityType__c);
 	}
@@ -386,15 +382,16 @@ class TaskTriggerHandlerTest {
 		User u = TestDataFactory.getUserWithProfile(new User(), 'CMSS User');
 		insert u;
 
-		Task task = new Task(
-			WhatId = acc1.Id,
-			OwnerId = u.Id,
-			Category__c = '1',
-			Subject = 'test',
-			taskresult__c = '1',
-			Status = '1',
-			ActivityDate = Date.today().addYears(1)
+		Task task = TestDataFactory.getTask(
+			new Task(
+				WhatId = acc1.Id,
+				Category__c = '1',
+				Subject = 'test',
+				ActivityDate = Date.today().addYears(1),
+				OwnerId = u.Id
+			)
 		);
+
 		insert task;
 		Exception expectedException;
 
