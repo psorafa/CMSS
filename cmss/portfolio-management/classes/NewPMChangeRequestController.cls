@@ -68,11 +68,15 @@ public with sharing class NewPMChangeRequestController {
 	}
 
 	@AuraEnabled(cacheable=true)
-	public static PermissionWrapper checkUserPermission() {
-		NewPMChangeRequestController controller = new NewPMChangeRequestController(JSON.serialize(new Data()));
-		PermissionWrapper wrap = new PermissionWrapper();
-		wrap.hasPermission = controller.canCreateEmptyRequest;
-		return wrap;
+	public static Boolean checkUserPermission() {
+		try {
+			return FeatureManagement.checkPermission('CreateEmptyPortfolioManagementCases');
+		} catch (Exception e) {
+			Logger.error('Unexpected error occurred', e);
+			throw getAuraHandledException('Unexpected error occurred: ' + e.getMessage());
+		} finally {
+			Logger.saveLogs();
+		}
 	}
 
 	private NewPMChangeRequestController(String jsonData) {
@@ -244,11 +248,6 @@ public with sharing class NewPMChangeRequestController {
 		public SaveResult(Id caseId) {
 			this.caseId = caseId;
 		}
-	}
-
-	public class PermissionWrapper {
-		@AuraEnabled
-		public Boolean hasPermission;
 	}
 
 	@TestVisible

@@ -22,11 +22,7 @@
 							{labels.NewPortfolioManagementChangeRequest}
 						</h1>
 					</div>
-					<div
-						if:true={authorizedUser}
-						class="slds-modal__content slds-p-around_medium"
-						id="modal-content-id-1"
-					>
+					<div if:true={showModal} class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
 						<lightning-spinner if:true={showSpinner}></lightning-spinner>
 
 						<c-new-portfolio-manager-select onchange={handleManagerChange}></c-new-portfolio-manager-select>
@@ -54,7 +50,7 @@
 					</div>
 					<div class="slds-modal__footer">
 						<button class="slds-button slds-button_neutral" onclick={handleClose}>{labels.Cancel}</button>
-						<button if:true={authorizedUser} class="slds-button slds-button_brand" onclick={handleSave}>
+						<button if:true={showModal} class="slds-button slds-button_brand" onclick={handleSave}>
 							{labels.Save}
 						</button>
 						<div if:true={validationError} class="slds-text-color_error slds-text-align_right">
