@@ -106,6 +106,7 @@ export default class CommissionReportsDetailParams extends LightningElement {
 					this.adminPermissionSet = Number(cnt) > 0 ? true : false;
 					if (this.adminPermissionSet || this.adminProfile) {
 						this.showTribeCPU = true;
+						this.cpuValue = '';
 					}
 				})
 				.catch((error) => {
