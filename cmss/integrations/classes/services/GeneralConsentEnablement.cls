@@ -1,7 +1,6 @@
 public with sharing class GeneralConsentEnablement {
-
 	private static CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
-	private static ConsentCalloutService.ConsentServicePort stub = new ConsentCalloutService.ConsentServicePort();
+	private static ConsentCalloutService stub = new ConsentCalloutService();
 
 	@AuraEnabled
 	public static String enableGeneralConsents(Consent__c c) {
@@ -12,14 +11,18 @@ public with sharing class GeneralConsentEnablement {
 				accountIds.add(c.SubstitutePerson__c);
 			}
 
-			Map<Id, Account> idsToAccounts = new Map<Id, Account>([
-				SELECT GlobalId__c
-				FROM Account
-				WHERE Id IN :accountIds
-			]);
+			Map<Id, Account> idsToAccounts = new Map<Id, Account>(
+				[SELECT GlobalId__c FROM Account WHERE Id IN :accountIds]
+			);
 
-			ConsentDataTypesService.EnableGeneralConsentRequestBodyType body = ConsentService.getEnableGeneralWSDefinition(c, idsToAccounts);
-			ConsentDataTypesService.EnableGeneralConsentResponseBodyType response = stub.enableGeneralConsent_Http(header, body);
+			ConsentDataTypesService.EnableGeneralConsentRequestBodyType body = ConsentService.getEnableGeneralWSDefinition(
+				c,
+				idsToAccounts
+			);
+			ConsentDataTypesService.EnableGeneralConsentResponseBodyType response = stub.enableGeneralConsent_Http(
+				header,
+				body
+			);
 			if (response != null) {
 				if (response.consentGuid != null) {
 					String finalResponse = 'OK';
@@ -45,8 +48,15 @@ public with sharing class GeneralConsentEnablement {
 	}
 
 	private static String disableGeneralConsents(Consent__c c, Map<Id, Account> idsToAccounts, String externalId) {
-		ConsentDataTypesService.DisableGeneralConsentRequestBodyType body = ConsentService.getDisableGeneralWSDefinition(c, idsToAccounts, externalId);
-		ConsentDataTypesService.DisableGeneralConsentResponseBodyType response = stub.disableGeneralConsent_Http(header, body);
+		ConsentDataTypesService.DisableGeneralConsentRequestBodyType body = ConsentService.getDisableGeneralWSDefinition(
+			c,
+			idsToAccounts,
+			externalId
+		);
+		ConsentDataTypesService.DisableGeneralConsentResponseBodyType response = stub.disableGeneralConsent_Http(
+			header,
+			body
+		);
 		if (response != null) {
 			if (response.success != null && response.success.Successful == true) {
 				return 'OK';

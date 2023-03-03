@@ -1,10 +1,8 @@
 public with sharing class InternalConsentEnablement {
-
 	@InvocableMethod
 	public static Result[] enableInternalConsents(Request[] requests) {
 		try {
-			Result[] results = new Result[]{
-			};
+			Result[] results = new List<Result>{};
 
 			if (requests[0].consentValue != '1') {
 				return null;
@@ -19,29 +17,28 @@ public with sharing class InternalConsentEnablement {
 				Account__c = requests[0].accountId
 			);
 
-			Account[] accounts = [
-				SELECT GlobalId__c
-				FROM Account
-				WHERE Id = :requests[0].accountId
-			];
+			Account[] accounts = [SELECT GlobalId__c FROM Account WHERE Id = :requests[0].accountId];
 			if (accounts.size() == 0) {
 				return null;
 			}
 
 			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
-			ConsentCalloutService.ConsentServicePort stub = new ConsentCalloutService.ConsentServicePort();
+			ConsentCalloutService stub = new ConsentCalloutService();
 
-			ConsentDataTypesService.EnableInternalConsentRequestBodyType body = ConsentService.getEnableInternalConsentWSDefinition(c, accounts[0]);
-			ConsentDataTypesService.EnableInternalConsentResponseBodyType response = stub.enableInternalConsent_Http(header, body);
+			ConsentDataTypesService.EnableInternalConsentRequestBodyType body = ConsentService.getEnableInternalConsentWSDefinition(
+				c,
+				accounts[0]
+			);
+			ConsentDataTypesService.EnableInternalConsentResponseBodyType response = stub.enableInternalConsent_Http(
+				header,
+				body
+			);
 			if (response != null) {
 				results.add(new Result(response.consentGuid));
 			}
 			Set<Account> accountsToUpdate = new Set<Account>();
 			for (Request request : requests) {
-				accountsToUpdate.add(new Account(
-					Id = request.accountId,
-					ConsentManualChange__c = Date.today()
-				));
+				accountsToUpdate.add(new Account(Id = request.accountId, ConsentManualChange__c = Date.today()));
 			}
 			update new List<Account>(accountsToUpdate);
 			return results;

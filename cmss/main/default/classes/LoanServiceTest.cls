@@ -7,7 +7,6 @@ public class LoanServiceTest {
 
 	@IsTest
 	static void coverHttp() {
-		LoanService.CERTIFICATE_NAME = null;
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
@@ -16,7 +15,7 @@ public class LoanServiceTest {
 			null
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
-		LoanService.LoanServicePort testObject = new LoanService.LoanServicePort();
+		LoanService testObject = new LoanService();
 		Test.startTest();
 		testObject.loadPackagesList_Http(null, null);
 		Test.stopTest();

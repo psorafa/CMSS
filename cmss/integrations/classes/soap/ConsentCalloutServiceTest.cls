@@ -37,7 +37,7 @@ private class ConsentCalloutServiceTest {
 				FROM Log__c
 				WHERE
 					Message__c = 'Outgoing request'
-					AND ClassMethodName__c = 'ConsentCalloutService.ConsentServicePort.disableGeneralConsent_Http'
+					AND ClassMethodName__c = 'ConsentCalloutService.disableGeneralConsent_Http'
 			]
 			.size() > 0
 		);
@@ -60,8 +60,8 @@ private class ConsentCalloutServiceTest {
 		String response = GeneralConsentEnablement.enableGeneralConsents(c);
 		Test.stopTest();
 
-		System.assert(response == 'Připojení k CPE DB se nezdařilo');
-		System.assert([SELECT Id FROM Consent__c].size() == 0);
+		System.assertEquals(response, 'Připojení k CPE DB se nezdařilo');
+		System.assertEquals(0, [SELECT Id FROM Consent__c].size());
 	}
 
 	@IsTest
@@ -131,9 +131,7 @@ private class ConsentCalloutServiceTest {
 				[
 						SELECT Id
 						FROM Log__c
-						WHERE
-							Message__c = 'Outgoing request'
-							AND ClassMethodName__c LIKE '%ConsentCalloutService.ConsentServicePort%'
+						WHERE Message__c = 'Outgoing request' AND ClassMethodName__c LIKE '%ConsentCalloutService%'
 					]
 					.size()
 			);

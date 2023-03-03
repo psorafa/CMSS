@@ -6,7 +6,6 @@ public class LoanDocumentsServiceTest {
 	}
 	@IsTest
 	static void coverHttp() {
-
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
 			200,
 			'OK',
@@ -15,8 +14,7 @@ public class LoanDocumentsServiceTest {
 			null
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
-		LoanDocumentsService.LoanDocumentsServicePort testObject = new LoanDocumentsService.LoanDocumentsServicePort();
-		LoanDocumentsService.certificateName = null;
+		LoanDocumentsService testObject = new LoanDocumentsService();
 		Test.startTest();
 		testObject.getLoanDocumentsList_Http(null, null);
 		Test.stopTest();
@@ -26,7 +24,6 @@ public class LoanDocumentsServiceTest {
 		LoanDocumentsServiceDataTypes parentObject = new LoanDocumentsServiceDataTypes();
 		DOM.Document doc = new DOM.Document();
 		DOM.XmlNode mockNode = doc.createRootElement('Envelope', 'http://schemas.xmlsoap.org/soap/envelope/', 'env');
-
 
 		LoanDocumentsServiceDataTypes.DocumentsItemType Obj1 = new LoanDocumentsServiceDataTypes.DocumentsItemType();
 		Obj1.populateXmlNode(mockNode);
