@@ -1,44 +1,44 @@
-<apex:page id="eDocument" standardController="Task" extensions="EDocumentController">
-    <apex:form id="documentForm">
-        <apex:actionFunction name="loadDocument" action="{!loadDocument}" status="myStatus" oncomplete="setDocumentIFrame();" rerender="docScript"></apex:actionFunction>
-    </apex:form>
-    <apex:outputPanel id="docScript">
-        <apex:variable var="bar" value="foo" rendered="{!showPDF}">
-            <div id="pdf" style="height:100% !important;"></div>
-        </apex:variable>
-        <apex:variable var="foo" value="bar" rendered="{!isError}">
-            <div id="error">
-                {!$Label.eDocumentNotAvailable}
-            </div>
-        </apex:variable>
-        <script>
-            function dataURItoBlob(dataURI) {
-                var byteString = atob(dataURI.split(',')[1]);
-                var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-                var ab = new ArrayBuffer(byteString.length);
-                var ia = new Uint8Array(ab);
-                for (var i = 0; i < byteString.length; i++) {
-                    ia[i] = byteString.charCodeAt(i);
-                }
-                var blob = new Blob([ab], { type: mimeString });
-                return blob;
-            }
-            function setDocumentIFrame() {
-                let base64datas = "data:application/pdf;base64,{!base64Data}";
-                const blob = dataURItoBlob(base64datas);
-                var temp_url = window.URL.createObjectURL(blob) + '#toolbar=0';
-                const target = document.getElementById('pdf');
-                var innerHtml = '<iframe src=\'' + temp_url + '\' id=\'pdfFrame\' width=\'100%\' height=\'100%\' frameborder=\'0\' type=\'application/pdf\'></iframe>';
-                if (target && '{!base64Data}') {
-                    target.innerHTML = innerHtml;
-                    document.getElementById('pdfFrame').height = window.innerHeight;
-                }
-            }
-        </script>
-    </apex:outputPanel>
-    <script>
-        window.onload = function () {
-            loadDocument();
-        }
-    </script>
+<apex:page id="eDocument" standardController="Task" sidebar="false" showHeader="false" extensions="EDocumentController">
+	<apex:form id="documentForm">
+		<apex:actionFunction name="loadDocument" action="{!loadDocument}" status="myStatus" oncomplete="setDocumentIFrame();" rerender="docScript"></apex:actionFunction>
+	</apex:form>
+	<apex:outputPanel id="docScript">
+		<apex:variable var="bar" value="foo" rendered="{!showPDF}">
+			<div id="pdf" style="height:100% !important;"></div>
+		</apex:variable>
+		<apex:variable var="foo" value="bar" rendered="{!isError}">
+			<div id="error">
+				{!$Label.eDocumentNotAvailable}
+			</div>
+		</apex:variable>
+		<script>
+			function dataURItoBlob(dataURI) {
+				var byteString = atob(dataURI.split(',')[1]);
+				var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+				var ab = new ArrayBuffer(byteString.length);
+				var ia = new Uint8Array(ab);
+				for (var i = 0; i < byteString.length; i++) {
+					ia[i] = byteString.charCodeAt(i);
+				}
+				var blob = new Blob([ab], { type: mimeString });
+				return blob;
+			}
+			function setDocumentIFrame() {
+				let base64datas = "data:application/pdf;base64,{!base64Data}";
+				const blob = dataURItoBlob(base64datas);
+				var temp_url = window.URL.createObjectURL(blob) + '#toolbar=0';
+				const target = document.getElementById('pdf');
+				var innerHtml = '<iframe src=\'' + temp_url + '\' id=\'pdfFrame\' width=\'100%\' height=\'100%\' frameborder=\'0\' type=\'application/pdf\'></iframe>';
+				if (target && '{!base64Data}') {
+					target.innerHTML = innerHtml;
+					document.getElementById('pdfFrame').height = window.innerHeight;
+				}
+			}
+		</script>
+	</apex:outputPanel>
+	<script>
+		window.onload = function () {
+			loadDocument();
+		}
+	</script>
 </apex:page>
