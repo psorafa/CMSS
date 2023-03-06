@@ -111,6 +111,20 @@ public class SharingService {
 		}
 	}
 
+	private static Set<Id> extractActiveUsers(
+		List<sObject> newSObjectVersionList,
+		Map<String, sharingSettingsWrap> sharingSettingsMap
+	) {
+		Set<Id> userIDsSet = new Set<Id>();
+		for (sObject obj : newSObjectVersionList) {
+			for (String objectFieldNameWithUserId : sharingSettingsMap.keySet()) {
+				userIDsSet.add((Id) obj.get(objectFieldNameWithUserId));
+			}
+		}
+		return new Map<Id, SObject>([SELECT Id, IsActive FROM User WHERE IsActive = TRUE AND Id IN :userIDsSet])
+			.keySet();
+	}
+
 	public static void upsertSharing(
 		List<sObject> newSObjectVersionList,
 		Map<Id, sObject> oldSObjectVersionMap,
@@ -119,7 +133,7 @@ public class SharingService {
 	) {
 		String sObjectName = String.valueOf(newSObjectVersionList[0].getSObjectType());
 		Boolean isCustom = newSObjectVersionList[0].getSObjectType().getDescribe().isCustom();
-		Set<Id> activeUserIDsSet = new Map<Id, SObject>([SELECT Id, IsActive FROM User WHERE IsActive = TRUE]).keySet();
+		Set<Id> activeUserIDsSet = extractActiveUsers(newSObjectVersionList, sharingSettingsMap);
 		String shareObjectName;
 		Boolean compareFieldCondition = true;
 
@@ -134,28 +148,29 @@ public class SharingService {
 		Set<Id> idSet = new Set<Id>();
 
 		for (sObject obj : newSObjectVersionList) {
-			for (String objectFieldName : sharingSettingsMap.keySet()) {
-				if (String.isNotBlank(sharingSettingsMap.get(objectFieldName).compareFieldName)) {
-					compareFieldCondition = obj.get(objectFieldName) !=
-						obj.get(sharingSettingsMap.get(objectFieldName).compareFieldName)
+			for (String objectFieldNameWithUserId : sharingSettingsMap.keySet()) {
+				if (String.isNotBlank(sharingSettingsMap.get(objectFieldNameWithUserId).compareFieldName)) {
+					compareFieldCondition = obj.get(objectFieldNameWithUserId) !=
+						obj.get(sharingSettingsMap.get(objectFieldNameWithUserId).compareFieldName)
 						? true
 						: false;
 				}
 				if (
 					(oldSObjectVersionMap.size() == 0 ||
-					(obj.get(objectFieldName) != oldSObjectVersionMap.get(obj.Id).get(objectFieldName))) &&
+					(obj.get(objectFieldNameWithUserId) !=
+					oldSObjectVersionMap.get(obj.Id).get(objectFieldNameWithUserId))) &&
 					compareFieldCondition &&
-					activeUserIDsSet.contains((Id) obj.get(objectFieldName))
+					activeUserIDsSet.contains((Id) obj.get(objectFieldNameWithUserId))
 				) {
 					shareInsertList.add(
 						prepareShareRecord(
 							shareObjectName,
 							sharingFieldName,
 							(Id) obj.get('Id'),
-							(Id) obj.get(objectFieldName),
-							sharingSettingsMap.get(objectFieldName).accessFieldName,
-							sharingSettingsMap.get(objectFieldName).accessLevel,
-							sharingSettingsMap.get(objectFieldName).rowCause
+							(Id) obj.get(objectFieldNameWithUserId),
+							sharingSettingsMap.get(objectFieldNameWithUserId).accessFieldName,
+							sharingSettingsMap.get(objectFieldNameWithUserId).accessLevel,
+							sharingSettingsMap.get(objectFieldNameWithUserId).rowCause
 						)
 					);
 
@@ -163,7 +178,7 @@ public class SharingService {
 						shareDeleteSet.add(
 							Id.valueOf((Id) obj.get('Id')) +
 							'_' +
-							sharingSettingsMap.get(objectFieldName).rowCause
+							sharingSettingsMap.get(objectFieldNameWithUserId).rowCause
 						);
 						idSet.add((Id) obj.get('Id'));
 					}
