@@ -2,9 +2,9 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Vsechny_zadosti_SPS</fullName>
     <columns>CASES.CASE_NUMBER</columns>
-    <columns>ReceivedDatetime__c</columns>
+    <columns>CASES.CREATED_DATE</columns>
     <columns>DecisionDate__c</columns>
-    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>CreatedByCust__c</columns>
     <columns>RegionalManager__c</columns>
     <columns>NewPortfolioManager__c</columns>
     <columns>CASES.STATUS</columns>
