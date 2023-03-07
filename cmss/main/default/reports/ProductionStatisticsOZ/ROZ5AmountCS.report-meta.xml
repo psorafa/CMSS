@@ -4,9 +4,6 @@
         <field>Production__c.ClosingAgent__c</field>
     </columns>
     <columns>
-        <field>Production__c.Pillar__c</field>
-    </columns>
-    <columns>
         <field>Production__c.ProductTypePS__c</field>
     </columns>
     <columns>
@@ -71,7 +68,7 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>CUST_NAME</field>
+        <field>Production__c.Pillar__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>ROZ5 Objem CS</name>
