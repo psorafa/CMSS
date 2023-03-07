@@ -66,7 +66,7 @@ post    vyplnit custom metadata Configuration__mdt pro Threat Detection (
 post    Vytvořit záznam pro custom metadata Configuration 
         * Name = LogsNotification_Limit, Value = '30' 
         * Name = LogsNotification_Receivers, Value = 'crm_podpora@csobstavebni.cz, katerina_kozuskova@csobstavebni.cz' 
-        * Name = LogsNotification_ReportURL, Value = 'TODO' 
+        * Name = LogsNotification_ReportURL, Value = Link na report 'Nadlimitní náhled na klienty' 
 post    Vyplnit zaznamy (value__c = link na prislusny dashboard) Configuration__mdt pro vsechny dashboardType
             - LinkMOTDashboard - Plnění produkce Manažera obchodního týmu (v Lighnitning)
             - LinkOZDashboard - Produkce OZ – PPP (v Community)
