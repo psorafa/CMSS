@@ -192,3 +192,5 @@ a0R1j00000796xNEAQ,Pozůstalostní penze,0121j000005tSrbAAE,EstatePension__c,N/A
 a0R1j00000796xOEAQ,Zaměstnavatel přispívá,0121j000005tSrbAAE,EmployerContribution__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
 a0R1j00000796xPEAQ,Invalidní penze,0121j000005tSrbAAE,DisabilityPension__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
 a0R1j00000796xQEAQ,Prodleva > 1 rok,0121j000005tSrbAAE,DelayInPaymentMorethanOneYear__c,N/A,Asset,PensionProducts,,Boolean;CustomSearchFilter__c
+a0X3O000004mfVxUAI,Stav identifikace,0121j000005uUaJAAU,Case__r.Account.IdentificationStateId__c,N/A,PortfolioManagementRequest__c,PortfolioManagementRequest__c,,Picklist;CustomSearchFilter__c
+a0X3O000004mfVyUAI,Stav identifikace,0121j000005uUaJAAU,IdentificationStateId__c,N/A,Account,PersonAccount,,Picklist;CustomSearchFilter__c
