@@ -25,7 +25,7 @@ export default class NewPortfolioManagerSelect extends LightningElement {
         return !this.selectedUser
     }
     get showDropdown() {
-        return this.searchTerm && this.searchTerm.length >= 3 && this.hasFocus
+	  return this.hasFocus && this.searchTerm && (!isNaN(this.searchTerm) || this.searchTerm.length >= 3)
     }
     get noResults() {
         return (!this.options || this.options.length == 0) && !this.searching
@@ -35,7 +35,7 @@ export default class NewPortfolioManagerSelect extends LightningElement {
         if (this.searching) {
             this.anotherSearchPending = true
         } else {
-            if (this.searchTerm && this.searchTerm.length >= 3) {
+            if (this.searchTerm && (!isNaN(this.searchTerm) || this.searchTerm.length >= 3)) {
                 this.searching = true
                 search({
                     term : this.searchTerm
