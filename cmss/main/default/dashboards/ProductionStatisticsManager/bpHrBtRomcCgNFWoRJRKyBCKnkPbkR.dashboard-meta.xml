@@ -195,7 +195,7 @@
                     <column>Production__c$PeriodStartDate__c</column>
                 </dashboardFilterColumns>
                 <flexComponentProperties>
-                    <decimalPrecision>-1</decimalPrecision>
+                    <decimalPrecision>0</decimalPrecision>
                     <flexTableColumn>
                         <reportColumn>Production__c.ClosingAgent__c.Name</reportColumn>
                         <showSubTotal>false</showSubTotal>
