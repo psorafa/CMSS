@@ -4,17 +4,15 @@
     <encodingKey>UTF-8</encodingKey>
     <name>Portfolio Management Request Status Changed</name>
     <style>none</style>
-    <subject>U Žádost o změnu SPS číslo {!CaseNumber} byl stav změněn na {!Status}</subject>
+    <subject>U Žádost o změnu SPS číslo {!Case.CaseNumber} byl stav změněn na {!Case.Status}</subject>
     <textOnly>Dobrý den,
-U žádosti o změnu správy stavu číslo &lt;a href = &apos;{LINKTOCASE}&apos;&gt;{!CaseNumber}&lt;/a&gt; ze dne {!CreatedDate} byl změn stav na {!Status}.
 
+U žádosti o změnu správy stavu číslo {!Case.CaseNumber} ze dne {!Case.CreatedDate} byl změn stav na {!Case.Status}.
 Žádost byla vytvořena uživatelem: {CPUNAME}
 
-Poznámka na žádosti: 
-{!Description}
-
+Poznámka na žádosti: {!Case.Description}
 Počet požadavků v žádosti:
-celkem: {!TotalRequestsNumber__c}
+celkem: {!Case.TotalRequestsNumber__c}
 
 {RESULT}</textOnly>
     <type>custom</type>

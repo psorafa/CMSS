@@ -4,10 +4,10 @@
     <encodingKey>UTF-8</encodingKey>
     <name>New Letter Task</name>
     <style>none</style>
-    <subject>Předmět notifikace: Nový dopis: {!LetterType__c}</subject>
+    <subject>Předmět notifikace: Nový dopis: {!Task.LetterType__c}</subject>
     <textOnly>Dobrý den,
-ČSOB Stavební spořitelna odeslala dopis typu {!LetterType__c} na Vašeho klienta {!Who.Name}.
-Detaily o odeslaném dopisu i proklik na jeho znění zobrazíte v CRM Fénix - {!ActivityLink__c}.
+ČSOB Stavební spořitelna odeslala dopis typu {!Task.LetterType__c} na Vašeho klienta {!Task.Who}.
+Detaily o odeslaném dopisu i proklik na jeho znění zobrazíte v CRM Fénix - {!Task.ActivityLink__c}.
 
 Přehled dopisů za posledních 30 dní si zobrazíte zde: {LISTVIEW}. 
 S pozdravem

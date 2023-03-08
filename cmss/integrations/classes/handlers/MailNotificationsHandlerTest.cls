@@ -31,7 +31,7 @@ public class MailNotificationsHandlerTest {
 		opportunity.Name = 'Test Opportunity';
 		opportunity.StageName = 'New';
 		opportunity.CloseDate = Date.valueOf(System.now().addDays(5));
-		opportunity.Account = testAccount;
+		opportunity.AccountId = testAccount.Id;
 		insert opportunity;
 
 		MailNotificationsHandler testHandler = new MailNotificationsHandler();
@@ -52,7 +52,7 @@ public class MailNotificationsHandlerTest {
 		];
 
 		System.assertEquals(2, createdNotifications.size());
-		System.assert(createdNotifications[0].Subject__c.contains('Novák Karel'));
+		System.assert(createdNotifications[0].Subject__c.contains('Novák Karel'), createdNotifications[0].Subject__c);
 		System.assertEquals('test@sender.invalid', createdNotifications[0].FromEmailAddress__c);
 		System.assert(
 			createdNotifications[0].ToEmailAddress__c == 'tomail1@test.com' &&

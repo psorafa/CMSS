@@ -4,7 +4,7 @@
     <encodingKey>UTF-8</encodingKey>
     <name>Service Activity Notification</name>
     <style>none</style>
-    <subject>Nová aktivita - {!Subject}</subject>
+    <subject>Nová aktivita - {!Task.Subject}</subject>
     <textOnly>Dobrý den,
 
 přiřadili jsme Vám v systému ČSOB Stavební spořitelny požadavek k vyřízení.
