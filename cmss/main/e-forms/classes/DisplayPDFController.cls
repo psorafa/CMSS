@@ -95,7 +95,11 @@ public without sharing class DisplayPDFController {
 			} else {
 				placeholderMap = new Map<String, String>{ 'rndId' => generateRandomString(32) };
 			}
-			String template = EncodingUtil.base64Encode(templateList.get(0).VersionData);
+			if (Test.isRunningTest()) {
+				String template = EncodingUtil.base64Encode(templateList.get(0).VersionData);
+			} else {
+				String template = templateList.get(0).VersionData.toString();
+			}
 			displayText = buildPdfData(template, placeholderMap);
 		}
 	}

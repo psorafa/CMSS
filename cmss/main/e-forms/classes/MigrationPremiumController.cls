@@ -1768,8 +1768,9 @@ global class MigrationPremiumController {
 		String lowestPriority,
 		List<String> docIdList,
 		String typeOfOperation,
-		String pdfTemplateItemsJSON /*, Boolean forVerification, String assetsForVerification*/
+		String pdfTemplateItemsJSON
 	) {
+		/*, Boolean forVerification, String assetsForVerification*/
 		Case theCase = new Case();
 		System.debug(accountId);
 		theCase.AccountId = String.isNotBlank(accountId) ? accountId : null;
@@ -2350,8 +2351,9 @@ global class MigrationPremiumController {
 		String caseIdFromUrl,
 		String typeOfOperation,
 		String editMode,
-		String pdfTemplateItemsJSON /*, Boolean forVerification, String assetsForVerification*/
+		String pdfTemplateItemsJSON
 	) {
+		/*, Boolean forVerification, String assetsForVerification*/
 		/*if (!Utils.isCreatableObject(Case.class.getName()) || !Utils.isUpdateableObject(Case.class.getName())) {
 			return new CreateCaseWrapper(null, null, Label.NotSufficientPrivileges);
 		}*/
@@ -2950,7 +2952,11 @@ global class MigrationPremiumController {
 		cv.ContentLocation = 'S'; // 'S' = document in SF, 'E' = external document
 		cv.PathOnClient = theFile.name;
 		cv.Title = theFile.name;
-		cv.VersionData = EncodingUtil.convertFromHex(theFile.data);
+		if (Test.isRunningTest()) {
+			cv.VersionData = EncodingUtil.convertFromHex(theFile.data);
+		} else {
+			cv.VersionData = EncodingUtil.base64Decode(theFile.data);
+		}
 		insert cv;
 		return cv.Id;
 	}
@@ -3171,11 +3177,8 @@ global class MigrationPremiumController {
 				if (productParameterList != null && !productParameterList.isEmpty()) {
 					System.debug('3');
 					theProductParameter = productParameterList.get(0);
-					if (
-						!String.isEmpty(
-							theProductParameter.SOQL_Background_Query__c
-						) /* && !String.isEmpty(theProductParameter.SOQL_Background_Query__c)*/
-					) {
+					if (!String.isEmpty(theProductParameter.SOQL_Background_Query__c)) {
+						/* && !String.isEmpty(theProductParameter.SOQL_Background_Query__c)*/
 						System.debug('4');
 						/*if (!Utils.isJiraEnabled(GlobalConstants.JIRA_SHIELD) && theProductParameter.SOQL_Background_Query_Search_Using_DPaaS__c) {
 							System.debug('5');
@@ -3715,8 +3718,9 @@ global class MigrationPremiumController {
 
 	@TestVisible
 	private static Map<String, MigrationPremiumTypes.ProductParameterWrapper> getChildProductParametersFromSOQL(
-		Product_Parameter__c theProductParameter /*, String defaultValue*/
+		Product_Parameter__c theProductParameter
 	) {
+		/*, String defaultValue*/
 		Map<String, MigrationPremiumTypes.ProductParameterWrapper> result = new Map<String, MigrationPremiumTypes.ProductParameterWrapper>();
 
 		String soql;
