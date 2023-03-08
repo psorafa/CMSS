@@ -47,6 +47,13 @@
                 <stringValue>26</stringValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Iterate_over_expired_requests.ValidationsBypass__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>99.0</numberValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Iterate_over_expired_requests</targetReference>
         </connector>
