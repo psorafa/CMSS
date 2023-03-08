@@ -1,6 +1,5 @@
 @IsTest
 private class CreateMicroCampaignControllerTest {
-
 	@IsTest
 	static void testGetPicklistValues() {
 		Schema.SObjectType convertToObj = Schema.getGlobalDescribe().get('Account');
@@ -16,7 +15,10 @@ private class CreateMicroCampaignControllerTest {
 		}
 
 		Test.startTest();
-		List<CreateMicroCampaignController.PicklistEntry> entries = CreateMicroCampaignController.getPicklistValues('Account', 'AccountStatus__c');
+		List<CreateMicroCampaignController.PicklistEntry> entries = CreateMicroCampaignController.getPicklistValues(
+			'Account',
+			'AccountStatus__c'
+		);
 		for (Integer i = 0; i < pickListValuesList.size(); i++) {
 			System.assertEquals(pickListValuesList.get(i).label, entries.get(i).label);
 			System.assertEquals(pickListValuesList.get(i).value, entries.get(i).value);
@@ -29,7 +31,7 @@ private class CreateMicroCampaignControllerTest {
 		insert a1;
 
 		CreateMicroCampaignController.InputData data = new CreateMicroCampaignController.InputData();
-		data.ids = new List<Id>{a1.Id};
+		data.ids = new List<Id>{ a1.Id };
 		data.campaign = new CreateMicroCampaignController.InputCampaign();
 		data.campaign.name = 'test campaign';
 		data.campaign.description = 'test description';
@@ -38,7 +40,7 @@ private class CreateMicroCampaignControllerTest {
 		data.task.subject = 'test subject';
 		data.task.description = 'test description';
 		data.task.category = '1';
-		data.task.priority = 'Normal';
+		data.task.priority = '2';
 		data.task.productType = '1';
 		data.task.dueDate = Date.today().addDays(10);
 
@@ -55,11 +57,29 @@ private class CreateMicroCampaignControllerTest {
 		System.assertEquals(Logger.getTransactionId(), result.transactionId);
 		System.assertEquals(campaign.Id, result.campaignId);
 
-		Account a = [SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId FROM Account];
+		Account a = [
+			SELECT Id, Name, PersonContactId, PersonEmail, BillingStreet, BillingCity, BillingPostalCode, Phone, OwnerId
+			FROM Account
+		];
 		Task t = [
-			SELECT ActivityDate, Author__c, Category__c, Description, OwnerId, Priority, ProductType__c,
-				Source__c, Status, Subject, ValidFrom__c, ValidTo__c, WhoId, WhatId, Email__c,
-				Location__c, Phone__c
+			SELECT
+				ActivityDate,
+				Author__c,
+				Category__c,
+				Description,
+				OwnerId,
+				Priority,
+				ProductType__c,
+				Source__c,
+				Status,
+				Subject,
+				ValidFrom__c,
+				ValidTo__c,
+				WhoId,
+				WhatId,
+				Email__c,
+				Location__c,
+				Phone__c
 			FROM Task
 			WHERE WhoId = :a.PersonContactId
 		];
@@ -84,7 +104,6 @@ private class CreateMicroCampaignControllerTest {
 
 	@isTest
 	static void testPrepareCampaignTemplateWithExistingCampaign() {
-
 		Campaign existingCampaign = new Campaign();
 		existingCampaign.Name = 'Existing Campaign';
 		insert existingCampaign;
