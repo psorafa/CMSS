@@ -198,6 +198,20 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 		}
 	}
 
+	addLookUpUrls(columns) {
+		columns.forEach(obj => {
+			if (obj.fieldName.includes("Name")) {
+				obj.type = "url";
+				obj.typeAttributes = {
+					label: { fieldName: obj.fieldName },
+					target: "_blank"
+				};
+				obj.fieldName = obj.fieldName.replace("Name", "Url");
+			}
+		});
+		return columns;
+	}
+
 	handleSubmitSearch() {
 		if (this.isRequestNotValid) {
 			this.errorToastMessage(LBL_INVALID_REQUEST_TITLE, LBL_INVALID_REQUEST_MESSAGE);
@@ -248,7 +262,7 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 						objectName: request.objectName
 					})
 						.then((colResponse) => {
-							this.outputTableColumns = colResponse;
+							this.outputTableColumns = this.addLookUpUrls(colResponse);
 							if (this.isTableVisible) {
 								this.section = ['data'];
 							} else {
@@ -265,12 +279,15 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 							}
 							this.outputTableData = [];
 							response.data.forEach((item) => {
+								item.Url = '/lightning/r/' + item.Id + '/view';
 								let objectKeys = Object.keys(item);
 								objectKeys.forEach((key) => {
 									const itemType = typeof item[key];
 									if (itemType === 'object') {
 										const newKey = key + '.Name';
 										item[newKey] = item[key].Name;
+										const urlKey = key + '.Url';
+										item[urlKey] = '/lightning/r/' + item[key].Id + '/view';
 									}
 								});
 								this.outputTableData.push(item);
