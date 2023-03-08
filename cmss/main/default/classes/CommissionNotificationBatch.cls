@@ -1,5 +1,6 @@
 public class CommissionNotificationBatch implements Database.Batchable<AggregateResult>, Schedulable, Database.Stateful {
 	public Id templateId;
+	public Datetime dayAgo = System.now().addHours(-24);
 	public Iterable<AggregateResult> start(Database.BatchableContext jobId) {
 		templateId = [
 			SELECT Id, DeveloperName
@@ -10,7 +11,7 @@ public class CommissionNotificationBatch implements Database.Batchable<Aggregate
 		.Id;
 
 		return new AggregateResultIterable(
-			[SELECT OwnerId FROM Commission__c WHERE CreatedDate >= TODAY GROUP BY OwnerId]
+			[SELECT OwnerId FROM Commission__c WHERE CreatedDate >= :dayAgo GROUP BY OwnerId]
 		);
 	}
 
