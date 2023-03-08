@@ -32,7 +32,6 @@ public class EDocumentSOAPService extends ESBService {
 			.setClientCertificateName(CERTIFICATE_NAME)
 			.setHeader('SOAPAction', SOAP_ACTION)
 			.post(doc);
-		Logger.saveLogs();
 
 		String content = res.getBody();
 		if (content.contains('<soapenv:Fault>')) {

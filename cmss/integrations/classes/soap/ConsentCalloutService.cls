@@ -26,7 +26,6 @@ public class ConsentCalloutService extends ESBService {
 			.setClientCertificateName(CERTIFICATE_NAME)
 			.setHeader('SOAPAction', SOAP_ACTION_BASE + 'disableChannelConsent')
 			.post(doc);
-		Logger.saveLogs();
 
 		Dom.XmlNode bodyNode = getResponseBody(res);
 		Dom.XmlNode DisableChannelConsentResponseNode = bodyNode.getChildElement(
@@ -59,7 +58,6 @@ public class ConsentCalloutService extends ESBService {
 			.setClientCertificateName(CERTIFICATE_NAME)
 			.setHeader('SOAPAction', SOAP_ACTION_BASE + 'disableInternalConsent')
 			.post(doc);
-		Logger.saveLogs();
 
 		Dom.XmlNode bodyNode = getResponseBody(res);
 		Dom.XmlNode DisableInternalConsentResponseNode = bodyNode.getChildElement(
@@ -92,7 +90,6 @@ public class ConsentCalloutService extends ESBService {
 			.setClientCertificateName(CERTIFICATE_NAME)
 			.setHeader('SOAPAction', SOAP_ACTION_BASE + 'enableGeneralConsent')
 			.post(doc);
-		Logger.saveLogs();
 
 		Dom.XmlNode bodyNode = getResponseBody(res);
 		Dom.XmlNode EnableGeneralConsentResponseNode = bodyNode.getChildElement('EnableGeneralConsentResponse', DT_NS);
@@ -130,7 +127,6 @@ public class ConsentCalloutService extends ESBService {
 			.setClientCertificateName(CERTIFICATE_NAME)
 			.setHeader('SOAPAction', SOAP_ACTION_BASE + 'enableChannelConsent')
 			.post(doc);
-		Logger.saveLogs();
 
 		Dom.XmlNode bodyNode = getResponseBody(res);
 		Dom.XmlNode EnableChannelConsentResponseNode = bodyNode.getChildElement('EnableChannelConsentResponse', DT_NS);
@@ -160,7 +156,6 @@ public class ConsentCalloutService extends ESBService {
 			.setClientCertificateName(CERTIFICATE_NAME)
 			.setHeader('SOAPAction', SOAP_ACTION_BASE + 'enableInternalConsent')
 			.post(doc);
-		Logger.saveLogs();
 
 		Dom.XmlNode bodyNode = getResponseBody(res);
 		Dom.XmlNode EnableInternalConsentResponseNode = bodyNode.getChildElement(
@@ -193,7 +188,6 @@ public class ConsentCalloutService extends ESBService {
 			.setClientCertificateName(CERTIFICATE_NAME)
 			.setHeader('SOAPAction', SOAP_ACTION_BASE + 'disableGeneralConsent')
 			.post(doc);
-		Logger.saveLogs();
 
 		Dom.XmlNode bodyNode = getResponseBody(res);
 		Dom.XmlNode DisableGeneralConsentResponseNode = bodyNode.getChildElement(

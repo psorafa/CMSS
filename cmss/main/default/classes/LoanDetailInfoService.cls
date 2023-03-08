@@ -22,7 +22,6 @@ public class LoanDetailInfoService extends ESBService {
 			.setClientCertificateName(CERTIFICATE_NAME)
 			.setHeader('SOAPAction', SOAP_ACTION)
 			.post(doc);
-		Logger.saveLogs();
 
 		return res;
 	}

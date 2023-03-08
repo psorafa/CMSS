@@ -24,7 +24,6 @@ public class PersonManagementSOAPService extends ESBService {
 			.setHeader('SOAPAction', 'http://service.cmss.cz/person/PersonManagementService/v10/searchCSOBSNonClient')
 			.setTimeout(TIMEOUT)
 			.post(doc);
-		Logger.saveLogs();
 
 		Dom.Document responseDoc = res.getBodyDocument();
 		Dom.XmlNode rootNode = responseDoc.getRootElement();
