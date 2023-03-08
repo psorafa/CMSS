@@ -113,3 +113,4 @@ post	pustit nasledujici anonymous apex pro prirazeni permission setu pro editaci
 post    po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_CommissionArticleURL_ExpUser (link do Fenix Docs Community na konkrétní článek)
 			- priklad pro aktualni test org: https://csobstavebni--test.sandbox.my.site.com/fenixdocs/s/article/Vysvetlivky-k-vypisu-z-provizniho-uctu-kontakty
 post    Pro všechny Record Types objektu Production__c přidat do Code As, Code Nov a Code Target hodnotu 6
+pre     pred prvnim deploymentem na prostredi zmenit API names Priority fieldu na Task objektu z textu na cisla viz.: (High=>1, Normal=>2, Low=>3)

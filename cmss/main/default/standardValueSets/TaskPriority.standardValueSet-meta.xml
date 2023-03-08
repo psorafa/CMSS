@@ -2,19 +2,19 @@
 <StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <sorted>false</sorted>
     <standardValue>
-        <fullName>High</fullName>
+        <fullName>1</fullName>
         <default>false</default>
         <label>High</label>
         <highPriority>true</highPriority>
     </standardValue>
     <standardValue>
-        <fullName>Normal</fullName>
+        <fullName>2</fullName>
         <default>true</default>
         <label>Normal</label>
         <highPriority>false</highPriority>
     </standardValue>
     <standardValue>
-        <fullName>Low</fullName>
+        <fullName>3</fullName>
         <default>false</default>
         <label>Low</label>
         <highPriority>false</highPriority>
