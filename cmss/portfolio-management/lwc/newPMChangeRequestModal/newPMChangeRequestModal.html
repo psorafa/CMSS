@@ -22,6 +22,11 @@
 							{labels.NewPortfolioManagementChangeRequest}
 						</h1>
 					</div>
+					<div if:true={warningMessage} class="slds-modal__content slds-p-around_medium">
+						<div class="slds-notify slds-notify_alert slds-alert_warning" role="alert">
+							<div>{warningMessage}</div>
+						</div>
+					</div>
 					<div if:true={showModal} class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
 						<lightning-spinner if:true={showSpinner}></lightning-spinner>
 
@@ -56,9 +61,7 @@
 						<div if:true={validationError} class="slds-text-color_error slds-text-align_right">
 							{validationError}
 						</div>
-						<div if:true={showSpinner}>
-							Vytvářím: {spinnerLabel}
-						</div>
+						<div if:true={showSpinner}>Vytvářím: {spinnerLabel}</div>
 					</div>
 				</div>
 			</div>
