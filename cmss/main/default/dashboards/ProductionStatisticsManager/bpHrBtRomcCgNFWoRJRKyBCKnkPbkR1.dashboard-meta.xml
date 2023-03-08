@@ -4,9 +4,9 @@
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
     <chartTheme>light</chartTheme>
-    <colorPalette>unity</colorPalette>
+    <colorPalette>water</colorPalette>
     <dashboardChartTheme>light</dashboardChartTheme>
-    <dashboardColorPalette>unity</dashboardColorPalette>
+    <dashboardColorPalette>water</dashboardColorPalette>
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
@@ -224,7 +224,7 @@
                     <groupingSorts>
                         <groupingLevel>g2</groupingLevel>
                         <sortColumn>s!ProductionTargetsAndBonuses__c.PercentageFullfillment__c</sortColumn>
-                        <sortOrder>a</sortOrder>
+                        <sortOrder>d</sortOrder>
                     </groupingSorts>
                 </groupingSortProperties>
                 <header>Plnění cílů MOT v mém regionu</header>
