@@ -90,38 +90,34 @@ public class MailNotificationsHandler {
 	}
 
 	private String processTextation(String text) {
-		String finalText = text;
-
-		while (finalText.contains('{!')) {
-			String fieldName = finalText.substringBetween('{!', '}');
-			if (this.specialVariableValues != null && this.specialVariableValues.keySet().contains(fieldName)) {
-				finalText = finalText.replace('{!' + fieldName + '}', this.specialVariableValues.get(fieldName));
-			} else {
-				finalText = replaceFirstVarWithFieldValue(finalText, fieldName);
+		if (specialVariableValues != null) {
+			for (String specialFieldName : specialVariableValues.keySet()) {
+				String mergeField = '{!' + specialFieldName + '}';
+				String value = specialVariableValues.get(specialFieldName);
+				text = text.replace(mergeField, value);
 			}
 		}
-		return finalText;
+		if (onObject != null) {
+			text = processStandardMergeFields(text);
+		}
+		return text;
 	}
 
-	private String replaceFirstVarWithFieldValue(String text, String fieldName) {
-		String finalText = text;
-		List<String> fieldRelation = fieldName.split('\\.');
-		SObject childObject = onObject;
-
-		while (fieldRelation.size() > 1) {
-			String firstObj = fieldRelation.remove(0);
-			childObject = childObject.getSobject(firstObj);
+	private String processStandardMergeFields(String text) {
+		for (Messaging.RenderEmailTemplateBodyResult result : Messaging.renderEmailTemplate(
+			null,
+			onObject.Id,
+			new List<String>{ text }
+		)) {
+			if (result.getSuccess() == true) {
+				return result.getMergedBody();
+			} else {
+				Logger.error(
+					'Error when processing email template using standard merge fields',
+					JSON.serialize(result)
+				);
+			}
 		}
-		if (childObject?.get(fieldRelation?.get(0)) != null) {
-			finalText = finalText.replace(
-				'{!' +
-				fieldName +
-				'}',
-				String.valueOf(childObject.get(fieldRelation.get(0)))
-			);
-		} else {
-			finalText = finalText.replace('{!' + fieldName + '}', '?');
-		}
-		return finalText;
+		return text;
 	}
 }
