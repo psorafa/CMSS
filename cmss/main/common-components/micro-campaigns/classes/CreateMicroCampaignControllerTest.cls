@@ -87,7 +87,7 @@ private class CreateMicroCampaignControllerTest {
 		System.assertEquals(data.task.dueDate, t.ActivityDate);
 		System.assertEquals(data.task.category, t.Category__c);
 		System.assertEquals(data.task.description, t.Description);
-		System.assertEquals('Normal', t.Priority);
+		System.assertEquals('2', t.Priority);
 		System.assertEquals(data.task.productType, t.ProductType__c);
 		System.assertEquals('73', t.Source__c);
 		System.assertEquals('1', t.Status);
