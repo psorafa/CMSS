@@ -47,17 +47,13 @@ public class LoanServiceControllerTest {
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		Test.startTest();
-		HTTPResponse rawResponse = LoanServiceController.loadPackagesListRawResponse(asset1.Name);
+		try {
+			LoanServiceController.loadPackagesListRawResponse(asset1.Name);
+			system.assert(false, 'Expected an exception to be thrown');
+		} catch (Exception e) {
+			system.assert(e.getMessage().contains('Internal Server Error'), 'Incorrect exception thrown');
+		}
 		Test.stopTest();
-		String errorMessage = LoanServiceController.loadPackagesListErrorMessage(rawResponse);
-		List<UpdateLoanAssetsFlowController.LoadPackagesCalloutResult> result = LoanServiceController.loadPackagesResult(
-			rawResponse
-		);
-		system.assertEquals(result, null);
-		system.assertEquals(
-			errorMessage,
-			'loanService.LoadPackagesListErrorMessage: Zadané číslo úvěrového případu je neplatné'
-		);
 	}
 
 	public static String getExpectedResult() {

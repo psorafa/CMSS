@@ -47,17 +47,13 @@ public class LoanDetailInfoServiceControllerTest {
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 		Test.startTest();
-		HTTPResponse rawResponse = LoanDetailInfoServiceController.loanDetailInfoRawResponse(asset1.Name);
+		try {
+			LoanDetailInfoServiceController.loanDetailInfoRawResponse(asset1.Name);
+			system.assert(false, 'Expected an exception to be thrown');
+		} catch (Exception e) {
+			system.assert(e.getMessage().contains('Internal Server Error'), 'Incorrect exception thrown');
+		}
 		Test.stopTest();
-		String errorMessage = LoanDetailInfoServiceController.loanDetailInfoErrorMessage(rawResponse);
-		UpdateLoanAssetsFlowController.LoanDetailInfoResult result = LoanDetailInfoServiceController.loanDetailInfoResult(
-			rawResponse
-		);
-		system.assertEquals(result, null);
-		system.assertEquals(
-			errorMessage,
-			'loanDetailInfoServiceErrorMessage: nebyl nalezen úvěrový případ za dané loanIdNumber'
-		);
 	}
 
 	public static String getExpectedResult() {

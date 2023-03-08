@@ -49,17 +49,13 @@ public class LoanDocumentsServiceControllerTest {
 		mock.addResponse(res1);
 		Test.setMock(HttpCalloutMock.class, mock);
 		Test.startTest();
-		HTTPResponse rawResponse = LoanDocumentsServiceController.loanDocumentsRawResponse(asset1.Name);
+		try {
+			LoanDocumentsServiceController.loanDocumentsRawResponse(asset1.Name);
+			system.assert(false, 'Expected an exception to be thrown');
+		} catch (Exception e) {
+			system.assert(e.getMessage().contains('Internal Server Error'), 'Incorrect exception thrown');
+		}
 		Test.stopTest();
-		String errorMessage = LoanDocumentsServiceController.loanDocumentsErrorMessage(rawResponse);
-		List<UpdateLoanAssetsFlowController.LoanDocumentsCalloutResult> results = LoanDocumentsServiceController.loanDocumentsResult(
-			rawResponse
-		);
-		system.assertEquals(results, null);
-		system.assertEquals(
-			errorMessage,
-			'loanService.LoanDocumentsErrorMessage: Zadané číslo úvěrového případu je neplatné'
-		);
 	}
 
 	public static String getExpectedResult() {
