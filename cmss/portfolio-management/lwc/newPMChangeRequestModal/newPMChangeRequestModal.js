@@ -8,20 +8,22 @@ import NewPortfolioManagementChangeRequest from '@salesforce/label/c.NewPortfoli
 import Cancel from '@salesforce/label/c.Cancel';
 import Save from '@salesforce/label/c.Save';
 import unauthorizedUserLabel from '@salesforce/label/c.Unauthorized_User';
+import tooManyRecordsLabel from '@salesforce/label/c.TooManyRecords';
 import { getObjectInfo, getPicklistValues } from 'lightning/uiObjectInfoApi';
 
+const MAX_NUMBER_OF_CLIENTS = 1;
 export default class NewPMChangeRequestModal extends NavigationMixin(LightningElement) {
 	connectedCallback() {
 		this.showSpinner = true;
 		checkUserPermission()
-			.then(result => {
+			.then((result) => {
 				this.hasPermission = result;
 			})
-			.then(_ => {
+			.then((_) => {
 				this.evaluatePermissionToShowModal();
 				this.showSpinner = false;
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.error(error);
 				this.validationError = error.body.message;
 				this.showSpinner = false;
@@ -31,9 +33,16 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
 	evaluatePermissionToShowModal() {
 		if (!this.hasPermission && (this._ids == null || this._ids.length == 0)) {
 			this.showModal = false;
+			this.warningMessage = '';
 			this.validationError = unauthorizedUserLabel;
+		} else if (this._ids.length > MAX_NUMBER_OF_CLIENTS) {
+			this.showModal = false;
+			this.warningMessage =
+				tooManyRecordsLabel + ': Vybráno: ' + this._ids.length + ' Maximum: ' + MAX_NUMBER_OF_CLIENTS;
+			this.validationError = null;
 		} else {
 			this.showModal = true;
+			this.warningMessage = '';
 			this.validationError = null;
 		}
 	}
@@ -76,6 +85,7 @@ export default class NewPMChangeRequestModal extends NavigationMixin(LightningEl
 	showSpinner = false;
 	hasPermission = false;
 	showModal = false;
+	warningMessage = '';
 	progress = 0;
 	@track data = {};
 

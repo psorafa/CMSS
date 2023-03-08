@@ -71,10 +71,17 @@
         <value>Please fill in New Portfolio Manager</value>
     </labels>
     <labels>
+        <fullName>TooManyRecords</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You selected too many records</shortDescription>
+        <value>You selected too many records</value>
+    </labels>	
+    <labels>
         <fullName>Unauthorized_User</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>You don&apos;t have permission to access to this functionality</shortDescription>
         <value>You don&apos;t have permission to access to this functionality</value>
-    </labels>	
+    </labels>
 </CustomLabels>
