@@ -1,15 +1,19 @@
 public virtual class ESBService {
-	@testVisible
+	@TestVisible
 	protected String ENVELOPE_NS = 'http://schemas.xmlsoap.org/soap/envelope/';
-	@testVisible
+	@TestVisible
 	protected String V01_NS = 'http://service.cmss.cz/common/CommonMessage/v01';
 
-	@testVisible
-	protected String CERTIFICATE_NAME = IntegrationSettings__c.getOrgDefaults().CertificateName__c;
-	@testVisible
+	@TestVisible
+	protected String CERTIFICATE_NAME = Test.isRunningTest()
+		? null
+		: IntegrationSettings__c.getOrgDefaults().CertificateName__c;
+	@TestVisible
 	protected String ENDPOINT_BASE = IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c;
+	@TestVisible
+	protected String MTLS_ENDPOINT_BASE = IntegrationSettings__c.getOrgDefaults().EsbEndpoint__c + ':8443';
 
-	@testVisible
+	@TestVisible
 	protected DOM.XmlNode populateDoc(DOM.Document doc, Map<String, String> namespaces) {
 		DOM.XmlNode envelope = doc.createRootElement('Envelope', ENVELOPE_NS, 'soapenv');
 		for (String key : namespaces.keySet()) {

@@ -165,7 +165,7 @@ public without sharing class PortfolioManagementRequestService {
 			body.listOfClientStates = clientStates;
 			body.commissionAccountNumberBase = commissionAccountNumber;
 
-			PortfolioManagementCalloutService.PortfolioManagementServicePort stub = new PortfolioManagementCalloutService.PortfolioManagementServicePort();
+			PortfolioManagementCalloutService stub = new PortfolioManagementCalloutService();
 			PortfolioManagementCalloutService.ChangeCPEClientStateResponseBody response = stub.changeCPEClientState_Http(
 				header,
 				body

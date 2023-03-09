@@ -9,10 +9,8 @@ public class LoanServiceController {
 		loanIdNumber.checkNumber = Long.valueOf(assetName.substring(7, 8));
 		loanIdNumber.endNumber = Long.valueOf(assetName.right(2));
 
-
 		requestBody.loanIdNumber = loanIdNumber;
-		LoanService.LoanServicePort stub = new LoanService.LoanServicePort();
-		HTTPResponse rawResponse = stub.loadPackagesList_Http(header, requestBody);
+		HTTPResponse rawResponse = new LoanService().loadPackagesList_Http(header, requestBody);
 		return rawResponse;
 	}
 	public static String loadPackagesListErrorMessage(HTTPResponse rawResponse) {
@@ -20,21 +18,27 @@ public class LoanServiceController {
 		if (responseStatusCode == 500) {
 			String responseBody = rawResponse.getBody();
 			String error = responseBody.substringAfter('<io7:message>').substringBefore('</io7:message>');
-			String errorMessage = 'loanService.LoadPackagesListErrorMessage: ' + error ;
+			String errorMessage = 'loanService.LoadPackagesListErrorMessage: ' + error;
 			return errorMessage;
 		} else {
 			return null;
 		}
 	}
-	public static List<UpdateLoanAssetsFlowController.LoadPackagesCalloutResult> loadPackagesResult(HTTPResponse rawResponse) {
+	public static List<UpdateLoanAssetsFlowController.LoadPackagesCalloutResult> loadPackagesResult(
+		HTTPResponse rawResponse
+	) {
 		if (rawResponse.getStatusCode() != 500) {
-
 			Dom.Document responseDoc = rawResponse.getBodyDocument();
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
-			Dom.XmlNode LoadPackagesListResponseNode = bodyNode.getChildElement('LoadPackagesListResponse', 'http://service.cmss.cz/loan/LoanService/v05/datatypes');
+			Dom.XmlNode LoadPackagesListResponseNode = bodyNode.getChildElement(
+				'LoadPackagesListResponse',
+				'http://service.cmss.cz/loan/LoanService/v05/datatypes'
+			);
 
-			LoanServiceDataTypes.LoadPackagesListResponseType response_x = new LoanServiceDataTypes.LoadPackagesListResponseType(LoadPackagesListResponseNode);
+			LoanServiceDataTypes.LoadPackagesListResponseType response_x = new LoanServiceDataTypes.LoadPackagesListResponseType(
+				LoadPackagesListResponseNode
+			);
 			LoanServiceDataTypes.LoadPackagesListResponseBodyType responseBody = response_x.responseBody;
 
 			LoanServiceDataTypes.ListOfPackagesType response = responseBody.listOfPackages;
@@ -56,6 +60,5 @@ public class LoanServiceController {
 		} else {
 			return null;
 		}
-
 	}
 }

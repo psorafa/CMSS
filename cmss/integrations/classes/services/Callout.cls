@@ -170,6 +170,12 @@ public class Callout {
 				? this.endpoint.left(endpointParametersStart)
 				: this.endpoint;
 
+			String responseBody = response.getBody();
+			String bodyErrorMessage;
+			if (responseBody != null) {
+				bodyErrorMessage = responseBody.substringAfter(':message>').substringBefore('</');
+			}
+
 			String errorMessage =
 				'Callout failed for ' +
 				endpointWithoutParameters +
@@ -177,6 +183,9 @@ public class Callout {
 				statusCode +
 				', status message: ' +
 				response.getStatus();
+			errorMessage = bodyErrorMessage == null
+				? errorMessage
+				: errorMessage + ', body message: ' + bodyErrorMessage;
 			Logger.error(errorMessage);
 			throw new HttpResponseException(errorMessage);
 		}

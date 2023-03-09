@@ -1,7 +1,5 @@
 global class LightningForgotPasswordController {
-
 	public LightningForgotPasswordController() {
-
 	}
 
 	@AuraEnabled

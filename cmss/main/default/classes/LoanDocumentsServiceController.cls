@@ -9,9 +9,8 @@ public class LoanDocumentsServiceController {
 		loanIdNumber.checkNumber = Long.valueOf(assetName.substring(7, 8));
 		loanIdNumber.endNumber = Long.valueOf(assetName.right(2));
 
-
 		requestBody.loanIdNumber = loanIdNumber;
-		LoanDocumentsService.LoanDocumentsServicePort stub = new LoanDocumentsService.LoanDocumentsServicePort();
+		LoanDocumentsService stub = new LoanDocumentsService();
 		HTTPResponse rawResponse = stub.getLoanDocumentsList_Http(header, requestBody);
 		return rawResponse;
 	}
@@ -20,20 +19,27 @@ public class LoanDocumentsServiceController {
 		if (responseStatusCode == 500) {
 			String responseBody = rawResponse.getBody();
 			String error = responseBody.substringAfter('<ns2:message>').substringBefore('</ns2:message>');
-			String errorMessage = 'loanService.LoanDocumentsErrorMessage: ' + error ;
+			String errorMessage = 'loanService.LoanDocumentsErrorMessage: ' + error;
 			return errorMessage;
 		} else {
 			return null;
 		}
 	}
-	public static List<UpdateLoanAssetsFlowController.LoanDocumentsCalloutResult> loanDocumentsResult(HTTPResponse rawResponse) {
+	public static List<UpdateLoanAssetsFlowController.LoanDocumentsCalloutResult> loanDocumentsResult(
+		HTTPResponse rawResponse
+	) {
 		if (rawResponse.getStatusCode() != 500) {
 			Dom.Document responseDoc = rawResponse.getBodyDocument();
 			Dom.XmlNode rootNode = responseDoc.getRootElement();
 			Dom.XmlNode bodyNode = rootNode.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/');
-			Dom.XmlNode GetLoanDocumentsListResponseNode = bodyNode.getChildElement('GetLoanDocumentsListResponse', 'http://service.cmss.cz/loan/LoanService/v06');
+			Dom.XmlNode GetLoanDocumentsListResponseNode = bodyNode.getChildElement(
+				'GetLoanDocumentsListResponse',
+				'http://service.cmss.cz/loan/LoanService/v06'
+			);
 
-			LoanDocumentsServiceDataTypes.GetLoanDocumentsListResponseType response_x = new LoanDocumentsServiceDataTypes.GetLoanDocumentsListResponseType(GetLoanDocumentsListResponseNode);
+			LoanDocumentsServiceDataTypes.GetLoanDocumentsListResponseType response_x = new LoanDocumentsServiceDataTypes.GetLoanDocumentsListResponseType(
+				GetLoanDocumentsListResponseNode
+			);
 
 			LoanDocumentsServiceDataTypes.GetLoanDocumentsListResponseBodyType responseBody = response_x.responseBody;
 
@@ -59,6 +65,5 @@ public class LoanDocumentsServiceController {
 		} else {
 			return null;
 		}
-
 	}
 }

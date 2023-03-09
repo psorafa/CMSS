@@ -18,31 +18,24 @@ private class EDocumentSOAPServiceTest {
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
-        String response;
+		String response;
 		Test.startTest();
-            try {
-                CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
-                EDocumentSOAPService.GetDocumentBySBIdRequestBody body = new EDocumentSOAPService.GetDocumentBySBIdRequestBody();
-                body.documentSBId = '123131321321';
-                EDocumentSOAPService.EDocumentServicePort stub = new EDocumentSOAPService.EDocumentServicePort();
-                response = stub.getDocumentBySBId_Http(header, body);
-            } catch (Exception e) {
-
-            } finally {
-                Logger.saveLogs();
-            }
+		try {
+			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
+			EDocumentSOAPService.GetDocumentBySBIdRequestBody body = new EDocumentSOAPService.GetDocumentBySBIdRequestBody();
+			body.documentSBId = '123131321321';
+			EDocumentSOAPService stub = new EDocumentSOAPService();
+			response = stub.getDocumentBySBId_Http(header, body);
+		} catch (Exception e) {
+		} finally {
+			Logger.saveLogs();
+		}
 		Test.stopTest();
 
 		System.assert(response.startsWith('JVBERi0xLjQN'));
-        
-        List<Log__c> logs = [
-            SELECT Id, ClassMethodName__c
-            FROM Log__c
-            WHERE
-                Message__c = 'Outgoing request'
-        ];
+
+		List<Log__c> logs = [SELECT Id, ClassMethodName__c FROM Log__c WHERE Message__c = 'Outgoing request'];
 		System.assert(logs.size() > 0);
-        System.assertEquals('EDocumentSOAPService.EDocumentServicePort.getDocumentBySBId_Http', logs[0].ClassMethodName__c);
 	}
 
 	@IsTest
@@ -58,35 +51,30 @@ private class EDocumentSOAPServiceTest {
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
-        String response;
-        Exception ex;
+		String response;
+		Exception ex;
 		Test.startTest();
-            try {
-                CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
-                EDocumentSOAPService.GetDocumentBySBIdRequestBody body = new EDocumentSOAPService.GetDocumentBySBIdRequestBody();
-                body.documentSBId = '123131321321';
-                EDocumentSOAPService.EDocumentServicePort stub = new EDocumentSOAPService.EDocumentServicePort();
-                response = stub.getDocumentBySBId_Http(header, body);
-            } catch (Exception e) {
-                System.assertEquals('EDocument not found!', e.getMessage());
-                ex = e;
-            } finally {
-                Logger.saveLogs();
-            }
+		try {
+			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
+			EDocumentSOAPService.GetDocumentBySBIdRequestBody body = new EDocumentSOAPService.GetDocumentBySBIdRequestBody();
+			body.documentSBId = '123131321321';
+			EDocumentSOAPService stub = new EDocumentSOAPService();
+			response = stub.getDocumentBySBId_Http(header, body);
+		} catch (Exception e) {
+			System.assertEquals('EDocument not found!', e.getMessage());
+			ex = e;
+		} finally {
+			Logger.saveLogs();
+		}
 		Test.stopTest();
 
 		System.assert(response == null);
-        
-        List<Log__c> logs = [
-            SELECT Id, ClassMethodName__c
-            FROM Log__c
-            WHERE
-                Message__c = 'Incoming response error'
-        ];
+
+		List<Log__c> logs = [SELECT Id, ClassMethodName__c FROM Log__c WHERE Message__c = 'Incoming response error'];
 		System.assert(logs.size() > 0);
-        System.assertEquals('EDocumentSOAPService.EDocumentServicePort.getDocumentBySBId_Http', logs[0].ClassMethodName__c);
-	}  
-    
+		System.assertEquals('EDocumentSOAPService.getDocumentBySBId_Http', logs[0].ClassMethodName__c);
+	}
+
 	@IsTest
 	static void testGetEDocumentUknownError() {
 		CalloutServiceMockImpl fakeResponse = new CalloutServiceMockImpl(
@@ -100,32 +88,27 @@ private class EDocumentSOAPServiceTest {
 		);
 		Test.setMock(HttpCalloutMock.class, fakeResponse);
 
-        String response;
-        Exception ex;
+		String response;
+		Exception ex;
 		Test.startTest();
-            try {
-                CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
-                EDocumentSOAPService.GetDocumentBySBIdRequestBody body = new EDocumentSOAPService.GetDocumentBySBIdRequestBody();
-                body.documentSBId = '123131321321';
-                EDocumentSOAPService.EDocumentServicePort stub = new EDocumentSOAPService.EDocumentServicePort();
-                response = stub.getDocumentBySBId_Http(header, body);
-            } catch (Exception e) {
-                System.assertEquals('Unkown error', e.getMessage());
-                ex = e;
-            } finally {
-                Logger.saveLogs();
-            }
+		try {
+			CommonMessageService.RequestHeader header = new CommonMessageService.RequestHeader();
+			EDocumentSOAPService.GetDocumentBySBIdRequestBody body = new EDocumentSOAPService.GetDocumentBySBIdRequestBody();
+			body.documentSBId = '123131321321';
+			EDocumentSOAPService stub = new EDocumentSOAPService();
+			response = stub.getDocumentBySBId_Http(header, body);
+		} catch (Exception e) {
+			System.assertEquals('Unkown error', e.getMessage());
+			ex = e;
+		} finally {
+			Logger.saveLogs();
+		}
 		Test.stopTest();
 
 		System.assert(response == null);
-        
-        List<Log__c> logs = [
-            SELECT Id, ClassMethodName__c
-            FROM Log__c
-            WHERE
-                Message__c = 'Unexpected response'
-        ];
+
+		List<Log__c> logs = [SELECT Id, ClassMethodName__c FROM Log__c WHERE Message__c = 'Unexpected response'];
 		System.assert(logs.size() > 0);
-        System.assertEquals('EDocumentSOAPService.EDocumentServicePort.getDocumentBySBId_Http', logs[0].ClassMethodName__c);
-	}     
+		System.assertEquals('EDocumentSOAPService.getDocumentBySBId_Http', logs[0].ClassMethodName__c);
+	}
 }
