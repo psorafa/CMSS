@@ -10,7 +10,7 @@
     <filterScope>Team</filterScope>
     <filters>
         <field>DUE_DATE</field>
-        <operation>lessOrEqual</operation>
+        <operation>equals</operation>
         <value>LAST_N_DAYS:30</value>
     </filters>
     <filters>
