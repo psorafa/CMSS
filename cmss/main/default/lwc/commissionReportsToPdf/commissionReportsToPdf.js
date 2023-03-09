@@ -55,6 +55,7 @@ export default class commissionReportsToPdf extends LightningElement {
 	showPendingAmount;
 	rowCount = 0;
 	rowCountExceeded = false;
+	rowFilter = false;
 	viewHeader;
 	reportHtmlData;
 	error;
@@ -95,6 +96,11 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.tribeCpu = message.tribeCpu;
 		this.fromRecord = message.fromRecord;
 		this.toRecord = message.toRecord;
+		if (!!this.fromRecord || this.toRecord) {
+			this.rowFilter = true;
+		} else {
+			this.rowFilter = false;
+		}
 		this.filterRecordRange = this.fromRecord + ' - ' + this.toRecord;
 		this.accountBaseCombinedName = message.accountBaseCombinedName;
 		this.address = message.address;
@@ -312,8 +318,12 @@ export default class commissionReportsToPdf extends LightningElement {
 		footer += '<td>Provizní zpracování k/OD-DO:</td>';
 		footer += '<td>' + this.dateValues + '</td>';
 		footer += '<td>Nárok:</td>';
-		footer += '<td>' + this.entitlementAmount + '</td>';
-		footer += '</tr></tbody></table>';
+		footer += '<td>' + this.entitlementAmount + '</td></tr>';
+		if (this.rowFilter) {
+			footer +=
+				'<tr><td colspan="4">Seznam provizí pro zvolené obdobní je omezen pořadovým číslem záznamu a nemusí být kompletní.</td></tr>';
+		}
+		footer += '</tbody></table>';
 		this.reportHtmlData = html;
 		this.reportHtmlData += this.showFooter ? footer : '';
 		console.log('html: ' + this.reportHtmlData);
