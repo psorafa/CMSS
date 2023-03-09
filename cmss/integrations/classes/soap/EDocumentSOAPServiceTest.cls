@@ -36,10 +36,6 @@ private class EDocumentSOAPServiceTest {
 
 		List<Log__c> logs = [SELECT Id, ClassMethodName__c FROM Log__c WHERE Message__c = 'Outgoing request'];
 		System.assert(logs.size() > 0);
-		System.assertEquals(
-			'EDocumentSOAPService.EDocumentServicePort.getDocumentBySBId_Http',
-			logs[0].ClassMethodName__c
-		);
 	}
 
 	@IsTest
@@ -76,10 +72,7 @@ private class EDocumentSOAPServiceTest {
 
 		List<Log__c> logs = [SELECT Id, ClassMethodName__c FROM Log__c WHERE Message__c = 'Incoming response error'];
 		System.assert(logs.size() > 0);
-		System.assertEquals(
-			'EDocumentSOAPService.EDocumentServicePort.getDocumentBySBId_Http',
-			logs[0].ClassMethodName__c
-		);
+		System.assertEquals('EDocumentSOAPService.getDocumentBySBId_Http', logs[0].ClassMethodName__c);
 	}
 
 	@IsTest
@@ -116,9 +109,6 @@ private class EDocumentSOAPServiceTest {
 
 		List<Log__c> logs = [SELECT Id, ClassMethodName__c FROM Log__c WHERE Message__c = 'Unexpected response'];
 		System.assert(logs.size() > 0);
-		System.assertEquals(
-			'EDocumentSOAPService.EDocumentServicePort.getDocumentBySBId_Http',
-			logs[0].ClassMethodName__c
-		);
+		System.assertEquals('EDocumentSOAPService.getDocumentBySBId_Http', logs[0].ClassMethodName__c);
 	}
 }

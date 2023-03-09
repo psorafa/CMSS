@@ -35,9 +35,7 @@ private class ConsentCalloutServiceTest {
 			[
 				SELECT Id
 				FROM Log__c
-				WHERE
-					Message__c = 'Outgoing request'
-					AND ClassMethodName__c = 'Callout.executeCallout'
+				WHERE Message__c = 'Outgoing request' AND ClassMethodName__c = 'Callout.executeCallout'
 			]
 			.size() > 0
 		);
@@ -127,11 +125,7 @@ private class ConsentCalloutServiceTest {
 
 			System.assertEquals(
 				6,
-				[
-						SELECT Id
-						FROM Log__c
-						WHERE Message__c = 'Outgoing request' AND ClassMethodName__c LIKE '%Callout%'
-					]
+				[SELECT Id FROM Log__c WHERE Message__c = 'Outgoing request' AND ClassMethodName__c LIKE '%Callout%']
 					.size()
 			);
 		}

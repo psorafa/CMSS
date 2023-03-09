@@ -1,5 +1,4 @@
 public class UpdateLoanAssetsFlowController {
-
 	@InvocableMethod(Label='LoanServicesCallout')
 	public static List<List<String>> updateloanAssetsFlowHelper(List<Request> requests) {
 		List<List<String>> flowOutput = new List<List<String>>();
@@ -16,10 +15,17 @@ public class UpdateLoanAssetsFlowController {
 	private static void loanDocumentsCallout(List<Request> requests, List<String> errorMessages) {
 		List<List<LoanDocumentsCalloutResult>> resultsForLoanDocumentsCalloutResult = new List<List<LoanDocumentsCalloutResult>>();
 		try {
-			HTTPResponse loanDocumentsRawResponse = LoanDocumentsServiceController.loanDocumentsRawResponse(requests[0].assetName);
-			resultsForLoanDocumentsCalloutResult.add(LoanDocumentsServiceController.loanDocumentsResult(loanDocumentsRawResponse));
+			HTTPResponse loanDocumentsRawResponse = LoanDocumentsServiceController.loanDocumentsRawResponse(
+				requests[0].assetName
+			);
+			resultsForLoanDocumentsCalloutResult.add(
+				LoanDocumentsServiceController.loanDocumentsResult(loanDocumentsRawResponse)
+			);
 			if (resultsForLoanDocumentsCalloutResult[0] != null) {
-				String errorLoanDocumentsErrorMessage = LoanAssetsServices.upsertLoanCaseDoc(resultsForLoanDocumentsCalloutResult[0], requests[0]);
+				String errorLoanDocumentsErrorMessage = LoanAssetsServices.upsertLoanCaseDoc(
+					resultsForLoanDocumentsCalloutResult[0],
+					requests[0]
+				);
 				if (errorLoanDocumentsErrorMessage != null) {
 					errorMessages.add(errorLoanDocumentsErrorMessage);
 				}
@@ -37,10 +43,17 @@ public class UpdateLoanAssetsFlowController {
 	private static void loadPackagesCallout(List<Request> requests, List<String> errorMessages) {
 		List<List<LoadPackagesCalloutResult>> resultsForLoadPackagesCalloutResult = new List<List<LoadPackagesCalloutResult>>();
 		try {
-			HTTPResponse loadPackagesListRawResponse = LoanServiceController.loadPackagesListRawResponse(requests[0].assetName);
-			resultsForLoadPackagesCalloutResult.add(LoanServiceController.loadPackagesResult(loadPackagesListRawResponse));
+			HTTPResponse loadPackagesListRawResponse = LoanServiceController.loadPackagesListRawResponse(
+				requests[0].assetName
+			);
+			resultsForLoadPackagesCalloutResult.add(
+				LoanServiceController.loadPackagesResult(loadPackagesListRawResponse)
+			);
 			if (resultsForLoadPackagesCalloutResult[0] != null) {
-				String errorFromUpdateLoadPackages = LoanAssetsServices.updateLoadPackages(resultsForLoadPackagesCalloutResult[0], requests[0]);
+				String errorFromUpdateLoadPackages = LoanAssetsServices.updateLoadPackages(
+					resultsForLoadPackagesCalloutResult[0],
+					requests[0]
+				);
 				if (errorFromUpdateLoadPackages != null) {
 					errorMessages.add(errorFromUpdateLoadPackages);
 				}
@@ -58,10 +71,17 @@ public class UpdateLoanAssetsFlowController {
 	private static void loanDetailInfoCallout(List<Request> requests, List<String> errorMessages) {
 		List<LoanDetailInfoResult> resultsForLoanDetailInfoResult = new List<LoanDetailInfoResult>();
 		try {
-			HTTPResponse loanDetailInfoRawResponse = LoanDetailInfoServiceController.loanDetailInfoRawResponse(requests[0].assetName);
-			resultsForLoanDetailInfoResult.add(LoanDetailInfoServiceController.loanDetailInfoResult(loanDetailInfoRawResponse));
+			HTTPResponse loanDetailInfoRawResponse = LoanDetailInfoServiceController.loanDetailInfoRawResponse(
+				requests[0].assetName
+			);
+			resultsForLoanDetailInfoResult.add(
+				LoanDetailInfoServiceController.loanDetailInfoResult(loanDetailInfoRawResponse)
+			);
 			if (resultsForLoanDetailInfoResult[0] != null) {
-				String errorFromUpdateLoanDetailInfo = LoanAssetsServices.updateLoanDetailInfo(resultsForLoanDetailInfoResult[0], requests[0]);
+				String errorFromUpdateLoanDetailInfo = LoanAssetsServices.updateLoanDetailInfo(
+					resultsForLoanDetailInfoResult[0],
+					requests[0]
+				);
 				if (errorFromUpdateLoanDetailInfo != null) {
 					errorMessages.add(errorFromUpdateLoanDetailInfo);
 				}
@@ -75,7 +95,6 @@ public class UpdateLoanAssetsFlowController {
 			Logger.saveLogs();
 		}
 	}
-
 
 	public class Request {
 		@InvocableVariable
@@ -102,7 +121,6 @@ public class UpdateLoanAssetsFlowController {
 		public Date signDateOwner;
 	}
 
-
 	public class LoadPackagesCalloutResult {
 		public String packageId;
 		public String packageType;
@@ -111,7 +129,6 @@ public class UpdateLoanAssetsFlowController {
 		public Date validFrom;
 		public Date validTo;
 	}
-
 
 	public class LoanDocumentsCalloutResult {
 		public String group_x;
@@ -123,6 +140,4 @@ public class UpdateLoanAssetsFlowController {
 		public Date tillWhenDate;
 		public String id;
 	}
-
-
 }

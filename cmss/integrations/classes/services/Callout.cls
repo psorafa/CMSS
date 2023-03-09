@@ -183,7 +183,9 @@ public class Callout {
 				statusCode +
 				', status message: ' +
 				response.getStatus();
-			errorMessage = bodyErrorMessage == null ? errorMessage : errorMessage + ', body message: ' + bodyErrorMessage;
+			errorMessage = bodyErrorMessage == null
+				? errorMessage
+				: errorMessage + ', body message: ' + bodyErrorMessage;
 			Logger.error(errorMessage);
 			throw new HttpResponseException(errorMessage);
 		}
