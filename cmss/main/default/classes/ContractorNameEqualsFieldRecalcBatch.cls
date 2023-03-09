@@ -44,41 +44,36 @@ public class ContractorNameEqualsFieldRecalcBatch implements Database.Batchable<
 	}
 
 	private void setContractorNameEquals(Case c) {
-		if (c.ComplainerContractor__c != null) {
-			if (
-				c.ComplainerFirstName__c == c.ComplainerContractor__r.FirstName &&
-				c.ComplainerLastName__c == c.ComplainerContractor__r.LastName
-			) {
-				c.ContractorNameEquals__c = true;
-			} else {
-				c.ContractorNameEquals__c = false;
-			}
+		if (
+			c.ComplainerContractor__c != null &&
+			c.ComplainerFirstName__c == c.ComplainerContractor__r.FirstName &&
+			c.ComplainerLastName__c == c.ComplainerContractor__r.LastName
+		) {
+			c.ContractorNameEquals__c = true;
 		} else {
 			c.ContractorNameEquals__c = false;
 		}
 	}
 
 	private void setAccountContractorNameEquals(Case c) {
-		if (c.Account != null && c.ComplainerContractor__c != null) {
-			if (
-				c.Account.FirstName == c.ComplainerContractor__r.FirstName &&
-				c.Account.LastName == c.ComplainerContractor__r.LastName
-			) {
-				c.AccountContractorNameEquals__c = true;
-			} else {
-				c.AccountContractorNameEquals__c = false;
-			}
+		if (
+			c.Account != null &&
+			c.ComplainerContractor__c != null &&
+			c.Account.FirstName == c.ComplainerContractor__r.FirstName &&
+			c.Account.LastName == c.ComplainerContractor__r.LastName
+		) {
+			c.AccountContractorNameEquals__c = true;
 		} else {
 			c.AccountContractorNameEquals__c = false;
 		}
 	}
 	private void setAccountComplainerNameEquals(Case c) {
-		if (c.Account != null) {
-			if (c.ComplainerFirstName__c == c.Account.FirstName && c.ComplainerLastName__c == c.Account.LastName) {
-				c.AccountComplainerNameEquals__c = true;
-			} else {
-				c.AccountComplainerNameEquals__c = false;
-			}
+		if (
+			c.Account != null &&
+			c.ComplainerFirstName__c == c.Account.FirstName &&
+			c.ComplainerLastName__c == c.Account.LastName
+		) {
+			c.AccountComplainerNameEquals__c = true;
 		} else {
 			c.AccountComplainerNameEquals__c = false;
 		}

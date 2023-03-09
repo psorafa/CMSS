@@ -357,38 +357,28 @@ public with sharing class CaseService {
 		}
 	}
 	private static void setContractorNameEquals(Case c, User contractor) {
-		if (contractor != null) {
-			if (c.ComplainerFirstName__c == contractor.FirstName && c.ComplainerLastName__c == contractor.LastName) {
+		if (contractor != null && c.ComplainerFirstName__c == contractor.FirstName && c.ComplainerLastName__c == contractor.LastName) {
 				c.ContractorNameEquals__c = true;
 			} else {
 				c.ContractorNameEquals__c = false;
 			}
-		} else {
-			c.ContractorNameEquals__c = false;
-		}
 	}
 
 	private static void setAccountContractorNameEquals(Case c, Account acc, User contractor) {
-		if (acc != null && contractor != null) {
-			if (acc.FirstName == contractor.FirstName && acc.LastName == contractor.LastName) {
+		if (acc != null && contractor != null && acc.FirstName == contractor.FirstName && acc.LastName == contractor.LastName) 
+        {
 				c.AccountContractorNameEquals__c = true;
 			} else {
 				c.AccountContractorNameEquals__c = false;
 			}
-		} else {
-			c.AccountContractorNameEquals__c = false;
 		}
-	}
+        
 	private static void setAccountComplainerNameEquals(Case c, Account acc) {
-		if (acc != null) {
-			if (c.ComplainerFirstName__c == acc.FirstName && c.ComplainerLastName__c == acc.LastName) {
+		if (acc != null && c.ComplainerFirstName__c == acc.FirstName && c.ComplainerLastName__c == acc.LastName) {
 				c.AccountComplainerNameEquals__c = true;
 			} else {
 				c.AccountComplainerNameEquals__c = false;
 			}
-		} else {
-			c.AccountComplainerNameEquals__c = false;
-		}
 	}
 
 	public class CaseOwnerPermissionMissingException extends Exception {
