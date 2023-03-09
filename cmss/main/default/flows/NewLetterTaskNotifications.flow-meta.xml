@@ -63,9 +63,9 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.CreatedDate</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>GreaterThanOrEqualTo</operator>
                 <rightValue>
-                    <elementReference>$Flow.CurrentDate</elementReference>
+                    <elementReference>DateTodayStart</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -107,6 +107,11 @@
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>DateTodayStart</name>
+        <dataType>DateTime</dataType>
+        <expression>DATETIMEVALUE( TEXT(YEAR(TODAY())) + &quot;-&quot; + TEXT(MONTH(TODAY())) + &quot;-&quot; + TEXT(DAY(TODAY())) + &quot; 00:00:00&quot;)</expression>
+    </formulas>
     <formulas>
         <name>TemplateBodyFilledWithListviewLink</name>
         <dataType>String</dataType>
