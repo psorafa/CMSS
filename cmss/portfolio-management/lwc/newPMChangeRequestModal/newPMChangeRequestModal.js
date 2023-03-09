@@ -11,7 +11,7 @@ import unauthorizedUserLabel from '@salesforce/label/c.Unauthorized_User';
 import tooManyRecordsLabel from '@salesforce/label/c.TooManyRecords';
 import { getObjectInfo, getPicklistValues } from 'lightning/uiObjectInfoApi';
 
-const MAX_NUMBER_OF_CLIENTS = 1;
+const MAX_NUMBER_OF_CLIENTS = 1000;
 export default class NewPMChangeRequestModal extends NavigationMixin(LightningElement) {
 	connectedCallback() {
 		this.showSpinner = true;
