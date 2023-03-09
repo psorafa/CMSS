@@ -49,13 +49,6 @@
             <value>Production__c.Production</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Production__c.Pillar__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>30</value>
-        </criteriaItems>
-        <criteriaItems>
             <column>Production__c.CodeAs__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
@@ -68,6 +61,13 @@
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Production__c.ProductTypePS__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>120</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
