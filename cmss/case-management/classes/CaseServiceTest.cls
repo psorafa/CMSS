@@ -515,8 +515,8 @@ private class CaseServiceTest {
 				200,
 				'OK',
 				'<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns3:ChangeCPEClientStateResponse xmlns:ns3=\"http://service.cmss.cz/person/PortfolioManagementService/v10\" xmlns:ns2=\"http://service.cmss.cz/common/CommonMessage/v01\"><ns3:responseBody><ns3:listOfRequestStatuses><ns3:listOfRequestStatusesItem><ns3:stateChangeRequestId>' +
-					validRequest.Id +
-					'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
+				validRequest.Id +
+				'</ns3:stateChangeRequestId><ns3:requestStatus>3</ns3:requestStatus></ns3:listOfRequestStatusesItem></ns3:listOfRequestStatuses></ns3:responseBody></ns3:ChangeCPEClientStateResponse></soapenv:Body></soapenv:Envelope>',
 				null,
 				null
 			);
@@ -599,49 +599,24 @@ private class CaseServiceTest {
 
 	@isTest
 	static void testSetAccountComplainerNameEquals() {
-		User user = TestDataFactory.getUser(new User());
-		insert user;
-		Profile p = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
-		User contractor = new User(
-			Alias = 'standt',
-			Email = 'standarduser@testorg.com',
-			EmailEncodingKey = 'UTF-8',
-			FirstName = 'Bolek',
-			LastName = 'Lolek',
-			LanguageLocaleKey = 'en_US',
-			LocaleSidKey = 'en_US',
-			ProfileId = p.Id,
-			TimeZoneSidKey = 'America/Los_Angeles',
-			UserName = 'standarduser@testorg.com'
-		);
+		User contractor = TestDataFactory.getUser(new User(FirstName = 'Bolek', LastName = 'Lolek'));
 		insert contractor;
 
 		Account acc = new Account(FirstName = 'Bolek', LastName = 'Lolek', BillingCity = 'San Francisco');
 		insert acc;
 
-		Case c = new Case(
-			Subject = 'Case1',
-			ReceivedDate__c = Date.today(),
-			ReceivingConfirmationDate__c = Date.today(),
-			RequestComplete__c = false,
-			InternalPrecaution__c = '1',
-			Priority = '1',
-			Source__c = '5',
-			Origin = '2',
-			Description = 'Test Case',
-			ComplaintAgainst__c = '2',
-			CauseLegitComplaint__c = '2',
-			SubjectFound__c = true,
-			RequestType__c = '1',
-			ComplaintLegitimacy__c = '4',
-			ComplainerFirstName__c = 'Bolek',
-			ComplainerLastName__c = 'Lolek',
-			AccountId = acc.id,
-			ComplainerContractor__c = contractor.id,
-			ThirtyDayPeriodOverReason__c = 'Reason',
-			RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
-				.get('PortfolioManagementChangeRequest')
-				.getRecordTypeId()
+		Case c = TestDataFactory.getCase(
+			new Case(
+				ComplainerFirstName__c = 'Bolek',
+				ComplainerLastName__c = 'Lolek',
+				AccountId = acc.id,
+				NewPortfolioManager__c = contractor.id,
+				ComplainerContractor__c = contractor.id,
+				ThirtyDayPeriodOverReason__c = 'Reason',
+				RecordTypeId = Schema.sObjectType.Case.getRecordTypeInfosByDeveloperName()
+					.get('PortfolioManagementChangeRequest')
+					.getRecordTypeId()
+			)
 		);
 		List<Case> newCases = new List<Case>();
 		newCases.add(c);
