@@ -1,10 +1,10 @@
 public class TaskTriggerHandler extends TriggerHandler {
 	public static String LETTER_RECORDTYPE_NAME = 'Letter';
-	private Id letterRecordTypeId;
+    private Id letterRecordTypeId;
 
-	public TaskTriggerHandler() {
-		this.letterRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName(LETTER_RECORDTYPE_NAME, 'Task');
-	}
+    public TaskTriggerHandler() {
+        this.letterRecordTypeId = RecordTypeUtils.getRecordTypeIdByDeveloperName(LETTER_RECORDTYPE_NAME, 'Task');
+    }
 
 	public override void beforeInsert() {
 		TaskService.setRecordType(Trigger.new);
@@ -16,7 +16,6 @@ public class TaskTriggerHandler extends TriggerHandler {
 		TaskService.setRecordType(Trigger.new);
 		IntegrationUtility.populateDefaultExternalId(Trigger.new);
 		updateTaskFields((Map<Id, Task>) Trigger.oldMap, Trigger.new);
-		editCentralActivities((Map<Id, Task>) Trigger.oldMap, Trigger.new);
 	}
 
 	public override void beforeDelete() {
@@ -37,7 +36,7 @@ public class TaskTriggerHandler extends TriggerHandler {
 	}
 
 	public override void afterUpdate() {
-		handleAQMessagingUpdate((List<Task>) Trigger.new, (Map<Id, Task>) Trigger.oldMap);
+        handleAQMessagingUpdate((List<Task>) Trigger.new, (Map<Id, Task>) Trigger.oldMap);
 		handleUpdatedTasksShares(Trigger.old, Trigger.new);
 		handleUpdateAccountDateFields();
 		sendDelegatedTaskNotifications(Trigger.new, Trigger.oldMap);
@@ -50,71 +49,15 @@ public class TaskTriggerHandler extends TriggerHandler {
 		AQMessageService.handleInsert(Trigger.new, Task.SObjectType);
 	}
 
-	public void handleAQMessagingUpdate(List<Task> newTasks, Map<Id, Task> oldTaskMap) {
-		List<Task> tasksToProcess = new List<Task>();
-		for (Task task : newTasks) {
+    public void handleAQMessagingUpdate(List<Task> newTasks, Map<Id, Task> oldTaskMap) {
+        List<Task> tasksToProcess = new List<Task>();
+        for (Task task : newTasks) {
 			if (task.RecordTypeId != this.letterRecordTypeId) {
-				tasksToProcess.add(task);
-			}
-		}
-		AQMessageService.handleUpdate(tasksToProcess, oldTaskMap, Task.SObjectType);
-	}
-
-	public void editCentralActivities(Map<Id, Task> oldTasksMap, List<Task> newTasks) {
-		Profile userProfile = [SELECT Id, Name FROM Profile WHERE Id = :UserInfo.getProfileId()];
-		Map<String, Object> differences = new Map<String, Object>();
-		Map<String, Schema.SObjectField> accessibleFieldsMap = Schema.SObjectType.Task.fields.getMap();
-		Schema.FieldSet fieldSetToIgnore = Schema.SObjectType.Task.FieldSets.Edit_Central_activities_to_ignore;
-		List<Schema.FieldSetMember> fieldSetToIgnoreList = fieldSetToIgnore.getFields();
-		Set<String> fieldSetToIgnoreSet = new Set<String>();
-		for (Schema.FieldSetMember member : fieldSetToIgnoreList) {
-			fieldSetToIgnoreSet.add(member.getFieldPath().toLowerCase());
-		}
-
-		if (
-			userProfile.Name == 'CMSS User' ||
-			userProfile.Name == 'CMSS Headquarters User' ||
-			userProfile.Name == 'CMSS Experience User'
-		) {
-			List<Task> tasksToCheckDiff = new List<Task>();
-			for (Task task : newTasks) {
-				Task oldTask = oldTasksMap.get(task.id);
-				if ((task.Category__c == '1' || task.Category__c == '2')) {
-					tasksToCheckDiff.add(task);
-				}
-			}
-			for (Task task : tasksToCheckDiff) {
-				Task oldTask = oldTasksMap.get(task.id);
-				Map<String, Object> diff = compareTasks(task, oldTask, accessibleFieldsMap, fieldSetToIgnoreSet);
-				if (!diff.isEmpty()) {
-					task.addError('Pro aktivity centrály můžete měnit pouze parametr Výsledek nebo Stav');
-					break;
-				}
-			}
-		}
-	}
-
-	public static Map<String, Object> compareTasks(
-		Task task1,
-		Task task2,
-		Map<String, Schema.SObjectField> accessibleFieldsMap,
-		Set<String> fieldsToIgnore
-	) {
-		Map<String, Object> differences = new Map<String, Object>();
-		for (String fieldName : accessibleFieldsMap.keySet()) {
-			if (!accessibleFieldsMap.get(fieldName).getDescribe().isAccessible()) {
-				continue;
-			}
-			Object value1 = task1.get(fieldName);
-			Object value2 = task2.get(fieldName);
-			if (value1 != value2 && value2 != null && !fieldsToIgnore.contains(fieldName.toLowerCase())) {
-				{
-					differences.put(fieldName, value2);
-				}
-			}
-		}
-		return differences;
-	}
+                tasksToProcess.add(task);
+            }
+        }
+        AQMessageService.handleUpdate(tasksToProcess, oldTaskMap, Task.SObjectType);
+    }
 
 	public void updateTaskFields(Map<Id, Task> oldTasksMap, List<Task> newTasks) {
 		Map<Id, Task> contactsToTasksToGetAlias = new Map<Id, Task>();
@@ -299,8 +242,8 @@ public class TaskTriggerHandler extends TriggerHandler {
 		Map<Id, EventSync__c> existingSyncsMap = new Map<Id, EventSync__c>(
 			(List<EventSync__c>) Database.query(
 				'SELECT Id, SFTaskId__c, GoogleEventId__c, IsNew__c, IsDeleted__c, ChangeFromGoogle__c FROM EventSync__c ' +
-					'WHERE (GoogleEventId__c IN :googleIds OR SFTaskId__c IN :taskIds) ' +
-					(isDeleted ? ' AND IsDeleted__c = true' : '')
+				'WHERE (GoogleEventId__c IN :googleIds OR SFTaskId__c IN :taskIds) ' +
+				(isDeleted ? ' AND IsDeleted__c = true' : '')
 			)
 		);
 
