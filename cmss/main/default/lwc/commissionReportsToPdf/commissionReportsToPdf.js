@@ -96,11 +96,7 @@ export default class commissionReportsToPdf extends LightningElement {
 		this.tribeCpu = message.tribeCpu;
 		this.fromRecord = message.fromRecord;
 		this.toRecord = message.toRecord;
-		if (!!this.fromRecord || this.toRecord) {
-			this.rowFilter = true;
-		} else {
-			this.rowFilter = false;
-		}
+		this.rowFilter = !!this.fromRecord || !!this.toRecord;
 		this.filterRecordRange = this.fromRecord + ' - ' + this.toRecord;
 		this.accountBaseCombinedName = message.accountBaseCombinedName;
 		this.address = message.address;
