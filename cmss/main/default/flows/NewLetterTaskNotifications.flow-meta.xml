@@ -164,7 +164,7 @@
         </filters>
         <object>Configuration__mdt</object>
         <outputAssignments>
-            <assignToReference>CommunityListviewLink</assignToReference>
+            <assignToReference>ListviewLink</assignToReference>
             <field>Value__c</field>
         </outputAssignments>
     </recordLookups>
@@ -260,13 +260,6 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
-    <variables>
-        <name>CommunityListviewLink</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
     <variables>
         <name>ListviewLink</name>
         <dataType>String</dataType>
