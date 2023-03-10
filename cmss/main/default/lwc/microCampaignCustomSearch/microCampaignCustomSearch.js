@@ -199,14 +199,14 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 	}
 
 	addLookUpUrls(columns) {
-		columns.forEach(obj => {
-			if (obj.fieldName.includes("Name")) {
-				obj.type = "url";
+		columns.forEach((obj) => {
+			if (obj.fieldName.includes('Name')) {
+				obj.type = 'url';
 				obj.typeAttributes = {
 					label: { fieldName: obj.fieldName },
-					target: "_blank"
+					target: '_blank'
 				};
-				obj.fieldName = obj.fieldName.replace("Name", "Url");
+				obj.fieldName = obj.fieldName.replace('Name', 'Url');
 			}
 		});
 		return columns;
@@ -319,21 +319,19 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 
 	get isRequestNotValid() {
 		if (this.selectedObjectType === 'PortfolioManagementRequest__c') {
-			let hasCaseId = this.filterConditionList.find((element) => element.fieldName === 'Case__r.CaseID__c');
+			let hasCaseNumber = this.filterConditionList.find((element) => element.fieldName === 'Case__r.CaseNumber');
 			let hasA = this.filterConditionList.find(
 				(element) => element.fieldName === 'Case__r.Account.PortfolioMngmtA__r.CommissionAccountBase__c'
 			);
 			let hasC = this.filterConditionList.find(
 				(element) => element.fieldName === 'Case__r.Account.PortfolioMngmtC__r.CommissionAccountBase__c'
 			);
-			if (hasCaseId || (hasA && hasC)) {
+			if (hasCaseNumber || (hasA && hasC)) {
 				return false;
-			} else {
-				return true;
 			}
-		} else {
-			return this.selectedConfiguration == null;
+			return true;
 		}
+		return this.selectedConfiguration == null;
 	}
 
 	get isTableVisible() {

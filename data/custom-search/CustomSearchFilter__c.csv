@@ -24,7 +24,7 @@ a0R1j0000079SZCEA2,Má e-mail,0121j000005tSrbAAE,Account.HasEmail__c,,Asset,Mort
 a0R1j0000079SZlEAM,Zprostředkovatel smlouvy - kmen ČPU,0121j000005tSreAAE,ClosingAgentID__r.CommissionAccountBase__c,exact match;start with,Asset,Mortgages,,Text;CustomSearchFilter__c
 a0R1j0000079BrlEAE,Počet úvěrových případů,0121j000005tSrdAAE,CreditCaseCount__c,<;>;<=;>=;=,Account,PersonAccount,,Number;CustomSearchFilter__c
 a0R1j0000079SajEAE,Zprostředkovatel smlouvy - příjmení,0121j000005tSreAAE,ClosingAgentID__r.LastName,exact match;start with,Asset,RiskLifeInsurance,,Text;CustomSearchFilter__c
-a0R1j0000079EdMEAU,ID žádosti,0121j000005tSreAAE,Case__r.CaseID__c,exact match;start with,PortfolioManagementRequest__c,PortfolioManagementRequest__c,,Text;CustomSearchFilter__c
+a0R1j0000079EdMEAU,Číslo žádosti,0121j000005tSreAAE,Case__r.CaseNumber,exact match;start with,PortfolioManagementRequest__c,PortfolioManagementRequest__c,,Text;CustomSearchFilter__c
 a0R1j0000079HIPEA2,Klientská zóna na klientovi - stav KZ,0121j000005tSreAAE,Case__r.Account.ClientZoneAccess__c,exact match;start with,PortfolioManagementRequest__c,PortfolioManagementRequest__c,,Text;CustomSearchFilter__c
 a0R1j0000079HIQEA2,Datum poslední změny správy stavu,0121j000005tSrcAAE,Case__r.Account.LastPtfManAChangeDate__c,<;>;<=;>=;=,PortfolioManagementRequest__c,PortfolioManagementRequest__c,,Date;CustomSearchFilter__c
 a0R1j0000079JndEAE,Současný správce stavu „C“,0121j000005tSreAAE,Case__r.Account.PortfolioMngmtC__r.CommissionAccountBase__c,exact match;start with,PortfolioManagementRequest__c,PortfolioManagementRequest__c,,Text;CustomSearchFilter__c
