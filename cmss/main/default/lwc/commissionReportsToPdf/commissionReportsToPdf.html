@@ -144,6 +144,14 @@
 							<td style={fixedWidth}></td>
 							<td style={fixedWidth}></td></tr
 					></template>
+					<template if:true={rowFilter}>
+						<tr>
+							<td colspan="4">
+								Seznam provizí pro zvolené obdobní je omezen pořadovým číslem záznamu a nemusí být
+								kompletní.
+							</td>
+						</tr>
+					</template>
 				</tbody>
 			</table>
 		</template>
