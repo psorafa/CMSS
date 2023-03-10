@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>standard__AllTabSet</application>
@@ -2979,11 +2979,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.CPECallAttempts__c</field>
-        <readable>true</readable>
-    </fieldPermissions>        
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.CaseID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -3106,6 +3101,11 @@
         <editable>false</editable>
         <field>Case.Country__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.CPECallAttempts__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6228,7 +6228,7 @@
     <layoutAssignments>
         <layout>CustomSearchFilter__c-Custom Search Filter Layout</layout>
         <recordType>CustomSearchFilter__c.Picklist</recordType>
-    </layoutAssignments>	    
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Event-Basic Event Layout</layout>
     </layoutAssignments>
@@ -7319,14 +7319,14 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>CustomSearchFilter__c.Text</recordType>
+        <recordType>CustomSearchFilter__c.Picklist</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>CustomSearchFilter__c.Picklist</recordType>
+        <recordType>CustomSearchFilter__c.Text</recordType>
         <visible>false</visible>
-    </recordTypeVisibilities>     
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Knowledge__kav.Evaluation</recordType>
