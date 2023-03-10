@@ -48,7 +48,7 @@
 
             <div style="color:#333333; font-size:14px; font-family:arial; line-height: 16.8px;">
                 <p>Dobrý den,</p>
-				<p>ČSOB Stavební spořitelna odeslala dopis typu {!Task.LetterType__c} na Vašeho klienta {!Task.Who}. <br>
+				<p>ČSOB Stavební spořitelna odeslala dopis typu {!Task.LetterType__c} na Vašeho klienta {!Account.Name}. <br>
 				Detaily o odeslaném dopisu i proklik na jeho znění zobrazíte v CRM Fénix - {!Task.ActivityLink__c}. <br>
 Přehled dopisů za posledních 30 dní si zobrazíte <a href="{LISTVIEW}">zde</a>. 
 				</p>
