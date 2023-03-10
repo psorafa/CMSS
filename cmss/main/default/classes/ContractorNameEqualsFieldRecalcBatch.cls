@@ -44,38 +44,25 @@ public class ContractorNameEqualsFieldRecalcBatch implements Database.Batchable<
 	}
 
 	private void setContractorNameEquals(Case c) {
-		if (
+			c.ContractorNameEquals__c = (
 			c.ComplainerContractor__c != null &&
 			c.ComplainerFirstName__c == c.ComplainerContractor__r.FirstName &&
 			c.ComplainerLastName__c == c.ComplainerContractor__r.LastName
-		) {
-			c.ContractorNameEquals__c = true;
-		} else {
-			c.ContractorNameEquals__c = false;
-		}
+		);
 	}
 
 	private void setAccountContractorNameEquals(Case c) {
-		if (
+			c.AccountContractorNameEquals__c = (
 			c.Account != null &&
 			c.ComplainerContractor__c != null &&
 			c.Account.FirstName == c.ComplainerContractor__r.FirstName &&
 			c.Account.LastName == c.ComplainerContractor__r.LastName
-		) {
-			c.AccountContractorNameEquals__c = true;
-		} else {
-			c.AccountContractorNameEquals__c = false;
-		}
+		);
 	}
 	private void setAccountComplainerNameEquals(Case c) {
-		if (
+			c.AccountComplainerNameEquals__c = (
 			c.Account != null &&
 			c.ComplainerFirstName__c == c.Account.FirstName &&
 			c.ComplainerLastName__c == c.Account.LastName
-		) {
-			c.AccountComplainerNameEquals__c = true;
-		} else {
-			c.AccountComplainerNameEquals__c = false;
-		}
-	}
+		);
 }

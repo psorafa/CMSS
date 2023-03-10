@@ -357,28 +357,16 @@ public with sharing class CaseService {
 		}
 	}
 	private static void setContractorNameEquals(Case c, User contractor) {
-		if (contractor != null && c.ComplainerFirstName__c == contractor.FirstName && c.ComplainerLastName__c == contractor.LastName) {
-				c.ContractorNameEquals__c = true;
-			} else {
-				c.ContractorNameEquals__c = false;
-			}
+				c.ContractorNameEquals__c = (contractor != null && c.ComplainerFirstName__c == contractor.FirstName && c.ComplainerLastName__c == contractor.LastName);
 	}
 
 	private static void setAccountContractorNameEquals(Case c, Account acc, User contractor) {
-		if (acc != null && contractor != null && acc.FirstName == contractor.FirstName && acc.LastName == contractor.LastName) 
-        {
-				c.AccountContractorNameEquals__c = true;
-			} else {
-				c.AccountContractorNameEquals__c = false;
-			}
+				c.AccountContractorNameEquals__c = (acc != null && contractor != null && acc.FirstName == contractor.FirstName && acc.LastName == contractor.LastName);
 		}
         
 	private static void setAccountComplainerNameEquals(Case c, Account acc) {
-		if (acc != null && c.ComplainerFirstName__c == acc.FirstName && c.ComplainerLastName__c == acc.LastName) {
-				c.AccountComplainerNameEquals__c = true;
-			} else {
-				c.AccountComplainerNameEquals__c = false;
-			}
+				c.AccountComplainerNameEquals__c = (acc != null && c.ComplainerFirstName__c == acc.FirstName && c.ComplainerLastName__c == acc.LastName);
+
 	}
 
 	public class CaseOwnerPermissionMissingException extends Exception {
