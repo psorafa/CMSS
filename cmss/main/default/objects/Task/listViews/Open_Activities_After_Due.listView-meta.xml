@@ -29,10 +29,5 @@
         <operation>equals</operation>
         <value>LAST_90_DAYS</value>
     </filters>
-    <filters>
-        <field>RECORDTYPE</field>
-        <operation>equals</operation>
-        <value>Task.Task</value>
-    </filters>
     <label>*Zpožděné otevřené aktivity</label>
 </ListView>
