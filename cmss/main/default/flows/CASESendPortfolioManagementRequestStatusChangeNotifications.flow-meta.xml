@@ -397,7 +397,7 @@
         </rules>
         <rules>
             <name>Zpracov_no_s_chybou_i_bez_chyby</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Status</leftValueReference>
                 <operator>EqualTo</operator>
