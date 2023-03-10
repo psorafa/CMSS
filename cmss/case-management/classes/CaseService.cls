@@ -136,9 +136,7 @@ public with sharing class CaseService {
 			if (GDPRRecordTypes.contains(caseItem.RecordTypeId)) {
 				lastIssuedCaseID.GDPRClaimID__c += 1;
 				caseItem.CaseID__c = String.valueOf(
-						'' +
-						Integer.valueOf(lastIssuedCaseID.GDPRClaimID__c) +
-						Date.today().year()
+						'' + Integer.valueOf(lastIssuedCaseID.GDPRClaimID__c) + Date.today().year()
 					)
 					.leftPad(10, '0');
 			}
@@ -321,6 +319,59 @@ public with sharing class CaseService {
 			);
 		}
 		SharingService.upsertSharing(newCasesList, oldCasesMap, sharingSettingsMap, 'CaseId');
+	}
+
+	public static void setNameEqualsFields(List<Case> newCases) {
+		List<Id> userIds = new List<Id>();
+		List<Id> accIds = new List<Id>();
+		for (Case c : newCases) {
+			if (c.ComplainerContractor__c != null) {
+				userIds.add(c.ComplainerContractor__c);
+			}
+			if (c.AccountId != null) {
+				accIds.add(c.AccountId);
+			}
+		}
+		Map<ID, User> contractorMap = new Map<ID, User>(
+			[
+				SELECT Id, LastName, FirstName
+				FROM User
+				WHERE Id IN :userIds
+			]
+		);
+		Map<ID, Account> accountMap = new Map<ID, Account>(
+			[
+				SELECT Id, LastName, FirstName
+				FROM Account
+				WHERE Id IN :accIds
+			]
+		);
+		for (Case c : newCases) {
+			Account acc = accountMap.get(c.AccountId);
+			User contractor = contractorMap.get(c.ComplainerContractor__c);
+
+			setContractorNameEquals(c, contractor);
+			setAccountContractorNameEquals(c, acc, contractor);
+			setAccountComplainerNameEquals(c, acc);
+		}
+	}
+	private static void setContractorNameEquals(Case c, User contractor) {
+		c.ContractorNameEquals__c = (contractor != null &&
+		c.ComplainerFirstName__c == contractor.FirstName &&
+		c.ComplainerLastName__c == contractor.LastName);
+	}
+
+	private static void setAccountContractorNameEquals(Case c, Account acc, User contractor) {
+		c.AccountContractorNameEquals__c = (acc != null &&
+		contractor != null &&
+		acc.FirstName == contractor.FirstName &&
+		acc.LastName == contractor.LastName);
+	}
+
+	private static void setAccountComplainerNameEquals(Case c, Account acc) {
+		c.AccountComplainerNameEquals__c = (acc != null &&
+		c.ComplainerFirstName__c == acc.FirstName &&
+		c.ComplainerLastName__c == acc.LastName);
 	}
 
 	public class CaseOwnerPermissionMissingException extends Exception {

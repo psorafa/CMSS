@@ -3,10 +3,11 @@
     <fullName>MultipleComplainers__c</fullName>
     <description>If multiple complainers entered, the formula return true. Possible complainers are fields on case and possibilities are Client, Contractor, Third Party or Institution</description>
     <externalId>false</externalId>
-    <formula>OR( AND( NOT( ISBLANK( AccountId ) ), NOT( ISBLANK( ComplainerContractor__c ) ) ),
+    <formula>OR( AND( NOT( ISBLANK( AccountId ) ), NOT( ISBLANK( ComplainerContractor__c ) ), NOT (AccountContractorNameEquals__c) ),
     AND( NOT( ISBLANK( AccountId ) ), NOT( ISBLANK( TEXT( InstitutionType__c ) ) ) ),
-    AND( NOT( ISBLANK( AccountId ) ), OR( NOT( ISBLANK( ComplainerLastName__c ) ), NOT( ISBLANK(  ComplainerFirstName__c  ) ) ) ),
-    AND( NOT( ISBLANK( ComplainerContractor__c ) ), OR( NOT( ISBLANK( ComplainerLastName__c ) ), NOT( ISBLANK(  ComplainerFirstName__c  ) ) ) ),
+    AND( NOT( ISBLANK( AccountId ) ), OR( NOT( ISBLANK( ComplainerLastName__c ) ), NOT( ISBLANK(  ComplainerFirstName__c  ) ) ), NOT( AccountComplainerNameEquals__c ) ),
+    AND( NOT( ISBLANK( ComplainerContractor__c ) ), OR( NOT( ISBLANK( ComplainerLastName__c ) ), NOT( ISBLANK(  ComplainerFirstName__c  ) ) ), 
+         NOT(ContractorNameEquals__c) ),
     AND( NOT( ISBLANK( TEXT( InstitutionType__c ) ) ), OR( NOT( ISBLANK( ComplainerLastName__c ) ), NOT( ISBLANK( ComplainerFirstName__c ) ) ) ),
     AND( NOT( ISBLANK( TEXT( InstitutionType__c ) ) ), NOT( ISBLANK( ComplainerContractor__c ) ) ) 
 )</formula>

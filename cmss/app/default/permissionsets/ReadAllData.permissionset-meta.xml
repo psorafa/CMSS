@@ -2940,6 +2940,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.AccountComplainerNameEquals__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.AccountContractorNameEquals__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.AccountId</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3096,6 +3106,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.ContractorCPU__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.ContractorNameEquals__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
