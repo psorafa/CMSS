@@ -68,6 +68,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>ClientName__c</field>
+            <table>Commission__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>ClosingAgentCommissionAcountBase__c</field>
             <table>Commission__c</table>
         </columns>

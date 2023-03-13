@@ -4436,6 +4436,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Commission__c.ClientName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Commission__c.ClosingAgent__c</field>
         <readable>true</readable>
     </fieldPermissions>
