@@ -114,3 +114,4 @@ post    po vytvoření článku (zajistí ČMSS) vyplnit záznam Knowledge_Commi
 			- priklad pro aktualni test org: https://csobstavebni--test.sandbox.my.site.com/fenixdocs/s/article/Vysvetlivky-k-vypisu-z-provizniho-uctu-kontakty
 post    Pro všechny Record Types objektu Production__c přidat do Code As, Code Nov a Code Target hodnotu 6
 pre     pred prvnim deploymentem na prostredi zmenit API names Priority fieldu na Task objektu z textu na cisla viz.: (High=>1, Normal=>2, Low=>3)
+post    V Dashabordu Pořadí MOT dle pilíře, Plnění produkce Manažera obchodního týmu přepsat Display Text pro zobrazení filtrů na 1. pololetí 2023, 2. pololetí 2022 a 1. pololetí 2022 dle začátku období (zřejmě nasazení stávající popisky přepíše)
