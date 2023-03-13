@@ -115,7 +115,7 @@
     <formulas>
         <name>TemplateBodyFilledWithListviewLink</name>
         <dataType>String</dataType>
-        <expression>SUBSTITUTE({!GetEmailTemplate.Body}, &apos;{LISTVIEW}&apos;, {!ListviewLink})</expression>
+        <expression>SUBSTITUTE({!GetEmailTemplate.HtmlValue}, &apos;{LISTVIEW}&apos;, {!ListviewLink})</expression>
     </formulas>
     <interviewLabel>New Task Letter Notifications {!$Flow.CurrentDateTime}</interviewLabel>
     <label>New Letter Task Notifications</label>
