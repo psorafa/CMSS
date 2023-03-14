@@ -207,6 +207,15 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 					target: '_blank'
 				};
 				obj.fieldName = obj.fieldName.replace('Name', 'Url');
+			} else if (
+				this.selectedObjectType === 'PortfolioManagementRequest__c' &&
+				obj.fieldName.includes('PortfolioMngmtA__c')
+			) {
+				obj.type = 'url';
+				obj.typeAttributes = {
+					label: { fieldName: obj.fieldName + '.Name' },
+					target: '_blank'
+				};
 			}
 		});
 		return columns;
@@ -288,6 +297,22 @@ export default class MicroCampaignCustomSearch extends LightningElement {
 										item[newKey] = item[key].Name;
 										const urlKey = key + '.Url';
 										item[urlKey] = '/lightning/r/' + item[key].Id + '/view';
+									} else if (
+										this.selectedObjectType === 'PortfolioManagementRequest__c' &&
+										key === 'PortfolioMngmtA__c'
+									) {
+										const PortfMngrA = item[key];
+										const newKey = key + '.Name';
+										if (PortfMngrA.length > 1) {
+											item[newKey] = PortfMngrA.slice(PortfMngrA.indexOf(',') + 1);
+											item[key] =
+												'/lightning/r/' +
+												PortfMngrA.slice(0, PortfMngrA.indexOf(',')) +
+												'/view';
+										} else {
+											item[newKey] = '';
+											item[key] = '';
+										}
 									}
 								});
 								this.outputTableData.push(item);
