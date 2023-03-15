@@ -4,8 +4,6 @@ U žádosti o změnu správy stavu číslo <a href="{LINKTOCASE}">{!Case.CaseNum
 
 Žádost byla vytvořena uživatelem: {CPUNAME} <br>
 <br>
-Poznámka na žádosti: {!Case.Description}
-<br>
 Počet požadavků v žádosti:
 celkem: {!Case.TotalRequestsNumber__c}
 <br>
