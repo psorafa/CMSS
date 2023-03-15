@@ -467,7 +467,7 @@
         });
     }
 
-    CONFIG.initView = init;git
+    CONFIG.initView = init;
 
     function ready(fn) {
         if(CONFIG.initChatbot) {
