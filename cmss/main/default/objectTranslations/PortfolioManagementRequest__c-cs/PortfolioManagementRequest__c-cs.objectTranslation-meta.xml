@@ -60,6 +60,10 @@
         <plural>true</plural>
         <value>Požadavcích změny správy stavu</value>
     </caseValues>
+    <fieldSets>
+        <label></label>
+        <name>PortfolioManagementRequest</name>
+    </fieldSets>
     <gender>Neuter</gender>
     <layouts>
         <layout>Portfolio Management Request Layout</layout>

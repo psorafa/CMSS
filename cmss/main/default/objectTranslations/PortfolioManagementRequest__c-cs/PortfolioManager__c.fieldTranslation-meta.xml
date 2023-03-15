@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>Požadovaný správce stavu</label>
+    <lookupFilter>
+        <errorMessage></errorMessage>
+    </lookupFilter>
     <name>PortfolioManager__c</name>
     <relationshipLabel>Požadavky na změnu správy stavu</relationshipLabel>
 </CustomFieldTranslation>
