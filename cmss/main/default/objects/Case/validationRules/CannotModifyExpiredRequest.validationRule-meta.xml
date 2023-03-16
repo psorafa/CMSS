@@ -5,6 +5,7 @@
     <description>Expired Request cannot be edited.</description>
     <errorConditionFormula>RecordType.DeveloperName = &apos;PortfolioManagementChangeRequest&apos; &amp;&amp;
 NOT(ISNEW()) &amp;&amp;
-ISPICKVAL(Status, &quot;26&quot;)</errorConditionFormula>
+ISPICKVAL(Status, &quot;26&quot;) &amp;&amp;
+NOT(ISCHANGED(Status))</errorConditionFormula>
     <errorMessage>Once expired, the request cannot be edited.</errorMessage>
 </ValidationRule>

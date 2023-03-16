@@ -4,7 +4,7 @@
         <name>Recall_approvals</name>
         <label>Recall approvals</label>
         <locationX>50</locationX>
-        <locationY>1308</locationY>
+        <locationY>1428</locationY>
         <actionName>ApprovalRecallService</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -14,7 +14,7 @@
         <inputParameters>
             <name>recordIds</name>
             <value>
-                <elementReference>CasesWithStatus2Ids</elementReference>
+                <elementReference>CasesToRecall</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -25,7 +25,7 @@
         <locationX>270</locationX>
         <locationY>756</locationY>
         <assignmentItems>
-            <assignToReference>CasesWithStatus2Ids</assignToReference>
+            <assignToReference>CasesToRecall</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>Iterate_over_expired_requests.Id</elementReference>
@@ -33,6 +33,22 @@
         </assignmentItems>
         <connector>
             <targetReference>Set_status_to_6</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_to_collection</name>
+        <label>Add to collection</label>
+        <locationX>402</locationX>
+        <locationY>1092</locationY>
+        <assignmentItems>
+            <assignToReference>ExpiredCases</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Iterate_over_expired_requests</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_over_expired_requests</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -55,14 +71,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Iterate_over_expired_requests</targetReference>
+            <targetReference>Add_to_collection</targetReference>
         </connector>
     </assignments>
     <decisions>
         <name>IsNotEmpty</name>
         <label>IsNotEmpty</label>
         <locationX>182</locationX>
-        <locationY>1188</locationY>
+        <locationY>1308</locationY>
         <defaultConnector>
             <targetReference>Update_statuses</targetReference>
         </defaultConnector>
@@ -71,7 +87,7 @@
             <name>Not_Empty</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>CasesWithStatus2Ids</leftValueReference>
+                <leftValueReference>CasesToRecall</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -84,8 +100,8 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Status_equals_2</name>
-        <label>Status equals 2</label>
+        <name>Status_equals_22</name>
+        <label>Status equals 22</label>
         <locationX>402</locationX>
         <locationY>636</locationY>
         <defaultConnector>
@@ -119,7 +135,7 @@
         <collectionReference>Get_Expired_requests</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Status_equals_2</targetReference>
+            <targetReference>Status_equals_22</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>IsNotEmpty</targetReference>
@@ -184,6 +200,8 @@
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>Case</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Status</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -213,8 +231,8 @@
         <name>Update_statuses</name>
         <label>Update statuses</label>
         <locationX>182</locationX>
-        <locationY>1524</locationY>
-        <inputReference>Get_Expired_requests</inputReference>
+        <locationY>1644</locationY>
+        <inputReference>ExpiredCases</inputReference>
     </recordUpdates>
     <start>
         <locationX>56</locationX>
@@ -231,16 +249,16 @@
     </start>
     <status>Active</status>
     <variables>
-        <name>CasesWithStatus2Ids</name>
+        <name>CasesToRecall</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>currentItem_Filter_cases_with_status_2</name>
+        <name>ExpiredCases</name>
         <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
+        <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Case</objectType>

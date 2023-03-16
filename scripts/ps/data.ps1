@@ -30,6 +30,8 @@ try {
     CheckLastExitCode
     sfdx sfdmu:run -p data/custom-search --sourceusername csvfile --targetusername $ALIAS
     CheckLastExitCode
+    sfdx sfdmu:run -p data/custom-settings --sourceusername csvfile --targetusername $ALIAS
+    CheckLastExitCode
 
     Write-Host "Data loading completed."
 } finally {
