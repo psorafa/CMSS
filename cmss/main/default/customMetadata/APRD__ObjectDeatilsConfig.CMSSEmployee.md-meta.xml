@@ -4,10 +4,10 @@
     <protected>false</protected>
     <values>
         <field>APRD__ReadonlyFields__c</field>
-        <value xsi:type="xsd:string">FirstName,LastName,Suffix__c,Position__c,UserRoleId,Department,ManagerId,MobilePhone__c,Email</value>
+        <value xsi:type="xsd:string">FirstName,LastName,Suffix__c,Position__c,UserRoleId,Department,ManagerId,MobilePhone__c,Email,ProvisionNumberCSOB__c,ProvisionNumberCSOB__c</value>
     </values>
     <values>
         <field>APRD__SectionFieldMapping__c</field>
-        <value xsi:type="xsd:string">[{&quot;SecName&quot;:&quot;Základní informace&quot;,&quot;FieldList&quot;:[&quot;FirstName&quot;,&quot;LastName&quot;,&quot;Suffix__c&quot;,&quot;Position__c&quot;,&quot;UserRoleId&quot;,&quot;Department&quot;,&quot;ManagerId&quot;,&quot;Phone&quot;,&quot;Email&quot;]}]</value>
+        <value xsi:type="xsd:string">[{&quot;SecName&quot;:&quot;Základní informace&quot;,&quot;FieldList&quot;:[&quot;FirstName&quot;,&quot;LastName&quot;,&quot;Suffix__c&quot;,&quot;Position__c&quot;,&quot;UserRoleId&quot;,&quot;Department&quot;,&quot;ManagerId&quot;,&quot;Phone&quot;,&quot;Email&quot;,&quot;ProvisionNumberCSOB__c&quot;,&quot;CommissionAccountBase__c&quot;]}]</value>
     </values>
 </CustomMetadata>
