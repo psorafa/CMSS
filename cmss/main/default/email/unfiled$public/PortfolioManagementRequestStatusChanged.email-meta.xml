@@ -10,7 +10,6 @@
 U žádosti o změnu správy stavu číslo {!Case.CaseNumber} ze dne {!Case.CreatedDate} byl změn stav na {!Case.Status}.
 Žádost byla vytvořena uživatelem: {CPUNAME}
 
-Poznámka na žádosti: {!Case.Description}
 Počet požadavků v žádosti:
 celkem: {!Case.TotalRequestsNumber__c}
 
