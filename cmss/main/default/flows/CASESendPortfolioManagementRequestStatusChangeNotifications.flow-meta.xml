@@ -4,7 +4,7 @@
         <name>Send_Notifications</name>
         <label>Send Notifications</label>
         <locationX>1106</locationX>
-        <locationY>2183</locationY>
+        <locationY>2615</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
@@ -32,7 +32,7 @@
         <inputParameters>
             <name>recipientIds</name>
             <value>
-                <elementReference>Remove_nulls</elementReference>
+                <elementReference>NotificationRecipientsIDS</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -47,7 +47,7 @@
         <name>Add_emails_to_collection</name>
         <label>Add emails to collection</label>
         <locationX>1106</locationX>
-        <locationY>2303</locationY>
+        <locationY>2735</locationY>
         <assignmentItems>
             <assignToReference>EmailNotifications</assignToReference>
             <operator>Add</operator>
@@ -102,6 +102,22 @@
         </connector>
     </assignments>
     <assignments>
+        <name>AddUserIdToCollection</name>
+        <label>Add User Id To Collection</label>
+        <locationX>1194</locationX>
+        <locationY>2303</locationY>
+        <assignmentItems>
+            <assignToReference>NotificationRecipientsIDS</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>LoopNotificationRecipients.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LoopNotificationRecipients</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_error_result</name>
         <label>Assign error result</label>
         <locationX>1106</locationX>
@@ -149,11 +165,11 @@
             <assignToReference>NotificationRecipients</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>$Record.OwnerId</elementReference>
+                <elementReference>Get_recipients_users.CaseOwner</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Remove_nulls</targetReference>
+            <targetReference>LoopNotificationRecipients</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -172,11 +188,11 @@
             <assignToReference>NotificationRecipients</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>$Record.OwnerId</elementReference>
+                <elementReference>Get_recipients_users.CaseOwner</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Remove_nulls</targetReference>
+            <targetReference>LoopNotificationRecipients</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -195,11 +211,11 @@
             <assignToReference>NotificationRecipients</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>$Record.OwnerId</elementReference>
+                <elementReference>Get_recipients_users.CaseOwner</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Remove_nulls</targetReference>
+            <targetReference>LoopNotificationRecipients</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -208,21 +224,21 @@
         <locationX>578</locationX>
         <locationY>1751</locationY>
         <assignmentItems>
-            <assignToReference>NotificationRecipients</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>$Record.OwnerId</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>NotificationText</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Value_Zamitnuta</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NotificationRecipients</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Get_recipients_users.CaseOwner</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
-            <targetReference>Remove_nulls</targetReference>
+            <targetReference>LoopNotificationRecipients</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -241,18 +257,18 @@
             <assignToReference>NotificationRecipients</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>$Record.RegionalManager__c</elementReference>
+                <elementReference>Get_recipients_users.RegionalManager</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>NotificationRecipients</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>$Record.RegionalManagerAssistant__c</elementReference>
+                <elementReference>Get_recipients_users.Assistant_1</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Remove_nulls</targetReference>
+            <targetReference>LoopNotificationRecipients</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -271,18 +287,18 @@
             <assignToReference>NotificationRecipients</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>$Record.OwnerId</elementReference>
+                <elementReference>Get_recipients_users.CaseOwner</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>NotificationRecipients</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>$Record.NewPortfolioManager__c</elementReference>
+                <elementReference>Get_recipients_users.NewPortfolioManager</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Remove_nulls</targetReference>
+            <targetReference>LoopNotificationRecipients</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -301,34 +317,6 @@
             <targetReference>Determine_Case_Status</targetReference>
         </connector>
     </assignments>
-    <collectionProcessors>
-        <name>Remove_nulls</name>
-        <elementSubtype>FilterCollectionProcessor</elementSubtype>
-        <label>Remove nulls</label>
-        <locationX>1106</locationX>
-        <locationY>2063</locationY>
-        <assignNextValueToReference>currentItem_Remove_nulls_0</assignNextValueToReference>
-        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
-        <collectionReference>NotificationRecipients</collectionReference>
-        <conditionLogic>and</conditionLogic>
-        <conditions>
-            <leftValueReference>currentItem_Remove_nulls_0</leftValueReference>
-            <operator>NotEqualTo</operator>
-            <rightValue>
-                <stringValue></stringValue>
-            </rightValue>
-        </conditions>
-        <conditions>
-            <leftValueReference>currentItem_Remove_nulls_0</leftValueReference>
-            <operator>IsNull</operator>
-            <rightValue>
-                <booleanValue>false</booleanValue>
-            </rightValue>
-        </conditions>
-        <connector>
-            <targetReference>Send_Notifications</targetReference>
-        </connector>
-    </collectionProcessors>
     <decisions>
         <name>Determine_Case_Status</name>
         <label>Determine Case Status</label>
@@ -500,6 +488,31 @@
         </rules>
     </decisions>
     <decisions>
+        <name>IsUserActive</name>
+        <label>Is User Active?</label>
+        <locationX>1326</locationX>
+        <locationY>2183</locationY>
+        <defaultConnector>
+            <targetReference>LoopNotificationRecipients</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Active</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>LoopNotificationRecipients.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AddUserIdToCollection</targetReference>
+            </connector>
+            <label>Active</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Success_or_error</name>
         <label>Is Success Or Error</label>
         <locationX>1106</locationX>
@@ -589,6 +602,20 @@
     </formulas>
     <interviewLabel>CASE notifications send {!$Flow.CurrentDateTime}</interviewLabel>
     <label>CASE Send Portfolio Management Request Status Change Notifications</label>
+    <loops>
+        <name>LoopNotificationRecipients</name>
+        <label>Loop Notification Recipients</label>
+        <locationX>1106</locationX>
+        <locationY>2063</locationY>
+        <collectionReference>NotificationRecipients</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>IsUserActive</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Send_Notifications</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -612,7 +639,7 @@
         <name>Insert_notifications</name>
         <label>Insert email notifications</label>
         <locationX>1106</locationX>
-        <locationY>2423</locationY>
+        <locationY>2855</locationY>
         <inputReference>EmailNotifications</inputReference>
     </recordCreates>
     <recordLookups>
@@ -969,7 +996,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </subflows>
     <variables>
-        <name>currentItem_Remove_nulls_0</name>
+        <name>currentItem_Remove_nulls</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -985,6 +1012,14 @@
     </variables>
     <variables>
         <name>NotificationRecipients</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>User</objectType>
+    </variables>
+    <variables>
+        <name>NotificationRecipientsIDS</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
