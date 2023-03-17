@@ -138,6 +138,11 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
+            <actionName>Asset.eForms</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>0</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>FeedItem.TextPost</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>1</sortOrder>
@@ -146,11 +151,6 @@
             <actionName>FeedItem.ContentPost</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>2</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Asset.eForms</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>FeedItem.RypplePost</actionName>
@@ -205,6 +205,7 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>InsurranceName__c</fields>
         <fields>RiskName__c</fields>
         <fields>PremiumWithoutDiscount__c</fields>
         <fields>LimitAmount__c</fields>
@@ -213,13 +214,12 @@
         <relatedList>NonLifeInsuranceRisk__c.AssetID__c</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
-    <relatedObjects>ContactId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h5E000002AR35</masterLabel>
+        <masterLabel>00h5E000002aMde</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
