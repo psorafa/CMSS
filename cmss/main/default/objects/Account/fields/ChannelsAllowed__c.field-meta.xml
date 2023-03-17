@@ -3,13 +3,13 @@
     <fullName>ChannelsAllowed__c</fullName>
     <externalId>false</externalId>
     <formula>IF(
-TEXT(AddressingNonpersonalized__c) = &quot;Ne&quot;,
+TEXT(AddressingNonpersonalized__c) = &quot;0&quot;,
 &quot;NEOSLOVOVAT&quot;,
 IF ( 
-TEXT(AddressingNonpersonalized__c) = &quot;Ano&quot;,
+TEXT(AddressingNonpersonalized__c) = &quot;1&quot;,
 &quot;Telefon,SMS, dopis, e-mail, el. portály + mobil. aplikace&quot;,
 IF (
-TEXT (AddressingNonpersonalized__c) = &quot;Ano omezené&quot;,
+TEXT (AddressingNonpersonalized__c) = &quot;2&quot;,
 &quot;SMS, e-mail&quot;,
 null
 )
