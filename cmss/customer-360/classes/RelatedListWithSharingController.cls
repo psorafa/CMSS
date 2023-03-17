@@ -73,6 +73,9 @@ public without sharing class RelatedListWithSharingController {
 			if (resultObjectName == 'Asset__c') {
 				resultObjectName = 'Asset';
 			}
+			if (resultObjectName == 'User__c') {
+				resultObjectName = 'User';
+			}
 		}
 		return resultObjectName;
 	}
