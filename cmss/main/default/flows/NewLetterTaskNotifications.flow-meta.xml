@@ -54,20 +54,13 @@
     </assignments>
     <decisions>
         <name>Created_Today_by_Different_Person_than_Recipient</name>
-        <label>Created Today by Different Person than Recipient</label>
+        <label>Created by Different Person than Recipient</label>
         <locationX>380</locationX>
         <locationY>335</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
             <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.CreatedDate</leftValueReference>
-                <operator>GreaterThanOrEqualTo</operator>
-                <rightValue>
-                    <elementReference>DateTodayStart</elementReference>
-                </rightValue>
-            </conditions>
             <conditions>
                 <leftValueReference>$Record.CreatedById</leftValueReference>
                 <operator>NotEqualTo</operator>
