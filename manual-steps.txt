@@ -116,3 +116,4 @@ post    Pro všechny Record Types objektu Production__c přidat do Code As, Code
 pre     pred prvnim deploymentem na prostredi zmenit API names Priority fieldu na Task objektu z textu na cisla viz.: (High=>1, Normal=>2, Low=>3)
 post    V Dashabordu Pořadí MOT dle pilíře, Plnění produkce Manažera obchodního týmu přepsat Display Text pro zobrazení filtrů na 1. pololetí 2023, 2. pololetí 2022 a 1. pololetí 2022 dle začátku období (zřejmě nasazení stávající popisky přepíše)
 post    pokud se neodmaže nasazením, odstranit ručně reporty a custom mtd v PR 48651 - jedná se o typy 40, 50, 60 a 70
+pre     před prvním nasazením na PROD zakomentovat ve .forceignore cmss/app/chatbot/staticresources/*
