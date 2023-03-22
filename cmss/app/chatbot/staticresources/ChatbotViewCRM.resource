@@ -282,15 +282,6 @@
         }, delay + Math.min((textLength * typingSpeed), 1000));
     }
 
-    function addUrlParam(url, key, value) {
-        var newParam = key + "=" + value;
-        var result = url.replace(new RegExp("(&|\\?)" + key + "=[^\&|#]*"), '$1' + newParam);
-        if (result === url) {
-            result = (url.indexOf("?") != -1 ? url.split("?")[0] + "?" + newParam + "&" + url.split("?")[1] : (url.indexOf("#") != -1 ? url.split("#")[0] + "?" + newParam + "#" + url.split("#")[1] : url + '?' + newParam));
-        }
-        return result;
-    }
-
     function modifyUrlForSFCommunities(url){
         const FENIX_DOCS_NETWORK_ID_PROD = '0DB3X000000TQGg&';
         const COMMUNITY_NETWORK_ID_PROD = '0DB3X000000L1Ij&';
@@ -315,6 +306,15 @@
         return modifiedUrl;
     }
 
+    function addUrlParam(url, key, value) {
+        var newParam = key + "=" + value;
+        var result = url.replace(new RegExp("(&|\\?)" + key + "=[^\&|#]*"), '$1' + newParam);
+        if (result === url) {
+            result = (url.indexOf("?") != -1 ? url.split("?")[0] + "?" + newParam + "&" + url.split("?")[1] : (url.indexOf("#") != -1 ? url.split("#")[0] + "?" + newParam + "#" + url.split("#")[1] : url + '?' + newParam));
+        }
+        return result;
+    }
+
     function renderResponse(response) {
         let status = response.status;
         let msg = response.message;
@@ -333,6 +333,7 @@
             switch (element.type) {
                 case "LINK":
                     nodeLink = document.createElement("a");
+                   // nodeLink.href = addUrlParam(element.url, CONFIG.trackingId, CONFIG.trackingCode);
                     nodeLink.setAttribute("target", "_blank");
                     nodeLink.setAttribute("href", modifyUrlForSFCommunities(element.url));
                     nodeLink.appendChild(document.createTextNode(element.text));
@@ -493,17 +494,9 @@
 
     CONFIG.initView = init;
 
-    function ready(fn) {
-            if (document.readyState !== 'loading') {
-                fn();
-            } else if (document.addEventListener) {
-                document.addEventListener('DOMContentLoaded', fn);
-            } else {
-                document.attachEvent('onreadystatechange', function () {
-                    if (document.readyState !== 'loading')
-                        fn();
-                });
-            }
-    }
-    ready(init);
+    document.addEventListener("readystatechange", function () {
+        if (document.readyState === "complete" && CONFIG.initChatbot) {
+            init();
+       }
+    });
 })(window, document);

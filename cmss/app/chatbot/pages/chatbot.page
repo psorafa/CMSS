@@ -1,4 +1,5 @@
 <apex:page id="chatbot">
+    <!--  this default config has the chatbot open by default, which is what we want in the utility bar  -->
     <script src="https://internal.chatbot.csob.cz/ondra/js/config.js"></script>
     <script src="/resource/ChatbotViewCRM"></script>
     <script src="/resource/ChatbotController"></script>
